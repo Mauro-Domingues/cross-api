@@ -1,0 +1,6 @@
+/.eslintrc.json
+/.eslintignore
+/prettier.config.js
+/.editorconfig
+
+/node_modules
