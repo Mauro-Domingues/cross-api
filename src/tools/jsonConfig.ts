@@ -15,7 +15,7 @@ class LanguageOption {
   }
 }
 
-export default function configJson(): void {
+function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   console.log('');
@@ -109,3 +109,5 @@ export default function configJson(): void {
     }
   });
 }
+
+configJson();
