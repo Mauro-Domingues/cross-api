@@ -1,6 +1,6 @@
 import messages from './messages';
 
-export default async function board(): Promise<void> {
+export default function board(): void {
   const trace = '\\';
   console.log('');
   console.log(

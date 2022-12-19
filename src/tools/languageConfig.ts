@@ -13,7 +13,7 @@ class LanguageOption {
   }
 }
 
-async function configLanguage(): Promise<void> {
+export default function configLanguage(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   console.log('');
@@ -27,7 +27,7 @@ async function configLanguage(): Promise<void> {
     output: process.stdout,
   });
 
-  await rl.question(messages.answer, languageOption => {
+  rl.question(messages.answer, languageOption => {
     if (languageOption !== '0' && languageOption !== '1') {
       console.log('');
       console.log(`"${languageOption}" is not a valid option`);
@@ -63,5 +63,3 @@ async function configLanguage(): Promise<void> {
     }
   });
 }
-
-export default configLanguage;

@@ -2,7 +2,7 @@ import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
 
-import userJson from '../../package.json';
+import userJson from '../../../package.json';
 import enUs from '../templates/en-us';
 import ptBr from '../templates/pt-br';
 
@@ -14,7 +14,7 @@ class LanguageOption {
   }
 }
 
-async function configJson(): Promise<void> {
+export default function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   console.log('');
@@ -35,14 +35,21 @@ async function configJson(): Promise<void> {
       rl.close();
       configJson();
     } else {
-      fs.truncate('src/tools/messages.ts', error => {
-        if (error) console.log(error);
-      });
+      fs.truncate(
+        './node_modules/cross-api-template/src/tools/messages.ts',
+        error => {
+          if (error) console.log(error);
+        },
+      );
 
       if (languageOption === '0') {
-        fs.appendFile('src/tools/messages.ts', enUs, error => {
-          if (error) console.log(error);
-        });
+        fs.appendFile(
+          './node_modules/cross-api-template/src/tools/messages.ts',
+          enUs,
+          error => {
+            if (error) console.log(error);
+          },
+        );
 
         console.log('');
         console.log(
@@ -52,9 +59,13 @@ async function configJson(): Promise<void> {
         console.log('=========={ Installing dependencies }==========');
         console.log('');
       } else {
-        fs.appendFile('src/tools/messages.ts', ptBr, error => {
-          if (error) console.log(error);
-        });
+        fs.appendFile(
+          './node_modules/cross-api-template/src/tools/messages.ts',
+          ptBr,
+          error => {
+            if (error) console.log(error);
+          },
+        );
 
         console.log('');
         console.log(
@@ -72,6 +83,13 @@ async function configJson(): Promise<void> {
       newScript.scripts = {
         ...newScript.scripts,
         cross: 'ts-node ./node_modules/cross-api-template/index.ts',
+        'dev:server':
+          'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
+        'migration:generate':
+          'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:generate ./src/shared/typeorm/migrations/default',
+        'migration:run':
+          'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:run',
+        test: 'set NODE_ENV=test&&jest --runInBand',
       };
 
       fs.writeFileSync('./package.json', JSON.stringify(newScript), {
@@ -79,12 +97,10 @@ async function configJson(): Promise<void> {
         flag: 'w',
       });
 
-      // shell.exec('npm install yarn -g');
-      // shell.exec('yarn add typeorm');
-      // shell.exec('yarn add bcrypt -D');
+      shell.exec('npm install yarn -g');
+      shell.exec('npm install typeorm');
+      shell.exec('npm install bcrypt -D');
       rl.close();
     }
   });
 }
-
-export default configJson;

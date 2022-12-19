@@ -1,5 +1,6 @@
 import board from './src/tools/board';
 import configLanguage from './src/tools/languageConfig';
+import makeApi from './src/tools/makeAPi';
 import messages from './src/tools/messages';
 
 const [comand] = process.argv.slice(2);
@@ -51,24 +52,19 @@ if (comand) {
       board();
       break;
     case 'make:api':
-      // makeAPi();
+      makeApi();
       break;
     case 'make:module':
       if (father) {
-        //   makeDependentModule(
-        console.log(
-          new GetName().getModuleName(arg),
-          new GetName().getModuleName(father),
-        );
-        //   );
+        // makeDependentModule(
+        //   new GetName().getModuleName(arg),
+        //   new GetName().getModuleName(father),
+        // );
       }
       // makeIndependentModule(new GetName().getModuleName(arg));
-      console.log(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
-      // makeProvider(
-      console.log(new GetName().getModuleName(arg));
-      // );
+      // makeProvider(new GetName().getModuleName(arg));
       break;
     default:
       console.log('');
