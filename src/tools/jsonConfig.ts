@@ -2,7 +2,8 @@ import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
 
-import userJson from '../../../package.json';
+// eslint-disable-next-line import/no-relative-packages
+import userJson from '../../../../package.json';
 import enUs from '../templates/en-us';
 import ptBr from '../templates/pt-br';
 
@@ -36,7 +37,7 @@ export default function configJson(): void {
       configJson();
     } else {
       fs.truncate(
-        './node_modules/cross-api-template/src/tools/messages.ts',
+        './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
         error => {
           if (error) console.log(error);
         },
@@ -44,7 +45,7 @@ export default function configJson(): void {
 
       if (languageOption === '0') {
         fs.appendFile(
-          './node_modules/cross-api-template/src/tools/messages.ts',
+          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
           enUs,
           error => {
             if (error) console.log(error);
@@ -60,7 +61,7 @@ export default function configJson(): void {
         console.log('');
       } else {
         fs.appendFile(
-          './node_modules/cross-api-template/src/tools/messages.ts',
+          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
           ptBr,
           error => {
             if (error) console.log(error);
@@ -82,7 +83,7 @@ export default function configJson(): void {
 
       newScript.scripts = {
         ...newScript.scripts,
-        cross: 'ts-node ./node_modules/cross-api-template/index.ts',
+        cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
         'dev:server':
           'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
         'migration:generate':
@@ -98,8 +99,12 @@ export default function configJson(): void {
       });
 
       shell.exec('npm install yarn -g');
-      shell.exec('npm install typeorm');
-      shell.exec('npm install bcrypt -D');
+      shell.exec(
+        'npm install aws-sdk axios bcryptjs celebrate class-transformer cors csv-parse date-fns dotenv express express-async-errors handlebars ioredis jsonwebtoken mime multer mysql nodemailer rate-limiter-flexible redis reflect-metadata supertest swagger-ui-express ts-jest tsyringe typeorm uuid xlsx',
+      );
+      shell.exec(
+        'npm install  @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env @babel/preset-typescript @types/bcryptjs @types/cors @types/express @types/ioredis @types/jest @types/jsonwebtoken @types/mime @types/multer @types/nodemailer @types/redis @types/shelljs @types/supertest @types/swagger-ui-express @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-module-resolver babel-plugin-transform-typescript-metadata eslint eslint-config-airbnb-base eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-import-helpers eslint-plugin-prettier jest prettier ts-node-dev tsconfig-paths typescript -D',
+      );
       rl.close();
     }
   });
