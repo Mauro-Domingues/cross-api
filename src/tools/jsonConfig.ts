@@ -172,6 +172,7 @@ function configJson(): void {
           '==========={ Installing Dependencies }===========',
           '\x1b[0m',
         );
+        console.log('');
         dependencies.forEach(dependency => {
           shell.exec(`npm install ${dependency}`);
           console.log(
@@ -187,6 +188,7 @@ function configJson(): void {
           '====={ Installing Development Dependencies }=====',
           '\x1b[0m',
         );
+        console.log('');
         devDependencies.forEach(devDependency => {
           shell.exec(`npm install ${devDependency} -D`);
           console.log(
@@ -199,7 +201,7 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- execute',
+          '- Execute',
           '\x1b[38;2;255;255;0m',
           'yarn cross comands',
           '\x1b[38;2;0;155;255m',
@@ -238,6 +240,7 @@ function configJson(): void {
           '=============={ Instalando Dependências }===============',
           '\x1b[0m',
         );
+        console.log('');
         dependencies.forEach(dependency => {
           shell.exec(`npm install ${dependency}`);
           console.log(
@@ -253,6 +256,7 @@ function configJson(): void {
           '====={ Instalando Dependências de Desenvolvimento }=====',
           '\x1b[0m',
         );
+        console.log('');
         devDependencies.forEach(devDependency => {
           shell.exec(`npm install ${devDependency} -D`);
           console.log(
@@ -265,7 +269,7 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- execute',
+          '- Execute',
           '\x1b[38;2;255;255;0m',
           'yarn cross comands',
           '\x1b[38;2;0;155;255m',
