@@ -9,17 +9,13 @@ const [father] = process.argv.slice(4);
 
 class GetName {
   getModuleName(name: string) {
-    const lowerModuleName =
-      name.slice(-1) === 's'
-        ? `${name.slice(0, 1).toLowerCase()}${name.slice(1, -1)}`
-        : `${name.slice(0, 1).toLowerCase()}${name.slice(1)}`;
+    const lowerModuleName = `${name.slice(0, 1).toLowerCase()}${name.slice(1)}`;
+    const upperModuleName = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;
 
-    const upperModuleName =
-      name.slice(-1) === 's'
-        ? `${name.slice(0, 1).toUpperCase()}${name.slice(1, -1)}`
-        : `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;
-
-    const pluralModuleName = `${lowerModuleName}s`;
+    const pluralModuleName =
+      lowerModuleName.slice(-1) === 's'
+        ? lowerModuleName
+        : `${lowerModuleName}s`;
 
     let dbModuleName = '';
     // eslint-disable-next-line no-restricted-syntax
@@ -49,7 +45,12 @@ if (comand) {
       configLanguage();
       break;
     case 'list:provider':
-      console.log(messages.available);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        messages.available,
+        '\x1b[0m',
+      );
       break;
     case 'make:api':
       makeApi();
@@ -60,27 +61,47 @@ if (comand) {
         //   new GetName().getModuleName(arg),
         //   new GetName().getModuleName(father),
         // );
-        console.log(messages.available);
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;255;0;0m',
+          messages.available,
+          '\x1b[0m',
+        );
       }
-      console.log(messages.available);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        messages.available,
+        '\x1b[0m',
+      );
       // makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
-      console.log(messages.available);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        messages.available,
+        '\x1b[0m',
+      );
       // makeProvider(new GetName().getModuleName(arg));
       break;
     default:
       console.log('');
-      console.table(messages.notFound);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        messages.notFound,
+        '\x1b[0m',
+      );
       console.log('');
-      console.table(messages.try);
+      console.log('\x1b[1m', '\x1b[38;2;255;255;0m', messages.try, '\x1b[0m');
       console.log('');
       break;
   }
 } else {
   console.log('');
-  console.table(messages.notFound);
+  console.log('\x1b[1m', '\x1b[38;2;255;0;0m', messages.notFound, '\x1b[0m');
   console.log('');
-  console.table(messages.try);
+  console.log('\x1b[1m', '\x1b[38;2;255;255;0m', messages.try, '\x1b[0m');
   console.log('');
 }
