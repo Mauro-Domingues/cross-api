@@ -199,7 +199,11 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- execute "yarn cross comands" to see available commands',
+          '- execute',
+          '\x1b[38;2;255;255;0m',
+          'yarn cross comands',
+          '\x1b[38;2;0;155;255m',
+          'to see available commands',
           '\x1b[0m',
         );
         console.log('');
@@ -261,7 +265,11 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- execute "yarn cross comands" para ver os comandos disponíveis',
+          '- execute',
+          '\x1b[38;2;255;255;0m',
+          'yarn cross comands',
+          '\x1b[38;2;0;155;255m',
+          'para ver os comandos disponíveis',
           '\x1b[0m',
         );
         console.log('');

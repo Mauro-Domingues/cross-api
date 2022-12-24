@@ -3,7 +3,7 @@ export default {
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
   created: 'created',
-  available: 'Not available yet',
+  available: 'not available yet',
   notFound: '➤  No commands detected',
   try: '- execute "yarn cross comands" to see available commands',
   dependencies: 'Installing dependencies',
