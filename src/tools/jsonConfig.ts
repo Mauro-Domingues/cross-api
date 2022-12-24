@@ -4,8 +4,8 @@ import shell from 'shelljs';
 
 // eslint-disable-next-line import/no-relative-packages
 import userJson from '../../../../package.json';
-import enUs from '../templates/en-us';
-import ptBr from '../templates/pt-br';
+import enUs from '../assets/en-us';
+import ptBr from '../assets/pt-br';
 
 class LanguageOption {
   Language;
@@ -17,6 +17,76 @@ class LanguageOption {
 
 function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
+  const dependencies: string[] = [
+    'aws-sdk',
+    'axios',
+    'bcryptjs',
+    'celebrate',
+    'class-transformer',
+    'cors',
+    'csv-parse',
+    'date-fns',
+    'dotenv',
+    'express',
+    'express-async-errors',
+    'handlebars',
+    'ioredis',
+    'jsonwebtoken',
+    'mime',
+    'multer',
+    'mysql',
+    'nodemailer',
+    'rate-limiter-flexible',
+    'redis',
+    'reflect-metadata',
+    'supertest',
+    'swagger-ui-express',
+    'ts-jest',
+    'tsyringe',
+    'typeorm',
+    'uuid',
+    'xlsx',
+  ];
+
+  const devDependencies: string[] = [
+    '@babel/cli',
+    '@babel/core',
+    '@babel/node',
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-decorators',
+    '@babel/preset-env',
+    '@babel/preset-typescript',
+    '@types/bcryptjs',
+    '@types/cors',
+    '@types/express',
+    '@types/ioredis',
+    '@types/jest',
+    '@types/jsonwebtoken',
+    '@types/mime',
+    '@types/multer',
+    '@types/nodemailer',
+    '@types/redis',
+    '@types/shelljs',
+    '@types/supertest',
+    '@types/swagger-ui-express',
+    '@types/uuid',
+    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint/parser',
+    'babel-plugin-module-resolver',
+    'babel-plugin-transform-typescript-metadata',
+    'eslint',
+    'eslint-config-airbnb-base',
+    'eslint-config-prettier',
+    'eslint-import-resolver-typescript',
+    'eslint-plugin-import',
+    'eslint-plugin-import-helpers',
+    'eslint-plugin-prettier',
+    'jest',
+    'prettier',
+    'ts-node-dev',
+    'tsconfig-paths',
+    'typescript',
+  ];
 
   console.log('');
   console.log('➤  Which language do you prefer?');
@@ -61,15 +131,18 @@ function configJson(): void {
         console.log('');
         shell.exec('npm install yarn --location=global');
         console.log('=========={ Installing Dependencies }==========');
-        shell.exec(
-          'npm install aws-sdk axios bcryptjs celebrate class-transformer cors csv-parse date-fns dotenv express express-async-errors handlebars ioredis jsonwebtoken mime multer mysql nodemailer rate-limiter-flexible redis reflect-metadata supertest swagger-ui-express ts-jest tsyringe typeorm uuid xlsx',
-        );
+        dependencies.forEach(dependency => {
+          shell.exec(`npm install ${dependency}`);
+          console.log(`${dependency} installed`);
+        });
+        console.log('');
         console.log(
           '=========={ Installing Development Dependencies }==========',
         );
-        shell.exec(
-          'npm install  @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env @babel/preset-typescript @types/bcryptjs @types/cors @types/express @types/ioredis @types/jest @types/jsonwebtoken @types/mime @types/multer @types/nodemailer @types/redis @types/shelljs @types/supertest @types/swagger-ui-express @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-module-resolver babel-plugin-transform-typescript-metadata eslint eslint-config-airbnb-base eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-import-helpers eslint-plugin-prettier jest prettier ts-node-dev tsconfig-paths typescript -D',
-        );
+        devDependencies.forEach(devDependency => {
+          shell.exec(`npm install ${devDependency} -D`);
+          console.log(`${devDependency} installed`);
+        });
         console.log('');
         console.table(
           '- execute "yarn cross comands" to see available commands',
@@ -93,15 +166,18 @@ function configJson(): void {
         console.log('');
         shell.exec('npm install yarn --location=global');
         console.log('=========={ Instalando Dependências }==========');
-        shell.exec(
-          'npm install aws-sdk axios bcryptjs celebrate class-transformer cors csv-parse date-fns dotenv express express-async-errors handlebars ioredis jsonwebtoken mime multer mysql nodemailer rate-limiter-flexible redis reflect-metadata supertest swagger-ui-express ts-jest tsyringe typeorm uuid xlsx',
-        );
+        dependencies.forEach(dependency => {
+          shell.exec(`npm install ${dependency}`);
+          console.log(`${dependency} instalado`);
+        });
+        console.log('');
         console.log(
           '=========={ Instalando Dependências de Desenvolvimento }==========',
         );
-        shell.exec(
-          'npm install  @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env @babel/preset-typescript @types/bcryptjs @types/cors @types/express @types/ioredis @types/jest @types/jsonwebtoken @types/mime @types/multer @types/nodemailer @types/redis @types/shelljs @types/supertest @types/swagger-ui-express @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-module-resolver babel-plugin-transform-typescript-metadata eslint eslint-config-airbnb-base eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-import-helpers eslint-plugin-prettier jest prettier ts-node-dev tsconfig-paths typescript -D',
-        );
+        devDependencies.forEach(devDependency => {
+          shell.exec(`npm install ${devDependency} -D`);
+          console.log(`${devDependency} instalado`);
+        });
         console.log('');
         console.table(
           '- execute "yarn cross comands" para ver os comandos disponíveis',

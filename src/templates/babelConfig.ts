@@ -10,7 +10,8 @@ export default function createBabelConfig(): string {
         "@dtos": "./src/dtos",
         "@config": "./src/config",
         "@modules": "./src/modules",
-        "@shared": "./src/shared"
+        "@shared": "./src/shared",
+        "@utils": "./src/utils"
       }
     }],
     'babel-plugin-transform-typescript-metadata',

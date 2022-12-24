@@ -13,7 +13,8 @@ export default function createTsConfig(): string {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
-      "@dtos/*": ["dtos/*"]
+      "@dtos/*": ["dtos/*"],
+      "@utils": "./src/utils"
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

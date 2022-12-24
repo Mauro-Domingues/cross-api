@@ -49,7 +49,7 @@ if (comand) {
       configLanguage();
       break;
     case 'list:provider':
-      board();
+      console.log(messages.available);
       break;
     case 'make:api':
       makeApi();
@@ -60,10 +60,13 @@ if (comand) {
         //   new GetName().getModuleName(arg),
         //   new GetName().getModuleName(father),
         // );
+        console.log(messages.available);
       }
+      console.log(messages.available);
       // makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
+      console.log(messages.available);
       // makeProvider(new GetName().getModuleName(arg));
       break;
     default:

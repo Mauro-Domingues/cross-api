@@ -1,6 +1,8 @@
 export default `export default {
   language: '➤  Qual linguagem você prefere?',
   answer: 'Sua resposta: ',
+  created: 'criado',
+  available: 'Ainda não disponível',
   notFound: '➤  Nenhum comando detectado',
   try: '- execute "yarn cross comands" para ver os comandos disponíveis',
   dependencies: 'Instalando dependências',

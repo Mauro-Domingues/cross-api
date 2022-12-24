@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "1": "ts-node index.ts",
-    "2": "ts-node-dev index.ts",
-    "3": "ts-node ./src/tools/languageConfig.ts",
+    "test": "ts-node index.ts",
     "cross": "ts-node ./node_modules/cross-api-template/index.ts"
   },
   "keywords": [],
