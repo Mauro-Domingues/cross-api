@@ -181,18 +181,18 @@ async function makeApi() {
       console.log(`babel.config.js ${messages.created}`);
     });
   }
-  if (!fs.existsSync('dataSource.js')) {
-    fs.appendFile('dataSource.js', createDataSource(), error => {
+  if (!fs.existsSync('dataSource.ts')) {
+    fs.appendFile('dataSource.ts', createDataSource(), error => {
       if (error) throw error;
-      console.log(`dataSource.js ${messages.created}`);
+      console.log(`dataSource.ts ${messages.created}`);
     });
   } else {
-    fs.truncate('dataSource.js', error => {
+    fs.truncate('dataSource.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('dataSource.js', createDataSource(), error => {
+    fs.appendFile('dataSource.ts', createDataSource(), error => {
       if (error) throw error;
-      console.log(`dataSource.js ${messages.created}`);
+      console.log(`dataSource.ts ${messages.created}`);
     });
   }
   if (!fs.existsSync('docker-compose.yml')) {

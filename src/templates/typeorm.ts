@@ -4,5 +4,6 @@ import { AppDataSource } from '../../../DataSource';
 
 export default async (): Promise<Connection> => {
   return createConnection(AppDataSource.options);
-};`;
+};
+`;
 }

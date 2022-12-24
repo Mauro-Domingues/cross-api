@@ -19,5 +19,6 @@ export default function createMapStringAttributeList(): string {
     }
   }
   return JSON.stringify(attributes);
-}`;
+}
+`;
 }

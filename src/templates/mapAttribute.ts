@@ -1,5 +1,5 @@
 export default function createMapAttributeList(): string {
-  return `export defaultasync function mapAttributeList(
+  return `export default async function mapAttributeList(
   newAttributes: any,
   oldAttributes: any,
 ): Promise<any> {
@@ -9,5 +9,6 @@ export default function createMapAttributeList(): string {
     }
   }
   return oldAttributes;
-}`;
+}
+`;
 }

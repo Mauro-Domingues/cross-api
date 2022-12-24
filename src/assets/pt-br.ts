@@ -1,5 +1,6 @@
 export default `export default {
   language: '➤  Qual linguagem você prefere?',
+  invalidLanguage: ' não é uma opção válida',
   answer: 'Sua resposta: ',
   created: 'criado',
   available: 'Ainda não disponível',

@@ -4,5 +4,6 @@ export default function createIResponseDTO(): string {
   message_code: string;
   message: string;
   data: any;
-}`;
+}
+`;
 }

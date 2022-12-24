@@ -8,5 +8,6 @@ export default interface IListDTO extends IResponseDTO {
     perPage: number,
     list: any[]
   }
-}`;
+}
+`;
 }

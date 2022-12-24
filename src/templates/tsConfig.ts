@@ -14,7 +14,7 @@ export default function createTsConfig(): string {
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
       "@dtos/*": ["dtos/*"],
-      "@utils": "./src/utils"
+      "@utils": ["utils/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

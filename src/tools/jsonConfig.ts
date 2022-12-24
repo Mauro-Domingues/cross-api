@@ -17,6 +17,24 @@ class LanguageOption {
 
 function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
+  const newScript: any = userJson;
+
+  newScript.scripts = {
+    ...newScript.scripts,
+    cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
+    'dev:server': 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
+    'migration:generate':
+      'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:generate ./src/shared/typeorm/migrations/default',
+    'migration:run':
+      'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:run',
+    test: 'set NODE_ENV=test&&jest --runInBand',
+  };
+
+  fs.writeFileSync('./package.json', JSON.stringify(newScript), {
+    encoding: 'utf8',
+    flag: 'w',
+  });
+
   const dependencies: string[] = [
     'aws-sdk',
     'axios',
@@ -89,10 +107,15 @@ function configJson(): void {
   ];
 
   console.log('');
-  console.log('➤  Which language do you prefer?');
+  console.log(
+    '\x1b[1m',
+    '\x1b[38;2;255;255;0m',
+    '➤  Which language do you prefer?',
+    '\x1b[0m',
+  );
   console.log('');
   console.table([languages[0], languages[1]]);
-  console.log('');
+  console.log('\x1b[1m');
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -102,7 +125,12 @@ function configJson(): void {
   rl.question('Your answer: ', languageOption => {
     if (languageOption !== '0' && languageOption !== '1') {
       console.log('');
-      console.log(`"${languageOption}" is not a valid option`);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        `"${languageOption}" is not a valid option`,
+        '\x1b[0m',
+      );
       rl.close();
       configJson();
     } else {
@@ -121,31 +149,58 @@ function configJson(): void {
             if (error) console.log(error);
           },
         );
-
         console.log('');
         console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;255;155m',
           `➤  You chose the language: ${languages[languageOption].Language}`,
+          '\x1b[0m',
         );
         console.log('');
-        console.log('=========={ Installing Yarn }==========');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '==============={ Installing Yarn }===============',
+          '\x1b[0m',
+        );
         console.log('');
         shell.exec('npm install yarn --location=global');
-        console.log('=========={ Installing Dependencies }==========');
+        console.log('\x1b[38;2;255;255;0m', `- yarn installed ✅`, '\x1b[0m');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '==========={ Installing Dependencies }===========',
+          '\x1b[0m',
+        );
         dependencies.forEach(dependency => {
           shell.exec(`npm install ${dependency}`);
-          console.log(`${dependency} installed`);
+          console.log(
+            '\x1b[38;2;255;255;0m',
+            `- ${dependency} installed ✅`,
+            '\x1b[0m',
+          );
         });
         console.log('');
         console.log(
-          '=========={ Installing Development Dependencies }==========',
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '====={ Installing Development Dependencies }=====',
+          '\x1b[0m',
         );
         devDependencies.forEach(devDependency => {
           shell.exec(`npm install ${devDependency} -D`);
-          console.log(`${devDependency} installed`);
+          console.log(
+            '\x1b[38;2;255;255;0m',
+            `- ${devDependency} installed ✅`,
+            '\x1b[0m',
+          );
         });
         console.log('');
-        console.table(
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
           '- execute "yarn cross comands" to see available commands',
+          '\x1b[0m',
         );
         console.log('');
       } else {
@@ -156,55 +211,61 @@ function configJson(): void {
             if (error) console.log(error);
           },
         );
-
         console.log('');
         console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;255;155m',
           `➤  Você escolheu a linguagem: ${languages[languageOption].Language}`,
+          '\x1b[0m',
         );
         console.log('');
-        console.log('=========={ Instalando Yarn }==========');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '==================={ Instalando Yarn }==================',
+          '\x1b[0m',
+        );
         console.log('');
         shell.exec('npm install yarn --location=global');
-        console.log('=========={ Instalando Dependências }==========');
+        console.log('\x1b[38;2;255;255;0m', `- yarn instalado ✅`, '\x1b[0m');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '=============={ Instalando Dependências }===============',
+          '\x1b[0m',
+        );
         dependencies.forEach(dependency => {
           shell.exec(`npm install ${dependency}`);
-          console.log(`${dependency} instalado`);
+          console.log(
+            '\x1b[38;2;255;255;0m',
+            `- ${dependency} instalado ✅`,
+            '\x1b[0m',
+          );
         });
         console.log('');
         console.log(
-          '=========={ Instalando Dependências de Desenvolvimento }==========',
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '====={ Instalando Dependências de Desenvolvimento }=====',
+          '\x1b[0m',
         );
         devDependencies.forEach(devDependency => {
           shell.exec(`npm install ${devDependency} -D`);
-          console.log(`${devDependency} instalado`);
+          console.log(
+            '\x1b[38;2;255;255;0m',
+            `- ${devDependency} instalado ✅`,
+            '\x1b[0m',
+          );
         });
         console.log('');
-        console.table(
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
           '- execute "yarn cross comands" para ver os comandos disponíveis',
+          '\x1b[0m',
         );
         console.log('');
       }
-
-      rl.close();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const newScript: any = userJson;
-
-      newScript.scripts = {
-        ...newScript.scripts,
-        cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
-        'dev:server':
-          'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
-        'migration:generate':
-          'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:generate ./src/shared/typeorm/migrations/default',
-        'migration:run':
-          'typeorm-ts-node-commonjs -d ./src/shared/typeorm/index.ts migration:run',
-        test: 'set NODE_ENV=test&&jest --runInBand',
-      };
-
-      fs.writeFileSync('./package.json', JSON.stringify(newScript), {
-        encoding: 'utf8',
-        flag: 'w',
-      });
 
       rl.close();
     }

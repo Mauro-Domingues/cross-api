@@ -17,8 +17,13 @@ export default function configLanguage(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   console.log('');
-  console.log(messages.language);
-  console.log('');
+  console.log(
+    '\x1b[1m',
+    '\x1b[38;2;255;255;0m',
+    `${messages.language}`,
+    '\x1b[0m',
+  );
+  console.log('\x1b[1m');
   console.table([languages[0], languages[1]]);
   console.log('');
 
@@ -30,7 +35,12 @@ export default function configLanguage(): void {
   rl.question(messages.answer, languageOption => {
     if (languageOption !== '0' && languageOption !== '1') {
       console.log('');
-      console.log(`"${languageOption}" is not a valid option`);
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        `"${languageOption}${messages.invalidLanguage}`,
+        '\x1b[0m',
+      );
       rl.close();
       configLanguage();
     } else {
@@ -45,7 +55,10 @@ export default function configLanguage(): void {
 
         console.log('');
         console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;255;155m',
           `➤  You chose the language: ${languages[languageOption].Language}`,
+          '\x1b[0m',
         );
         console.log('');
       } else {
@@ -55,7 +68,10 @@ export default function configLanguage(): void {
 
         console.log('');
         console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;255;155m',
           `➤  Você escolheu a linguagem: ${languages[languageOption].Language}`,
+          '\x1b[0m',
         );
         console.log('');
       }
