@@ -13,6 +13,9 @@ import messages from './messages';
 export default async function makeProvider(providerName: string) {
   switch (providerName) {
     case 'cache':
+      if (!fs.existsSync('src/shared/container/providers/CacheProvider')) {
+        fs.mkdirSync('src/shared/container/providers/CacheProvider');
+      }
       if (
         !fs.existsSync('src/shared/container/providers/CacheProvider/fakes')
       ) {
@@ -150,6 +153,9 @@ export default async function makeProvider(providerName: string) {
       console.log(`CacheProvider ${messages.created}`);
       break;
     case 'storage':
+      if (!fs.existsSync('src/shared/container/providers/StorageProvider')) {
+        fs.mkdirSync('src/shared/container/providers/StorageProvider');
+      }
       if (
         !fs.existsSync('src/shared/container/providers/StorageProvider/fakes')
       ) {
