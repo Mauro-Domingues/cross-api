@@ -13,6 +13,25 @@ import messages from './messages';
 export default async function makeProvider(providerName: string) {
   switch (providerName) {
     case 'cache':
+      if (
+        !fs.existsSync('src/shared/container/providers/CacheProvider/fakes')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/CacheProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CacheProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/CacheProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/CacheProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/CacheProvider/models');
+      }
       fs.appendFile(
         'src/shared/container/providers/index.ts',
         `import './CacheProvider';`,
@@ -131,6 +150,25 @@ export default async function makeProvider(providerName: string) {
       console.log(`CacheProvider ${messages.created}`);
       break;
     case 'storage':
+      if (
+        !fs.existsSync('src/shared/container/providers/StorageProvider/fakes')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/StorageProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/StorageProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/StorageProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/StorageProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/StorageProvider/models');
+      }
       fs.appendFile(
         'src/shared/container/providers/index.ts',
         `import './StorageProvider';`,
