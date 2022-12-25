@@ -63,23 +63,15 @@ if (comand) {
       break;
     case 'make:module':
       if (father) {
-        // makeDependentModule(
-        //   new GetName().getModuleName(arg),
-        //   new GetName().getModuleName(father),
-        // );
-        console.log(
-          '\x1b[1m',
-          '\x1b[38;2;255;0;0m',
-          messages.available,
-          '\x1b[0m',
+        makeModule(
+          new GetName().getModuleName(arg),
+          new GetName().getModuleName(father),
         );
       }
       makeModule(new GetName().getModuleName(arg));
-      // makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
       makeProvider(arg);
-      // makeProvider(new GetName().getModuleName(arg));
       break;
     default:
       console.log('');

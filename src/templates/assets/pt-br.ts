@@ -4,6 +4,7 @@ export default `export default {
   answer: 'Sua resposta: ',
   created: 'criado',
   providerNotFound: 'provedor não encontrado',
+  moduleNotFound: 'módulo não encontrado',
   apiCreated: 'estrutura da api criada',
   available: 'Ainda não disponível',
   notFound: '➤  Nenhum comando detectado',
