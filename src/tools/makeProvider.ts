@@ -148,7 +148,11 @@ export default async function makeProvider(providerName: string) {
           },
         );
       }
-      console.log(`CacheProvider ${messages.created}`);
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `CacheProvider ${messages.created}`,
+        '\x1b[0m',
+      );
       break;
     case 'storage':
       if (!fs.existsSync('src/shared/container/providers/StorageProvider')) {
@@ -315,7 +319,11 @@ export default async function makeProvider(providerName: string) {
           },
         );
       }
-      console.log(`StorageProvider ${messages.created}`);
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- StorageProvider ${messages.created}`,
+        '\x1b[0m',
+      );
       break;
     default:
       console.log(
