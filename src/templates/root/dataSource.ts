@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database:
-    process.env.NODE_ENV === 'test' ? 'ms_auth_test' : process.env.DB_DATABASE,
+    process.env.NODE_ENV === 'test' ? 'database_test' : process.env.DB_DATABASE,
   // synchronize: true,
   // logging: true,
   entities: [\`\${__dirname}/src/modules/**/entities/*.{ts, js}\`],

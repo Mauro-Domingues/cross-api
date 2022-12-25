@@ -7,7 +7,7 @@ export default function createMapAttributeList(): string {
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
       // eslint-disable-next-line no-param-reassign
-      oldAttributes[attribute] = newAttributes[attribute]
+      oldAttributes[attribute] = newAttributes[attribute];
     }
   }
   return oldAttributes;
