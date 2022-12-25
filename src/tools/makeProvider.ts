@@ -124,12 +124,10 @@ export default async function makeProvider(providerName: string) {
         );
       }
       if (
-        !fs.existsSync(
-          'src/shared/container/providers/StorageProvider/index.ts',
-        )
+        !fs.existsSync('src/shared/container/providers/CacheProvider/index.ts')
       ) {
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/index.ts',
+          'src/shared/container/providers/CacheProvider/index.ts',
           createCacheIndex(),
           error => {
             if (error) throw error;
@@ -137,13 +135,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/StorageProvider/index.ts',
+          'src/shared/container/providers/CacheProvider/index.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/index.ts',
+          'src/shared/container/providers/CacheProvider/index.ts',
           createCacheIndex(),
           error => {
             if (error) throw error;
