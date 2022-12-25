@@ -18,12 +18,12 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
   }
 
   public async findBy(
-    data: { [key: string]: string },
+    ${lowerModuleName}Data: { [key: string]: string },
     relations?: string[],
   ): Promise<${upperModuleName} | null> {
     const ${lowerModuleName} = await this.ormRepository.findOne({
-      where: data,
-      relations: relations
+      where: ${lowerModuleName}Data,
+      relations,
     });
 
     return ${lowerModuleName};
@@ -37,7 +37,7 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     return this.ormRepository.findAndCount({
       take: limit,
       skip: (page - 1) * limit,
-      relations: relations
+      relations,
     });
   }
 
@@ -53,12 +53,12 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     return this.ormRepository.save(${lowerModuleName}Data);
   }
 
-  public async delete(data: { [key: string]: string }): Promise<void> {
-    this.ormRepository.delete(data.id);
+  public async delete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+    this.ormRepository.delete(${lowerModuleName}Data);
   }
 
-  public async softDelete(data: { [key: string]: string }): Promise<void> {
-    this.ormRepository.softDelete(data.id);
+  public async softDelete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+    this.ormRepository.softDelete(${lowerModuleName}Data);
   }
 }
 `;

@@ -12,8 +12,8 @@ import { v4 as uuid } from 'uuid';
 export default class Fake${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ${pluralLowerModuleName}: ${upperModuleName}[] = [];
 
-  public async findBy(data: {[key: string]: string}): Promise<${upperModuleName} | null> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === data.id);
+  public async findBy(${lowerModuleName}Data: { [key: string]: string }): Promise<${upperModuleName} | null> {
+    const find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     return find${upperModuleName} || null;
   }
 
@@ -40,13 +40,13 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     return ${lowerModuleName}Data;
   }
 
-  public async delete(data: {[key: string]: string}): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === data.id);
+  public async delete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 
-  public async softDelete(data: {[key: string]: string}): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === data.id);
+  public async softDelete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 }

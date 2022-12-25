@@ -30,5 +30,6 @@ export default class ${upperModuleName} {
 
   @DeleteDateColumn({ type: 'datetime' })
   deleted_at: Date;
-}`;
+}
+`;
 }
