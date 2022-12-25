@@ -3,6 +3,7 @@ export default `export default {
   invalidLanguage: ' não é uma opção válida',
   answer: 'Sua resposta: ',
   created: 'criado',
+  apiCreated: 'estrutura da api criada',
   available: 'Ainda não disponível',
   notFound: '➤  Nenhum comando detectado',
   try: '- execute "yarn cross comands" para ver os comandos disponíveis',

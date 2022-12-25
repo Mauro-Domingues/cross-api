@@ -1,36 +1,37 @@
 import fs from 'fs';
 
-import createApp from '../templates/app';
-import createAppError from '../templates/appError';
-import createAuthConfig from '../templates/authConfig';
-import createBabelConfig from '../templates/babelConfig';
-import createCacheConfig from '../templates/cacheConfig';
-import createContainer from '../templates/container';
-import createCryptoConfig from '../templates/cryptoConfig';
-import createDataSource from '../templates/dataSource';
-import createDecimaAdjust from '../templates/decimalAdjust';
-import createDockerCompose from '../templates/dockerCompose';
-import createEditorConfig from '../templates/editorConfig';
-import createEnv from '../templates/env';
-import createEsLintIgnore from '../templates/esLintIgnore';
-import createEsLintrcJson from '../templates/esLintrcJson';
-import createExpressNamespace from '../templates/expressNamespace';
-import createGitIgnore from '../templates/gitIgnore';
-import createIListDTO from '../templates/IListDTO';
-import createIResponseDTO from '../templates/IResponseDTO';
-import createJestConfig from '../templates/jestConfig';
-import createMailConfig from '../templates/mailConfig';
-import createMapAttributeList from '../templates/mapAttribute';
-import createMapStringAttributeList from '../templates/mapString';
-import createNodemonJson from '../templates/nodemonJson';
-import createNotificationConfig from '../templates/notificationConfig';
-import createPrettierConfig from '../templates/prettierConfig';
-import createRateLimiter from '../templates/rateLimiter';
-import createRoutes from '../templates/routes';
-import createServer from '../templates/server';
-import createTsConfig from '../templates/tsConfig';
-import createTypeorm from '../templates/typeorm';
-import createUploadConfig from '../templates/uploadConfig';
+import createExpressNamespace from '../templates/@types/expressNamespace';
+import createApp from '../templates/api/app';
+import createServer from '../templates/api/server';
+import createTypeorm from '../templates/api/typeorm';
+import createAuthConfig from '../templates/config/authConfig';
+import createCacheConfig from '../templates/config/cacheConfig';
+import createCryptoConfig from '../templates/config/cryptoConfig';
+import createMailConfig from '../templates/config/mailConfig';
+import createNotificationConfig from '../templates/config/notificationConfig';
+import createUploadConfig from '../templates/config/uploadConfig';
+import createIListDTO from '../templates/dtos/IListDTO';
+import createIResponseDTO from '../templates/dtos/IResponseDTO';
+import createAppError from '../templates/errors/appError';
+import createContainer from '../templates/index/container';
+import createRoutes from '../templates/index/routes';
+import createRateLimiter from '../templates/middlewares/rateLimiter';
+import createBabelConfig from '../templates/root/babelConfig';
+import createDataSource from '../templates/root/dataSource';
+import createDockerCompose from '../templates/root/dockerCompose';
+import createEditorConfig from '../templates/root/editorConfig';
+import createEnv from '../templates/root/env';
+import createEsLintIgnore from '../templates/root/esLintIgnore';
+import createEsLintrcJson from '../templates/root/esLintrcJson';
+import createGitIgnore from '../templates/root/gitIgnore';
+import createJestConfig from '../templates/root/jestConfig';
+import createNodemonJson from '../templates/root/nodemonJson';
+import createPrettierConfig from '../templates/root/prettierConfig';
+import createTsConfig from '../templates/root/tsConfig';
+import createDecimaAdjust from '../templates/utils/decimalAdjust';
+import createMapAttributeList from '../templates/utils/mapAttribute';
+import createMapStringAttributeList from '../templates/utils/mapString';
+import makeProvider from './makeProvider';
 import messages from './messages';
 
 async function makeApi() {
@@ -82,11 +83,15 @@ async function makeApi() {
   if (!fs.existsSync('src/shared/typeorm/seeds')) {
     fs.mkdirSync('src/shared/typeorm/seeds');
   }
-  console.log('estrutura criada(criar função de idiomas aqui e abaixo)');
+  console.log(
+    '\x1b[1m',
+    '\x1b[38;2;0;155;255m',
+    messages.apiCreated,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('.editorconfig')) {
     fs.appendFile('.editorconfig', createEditorConfig(), error => {
       if (error) throw error;
-      console.log(`.editorconfig ${messages.created}`);
     });
   } else {
     fs.truncate('.editorconfig', error => {
@@ -94,13 +99,16 @@ async function makeApi() {
     });
     fs.appendFile('.editorconfig', createEditorConfig(), error => {
       if (error) throw error;
-      console.log(`.editorconfig ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- .editorconfig ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('.env')) {
     fs.appendFile('.env', createEnv(), error => {
       if (error) throw error;
-      console.log(`.env ${messages.created}`);
     });
   } else {
     fs.truncate('.env', error => {
@@ -108,13 +116,12 @@ async function makeApi() {
     });
     fs.appendFile('.env', createEnv(), error => {
       if (error) throw error;
-      console.log(`.env ${messages.created}`);
     });
   }
+  console.log('\x1b[38;2;255;255;0m', `- .env ${messages.created}`, '\x1b[0m');
   if (!fs.existsSync('.env.template')) {
     fs.appendFile('.env.template', createEnv(), error => {
       if (error) throw error;
-      console.log(`.env.template ${messages.created}`);
     });
   } else {
     fs.truncate('.env.template', error => {
@@ -122,13 +129,16 @@ async function makeApi() {
     });
     fs.appendFile('.env.template', createEnv(), error => {
       if (error) throw error;
-      console.log(`.env.template ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- .env.template ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('.eslintignore')) {
     fs.appendFile('.eslintignore', createEsLintIgnore(), error => {
       if (error) throw error;
-      console.log(`.eslintignore ${messages.created}`);
     });
   } else {
     fs.truncate('.eslintignore', error => {
@@ -136,13 +146,16 @@ async function makeApi() {
     });
     fs.appendFile('.eslintignore', createEsLintIgnore(), error => {
       if (error) throw error;
-      console.log(`.eslintignore ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- .eslintignore ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('.eslintrc.json')) {
     fs.appendFile('.eslintrc.json', createEsLintrcJson(), error => {
       if (error) throw error;
-      console.log(`.eslintrc.json ${messages.created}`);
     });
   } else {
     fs.truncate('.eslintrc.json', error => {
@@ -150,13 +163,16 @@ async function makeApi() {
     });
     fs.appendFile('.eslintrc.json', createEsLintrcJson(), error => {
       if (error) throw error;
-      console.log(`.eslintrc.json ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- .eslintrc.json ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('.gitignore')) {
     fs.appendFile('.gitignore', createGitIgnore(), error => {
       if (error) throw error;
-      console.log(`.gitignore ${messages.created}`);
     });
   } else {
     fs.truncate('.gitignore', error => {
@@ -164,13 +180,16 @@ async function makeApi() {
     });
     fs.appendFile('.gitignore', createGitIgnore(), error => {
       if (error) throw error;
-      console.log(`.gitignore ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- .gitignore ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('babel.config.js')) {
     fs.appendFile('babel.config.js', createBabelConfig(), error => {
       if (error) throw error;
-      console.log(`babel.config.js ${messages.created}`);
     });
   } else {
     fs.truncate('babel.config.js', error => {
@@ -178,13 +197,16 @@ async function makeApi() {
     });
     fs.appendFile('babel.config.js', createBabelConfig(), error => {
       if (error) throw error;
-      console.log(`babel.config.js ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- babel.config.js ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('dataSource.ts')) {
     fs.appendFile('dataSource.ts', createDataSource(), error => {
       if (error) throw error;
-      console.log(`dataSource.ts ${messages.created}`);
     });
   } else {
     fs.truncate('dataSource.ts', error => {
@@ -192,13 +214,16 @@ async function makeApi() {
     });
     fs.appendFile('dataSource.ts', createDataSource(), error => {
       if (error) throw error;
-      console.log(`dataSource.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- dataSource.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('docker-compose.yml')) {
     fs.appendFile('docker-compose.yml', createDockerCompose(), error => {
       if (error) throw error;
-      console.log(`docker-compose.yml ${messages.created}`);
     });
   } else {
     fs.truncate('docker-compose.yml', error => {
@@ -206,13 +231,16 @@ async function makeApi() {
     });
     fs.appendFile('docker-compose.yml', createDockerCompose(), error => {
       if (error) throw error;
-      console.log(`docker-compose.yml ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- docker-compose.yml ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('jest.config.ts')) {
     fs.appendFile('jest.config.ts', createJestConfig(), error => {
       if (error) throw error;
-      console.log(`jest.config.ts ${messages.created}`);
     });
   } else {
     fs.truncate('jest.config.ts', error => {
@@ -220,13 +248,16 @@ async function makeApi() {
     });
     fs.appendFile('jest.config.ts', createJestConfig(), error => {
       if (error) throw error;
-      console.log(`jest.config.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- jest.config.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('nodemon.json')) {
     fs.appendFile('nodemon.json', createNodemonJson(), error => {
       if (error) throw error;
-      console.log(`nodemon.json ${messages.created}`);
     });
   } else {
     fs.truncate('nodemon.json', error => {
@@ -234,13 +265,16 @@ async function makeApi() {
     });
     fs.appendFile('nodemon.json', createNodemonJson(), error => {
       if (error) throw error;
-      console.log(`nodemon.json ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- nodemon.json ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('prettier.config.js')) {
     fs.appendFile('prettier.config.js', createPrettierConfig(), error => {
       if (error) throw error;
-      console.log(`prettier.config.js ${messages.created}`);
     });
   } else {
     fs.truncate('prettier.config.js', error => {
@@ -248,13 +282,16 @@ async function makeApi() {
     });
     fs.appendFile('prettier.config.js', createPrettierConfig(), error => {
       if (error) throw error;
-      console.log(`prettier.config.js ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- prettier.config.js ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('tsconfig.json')) {
     fs.appendFile('tsconfig.json', createTsConfig(), error => {
       if (error) throw error;
-      console.log(`tsconfig.json ${messages.created}`);
     });
   } else {
     fs.truncate('tsconfig.json', error => {
@@ -262,13 +299,16 @@ async function makeApi() {
     });
     fs.appendFile('tsconfig.json', createTsConfig(), error => {
       if (error) throw error;
-      console.log(`tsconfig.json ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- tsconfig.json ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/swagger.json')) {
     fs.appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
-      console.log(`swagger.json ${messages.created}`);
     });
   } else {
     fs.truncate('src/swagger.json', error => {
@@ -276,16 +316,19 @@ async function makeApi() {
     });
     fs.appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
-      console.log(`swagger.json ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- swagger.json ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/@types/express.d.ts')) {
     fs.appendFile(
       'src/@types/express.d.ts',
       createExpressNamespace(),
       error => {
         if (error) throw error;
-        console.log(`express.d.ts ${messages.created}`);
       },
     );
   } else {
@@ -297,14 +340,17 @@ async function makeApi() {
       createExpressNamespace(),
       error => {
         if (error) throw error;
-        console.log(`express.d.ts ${messages.created}`);
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- express.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/auth.ts')) {
     fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
       if (error) throw error;
-      console.log(`auth.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/config/auth.ts', error => {
@@ -312,13 +358,16 @@ async function makeApi() {
     });
     fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
       if (error) throw error;
-      console.log(`auth.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- auth.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/cache.ts')) {
     fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
       if (error) throw error;
-      console.log(`cache.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/config/cache.ts', error => {
@@ -326,13 +375,16 @@ async function makeApi() {
     });
     fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
       if (error) throw error;
-      console.log(`cache.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- cache.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/crypto.ts')) {
     fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
       if (error) throw error;
-      console.log(`crypto.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/config/crypto.ts', error => {
@@ -340,13 +392,16 @@ async function makeApi() {
     });
     fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
       if (error) throw error;
-      console.log(`crypto.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- crypto.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/mail.ts')) {
     fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
       if (error) throw error;
-      console.log(`mail.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/config/mail.ts', error => {
@@ -354,16 +409,19 @@ async function makeApi() {
     });
     fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
       if (error) throw error;
-      console.log(`mail.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mail.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/notification.ts')) {
     fs.appendFile(
       'src/config/notification.ts',
       createNotificationConfig(),
       error => {
         if (error) throw error;
-        console.log(`notification.ts ${messages.created}`);
       },
     );
   } else {
@@ -375,14 +433,17 @@ async function makeApi() {
       createNotificationConfig(),
       error => {
         if (error) throw error;
-        console.log(`notification.ts ${messages.created}`);
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- notification.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/config/upload.ts')) {
     fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
       if (error) throw error;
-      console.log(`upload.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/config/upload.ts', error => {
@@ -390,13 +451,16 @@ async function makeApi() {
     });
     fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
       if (error) throw error;
-      console.log(`upload.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- upload.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/dtos/IListDTO.ts')) {
     fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
       if (error) throw error;
-      console.log(`IListDTO.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/dtos/IListDTO.ts', error => {
@@ -404,13 +468,16 @@ async function makeApi() {
     });
     fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
       if (error) throw error;
-      console.log(`IListDTO.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IListDTO.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/dtos/IResponseDTO.ts')) {
     fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
       if (error) throw error;
-      console.log(`IResponseDTO.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/dtos/IResponseDTO.ts', error => {
@@ -418,16 +485,19 @@ async function makeApi() {
     });
     fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
       if (error) throw error;
-      console.log(`IResponseDTO.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IResponseDTO.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/middlewares/RateLimiter.ts')) {
     fs.appendFile(
       'src/middlewares/RateLimiter.ts',
       createRateLimiter(),
       error => {
         if (error) throw error;
-        console.log(`RateLimiter.ts ${messages.created}`);
       },
     );
   } else {
@@ -439,14 +509,17 @@ async function makeApi() {
       createRateLimiter(),
       error => {
         if (error) throw error;
-        console.log(`RateLimiter.ts ${messages.created}`);
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- RateLimiter.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/routes/index.ts')) {
     fs.appendFile('src/routes/index.ts', createRoutes(), error => {
       if (error) throw error;
-      console.log(`routes.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/routes/index.ts', error => {
@@ -454,13 +527,16 @@ async function makeApi() {
     });
     fs.appendFile('src/routes/index.ts', createRoutes(), error => {
       if (error) throw error;
-      console.log(`routes.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- routes.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/shared/app.ts')) {
     fs.appendFile('src/shared/app.ts', createApp(), error => {
       if (error) throw error;
-      console.log(`app.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/shared/app.ts', error => {
@@ -468,13 +544,16 @@ async function makeApi() {
     });
     fs.appendFile('src/shared/app.ts', createApp(), error => {
       if (error) throw error;
-      console.log(`app.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- app.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/shared/server.ts')) {
     fs.appendFile('src/shared/server.ts', createServer(), error => {
       if (error) throw error;
-      console.log(`server.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/shared/server.ts', error => {
@@ -482,16 +561,19 @@ async function makeApi() {
     });
     fs.appendFile('src/shared/server.ts', createServer(), error => {
       if (error) throw error;
-      console.log(`server.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- server.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/utils/mapObjectAttribute.ts')) {
     fs.appendFile(
       'src/utils/mapObjectAttribute.ts',
       createMapAttributeList(),
       error => {
         if (error) throw error;
-        console.log(`mapObjectAttribute.ts ${messages.created}`);
       },
     );
   } else {
@@ -503,17 +585,20 @@ async function makeApi() {
       createMapAttributeList(),
       error => {
         if (error) throw error;
-        console.log(`mapObjectAttribute.ts ${messages.created}`);
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mapObjectAttribute.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/utils/mapStringAttribute.ts')) {
     fs.appendFile(
       'src/utils/mapStringAttribute.ts',
       createMapStringAttributeList(),
       error => {
         if (error) throw error;
-        console.log(`server.ts ${messages.created}`);
       },
     );
   } else {
@@ -525,14 +610,17 @@ async function makeApi() {
       createMapStringAttributeList(),
       error => {
         if (error) throw error;
-        console.log(`server.ts ${messages.created}`);
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mapStringAttribute.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/utils/decimalAdjust.ts')) {
     fs.appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
       if (error) throw error;
-      console.log(`decimalAdjust.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/utils/decimalAdjust.ts', error => {
@@ -540,13 +628,16 @@ async function makeApi() {
     });
     fs.appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
       if (error) throw error;
-      console.log(`decimalAdjust.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- decimaAdjust.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/shared/container/index.ts')) {
     fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
-      console.log(`container ${messages.created}`);
     });
   } else {
     fs.truncate('src/shared/container/index.ts', error => {
@@ -554,13 +645,16 @@ async function makeApi() {
     });
     fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
-      console.log(`container ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- container/index.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/shared/errors/AppError.ts')) {
     fs.appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
       if (error) throw error;
-      console.log(`AppError.ts ${messages.created}`);
     });
   } else {
     fs.truncate('src/shared/errors/AppError.ts', error => {
@@ -568,13 +662,16 @@ async function makeApi() {
     });
     fs.appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
       if (error) throw error;
-      console.log(`AppError.ts ${messages.created}`);
     });
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- AppError.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/shared/typeorm/index.ts')) {
     fs.appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
       if (error) throw error;
-      console.log(`typeorm ${messages.created}`);
     });
   } else {
     fs.truncate('src/shared/typeorm/index.ts', error => {
@@ -582,31 +679,14 @@ async function makeApi() {
     });
     fs.appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
       if (error) throw error;
-      console.log(`typeorm ${messages.created}`);
     });
   }
-  if (!fs.existsSync('src/shared/container/providers/index.ts')) {
-    fs.appendFile(
-      'src/shared/container/providers/index.ts',
-      `import './CacheProvider';`,
-      error => {
-        if (error) throw error;
-        console.log(`providers ${messages.created}`);
-      },
-    );
-  } else {
-    fs.truncate('src/shared/container/providers/index.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile(
-      'src/shared/container/providers/index.ts',
-      `import './CacheProvider';`,
-      error => {
-        if (error) throw error;
-        console.log(`providers ${messages.created}`);
-      },
-    );
-  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- typeorm/index.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  makeProvider('cache');
 }
 
 export default makeApi;

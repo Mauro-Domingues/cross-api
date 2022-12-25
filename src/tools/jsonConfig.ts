@@ -4,8 +4,8 @@ import shell from 'shelljs';
 
 // eslint-disable-next-line import/no-relative-packages
 import userJson from '../../../../package.json';
-import enUs from '../assets/en-us';
-import ptBr from '../assets/pt-br';
+import enUs from '../templates/assets/en-us';
+import ptBr from '../templates/assets/pt-br';
 
 class LanguageOption {
   Language;
