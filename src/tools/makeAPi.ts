@@ -11,6 +11,7 @@ import createMailConfig from '../templates/config/mailConfig';
 import createNotificationConfig from '../templates/config/notificationConfig';
 import createUploadConfig from '../templates/config/uploadConfig';
 import createIListDTO from '../templates/dtos/IListDTO';
+import createIObjectDTO from '../templates/dtos/IObjectDTO';
 import createIResponseDTO from '../templates/dtos/IResponseDTO';
 import createAppError from '../templates/errors/appError';
 import createContainer from '../templates/index/container';
@@ -473,6 +474,23 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- IListDTO.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/dtos/IObjectDTO.ts')) {
+    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/dtos/IObjectDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IObjectDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/dtos/IResponseDTO.ts')) {

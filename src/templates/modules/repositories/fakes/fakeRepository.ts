@@ -8,11 +8,12 @@ export default function createFakeRepository(
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import { v4 as uuid } from 'uuid';
+import IObjectDTO from '@dtos/IObjectDTO';
 
 export default class Fake${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ${pluralLowerModuleName}: ${upperModuleName}[] = [];
 
-  public async findBy(${lowerModuleName}Data: { [key: string]: string }): Promise<${upperModuleName} | null> {
+  public async findBy(${lowerModuleName}Data: IObjectDTO): Promise<${upperModuleName} | null> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     return find${upperModuleName} || null;
   }
@@ -40,12 +41,12 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     return ${lowerModuleName}Data;
   }
 
-  public async delete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+  public async delete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 
-  public async softDelete(${lowerModuleName}Data: { [key: string]: string }): Promise<void> {
+  public async softDelete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
