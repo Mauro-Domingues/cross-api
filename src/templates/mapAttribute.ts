@@ -3,8 +3,10 @@ export default function createMapAttributeList(): string {
   newAttributes: any,
   oldAttributes: any,
 ): Promise<any> {
+  // eslint-disable-next-line no-restricted-syntax
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
+      // eslint-disable-next-line no-param-reassign
       oldAttributes[attribute] = newAttributes[attribute]
     }
   }

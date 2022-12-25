@@ -17,5 +17,6 @@ export const AppDataSource = new DataSource({
   entities: [\`\${__dirname}/src/modules/**/entities/*.{ts, js}\`],
   // subscribers: [],
   migrations: [\`\${__dirname}/src/shared/typeorm/migrations/*.{ts, js}\`],
-});`;
+});
+`;
 }

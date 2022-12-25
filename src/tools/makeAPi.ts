@@ -265,16 +265,16 @@ async function makeApi() {
       console.log(`tsconfig.json ${messages.created}`);
     });
   }
-  if (!fs.existsSync('swagger.json')) {
-    fs.appendFile('swagger.json', '{}', error => {
+  if (!fs.existsSync('src/swagger.json')) {
+    fs.appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
       console.log(`swagger.json ${messages.created}`);
     });
   } else {
-    fs.truncate('swagger.json', error => {
+    fs.truncate('src/swagger.json', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('swagger.json', '{}', error => {
+    fs.appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
       console.log(`swagger.json ${messages.created}`);
     });
