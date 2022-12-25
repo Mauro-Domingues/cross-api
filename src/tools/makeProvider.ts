@@ -13,6 +13,18 @@ import messages from './messages';
 export default async function makeProvider(providerName: string) {
   switch (providerName) {
     case 'cache':
+      if (!fs.existsSync('src')) {
+        fs.mkdirSync('src');
+      }
+      if (!fs.existsSync('src/shared')) {
+        fs.mkdirSync('src/shared');
+      }
+      if (!fs.existsSync('src/shared/container')) {
+        fs.mkdirSync('src/shared/container');
+      }
+      if (!fs.existsSync('src/shared/container/providers')) {
+        fs.mkdirSync('src/shared/container/providers');
+      }
       if (!fs.existsSync('src/shared/container/providers/CacheProvider')) {
         fs.mkdirSync('src/shared/container/providers/CacheProvider');
       }
@@ -155,6 +167,18 @@ export default async function makeProvider(providerName: string) {
       );
       break;
     case 'storage':
+      if (!fs.existsSync('src')) {
+        fs.mkdirSync('src');
+      }
+      if (!fs.existsSync('src/shared')) {
+        fs.mkdirSync('src/shared');
+      }
+      if (!fs.existsSync('src/shared/container')) {
+        fs.mkdirSync('src/shared/container');
+      }
+      if (!fs.existsSync('src/shared/container/providers')) {
+        fs.mkdirSync('src/shared/container/providers');
+      }
       if (!fs.existsSync('src/shared/container/providers/StorageProvider')) {
         fs.mkdirSync('src/shared/container/providers/StorageProvider');
       }

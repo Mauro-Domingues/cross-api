@@ -16,6 +16,12 @@ export default function makeModule(
   },
 ): void {
   if (fatherData) {
+    if (!fs.existsSync('src')) {
+      fs.mkdirSync('src');
+    }
+    if (!fs.existsSync('src/modules')) {
+      fs.mkdirSync('src/modules');
+    }
     if (!fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
       console.log(
         '\x1b[1m',
@@ -277,6 +283,12 @@ export default function makeModule(
       }
     }
   } else {
+    if (!fs.existsSync('src')) {
+      fs.mkdirSync('src');
+    }
+    if (!fs.existsSync('src/modules')) {
+      fs.mkdirSync('src/modules');
+    }
     if (!fs.existsSync(`src/modules/${moduleData.pluralLowerModuleName}`)) {
       fs.mkdirSync(`src/modules/${moduleData.pluralLowerModuleName}`);
     }
