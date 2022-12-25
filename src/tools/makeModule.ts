@@ -310,7 +310,7 @@ export default function makeModule(
       `- ${moduleData.lowerModuleName}Module ${messages.created}`,
       '\x1b[0m',
     );
-  } else {
+  } else if (fatherData !== undefined) {
     if (!fs.existsSync(`src/modules/${moduleData.pluralLowerModuleName}`)) {
       fs.mkdirSync(`src/modules/${moduleData.pluralLowerModuleName}`);
     }
