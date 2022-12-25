@@ -12,15 +12,15 @@ export default interface I${pluralUpperModuleName}Repository {
     page: number,
     limit: number,
     relations?: string[],
-    ): Promise<[${upperModuleName}[], number]>;
+  ): Promise<[${upperModuleName}[], number]>;
   findBy(
     ${lowerModuleName}Data: { [key: string]: string },
     relations?: string[],
-    ): Promise<${upperModuleName} | null>;
+  ): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
   save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
-  delete(${lowerModuleName}Data: {[key: string]: string}): void;
-  softDelete(${lowerModuleName}Data: {[key: string]: string}): void;
+  delete(${lowerModuleName}Data: { [key: string]: string }): void;
+  softDelete(${lowerModuleName}Data: { [key: string]: string }): void;
 }
 `;
 }

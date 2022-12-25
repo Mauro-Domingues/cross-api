@@ -1,7 +1,9 @@
 import fs from 'fs';
 
+import createContainer from '../templates/index/container';
 import createModuleDTO from '../templates/modules/dtos/moduleDTO';
 import createEntity from '../templates/modules/entities/entity';
+import createInjection from '../templates/modules/inject/injection';
 import createFakeRepository from '../templates/modules/repositories/fakes/fakeRepository';
 import createIRepository from '../templates/modules/repositories/IRepository';
 import createRepository from '../templates/modules/repositories/repository';
@@ -15,13 +17,24 @@ export default function makeModule(
     [key: string]: string;
   },
 ): void {
+  if (!fs.existsSync('src')) {
+    fs.mkdirSync('src');
+  }
+  if (!fs.existsSync('src/modules')) {
+    fs.mkdirSync('src/modules');
+  }
+  if (!fs.existsSync('src/shared')) {
+    fs.mkdirSync('src/shared');
+  }
+  if (!fs.existsSync('src/shared/container')) {
+    fs.mkdirSync('src/shared/container');
+  }
+  if (!fs.existsSync('src/shared/container/index.ts')) {
+    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+      if (error) throw error;
+    });
+  }
   if (fatherData) {
-    if (!fs.existsSync('src')) {
-      fs.mkdirSync('src');
-    }
-    if (!fs.existsSync('src/modules')) {
-      fs.mkdirSync('src/modules');
-    }
     if (!fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
       console.log(
         '\x1b[1m',
@@ -282,13 +295,22 @@ export default function makeModule(
         );
       }
     }
+    fs.appendFile(
+      'src/shared/container/index.ts',
+      createInjection(
+        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- ${moduleData.lowerModuleName}Module ${messages.created}`,
+      '\x1b[0m',
+    );
   } else {
-    if (!fs.existsSync('src')) {
-      fs.mkdirSync('src');
-    }
-    if (!fs.existsSync('src/modules')) {
-      fs.mkdirSync('src/modules');
-    }
     if (!fs.existsSync(`src/modules/${moduleData.pluralLowerModuleName}`)) {
       fs.mkdirSync(`src/modules/${moduleData.pluralLowerModuleName}`);
     }
@@ -535,10 +557,20 @@ export default function makeModule(
         },
       );
     }
+    fs.appendFile(
+      'src/shared/container/index.ts',
+      createInjection(
+        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- ${moduleData.lowerModuleName}Module ${messages.created}`,
+      '\x1b[0m',
+    );
   }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- ${moduleData.lowerModuleName}Module ${messages.created}`,
-    '\x1b[0m',
-  );
 }
