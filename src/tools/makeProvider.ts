@@ -71,11 +71,11 @@ export default async function makeProvider(providerName: string) {
       }
       if (
         !fs.existsSync(
-          'src/shared/container/providers/CacheProvider/impementations/RedisCacheProvider.ts',
+          'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/CacheProvider/impementations/RedisCacheProvider.ts',
+          'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
           createRedisCache(),
           error => {
             if (error) throw error;
@@ -83,13 +83,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/CacheProvider/impementations/RedisCacheProvider.ts',
+          'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/CacheProvider/impementations/RedisCacheProvider.ts',
+          'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
           createRedisCache(),
           error => {
             if (error) throw error;
@@ -211,11 +211,11 @@ export default async function makeProvider(providerName: string) {
       }
       if (
         !fs.existsSync(
-          'src/shared/container/providers/StorageProvider/impementations/DiskStorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/impementations/DiskStorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
           createDiskStorage(),
           error => {
             if (error) throw error;
@@ -223,13 +223,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/StorageProvider/impementations/DiskStorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/impementations/DiskStorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
           createDiskStorage(),
           error => {
             if (error) throw error;
@@ -238,11 +238,11 @@ export default async function makeProvider(providerName: string) {
       }
       if (
         !fs.existsSync(
-          'src/shared/container/providers/StorageProvider/impementations/S3StorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/impementations/S3StorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
           createDiskStorage(),
           error => {
             if (error) throw error;
@@ -250,13 +250,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/StorageProvider/impementations/S3StorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/StorageProvider/impementations/S3StorageProvider.ts',
+          'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
           createDiskStorage(),
           error => {
             if (error) throw error;
