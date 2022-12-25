@@ -3,6 +3,7 @@ export default {
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
   created: 'created',
+  providerNotFound: 'provider not found',
   apiCreated: 'api structure created',
   available: 'not available yet',
   notFound: '➤  No commands detected',

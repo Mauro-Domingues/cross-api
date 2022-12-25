@@ -1,8 +1,8 @@
 import fs from 'fs';
 import readline from 'readline';
 
-import enUs from '../assets/en-us';
-import ptBr from '../assets/pt-br';
+import enUs from '../templates/assets/en-us';
+import ptBr from '../templates/assets/pt-br';
 import messages from './messages';
 
 class LanguageOption {

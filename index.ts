@@ -1,6 +1,8 @@
 import board from './src/tools/board';
 import configLanguage from './src/tools/languageConfig';
+import listProvider from './src/tools/listProvider';
 import makeApi from './src/tools/makeAPi';
+import makeProvider from './src/tools/makeProvider';
 import messages from './src/tools/messages';
 
 const [comand] = process.argv.slice(2);
@@ -45,12 +47,7 @@ if (comand) {
       configLanguage();
       break;
     case 'list:provider':
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
-        messages.available,
-        '\x1b[0m',
-      );
+      listProvider();
       break;
     case 'make:api':
       makeApi();
@@ -77,12 +74,7 @@ if (comand) {
       // makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
-        messages.available,
-        '\x1b[0m',
-      );
+      makeProvider(arg);
       // makeProvider(new GetName().getModuleName(arg));
       break;
     default:

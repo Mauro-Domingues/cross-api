@@ -1,4 +1,4 @@
-export default function createAppError(): string {
+export default function createCacheIndex(): string {
   return `import { container } from 'tsyringe';
 
 import RedisCacheProvider from './implementations/RedisCacheProvider';

@@ -34,7 +34,7 @@ import createMapStringAttributeList from '../templates/utils/mapString';
 import makeProvider from './makeProvider';
 import messages from './messages';
 
-async function makeApi() {
+export default async function makeApi() {
   if (!fs.existsSync('src')) {
     fs.mkdirSync('src');
   }
@@ -688,5 +688,3 @@ async function makeApi() {
   );
   makeProvider('cache');
 }
-
-export default makeApi;
