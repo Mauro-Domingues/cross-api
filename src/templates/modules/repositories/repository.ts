@@ -1,0 +1,65 @@
+export default function createRepository(
+  lowerModuleName: string,
+  upperModuleName: string,
+  pluralLowerModuleName: string,
+  pluralUpperModuleName: string,
+): string {
+  return `import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import { getRepository, Repository } from 'typeorm';
+
+import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
+
+export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
+  private ormRepository: Repository<${upperModuleName}>;
+
+  constructor() {
+    this.ormRepository = getRepository(${upperModuleName});
+  }
+
+  public async findBy(
+    data: { [key: string]: string },
+    relations?: string[],
+  ): Promise<${upperModuleName} | null> {
+    const ${lowerModuleName} = await this.ormRepository.findOne({
+      where: data,
+      relations: relations
+    });
+
+    return ${lowerModuleName};
+  }
+
+  public async findAll(
+    page: number,
+    limit: number,
+    relations?: string[],
+  ): Promise<[${upperModuleName}[], number]> {
+    return this.ormRepository.findAndCount({
+      take: limit,
+      skip: (page - 1) * limit,
+      relations: relations
+    });
+  }
+
+  public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
+    const ${lowerModuleName} = this.ormRepository.create(${lowerModuleName}Data);
+
+    await this.ormRepository.save(${lowerModuleName});
+
+    return ${lowerModuleName};
+  }
+
+  public async save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
+    return this.ormRepository.save(${lowerModuleName}Data);
+  }
+
+  public async delete(data: { [key: string]: string }): Promise<void> {
+    this.ormRepository.delete(data.id);
+  }
+
+  public async softDelete(data: { [key: string]: string }): Promise<void> {
+    this.ormRepository.softDelete(data.id);
+  }
+}
+`;
+}
