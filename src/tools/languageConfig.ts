@@ -44,14 +44,21 @@ export default function configLanguage(): void {
       rl.close();
       configLanguage();
     } else {
-      fs.truncate('src/tools/messages.ts', error => {
-        if (error) console.log(error);
-      });
+      fs.truncate(
+        './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
+        error => {
+          if (error) console.log(error);
+        },
+      );
 
       if (languageOption === '0') {
-        fs.appendFile('src/tools/messages.ts', enUs, error => {
-          if (error) console.log(error);
-        });
+        fs.appendFile(
+          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
+          enUs,
+          error => {
+            if (error) console.log(error);
+          },
+        );
 
         console.log('');
         console.log(
@@ -62,9 +69,13 @@ export default function configLanguage(): void {
         );
         console.log('');
       } else {
-        fs.appendFile('src/tools/messages.ts', ptBr, error => {
-          if (error) console.log(error);
-        });
+        fs.appendFile(
+          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
+          ptBr,
+          error => {
+            if (error) console.log(error);
+          },
+        );
 
         console.log('');
         console.log(
