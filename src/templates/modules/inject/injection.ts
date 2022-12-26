@@ -8,5 +8,6 @@ import ${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName
 container.registerSingleton<I${pluralUpperModuleName}Repository>(
   '${pluralUpperModuleName}Repository',
   ${pluralUpperModuleName}Repository,
-);`;
+);
+`;
 }
