@@ -468,7 +468,7 @@ export default function makeModule(
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
           listController(
-            moduleData.lowerModuleName,
+            moduleData.upperModuleName,
             moduleData.pluralLowerModuleName,
           ),
           error => {
@@ -485,7 +485,7 @@ export default function makeModule(
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
           listController(
-            moduleData.lowerModuleName,
+            moduleData.upperModuleName,
             moduleData.pluralLowerModuleName,
           ),
           error => {
@@ -501,7 +501,7 @@ export default function makeModule(
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
           listService(
-            moduleData.lowerModuleName,
+            moduleData.upperModuleName,
             moduleData.pluralLowerModuleName,
             moduleData.pluralUpperModuleName,
           ),
@@ -519,7 +519,7 @@ export default function makeModule(
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
           listService(
-            moduleData.lowerModuleName,
+            moduleData.upperModuleName,
             moduleData.pluralLowerModuleName,
             moduleData.pluralUpperModuleName,
           ),
@@ -1125,7 +1125,7 @@ export default function makeModule(
       fs.appendFile(
         `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
         listController(
-          moduleData.lowerModuleName,
+          moduleData.upperModuleName,
           moduleData.pluralLowerModuleName,
         ),
         error => {
@@ -1142,7 +1142,7 @@ export default function makeModule(
       fs.appendFile(
         `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
         listController(
-          moduleData.lowerModuleName,
+          moduleData.upperModuleName,
           moduleData.pluralLowerModuleName,
         ),
         error => {
@@ -1158,7 +1158,7 @@ export default function makeModule(
       fs.appendFile(
         `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
         listService(
-          moduleData.lowerModuleName,
+          moduleData.upperModuleName,
           moduleData.pluralLowerModuleName,
           moduleData.pluralUpperModuleName,
         ),
@@ -1176,7 +1176,7 @@ export default function makeModule(
       fs.appendFile(
         `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
         listService(
-          moduleData.lowerModuleName,
+          moduleData.upperModuleName,
           moduleData.pluralLowerModuleName,
           moduleData.pluralUpperModuleName,
         ),

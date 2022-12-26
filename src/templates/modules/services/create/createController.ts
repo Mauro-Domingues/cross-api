@@ -11,7 +11,6 @@ import Create${upperModuleName}Service from './Create${upperModuleName}Service';
 
 export default class Create${upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-
     const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
 
     const create${pluralLowerModuleName} = container.resolve(Create${upperModuleName}Service);

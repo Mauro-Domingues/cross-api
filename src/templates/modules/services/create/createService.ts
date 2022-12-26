@@ -21,19 +21,19 @@ export default class Create${upperModuleName}Service {
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) { }
+  ) {}
 
-  async execute(${lowerModuleName}Data: IJourneyDTO): Promise<IResponseDTO> {
+  async execute(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO> {
     const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.create(${lowerModuleName}Data);
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
     return {
       code: 201,
-      message_code: "CREATED",
-      message: "${upperModuleName} successfully created",
-      data: ${lowerModuleName}
-    }
+      message_code: 'CREATED',
+      message: '${upperModuleName} successfully created',
+      data: ${lowerModuleName},
+    };
   }
 }`;
 }

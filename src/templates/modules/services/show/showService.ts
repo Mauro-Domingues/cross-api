@@ -19,7 +19,7 @@ export default class Show${upperModuleName}Service {
     private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
   ) {}
 
-  async execute(${lowerModuleName}Data IObjectDTO): Promise<IResponseDTO> {
+  async execute(${lowerModuleName}Data: IObjectDTO): Promise<IResponseDTO> {
     const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Data, []);
 
     if (!${lowerModuleName}) {
@@ -28,10 +28,10 @@ export default class Show${upperModuleName}Service {
 
     return {
       code: 200,
-      message_code: "OK",
-      message: "${upperModuleName} found successfully",
-      data: ${lowerModuleName}
-    }
+      message_code: 'OK',
+      message: '${upperModuleName} found successfully',
+      data: ${lowerModuleName},
+    };
   }
 }
 `;

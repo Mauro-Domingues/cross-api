@@ -25,7 +25,7 @@ export default class Delete${upperModuleName}Service {
   ) {}
 
   async execute(${lowerModuleName}Data: IObjectDTO): Promise<IResponseDTO> {
-    const ${lowerModuleName} = await this.${lowerModuleName}Repository.findBy(${lowerModuleName}Data);
+    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Data);
 
     if (!${lowerModuleName}) {
       throw new AppError('${upperModuleName} not found', 404);
@@ -37,10 +37,10 @@ export default class Delete${upperModuleName}Service {
 
     return {
       code: 204,
-      message_code: "NO_CONTENT",
-      message: "successfully deleted ${lowerModuleName}",
-      data: null
-    }
+      message_code: 'NO_CONTENT',
+      message: 'successfully deleted ${lowerModuleName}',
+      data: null,
+    };
   }
 }
 `;

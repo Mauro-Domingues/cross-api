@@ -12,8 +12,8 @@ import IListDTO from '@dtos/IListDTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 interface ICacheDTO {
-  data: ${upperModuleName}[], 
-  total: number
+  data: ${upperModuleName}[];
+  total: number;
 }
 
 @injectable()
@@ -39,15 +39,15 @@ export default class List${upperModuleName}Service {
 
     return {
       code: 200,
-      message_code: "OK",
-      message: "${pluralUpperModuleName} found successfully",
+      message_code: 'OK',
+      message: '${pluralUpperModuleName} found successfully',
       data: {
         total: cache.total,
-        page: page,
+        page,
         perPage: limit,
         list: cache.data
-      }
-    }
+      },
+    };
   }
 }
 `;

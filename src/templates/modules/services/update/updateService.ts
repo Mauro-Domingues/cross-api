@@ -26,10 +26,7 @@ export default class Update${upperModuleName}Service {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute({
-    ${lowerModuleName}Id: IObjectDTO,
-    ${lowerModuleName}Data: I${upperModuleName}DTO
-  }: IRequest): Promise<IResponseDTO> {
+  async execute(${lowerModuleName}Id: IObjectDTO, ${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO> {
     const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Id);
 
     if (!${lowerModuleName}) {
@@ -42,10 +39,10 @@ export default class Update${upperModuleName}Service {
 
     return {
       code: 200,
-      message_code: "OK",
-      message: "successfully updated ${lowerModuleName}",
-      data: ${lowerModuleName}
-    }
+      message_code: 'OK',
+      message: 'successfully updated ${lowerModuleName}',
+      data: ${lowerModuleName},
+    };
   }
 }
 `;
