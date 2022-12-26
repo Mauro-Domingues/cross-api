@@ -68,8 +68,9 @@ if (comand) {
           new GetName().getModuleName(arg),
           new GetName().getModuleName(father),
         );
+      } else {
+        makeIndependentModule(new GetName().getModuleName(arg));
       }
-      makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
       makeProvider(arg);
