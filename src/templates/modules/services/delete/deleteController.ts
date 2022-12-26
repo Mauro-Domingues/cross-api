@@ -1,4 +1,4 @@
-export default function createController(
+export default function deleteController(
   lowerModuleName: string,
   upperModuleName: string,
   pluralLowerModuleName: string,

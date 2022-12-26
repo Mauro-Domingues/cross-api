@@ -12,7 +12,7 @@ export default async (): Promise<Connection> => {
 // import uploadConfig from "@config/upload";
 // import { Expose } from "class-transformer";
 
-// @Column({ type: 'varchar', nullable: true})
+// @Column({ type: 'varchar', nullable: true })
 // image: string
 
 // @Expose({ name: "avatar_url" })
@@ -33,21 +33,21 @@ export default async (): Promise<Connection> => {
 // Relations examples
 
 // @OneToOne(() => thisEntity, relationEntity => relationEntity.thisEntity,
-// {onDelete: 'OPTION', onUpdate: 'OPTION'})
+// { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinColumn()
 // relationEntity: relationEntity;
 
 // @OneToMany(() => thisEntity, relationEntity => relationEntity.thisEntity,
-// {onDelete: 'OPTION', onUpdate: 'OPTION'})
+// { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // relationEntity: relationEntity[];
 
 // @ManyToOne(() => thisEntity, relationEntity => relationEntity.thisEntity,
-// {onDelete: 'OPTION', onUpdate: 'OPTION'})
+// { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinColumn({ name: "relationEntity_id" })
 // relationEntity: relationEntity;
 
 // @ManyToMany(() => thisEntity, relationEntity => relationEntity.thisEntity,
-// {onDelete: 'OPTION', onUpdate: 'OPTION'})
+// { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinTable({
 //   name: 'thisEntity_relationEntity',
 //   joinColumn: {
