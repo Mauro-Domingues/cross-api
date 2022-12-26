@@ -3,15 +3,12 @@ export default function createDependentRoute(
   pluralLowerModuleName: string,
   fatherLowerModuleName: string,
 ): string {
-  return `import { Router } from 'express';
-
-import Create${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/create${upperModuleName}/Create${upperModuleName}Controller';
+  return `import Create${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/create${upperModuleName}/Create${upperModuleName}Controller';
 import Show${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/show${upperModuleName}/Show${upperModuleName}Controller';
 import List${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/list${upperModuleName}/List${upperModuleName}Controller';
 import Update${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/update${upperModuleName}/Update${upperModuleName}Controller';
 import Delete${upperModuleName}Controller from '@modules/${pluralLowerModuleName}/services/delete${upperModuleName}/Delete${upperModuleName}Controller';
 
-const ${fatherLowerModuleName}Router = Router();
 const create${upperModuleName}Controller = new Create${upperModuleName}Controller();
 const list${upperModuleName}Controller = new List${upperModuleName}Controller();
 const show${upperModuleName}Controller = new Show${upperModuleName}Controller();

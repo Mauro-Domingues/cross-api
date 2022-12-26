@@ -2,7 +2,8 @@ import board from './src/tools/board';
 import configLanguage from './src/tools/languageConfig';
 import listProvider from './src/tools/listProvider';
 import makeApi from './src/tools/makeAPi';
-import makeModule from './src/tools/makeModule';
+import makeDependentModule from './src/tools/makeDependentModule';
+import makeIndependentModule from './src/tools/makeIndependentModule';
 import makeProvider from './src/tools/makeProvider';
 import messages from './src/tools/messages';
 
@@ -63,12 +64,12 @@ if (comand) {
       break;
     case 'make:module':
       if (father) {
-        makeModule(
+        makeDependentModule(
           new GetName().getModuleName(arg),
           new GetName().getModuleName(father),
         );
       }
-      makeModule(new GetName().getModuleName(arg));
+      makeIndependentModule(new GetName().getModuleName(arg));
       break;
     case 'make:provider':
       makeProvider(arg);
