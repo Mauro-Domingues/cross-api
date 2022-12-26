@@ -35,5 +35,6 @@ export default class Create${upperModuleName}Service {
       data: ${lowerModuleName},
     };
   }
-}`;
+}
+`;
 }

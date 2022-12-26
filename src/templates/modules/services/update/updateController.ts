@@ -17,10 +17,7 @@ export default class Update${upperModuleName}Controller {
     const ${lowerModuleName}Id: IObjectDTO = request.params;
     const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
 
-    const ${lowerModuleName} = await update${upperModuleName}.execute({
-      ${lowerModuleName}Id,
-      ${lowerModuleName}Data,
-    });
+    const ${lowerModuleName} = await update${upperModuleName}.execute(${lowerModuleName}Id, ${lowerModuleName}Data);
 
     return response.send(${lowerModuleName});
   }

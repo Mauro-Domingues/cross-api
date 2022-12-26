@@ -45,7 +45,7 @@ export default class List${upperModuleName}Service {
         total: cache.total,
         page,
         perPage: limit,
-        list: cache.data
+        list: cache.data,
       },
     };
   }

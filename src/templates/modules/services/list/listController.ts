@@ -13,10 +13,7 @@ export default class List${upperModuleName}Controller {
 
     const { page = 1, limit = 20 } = request.query;
 
-    const ${pluralLowerModuleName} = await list${upperModuleName}.execute(
-      Number(page),
-      Number(limit),
-    );
+    const ${pluralLowerModuleName} = await list${upperModuleName}.execute(Number(page), Number(limit));
 
     return response.send(${pluralLowerModuleName});
   }
