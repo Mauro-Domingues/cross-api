@@ -22,7 +22,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async findAll(
     page: number,
     limit: number,
-  ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[], amount: number }> {
+  ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
     return { ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length };
