@@ -197,7 +197,7 @@ export default function makeDependentModule(
       createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
       error => {
@@ -216,7 +216,7 @@ export default function makeDependentModule(
       createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
       error => {
@@ -671,8 +671,8 @@ export default function makeDependentModule(
       `src/routes/${fatherData.lowerModuleName}Router.ts`,
       createDependentRoute(
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         fatherData.lowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -683,8 +683,8 @@ export default function makeDependentModule(
       `src/routes/${fatherData.lowerModuleName}Router.ts`,
       createDependentRoute(
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         fatherData.lowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
