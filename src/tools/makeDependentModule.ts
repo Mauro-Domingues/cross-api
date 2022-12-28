@@ -694,7 +694,7 @@ export default function makeDependentModule(
   fs.appendFile(
     'src/shared/container/index.ts',
     createDependentInjection(
-      moduleData.pluralLowerModuleName,
+      moduleData.pluralUpperModuleName,
       fatherData.pluralLowerModuleName,
     ),
     error => {
