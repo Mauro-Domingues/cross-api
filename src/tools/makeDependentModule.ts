@@ -4,21 +4,21 @@ import createContainer from '../templates/index/container';
 import createRoutes from '../templates/index/routes';
 import createModuleDTO from '../templates/modules/dtos/moduleDTO';
 import createEntity from '../templates/modules/entities/entity';
-import createInjection from '../templates/modules/inject/injection';
-import createFakeRepository from '../templates/modules/repositories/fakes/fakeRepository';
-import createIRepository from '../templates/modules/repositories/IRepository';
-import createRepository from '../templates/modules/repositories/repository';
+import createDependentInjection from '../templates/modules/inject/dependentInjection';
+import createDependentRepository from '../templates/modules/repositories/dependentRepository';
+import createDependentFakeRepository from '../templates/modules/repositories/fakes/fakeDependentRepository';
+import createIDependentRepository from '../templates/modules/repositories/IDependentRepository';
 import createDependentRoute from '../templates/modules/routes/dependentRoutes';
-import createController from '../templates/modules/services/create/createController';
-import createService from '../templates/modules/services/create/createService';
-import deleteController from '../templates/modules/services/delete/deleteController';
-import deleteService from '../templates/modules/services/delete/deleteService';
-import listController from '../templates/modules/services/list/listController';
-import listService from '../templates/modules/services/list/listService';
-import showController from '../templates/modules/services/show/showController';
-import showService from '../templates/modules/services/show/showService';
-import updateController from '../templates/modules/services/update/updateController';
-import updateService from '../templates/modules/services/update/updateService';
+import createDependentController from '../templates/modules/services/createDependent/createController';
+import createDependentService from '../templates/modules/services/createDependent/createService';
+import deleteDependentController from '../templates/modules/services/deleteDependent/deleteController';
+import deleteDependentService from '../templates/modules/services/deleteDependent/deleteService';
+import listDependentController from '../templates/modules/services/listDependent/listController';
+import listDependentService from '../templates/modules/services/listDependent/listService';
+import showDependentController from '../templates/modules/services/showDependent/showController';
+import showDependentService from '../templates/modules/services/showDependent/showService';
+import updateDependentController from '../templates/modules/services/updateDependent/updateController';
+import updateDependentService from '../templates/modules/services/updateDependent/updateService';
 import messages from './messages';
 
 export default function makeDependentModule(
@@ -194,11 +194,11 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
-      createRepository(
+      createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -213,11 +213,11 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
-      createRepository(
+      createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -231,11 +231,11 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
-      createIRepository(
+      createIDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -250,11 +250,11 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
-      createIRepository(
+      createIDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -268,11 +268,12 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
-      createFakeRepository(
+      createDependentFakeRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -287,11 +288,12 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
-      createFakeRepository(
+      createDependentFakeRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -305,10 +307,11 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
-      createController(
+      createDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -323,10 +326,11 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
-      createController(
+      createDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -340,11 +344,12 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
-      createService(
+      createDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -359,11 +364,12 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
-      createService(
+      createDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -377,7 +383,7 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteController(
+      deleteDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
@@ -395,7 +401,7 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteController(
+      deleteDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
@@ -412,11 +418,12 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
-      deleteService(
+      deleteDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -431,11 +438,12 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
-      deleteService(
+      deleteDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -449,7 +457,7 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
-      listController(
+      listDependentController(
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
       ),
@@ -466,7 +474,7 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
-      listController(
+      listDependentController(
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
       ),
@@ -482,10 +490,11 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
-      listService(
+      listDependentService(
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -500,10 +509,11 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
-      listService(
+      listDependentService(
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -517,7 +527,10 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
-      showController(moduleData.lowerModuleName, moduleData.upperModuleName),
+      showDependentController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+      ),
       error => {
         if (error) throw error;
       },
@@ -531,7 +544,10 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
-      showController(moduleData.lowerModuleName, moduleData.upperModuleName),
+      showDependentController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+      ),
       error => {
         if (error) throw error;
       },
@@ -544,11 +560,12 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
-      showService(
+      showDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -563,11 +580,12 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
-      showService(
+      showDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -581,10 +599,10 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
-      updateController(
+      updateDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -599,10 +617,10 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
-      updateController(
+      updateDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -616,11 +634,12 @@ export default function makeDependentModule(
   ) {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
-      updateService(
+      updateDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -635,11 +654,12 @@ export default function makeDependentModule(
     );
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
-      updateService(
+      updateDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -673,9 +693,9 @@ export default function makeDependentModule(
   }
   fs.appendFile(
     'src/shared/container/index.ts',
-    createInjection(
+    createDependentInjection(
       moduleData.pluralLowerModuleName,
-      moduleData.pluralUpperModuleName,
+      fatherData.pluralLowerModuleName,
     ),
     error => {
       if (error) throw error;

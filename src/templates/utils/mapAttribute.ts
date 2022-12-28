@@ -1,8 +1,8 @@
 export default function createMapAttributeList(): string {
-  return `export default async function mapAttributeList(
+  return `export default async function mapAttributeList<T>(
   newAttributes: any,
   oldAttributes: any,
-): Promise<any> {
+): Promise<T> {
   // eslint-disable-next-line no-restricted-syntax
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
