@@ -11,6 +11,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IListDTO from '@dtos/IListDTO';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import ICacheDTO from '@dtos/ICacheDTO';
 
 @injectable()
 export default class List${upperModuleName}Service {

@@ -29,7 +29,7 @@ export default class Update${upperModuleName}Service {
 
   async execute(
     ${lowerModuleName}Param: IObjectDTO,
-    ${lowerModuleName}Data: I${upperModuleName}DTO
+    ${lowerModuleName}Data: I${upperModuleName}DTO,
   ): Promise<IResponseDTO<${upperModuleName}>> {
     const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param);
 

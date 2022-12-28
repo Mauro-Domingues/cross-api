@@ -13,6 +13,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import ICacheDTO from '@dtos/ICacheDTO';
 
 @injectable()
 export default class Show${upperModuleName}Service {
