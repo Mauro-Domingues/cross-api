@@ -1,6 +1,7 @@
 export default function createIDependentRepository(
   lowerModuleName: string,
   upperModuleName: string,
+  pluralLowerModuleName: string,
   pluralUpperModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {
@@ -13,7 +14,7 @@ export default interface I${pluralUpperModuleName}Repository {
     page: number,
     limit: number,
     relations?: string[],
-  ): Promise<[${upperModuleName}[], number]>;
+  ): Promise<{${pluralLowerModuleName}: ${upperModuleName}[], amount: number}>;
   findBy(${lowerModuleName}Data: IObjectDTO, relations?: string[]): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
   save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;

@@ -197,6 +197,7 @@ export default function makeDependentModule(
       createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
@@ -216,6 +217,7 @@ export default function makeDependentModule(
       createDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
@@ -234,6 +236,7 @@ export default function makeDependentModule(
       createIDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
@@ -253,6 +256,7 @@ export default function makeDependentModule(
       createIDependentRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),

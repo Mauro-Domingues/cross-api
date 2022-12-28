@@ -34,12 +34,14 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     page: number,
     limit: number,
     relations?: string[],
-  ): Promise<[${upperModuleName}[], number]> {
-    return this.ormRepository.findAndCount({
+  ): Promise<{${pluralLowerModuleName}: ${upperModuleName}[], amount: number}> {
+    const [${pluralLowerModuleName}, amount] = await this.ormRepository.findAndCount({
       take: limit,
       skip: (page - 1) * limit,
       relations,
     });
+
+    return { ${pluralLowerModuleName}, amount };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {

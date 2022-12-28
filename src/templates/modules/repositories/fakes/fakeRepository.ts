@@ -21,10 +21,10 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async findAll(
     page: number,
     limit: number,
-  ): Promise<[${upperModuleName}[], number]> {
+  ): Promise<{${pluralLowerModuleName}: ${upperModuleName}[], amount: number}> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
-    return [find${upperModuleName}, find${upperModuleName}.length];
+    return { ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {

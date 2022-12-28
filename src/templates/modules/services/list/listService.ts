@@ -12,11 +12,6 @@ import IListDTO from '@dtos/IListDTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 import ICacheDTO from '@dtos/ICacheDTO';
 
-interface ICacheDTO {
-  data: ${upperModuleName}[];
-  total: number;
-}
-
 @injectable()
 export default class List${upperModuleName}Service {
   constructor(
@@ -34,7 +29,7 @@ export default class List${upperModuleName}Service {
 
     if (!cache) {
       const ${pluralLowerModuleName} = await this.${pluralLowerModuleName}Repository.findAll(page, limit);
-      cache = { data: ${pluralLowerModuleName}[0], total: ${pluralLowerModuleName}[1] };
+      cache = { data: ${pluralLowerModuleName}.${pluralLowerModuleName}, total: ${pluralLowerModuleName}.amount };
       await this.cacheProvider.save(cacheKey, cache);
     }
 
