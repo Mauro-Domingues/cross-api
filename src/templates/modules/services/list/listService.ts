@@ -10,6 +10,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleNam
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IListDTO from '@dtos/IListDTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import ICacheDTO from '@dtos/ICacheDTO';
 
 interface ICacheDTO {
   data: ${upperModuleName}[];
@@ -29,7 +30,7 @@ export default class List${upperModuleName}Service {
   async execute(page: number, limit: number): Promise<IListDTO<${upperModuleName}>> {
     const cacheKey = \`${pluralLowerModuleName}:\${page}:\${limit}\`;
 
-    let cache = await this.cacheProvider.recovery<ICacheDTO>(cacheKey);
+    let cache = await this.cacheProvider.recovery<ICacheDTO<${upperModuleName}>>(cacheKey);
 
     if (!cache) {
       const ${pluralLowerModuleName} = await this.${pluralLowerModuleName}Repository.findAll(page, limit);

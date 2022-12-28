@@ -14,6 +14,6 @@ export default interface IListDTO<T>
     perPage: number;
     list: T[];
   };
-}  
+}
 `;
 }

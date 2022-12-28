@@ -19,7 +19,10 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     return find${upperModuleName} || null;
   }
 
-  public async findAll(page: number, limit: number): Promise<[${upperModuleName}[], number]> {
+  public async findAll(
+    page: number,
+    limit: number,
+  ): Promise<[${upperModuleName}[], number]> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
     return [find${upperModuleName}, find${upperModuleName}.length];

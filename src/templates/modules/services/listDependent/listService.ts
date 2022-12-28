@@ -30,7 +30,7 @@ export default class List${upperModuleName}Service {
   async execute(page: number, limit: number): Promise<IListDTO<${upperModuleName}>> {
     const cacheKey = \`${pluralLowerModuleName}:\${page}:\${limit}\`;
 
-    let cache = await this.cacheProvider.recovery<ICacheDTO>(cacheKey);
+    let cache = await this.cacheProvider.recovery<ICacheDTO<${upperModuleName}>>(cacheKey);
 
     if (!cache) {
       const ${pluralLowerModuleName} = await this.${pluralLowerModuleName}Repository.findAll(page, limit);

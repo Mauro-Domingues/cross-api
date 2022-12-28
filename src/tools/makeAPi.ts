@@ -10,6 +10,7 @@ import createCryptoConfig from '../templates/config/cryptoConfig';
 import createMailConfig from '../templates/config/mailConfig';
 import createNotificationConfig from '../templates/config/notificationConfig';
 import createUploadConfig from '../templates/config/uploadConfig';
+import createICacheDTO from '../templates/dtos/ICacheDTO';
 import createIListDTO from '../templates/dtos/IListDTO';
 import createIObjectDTO from '../templates/dtos/IObjectDTO';
 import createIResponseDTO from '../templates/dtos/IResponseDTO';
@@ -457,6 +458,23 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- upload.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {
+    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/dtos/ICacheDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- ICacheDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/dtos/IListDTO.ts')) {
