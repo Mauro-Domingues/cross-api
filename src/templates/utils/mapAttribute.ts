@@ -6,8 +6,11 @@ export default function createMapAttributeList(): string {
   // eslint-disable-next-line no-restricted-syntax
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
-      // eslint-disable-next-line no-param-reassign
-      oldAttributes[attribute] = newAttributes[attribute];
+      // eslint-disable-next-line no-prototype-builtins
+      if (oldAttributes.hasOwnProperty(attribute)) {
+        // eslint-disable-next-line no-param-reassign
+        oldAttributes[attribute] = newAttributes[attribute];
+      }
     }
   }
   return oldAttributes;
