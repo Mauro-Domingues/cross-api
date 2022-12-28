@@ -12,6 +12,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleNam
 
 import IResponseDTO from '@dtos/IResponseDTO';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
 export default class Create${upperModuleName}Service {
@@ -23,7 +24,7 @@ export default class Create${upperModuleName}Service {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO> {
+  async execute(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO<${upperModuleName}>> {
     const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.create(${lowerModuleName}Data);
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');

@@ -13,9 +13,9 @@ export default class Delete${upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const delete${pluralLowerModuleName} = container.resolve(Delete${upperModuleName}Service);
 
-    const ${lowerModuleName}Data: IObjectDTO = request.params;
+    const ${lowerModuleName}Param: IObjectDTO = request.params;
 
-    const ${lowerModuleName} = delete${pluralLowerModuleName}.execute(${lowerModuleName}Data);
+    const ${lowerModuleName} = delete${pluralLowerModuleName}.execute(${lowerModuleName}Param);
 
     return response.send(${lowerModuleName});
   }

@@ -11,6 +11,7 @@ import AppError from '@shared/errors/AppError';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
+import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
 export default class Show${upperModuleName}Service {
@@ -19,8 +20,8 @@ export default class Show${upperModuleName}Service {
     private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
   ) {}
 
-  async execute(${lowerModuleName}Data: IObjectDTO): Promise<IResponseDTO> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Data, []);
+  async execute(${lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<${upperModuleName}>> {
+    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param, []);
 
     if (!${lowerModuleName}) {
       throw new AppError('${upperModuleName} not found', 404);

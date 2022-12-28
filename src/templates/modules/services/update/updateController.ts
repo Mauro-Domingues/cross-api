@@ -14,10 +14,10 @@ export default class Update${upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const update${upperModuleName} = container.resolve(Update${upperModuleName}Service);
 
-    const ${lowerModuleName}Id: IObjectDTO = request.params;
+    const ${lowerModuleName}Param: IObjectDTO = request.params;
     const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
 
-    const ${lowerModuleName} = await update${upperModuleName}.execute(${lowerModuleName}Id, ${lowerModuleName}Data);
+    const ${lowerModuleName} = await update${upperModuleName}.execute(${lowerModuleName}Param, ${lowerModuleName}Data);
 
     return response.send(${lowerModuleName});
   }

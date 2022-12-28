@@ -24,8 +24,8 @@ export default class Delete${upperModuleName}Service {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${lowerModuleName}Data: IObjectDTO): Promise<IResponseDTO> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Data);
+  async execute(${lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<null>> {
+    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param);
 
     if (!${lowerModuleName}) {
       throw new AppError('${upperModuleName} not found', 404);
@@ -33,7 +33,7 @@ export default class Delete${upperModuleName}Service {
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
-    this.${pluralLowerModuleName}Repository.delete(${lowerModuleName}Data);
+    this.${pluralLowerModuleName}Repository.delete(${lowerModuleName}Param);
 
     return {
       code: 204,

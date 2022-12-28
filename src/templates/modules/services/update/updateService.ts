@@ -15,6 +15,7 @@ import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${up
 import IResponseDTO from '@dtos/IResponseDTO';
 import IObjectDTO from '@dtos/IObjectDTO';
 import mapAttributeList from '@utils/mapObjectAttribute';
+import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
 export default class Update${upperModuleName}Service {
@@ -26,8 +27,11 @@ export default class Update${upperModuleName}Service {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${lowerModuleName}Id: IObjectDTO, ${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Id);
+  async execute(
+    ${lowerModuleName}Param: IObjectDTO,
+    ${lowerModuleName}Data: I${upperModuleName}DTO
+  ): Promise<IResponseDTO<${upperModuleName}>> {
+    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param);
 
     if (!${lowerModuleName}) {
       throw new AppError('${upperModuleName} not found', 404);
