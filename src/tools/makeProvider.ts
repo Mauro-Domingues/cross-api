@@ -162,7 +162,7 @@ export default async function makeProvider(providerName: string) {
       }
       console.log(
         '\x1b[38;2;255;255;0m',
-        `CacheProvider ${messages.created}`,
+        `- CacheProvider ${messages.created}`,
         '\x1b[0m',
       );
       break;

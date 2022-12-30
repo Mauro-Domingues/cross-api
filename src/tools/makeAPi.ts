@@ -69,6 +69,9 @@ export default async function makeApi() {
   if (!fs.existsSync('src/utils')) {
     fs.mkdirSync('src/utils');
   }
+  if (!fs.existsSync('src/utils/mappers')) {
+    fs.mkdirSync('src/utils/mappers');
+  }
   if (!fs.existsSync('src/shared/container')) {
     fs.mkdirSync('src/shared/container');
   }
