@@ -1,5 +1,10 @@
+import messages from '../../../tools/messages';
+
 export default function createMapAndPatch(): string {
-  return `export default async function mapAndPatchAttribute<Entity, DTO>(
+  return `/**
+* ${messages.mapAndPatch}
+*/
+export default async function mapAndPatchAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
 ): Promise<Entity> {

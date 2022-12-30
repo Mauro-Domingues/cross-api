@@ -31,6 +31,7 @@ import createNodemonJson from '../templates/root/nodemonJson';
 import createPrettierConfig from '../templates/root/prettierConfig';
 import createTsConfig from '../templates/root/tsConfig';
 import createDecimaAdjust from '../templates/utils/decimalAdjust';
+import createMapAndInsert from '../templates/utils/mappers/mapAndInsert';
 import createMapAndPatch from '../templates/utils/mappers/mapAndPatch';
 import createMapAndPatchString from '../templates/utils/mappers/mapAndPatchString';
 import createMapAndUpdate from '../templates/utils/mappers/mapAndUpdate';
@@ -607,6 +608,31 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- server.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/utils/mappers/mapAndInsertAttribute.ts')) {
+    fs.appendFile(
+      'src/utils/mappers/mapAndInsertAttribute.ts',
+      createMapAndInsert(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/utils/mappers/mapAndInsertAttribute.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/utils/mappers/mapAndInsertAttribute.ts',
+      createMapAndInsert(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mapAndInsertAttribute.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
