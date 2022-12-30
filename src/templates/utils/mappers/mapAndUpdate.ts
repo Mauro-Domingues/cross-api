@@ -2,8 +2,8 @@ import messages from '../../../tools/messages';
 
 export default function createMapAndUpdate(): string {
   return `/**
-* ${messages.mapAndUpdate}
-*/
+ * ${messages.mapAndUpdate}
+ */
 export default async function mapAndUpdateAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,

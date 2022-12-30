@@ -2,8 +2,8 @@ import messages from '../../../tools/messages';
 
 export default function createMapAndInsert(): string {
   return `/**
-* ${messages.patchAndInsert}
-*/
+ * ${messages.patchAndInsert}
+ */
 export default async function mapAndInsertAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
