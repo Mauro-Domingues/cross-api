@@ -23,14 +23,14 @@ export default `export default {
     'It is used to generate a complete CRUD from one module dependent on another',
   makeProvider: 'It is used to generate a provider ',
   mapAndPatch:
-    'PATCH OBJECT: Takes as parameter an entity and an object, maps the object, and returns the entity with the patched properties. Empty or non-entity-type properties are discarded.',
+    'PATCH OBJECT -> Takes as parameter an entity and an object, maps the object, and returns the entity with the patched properties. Empty or non-entity-type properties are discarded.',
   patchAndInsert:
-    'PATCH AND INSERT: Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Add non-entity-type properties but empty values sent are discarded.',
+    'PATCH AND INSERT -> Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers non-entity-type properties but empty values sent are discarded.',
   mapAndUpdate:
-    'PUT OBJECT: Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers empty values sent, but non-entity-type properties are discarded.',
+    'PUT OBJECT -> Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers empty values sent, but non-entity-type properties are discarded.',
   mapAndPatchString:
-    'PATCH STRINGIFIED OBJECT: Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Empty or non-entity-type properties are discarded.',
+    'PATCH STRINGIFIED OBJECT -> Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Empty or non-entity-type properties are discarded.',
   mapAndUpdateString:
-    'PUT STRINGIFIED OBJECT: Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Considers empty values sent, but non-entity-type properties are discarded.',
+    'PUT STRINGIFIED OBJECT -> Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Considers empty values sent, but non-entity-type properties are discarded.',
 };
 `;
