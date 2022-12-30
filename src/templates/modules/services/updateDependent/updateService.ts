@@ -15,7 +15,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 import IObjectDTO from '@dtos/IObjectDTO';
-import mapAttributeList from '@utils/mapObjectAttribute';
+import mapAttributeList from '@utils/mappers/mapAndUpdateAttribute';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
@@ -40,7 +40,7 @@ export default class Update${upperModuleName}Service {
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
-    await this.${pluralLowerModuleName}Repository.save(await mapAttributeList(${lowerModuleName}, ${lowerModuleName}Data));
+    await this.${pluralLowerModuleName}Repository.save(await mapAndUpdateAttribute(${lowerModuleName}, ${lowerModuleName}Data));
 
     return {
       code: 200,

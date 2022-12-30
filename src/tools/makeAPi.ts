@@ -31,8 +31,10 @@ import createNodemonJson from '../templates/root/nodemonJson';
 import createPrettierConfig from '../templates/root/prettierConfig';
 import createTsConfig from '../templates/root/tsConfig';
 import createDecimaAdjust from '../templates/utils/decimalAdjust';
-import createMapAttributeList from '../templates/utils/mapAttribute';
-import createMapStringAttributeList from '../templates/utils/mapString';
+import createMapAndPatch from '../templates/utils/mappers/mapAndPatch';
+import createMapAndPatchString from '../templates/utils/mappers/mapAndPatchString';
+import createMapAndUpdate from '../templates/utils/mappers/mapAndUpdate';
+import createMapAndUpdateString from '../templates/utils/mappers/mapAndUpdateString';
 import makeProvider from './makeProvider';
 import messages from './messages';
 
@@ -604,21 +606,21 @@ export default async function makeApi() {
     `- server.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mapObjectAttribute.ts')) {
+  if (!fs.existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
     fs.appendFile(
-      'src/utils/mapObjectAttribute.ts',
-      createMapAttributeList(),
+      'src/utils/mappers/mapAndPatchAttribute.ts',
+      createMapAndPatch(),
       error => {
         if (error) throw error;
       },
     );
   } else {
-    fs.truncate('src/utils/mapObjectAttribute.ts', error => {
+    fs.truncate('src/utils/mappers/mapAndPatchAttribute.ts', error => {
       if (error) console.log(error);
     });
     fs.appendFile(
-      'src/utils/mapObjectAttribute.ts',
-      createMapAttributeList(),
+      'src/utils/mappers/mapAndPatchAttribute.ts',
+      createMapAndPatch(),
       error => {
         if (error) throw error;
       },
@@ -626,24 +628,24 @@ export default async function makeApi() {
   }
   console.log(
     '\x1b[38;2;255;255;0m',
-    `- mapObjectAttribute.ts ${messages.created}`,
+    `- mapAndPatchAttribute.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mapStringAttribute.ts')) {
+  if (!fs.existsSync('src/utils/mappers/mapAndPatchString.ts')) {
     fs.appendFile(
-      'src/utils/mapStringAttribute.ts',
-      createMapStringAttributeList(),
+      'src/utils/mappers/mapAndPatchString.ts',
+      createMapAndPatchString(),
       error => {
         if (error) throw error;
       },
     );
   } else {
-    fs.truncate('src/utils/mapStringAttribute.ts', error => {
+    fs.truncate('src/utils/mappers/mapAndPatchString.ts', error => {
       if (error) console.log(error);
     });
     fs.appendFile(
-      'src/utils/mapStringAttribute.ts',
-      createMapStringAttributeList(),
+      'src/utils/mappers/mapAndPatchString.ts',
+      createMapAndPatchString(),
       error => {
         if (error) throw error;
       },
@@ -651,7 +653,57 @@ export default async function makeApi() {
   }
   console.log(
     '\x1b[38;2;255;255;0m',
-    `- mapStringAttribute.ts ${messages.created}`,
+    `- mapAndPatchString.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/utils/mappers/mapAndUpdateAttribute.ts')) {
+    fs.appendFile(
+      'src/utils/mappers/mapAndUpdateAttribute.ts',
+      createMapAndUpdate(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/utils/mappers/mapAndUpdateAttribute.ts',
+      createMapAndUpdate(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mapAndUpdateAttribute.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/utils/mappers/mapAndUpdateString.ts')) {
+    fs.appendFile(
+      'src/utils/mappers/mapAndUpdateString.ts',
+      createMapAndUpdateString(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/utils/mappers/mapAndUpdateString.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/utils/mappers/mapAndUpdateString.ts',
+      createMapAndUpdateString(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- mapAndUpdateString.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/utils/decimalAdjust.ts')) {
