@@ -15,7 +15,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 import IObjectDTO from '@dtos/IObjectDTO';
-import mapAttributeList from '@utils/mappers/mapAndUpdateAttribute';
+import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
