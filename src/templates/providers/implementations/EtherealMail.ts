@@ -32,7 +32,7 @@ class EtherealMailProvider implements IMailProvider {
         },
       });
     } catch (err) {
-      console.error(\`EtherealMailProvider - Error:\n\${err}\`);
+      console.error(\`EtherealMailProvider - Error:\\\\n\${err}\`);
     }
   }
 
