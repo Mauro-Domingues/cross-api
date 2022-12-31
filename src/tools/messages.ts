@@ -16,9 +16,9 @@ export default {
   changeLanguage: 'It is used to change the language                ',
   listProvider: 'It is used to list the available providers       ',
   migrationGenerate:
-    'É utilizado para gerar ou atualizar migrações                              ',
+    'It is used to generate or update migrations                                ',
   migrationRun:
-    'É utilizado para rodar as migrações                                        ',
+    'It is used to run the migrations                                           ',
   structure: 'STRUCTURE CREATION  ',
   makeApi:
     'It is used to generate the structure of your API                           ',
