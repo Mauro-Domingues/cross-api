@@ -1,5 +1,6 @@
 export default function createDependentRoute(
   upperModuleName: string,
+  pluralLowerModuleName: string,
   fatherLowerModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {
@@ -15,10 +16,10 @@ const show${upperModuleName}Controller = new Show${upperModuleName}Controller();
 const update${upperModuleName}Controller = new Update${upperModuleName}Controller();
 const delete${upperModuleName}Controller = new Delete${upperModuleName}Controller();
 
-${fatherLowerModuleName}Router.post('/', create${upperModuleName}Controller.handle);
-${fatherLowerModuleName}Router.get('/', list${upperModuleName}Controller.handle);
-${fatherLowerModuleName}Router.get('/:id', show${upperModuleName}Controller.handle);
-${fatherLowerModuleName}Router.put('/:id', update${upperModuleName}Controller.handle);
-${fatherLowerModuleName}Router.delete('/:id', delete${upperModuleName}Controller.handle);
+${fatherLowerModuleName}Router.post('/track/${pluralLowerModuleName}', create${upperModuleName}Controller.handle);
+${fatherLowerModuleName}Router.get('/track/${pluralLowerModuleName}', list${upperModuleName}Controller.handle);
+${fatherLowerModuleName}Router.get('/track/${pluralLowerModuleName}/:id', show${upperModuleName}Controller.handle);
+${fatherLowerModuleName}Router.put('/track/${pluralLowerModuleName}/:id', update${upperModuleName}Controller.handle);
+${fatherLowerModuleName}Router.delete('/track/${pluralLowerModuleName}/:id', delete${upperModuleName}Controller.handle);
 `;
 }

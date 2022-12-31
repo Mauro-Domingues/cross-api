@@ -11,9 +11,13 @@ import createRepository from '../templates/modules/repositories/repository';
 import createIndependentRoute from '../templates/modules/routes/independentRoutes';
 import createIndexRoute from '../templates/modules/routes/indexRouter';
 import createController from '../templates/modules/services/create/createController';
+import createSpecController from '../templates/modules/services/create/createControllerSpec';
 import createService from '../templates/modules/services/create/createService';
+import createSpecService from '../templates/modules/services/create/createServiceSpec';
 import deleteController from '../templates/modules/services/delete/deleteController';
+import deleteSpecController from '../templates/modules/services/delete/deleteControllerSpec';
 import deleteService from '../templates/modules/services/delete/deleteService';
+import deleteSpecService from '../templates/modules/services/delete/deleteServiceSpec';
 import listController from '../templates/modules/services/list/listController';
 import listService from '../templates/modules/services/list/listService';
 import showController from '../templates/modules/services/show/showController';
@@ -304,11 +308,6 @@ export default function makeIndependentModule(moduleData: {
       if (error) throw error;
     },
   );
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- ${moduleData.lowerModuleName}Module ${messages.created}`,
-    '\x1b[0m',
-  );
   if (
     !fs.existsSync(
       `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
@@ -657,6 +656,354 @@ export default function makeIndependentModule(moduleData: {
       },
     );
   }
+  if (
+    !fs.existsSync(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.spec.ts`,
+      createSpecController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.spec.ts`,
+      createSpecController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  if (
+    !fs.existsSync(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
+      createSpecService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
+      createSpecService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  if (
+    !fs.existsSync(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.spec.ts`,
+      deleteSpecController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        moduleData.dbModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.spec.ts`,
+      deleteSpecController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        moduleData.dbModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  if (
+    !fs.existsSync(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.spec.ts`,
+      deleteSpecService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.spec.ts`,
+      deleteSpecService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.spec.ts`,
+  //     listController(
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.spec.ts`,
+  //     listController(
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.spec.ts`,
+  //     listService(
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.spec.ts`,
+  //     listService(
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.spec.ts`,
+  //     showController(moduleData.lowerModuleName, moduleData.upperModuleName),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.spec.ts`,
+  //     showController(moduleData.lowerModuleName, moduleData.upperModuleName),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.spec.ts`,
+  //     showService(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.spec.ts`,
+  //     showService(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+  //     updateController(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+  //     updateController(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
+  // if (
+  //   !fs.existsSync(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+  //   )
+  // ) {
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+  //     updateService(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // } else {
+  //   fs.truncate(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+  //     error => {
+  //       if (error) console.log(error);
+  //     },
+  //   );
+  //   fs.appendFile(
+  //     `src/modules/${moduleData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+  //     updateService(
+  //       moduleData.lowerModuleName,
+  //       moduleData.upperModuleName,
+  //       moduleData.pluralLowerModuleName,
+  //       moduleData.pluralUpperModuleName,
+  //     ),
+  //     error => {
+  //       if (error) throw error;
+  //     },
+  //   );
+  // }
   if (!fs.existsSync(`src/routes/${moduleData.lowerModuleName}Router.ts`)) {
     fs.appendFile(
       `src/routes/${moduleData.lowerModuleName}Router.ts`,
@@ -688,7 +1035,10 @@ export default function makeIndependentModule(moduleData: {
   if (!fs.existsSync(`src/routes/index.ts`)) {
     fs.appendFile(
       `src/routes/index.ts`,
-      createIndexRoute(moduleData.lowerModuleName),
+      createIndexRoute(
+        moduleData.lowerModuleName,
+        moduleData.pluralFatherLowerModuleName,
+      ),
       error => {
         if (error) throw error;
       },
@@ -696,10 +1046,18 @@ export default function makeIndependentModule(moduleData: {
   } else {
     fs.appendFile(
       `src/routes/index.ts`,
-      createIndexRoute(moduleData.lowerModuleName),
+      createIndexRoute(
+        moduleData.lowerModuleName,
+        moduleData.pluralFatherLowerModuleName,
+      ),
       error => {
         if (error) throw error;
       },
     );
   }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- ${moduleData.lowerModuleName}Module ${messages.created}`,
+    '\x1b[0m',
+  );
 }
