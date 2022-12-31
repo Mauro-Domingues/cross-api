@@ -21,13 +21,11 @@ function configJson(): void {
 
   newScript.scripts = {
     ...newScript.scripts,
-    dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
-    test: 'set NODE_ENV=test&&jest --runInBand',
     cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
-    'migration:generate':
-      'typeorm-ts-node-commonjs -d dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
-    'migration:run': 'typeorm-ts-node-commonjs -d dataSource.ts migration:run',
+    dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
+    start: 'ts-node src/shared/server.ts',
+    test: 'set NODE_ENV=test&&jest --runInBand',
   };
 
   fs.writeFileSync('./package.json', JSON.stringify(newScript), {
