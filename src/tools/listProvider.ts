@@ -52,5 +52,3 @@ export default function listProvider(): void {
   );
   console.log('');
 }
-
-listProvider();
