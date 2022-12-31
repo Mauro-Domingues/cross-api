@@ -13,7 +13,7 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 
 import IResponseDTO from '@dtos/IResponseDTO';
 import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
-import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()
 export default class Create${upperModuleName}Service {
