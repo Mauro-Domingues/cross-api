@@ -15,7 +15,7 @@ CRYPTO_SECRET_KEY=
 # DataSource config
 DB_HOST=localhost
 DB_PORT=3306
-DB_USER=username
+DB_USER=root
 DB_PASSWORD=12345
 DB_DATABASE=database
 
