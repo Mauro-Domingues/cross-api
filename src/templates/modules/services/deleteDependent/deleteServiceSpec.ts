@@ -8,7 +8,7 @@ export default function deleteSpecDependentService(
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/Fake${upperModuleName}Repository';
+import Fake${upperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/fakes/Fake${upperModuleName}Repository';
 import Delete${upperModuleName}Services from './Delete${upperModuleName}Service';
 
 let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
@@ -20,7 +20,7 @@ describe('Delete${upperModuleName}Service', () => {
     fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    delete${upperModuleName} = new delete${upperModuleName}Services(
+    delete${upperModuleName} = new Delete${upperModuleName}Services(
       fake${upperModuleName}Repository,
       fakeCacheProvider,
     );
@@ -40,7 +40,7 @@ describe('Delete${upperModuleName}Service', () => {
   });
 
   it('should return App error', async () => {
-    await expect(delete${upperModuleName}.execute('')).rejects.toBeInstanceOf(AppError);
+    await expect(delete${upperModuleName}.execute({})).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

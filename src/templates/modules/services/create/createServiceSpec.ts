@@ -5,7 +5,7 @@ export default function createSpecService(
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/Fake${upperModuleName}Repository';
+import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/fakes/Fake${upperModuleName}Repository';
 import Create${upperModuleName}Services from './Create${upperModuleName}Service';
 
 let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;

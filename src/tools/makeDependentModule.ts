@@ -271,11 +271,11 @@ export default function makeDependentModule(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
       createDependentFakeRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
@@ -289,13 +289,13 @@ export default function makeDependentModule(
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
       createDependentFakeRepository(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
