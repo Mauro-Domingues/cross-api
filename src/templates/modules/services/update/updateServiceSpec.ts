@@ -33,10 +33,10 @@ describe('Update${upperModuleName}Service', () => {
 
     const updated${upperModuleName} = await update${upperModuleName}Service.execute(
       { id: ${lowerModuleName}.id },
-      { name: 'updated${upperModuleName}', description: 'This is a updated${lowerModuleName},
-    });
+      { name: 'updated${upperModuleName}', description: 'This is a updated${lowerModuleName}' },
+    );
 
-    expect(updated${upperModuleName}.data.name).toEqual('opened');
+    expect(updated${upperModuleName}.data.name).toEqual('updated${upperModuleName}');
   });
 
   it('should return App Error', async () => {

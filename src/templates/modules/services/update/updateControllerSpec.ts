@@ -28,8 +28,8 @@ describe('Show${upperModuleName}Controller', () => {
 
   it('Should be able to update ${pluralLowerModuleName}', async () => {
     const response = await request(app).put('/${pluralLowerModuleName}/12345').send({
-        name: 'updated${upperModuleName}',
-      });
+      name: 'updated${upperModuleName}',
+    });
 
     expect(response.status).toBe(200);
     expect(response.body.data.name).toEqual('updated${upperModuleName}');
