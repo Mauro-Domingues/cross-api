@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "ts-node index.ts",
-    "1": "ts-node ./src/tools/listProvider.ts",
     "cross": "ts-node ./node_modules/cross-api-template/index.ts"
   },
   "keywords": [],
