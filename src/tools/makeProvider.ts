@@ -1,15 +1,21 @@
 import fs from 'fs';
 
 import createCacheIndex from '../templates/providers/cacheIndex';
+import createIMailDTO from '../templates/providers/dtos/IMailDTO';
 import createIMailTemplateDTO from '../templates/providers/dtos/IParseMailTemplateDTO';
 import createFakeRedis from '../templates/providers/fakes/fakeCache';
+import createFakeMail from '../templates/providers/fakes/fakeMail';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
 import createFakeStorage from '../templates/providers/fakes/fakeStorage';
 import createDiskStorage from '../templates/providers/implementations/DiskStorage';
-import createMailTemplate from '../templates/providers/implementations/mailTemplate';
-import createRedisCache from '../templates/providers/implementations/redisCache';
+import createEtherialMail from '../templates/providers/implementations/EtherialMail';
+import createMailTemplate from '../templates/providers/implementations/MailTemplate';
+import createRedisCache from '../templates/providers/implementations/RedisCache';
+import createSESMail from '../templates/providers/implementations/SESMail';
+import createMailIndex from '../templates/providers/mailIndex';
 import createMailTemplateIndex from '../templates/providers/mailTemplateIndex';
 import createICache from '../templates/providers/models/ICache';
+import createIMail from '../templates/providers/models/IMail';
 import createIMailTemplate from '../templates/providers/models/IMailTemplate';
 import createIStorage from '../templates/providers/models/IStorage';
 import createStorageIndex from '../templates/providers/storageIndex';
@@ -719,6 +725,201 @@ export default async function makeProvider(providerName: string) {
       console.log(
         '\x1b[38;2;255;255;0m',
         `- MailTemplateProvider ${messages.created}`,
+        '\x1b[0m',
+      );
+      if (!fs.existsSync('src/shared/container/providers/MailProvider')) {
+        fs.mkdirSync('src/shared/container/providers/MailProvider');
+      }
+      if (!fs.existsSync('src/shared/container/providers/MailProvider/dtos')) {
+        fs.mkdirSync('src/shared/container/providers/MailProvider/dtos');
+      }
+      if (!fs.existsSync('src/shared/container/providers/MailProvider/fakes')) {
+        fs.mkdirSync('src/shared/container/providers/MailProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/MailProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/MailProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/MailProvider/models');
+      }
+      fs.appendFile(
+        'src/shared/container/providers/index.ts',
+        `import './MailProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
+          createFakeMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
+          createFakeMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+          createEtherialMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+          createEtherialMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
+          createSESMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
+          createSESMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
+          createIMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
+          createIMail(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/MailProvider/index.ts')
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/index.ts',
+          createMailIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailProvider/index.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailProvider/index.ts',
+          createMailIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- MailProvider ${messages.created}`,
         '\x1b[0m',
       );
       break;
