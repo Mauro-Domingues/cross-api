@@ -25,10 +25,9 @@ describe('List${upperModuleName}Controller', () => {
     await connection.dropDatabase();
     await connection.close();
   });
-  
+
   it('Should be able to list ${pluralLowerModuleName}', async () => {
-    const response = await request(app)
-      .get('/${pluralLowerModuleName}')
+    const response = await request(app).get('/${pluralLowerModuleName}');
 
       expect(response.status).toBe(200);
       expect(response.body.data.list[0]).toHaveProperty('id');

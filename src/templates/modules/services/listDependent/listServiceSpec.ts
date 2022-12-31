@@ -11,17 +11,14 @@ import List${upperModuleName}Service from './List${upperModuleName}Service';
 
 let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
 let list${upperModuleName}: List${upperModuleName}Service;
-let fakeCacheProvider: FakeCacheProvider
+let fakeCacheProvider: FakeCacheProvider;
 
 describe('List${upperModuleName}Service', () => {
   beforeEach(() => {
     fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    list${upperModuleName} = new List${upperModuleName}Service(
-      fake${upperModuleName}Repository,
-      fakeCacheProvider
-    )
+    list${upperModuleName} = new List${upperModuleName}Service(fake${upperModuleName}Repository, fakeCacheProvider);
   });
 
   it('should be able to list all the ${pluralLowerModuleName}', async () => {
@@ -52,9 +49,9 @@ describe('List${upperModuleName}Service', () => {
     });
 
     await list${upperModuleName}.execute(1, 2);
-    
+
     const ${lowerModuleName}List = await list${upperModuleName}.execute(1, 2);
-    
+
     expect(${lowerModuleName}List.data.list).toEqual([${lowerModuleName}01, ${lowerModuleName}02])
   });
 
