@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import createCacheIndex from '../templates/providers/cacheIndex';
+import createIMailTemplateDTO from '../templates/providers/dtos/IParseMailTemplateDTO';
 import createFakeRedis from '../templates/providers/fakes/fakeCache';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
 import createFakeStorage from '../templates/providers/fakes/fakeStorage';
@@ -392,6 +393,33 @@ export default async function makeProvider(providerName: string) {
       );
       if (
         !fs.existsSync(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailTemplateDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailTemplateDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
           'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
         )
       ) {
@@ -553,6 +581,33 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailTemplateDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+          createIMailTemplateDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
