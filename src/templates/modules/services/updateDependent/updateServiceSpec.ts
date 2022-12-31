@@ -31,17 +31,17 @@ describe('Update${upperModuleName}Service', () => {
       description: 'This is a ${lowerModuleName}',
     });
 
-    const updated${upperModuleName} = await update${upperModuleName}Service.execute({ id: ${lowerModuleName}.id }, { name: 'updated${upperModuleName}' });
+    const updated${upperModuleName} = await update${upperModuleName}Service.execute(
+      { id: ${lowerModuleName}.id },
+      { name: 'updated${upperModuleName}', description: 'This is a updated${lowerModuleName},
+    });
 
     expect(updated${upperModuleName}.data.name).toEqual('opened');
   });
 
   it('should return App Error', async () => {
     await expect(
-      update${upperModuleName}Service.execute({
-        id: '',
-        name: '',
-      }),
+      update${upperModuleName}Service.execute({}, { name: '', description: '' }),
     ).rejects.toBeInstanceOf(AppError);
   });
 });
