@@ -13,15 +13,15 @@ export default `export default {
   comandTitle: '=={ COMANDS LIST }===',
   tools: 'TOOLS      ',
   comands: 'It is used to view the available commands      ',
-  changeLanguage: 'It is used to change the language',
+  changeLanguage: 'It is used to change the language              ',
   listProvider: 'It is used to list the available providers       ',
   structure: 'STRUCTURE CREATION  ',
-  makeApi: 'It is used to generate the structure of your API',
+  makeApi: 'It is used to generate the structure of your API                           ',
   makeModule:
-    'It is used to generate a complete CRUD of an independent module  ',
+    'It is used to generate a complete CRUD of an independent module            ',
   makeModuleD:
     'It is used to generate a complete CRUD from one module dependent on another',
-  makeProvider: 'It is used to generate a provider ',
+  makeProvider: 'It is used to generate a provider                                          ',
   mapAndPatch:
     'PATCH OBJECT -> Takes as parameter an entity and an object, maps the object, and returns the entity with the patched properties. Empty or non-entity-type properties are discarded.',
   patchAndInsert:
