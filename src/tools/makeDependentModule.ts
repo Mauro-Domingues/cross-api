@@ -720,6 +720,7 @@ export default function makeDependentModule(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
       createSpecDependentService(
         moduleData.lowerModuleName,
+        moduleData.upperModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
@@ -738,6 +739,7 @@ export default function makeDependentModule(
       `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.spec.ts`,
       createSpecDependentService(
         moduleData.lowerModuleName,
+        moduleData.upperModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),

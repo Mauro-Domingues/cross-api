@@ -15,7 +15,7 @@ let connection: Connection;
 describe('Delete${upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
-    await connection.runMigrations()
+    await connection.runMigrations();
 
     await connection.query(
       \`INSERT INTO ${dbModuleName}(id, name, description) values('12345', '${lowerModuleName}', 'This is a ${lowerModuleName}')\`,
@@ -24,12 +24,12 @@ describe('Delete${upperModuleName}Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.close()
+    await connection.close();
   });
 
   it('Should be able to delete a ${lowerModuleName}', async () => {
-    const response = await request(app).delete('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}/12345')
-    
+    const response = await request(app).delete('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}/12345');
+
     expect(response.status).toBe(200);
   });
 });

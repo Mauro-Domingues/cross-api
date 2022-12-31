@@ -1,30 +1,31 @@
 export default function createSpecDependentService(
   lowerModuleName: string,
+  upperModuleName: string,
   pluralUpperModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
-import Fake${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/Fake${pluralUpperModuleName}Repository';
-import Create${pluralUpperModuleName}Services from './Create${pluralUpperModuleName}Service';
+import Fake${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/Fake${upperModuleName}Repository';
+import Create${pluralUpperModuleName}Services from './Create${upperModuleName}Service';
 
-let fake${pluralUpperModuleName}Repository: Fake${pluralUpperModuleName}Repository;
+let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let create${pluralUpperModuleName}: Create${pluralUpperModuleName}Services;
+let create${upperModuleName}: Create${upperModuleName}Services;
 
-describe('Create${pluralUpperModuleName}Service', () => {
+describe('Create${upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${pluralUpperModuleName}Repository = new Fake${pluralUpperModuleName}Repository();
+    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    create${pluralUpperModuleName} = new Create${pluralUpperModuleName}Services(
-      fake${pluralUpperModuleName}Repository,
+    create${upperModuleName} = new Create${upperModuleName}Services(
+      fake${upperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
   it('should be able to create a new ${lowerModuleName}', async () => {
-    const ${lowerModuleName} = await create${pluralUpperModuleName}.execute({
+    const ${lowerModuleName} = await create${upperModuleName}.execute({
       name: '${lowerModuleName}',
       description: 'This is a ${lowerModuleName}',
     });

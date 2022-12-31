@@ -774,7 +774,6 @@ export default function makeIndependentModule(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -793,7 +792,6 @@ export default function makeIndependentModule(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
