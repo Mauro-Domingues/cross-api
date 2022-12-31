@@ -2,14 +2,17 @@ import fs from 'fs';
 
 import createCacheIndex from '../templates/providers/cacheIndex';
 import createIMailDTO from '../templates/providers/dtos/IMailDTO';
+import createINotificationDTO from '../templates/providers/dtos/INotificationDTO';
 import createIMailTemplateDTO from '../templates/providers/dtos/IParseMailTemplateDTO';
 import createFakeRedis from '../templates/providers/fakes/fakeCache';
 import createFakeMail from '../templates/providers/fakes/fakeMail';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
+import createFakeNotification from '../templates/providers/fakes/fakeNotification';
 import createFakeStorage from '../templates/providers/fakes/fakeStorage';
 import createDiskStorage from '../templates/providers/implementations/DiskStorage';
 import createEtherealMail from '../templates/providers/implementations/EtherealMail';
 import createMailTemplate from '../templates/providers/implementations/MailTemplate';
+import createOneSignalNotification from '../templates/providers/implementations/OneSignalNotification';
 import createRedisCache from '../templates/providers/implementations/RedisCache';
 import createSESMail from '../templates/providers/implementations/SESMail';
 import createMailIndex from '../templates/providers/mailIndex';
@@ -17,7 +20,9 @@ import createMailTemplateIndex from '../templates/providers/mailTemplateIndex';
 import createICache from '../templates/providers/models/ICache';
 import createIMail from '../templates/providers/models/IMail';
 import createIMailTemplate from '../templates/providers/models/IMailTemplate';
+import createINotification from '../templates/providers/models/INotification';
 import createIStorage from '../templates/providers/models/IStorage';
+import createNotificationIndex from '../templates/providers/notificationIndex';
 import createStorageIndex from '../templates/providers/storageIndex';
 import messages from './messages';
 
@@ -920,6 +925,196 @@ export default async function makeProvider(providerName: string) {
       console.log(
         '\x1b[38;2;255;255;0m',
         `- MailProvider ${messages.created}`,
+        '\x1b[0m',
+      );
+      break;
+    case 'notification':
+      if (
+        !fs.existsSync('src/shared/container/providers/NotificationProvider')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/NotificationProvider');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/dtos',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/NotificationProvider/dtos',
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/fakes',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/NotificationProvider/fakes',
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/NotificationProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/models',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/NotificationProvider/models',
+        );
+      }
+      fs.appendFile(
+        'src/shared/container/providers/index.ts',
+        `import './NotificationProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+          createINotificationDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+          createINotificationDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+          createFakeNotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+          createFakeNotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+          createOneSignalNotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+          createOneSignalNotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+          createINotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+          createINotification(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/NotificationProvider/index.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/index.ts',
+          createNotificationIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/NotificationProvider/index.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/NotificationProvider/index.ts',
+          createNotificationIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- NotificationProvider ${messages.created}`,
         '\x1b[0m',
       );
       break;
