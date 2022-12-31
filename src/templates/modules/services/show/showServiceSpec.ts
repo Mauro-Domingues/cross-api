@@ -13,12 +13,12 @@ let show${upperModuleName}: Show${upperModuleName}Service;
 
 describe('Show${upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository()
+    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
 
     show${upperModuleName} = new Show${upperModuleName}Service(fake${upperModuleName}Repository);
   });
 
-  it('should be able to show the ${lowerModuleName}', async () => {    
+  it('should be able to show the ${lowerModuleName}', async () => {
     const ${lowerModuleName} = await fake${upperModuleName}Repository.create({
       name: '${lowerModuleName}',
       description: 'This is a ${lowerModuleName}',

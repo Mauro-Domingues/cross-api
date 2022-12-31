@@ -26,7 +26,9 @@ import showSpecDependentController from '../templates/modules/services/showDepen
 import showDependentService from '../templates/modules/services/showDependent/showService';
 import showSpecDependentService from '../templates/modules/services/showDependent/showServiceSpec';
 import updateDependentController from '../templates/modules/services/updateDependent/updateController';
+import updateSpecDependentController from '../templates/modules/services/updateDependent/updateControllerSpec';
 import updateDependentService from '../templates/modules/services/updateDependent/updateService';
+import updateSpecDependentService from '../templates/modules/services/updateDependent/updateServiceSpec';
 import messages from './messages';
 
 export default function makeDependentModule(
@@ -984,80 +986,82 @@ export default function makeDependentModule(
       },
     );
   }
-  // if (
-  //   !fs.existsSync(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
-  //   )
-  // ) {
-  //   fs.appendFile(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
-  //     updateSpecDependentController(
-  //       moduleData.lowerModuleName,
-  //       moduleData.upperModuleName,
-  //       fatherData.pluralLowerModuleName,
-  //     ),
-  //     error => {
-  //       if (error) throw error;
-  //     },
-  //   );
-  // } else {
-  //   fs.truncate(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
-  //     error => {
-  //       if (error) console.log(error);
-  //     },
-  //   );
-  //   fs.appendFile(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
-  //     updateSpecDependentController(
-  //       moduleData.lowerModuleName,
-  //       moduleData.upperModuleName,
-  //       fatherData.pluralLowerModuleName,
-  //     ),
-  //     error => {
-  //       if (error) throw error;
-  //     },
-  //   );
-  // }
-  // if (
-  //   !fs.existsSync(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
-  //   )
-  // ) {
-  //   fs.appendFile(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
-  //     updateSpecDependentService(
-  //       moduleData.lowerModuleName,
-  //       moduleData.upperModuleName,
-  //       moduleData.pluralLowerModuleName,
-  //       moduleData.pluralUpperModuleName,
-  //       fatherData.pluralLowerModuleName,
-  //     ),
-  //     error => {
-  //       if (error) throw error;
-  //     },
-  //   );
-  // } else {
-  //   fs.truncate(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
-  //     error => {
-  //       if (error) console.log(error);
-  //     },
-  //   );
-  //   fs.appendFile(
-  //     `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
-  //     updateSpecDependentService(
-  //       moduleData.lowerModuleName,
-  //       moduleData.upperModuleName,
-  //       moduleData.pluralLowerModuleName,
-  //       moduleData.pluralUpperModuleName,
-  //       fatherData.pluralLowerModuleName,
-  //     ),
-  //     error => {
-  //       if (error) throw error;
-  //     },
-  //   );
-  // }
+  if (
+    !fs.existsSync(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+      updateSpecDependentController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
+        moduleData.dbModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.spec.ts`,
+      updateSpecDependentController(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
+        fatherData.pluralLowerModuleName,
+        moduleData.dbModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  if (
+    !fs.existsSync(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+    )
+  ) {
+    fs.appendFile(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+      updateSpecDependentService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
+    fs.appendFile(
+      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.spec.ts`,
+      updateSpecDependentService(
+        moduleData.lowerModuleName,
+        moduleData.upperModuleName,
+        moduleData.pluralUpperModuleName,
+        fatherData.pluralLowerModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
   if (!fs.existsSync(`src/routes/${fatherData.lowerModuleName}Router.ts`)) {
     fs.appendFile(
       `src/routes/${fatherData.lowerModuleName}Router.ts`,
