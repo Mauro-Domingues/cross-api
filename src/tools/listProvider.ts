@@ -1,7 +1,8 @@
 export default function listProvider(): void {
   const providers = [
-    { Provider: 'CacheProvider', Name: 'cache' },
-    { Provider: 'StorageProvider', Name: 'storage' },
+    { Name: 'cache', Provider: 'CacheProvider' },
+    { Name: 'storage', Provider: 'StorageProvider' },
+    { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
   ];
 
   console.table(providers);
