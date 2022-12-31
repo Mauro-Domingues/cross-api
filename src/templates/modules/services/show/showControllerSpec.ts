@@ -1,4 +1,4 @@
-export default function listSpecController(
+export default function showSpecController(
   lowerModuleName: string,
   upperModuleName: string,
   pluralLowerModuleName: string,
@@ -11,7 +11,7 @@ import app from '@shared/app';
 
 let connection: Connection;
 
-describe('List${upperModuleName}Controller', () => {
+describe('Show${upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -26,11 +26,11 @@ describe('List${upperModuleName}Controller', () => {
     await connection.close();
   });
 
-  it('Should be able to list ${pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${pluralLowerModuleName}');
+  it('Should be able to show ${pluralLowerModuleName}', async () => {
+    const response = await request(app).get('/${pluralLowerModuleName}/12345');
 
     expect(response.status).toBe(200);
-    expect(response.body.data.list[0]).toHaveProperty('id');
+    expect(response.body.data).toHaveProperty('id');
   });
 });
 `;

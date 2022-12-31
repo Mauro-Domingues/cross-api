@@ -1,7 +1,8 @@
-export default function listSpecController(
+export default function showSpecDependentController(
   lowerModuleName: string,
   upperModuleName: string,
   pluralLowerModuleName: string,
+  pluralFatherLowerModuleName: string,
   dbModuleName: string,
 ): string {
   return `import request from 'supertest';
@@ -11,7 +12,7 @@ import app from '@shared/app';
 
 let connection: Connection;
 
-describe('List${upperModuleName}Controller', () => {
+describe('Show${upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -26,11 +27,11 @@ describe('List${upperModuleName}Controller', () => {
     await connection.close();
   });
 
-  it('Should be able to list ${pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${pluralLowerModuleName}');
+  it('Should be able to show ${pluralLowerModuleName}', async () => {
+    const response = await request(app).get('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}/12345');
 
     expect(response.status).toBe(200);
-    expect(response.body.data.list[0]).toHaveProperty('id');
+    expect(response.body.data).toHaveProperty('id');
   });
 });
 `;

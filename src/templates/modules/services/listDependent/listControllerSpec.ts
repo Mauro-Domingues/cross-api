@@ -30,8 +30,8 @@ describe('List${upperModuleName}Controller', () => {
   it('Should be able to list ${pluralLowerModuleName}', async () => {
     const response = await request(app).get('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}');
 
-      expect(response.status).toBe(200);
-      expect(response.body.data.list[0]).toHaveProperty('id');
+    expect(response.status).toBe(200);
+    expect(response.body.data.list[0]).toHaveProperty('id');
   });
 });
 `;

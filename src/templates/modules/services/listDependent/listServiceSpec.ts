@@ -52,7 +52,7 @@ describe('List${upperModuleName}Service', () => {
 
     const ${lowerModuleName}List = await list${upperModuleName}.execute(1, 2);
 
-    expect(${lowerModuleName}List.data.list).toEqual([${lowerModuleName}01, ${lowerModuleName}02])
+    expect(${lowerModuleName}List.data.list).toEqual([${lowerModuleName}01, ${lowerModuleName}02]);
   });
 
   it('should be able to list the ${pluralLowerModuleName} with the specified pagination', async () => {
@@ -72,7 +72,7 @@ describe('List${upperModuleName}Service', () => {
     });
 
     const ${lowerModuleName}List01 = await list${upperModuleName}.execute(1, 1);
-    
+
     expect(${lowerModuleName}List01.data.list).toEqual([${lowerModuleName}01]);
 
     const ${lowerModuleName}List02 = await list${upperModuleName}.execute(1, 2);
