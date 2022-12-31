@@ -2,11 +2,12 @@ export default function deleteSpecService(
   lowerModuleName: string,
   upperModuleName: string,
   pluralLowerModuleName: string,
+  pluralUpperModuleName: string,
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/fakes/Fake${upperModuleName}Repository';
+import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/fakes/Fake${pluralUpperModuleName}Repository';
 import Delete${upperModuleName}Services from './Delete${upperModuleName}Service';
 
 let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
@@ -32,7 +33,7 @@ describe('Delete${upperModuleName}Service', () => {
 
     await delete${upperModuleName}.execute({ id: ${lowerModuleName}.id });
 
-    const deleted${upperModuleName} = await fake${upperModuleName}Repository.findById({ id: ${lowerModuleName}.id });
+    const deleted${upperModuleName} = await fake${upperModuleName}Repository.findBy({ id: ${lowerModuleName}.id });
 
     expect(deleted${upperModuleName}).toBe(undefined);
   });

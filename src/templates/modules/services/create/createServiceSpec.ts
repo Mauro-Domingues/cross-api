@@ -2,10 +2,11 @@ export default function createSpecService(
   lowerModuleName: string,
   upperModuleName: string,
   pluralLowerModuleName: string,
+  pluralUpperModuleName: string,
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/fakes/Fake${upperModuleName}Repository';
+import Fake${upperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/fakes/Fake${pluralUpperModuleName}Repository';
 import Create${upperModuleName}Services from './Create${upperModuleName}Service';
 
 let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;

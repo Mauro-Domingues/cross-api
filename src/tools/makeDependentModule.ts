@@ -797,7 +797,6 @@ export default function makeDependentModule(
       deleteSpecDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
@@ -817,7 +816,6 @@ export default function makeDependentModule(
       deleteSpecDependentService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),

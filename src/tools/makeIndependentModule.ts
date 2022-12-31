@@ -701,6 +701,7 @@ export default function makeIndependentModule(moduleData: {
       createSpecService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
       ),
       error => {
@@ -719,6 +720,7 @@ export default function makeIndependentModule(moduleData: {
       createSpecService(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
+        moduleData.pluralLowerModuleName,
         moduleData.pluralUpperModuleName,
       ),
       error => {
@@ -774,6 +776,7 @@ export default function makeIndependentModule(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -792,6 +795,7 @@ export default function makeIndependentModule(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
