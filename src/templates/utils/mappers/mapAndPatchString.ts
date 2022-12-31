@@ -5,6 +5,9 @@ export default function createMapAndPatchString(): string {
 
 /**
  * ${messages.patchAndInsert}
+ * @param oldAttributes string
+ * @param newAttributes Object
+ * @returns Promise: string
  */
 export default async function mapAndPatchStringify<Type>(
   oldAttributes: string,

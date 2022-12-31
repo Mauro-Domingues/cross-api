@@ -5,6 +5,9 @@ export default function createMapAndUpdateString(): string {
 
 /**
  * ${messages.mapAndUpdateString}
+ * @param oldAttributes string
+ * @param newAttributes Object
+ * @returns Promise: string
  */
 export default async function mapAndUpdateStringify<Type>(
   oldAttributes: string,
