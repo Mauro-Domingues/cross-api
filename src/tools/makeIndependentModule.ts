@@ -25,6 +25,7 @@ import listSpecService from '../templates/modules/services/list/listServiceSpec'
 import showController from '../templates/modules/services/show/showController';
 import showSpecController from '../templates/modules/services/show/showControllerSpec';
 import showService from '../templates/modules/services/show/showService';
+import showSpecService from '../templates/modules/services/show/showServiceSpec';
 import updateController from '../templates/modules/services/update/updateController';
 import updateService from '../templates/modules/services/update/updateService';
 import messages from './messages';
