@@ -11,9 +11,20 @@ function renderEmptyLine() {
 
 export default function board(): void {
   const tools = [
-    { title: 'comands      ', description: messages.comands },
-    { title: 'language     ', description: messages.changeLanguage },
-    { title: 'list:provider', description: messages.listProvider },
+    { title: 'comands           ', description: messages.comands },
+    { title: 'language          ', description: messages.changeLanguage },
+    { title: 'list:provider     ', description: messages.listProvider },
+  ];
+
+  const orm = [
+    {
+      title: 'migration:generate         ',
+      description: messages.migrationGenerate,
+    },
+    {
+      title: 'migration:run              ',
+      description: messages.migrationRun,
+    },
   ];
 
   const structure = [
@@ -23,6 +34,10 @@ export default function board(): void {
     {
       title: 'make:provider [name]       ',
       description: messages.makeProvider,
+    },
+    {
+      title: 'migration:generate         ',
+      description: messages.migrationGenerate,
     },
   ];
 
@@ -51,7 +66,7 @@ export default function board(): void {
       '\x1b[38;2;0;155;255m',
       '|',
       '\x1b[38;2;255;255;0m',
-      `   ➤  ${tool.title}              `,
+      `   ➤  ${tool.title}         `,
       '\x1b[38;2;0;155;255m',
       '|',
       '\x1b[0m',
@@ -59,6 +74,35 @@ export default function board(): void {
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
       '                          |',
+      '\x1b[0m',
+    );
+    renderEmptyLine();
+  });
+  console.log(
+    '\x1b[1m',
+    '\x1b[38;2;0;155;255m',
+    '|',
+    '\x1b[38;2;0;255;155m',
+    ` 〇 ORM`,
+    '\x1b[38;2;0;155;255m',
+    '                                                                                                           |',
+    '\x1b[0m',
+  );
+  renderEmptyLine();
+  orm.forEach(orm => {
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      '|',
+      '\x1b[38;2;255;255;0m',
+      `   ➤  ${orm.title}`,
+      '\x1b[38;2;0;155;255m',
+      '|',
+      '\x1b[0m',
+      `${orm.description}`,
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      '|',
       '\x1b[0m',
     );
     renderEmptyLine();

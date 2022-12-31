@@ -15,13 +15,19 @@ export default `export default {
   comands: 'É usado para visualizar os comandos disponíveis  ',
   changeLanguage: 'É usado para alterar o idioma                    ',
   listProvider: 'É utilizado para listar os provedores disponíveis',
+  migrationGenerate:
+    'É utilizado para gerar ou atualizar migrações                              ',
+  migrationRun:
+    'É utilizado para rodar as migrações                                        ',
   structure: 'CRIAÇÃO DA ESTRUTURA',
-  makeApi: 'É utilizado para gerar a estrutura da sua API                              ',
+  makeApi:
+    'É utilizado para gerar a estrutura da sua API                              ',
   makeModule:
     'É utilizado para gerar um CRUD completo de um módulo independente          ',
   makeModuleD:
     'É usado para gerar um CRUD completo de um módulo dependente de outro       ',
-  makeProvider: 'É utilizado para gerar um provedor                                         ',
+  makeProvider:
+    'É utilizado para gerar um provedor                                         ',
   mapAndPatch:
     'PATCH OBJECT -> Recebe como parâmetro uma entidade e um objeto, mapeia o objeto e retorna a entidade com as propriedades corrigidas. Propriedades vazias ou não pertencentes ao tipo da entidade são descartadas.',
   patchAndInsert:

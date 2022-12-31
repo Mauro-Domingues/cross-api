@@ -15,6 +15,10 @@ export default {
   comands: 'It is used to view the available commands        ',
   changeLanguage: 'It is used to change the language                ',
   listProvider: 'It is used to list the available providers       ',
+  migrationGenerate:
+    'É utilizado para gerar ou atualizar migrações                              ',
+  migrationRun:
+    'É utilizado para rodar as migrações                                        ',
   structure: 'STRUCTURE CREATION  ',
   makeApi:
     'It is used to generate the structure of your API                           ',

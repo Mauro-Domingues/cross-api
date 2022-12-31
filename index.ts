@@ -1,3 +1,5 @@
+import shell from 'shelljs';
+
 import board from './src/tools/board';
 import configLanguage from './src/tools/languageConfig';
 import listProvider from './src/tools/listProvider';
@@ -74,6 +76,14 @@ if (comand) {
       break;
     case 'make:provider':
       makeProvider(arg);
+      break;
+    case 'migration:generate':
+      shell.exec(
+        'typeorm-ts-node-commonjs -d dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
+      );
+      break;
+    case 'migration:run':
+      shell.exec('typeorm-ts-node-commonjs -d dataSource.ts migration:run');
       break;
     default:
       console.log('');
