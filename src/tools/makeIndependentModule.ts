@@ -1039,7 +1039,7 @@ export default function makeIndependentModule(moduleData: {
       `src/routes/index.ts`,
       createIndexRoute(
         moduleData.lowerModuleName,
-        moduleData.pluralFatherLowerModuleName,
+        moduleData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
@@ -1050,7 +1050,7 @@ export default function makeIndependentModule(moduleData: {
       `src/routes/index.ts`,
       createIndexRoute(
         moduleData.lowerModuleName,
-        moduleData.pluralFatherLowerModuleName,
+        moduleData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;

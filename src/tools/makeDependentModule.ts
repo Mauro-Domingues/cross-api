@@ -759,7 +759,7 @@ export default function makeDependentModule(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        fatherData.pluralFatherLowerModuleName,
+        fatherData.pluralLowerModuleName,
         moduleData.dbModuleName,
       ),
       error => {
@@ -779,7 +779,7 @@ export default function makeDependentModule(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        fatherData.pluralFatherLowerModuleName,
+        fatherData.pluralLowerModuleName,
         moduleData.dbModuleName,
       ),
       error => {
