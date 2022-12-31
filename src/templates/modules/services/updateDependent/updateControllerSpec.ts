@@ -29,8 +29,7 @@ describe('Show${upperModuleName}Controller', () => {
 
   it('Should be able to update ${pluralLowerModuleName}', async () => {
     const response = await request(app)
-      .put('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}/12345')
-      .send({
+      .put('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}/12345').send({
         name: 'updated${upperModuleName}',
       });
 
