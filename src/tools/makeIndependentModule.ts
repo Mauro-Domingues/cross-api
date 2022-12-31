@@ -19,7 +19,7 @@ import deleteSpecController from '../templates/modules/services/delete/deleteCon
 import deleteService from '../templates/modules/services/delete/deleteService';
 import deleteSpecService from '../templates/modules/services/delete/deleteServiceSpec';
 import listController from '../templates/modules/services/list/listController';
-import listSpecController from '../templates/modules/services/list/listControllersPEC';
+import listSpecController from '../templates/modules/services/list/listControllerSpec';
 import listService from '../templates/modules/services/list/listService';
 import listSpecService from '../templates/modules/services/list/listServiceSpec';
 import showController from '../templates/modules/services/show/showController';
