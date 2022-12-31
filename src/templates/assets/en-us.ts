@@ -12,9 +12,9 @@ export default `export default {
   dependencies: 'Installing dependencies',
   comandTitle: '=={ COMANDS LIST }===',
   tools: 'TOOLS      ',
-  comands: 'It is used to view the available commands      ',
+  comands: 'It is used to view the available commands        ',
   changeLanguage: 'It is used to change the language              ',
-  listProvider: 'It is used to list the available providers       ',
+  listProvider: 'It is used to list the available providers         ',
   structure: 'STRUCTURE CREATION  ',
   makeApi: 'It is used to generate the structure of your API                           ',
   makeModule:
