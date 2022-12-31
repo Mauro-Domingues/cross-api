@@ -8,7 +8,7 @@ import createFakeMail from '../templates/providers/fakes/fakeMail';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
 import createFakeStorage from '../templates/providers/fakes/fakeStorage';
 import createDiskStorage from '../templates/providers/implementations/DiskStorage';
-import createEtherialMail from '../templates/providers/implementations/EtherialMail';
+import createEtherealMail from '../templates/providers/implementations/EtherealMail';
 import createMailTemplate from '../templates/providers/implementations/MailTemplate';
 import createRedisCache from '../templates/providers/implementations/RedisCache';
 import createSESMail from '../templates/providers/implementations/SESMail';
@@ -843,26 +843,26 @@ export default async function makeProvider(providerName: string) {
       }
       if (
         !fs.existsSync(
-          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+          'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
-          createEtherialMail(),
+          'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
+          createEtherealMail(),
           error => {
             if (error) throw error;
           },
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
+          'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/MailProvider/implementations/EtherialMailProvider.ts',
-          createEtherialMail(),
+          'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
+          createEtherealMail(),
           error => {
             if (error) throw error;
           },

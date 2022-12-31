@@ -1,4 +1,4 @@
-export default function createEtherialMail(): string {
+export default function createEtherealMail(): string {
   return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
