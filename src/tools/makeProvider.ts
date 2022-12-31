@@ -587,36 +587,6 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
-      if (!fs.existsSync('src/shared/container/providers/MailProvider')) {
-        fs.mkdirSync('src/shared/container/providers/MailProvider');
-      }
-      if (!fs.existsSync('src/shared/container/providers/MailProvider/dtos')) {
-        fs.mkdirSync('src/shared/container/providers/MailProvider/dtos');
-      }
-      if (!fs.existsSync('src/shared/container/providers/MailProvider/fakes')) {
-        fs.mkdirSync('src/shared/container/providers/MailProvider/fakes');
-      }
-      if (
-        !fs.existsSync(
-          'src/shared/container/providers/MailProvider/implementations',
-        )
-      ) {
-        fs.mkdirSync(
-          'src/shared/container/providers/MailProvider/implementations',
-        );
-      }
-      if (
-        !fs.existsSync('src/shared/container/providers/MailProvider/models')
-      ) {
-        fs.mkdirSync('src/shared/container/providers/MailProvider/models');
-      }
-      fs.appendFile(
-        'src/shared/container/providers/index.ts',
-        `import './MailProvider';`,
-        error => {
-          if (error) throw error;
-        },
-      );
       if (
         !fs.existsSync(
           'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
@@ -789,11 +759,11 @@ export default async function makeProvider(providerName: string) {
       );
       if (
         !fs.existsSync(
-          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
           createIMailDTO(),
           error => {
             if (error) throw error;
@@ -801,13 +771,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/MailProvider/dtos/IParseMailTemplateDTO.ts',
+          'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
           createIMailDTO(),
           error => {
             if (error) throw error;
