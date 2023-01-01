@@ -12,9 +12,9 @@ export default {
   driver: 'redis',
   config: {
     redis: {
-      port: process.env.REDIS_PORT,
+      port: Number(process.env.REDIS_PORT),
       host: process.env.REDIS_HOST,
-      password: process.env.REDIS_PASS,
+      password: process.env.REDIS_PASSWORD,
     },
   },
 } as ICacheConfig;
