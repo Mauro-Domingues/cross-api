@@ -35,7 +35,7 @@ describe('Delete${upperModuleName}Service', () => {
 
     const deleted${upperModuleName} = await fake${upperModuleName}Repository.findBy({ id: ${lowerModuleName}.id });
 
-    expect(deleted${upperModuleName}).toBe(undefined);
+    expect(deleted${upperModuleName}).toBe(null);
   });
 
   it('should return App error', async () => {
