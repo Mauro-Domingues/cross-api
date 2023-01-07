@@ -25,7 +25,7 @@ describe('Delete${upperModuleName}Service', () => {
     );
   });
 
-  it('should be able to delete a new ${lowerModuleName}', async () => {
+  it('should be able to delete a ${lowerModuleName}', async () => {
     const ${lowerModuleName} = await fake${upperModuleName}Repository.create({
       name: '${lowerModuleName}',
       description: 'This is a ${lowerModuleName}',
