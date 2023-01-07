@@ -20,7 +20,7 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
   }
 
   public async findBy(
-    ${lowerModuleName}Data: IObjectDTO,
+    ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
     relations?: string[],
   ): Promise<${upperModuleName} | null> {
     const ${lowerModuleName} = await this.ormRepository.findOne({

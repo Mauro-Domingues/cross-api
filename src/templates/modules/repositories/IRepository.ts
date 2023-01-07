@@ -14,7 +14,10 @@ export default interface I${pluralUpperModuleName}Repository {
     limit: number,
     relations?: string[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }>;
-  findBy(${lowerModuleName}Data: IObjectDTO, relations?: string[]): Promise<${upperModuleName} | null>;
+  findBy(
+    ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
+    relations?: string[]
+  ): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
   save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
   delete(${lowerModuleName}Data: IObjectDTO): void;
