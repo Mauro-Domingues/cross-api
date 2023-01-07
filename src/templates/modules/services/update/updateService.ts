@@ -39,7 +39,7 @@ export default class Update${upperModuleName}Service {
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
-    await this.${pluralLowerModuleName}Repository.save(
+    await this.${pluralLowerModuleName}Repository.update(
       await mapAndUpdateAttribute(${lowerModuleName}, ${lowerModuleName}Data),
     );
 

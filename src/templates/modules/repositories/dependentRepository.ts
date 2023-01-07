@@ -53,7 +53,7 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     return ${lowerModuleName};
   }
 
-  public async save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
+  public async update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
     return this.ormRepository.save(${lowerModuleName}Data);
   }
 

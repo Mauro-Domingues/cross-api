@@ -19,7 +19,7 @@ export default interface I${pluralUpperModuleName}Repository {
     relations?: string[],
   ): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
-  save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
+  update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
   delete(${lowerModuleName}Data: IObjectDTO): void;
   softDelete(${lowerModuleName}Data: IObjectDTO): void;
 }

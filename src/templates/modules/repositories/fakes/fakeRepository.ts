@@ -36,7 +36,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     return ${lowerModuleName};
   }
 
-  public async save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
+  public async update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
     const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
 
     this.${pluralLowerModuleName}[find${upperModuleName}] = ${lowerModuleName}Data;

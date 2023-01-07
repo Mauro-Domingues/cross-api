@@ -5,7 +5,7 @@ export default function createFullDependentRoute(
   pluralFatherLowerModuleName: string,
 ): string {
   return `import { Router } from 'express';
-  
+
 import Create${upperModuleName}Controller from '@modules/${pluralFatherLowerModuleName}/services/create${upperModuleName}/Create${upperModuleName}Controller';
 import Show${upperModuleName}Controller from '@modules/${pluralFatherLowerModuleName}/services/show${upperModuleName}/Show${upperModuleName}Controller';
 import List${upperModuleName}Controller from '@modules/${pluralFatherLowerModuleName}/services/list${upperModuleName}/List${upperModuleName}Controller';
