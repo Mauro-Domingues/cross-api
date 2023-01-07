@@ -5,7 +5,10 @@ export default function createDependentFakeRepository(
   pluralUpperModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {
-  return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
+  return `/* eslint-disable guard-for-in */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-restricted-syntax */
+import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import { v4 as uuid } from 'uuid';
@@ -17,10 +20,10 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async findBy(
     ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
   ): Promise<${upperModuleName} | null> {
-    let find${upperModuleName}: ${upperModuleName} | undefined;
-    if (Array.isArray(${lowerModuleName}Data)) {
+    let find${upperModuleName}: ${upperModuleName} | ${upperModuleName}[] | undefined;
+    if (${lowerModuleName}Data && Array.isArray(${lowerModuleName}Data)) {
       for (const property of ${lowerModuleName}Data) {
-        findPost = this.${pluralLowerModuleName}.find(
+        find${upperModuleName} = this.${pluralLowerModuleName}.find(
           (${lowerModuleName}: any) =>
             ${lowerModuleName}[Object.keys(property)[0]] ===
             property[Object.keys(property)[0]],
@@ -30,23 +33,56 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
           return find${upperModuleName};
         }
       }
-    } else {
-      find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
+    } else if (${lowerModuleName}Data) {
+      for (const key in ${lowerModuleName}Data) {
+        find${upperModuleName} = this.${pluralLowerModuleName}.filter(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
+        );
+      }
+
+      find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName});
 
       if (find${upperModuleName}) {
         return find${upperModuleName};
       }
     }
+
     return null;
   }
 
   public async findAll(
     page: number,
     limit: number,
+    conditions?: IObjectDTO | IObjectDTO[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
+    let filter${upperModuleName}: ${upperModuleName}[] | undefined;
+    if (conditions && Array.isArray(conditions)) {
+      for (const property of conditions) {
+        filter${upperModuleName} = this.${pluralLowerModuleName}.filter(
+          (${lowerModuleName}: any) =>
+            ${lowerModuleName}[Object.keys(property)[0]] ===
+            property[Object.keys(property)[0]],
+        );
+
+        if (filter${upperModuleName} !== undefined) {
+          return ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length;
+        }
+      }
+    } else if (conditions) {
+      for (const key in conditions) {
+        filter${upperModuleName} = this.${pluralLowerModuleName}.filter(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+        );
+      }
+
+      filter${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
+
+      return ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length;
+    }
+
     const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
-    return { ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length };
+    return ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length;
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
