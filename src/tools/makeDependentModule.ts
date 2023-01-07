@@ -1080,8 +1080,8 @@ export default function makeDependentModule(
     fs.appendFile(
       `src/routes/index.ts`,
       createIndexDependentRoute(
-        moduleData.lowerModuleName,
-        moduleData.pluralLowerModuleName,
+        fatherData.lowerModuleName,
+        fatherData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
