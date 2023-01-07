@@ -9,6 +9,7 @@ import createDependentRepository from '../templates/modules/repositories/depende
 import createDependentFakeRepository from '../templates/modules/repositories/fakes/fakeDependentRepository';
 import createIDependentRepository from '../templates/modules/repositories/IDependentRepository';
 import createDependentRoute from '../templates/modules/routes/dependentRoutes';
+import createFullDependentRoute from '../templates/modules/routes/fullDependentRoutes';
 import createDependentController from '../templates/modules/services/createDependent/createController';
 import createSpecDependentController from '../templates/modules/services/createDependent/createControllerSpec';
 import createDependentService from '../templates/modules/services/createDependent/createService';
@@ -1065,7 +1066,7 @@ export default function makeDependentModule(
   if (!fs.existsSync(`src/routes/${fatherData.lowerModuleName}Router.ts`)) {
     fs.appendFile(
       `src/routes/${fatherData.lowerModuleName}Router.ts`,
-      createDependentRoute(
+      createFullDependentRoute(
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
         fatherData.lowerModuleName,
