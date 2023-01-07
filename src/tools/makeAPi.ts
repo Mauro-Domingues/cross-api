@@ -611,20 +611,20 @@ export default async function makeApi() {
     `- server.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndCloneAttribute.ts.ts')) {
+  if (!fs.existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {
     fs.appendFile(
-      'src/utils/mappers/mapAndCloneAttribute.ts.ts',
+      'src/utils/mappers/mapAndCloneAttribute.ts',
       createMapAndClone(),
       error => {
         if (error) throw error;
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndCloneAttribute.ts.ts', error => {
+    fs.truncate('src/utils/mappers/mapAndCloneAttribute.ts', error => {
       if (error) console.log(error);
     });
     fs.appendFile(
-      'src/utils/mappers/mapAndCloneAttribute.ts.ts',
+      'src/utils/mappers/mapAndCloneAttribute.ts',
       createMapAndClone(),
       error => {
         if (error) throw error;
