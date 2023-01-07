@@ -37,7 +37,9 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   }
 
   public async update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
+    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+      ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
+    );
 
     this.${pluralLowerModuleName}[find${upperModuleName}] = ${lowerModuleName}Data;
 
@@ -45,12 +47,18 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   }
 
   public async delete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
+    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+      ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
+    );
+
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 
   public async softDelete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
+    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+      ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
+    );
+
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 }
