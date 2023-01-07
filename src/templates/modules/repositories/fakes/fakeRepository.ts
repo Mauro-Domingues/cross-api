@@ -13,9 +13,30 @@ import IObjectDTO from '@dtos/IObjectDTO';
 export default class Fake${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ${pluralLowerModuleName}: ${upperModuleName}[] = [];
 
-  public async findBy(${lowerModuleName}Data: IObjectDTO): Promise<${upperModuleName} | null> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
-    return find${upperModuleName} || null;
+  public async findBy(
+    ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
+  ): Promise<${upperModuleName} | null> {
+    let find${upperModuleName}: ${upperModuleName} | undefined;
+    if (Array.isArray(${lowerModuleName}Data)) {
+      for (const property of ${lowerModuleName}Data) {
+        findPost = this.${pluralLowerModuleName}.find(
+          (${lowerModuleName}: any) =>
+            ${lowerModuleName}[Object.keys(property)[0]] ===
+            property[Object.keys(property)[0]],
+        );
+
+        if (find${upperModuleName} !== undefined) {
+          return find${upperModuleName};
+        }
+      }
+    } else {
+      find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id);
+
+      if (find${upperModuleName}) {
+        return find${upperModuleName};
+      }
+    }
+    return null;
   }
 
   public async findAll(
