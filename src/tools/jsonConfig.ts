@@ -17,6 +17,7 @@ class LanguageOption {
 
 function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newScript: any = userJson;
 
   newScript.scripts = {
