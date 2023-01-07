@@ -200,7 +200,18 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- Execute',
+          'Download',
+          '\x1b[38;2;255;0;255m',
+          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
+          '\x1b[38;2;0;155;255m',
+          'to help you',
+          '\x1b[0m',
+        );
+        console.log('');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '➤  Execute',
           '\x1b[38;2;255;255;0m',
           'yarn cross comands',
           '\x1b[38;2;0;155;255m',
@@ -268,7 +279,18 @@ function configJson(): void {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
-          '- Execute',
+          'Instale',
+          '\x1b[38;2;255;0;255m',
+          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
+          '\x1b[38;2;0;155;255m',
+          'para te ajudar',
+          '\x1b[0m',
+        );
+        console.log('');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;0;155;255m',
+          '➤  Execute',
           '\x1b[38;2;255;255;0m',
           'yarn cross comands',
           '\x1b[38;2;0;155;255m',
