@@ -1058,29 +1058,16 @@ export default function makeIndependentModule(moduleData: {
       },
     );
   }
-  if (!fs.existsSync(`src/routes/index.ts`)) {
-    fs.appendFile(
-      `src/routes/index.ts`,
-      createIndexRoute(
-        moduleData.lowerModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.appendFile(
-      `src/routes/index.ts`,
-      createIndexRoute(
-        moduleData.lowerModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
+  fs.appendFile(
+    `src/routes/index.ts`,
+    createIndexRoute(
+      moduleData.lowerModuleName,
+      moduleData.pluralLowerModuleName,
+    ),
+    error => {
+      if (error) throw error;
+    },
+  );
   console.log(
     '\x1b[38;2;255;255;0m',
     `- ${moduleData.lowerModuleName}Module ${messages.created}`,

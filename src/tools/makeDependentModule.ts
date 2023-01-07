@@ -10,6 +10,7 @@ import createDependentFakeRepository from '../templates/modules/repositories/fak
 import createIDependentRepository from '../templates/modules/repositories/IDependentRepository';
 import createDependentRoute from '../templates/modules/routes/dependentRoutes';
 import createFullDependentRoute from '../templates/modules/routes/fullDependentRoutes';
+import createIndexDependentRoute from '../templates/modules/routes/indexDependentRouter';
 import createDependentController from '../templates/modules/services/createDependent/createController';
 import createSpecDependentController from '../templates/modules/services/createDependent/createControllerSpec';
 import createDependentService from '../templates/modules/services/createDependent/createService';
@@ -1071,6 +1072,16 @@ export default function makeDependentModule(
         moduleData.pluralLowerModuleName,
         fatherData.lowerModuleName,
         fatherData.pluralLowerModuleName,
+      ),
+      error => {
+        if (error) throw error;
+      },
+    );
+    fs.appendFile(
+      `src/routes/index.ts`,
+      createIndexDependentRoute(
+        moduleData.lowerModuleName,
+        moduleData.pluralLowerModuleName,
       ),
       error => {
         if (error) throw error;
