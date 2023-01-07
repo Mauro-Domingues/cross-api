@@ -59,7 +59,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
       ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
     );
-    
+
     this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
   }
 }

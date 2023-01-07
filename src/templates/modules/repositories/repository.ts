@@ -33,9 +33,11 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
   public async findAll(
     page: number,
     limit: number,
+    conditions?: IObjectDTO | IObjectDTO[],
     relations?: string[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
     const [${pluralLowerModuleName}, amount] = await this.ormRepository.findAndCount({
+      where: condition,
       take: limit,
       skip: (page - 1) * limit,
       relations,

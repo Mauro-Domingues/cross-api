@@ -12,6 +12,7 @@ export default interface I${pluralUpperModuleName}Repository {
   findAll(
     page: number,
     limit: number,
+    conditions?: IObjectDTO | IObjectDTO[],
     relations?: string[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }>;
   findBy(
