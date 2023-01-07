@@ -32,21 +32,21 @@ export default async (): Promise<Connection> => {
 
 // Relations examples
 
-// @OneToOne(() => thisEntity, relationEntity => relationEntity.thisEntity,
+// @OneToOne(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinColumn()
 // relationEntity: relationEntity;
 
-// @OneToMany(() => thisEntity, relationEntity => relationEntity.thisEntity,
+// @OneToMany(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // relationEntity: relationEntity[];
 
-// @ManyToOne(() => thisEntity, relationEntity => relationEntity.thisEntity,
+// @ManyToOne(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinColumn({ name: "relationEntity_id" })
 // relationEntity: relationEntity;
 
-// @ManyToMany(() => thisEntity, relationEntity => relationEntity.thisEntity,
+// @ManyToMany(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinTable({
 //   name: 'thisEntity_relationEntity',
