@@ -12,7 +12,7 @@ import app from '@shared/app';
 
 let connection: Connection;
 
-describe('Show${upperModuleName}Controller', () => {
+describe('Update${upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
