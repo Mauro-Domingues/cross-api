@@ -37,7 +37,7 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     relations?: string[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
     const [${pluralLowerModuleName}, amount] = await this.ormRepository.findAndCount({
-      where: condition,
+      where: conditions,
       take: limit,
       skip: (page - 1) * limit,
       relations,
