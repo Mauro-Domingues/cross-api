@@ -17,7 +17,7 @@ export default interface I${pluralUpperModuleName}Repository {
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }>;
   findBy(
     ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
-    relations?: string[]
+    relations?: string[],
   ): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
   save(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
