@@ -22,7 +22,7 @@ describe('Create${upperModuleName}Controller', () => {
     await connection.close();
   });
 
-  it('Should be able to create a ${lowerModuleName}', async () => {
+  it('Should be able to create a new ${lowerModuleName}', async () => {
     const response = await request(app).post('/${pluralLowerModuleName}').send({
       name: '${lowerModuleName}',
       description: 'This is a ${lowerModuleName}',
