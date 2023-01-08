@@ -16,14 +16,14 @@ describe('Update${upperModuleName}Controller', () => {
     connection = await createConnection();
     await connection.runMigrations();
 
-    await connection.query(
+    return connection.query(
       \`INSERT INTO ${dbModuleName}(id, name, description) values('12345', '${lowerModuleName}', 'This is a ${lowerModuleName}')\`,
     );
   });
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.destroy();
+    return connection.destroy();
   });
 
   it('Should be able to update ${pluralLowerModuleName}', async () => {

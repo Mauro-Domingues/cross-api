@@ -4,7 +4,7 @@ export default function createTypeorm(): string {
 import { AppDataSource } from '../../../dataSource';
 
 export default async (): Promise<DataSource> => {
-  return createConnection(AppDataSource.options);
+  return AppDataSource.initialize();
 };
 
 // Image examples
