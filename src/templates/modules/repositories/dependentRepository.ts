@@ -6,17 +6,18 @@ export default function createDependentRepository(
   pluralFatherLowerModuleName: string,
 ): string {
   return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
-import { getRepository, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import IObjectDTO from '@dtos/IObjectDTO';
+import { AppDataSource } from '../../../../dataSource';
 
 export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ormRepository: Repository<${upperModuleName}>;
 
   constructor() {
-    this.ormRepository = getRepository(${upperModuleName});
+    this.ormRepository = AppDataSource.getRepository(${upperModuleName});
   }
 
   public async findBy(
