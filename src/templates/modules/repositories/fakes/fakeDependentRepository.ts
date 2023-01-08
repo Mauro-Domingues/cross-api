@@ -65,7 +65,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         );
 
         if (filter${upperModuleName} !== undefined) {
-          return ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length;
+          return { ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length };
         }
       }
     } else if (conditions) {
@@ -77,12 +77,12 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
 
       filter${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
-      return ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length;
+      return { ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length };
     }
 
     const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
 
-    return ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length;
+    return { ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
