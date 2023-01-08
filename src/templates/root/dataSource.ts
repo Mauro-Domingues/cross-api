@@ -4,7 +4,6 @@ import 'dotenv/config';
 import 'reflect-metadata';
 
 export const AppDataSource = new DataSource({
-  name: 'default',
   type: 'mysql',
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),

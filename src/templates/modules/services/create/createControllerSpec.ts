@@ -4,12 +4,12 @@ export default function createSpecController(
   pluralLowerModuleName: string,
 ): string {
   return `import request from 'supertest';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 
 import app from '@shared/app';
 import createConnection from '@shared/typeorm';
 
-let connection: Connection;
+let connection: DataSource;
 
 describe('Create${upperModuleName}Controller', () => {
   beforeAll(async () => {
@@ -19,7 +19,7 @@ describe('Create${upperModuleName}Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.close();
+    await connection.destroy();
   });
 
   it('Should be able to create a new ${lowerModuleName}', async () => {

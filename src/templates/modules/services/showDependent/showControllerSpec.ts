@@ -6,11 +6,11 @@ export default function showSpecDependentController(
   dbModuleName: string,
 ): string {
   return `import request from 'supertest';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';
 import app from '@shared/app';
 
-let connection: Connection;
+let connection: DataSource;
 
 describe('Show${upperModuleName}Controller', () => {
   beforeAll(async () => {
@@ -24,7 +24,7 @@ describe('Show${upperModuleName}Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.close();
+    await connection.destroy();
   });
 
   it('Should be able to show ${pluralLowerModuleName}', async () => {

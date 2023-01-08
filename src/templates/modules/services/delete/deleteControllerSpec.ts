@@ -5,11 +5,11 @@ export default function deleteSpecController(
   dbModuleName: string,
 ): string {
   return `import request from 'supertest';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';
 import app from '@shared/app';
 
-let connection: Connection;
+let connection: DataSource;
 
 describe('Delete${upperModuleName}Controller', () => {
   beforeAll(async () => {
@@ -23,7 +23,7 @@ describe('Delete${upperModuleName}Controller', () => {
 
   afterAll(async () => {
     await connection.dropDatabase();
-    await connection.close();
+    await connection.destroy();
   });
 
   it('Should be able to delete a ${lowerModuleName}', async () => {
