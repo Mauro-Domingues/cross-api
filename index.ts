@@ -79,11 +79,13 @@ if (comand) {
       break;
     case 'migration:generate':
       shell.exec(
-        'typeorm-ts-node-commonjs -d dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
+        'ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
       );
       break;
     case 'migration:run':
-      shell.exec('typeorm-ts-node-commonjs -d dataSource.ts migration:run');
+      shell.exec(
+        'ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dataSource.ts migration:run',
+      );
       break;
     default:
       console.log('');
