@@ -6,7 +6,6 @@ import createServer from '../templates/api/server';
 import createTypeorm from '../templates/api/typeorm';
 import createAuthConfig from '../templates/config/authConfig';
 import createCacheConfig from '../templates/config/cacheConfig';
-import createCryptoConfig from '../templates/config/cryptoConfig';
 import createLeadConfig from '../templates/config/leadConfig';
 import createMailConfig from '../templates/config/mailConfig';
 import createNotificationConfig from '../templates/config/notificationConfig';
@@ -31,6 +30,7 @@ import createJestConfig from '../templates/root/jestConfig';
 import createNodemonJson from '../templates/root/nodemonJson';
 import createPrettierConfig from '../templates/root/prettierConfig';
 import createTsConfig from '../templates/root/tsConfig';
+import createCrypto from '../templates/utils/crypto';
 import createDecimaAdjust from '../templates/utils/decimalAdjust';
 import createMapAndClone from '../templates/utils/mappers/mapAndClone';
 import createMapAndInsert from '../templates/utils/mappers/mapAndInsert';
@@ -390,23 +390,6 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- cache.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/crypto.ts')) {
-    fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/crypto.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- crypto.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/config/lead.ts')) {
@@ -777,6 +760,23 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- mapAndUpdateString.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/utils/crypto.ts')) {
+    fs.appendFile('src/utils/crypto.ts', createCrypto(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/utils/crypto.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/utils/crypto.ts', createCrypto(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- crypto.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/utils/decimalAdjust.ts')) {

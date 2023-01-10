@@ -1,10 +1,10 @@
-export default function createCryptoConfig(): string {
+export default function createCrypto(): string {
   return `import crypto from 'crypto';
 
 const algorithm = 'aes-256-ctr';
 const secretKey = \`\${process.env.CRYPTO_SECRET_KEY}\`;
 
-interface ICryptoConfig {
+interface ICryptoTool {
   encrypt(text: string): any;
   decrypt(hash: any): any;
 }
@@ -45,6 +45,6 @@ const decrypt = (data: ICriptoData): string => {
 export default {
   encrypt,
   decrypt,
-} as ICryptoConfig;
+} as ICryptoTool;
 `;
 }
