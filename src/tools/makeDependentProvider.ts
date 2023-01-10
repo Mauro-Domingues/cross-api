@@ -51,6 +51,15 @@ export default async function makeDependentProvider(
   ) {
     fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
   }
+  if (
+    !fs.existsSync(
+      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+    )
+  ) {
+    fs.mkdirSync(
+      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+    );
+  }
   switch (providerName) {
     case 'cache':
       if (
@@ -92,6 +101,13 @@ export default async function makeDependentProvider(
       fs.appendFile(
         `src/shared/container/index.ts`,
         `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './CacheProvider';`,
         error => {
           if (error) throw error;
         },
@@ -250,6 +266,13 @@ export default async function makeDependentProvider(
       fs.appendFile(
         `src/shared/container/index.ts`,
         `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './StorageProvider';`,
         error => {
           if (error) throw error;
         },
@@ -448,6 +471,13 @@ export default async function makeDependentProvider(
           if (error) throw error;
         },
       );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './MailTemplateProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
       if (
         !fs.existsSync(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
@@ -642,6 +672,13 @@ export default async function makeDependentProvider(
           if (error) throw error;
         },
       );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './MailTemplateProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
       if (
         !fs.existsSync(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
@@ -830,6 +867,13 @@ export default async function makeDependentProvider(
       fs.appendFile(
         `src/shared/container/index.ts`,
         `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './MailProvider';`,
         error => {
           if (error) throw error;
         },
@@ -1055,6 +1099,13 @@ export default async function makeDependentProvider(
           if (error) throw error;
         },
       );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './NotificationProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
       if (
         !fs.existsSync(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
@@ -1245,6 +1296,13 @@ export default async function makeDependentProvider(
       fs.appendFile(
         `src/shared/container/index.ts`,
         `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      fs.appendFile(
+        `src/shared/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `import './LeadProvider';`,
         error => {
           if (error) throw error;
         },
