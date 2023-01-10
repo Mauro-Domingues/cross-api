@@ -28,6 +28,8 @@ export default {
     'It is used to generate a complete CRUD from one module dependent on another',
   makeProvider:
     'It is used to generate a provider                                          ',
+  makeProviderD:
+    'It is used to generate a provider inside a module                          ',
   mapAndClone:
     'CLONE VALUES -> Receives as parameter a string array and another object of type { [key: string]: string }, returns an array of objects with the same value, is useful for queries find WHERE + OR.',
   mapAndPatch:

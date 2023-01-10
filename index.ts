@@ -5,6 +5,7 @@ import configLanguage from './src/tools/languageConfig';
 import listProvider from './src/tools/listProvider';
 import makeApi from './src/tools/makeAPi';
 import makeDependentModule from './src/tools/makeDependentModule';
+import makeDependentProvider from './src/tools/makeDependentProvider';
 import makeIndependentModule from './src/tools/makeIndependentModule';
 import makeProvider from './src/tools/makeProvider';
 import messages from './src/tools/messages';
@@ -75,7 +76,11 @@ if (comand) {
       }
       break;
     case 'make:provider':
-      makeProvider(arg);
+      if (father) {
+        makeDependentProvider(arg, new GetName().getModuleName(father));
+      } else {
+        makeProvider(arg);
+      }
       break;
     case 'migration:generate':
       shell.exec(

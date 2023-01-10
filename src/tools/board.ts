@@ -4,39 +4,49 @@ function renderEmptyLine() {
   console.log(
     '\x1b[1m',
     '\x1b[38;2;0;155;255m',
-    '|                                                                                                                      |',
+    '|                                                                                                                        |',
     '\x1b[0m',
   );
 }
 
 export default function board(): void {
   const tools = [
-    { title: 'comands           ', description: messages.comands },
-    { title: 'language          ', description: messages.changeLanguage },
-    { title: 'list:provider     ', description: messages.listProvider },
+    { title: 'comands             ', description: messages.comands },
+    { title: 'language            ', description: messages.changeLanguage },
+    { title: 'list:provider       ', description: messages.listProvider },
   ];
 
   const orm = [
     {
-      title: 'migration:generate         ',
+      title: 'migration:generate           ',
       description: messages.migrationGenerate,
     },
     {
-      title: 'migration:run              ',
+      title: 'migration:run                ',
       description: messages.migrationRun,
     },
   ];
 
   const structure = [
-    { title: 'make:api                   ', description: messages.makeApi },
-    { title: 'make:module [name]         ', description: messages.makeModule },
-    { title: 'make:module [name] [father]', description: messages.makeModuleD },
+    { title: 'make:api                     ', description: messages.makeApi },
     {
-      title: 'make:provider [name]       ',
+      title: 'make:module [name]           ',
+      description: messages.makeModule,
+    },
+    {
+      title: 'make:module [name] [father]  ',
+      description: messages.makeModuleD,
+    },
+    {
+      title: 'make:provider [name]         ',
       description: messages.makeProvider,
     },
     {
-      title: 'migration:generate         ',
+      title: 'make:provider [name] [father]',
+      description: messages.makeProviderD,
+    },
+    {
+      title: 'migration:generate           ',
       description: messages.migrationGenerate,
     },
   ];
@@ -45,7 +55,7 @@ export default function board(): void {
   console.log(
     '\x1b[1m',
     '\x1b[38;2;0;155;255m',
-    ` /===============================================${messages.comandTitle}================================================\\`,
+    ` /================================================${messages.comandTitle}=================================================\\`,
     '\x1b[0m',
   );
   renderEmptyLine();
@@ -56,7 +66,7 @@ export default function board(): void {
     '\x1b[38;2;0;255;155m',
     ` 〇 ${messages.tools}`,
     '\x1b[38;2;0;155;255m',
-    '                                                                                                   |',
+    '                                                                                                     |',
     '\x1b[0m',
   );
   renderEmptyLine();
@@ -85,7 +95,7 @@ export default function board(): void {
     '\x1b[38;2;0;255;155m',
     ` 〇 ORM`,
     '\x1b[38;2;0;155;255m',
-    '                                                                                                           |',
+    '                                                                                                             |',
     '\x1b[0m',
   );
   renderEmptyLine();
@@ -114,7 +124,7 @@ export default function board(): void {
     '\x1b[38;2;0;255;155m',
     ` 〇 ${messages.structure}`,
     '\x1b[38;2;0;155;255m',
-    '                                                                                          |',
+    '                                                                                            |',
     '\x1b[0m',
   );
   renderEmptyLine();
@@ -139,7 +149,7 @@ export default function board(): void {
   console.log(
     '\x1b[1m',
     '\x1b[38;2;0;155;255m',
-    ` \\====================================================================================================================/`,
+    ` \\======================================================================================================================/`,
     '\x1b[0m',
   );
   console.log('');

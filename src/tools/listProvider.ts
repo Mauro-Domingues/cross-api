@@ -10,10 +10,11 @@ function renderEmptyLine() {
 export default function listProvider(): void {
   const providers = [
     { Name: 'cache       ', Provider: 'CacheProvider       ' },
-    { Name: 'storage     ', Provider: 'StorageProvider     ' },
-    { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
+    { Name: 'lead        ', Provider: 'leadProvider        ' },
     { Name: 'mail        ', Provider: 'MailProvider        ' },
+    { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
     { Name: 'notification', Provider: 'notificationProvider' },
+    { Name: 'storage     ', Provider: 'StorageProvider     ' },
   ];
 
   console.log('');

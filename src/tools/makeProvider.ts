@@ -1,10 +1,12 @@
 import fs from 'fs';
 
 import createCacheIndex from '../templates/providers/cacheIndex';
+import createILeadDTO from '../templates/providers/dtos/ILeadDTO';
 import createIMailDTO from '../templates/providers/dtos/IMailDTO';
 import createINotificationDTO from '../templates/providers/dtos/INotificationDTO';
 import createIMailTemplateDTO from '../templates/providers/dtos/IParseMailTemplateDTO';
 import createFakeRedis from '../templates/providers/fakes/fakeCache';
+import createFakeLead from '../templates/providers/fakes/fakeLead';
 import createFakeMail from '../templates/providers/fakes/fakeMail';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
 import createFakeNotification from '../templates/providers/fakes/fakeNotification';
@@ -13,11 +15,14 @@ import createDiskStorage from '../templates/providers/implementations/DiskStorag
 import createEtherealMail from '../templates/providers/implementations/EtherealMail';
 import createMailTemplate from '../templates/providers/implementations/MailTemplate';
 import createOneSignalNotification from '../templates/providers/implementations/OneSignalNotification';
+import createRDStationLead from '../templates/providers/implementations/RDStationLead';
 import createRedisCache from '../templates/providers/implementations/RedisCache';
 import createSESMail from '../templates/providers/implementations/SESMail';
+import createLeadIndex from '../templates/providers/leadIndex';
 import createMailIndex from '../templates/providers/mailIndex';
 import createMailTemplateIndex from '../templates/providers/mailTemplateIndex';
 import createICache from '../templates/providers/models/ICache';
+import createILead from '../templates/providers/models/ILead';
 import createIMail from '../templates/providers/models/IMail';
 import createIMailTemplate from '../templates/providers/models/IMailTemplate';
 import createINotification from '../templates/providers/models/INotification';
@@ -1115,6 +1120,176 @@ export default async function makeProvider(providerName: string) {
       console.log(
         '\x1b[38;2;255;255;0m',
         `- NotificationProvider ${messages.created}`,
+        '\x1b[0m',
+      );
+      break;
+    case 'lead':
+      if (!fs.existsSync('src/shared/container/providers/LeadProvider')) {
+        fs.mkdirSync('src/shared/container/providers/LeadProvider');
+      }
+      if (!fs.existsSync('src/shared/container/providers/LeadProvider/dtos')) {
+        fs.mkdirSync('src/shared/container/providers/LeadProvider/dtos');
+      }
+      if (!fs.existsSync('src/shared/container/providers/LeadProvider/fakes')) {
+        fs.mkdirSync('src/shared/container/providers/LeadProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/LeadProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/LeadProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/LeadProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/LeadProvider/models');
+      }
+      fs.appendFile(
+        'src/shared/container/providers/index.ts',
+        `import './LeadProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
+          createILeadDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
+          createILeadDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
+          createFakeLead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
+          createFakeLead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
+          createRDStationLead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
+          createRDStationLead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
+          createILead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
+          createILead(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/LeadProvider/index.ts')
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/index.ts',
+          createLeadIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/LeadProvider/index.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/LeadProvider/index.ts',
+          createLeadIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- LeadProvider ${messages.created}`,
         '\x1b[0m',
       );
       break;

@@ -28,6 +28,8 @@ export default `export default {
     'É usado para gerar um CRUD completo de um módulo dependente de outro       ',
   makeProvider:
     'É utilizado para gerar um provedor                                         ',
+  makeProviderD:
+    'É usado para criar um provedor dentro de um módulo                         ',
   mapAndClone:
     'CLONE VALUES -> Recebe como parâmetro um array de string e outro objeto do tipo { [key: string]: string }, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
   mapAndPatch:
