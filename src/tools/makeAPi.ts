@@ -7,6 +7,7 @@ import createTypeorm from '../templates/api/typeorm';
 import createAuthConfig from '../templates/config/authConfig';
 import createCacheConfig from '../templates/config/cacheConfig';
 import createCryptoConfig from '../templates/config/cryptoConfig';
+import createLeadConfig from '../templates/config/leadConfig';
 import createMailConfig from '../templates/config/mailConfig';
 import createNotificationConfig from '../templates/config/notificationConfig';
 import createUploadConfig from '../templates/config/uploadConfig';
@@ -406,6 +407,23 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- crypto.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/config/lead.ts')) {
+    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/config/lead.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- lead.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/config/mail.ts')) {
