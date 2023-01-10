@@ -51,15 +51,6 @@ export default async function makeDependentProvider(
   ) {
     fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
   }
-  if (
-    !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    )
-  ) {
-    fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    );
-  }
   switch (providerName) {
     case 'cache':
       if (
