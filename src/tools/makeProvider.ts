@@ -1648,11 +1648,11 @@ export default async function makeProvider(providerName: string) {
       }
       if (
         !fs.existsSync(
-          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          'src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts',
         )
       ) {
         fs.appendFile(
-          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          'src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts',
           createHash(),
           error => {
             if (error) throw error;
@@ -1660,13 +1660,13 @@ export default async function makeProvider(providerName: string) {
         );
       } else {
         fs.truncate(
-          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          'src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts',
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          'src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts',
           createHash(),
           error => {
             if (error) throw error;

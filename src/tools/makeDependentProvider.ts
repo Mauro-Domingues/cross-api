@@ -1856,11 +1856,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/HashProvider.ts`,
+          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/HashProvider.ts`,
+          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           createHash(),
           error => {
             if (error) throw error;
@@ -1868,13 +1868,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/HashProvider.ts`,
+          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/HashProvider.ts`,
+          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           createHash(),
           error => {
             if (error) throw error;
