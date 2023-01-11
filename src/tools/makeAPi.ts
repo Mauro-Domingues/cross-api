@@ -36,6 +36,9 @@ import makeProvider from './makeProvider';
 import messages from './messages';
 
 export default async function makeApi() {
+  if (!fs.existsSync('src')) {
+    fs.mkdirSync('src');
+  }
   if (!fs.existsSync('src/config')) {
     fs.mkdirSync('src/config');
   }
@@ -52,9 +55,6 @@ export default async function makeApi() {
     });
   }
   // remover daqui depois ^
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
-  }
   if (!fs.existsSync('src/@types')) {
     fs.mkdirSync('src/@types');
   }
