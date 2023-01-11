@@ -10,6 +10,8 @@ function renderEmptyLine() {
 export default function listProvider(): void {
   const providers = [
     { Name: 'cache       ', Provider: 'CacheProvider       ' },
+    { Name: 'crypto      ', Provider: 'CryptoProvider      ' },
+    { Name: 'hash        ', Provider: 'HashProvider        ' },
     { Name: 'lead        ', Provider: 'leadProvider        ' },
     { Name: 'mail        ', Provider: 'MailProvider        ' },
     { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },

@@ -4,12 +4,6 @@ import createExpressNamespace from '../templates/@types/expressNamespace';
 import createApp from '../templates/api/app';
 import createServer from '../templates/api/server';
 import createTypeorm from '../templates/api/typeorm';
-import createAuthConfig from '../templates/config/authConfig';
-import createCacheConfig from '../templates/config/cacheConfig';
-import createLeadConfig from '../templates/config/leadConfig';
-import createMailConfig from '../templates/config/mailConfig';
-import createNotificationConfig from '../templates/config/notificationConfig';
-import createUploadConfig from '../templates/config/uploadConfig';
 import createICacheDTO from '../templates/dtos/ICacheDTO';
 import createIListDTO from '../templates/dtos/IListDTO';
 import createIObjectDTO from '../templates/dtos/IObjectDTO';
@@ -18,6 +12,7 @@ import createAppError from '../templates/errors/appError';
 import createContainer from '../templates/index/container';
 import createRoutes from '../templates/index/routes';
 import createRateLimiter from '../templates/middlewares/rateLimiter';
+import createAuthConfig from '../templates/providers/config/authConfig';
 import createBabelConfig from '../templates/root/babelConfig';
 import createDataSource from '../templates/root/dataSource';
 import createDockerCompose from '../templates/root/dockerCompose';
@@ -30,7 +25,6 @@ import createJestConfig from '../templates/root/jestConfig';
 import createNodemonJson from '../templates/root/nodemonJson';
 import createPrettierConfig from '../templates/root/prettierConfig';
 import createTsConfig from '../templates/root/tsConfig';
-import createCrypto from '../templates/utils/crypto';
 import createDecimaAdjust from '../templates/utils/decimalAdjust';
 import createMapAndClone from '../templates/utils/mappers/mapAndClone';
 import createMapAndInsert from '../templates/utils/mappers/mapAndInsert';
@@ -50,9 +44,6 @@ export default async function makeApi() {
   }
   if (!fs.existsSync('src/assets')) {
     fs.mkdirSync('src/assets');
-  }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
   }
   if (!fs.existsSync('src/dtos')) {
     fs.mkdirSync('src/dtos');
@@ -375,99 +366,6 @@ export default async function makeApi() {
     `- auth.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/config/cache.ts')) {
-    fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/cache.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- cache.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/lead.ts')) {
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/lead.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- lead.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/mail.ts')) {
-    fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/mail.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- mail.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/notification.ts')) {
-    fs.appendFile(
-      'src/config/notification.ts',
-      createNotificationConfig(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.truncate('src/config/notification.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile(
-      'src/config/notification.ts',
-      createNotificationConfig(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- notification.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/upload.ts')) {
-    fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/upload.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- upload.ts ${messages.created}`,
-    '\x1b[0m',
-  );
   if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {
     fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
       if (error) throw error;
@@ -760,23 +658,6 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- mapAndUpdateString.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/utils/crypto.ts')) {
-    fs.appendFile('src/utils/crypto.ts', createCrypto(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/utils/crypto.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/utils/crypto.ts', createCrypto(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- crypto.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/utils/decimalAdjust.ts')) {

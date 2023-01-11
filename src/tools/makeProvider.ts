@@ -1,16 +1,30 @@
 import fs from 'fs';
 
 import createCacheIndex from '../templates/providers/cacheIndex';
+import createCacheConfig from '../templates/providers/config/cacheConfig';
+import createCryptoConfig from '../templates/providers/config/cryptoConfig';
+import createHashConfig from '../templates/providers/config/hashConfig';
+import createLeadConfig from '../templates/providers/config/leadConfig';
+import createMailConfig from '../templates/providers/config/mailConfig';
+import createNotificationConfig from '../templates/providers/config/notificationConfig';
+import createUploadConfig from '../templates/providers/config/uploadConfig';
+import createCryptoIndex from '../templates/providers/cryptoIndex';
+import createICryptoDTO from '../templates/providers/dtos/ICryptoDTO';
 import createILeadDTO from '../templates/providers/dtos/ILeadDTO';
 import createIMailDTO from '../templates/providers/dtos/IMailDTO';
 import createINotificationDTO from '../templates/providers/dtos/INotificationDTO';
 import createIMailTemplateDTO from '../templates/providers/dtos/IParseMailTemplateDTO';
 import createFakeRedis from '../templates/providers/fakes/fakeCache';
+import createFakeCrypto from '../templates/providers/fakes/fakeCrypto';
+import createFakeHash from '../templates/providers/fakes/fakeHash';
 import createFakeLead from '../templates/providers/fakes/fakeLead';
 import createFakeMail from '../templates/providers/fakes/fakeMail';
 import createFakeMailTemplate from '../templates/providers/fakes/fakeMailTemplate';
 import createFakeNotification from '../templates/providers/fakes/fakeNotification';
 import createFakeStorage from '../templates/providers/fakes/fakeStorage';
+import createHashIndex from '../templates/providers/hashIndex';
+import createHash from '../templates/providers/implementations/BCrypt';
+import createCrypto from '../templates/providers/implementations/Crypto';
 import createDiskStorage from '../templates/providers/implementations/DiskStorage';
 import createEtherealMail from '../templates/providers/implementations/EtherealMail';
 import createMailTemplate from '../templates/providers/implementations/MailTemplate';
@@ -22,6 +36,8 @@ import createLeadIndex from '../templates/providers/leadIndex';
 import createMailIndex from '../templates/providers/mailIndex';
 import createMailTemplateIndex from '../templates/providers/mailTemplateIndex';
 import createICache from '../templates/providers/models/ICache';
+import createICrypto from '../templates/providers/models/ICrypto';
+import createIHash from '../templates/providers/models/IHash';
 import createILead from '../templates/providers/models/ILead';
 import createIMail from '../templates/providers/models/IMail';
 import createIMailTemplate from '../templates/providers/models/IMailTemplate';
@@ -34,6 +50,9 @@ import messages from './messages';
 export default async function makeProvider(providerName: string) {
   if (!fs.existsSync('src')) {
     fs.mkdirSync('src');
+  }
+  if (!fs.existsSync('src/config')) {
+    fs.mkdirSync('src/config');
   }
   if (!fs.existsSync('src/shared')) {
     fs.mkdirSync('src/shared');
@@ -101,6 +120,18 @@ export default async function makeProvider(providerName: string) {
             if (error) throw error;
           },
         );
+      }
+      if (!fs.existsSync('src/config/cache.ts')) {
+        fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/cache.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+          if (error) throw error;
+        });
       }
       if (
         !fs.existsSync(
@@ -217,6 +248,18 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (!fs.existsSync('src/config/upload.ts')) {
+        fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/upload.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
+          if (error) throw error;
+        });
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
@@ -597,6 +640,18 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (!fs.existsSync('src/config/mail.ts')) {
+        fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/mail.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
+          if (error) throw error;
+        });
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
@@ -982,6 +1037,26 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (!fs.existsSync('src/config/notification.ts')) {
+        fs.appendFile(
+          'src/config/notification.ts',
+          createNotificationConfig(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate('src/config/notification.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile(
+          'src/config/notification.ts',
+          createNotificationConfig(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
@@ -1154,6 +1229,18 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (!fs.existsSync('src/config/lead.ts')) {
+        fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/lead.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+          if (error) throw error;
+        });
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
@@ -1290,6 +1377,344 @@ export default async function makeProvider(providerName: string) {
       console.log(
         '\x1b[38;2;255;255;0m',
         `- LeadProvider ${messages.created}`,
+        '\x1b[0m',
+      );
+      break;
+    case 'crypto':
+      if (!fs.existsSync('src/shared/container/providers/CryptoProvider')) {
+        fs.mkdirSync('src/shared/container/providers/CryptoProvider');
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/CryptoProvider/dtos')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/CryptoProvider/dtos');
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/CryptoProvider/fakes')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/CryptoProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CryptoProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/CryptoProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/CryptoProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/CryptoProvider/models');
+      }
+      fs.appendFile(
+        'src/shared/container/providers/index.ts',
+        `import './CryptoProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      if (!fs.existsSync('src/config/crypto.ts')) {
+        fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/crypto.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
+          if (error) throw error;
+        });
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+          createICryptoDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+          createICryptoDTO(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
+          createFakeCrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
+          createFakeCrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+          createCrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+          createCrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+          createICrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+          createICrypto(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/CryptoProvider/index.ts')
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/index.ts',
+          createCryptoIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/CryptoProvider/index.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/CryptoProvider/index.ts',
+          createCryptoIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- CryptoProvider ${messages.created}`,
+        '\x1b[0m',
+      );
+      break;
+    case 'hash':
+      if (!fs.existsSync('src/shared/container/providers/HashProvider')) {
+        fs.mkdirSync('src/shared/container/providers/HashProvider');
+      }
+      if (!fs.existsSync('src/shared/container/providers/HashProvider/fakes')) {
+        fs.mkdirSync('src/shared/container/providers/HashProvider/fakes');
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/HashProvider/implementations',
+        )
+      ) {
+        fs.mkdirSync(
+          'src/shared/container/providers/HashProvider/implementations',
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/HashProvider/models')
+      ) {
+        fs.mkdirSync('src/shared/container/providers/HashProvider/models');
+      }
+      fs.appendFile(
+        'src/shared/container/providers/index.ts',
+        `import './HashProvider';`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      if (!fs.existsSync('src/config/hash.ts')) {
+        fs.appendFile('src/config/hash.ts', createHashConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/hash.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/hash.ts', createHashConfig(), error => {
+          if (error) throw error;
+        });
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts',
+          createFakeHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts',
+          createFakeHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          createHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/implementations/HashProvider.ts',
+          createHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync(
+          'src/shared/container/providers/HashProvider/models/IHashProvider.ts',
+        )
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/models/IHashProvider.ts',
+          createIHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/HashProvider/models/IHashProvider.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/models/IHashProvider.ts',
+          createIHash(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      if (
+        !fs.existsSync('src/shared/container/providers/HashProvider/index.ts')
+      ) {
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/index.ts',
+          createHashIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.truncate(
+          'src/shared/container/providers/HashProvider/index.ts',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          'src/shared/container/providers/HashProvider/index.ts',
+          createHashIndex(),
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
+      console.log(
+        '\x1b[38;2;255;255;0m',
+        `- HashProvider ${messages.created}`,
         '\x1b[0m',
       );
       break;

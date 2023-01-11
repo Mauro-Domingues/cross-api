@@ -6,11 +6,15 @@ APP_WEB_URL=http://localhost:3000
 NODE_ENV=development
 
 # Auth
-TOKEN_SECRET=
+JWT_TOKEN_SECRET=
 REFRESH_TOKEN_SECRET=
+JWT_LIFETIME=
 
 # Crypto
 CRYPTO_SECRET_KEY=
+
+# Hash
+HASH_SECRET_KEY=
 
 # DataSource config
 DB_HOST=localhost
