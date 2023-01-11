@@ -13,7 +13,7 @@ class FakeCacheProvider implements ICacheProvider {
   }
 
   public async recovery<T>(key: string): Promise<T | null> {
-    const data = await this.cache[key];
+    const data = this.cache[key];
 
     if (!data) {
       return null;

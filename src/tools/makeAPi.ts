@@ -36,6 +36,22 @@ import makeProvider from './makeProvider';
 import messages from './messages';
 
 export default async function makeApi() {
+  if (!fs.existsSync('src/config')) {
+    fs.mkdirSync('src/config');
+  }
+  if (!fs.existsSync('src/config/auth.ts')) {
+    fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/config/auth.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
+      if (error) throw error;
+    });
+  }
+  // remover daqui depois ^
   if (!fs.existsSync('src')) {
     fs.mkdirSync('src');
   }
@@ -347,23 +363,6 @@ export default async function makeApi() {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- express.d.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/config/auth.ts')) {
-    fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/config/auth.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/config/auth.ts', createAuthConfig(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- auth.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {

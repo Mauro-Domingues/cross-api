@@ -31,6 +31,7 @@ import createMailTemplate from '../templates/providers/implementations/MailTempl
 import createOneSignalNotification from '../templates/providers/implementations/OneSignalNotification';
 import createRDStationLead from '../templates/providers/implementations/RDStationLead';
 import createRedisCache from '../templates/providers/implementations/RedisCache';
+import createS3Storage from '../templates/providers/implementations/S3Storage';
 import createSESMail from '../templates/providers/implementations/SESMail';
 import createLeadIndex from '../templates/providers/leadIndex';
 import createMailIndex from '../templates/providers/mailIndex';
@@ -94,6 +95,18 @@ export default async function makeProvider(providerName: string) {
           if (error) throw error;
         },
       );
+      if (!fs.existsSync('src/config/cache.ts')) {
+        fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+          if (error) throw error;
+        });
+      } else {
+        fs.truncate('src/config/cache.ts', error => {
+          if (error) console.log(error);
+        });
+        fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+          if (error) throw error;
+        });
+      }
       if (
         !fs.existsSync(
           'src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts',
@@ -321,7 +334,7 @@ export default async function makeProvider(providerName: string) {
       ) {
         fs.appendFile(
           'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
-          createDiskStorage(),
+          createS3Storage(),
           error => {
             if (error) throw error;
           },
@@ -335,7 +348,7 @@ export default async function makeProvider(providerName: string) {
         );
         fs.appendFile(
           'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
-          createDiskStorage(),
+          createS3Storage(),
           error => {
             if (error) throw error;
           },

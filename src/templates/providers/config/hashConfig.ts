@@ -1,10 +1,10 @@
 export default function createHashConfig(): string {
   return `interface IHashConfig {
-  hash: string | number;
+  secret: string | number;
 }
 
 export default {
-  hash: process.env.HASH_SECRET_KEY || 10,
+  secret: process.env.HASH_SECRET_KEY || 10,
 } as IHashConfig;
 `;
 }

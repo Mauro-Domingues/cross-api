@@ -37,7 +37,7 @@ function configJson(): void {
   const dependencies: string[] = [
     'aws-sdk',
     'axios',
-    'bcryptjs',
+    'bcrypt',
     'celebrate',
     'class-transformer',
     'cors',
@@ -73,7 +73,7 @@ function configJson(): void {
     '@babel/plugin-proposal-decorators',
     '@babel/preset-env',
     '@babel/preset-typescript',
-    '@types/bcryptjs',
+    '@types/bcrypt',
     '@types/cors',
     '@types/express',
     '@types/ioredis',
@@ -196,7 +196,7 @@ function configJson(): void {
             '\x1b[0m',
           );
         });
-        console.log('');
+        console.clear();
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
@@ -275,7 +275,7 @@ function configJson(): void {
             '\x1b[0m',
           );
         });
-        console.log('');
+        console.clear();
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
