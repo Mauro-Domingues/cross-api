@@ -1605,7 +1605,7 @@ export default async function makeDependentProvider(
         },
       );
       fs.appendFile(
-        `modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
         `import './CryptoProvider';`,
         error => {
           if (error) throw error;
@@ -1625,11 +1625,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
           createICryptoDTO(),
           error => {
             if (error) throw error;
@@ -1637,13 +1637,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
           createICryptoDTO(),
           error => {
             if (error) throw error;
@@ -1652,11 +1652,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
           createFakeCrypto(),
           error => {
             if (error) throw error;
@@ -1664,13 +1664,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
           createFakeCrypto(),
           error => {
             if (error) throw error;
@@ -1679,11 +1679,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
           createCrypto(),
           error => {
             if (error) throw error;
@@ -1691,13 +1691,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
           createCrypto(),
           error => {
             if (error) throw error;
@@ -1706,11 +1706,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
           createICrypto(),
           error => {
             if (error) throw error;
@@ -1718,13 +1718,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
           createICrypto(),
           error => {
             if (error) throw error;
@@ -1733,11 +1733,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
           createCryptoIndex(),
           error => {
             if (error) throw error;
@@ -1745,13 +1745,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
           createCryptoIndex(),
           error => {
             if (error) throw error;
@@ -1809,7 +1809,7 @@ export default async function makeDependentProvider(
         },
       );
       fs.appendFile(
-        `modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+        `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
         `import './HashProvider';`,
         error => {
           if (error) throw error;
@@ -1829,11 +1829,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
           createFakeHash(),
           error => {
             if (error) throw error;
@@ -1841,13 +1841,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
           createFakeHash(),
           error => {
             if (error) throw error;
@@ -1856,11 +1856,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           createHash(),
           error => {
             if (error) throw error;
@@ -1868,13 +1868,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
           createHash(),
           error => {
             if (error) throw error;
@@ -1883,11 +1883,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
           createIHash(),
           error => {
             if (error) throw error;
@@ -1895,13 +1895,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
           createIHash(),
           error => {
             if (error) throw error;
@@ -1910,11 +1910,11 @@ export default async function makeDependentProvider(
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
         )
       ) {
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
           createHashIndex(),
           error => {
             if (error) throw error;
@@ -1922,13 +1922,13 @@ export default async function makeDependentProvider(
         );
       } else {
         fs.truncate(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
           error => {
             if (error) console.log(error);
           },
         );
         fs.appendFile(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`,
           createHashIndex(),
           error => {
             if (error) throw error;
