@@ -26,6 +26,8 @@ import createFakeStorage from '../templates/providers/fakes/fakeStorage';
 import createHashIndex from '../templates/providers/hashIndex';
 import createHash from '../templates/providers/implementations/BCrypt';
 import createCrypto from '../templates/providers/implementations/Crypto';
+import createDependentEtherealMail from '../templates/providers/implementations/dependentEtherealMail';
+import createDependentSESMail from '../templates/providers/implementations/dependentSESMail';
 import createDiskStorage from '../templates/providers/implementations/DiskStorage';
 import createEtherealMail from '../templates/providers/implementations/EtherealMail';
 import createMailTemplate from '../templates/providers/implementations/MailTemplate';
@@ -1008,7 +1010,7 @@ export default async function makeDependentProvider(
       ) {
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailProvider/implementations/EtherealMailProvider.ts`,
-          createEtherealMail(),
+          createDependentEtherealMail(fatherData.pluralLowerModuleName),
           error => {
             if (error) throw error;
           },
@@ -1022,7 +1024,7 @@ export default async function makeDependentProvider(
         );
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailProvider/implementations/EtherealMailProvider.ts`,
-          createEtherealMail(),
+          createDependentEtherealMail(fatherData.pluralLowerModuleName),
           error => {
             if (error) throw error;
           },
@@ -1035,7 +1037,7 @@ export default async function makeDependentProvider(
       ) {
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailProvider/implementations/SESMailProvider.ts`,
-          createSESMail(),
+          createDependentSESMail(fatherData.pluralLowerModuleName),
           error => {
             if (error) throw error;
           },
@@ -1049,7 +1051,7 @@ export default async function makeDependentProvider(
         );
         fs.appendFile(
           `src/modules/${fatherData.pluralLowerModuleName}/providers/MailProvider/implementations/SESMailProvider.ts`,
-          createSESMail(),
+          createDependentSESMail(fatherData.pluralLowerModuleName),
           error => {
             if (error) throw error;
           },
