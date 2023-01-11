@@ -1554,47 +1554,47 @@ export default async function makeDependentProvider(
     case 'crypto':
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`,
         );
       }
       fs.appendFile(
@@ -1767,38 +1767,38 @@ export default async function makeDependentProvider(
     case 'hash':
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`,
         );
       }
       if (
         !fs.existsSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`,
         )
       ) {
         fs.mkdirSync(
-          `modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`,
+          `src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`,
         );
       }
       fs.appendFile(

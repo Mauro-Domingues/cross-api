@@ -4,7 +4,7 @@ export default function createDependentEtherealMail(
   return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@shared/modules/${pluralFatherLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import IMailTemplateProvider from '@modules/${pluralFatherLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
