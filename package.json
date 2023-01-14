@@ -1,15 +1,22 @@
 {
   "name": "cross-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
+  "keywords": ["cross", "cross-api"],
+  "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mauro-Domingues/cross-api"
+  },
+  "bugs": {
+    "url": "https://github.com/Mauro-Domingues/cross-api/issues"
+  },
   "main": "index.js",
   "scripts": {
     "test": "ts-node -r tsconfig-paths/register index.ts"
   },
-  "keywords": [],
   "license": "MIT",
-  "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
-  "contributors": [],
   "dependencies": {
     "@types/node": "^18.11.16",
     "@types/shelljs": "^0.8.11",
