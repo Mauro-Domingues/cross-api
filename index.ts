@@ -13,9 +13,15 @@ const [arg] = process.argv.slice(3);
 const [father] = process.argv.slice(4);
 
 class GetName {
-  getModuleName(name: string): {
-    [key: string]: string;
-  } {
+  getModuleName(name: string):
+    | {
+        [key: string]: string;
+      }
+    | undefined {
+    if (!name) {
+      return undefined;
+    }
+
     const lowerModuleName = `${name.slice(0, 1).toLowerCase()}${name.slice(1)}`;
     const upperModuleName = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;
 

@@ -3,8 +3,8 @@ import makeDependentProvider from './dependent';
 import makeProvider from './independent';
 
 export default async function createProvider(
-  providerName: string,
-  fatherData: { [key: string]: string },
+  providerName: string | undefined,
+  fatherData: { [key: string]: string } | undefined,
 ): Promise<void> {
   if (providerName && fatherData) {
     makeDependentProvider(providerName, fatherData);
