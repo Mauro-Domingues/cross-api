@@ -1,17 +1,17 @@
-import createMailConfig from '@templates/providers/config/mailConfig';
-import createIMailDTO from '@templates/providers/dtos/IMailDTO';
-import createIMailTemplateDTO from '@templates/providers/dtos/IParseMailTemplateDTO';
-import createFakeMail from '@templates/providers/fakes/fakeMail';
-import createFakeMailTemplate from '@templates/providers/fakes/fakeMailTemplate';
-import createEtherealMail from '@templates/providers/implementations/EtherealMail';
-import createMailTemplate from '@templates/providers/implementations/MailTemplate';
-import createSESMail from '@templates/providers/implementations/SESMail';
-import createMailIndex from '@templates/providers/mailIndex';
-import createMailTemplateIndex from '@templates/providers/mailTemplateIndex';
-import createIMail from '@templates/providers/models/IMail';
-import createIMailTemplate from '@templates/providers/models/IMailTemplate';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createMailConfig from '../../../templates/providers/config/mailConfig';
+import createIMailDTO from '../../../templates/providers/dtos/IMailDTO';
+import createIMailTemplateDTO from '../../../templates/providers/dtos/IParseMailTemplateDTO';
+import createFakeMail from '../../../templates/providers/fakes/fakeMail';
+import createFakeMailTemplate from '../../../templates/providers/fakes/fakeMailTemplate';
+import createEtherealMail from '../../../templates/providers/implementations/EtherealMail';
+import createMailTemplate from '../../../templates/providers/implementations/MailTemplate';
+import createSESMail from '../../../templates/providers/implementations/SESMail';
+import createMailIndex from '../../../templates/providers/mailIndex';
+import createMailTemplateIndex from '../../../templates/providers/mailTemplateIndex';
+import createIMail from '../../../templates/providers/models/IMail';
+import createIMailTemplate from '../../../templates/providers/models/IMailTemplate';
+import messages from '../../messages';
 
 export default async function makeMailProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

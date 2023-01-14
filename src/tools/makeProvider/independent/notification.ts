@@ -1,11 +1,11 @@
-import createNotificationConfig from '@templates/providers/config/notificationConfig';
-import createINotificationDTO from '@templates/providers/dtos/INotificationDTO';
-import createFakeNotification from '@templates/providers/fakes/fakeNotification';
-import createOneSignalNotification from '@templates/providers/implementations/OneSignalNotification';
-import createINotification from '@templates/providers/models/INotification';
-import createNotificationIndex from '@templates/providers/notificationIndex';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createNotificationConfig from '../../../templates/providers/config/notificationConfig';
+import createINotificationDTO from '../../../templates/providers/dtos/INotificationDTO';
+import createFakeNotification from '../../../templates/providers/fakes/fakeNotification';
+import createOneSignalNotification from '../../../templates/providers/implementations/OneSignalNotification';
+import createINotification from '../../../templates/providers/models/INotification';
+import createNotificationIndex from '../../../templates/providers/notificationIndex';
+import messages from '../../messages';
 
 export default async function makeNotificationProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

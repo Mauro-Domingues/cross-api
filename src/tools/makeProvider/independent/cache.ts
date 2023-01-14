@@ -1,10 +1,10 @@
-import createCacheIndex from '@templates/providers/cacheIndex';
-import createCacheConfig from '@templates/providers/config/cacheConfig';
-import createFakeRedis from '@templates/providers/fakes/fakeCache';
-import createRedisCache from '@templates/providers/implementations/RedisCache';
-import createICache from '@templates/providers/models/ICache';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createCacheIndex from '../../../templates/providers/cacheIndex';
+import createCacheConfig from '../../../templates/providers/config/cacheConfig';
+import createFakeRedis from '../../../templates/providers/fakes/fakeCache';
+import createRedisCache from '../../../templates/providers/implementations/RedisCache';
+import createICache from '../../../templates/providers/models/ICache';
+import messages from '../../messages';
 
 export default async function makeCacheProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

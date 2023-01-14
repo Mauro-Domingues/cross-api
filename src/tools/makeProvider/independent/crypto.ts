@@ -1,11 +1,11 @@
-import createCryptoConfig from '@templates/providers/config/cryptoConfig';
-import createCryptoIndex from '@templates/providers/cryptoIndex';
-import createICryptoDTO from '@templates/providers/dtos/ICryptoDTO';
-import createFakeCrypto from '@templates/providers/fakes/fakeCrypto';
-import createCrypto from '@templates/providers/implementations/Crypto';
-import createICrypto from '@templates/providers/models/ICrypto';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createCryptoConfig from '../../../templates/providers/config/cryptoConfig';
+import createCryptoIndex from '../../../templates/providers/cryptoIndex';
+import createICryptoDTO from '../../../templates/providers/dtos/ICryptoDTO';
+import createFakeCrypto from '../../../templates/providers/fakes/fakeCrypto';
+import createCrypto from '../../../templates/providers/implementations/Crypto';
+import createICrypto from '../../../templates/providers/models/ICrypto';
+import messages from '../../messages';
 
 export default async function makeCryptoProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

@@ -1,10 +1,10 @@
-import createHashConfig from '@templates/providers/config/hashConfig';
-import createFakeHash from '@templates/providers/fakes/fakeHash';
-import createHashIndex from '@templates/providers/hashIndex';
-import createHash from '@templates/providers/implementations/BCrypt';
-import createIHash from '@templates/providers/models/IHash';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createHashConfig from '../../../templates/providers/config/hashConfig';
+import createFakeHash from '../../../templates/providers/fakes/fakeHash';
+import createHashIndex from '../../../templates/providers/hashIndex';
+import createHash from '../../../templates/providers/implementations/BCrypt';
+import createIHash from '../../../templates/providers/models/IHash';
+import messages from '../../messages';
 
 export default async function makeHashProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

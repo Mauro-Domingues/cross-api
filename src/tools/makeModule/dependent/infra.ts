@@ -1,15 +1,15 @@
-import createContainer from '@templates/index/container';
-import createRoutes from '@templates/index/routes';
-import createModuleDTO from '@templates/modules/dtos/moduleDTO';
-import createEntity from '@templates/modules/entities/entity';
-import createDependentInjection from '@templates/modules/inject/dependentInjection';
-import createDependentRepository from '@templates/modules/repositories/dependentRepository';
-import createDependentFakeRepository from '@templates/modules/repositories/fakes/fakeDependentRepository';
-import createIDependentRepository from '@templates/modules/repositories/IDependentRepository';
-import createDependentRoute from '@templates/modules/routes/dependentRoutes';
-import createFullDependentRoute from '@templates/modules/routes/fullDependentRoutes';
-import createIndexDependentRoute from '@templates/modules/routes/indexDependentRouter';
 import fs from 'fs';
+import createContainer from '../../../templates/index/container';
+import createRoutes from '../../../templates/index/routes';
+import createModuleDTO from '../../../templates/modules/dtos/moduleDTO';
+import createEntity from '../../../templates/modules/entities/entity';
+import createDependentInjection from '../../../templates/modules/inject/dependentInjection';
+import createDependentRepository from '../../../templates/modules/repositories/dependentRepository';
+import createDependentFakeRepository from '../../../templates/modules/repositories/fakes/fakeDependentRepository';
+import createIDependentRepository from '../../../templates/modules/repositories/IDependentRepository';
+import createDependentRoute from '../../../templates/modules/routes/dependentRoutes';
+import createFullDependentRoute from '../../../templates/modules/routes/fullDependentRoutes';
+import createIndexDependentRoute from '../../../templates/modules/routes/indexDependentRouter';
 
 export default async function makeDependentInfra(
   moduleData: { [key: string]: string },

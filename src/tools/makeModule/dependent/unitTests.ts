@@ -1,14 +1,14 @@
-import createSpecDependentController from '@templates/modules/services/createDependent/createControllerSpec';
-import createSpecDependentService from '@templates/modules/services/createDependent/createServiceSpec';
-import deleteSpecDependentController from '@templates/modules/services/deleteDependent/deleteControllerSpec';
-import deleteSpecDependentService from '@templates/modules/services/deleteDependent/deleteServiceSpec';
-import listSpecDependentController from '@templates/modules/services/listDependent/listControllerSpec';
-import listSpecDependentService from '@templates/modules/services/listDependent/listServiceSpec';
-import showSpecDependentController from '@templates/modules/services/showDependent/showControllerSpec';
-import showSpecDependentService from '@templates/modules/services/showDependent/showServiceSpec';
-import updateSpecDependentController from '@templates/modules/services/updateDependent/updateControllerSpec';
-import updateSpecDependentService from '@templates/modules/services/updateDependent/updateServiceSpec';
 import fs from 'fs';
+import createSpecDependentController from '../../../templates/modules/services/createDependent/createControllerSpec';
+import createSpecDependentService from '../../../templates/modules/services/createDependent/createServiceSpec';
+import deleteSpecDependentController from '../../../templates/modules/services/deleteDependent/deleteControllerSpec';
+import deleteSpecDependentService from '../../../templates/modules/services/deleteDependent/deleteServiceSpec';
+import listSpecDependentController from '../../../templates/modules/services/listDependent/listControllerSpec';
+import listSpecDependentService from '../../../templates/modules/services/listDependent/listServiceSpec';
+import showSpecDependentController from '../../../templates/modules/services/showDependent/showControllerSpec';
+import showSpecDependentService from '../../../templates/modules/services/showDependent/showServiceSpec';
+import updateSpecDependentController from '../../../templates/modules/services/updateDependent/updateControllerSpec';
+import updateSpecDependentService from '../../../templates/modules/services/updateDependent/updateServiceSpec';
 
 export default async function makeDependentUnitTests(
   moduleData: { [key: string]: string },

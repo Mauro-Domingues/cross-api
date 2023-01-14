@@ -1,14 +1,14 @@
-import createTypeorm from '@templates/api/typeorm';
-import createAppError from '@templates/errors/appError';
-import createContainer from '@templates/index/container';
-import createMapAndClone from '@templates/utils/mappers/mapAndClone';
-import createMapAndInsert from '@templates/utils/mappers/mapAndInsert';
-import createMapAndPatch from '@templates/utils/mappers/mapAndPatch';
-import createMapAndPatchString from '@templates/utils/mappers/mapAndPatchString';
-import createMapAndUpdate from '@templates/utils/mappers/mapAndUpdate';
-import createMapAndUpdateString from '@templates/utils/mappers/mapAndUpdateString';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createTypeorm from '../../templates/api/typeorm';
+import createAppError from '../../templates/errors/appError';
+import createContainer from '../../templates/index/container';
+import createMapAndClone from '../../templates/utils/mappers/mapAndClone';
+import createMapAndInsert from '../../templates/utils/mappers/mapAndInsert';
+import createMapAndPatch from '../../templates/utils/mappers/mapAndPatch';
+import createMapAndPatchString from '../../templates/utils/mappers/mapAndPatchString';
+import createMapAndUpdate from '../../templates/utils/mappers/mapAndUpdate';
+import createMapAndUpdateString from '../../templates/utils/mappers/mapAndUpdateString';
+import messages from '../messages';
 
 export default async function makeFourthLayer(): Promise<void> {
   if (!fs.existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {

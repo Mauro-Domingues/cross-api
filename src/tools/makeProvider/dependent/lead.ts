@@ -1,12 +1,12 @@
-import createContainer from '@templates/index/container';
-import createLeadConfig from '@templates/providers/config/leadConfig';
-import createILeadDTO from '@templates/providers/dtos/ILeadDTO';
-import createFakeLead from '@templates/providers/fakes/fakeLead';
-import createRDStationLead from '@templates/providers/implementations/RDStationLead';
-import createLeadIndex from '@templates/providers/leadIndex';
-import createILead from '@templates/providers/models/ILead';
-import messages from '@tools/messages';
 import fs from 'fs';
+import createContainer from '../../../templates/index/container';
+import createLeadConfig from '../../../templates/providers/config/leadConfig';
+import createILeadDTO from '../../../templates/providers/dtos/ILeadDTO';
+import createFakeLead from '../../../templates/providers/fakes/fakeLead';
+import createRDStationLead from '../../../templates/providers/implementations/RDStationLead';
+import createLeadIndex from '../../../templates/providers/leadIndex';
+import createILead from '../../../templates/providers/models/ILead';
+import messages from '../../messages';
 
 export default async function makeDependentLeadProvider(fatherData: {
   [key: string]: string;

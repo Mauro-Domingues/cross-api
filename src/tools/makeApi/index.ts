@@ -1,4 +1,4 @@
-import makeProvider from '@tools/makeProvider/independent';
+import makeProvider from '../makeProvider/independent';
 import makeInfra from './infra';
 import makeFirstLayer from './srcLayer1';
 import makeSecondLayer from './srcLayer2';

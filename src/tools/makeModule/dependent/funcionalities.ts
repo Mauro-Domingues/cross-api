@@ -1,14 +1,14 @@
-import createDependentController from '@templates/modules/services/createDependent/createController';
-import createDependentService from '@templates/modules/services/createDependent/createService';
-import deleteDependentController from '@templates/modules/services/deleteDependent/deleteController';
-import deleteDependentService from '@templates/modules/services/deleteDependent/deleteService';
-import listDependentController from '@templates/modules/services/listDependent/listController';
-import listDependentService from '@templates/modules/services/listDependent/listService';
-import showDependentController from '@templates/modules/services/showDependent/showController';
-import showDependentService from '@templates/modules/services/showDependent/showService';
-import updateDependentController from '@templates/modules/services/updateDependent/updateController';
-import updateDependentService from '@templates/modules/services/updateDependent/updateService';
 import fs from 'fs';
+import createDependentController from '../../../templates/modules/services/createDependent/createController';
+import createDependentService from '../../../templates/modules/services/createDependent/createService';
+import deleteDependentController from '../../../templates/modules/services/deleteDependent/deleteController';
+import deleteDependentService from '../../../templates/modules/services/deleteDependent/deleteService';
+import listDependentController from '../../../templates/modules/services/listDependent/listController';
+import listDependentService from '../../../templates/modules/services/listDependent/listService';
+import showDependentController from '../../../templates/modules/services/showDependent/showController';
+import showDependentService from '../../../templates/modules/services/showDependent/showService';
+import updateDependentController from '../../../templates/modules/services/updateDependent/updateController';
+import updateDependentService from '../../../templates/modules/services/updateDependent/updateService';
 
 export default async function makeDependentFunctionalities(
   moduleData: { [key: string]: string },

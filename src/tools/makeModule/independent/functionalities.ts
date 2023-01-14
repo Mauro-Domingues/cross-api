@@ -1,14 +1,14 @@
-import createController from '@templates/modules/services/create/createController';
-import createService from '@templates/modules/services/create/createService';
-import deleteController from '@templates/modules/services/delete/deleteController';
-import deleteService from '@templates/modules/services/delete/deleteService';
-import listController from '@templates/modules/services/list/listController';
-import listService from '@templates/modules/services/list/listService';
-import showController from '@templates/modules/services/show/showController';
-import showService from '@templates/modules/services/show/showService';
-import updateController from '@templates/modules/services/update/updateController';
-import updateService from '@templates/modules/services/update/updateService';
 import fs from 'fs';
+import createController from '../../../templates/modules/services/create/createController';
+import createService from '../../../templates/modules/services/create/createService';
+import deleteController from '../../../templates/modules/services/delete/deleteController';
+import deleteService from '../../../templates/modules/services/delete/deleteService';
+import listController from '../../../templates/modules/services/list/listController';
+import listService from '../../../templates/modules/services/list/listService';
+import showController from '../../../templates/modules/services/show/showController';
+import showService from '../../../templates/modules/services/show/showService';
+import updateController from '../../../templates/modules/services/update/updateController';
+import updateService from '../../../templates/modules/services/update/updateService';
 
 export default async function makeFunctionalities(moduleData: {
   [key: string]: string;
