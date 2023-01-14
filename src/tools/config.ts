@@ -4,6 +4,7 @@ import shell from 'shelljs';
 
 // eslint-disable-next-line import/no-relative-packages
 import userJson from '../../../../package.json';
+import config from '../templates/assets/config';
 import enUs from '../templates/assets/en-us';
 import ptBr from '../templates/assets/pt-br';
 
@@ -15,7 +16,7 @@ class LanguageOption {
   }
 }
 
-function configJson(): void {
+export default function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newScript: any = userJson;
@@ -23,7 +24,7 @@ function configJson(): void {
   newScript.scripts = {
     ...newScript.scripts,
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
-    cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
+    cross: 'ts-node ./node_modules/cross-api/index.ts',
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
     start: 'node dist/shared/server.js',
     test: 'set NODE_ENV=test&&jest --runInBand',
@@ -133,16 +134,13 @@ function configJson(): void {
       rl.close();
       configJson();
     } else {
-      fs.truncate(
-        './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
-        error => {
-          if (error) console.log(error);
-        },
-      );
+      fs.truncate('./node_modules/cross-api/src/tools/messages.ts', error => {
+        if (error) console.log(error);
+      });
 
       if (languageOption === '0') {
         fs.appendFile(
-          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
+          './node_modules/cross-api/src/tools/messages.ts',
           enUs,
           error => {
             if (error) console.log(error);
@@ -221,7 +219,7 @@ function configJson(): void {
         console.log('');
       } else {
         fs.appendFile(
-          './node_modules/cross-oficial-api-framework/src/tools/messages.ts',
+          './node_modules/cross-api/src/tools/messages.ts',
           ptBr,
           error => {
             if (error) console.log(error);
@@ -303,6 +301,5 @@ function configJson(): void {
       rl.close();
     }
   });
+  config();
 }
-
-configJson();

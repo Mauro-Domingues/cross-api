@@ -1,14 +1,15 @@
 {
-  "name": "cross-oficial-api-framework",
+  "name": "cross-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A package which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
   "main": "index.js",
   "scripts": {
     "test": "ts-node -r tsconfig-paths/register index.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
+  "contributors": [],
   "dependencies": {
     "@types/node": "^18.11.16",
     "@types/shelljs": "^0.8.11",

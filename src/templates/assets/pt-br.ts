@@ -3,6 +3,7 @@ export default `export default {
   invalidLanguage: ' não é uma opção válida',
   answer: 'Sua resposta: ',
   created: 'criado',
+  configured: 'Já configurado',
   providerNotFound: 'provedor não encontrado',
   moduleNotFound: 'módulo não encontrado',
   apiCreated: 'estrutura da api criada',

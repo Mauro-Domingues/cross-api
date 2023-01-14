@@ -5,6 +5,7 @@ import configLanguage from './src/tools/languageConfig';
 import listProvider from './src/tools/listProvider';
 import createProvider from './src/tools/makeProvider';
 import createModule from './src/tools/makeModule';
+import configJson from './src/tools/config';
 import createApi from './src/tools/makeApi/index';
 import messages from './src/tools/messages';
 
@@ -57,6 +58,9 @@ class GetName {
 
 if (comand) {
   switch (comand) {
+    case 'config':
+      configJson();
+      break;
     case 'comands':
       board();
       break;
