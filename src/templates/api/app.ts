@@ -2,10 +2,11 @@ export default function createApp(): string {
   return `import 'dotenv/config';
 import 'reflect-metadata';
 import 'express-async-errors';
+import { DomainsManager } from 'utils/domainsManager';
 
-import uploadConfig from '@config/upload';
+// import uploadConfig from '@config/upload'; // uploadProvider
 import { errors } from 'celebrate';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 
 import AppError from '@shared/errors/AppError';
@@ -16,25 +17,35 @@ import '@shared/container';
 
 const app = express();
 
-app.use(cors());
+const corsOptions: CorsOptions = {
+  origin(origin, callback) {
+    if (origin && new DomainsManager().read().indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error(\`\${origin} not allowed by CORS\`));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.uploadsFolder));
+// app.use('/files', express.static(uploadConfig.uploadsFolder)); // uploadProvider
 app.use(routes);
 
 app.use(errors());
 
-app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-  if (err instanceof AppError) {
-    return response.status(err.statusCode).json({
+app.use((error: Error, request: Request, response: Response, _: NextFunction) => {
+  if (error instanceof AppError) {
+    return response.status(error.statusCode).json({
       status: 'error',
-      message: err.message,
+      message: error.message,
     });
   }
 
   if (process.env.NODE_ENV !== 'production') {
     return response.status(500).json({
-      status: 'error',
-      message: err.message,
+      status: error.name,
+      message: error.message,
     });
   }
 

@@ -2,6 +2,7 @@ import fs from 'fs';
 import createExpressNamespace from '../../templates/@types/expressNamespace';
 import createApp from '../../templates/api/app';
 import createServer from '../../templates/api/server';
+import createDomains from '../../templates/assets/domains';
 import createICacheDTO from '../../templates/dtos/ICacheDTO';
 import createIListDTO from '../../templates/dtos/IListDTO';
 import createIObjectDTO from '../../templates/dtos/IObjectDTO';
@@ -9,6 +10,7 @@ import createIResponseDTO from '../../templates/dtos/IResponseDTO';
 import createRoutes from '../../templates/index/routes';
 import createRateLimiter from '../../templates/middlewares/rateLimiter';
 import createDecimaAdjust from '../../templates/utils/decimalAdjust';
+import createDomainsManager from '../../templates/utils/domains';
 import messages from '../messages';
 
 export default async function makeThirdLayer(): Promise<void> {
@@ -35,6 +37,23 @@ export default async function makeThirdLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- express.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/assets/domains.txt')) {
+    fs.appendFile('src/assets/domains.txt', createDomains(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/assets/domains.txt', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/assets/domains.txt', createDomains(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- domains.txt ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {
@@ -195,7 +214,32 @@ export default async function makeThirdLayer(): Promise<void> {
   }
   console.log(
     '\x1b[38;2;255;255;0m',
-    `- decimaAdjust.ts ${messages.created}`,
+    `- decimalAdjust.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/utils/domainsManager.ts')) {
+    fs.appendFile(
+      'src/utils/domainsManager.ts',
+      createDomainsManager(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/utils/domainsManager.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/utils/domainsManager.ts',
+      createDomainsManager(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- domainsManager.ts ${messages.created}`,
     '\x1b[0m',
   );
 }
