@@ -35,25 +35,27 @@ app.use(routes);
 
 app.use(errors());
 
-app.use((error: Error, request: Request, response: Response, _: NextFunction) => {
-  if (error instanceof AppError) {
-    return response.status(error.statusCode).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
+app.use(
+  (error: Error, request: Request, response: Response, next: NextFunction) => {
+    if (error instanceof AppError) {
+      return response.status(error.statusCode).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
 
-  if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
+      return response.status(500).json({
+        status: error.name,
+        message: error.message,
+      });
+    }
+
     return response.status(500).json({
-      status: error.name,
-      message: error.message,
+      status: 'error',
+      message: 'Internal server error',
     });
-  }
-
-  return response.status(500).json({
-    status: 'error',
-    message: 'Internal server error',
-  });
+  },
 });
 
 export default app;
