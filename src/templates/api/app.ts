@@ -56,7 +56,7 @@ app.use(
       message: 'Internal server error',
     });
   },
-});
+);
 
 export default app;
 `;
