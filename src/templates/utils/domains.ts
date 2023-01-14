@@ -14,7 +14,7 @@ class DomainsManager {
     }
 
     const domains = fs.readFileSync(path, 'utf-8');
-    const ArrayOfDomain = domains.split('\n');
+    const ArrayOfDomain = domains.split('\\${'n'}');
     const checkIfDomainExists = ArrayOfDomain.find(x => x === file);
 
     if (!checkIfDomainExists) {
