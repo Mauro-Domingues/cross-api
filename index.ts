@@ -84,12 +84,12 @@ if (comand) {
       break;
     case 'migration:generate':
       shell.exec(
-        'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
+        'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
       );
       break;
     case 'migration:run':
       shell.exec(
-        'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dataSource.ts migration:run',
+        'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
       );
       break;
     default:

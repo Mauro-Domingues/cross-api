@@ -2,6 +2,7 @@ import fs from 'fs';
 import createTypeorm from '../../templates/api/typeorm';
 import createAppError from '../../templates/errors/appError';
 import createContainer from '../../templates/index/container';
+import createDataSource from '../../templates/root/dataSource';
 import createMapAndClone from '../../templates/utils/mappers/mapAndClone';
 import createMapAndInsert from '../../templates/utils/mappers/mapAndInsert';
 import createMapAndPatch from '../../templates/utils/mappers/mapAndPatch';
@@ -210,6 +211,31 @@ export default async function makeFourthLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- typeorm/index.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/shared/typeorm/dataSource.ts')) {
+    fs.appendFile(
+      'src/shared/typeorm/dataSource.ts',
+      createDataSource(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/shared/typeorm/dataSource.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/shared/typeorm/dataSource.ts',
+      createDataSource(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- dataSource.ts ${messages.created}`,
     '\x1b[0m',
   );
 }

@@ -1,7 +1,7 @@
 export default function createTypeorm(): string {
   return `import { DataSource } from 'typeorm';
 
-import { AppDataSource } from '../../../dataSource';
+import { AppDataSource } from './dataSource';
 
 export default async (): Promise<DataSource> => {
   return AppDataSource.initialize();

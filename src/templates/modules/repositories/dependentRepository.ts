@@ -11,7 +11,7 @@ import { Repository } from 'typeorm';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import IObjectDTO from '@dtos/IObjectDTO';
-import { AppDataSource } from '../../../../dataSource';
+import { AppDataSource } from '@shared/typeorm/dataSource';
 
 export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ormRepository: Repository<${upperModuleName}>;

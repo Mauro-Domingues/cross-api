@@ -1,6 +1,5 @@
 import fs from 'fs';
 import createBabelConfig from '../../templates/root/babelConfig';
-import createDataSource from '../../templates/root/dataSource';
 import createDockerCompose from '../../templates/root/dockerCompose';
 import createEditorConfig from '../../templates/root/editorConfig';
 import createEnv from '../../templates/root/env';
@@ -127,23 +126,6 @@ export default async function makeFirstLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- babel.config.js ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('dataSource.ts')) {
-    fs.appendFile('dataSource.ts', createDataSource(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('dataSource.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('dataSource.ts', createDataSource(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- dataSource.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('docker-compose.yml')) {

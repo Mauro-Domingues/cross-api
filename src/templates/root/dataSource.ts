@@ -13,9 +13,9 @@ export const AppDataSource = new DataSource({
     process.env.NODE_ENV === 'test' ? 'database_test' : process.env.DB_DATABASE,
   // synchronize: true,
   // logging: true,
-  entities: [\`\${__dirname}/src/modules/**/entities/*.{ts, js}\`],
+  entities: [\`\${__dirname}/../../modules/**/entities/*.{js,ts}\`],
   // subscribers: [],
-  migrations: [\`\${__dirname}/src/shared/typeorm/migrations/*.{ts, js}\`],
+  migrations: [\`\${__dirname}/migrations/*.{js,ts}\`],
 });
 `;
 }

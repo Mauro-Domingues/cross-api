@@ -1,7 +1,5 @@
 export default function createApp(): string {
-  return `import 'dotenv/config';
-import 'reflect-metadata';
-import 'express-async-errors';
+  return `import 'express-async-errors';
 import DomainsManager from 'utils/domainsManager';
 
 // import uploadConfig from '@config/upload'; // uploadProvider
@@ -21,9 +19,10 @@ const corsOptions: CorsOptions = {
   origin(origin, callback) {
     if (origin && new DomainsManager().read().indexOf(origin) !== -1) {
       callback(null, true);
-    } else if (process.env.NODE_ENV === 'test') {
-      callback(null, true);
-    } else {
+    } else if (
+      process.env.NODE_ENV === 'test' ||
+      process.env.NODE_ENV === 'development'
+    ) {
       callback(new Error(\`\${origin} not allowed by CORS\`));
     }
   },
