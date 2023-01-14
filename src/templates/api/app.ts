@@ -2,7 +2,7 @@ export default function createApp(): string {
   return `import 'dotenv/config';
 import 'reflect-metadata';
 import 'express-async-errors';
-import { DomainsManager } from 'utils/domainsManager';
+import DomainsManager from 'utils/domainsManager';
 
 // import uploadConfig from '@config/upload'; // uploadProvider
 import { errors } from 'celebrate';
