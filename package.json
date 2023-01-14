@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node index.ts",
-    "cross": "ts-node ./node_modules/cross-api-template/index.ts"
+    "test": "ts-node -r tsconfig-paths/register index.ts"
   },
   "keywords": [],
   "author": "",

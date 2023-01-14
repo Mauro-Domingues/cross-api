@@ -23,9 +23,10 @@ function configJson(): void {
   newScript.scripts = {
     ...newScript.scripts,
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
-    cross: 'ts-node ./node_modules/cross-oficial-api-framework/index.ts',
+    cross:
+      'ts-node -r tsconfig-paths/register ./node_modules/cross-oficial-api-framework/index.ts',
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
-    start: 'ts-node src/shared/server.ts',
+    start: 'node dist/shared/server.js',
     test: 'set NODE_ENV=test&&jest --runInBand',
   };
 
