@@ -103,7 +103,7 @@ export default async function makeDependentNotificationProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './NotificationProvider';`,
+    `\nimport './NotificationProvider';`,
     error => {
       if (error) throw error;
     },

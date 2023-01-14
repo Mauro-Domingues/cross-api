@@ -42,7 +42,7 @@ export default async function makeCacheProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './CacheProvider';`,
+    `\nimport './CacheProvider';`,
     error => {
       if (error) throw error;
     },

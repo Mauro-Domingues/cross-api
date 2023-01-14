@@ -93,7 +93,7 @@ export default async function makeDependentHashProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './HashProvider';`,
+    `\nimport './HashProvider';`,
     error => {
       if (error) throw error;
     },

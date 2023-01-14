@@ -51,7 +51,7 @@ export default async function makeMailTemplateProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './MailTemplateProvider';`,
+    `\nimport './MailTemplateProvider';`,
     error => {
       if (error) throw error;
     },

@@ -40,7 +40,7 @@ export default async function makeHashProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './HashProvider';`,
+    `\nimport './HashProvider';`,
     error => {
       if (error) throw error;
     },

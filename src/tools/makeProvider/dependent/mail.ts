@@ -109,7 +109,7 @@ export default async function makeDependentMailProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './MailTemplateProvider';`,
+    `\nimport './MailTemplateProvider';`,
     error => {
       if (error) throw error;
     },
@@ -320,7 +320,7 @@ export default async function makeDependentMailProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './MailProvider';`,
+    `\nimport './MailProvider';`,
     error => {
       if (error) throw error;
     },

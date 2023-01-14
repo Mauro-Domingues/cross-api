@@ -43,7 +43,7 @@ export default async function makeStorageProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './StorageProvider';`,
+    `\nimport './StorageProvider';`,
     error => {
       if (error) throw error;
     },

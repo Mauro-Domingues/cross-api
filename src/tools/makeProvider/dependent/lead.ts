@@ -103,7 +103,7 @@ export default async function makeDependentLeadProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './LeadProvider';`,
+    `\nimport './LeadProvider';`,
     error => {
       if (error) throw error;
     },

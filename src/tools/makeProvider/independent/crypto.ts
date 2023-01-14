@@ -46,7 +46,7 @@ export default async function makeCryptoProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './CryptoProvider';`,
+    `\nimport './CryptoProvider';`,
     error => {
       if (error) throw error;
     },

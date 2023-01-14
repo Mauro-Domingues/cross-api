@@ -93,7 +93,7 @@ export default async function makeDependentCacheProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './CacheProvider';`,
+    `\nimport './CacheProvider';`,
     error => {
       if (error) throw error;
     },

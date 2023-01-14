@@ -44,7 +44,7 @@ export default async function makeLeadProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './LeadProvider';`,
+    `\nimport './LeadProvider';`,
     error => {
       if (error) throw error;
     },

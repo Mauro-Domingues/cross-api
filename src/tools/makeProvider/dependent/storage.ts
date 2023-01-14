@@ -94,7 +94,7 @@ export default async function makeDependentStorageProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './StorageProvider';`,
+    `\nimport './StorageProvider';`,
     error => {
       if (error) throw error;
     },

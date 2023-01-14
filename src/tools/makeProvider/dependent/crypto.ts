@@ -103,7 +103,7 @@ export default async function makeDependentCryptoProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './CryptoProvider';`,
+    `\nimport './CryptoProvider';`,
     error => {
       if (error) throw error;
     },

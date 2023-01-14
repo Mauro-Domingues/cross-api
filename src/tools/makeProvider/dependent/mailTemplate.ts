@@ -102,7 +102,7 @@ export default async function makeDependentMailTemplateProvider(fatherData: {
   );
   fs.appendFile(
     `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
-    `import './MailTemplateProvider';`,
+    `\nimport './MailTemplateProvider';`,
     error => {
       if (error) throw error;
     },

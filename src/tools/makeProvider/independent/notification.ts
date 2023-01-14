@@ -52,7 +52,7 @@ export default async function makeNotificationProvider(): Promise<void> {
   }
   fs.appendFile(
     'src/shared/container/providers/index.ts',
-    `import './NotificationProvider';`,
+    `\nimport './NotificationProvider';`,
     error => {
       if (error) throw error;
     },
