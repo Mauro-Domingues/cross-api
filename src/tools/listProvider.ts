@@ -1,4 +1,4 @@
-function renderEmptyLine() {
+function renderEmptyLine(): void {
   console.log(
     '\x1b[1m',
     '\x1b[38;2;0;155;255m',

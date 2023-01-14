@@ -1,4 +1,4 @@
-export default function createInjection(
+export default function createDependentInjection(
   pluralUpperModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {

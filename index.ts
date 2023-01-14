@@ -3,11 +3,9 @@ import shell from 'shelljs';
 import board from './src/tools/board';
 import configLanguage from './src/tools/languageConfig';
 import listProvider from './src/tools/listProvider';
-import makeApi from './src/tools/makeAPi';
-import makeDependentModule from './src/tools/makeDependentModule';
-import makeDependentProvider from './src/tools/makeDependentProvider';
-import makeIndependentModule from './src/tools/makeIndependentModule';
-import makeProvider from './src/tools/makeProvider';
+import createProvider from './src/tools/makeProvider';
+import createModule from './src/tools/makeModule';
+import createApi from './src/tools/makeApi/index';
 import messages from './src/tools/messages';
 
 const [comand] = process.argv.slice(2);
@@ -63,24 +61,16 @@ if (comand) {
       listProvider();
       break;
     case 'make:api':
-      makeApi();
+      createApi();
       break;
     case 'make:module':
-      if (father) {
-        makeDependentModule(
-          new GetName().getModuleName(arg),
-          new GetName().getModuleName(father),
-        );
-      } else {
-        makeIndependentModule(new GetName().getModuleName(arg));
-      }
+      createModule(
+        new GetName().getModuleName(arg),
+        new GetName().getModuleName(father),
+      );
       break;
     case 'make:provider':
-      if (father) {
-        makeDependentProvider(arg, new GetName().getModuleName(father));
-      } else {
-        makeProvider(arg);
-      }
+      createProvider(arg, new GetName().getModuleName(father));
       break;
     case 'migration:generate':
       shell.exec(
