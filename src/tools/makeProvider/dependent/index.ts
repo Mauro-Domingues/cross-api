@@ -5,6 +5,7 @@ import makeDependentHashProvider from './hash';
 import makeDependentLeadProvider from './lead';
 import makeDependentMailProvider from './mail';
 import makeDependentMailTemplateProvider from './mailTemplate';
+import makeDependentNotificationProvider from './notification';
 import makeDependentStorageProvider from './storage';
 
 export default async function makeDependentProvider(
@@ -25,7 +26,7 @@ export default async function makeDependentProvider(
       makeDependentMailProvider(fatherData);
       break;
     case 'notification':
-      makeDependentMailProvider(fatherData);
+      makeDependentNotificationProvider(fatherData);
       break;
     case 'lead':
       makeDependentLeadProvider(fatherData);
