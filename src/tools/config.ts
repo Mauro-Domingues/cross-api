@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
@@ -162,7 +163,7 @@ export default function configJson(): void {
         );
         console.log('');
         shell.exec('npm install yarn --location=global');
-        console.log('\x1b[38;2;255;255;0m', `- yarn installed ✅`, '\x1b[0m');
+        console.log('\x1b[38;2;255;255;0m', `- yarn installed`, '\x1b[0m');
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
@@ -170,11 +171,15 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
+        const dependenciesToInstall = dependencies.reduce((acc, dependency) => {
+          acc += ` ${dependency}`;
+          return acc;
+        });
+        shell.exec(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
-          shell.exec(`npm install ${dependency}`);
           console.log(
             '\x1b[38;2;255;255;0m',
-            `- ${dependency} installed ✅`,
+            `- ${dependency} installed`,
             '\x1b[0m',
           );
         });
@@ -186,11 +191,17 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
+        const devDependenciesToInstall = devDependencies.reduce(
+          (acc, devDependency) => {
+            acc += ` ${devDependency}`;
+            return acc;
+          },
+        );
+        shell.exec(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
-          shell.exec(`npm install ${devDependency} -D`);
           console.log(
             '\x1b[38;2;255;255;0m',
-            `- ${devDependency} installed ✅`,
+            `- ${devDependency} installed`,
             '\x1b[0m',
           );
         });
@@ -241,7 +252,7 @@ export default function configJson(): void {
         );
         console.log('');
         shell.exec('npm install yarn --location=global');
-        console.log('\x1b[38;2;255;255;0m', `- yarn instalado ✅`, '\x1b[0m');
+        console.log('\x1b[38;2;255;255;0m', `- yarn instalado`, '\x1b[0m');
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
@@ -249,11 +260,15 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
+        const dependenciesToInstall = dependencies.reduce((acc, dependency) => {
+          acc += ` ${dependency}`;
+          return acc;
+        });
+        shell.exec(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
-          shell.exec(`npm install ${dependency}`);
           console.log(
             '\x1b[38;2;255;255;0m',
-            `- ${dependency} instalado ✅`,
+            `- ${dependency} instalado`,
             '\x1b[0m',
           );
         });
@@ -265,11 +280,17 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
+        const devDependenciesToInstall = dependencies.reduce(
+          (acc, devDependency) => {
+            acc += ` ${devDependency}`;
+            return acc;
+          },
+        );
+        shell.exec(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
-          shell.exec(`npm install ${devDependency} -D`);
           console.log(
             '\x1b[38;2;255;255;0m',
-            `- ${devDependency} instalado ✅`,
+            `- ${devDependency} instalado`,
             '\x1b[0m',
           );
         });
