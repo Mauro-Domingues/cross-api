@@ -24,6 +24,9 @@ async function makeDependentCryptoProvider(fatherData) {
   if (!_fs.default.existsSync('src/modules')) {
     _fs.default.mkdirSync('src/modules');
   }
+  if (!_fs.default.existsSync('src/shared')) {
+    _fs.default.mkdirSync('src/shared');
+  }
   if (!_fs.default.existsSync('src/shared/container')) {
     _fs.default.mkdirSync('src/shared/container');
   }
