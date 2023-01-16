@@ -204,7 +204,7 @@ export default function configJson(): void {
             '\x1b[0m',
           );
         });
-        console.clear();
+        console.log('');
         console.log(
           '\x1b[1m',
           '\x1b[38;2;0;155;255m',
