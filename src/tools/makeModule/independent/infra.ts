@@ -1,14 +1,14 @@
 import fs from 'fs';
-import createContainer from '../../../templates/index/container';
-import createRoutes from '../../../templates/index/routes';
-import createModuleDTO from '../../../templates/modules/dtos/moduleDTO';
-import createEntity from '../../../templates/modules/entities/entity';
-import createInjection from '../../../templates/modules/inject/injection';
-import createFakeRepository from '../../../templates/modules/repositories/fakes/fakeRepository';
-import createIRepository from '../../../templates/modules/repositories/IRepository';
-import createRepository from '../../../templates/modules/repositories/repository';
-import createIndependentRoute from '../../../templates/modules/routes/independentRoutes';
-import createIndexRoute from '../../../templates/modules/routes/indexRouter';
+import createContainer from '@templates/index/container';
+import createRoutes from '@templates/index/routes';
+import createModuleDTO from '@templates/modules/dtos/moduleDTO';
+import createEntity from '@templates/modules/entities/entity';
+import createInjection from '@templates/modules/inject/injection';
+import createFakeRepository from '@templates/modules/repositories/fakes/fakeRepository';
+import createIRepository from '@templates/modules/repositories/IRepository';
+import createRepository from '@templates/modules/repositories/repository';
+import createIndependentRoute from '@templates/modules/routes/independentRoutes';
+import createIndexRoute from '@templates/modules/routes/indexRouter';
 
 export default async function makeInfra(moduleData: {
   [key: string]: string;

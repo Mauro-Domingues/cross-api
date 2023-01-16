@@ -3,11 +3,11 @@ import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
 
-// eslint-disable-next-line import/no-relative-packages
+// eslint-disable-next-line import/no-relative-packages, import/order
 import userJson from '../../../../package.json';
-import config from '../templates/assets/config';
-import enUs from '../templates/assets/en-us';
-import ptBr from '../templates/assets/pt-br';
+import config from '@templates/assets/config';
+import enUs from '@templates/assets/en-us';
+import ptBr from '@templates/assets/pt-br';
 
 class LanguageOption {
   Language;
@@ -24,11 +24,10 @@ export default function configJson(): void {
 
   newScript.scripts = {
     ...newScript.scripts,
-    build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
-    cross: 'ts-node ./node_modules/cross-api/index.ts',
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
-    start: 'node dist/shared/server.js',
     test: 'set NODE_ENV=test&&jest --runInBand',
+    build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
+    start: 'node dist/shared/server.js',
   };
 
   fs.writeFileSync('./package.json', JSON.stringify(newScript), {
@@ -135,13 +134,13 @@ export default function configJson(): void {
       rl.close();
       configJson();
     } else {
-      fs.truncate('./node_modules/cross-api/src/tools/messages.ts', error => {
+      fs.truncate('./node_modules/cross-api/dist/tools/messages.ts', error => {
         if (error) console.log(error);
       });
 
       if (languageOption === '0') {
         fs.appendFile(
-          './node_modules/cross-api/src/tools/messages.ts',
+          './node_modules/cross-api/dist/tools/messages.ts',
           enUs,
           error => {
             if (error) console.log(error);
@@ -230,7 +229,7 @@ export default function configJson(): void {
         console.log('');
       } else {
         fs.appendFile(
-          './node_modules/cross-api/src/tools/messages.ts',
+          './node_modules/cross-api/dist/tools/messages.ts',
           ptBr,
           error => {
             if (error) console.log(error);

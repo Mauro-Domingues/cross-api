@@ -3,3 +3,4 @@
 /prettier.config.js
 /.editorconfig
 /node_modules
+/babel.config.js

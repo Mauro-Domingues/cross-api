@@ -1,5 +1,5 @@
 import fs from 'fs';
-import createAuthConfig from '../../templates/providers/config/authConfig';
+import createAuthConfig from '@templates/providers/config/authConfig';
 
 export default async function makeTemporary(): Promise<void> {
   if (!fs.existsSync('src/config/auth.ts')) {

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 import shell from 'shelljs';
-import board from '../src/tools/board';
-import configJson from '../src/tools/config';
-import configLanguage from '../src/tools/languageConfig';
-import listProvider from '../src/tools/listProvider';
-import createApi from '../src/tools/makeApi';
-import createModule from '../src/tools/makeModule';
-import createProvider from '../src/tools/makeProvider';
-import messages from '../src/tools/messages';
+import board from '@tools/board';
+import configJson from '@tools/config';
+import configLanguage from '@tools/languageConfig';
+import listProvider from '@tools/listProvider';
+import createApi from '@tools/makeApi';
+import createModule from '@tools/makeModule';
+import createProvider from '@tools/makeProvider';
+import messages from '@tools/messages';
 
 const [comand] = process.argv.slice(2);
 const [arg] = process.argv.slice(3);
@@ -17,7 +17,7 @@ const [father] = process.argv.slice(4);
 class GetName {
   getModuleName(name: string):
     | {
-        [key: string]: string,
+        [key: string]: string;
       }
     | undefined {
     if (!name) {

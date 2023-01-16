@@ -1,18 +1,18 @@
 import fs from 'fs';
-import createContainer from '../../../templates/index/container';
-import createMailConfig from '../../../templates/providers/config/mailConfig';
-import createIMailDTO from '../../../templates/providers/dtos/IMailDTO';
-import createIMailTemplateDTO from '../../../templates/providers/dtos/IParseMailTemplateDTO';
-import createFakeMail from '../../../templates/providers/fakes/fakeMail';
-import createFakeMailTemplate from '../../../templates/providers/fakes/fakeMailTemplate';
-import createDependentEtherealMail from '../../../templates/providers/implementations/dependentEtherealMail';
-import createDependentSESMail from '../../../templates/providers/implementations/dependentSESMail';
-import createMailTemplate from '../../../templates/providers/implementations/MailTemplate';
-import createMailIndex from '../../../templates/providers/mailIndex';
-import createMailTemplateIndex from '../../../templates/providers/mailTemplateIndex';
-import createIMail from '../../../templates/providers/models/IMail';
-import createIMailTemplate from '../../../templates/providers/models/IMailTemplate';
-import messages from '../../messages';
+import createContainer from '@templates/index/container';
+import createMailConfig from '@templates/providers/config/mailConfig';
+import createIMailDTO from '@templates/providers/dtos/IMailDTO';
+import createIMailTemplateDTO from '@templates/providers/dtos/IParseMailTemplateDTO';
+import createFakeMail from '@templates/providers/fakes/fakeMail';
+import createFakeMailTemplate from '@templates/providers/fakes/fakeMailTemplate';
+import createDependentEtherealMail from '@templates/providers/implementations/dependentEtherealMail';
+import createDependentSESMail from '@templates/providers/implementations/dependentSESMail';
+import createMailTemplate from '@templates/providers/implementations/MailTemplate';
+import createMailIndex from '@templates/providers/mailIndex';
+import createMailTemplateIndex from '@templates/providers/mailTemplateIndex';
+import createIMail from '@templates/providers/models/IMail';
+import createIMailTemplate from '@templates/providers/models/IMailTemplate';
+import messages from '@tools/messages';
 
 export default async function makeDependentMailProvider(fatherData: {
   [key: string]: string;

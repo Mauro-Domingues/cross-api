@@ -1,4 +1,4 @@
-import messages from '../messages';
+import messages from '@tools/messages';
 import makeDependentProvider from './dependent';
 import makeProvider from './independent';
 

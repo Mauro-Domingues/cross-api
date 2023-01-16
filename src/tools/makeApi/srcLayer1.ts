@@ -1,16 +1,16 @@
+import createBabelConfig from '@templates/root/babelConfig';
+import createDockerCompose from '@templates/root/dockerCompose';
+import createEditorConfig from '@templates/root/editorConfig';
+import createEnv from '@templates/root/env';
+import createEsLintIgnore from '@templates/root/esLintIgnore';
+import createEsLintrcJson from '@templates/root/esLintrcJson';
+import createGitIgnore from '@templates/root/gitIgnore';
+import createJestConfig from '@templates/root/jestConfig';
+import createNodemonJson from '@templates/root/nodemonJson';
+import createPrettierConfig from '@templates/root/prettierConfig';
+import createTsConfig from '@templates/root/tsConfig';
+import messages from '@tools/messages';
 import fs from 'fs';
-import createBabelConfig from '../../templates/root/babelConfig';
-import createDockerCompose from '../../templates/root/dockerCompose';
-import createEditorConfig from '../../templates/root/editorConfig';
-import createEnv from '../../templates/root/env';
-import createEsLintIgnore from '../../templates/root/esLintIgnore';
-import createEsLintrcJson from '../../templates/root/esLintrcJson';
-import createGitIgnore from '../../templates/root/gitIgnore';
-import createJestConfig from '../../templates/root/jestConfig';
-import createNodemonJson from '../../templates/root/nodemonJson';
-import createPrettierConfig from '../../templates/root/prettierConfig';
-import createTsConfig from '../../templates/root/tsConfig';
-import messages from '../messages';
 
 export default async function makeFirstLayer(): Promise<void> {
   if (!fs.existsSync('.editorconfig')) {

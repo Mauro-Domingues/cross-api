@@ -1,8 +1,8 @@
+import messages from '@tools/messages';
 import makeInfra from './infra';
 import makeFunctionalities from './functionalities';
 import makeStructure from './structure';
 import makeUnitTests from './unitTests';
-import messages from '../../messages';
 
 export default async function makeModule(moduleData: {
   [key: string]: string;

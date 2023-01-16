@@ -1,4 +1,4 @@
-import messages from '../../messages';
+import messages from '@tools/messages';
 import makeDependentFunctionalities from './funcionalities';
 import makeDependentInfra from './infra';
 import makeDependentStructure from './structure';

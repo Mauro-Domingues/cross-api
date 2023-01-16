@@ -1,11 +1,11 @@
 import fs from 'fs';
-import createUploadConfig from '../../../templates/providers/config/uploadConfig';
-import createFakeStorage from '../../../templates/providers/fakes/fakeStorage';
-import createDiskStorage from '../../../templates/providers/implementations/DiskStorage';
-import createS3Storage from '../../../templates/providers/implementations/S3Storage';
-import createIStorage from '../../../templates/providers/models/IStorage';
-import createStorageIndex from '../../../templates/providers/storageIndex';
-import messages from '../../messages';
+import createUploadConfig from '@templates/providers/config/uploadConfig';
+import createFakeStorage from '@templates/providers/fakes/fakeStorage';
+import createDiskStorage from '@templates/providers/implementations/DiskStorage';
+import createS3Storage from '@templates/providers/implementations/S3Storage';
+import createIStorage from '@templates/providers/models/IStorage';
+import createStorageIndex from '@templates/providers/storageIndex';
+import messages from '@tools/messages';
 
 export default async function makeStorageProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

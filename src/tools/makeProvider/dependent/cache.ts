@@ -1,11 +1,11 @@
 import fs from 'fs';
-import createContainer from '../../../templates/index/container';
-import createCacheIndex from '../../../templates/providers/cacheIndex';
-import createCacheConfig from '../../../templates/providers/config/cacheConfig';
-import createFakeRedis from '../../../templates/providers/fakes/fakeCache';
-import createRedisCache from '../../../templates/providers/implementations/RedisCache';
-import createICache from '../../../templates/providers/models/ICache';
-import messages from '../../messages';
+import createContainer from '@templates/index/container';
+import createCacheIndex from '@templates/providers/cacheIndex';
+import createCacheConfig from '@templates/providers/config/cacheConfig';
+import createFakeRedis from '@templates/providers/fakes/fakeCache';
+import createRedisCache from '@templates/providers/implementations/RedisCache';
+import createICache from '@templates/providers/models/ICache';
+import messages from '@tools/messages';
 
 export default async function makeDependentCacheProvider(fatherData: {
   [key: string]: string;

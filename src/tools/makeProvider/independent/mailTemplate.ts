@@ -1,10 +1,10 @@
 import fs from 'fs';
-import createIMailTemplateDTO from '../../../templates/providers/dtos/IParseMailTemplateDTO';
-import createFakeMailTemplate from '../../../templates/providers/fakes/fakeMailTemplate';
-import createMailTemplate from '../../../templates/providers/implementations/MailTemplate';
-import createMailTemplateIndex from '../../../templates/providers/mailTemplateIndex';
-import createIMailTemplate from '../../../templates/providers/models/IMailTemplate';
-import messages from '../../messages';
+import createIMailTemplateDTO from '@templates/providers/dtos/IParseMailTemplateDTO';
+import createFakeMailTemplate from '@templates/providers/fakes/fakeMailTemplate';
+import createMailTemplate from '@templates/providers/implementations/MailTemplate';
+import createMailTemplateIndex from '@templates/providers/mailTemplateIndex';
+import createIMailTemplate from '@templates/providers/models/IMailTemplate';
+import messages from '@tools/messages';
 
 export default async function makeMailTemplateProvider(): Promise<void> {
   if (!fs.existsSync('src')) {

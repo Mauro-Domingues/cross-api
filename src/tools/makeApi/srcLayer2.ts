@@ -1,5 +1,5 @@
+import messages from '@tools/messages';
 import fs from 'fs';
-import messages from '../messages';
 
 export default async function makeSecondLayer(): Promise<void> {
   if (!fs.existsSync('src/swagger.json')) {

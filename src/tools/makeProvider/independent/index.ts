@@ -1,4 +1,4 @@
-import messages from '../../messages';
+import messages from '@tools/messages';
 import makeCacheProvider from './cache';
 import makeCryptoProvider from './crypto';
 import makeHashProvider from './hash';

@@ -1,8 +1,11 @@
 {
   "name": "cross-api",
-  "version": "1.1.5",
-  "description": "A package which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
-  "keywords": ["cross", "cross-api"],
+  "version": "2.0.0",
+  "description": "A CLI which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
+  "keywords": [
+    "cross",
+    "cross-api"
+  ],
   "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
   "contributors": [],
   "repository": {
@@ -14,10 +17,12 @@
   },
   "main": "index.js",
   "bin": {
-    "cross-api": "./bin/cross-api"
+    "cross-api": "./bin/index.js"
   },
   "scripts": {
-    "test": "ts-node -r tsconfig-paths/register index.ts"
+    "test": "ts-node -r tsconfig-paths/register index.ts",
+    "build:src": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+    "build:bin": "babel index --extensions \".js,.ts\" --out-dir bin --copy-files"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,8 +33,17 @@
     "typescript": "^4.9.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-decorators": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",

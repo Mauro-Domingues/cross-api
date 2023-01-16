@@ -1,14 +1,14 @@
 import fs from 'fs';
-import createSpecController from '../../../templates/modules/services/create/createControllerSpec';
-import createSpecService from '../../../templates/modules/services/create/createServiceSpec';
-import deleteSpecController from '../../../templates/modules/services/delete/deleteControllerSpec';
-import deleteSpecService from '../../../templates/modules/services/delete/deleteServiceSpec';
-import listSpecController from '../../../templates/modules/services/list/listControllerSpec';
-import listSpecService from '../../../templates/modules/services/list/listServiceSpec';
-import showSpecController from '../../../templates/modules/services/show/showControllerSpec';
-import showSpecService from '../../../templates/modules/services/show/showServiceSpec';
-import updateSpecController from '../../../templates/modules/services/update/updateControllerSpec';
-import updateSpecService from '../../../templates/modules/services/update/updateServiceSpec';
+import createSpecController from '@templates/modules/services/create/createControllerSpec';
+import createSpecService from '@templates/modules/services/create/createServiceSpec';
+import deleteSpecController from '@templates/modules/services/delete/deleteControllerSpec';
+import deleteSpecService from '@templates/modules/services/delete/deleteServiceSpec';
+import listSpecController from '@templates/modules/services/list/listControllerSpec';
+import listSpecService from '@templates/modules/services/list/listServiceSpec';
+import showSpecController from '@templates/modules/services/show/showControllerSpec';
+import showSpecService from '@templates/modules/services/show/showServiceSpec';
+import updateSpecController from '@templates/modules/services/update/updateControllerSpec';
+import updateSpecService from '@templates/modules/services/update/updateServiceSpec';
 
 export default async function makeUnitTests(moduleData: {
   [key: string]: string;

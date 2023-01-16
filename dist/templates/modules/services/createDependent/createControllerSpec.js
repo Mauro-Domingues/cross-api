@@ -1,0 +1,38 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createSpecDependentController;
+function createSpecDependentController(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralFatherLowerModuleName) {
+  return `import request from 'supertest';
+import { DataSource } from 'typeorm';
+
+import app from '@shared/app';
+import createConnection from '@shared/typeorm';
+
+let connection: DataSource;
+
+describe('Create${upperModuleName}Controller', () => {
+  beforeAll(async () => {
+    connection = await createConnection();
+    return connection.runMigrations();
+  });
+
+  afterAll(async () => {
+    await connection.dropDatabase();
+    return connection.destroy();
+  });
+
+  it('Should be able to create a new ${lowerModuleName}', async () => {
+    const response = await request(app).post('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}').send({
+      name: '${lowerModuleName}',
+      description: 'This is a ${lowerModuleName}',
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.body.data).toHaveProperty('id');
+  });
+});
+`;
+}

@@ -1,17 +1,17 @@
 import fs from 'fs';
-import createExpressNamespace from '../../templates/@types/expressNamespace';
-import createApp from '../../templates/api/app';
-import createServer from '../../templates/api/server';
-import createDomains from '../../templates/assets/domains';
-import createICacheDTO from '../../templates/dtos/ICacheDTO';
-import createIListDTO from '../../templates/dtos/IListDTO';
-import createIObjectDTO from '../../templates/dtos/IObjectDTO';
-import createIResponseDTO from '../../templates/dtos/IResponseDTO';
-import createRoutes from '../../templates/index/routes';
-import createRateLimiter from '../../templates/middlewares/rateLimiter';
-import createDecimaAdjust from '../../templates/utils/decimalAdjust';
-import createDomainsManager from '../../templates/utils/domains';
-import messages from '../messages';
+import createExpressNamespace from '@templates/@types/expressNamespace';
+import createApp from '@templates/api/app';
+import createServer from '@templates/api/server';
+import createDomains from '@templates/assets/domains';
+import createICacheDTO from '@templates/dtos/ICacheDTO';
+import createIListDTO from '@templates/dtos/IListDTO';
+import createIObjectDTO from '@templates/dtos/IObjectDTO';
+import createIResponseDTO from '@templates/dtos/IResponseDTO';
+import createRoutes from '@templates/index/routes';
+import createRateLimiter from '@templates/middlewares/rateLimiter';
+import createDecimaAdjust from '@templates/utils/decimalAdjust';
+import createDomainsManager from '@templates/utils/domains';
+import messages from '@tools/messages';
 
 export default async function makeThirdLayer(): Promise<void> {
   if (!fs.existsSync('src/@types/express.d.ts')) {
