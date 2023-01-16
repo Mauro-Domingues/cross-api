@@ -26,6 +26,9 @@ export default async function makeDependentMailProvider(fatherData: {
   if (!fs.existsSync('src/modules')) {
     fs.mkdirSync('src/modules');
   }
+  if (!fs.existsSync('src/shared')) {
+    fs.mkdirSync('src/shared');
+  }
   if (!fs.existsSync('src/shared/container')) {
     fs.mkdirSync('src/shared/container');
   }
