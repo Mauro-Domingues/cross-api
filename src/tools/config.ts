@@ -28,7 +28,6 @@ export default function configJson(): void {
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js',
-    cross: 'node ./node_modules/cross-api/bin/index.js',
   };
 
   fs.writeFileSync('./package.json', JSON.stringify(newScript), {

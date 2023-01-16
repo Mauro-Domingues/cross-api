@@ -31,8 +31,7 @@ function configJson() {
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
-    start: 'node dist/shared/server.js',
-    cross: 'node ./node_modules/cross-api/bin/index.js'
+    start: 'node dist/shared/server.js'
   };
   _fs.default.writeFileSync('./package.json', JSON.stringify(newScript), {
     encoding: 'utf8',
