@@ -16,11 +16,11 @@ function configJson() {
 `;
 
 export default function config(): void {
-  fs.truncate('./node_modules/cross-api/src/tools/config.ts', error => {
+  fs.truncate('./node_modules/cross-api/dist/tools/config.js', error => {
     if (error) console.log(error);
   });
   fs.appendFile(
-    './node_modules/cross-api/src/tools/config.ts',
+    './node_modules/cross-api/dist/tools/config.js',
     configBody,
     error => {
       if (error) throw error;

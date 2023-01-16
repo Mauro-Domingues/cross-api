@@ -21,10 +21,10 @@ function configJson() {
 }
 `;
 function config() {
-  _fs.default.truncate('./node_modules/cross-api/src/tools/config.ts', error => {
+  _fs.default.truncate('./node_modules/cross-api/dist/tools/config.js', error => {
     if (error) console.log(error);
   });
-  _fs.default.appendFile('./node_modules/cross-api/src/tools/config.ts', configBody, error => {
+  _fs.default.appendFile('./node_modules/cross-api/dist/tools/config.js', configBody, error => {
     if (error) throw error;
   });
 }
