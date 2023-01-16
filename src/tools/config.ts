@@ -329,5 +329,6 @@ export default function configJson(): void {
       rl.close();
     }
   });
-  config();
 }
+
+config();

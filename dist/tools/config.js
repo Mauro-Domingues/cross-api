@@ -139,5 +139,5 @@ function configJson() {
       rl.close();
     }
   });
-  (0, _config.default)();
 }
+(0, _config.default)();
