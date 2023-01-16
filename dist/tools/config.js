@@ -89,12 +89,14 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '➤  Execute', '\x1b[38;2;255;255;0m', 'yarn cross comands', '\x1b[38;2;0;155;255m', 'to see available commands', '\x1b[0m');
         console.log('');
-        _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-          if (error) console.log(error);
-        });
-        _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _enUs.default, error => {
-          if (error) console.log(error);
-        });
+        setTimeout(() => {
+          _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+            if (error) console.log(error);
+          });
+          _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _enUs.default, error => {
+            if (error) console.log(error);
+          });
+        }, 500);
       } else {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `➤  Você escolheu a linguagem: ${languages[languageOption].Language}`, '\x1b[0m');
@@ -116,7 +118,7 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '====={ Instalando Dependências de Desenvolvimento }=====', '\x1b[0m');
         console.log('');
-        const devDependenciesToInstall = dependencies.reduce((acc, devDependency) => {
+        const devDependenciesToInstall = devDependencies.reduce((acc, devDependency) => {
           acc += ` ${devDependency}`;
           return acc;
         });
@@ -129,15 +131,19 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '➤  Execute', '\x1b[38;2;255;255;0m', 'yarn cross comands', '\x1b[38;2;0;155;255m', 'para ver os comandos disponíveis', '\x1b[0m');
         console.log('');
-        _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-          if (error) console.log(error);
-        });
-        _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _ptBr.default, error => {
-          if (error) console.log(error);
-        });
+        setTimeout(() => {
+          _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+            if (error) console.log(error);
+          });
+          _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _ptBr.default, error => {
+            if (error) console.log(error);
+          });
+        }, 500);
       }
       rl.close();
     }
   });
+  setTimeout(() => {
+    (0, _config.default)();
+  }, 500);
 }
-(0, _config.default)();

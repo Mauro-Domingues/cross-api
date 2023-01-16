@@ -216,19 +216,21 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        fs.truncate(
-          './node_modules/cross-api/dist/tools/messages.js',
-          error => {
-            if (error) console.log(error);
-          },
-        );
-        fs.appendFile(
-          './node_modules/cross-api/dist/tools/messages.js',
-          enUs,
-          error => {
-            if (error) console.log(error);
-          },
-        );
+        setTimeout(() => {
+          fs.truncate(
+            './node_modules/cross-api/dist/tools/messages.js',
+            error => {
+              if (error) console.log(error);
+            },
+          );
+          fs.appendFile(
+            './node_modules/cross-api/dist/tools/messages.js',
+            enUs,
+            error => {
+              if (error) console.log(error);
+            },
+          );
+        }, 500);
       } else {
         console.log('');
         console.log(
@@ -274,7 +276,7 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        const devDependenciesToInstall = dependencies.reduce(
+        const devDependenciesToInstall = devDependencies.reduce(
           (acc, devDependency) => {
             acc += ` ${devDependency}`;
             return acc;
@@ -311,24 +313,28 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        fs.truncate(
-          './node_modules/cross-api/dist/tools/messages.js',
-          error => {
-            if (error) console.log(error);
-          },
-        );
-        fs.appendFile(
-          './node_modules/cross-api/dist/tools/messages.js',
-          ptBr,
-          error => {
-            if (error) console.log(error);
-          },
-        );
+        setTimeout(() => {
+          fs.truncate(
+            './node_modules/cross-api/dist/tools/messages.js',
+            error => {
+              if (error) console.log(error);
+            },
+          );
+          fs.appendFile(
+            './node_modules/cross-api/dist/tools/messages.js',
+            ptBr,
+            error => {
+              if (error) console.log(error);
+            },
+          );
+        }, 500);
       }
 
       rl.close();
     }
   });
-}
 
-config();
+  setTimeout(() => {
+    config();
+  }, 500);
+}
