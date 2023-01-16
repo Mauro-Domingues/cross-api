@@ -134,18 +134,7 @@ export default function configJson(): void {
       rl.close();
       configJson();
     } else {
-      fs.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-        if (error) console.log(error);
-      });
-
       if (languageOption === '0') {
-        fs.appendFile(
-          './node_modules/cross-api/dist/tools/messages.js',
-          enUs,
-          error => {
-            if (error) console.log(error);
-          },
-        );
         console.log('');
         console.log(
           '\x1b[1m',
@@ -227,14 +216,20 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-      } else {
-        fs.appendFile(
+        fs.truncate(
           './node_modules/cross-api/dist/tools/messages.js',
-          ptBr,
           error => {
             if (error) console.log(error);
           },
         );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/messages.js',
+          enUs,
+          error => {
+            if (error) console.log(error);
+          },
+        );
+      } else {
         console.log('');
         console.log(
           '\x1b[1m',
@@ -316,6 +311,19 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
+        fs.truncate(
+          './node_modules/cross-api/dist/tools/messages.js',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/messages.js',
+          ptBr,
+          error => {
+            if (error) console.log(error);
+          },
+        );
       }
 
       rl.close();
