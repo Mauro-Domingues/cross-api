@@ -28,6 +28,7 @@ export default function configJson(): void {
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js',
+    cross: 'node ./node_modules/cross-api/bin/index.js',
   };
 
   fs.writeFileSync('./package.json', JSON.stringify(newScript), {
@@ -229,7 +230,7 @@ export default function configJson(): void {
         console.log('');
       } else {
         fs.appendFile(
-          './node_modules/cross-api/dist/tools/messages.ts',
+          './node_modules/cross-api/src/tools/messages.ts',
           ptBr,
           error => {
             if (error) console.log(error);

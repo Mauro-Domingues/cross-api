@@ -1,4 +1,4 @@
-export default `export default {
+export default `module.exports = {
   language: '➤  Which language do you prefer?',
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
