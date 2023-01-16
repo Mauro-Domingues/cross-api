@@ -127,7 +127,7 @@ function configJson() {
         devDependencies.forEach(devDependency => {
           console.log('\x1b[38;2;255;255;0m', `- ${devDependency} instalado`, '\x1b[0m');
         });
-        console.clear();
+        console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', 'Instale', '\x1b[38;2;255;0;255m', 'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig', '\x1b[38;2;0;155;255m', 'para te ajudar', '\x1b[0m');
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '➤  Execute', '\x1b[38;2;255;255;0m', 'yarn cross comands', '\x1b[38;2;0;155;255m', 'para ver os comandos disponíveis', '\x1b[0m');

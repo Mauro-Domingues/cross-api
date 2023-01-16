@@ -7,9 +7,8 @@ exports.default = createSpecDependentController;
 function createSpecDependentController(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralFatherLowerModuleName) {
   return `import request from 'supertest';
 import { DataSource } from 'typeorm';
-
-import app from '@shared/app';
 import createConnection from '@shared/typeorm';
+import app from '@shared/app';
 
 let connection: DataSource;
 
