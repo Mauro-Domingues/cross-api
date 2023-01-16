@@ -216,21 +216,19 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        setTimeout(() => {
-          fs.truncate(
-            './node_modules/cross-api/dist/tools/messages.js',
-            error => {
-              if (error) console.log(error);
-            },
-          );
-          fs.appendFile(
-            './node_modules/cross-api/dist/tools/messages.js',
-            enUs,
-            error => {
-              if (error) console.log(error);
-            },
-          );
-        }, 500);
+        fs.truncate(
+          './node_modules/cross-api/dist/tools/messages.js',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/messages.js',
+          enUs,
+          error => {
+            if (error) console.log(error);
+          },
+        );
       } else {
         console.log('');
         console.log(
@@ -313,28 +311,24 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        setTimeout(() => {
-          fs.truncate(
-            './node_modules/cross-api/dist/tools/messages.js',
-            error => {
-              if (error) console.log(error);
-            },
-          );
-          fs.appendFile(
-            './node_modules/cross-api/dist/tools/messages.js',
-            ptBr,
-            error => {
-              if (error) console.log(error);
-            },
-          );
-        }, 500);
+        fs.truncate(
+          './node_modules/cross-api/dist/tools/messages.js',
+          error => {
+            if (error) console.log(error);
+          },
+        );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/messages.js',
+          ptBr,
+          error => {
+            if (error) console.log(error);
+          },
+        );
       }
 
       rl.close();
     }
   });
 
-  setTimeout(() => {
-    config();
-  }, 500);
+  config();
 }
