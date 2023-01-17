@@ -22,7 +22,7 @@ export default async function mapAndCloneAttribute(
   const objectArray: IObjectDTO[] = [];
   params.forEach(param => {
     objectArray.push({
-      [param]: attribute.id,
+      [param]: Object.values(attribute)[0],
     });
   });
 
