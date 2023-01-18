@@ -11,8 +11,8 @@ function createMapAndClone() {
 
 /**
  * ${_messages.default.mapAndClone}
- * @param params string[]
  * @param attribute IObjectDTO
+ * @param params string[]
  * @returns Promise: IObjectDTO[]
  */
 export default async function mapAndCloneAttribute(

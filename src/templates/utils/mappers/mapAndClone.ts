@@ -5,8 +5,8 @@ export default function createMapAndClone(): string {
 
 /**
  * ${messages.mapAndClone}
- * @param params string[]
  * @param attribute IObjectDTO
+ * @param params string[]
  * @returns Promise: IObjectDTO[]
  */
 export default async function mapAndCloneAttribute(
