@@ -449,7 +449,7 @@ output => example.data = "{\"name\": \"\",\"description\": \"this is a new descr
 ```
 <hr>
 <br>
-<h3>mapAndPatchString</h3><h4>Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers non-entity-type properties but empty values sent are discarded</h4>
+<h3>mapAndPatchString</h3><h4>Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Empty or non-entity-type properties are discarded</h4>
 
 ```typescript
 // no mapper
