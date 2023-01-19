@@ -40,7 +40,7 @@ export default `module.exports = {
   mapAndUpdate:
     'PUT OBJECT -> Recebe como parâmetro uma entidade e um objeto, mapeia o objeto e retorna a entidade com as propriedades atualizadas. Considera valores vazios enviados mas propriedades não pertencentes ao tipo da entidade são descartadas.',
   mapAndPatchString:
-    'PATCH STRINGIFIED OBJECT -> Recebe como parâmetro um objeto em formato de string e outro objeto, converte, mapeia, e retorna o objeto em formato de string com as propriedades atualizadas. Propriedades vazias ou não pertencentes ao tipo da entidade são descartadas.',
+    'PATCH STRINGIFIED OBJECT -> Recebe como parâmetro um objeto em formato de string e outro objeto, converte, mapeia, e retorna o objeto em formato de string com as propriedades corrigidas. Propriedades vazias ou não pertencentes ao tipo da entidade são descartadas.',
   mapAndUpdateString:
     'PUT STRINGIFIED OBJECT -> Recebe como parâmetro um objeto em formato de string e outro objeto, converte, mapeia, e retorna o objeto em formato de string com as propriedades atualizadas. Considera valores vazios enviados, mas as propriedades que não pertencem ao tipo de entidade são descartadas.',
 };
