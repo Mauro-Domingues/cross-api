@@ -185,7 +185,7 @@ await this.examplesRepository.softDelete(
 ```
 <hr>
 <br>
-<h2>Mappers!</h2>
+<h2>Mappers</h2>
 <h4>Mappers are tools that interpret objects for the purpose of simplifying work and making code smaller and cleaner without losing its functionality and also avoid possible human errors in addition to malformed requests. All of them have dynamic typing, they are:</h4>
 <hr>
 <br>
@@ -524,8 +524,12 @@ output => example.data = "{\"name\": \"example\",\"description\": \"this is a ne
 // no mapper
 
 const example: Example = {
-  data: "{\"name\": \"example\",\"description\": \"this is an example\",\"extra\": \"\",\"size\": \"123\", \"price\": 100}",
-}
+  name: "example",
+  description: "this is an example",
+  extra: undefined,
+  size: "123",
+  price: 100,
+};
 
 const inputData: IExampleDTO = {
   name: undefined,
@@ -539,36 +543,41 @@ const inputData: IExampleDTO = {
   nonEntityFieldSent_4: "4",
 };
 
-const updatedData = JSON.parse(example.data);
-
 if (inputData.name) {
-  updatedData.name = inputData.name;
+  example.name = inputData.name;
 }
 if (inputData.description) {
-  updatedData.description = inputData.description;
+  example.description = inputData.description;
 }
 if (inputData.extra) {
-  updatedData.extra = inputData.extra;
+  example.extra = inputData.extra;
 }
 if (inputData.size) {
-  updatedData.size = inputData.size;
+  example.size = inputData.size;
 }
 if (inputData.price) {
-  updatedData.price = inputData.price;
+  example.price = inputData.price;
 }
 
 await this.examplesRepository.update({
   ...example,
-  data: JSON.stringify({
-    ...updatedData,
-    nonEntityFieldSent_1: inputData.nonEntityFieldSent_1,
-    nonEntityFieldSent_2: inputData.nonEntityFieldSent_2,
-    nonEntityFieldSent_3: inputData.nonEntityFieldSent_3,
-    nonEntityFieldSent_4: inputData.nonEntityFieldSent_4,
-  }),
+  nonEntityFieldSent_1: inputData.nonEntityFieldSent_1,
+  nonEntityFieldSent_2: inputData.nonEntityFieldSent_2,
+  nonEntityFieldSent_3: inputData.nonEntityFieldSent_3,
+  nonEntityFieldSent_4: inputData.nonEntityFieldSent_4,
 });
 
-output => example.data = "{\"name\": \"example\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"123\", \"price\": 20, \"nonEntityFieldSent_1\": \"1\", \"nonEntityFieldSent_2\": \"2\", \"nonEntityFieldSent_3\": \"3\", \"nonEntityFieldSent_4\": \"4\"}";
+output = {
+  name: "example",
+  description: "this is a new description",
+  extra: "this is an extra",
+  size: "123",
+  price: 20,
+  nonEntityFieldSent_1: "1",
+  nonEntityFieldSent_2: "2",
+  nonEntityFieldSent_3: "3",
+  nonEntityFieldSent_4: "4",
+};
 ```
 
 ```typescript
@@ -597,10 +606,20 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
-  await mapAndInsertAttribute(example.data, inputData),
+  await mapAndInsertAttribute(example, inputData),
 );
 
-output => example.data = "{\"name\": \"example\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"123\", \"price\": 20, \"nonEntityFieldSent_1\": \"1\", \"nonEntityFieldSent_2\": \"2\", \"nonEntityFieldSent_3\": \"3\", \"nonEntityFieldSent_4\": \"4\"}";
+output = {
+  name: "example",
+  description: "this is a new description",
+  extra: "this is an extra",
+  size: "123",
+  price: 20,
+  nonEntityFieldSent_1: "1",
+  nonEntityFieldSent_2: "2",
+  nonEntityFieldSent_3: "3",
+  nonEntityFieldSent_4: "4",
+};
 ```
 <hr>
 <br>
