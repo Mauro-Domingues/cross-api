@@ -38,7 +38,7 @@ export default `module.exports = {
   patchAndInsert:
     'PATCH AND INSERT -> Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers non-entity-type properties but empty values sent are discarded.',
   mapAndUpdate:
-    'PUT OBJECT -> Takes as a parameter an entity and an object, maps the object and returns the entity with the patched properties. Considers empty values sent, but non-entity-type properties are discarded.',
+    'PUT OBJECT -> Takes as a parameter an entity and an object, maps the object and returns the entity with the updated properties. Considers empty values sent, but non-entity-type properties are discarded.',
   mapAndPatchString:
     'PATCH STRINGIFIED OBJECT -> Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Empty or non-entity-type properties are discarded.',
   mapAndUpdateString:
