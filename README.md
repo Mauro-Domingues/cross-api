@@ -160,7 +160,7 @@ const example = await this.examplesRepository.findBy(
   { id: 123 },
 );
 
-if(!example){
+if (!example){
   throw new AppError("Example not found");
 };
 
@@ -183,7 +183,7 @@ const example = await this.examplesRepository.findBy(
   { id: 123 },
 );
 
-if(!example){
+if (!example){
   throw new AppError("Example not found");
 };
 
