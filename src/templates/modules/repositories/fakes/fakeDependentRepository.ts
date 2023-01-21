@@ -58,13 +58,14 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         });
       });
     } else if (conditions) {
+      let applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName};
       Object.keys(conditions).forEach((key: string) => {
-        const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
+        applyFilter = applyFilter.filter(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
         );
-
-        applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
       });
+
+      applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
     } else {
       this.${pluralLowerModuleName}.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
     }
@@ -102,11 +103,17 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
       this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
     } else {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
-        const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
+        const find${upperModuleName}: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
+        
+        find${upperModuleName}.forEach(each${upperModuleName} => {
+          const ${lowerModuleName}Index = this.${pluralLowerModuleName}.findIndex(
+            ${lowerModuleName} => ${lowerModuleName}.id === each${upperModuleName}.id,
+          );
 
-        this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
+          this.${pluralLowerModuleName}.splice(${lowerModuleName}Index, 1);
+        });
       });
     }
   }
@@ -120,11 +127,17 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
       this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
     } else {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
-        const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
+        const find${upperModuleName}: number = this.${pluralLowerModuleName}.filter(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
-        this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
+        find${upperModuleName}.forEach(each${upperModuleName} => {
+          const ${lowerModuleName}Index = this.${pluralLowerModuleName}.findIndex(
+            ${lowerModuleName} => ${lowerModuleName}.id === each${upperModuleName}.id,
+          );
+
+          this.${pluralLowerModuleName}[${lowerModuleName}Index].deleted_at = new Date();
+        });
       });
     }
   }
