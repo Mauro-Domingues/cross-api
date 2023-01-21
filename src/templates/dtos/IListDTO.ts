@@ -1,5 +1,5 @@
 export default function createIListDTO(): string {
-  return `declare interface IListDTO<T>
+  return `export default interface IListDTO<T>
   extends IResponseDTO<{
     total: number;
     page: number;

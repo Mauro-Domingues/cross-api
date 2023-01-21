@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createIObjectDTO;
 function createIObjectDTO() {
-  return `declare interface IObjectDTO {
+  return `export default interface IObjectDTO {
   [key: string]: any;
 }
 `;

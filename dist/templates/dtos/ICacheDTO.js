@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createICacheDTO;
 function createICacheDTO() {
-  return `declare interface ICacheDTO<T> {
+  return `export default interface ICacheDTO<T> {
   data: T[];
   total: number;
 }

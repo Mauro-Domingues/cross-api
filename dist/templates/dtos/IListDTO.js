@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createIListDTO;
 function createIListDTO() {
-  return `declare interface IListDTO<T>
+  return `export default interface IListDTO<T>
   extends IResponseDTO<{
     total: number;
     page: number;

@@ -1,5 +1,5 @@
 export default function createIObjectDTO(): string {
-  return `declare interface IObjectDTO {
+  return `export default interface IObjectDTO {
   [key: string]: any;
 }
 `;
