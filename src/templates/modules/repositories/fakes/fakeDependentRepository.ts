@@ -20,24 +20,28 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     if (${lowerModuleName}Data && Array.isArray(${lowerModuleName}Data)) {
       ${lowerModuleName}Data.forEach((data: IObjectDTO) => {
         Object.keys(data).forEach((key: string) => {
-          const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
-            (${lowerModuleName}: any) => ${lowerModuleName}[key] === data[key]),
+          const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
+            (${lowerModuleName}: any) => ${lowerModuleName}[key] === data[key],
           );
 
           if (find${upperModuleName}) {
             return find${upperModuleName};
           }
+
+          return null;
         })
       }
     } else if (${lowerModuleName}Data) {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
-        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key]),
+        const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
         if (find${upperModuleName}) {
           return find${upperModuleName};
         }
+
+        return null;
       })
     }
 
@@ -54,7 +58,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
       conditions.forEach((condition: IObjectDTO) => {
         Object.keys(condition).forEach((key: string) => {
           const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
-            (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+            (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key],
           );
 
           applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
@@ -63,7 +67,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     } else if (conditions) {
       Object.keys(conditions).forEach((key: string) => {
         const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
         );
 
         applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
@@ -74,7 +78,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
 
     filter${pluralUpperModuleName}.slice((page - 1) * limit, page * limit);
 
-    return { ${pluralLowerModuleName}: find${pluralLowerModuleName}, amount: find${upperModuleName}.length };
+    return { ${pluralLowerModuleName}: filter${pluralUpperModuleName}, amount: filter${pluralUpperModuleName}.length };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
@@ -87,7 +91,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   }
 
   public async update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+    const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
       ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
     );
 
@@ -97,19 +101,19 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   }
 
   public async delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<void> {
-    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
-      const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
+      const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
         ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
       );
 
       this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
     } else {
       Object.keys(conditions).forEach((key: string) => {
-        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+        const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
         );
 
-        if(find${upperModuleName}) {
+        if (find${upperModuleName}) {
           this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
         }
       })
@@ -117,16 +121,22 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   }
 
   public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<void> {
-    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
-      find${upperModuleName}.deleted_at = new Date();
+    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
+      const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
+        (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+      );
+
+      if (find${upperModuleName}) {
+        this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
+      }
     } else {
       Object.keys(conditions).forEach((key: string) => {
-        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+        const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
         );
 
-        if(find${upperModuleName}) {
-          find${upperModuleName}.deleted_at = new Date();
+        if (find${upperModuleName}) {
+          this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
         }
       })
     }

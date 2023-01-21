@@ -31,7 +31,7 @@ export default class Delete${upperModuleName}Service {
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
-    this.${pluralLowerModuleName}Repository.delete${lowerModuleName});
+    this.${pluralLowerModuleName}Repository.delete(${lowerModuleName});
 
     return {
       code: 204,

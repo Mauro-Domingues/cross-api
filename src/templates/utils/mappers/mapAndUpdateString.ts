@@ -1,4 +1,4 @@
-import messages from '../../../tools/messages';
+import messages from '@tools/messages';
 
 export default function createMapAndUpdateString(): string {
   return `import mapAndUpdateAttribute from './mapAndUpdateAttribute';

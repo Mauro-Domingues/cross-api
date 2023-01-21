@@ -59,16 +59,16 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
   }
 
   public async delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
-    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
-      return this.ormRepository.delete({ id: ${lowerModuleName}Data });
-    } else {
+    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
+      return this.ormRepository.delete({ id: ${lowerModuleName}Data.id });
+    }
     return this.ormRepository.delete(${lowerModuleName}Data);
   }
 
   public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
-    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
+    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
       return this.ormRepository.softDelete({ id: ${lowerModuleName}Data.id });
-    } else {
+    }
     return this.ormRepository.softDelete(${lowerModuleName}Data);
   }
 }
