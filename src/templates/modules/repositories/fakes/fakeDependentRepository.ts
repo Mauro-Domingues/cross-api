@@ -106,9 +106,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
-        if (find${upperModuleName}) {
-          this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
-        }
+        this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
       });
     }
   }
@@ -119,18 +117,14 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         (${lowerModuleName}: any) => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
       );
 
-      if (find${upperModuleName}) {
-        this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
-      }
+      this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
     } else {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
         const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
-        if (find${upperModuleName}) {
-          this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
-        }
+        this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
       });
     }
   }
