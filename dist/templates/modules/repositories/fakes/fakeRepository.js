@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = createFakeRepository;
 function createFakeRepository(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralUpperModuleName) {
   return `/* eslint-disable @typescript-eslint/no-explicit-any */
+import IObjectDTO from '@dtos/IObjectDTO';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
@@ -29,8 +30,8 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
           }
 
           return null;
-        })
-      })
+        });
+      });
     } else if (${lowerModuleName}Data) {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
         const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
@@ -42,7 +43,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         }
 
         return null;
-      })
+      });
     }
 
     return null;
@@ -62,8 +63,8 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
           );
 
           applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
-        })
-      })
+        });
+      });
     } else if (conditions) {
       Object.keys(conditions).forEach((key: string) => {
         const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
@@ -71,7 +72,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         );
 
         applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
-      })
+      });
     } else {
       this.${pluralLowerModuleName}.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
     }
@@ -116,7 +117,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         if (find${upperModuleName}) {
           this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
         }
-      })
+      });
     }
   }
 
@@ -138,7 +139,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         if (find${upperModuleName}) {
           this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
         }
-      })
+      });
     }
   }
 }

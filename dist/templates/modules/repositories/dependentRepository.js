@@ -11,6 +11,7 @@ import { DeleteResult, Repository } from 'typeorm';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import IObjectDTO from '@dtos/IObjectDTO';
 
 export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ormRepository: Repository<${upperModuleName}>;

@@ -14,8 +14,11 @@ async function makeInfra() {
   if (!_fs.default.existsSync('src/config')) {
     _fs.default.mkdirSync('src/config');
   }
-  if (!_fs.default.existsSync('src/@global')) {
-    _fs.default.mkdirSync('src/@global');
+  if (!_fs.default.existsSync('src/@types')) {
+    _fs.default.mkdirSync('src/@types');
+  }
+  if (!_fs.default.existsSync('src/dtos')) {
+    _fs.default.mkdirSync('src/dtos');
   }
   if (!_fs.default.existsSync('src/assets')) {
     _fs.default.mkdirSync('src/assets');

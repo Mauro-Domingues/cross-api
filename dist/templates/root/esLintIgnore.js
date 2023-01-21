@@ -8,7 +8,7 @@ function createEsLintIgnore() {
   return `/*.js
 node_modules
 dist
-src/@global
+src/@types
 src/utils/mappers
 `;
 }

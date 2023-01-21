@@ -2,7 +2,8 @@ export default function showController(
   lowerModuleName: string,
   upperModuleName: string,
 ): string {
-  return `import { Request, Response } from 'express';
+  return `import IObjectDTO from '@dtos/IObjectDTO';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import Show${upperModuleName}Service from './Show${upperModuleName}Service';

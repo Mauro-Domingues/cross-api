@@ -12,6 +12,7 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
 export default class Create${upperModuleName}Service {

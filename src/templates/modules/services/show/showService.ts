@@ -10,6 +10,8 @@ import AppError from '@shared/errors/AppError';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import IObjectDTO from '@dtos/IObjectDTO';
+import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
 export default class Show${upperModuleName}Service {

@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = makeThirdLayer;
 var _fs = _interopRequireDefault(require("fs"));
-var _expressNamespace = _interopRequireDefault(require("../../../dist/templates/namespaces/expressNamespace"));
+var _expressNamespace = _interopRequireDefault(require("../../../dist/templates/types/expressNamespace"));
 var _app = _interopRequireDefault(require("../../../dist/templates/api/app"));
 var _server = _interopRequireDefault(require("../../../dist/templates/api/server"));
 var _domains = _interopRequireDefault(require("../../../dist/templates/assets/domains"));
@@ -20,71 +20,19 @@ var _domains2 = _interopRequireDefault(require("../../../dist/templates/utils/do
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeThirdLayer() {
-  if (!_fs.default.existsSync('src/@global/express.d.ts')) {
-    _fs.default.appendFile('src/@global/express.d.ts', (0, _expressNamespace.default)(), error => {
+  if (!_fs.default.existsSync('src/@types/express.d.ts')) {
+    _fs.default.appendFile('src/@types/express.d.ts', (0, _expressNamespace.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/@global/express.d.ts', error => {
+    _fs.default.truncate('src/@types/express.d.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/@global/express.d.ts', (0, _expressNamespace.default)(), error => {
+    _fs.default.appendFile('src/@types/express.d.ts', (0, _expressNamespace.default)(), error => {
       if (error) throw error;
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- express.d.ts ${_messages.default.created}`, '\x1b[0m');
-  if (!_fs.default.existsSync('src/@global/ICacheDTO.d.ts')) {
-    _fs.default.appendFile('src/@global/ICacheDTO.d.ts', (0, _ICacheDTO.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate('src/@global/ICacheDTO.d.ts', error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile('src/@global/ICacheDTO.d.ts', (0, _ICacheDTO.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log('\x1b[38;2;255;255;0m', `- ICacheDTO.d.ts ${_messages.default.created}`, '\x1b[0m');
-  if (!_fs.default.existsSync('src/@global/IListDTO.d.ts')) {
-    _fs.default.appendFile('src/@global/IListDTO.d.ts', (0, _IListDTO.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate('src/@global/IListDTO.d.ts', error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile('src/@global/IListDTO.d.ts', (0, _IListDTO.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log('\x1b[38;2;255;255;0m', `- IListDTO.d.ts ${_messages.default.created}`, '\x1b[0m');
-  if (!_fs.default.existsSync('src/@global/IObjectDTO.d.ts')) {
-    _fs.default.appendFile('src/@global/IObjectDTO.d.ts', (0, _IObjectDTO.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate('src/@global/IObjectDTO.d.ts', error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile('src/@global/IObjectDTO.d.ts', (0, _IObjectDTO.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log('\x1b[38;2;255;255;0m', `- IObjectDTO.d.ts ${_messages.default.created}`, '\x1b[0m');
-  if (!_fs.default.existsSync('src/@global/IResponseDTO.d.ts')) {
-    _fs.default.appendFile('src/@global/IResponseDTO.d.ts', (0, _IResponseDTO.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate('src/@global/IResponseDTO.d.ts', error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile('src/@global/IResponseDTO.d.ts', (0, _IResponseDTO.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log('\x1b[38;2;255;255;0m', `- IResponseDTO.d.ts ${_messages.default.created}`, '\x1b[0m');
   if (!_fs.default.existsSync('src/assets/domains.txt')) {
     _fs.default.appendFile('src/assets/domains.txt', (0, _domains.default)(), error => {
       if (error) throw error;
@@ -98,6 +46,58 @@ async function makeThirdLayer() {
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- domains.txt ${_messages.default.created}`, '\x1b[0m');
+  if (!_fs.default.existsSync('src/dtos/ICacheDTO.ts')) {
+    _fs.default.appendFile('src/dtos/ICacheDTO.ts', (0, _ICacheDTO.default)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    _fs.default.truncate('src/dtos/ICacheDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    _fs.default.appendFile('src/dtos/ICacheDTO.ts', (0, _ICacheDTO.default)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- ICacheDTO.ts ${_messages.default.created}`, '\x1b[0m');
+  if (!_fs.default.existsSync('src/dtos/IListDTO.ts')) {
+    _fs.default.appendFile('src/dtos/IListDTO.ts', (0, _IListDTO.default)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    _fs.default.truncate('src/dtos/IListDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    _fs.default.appendFile('src/dtos/IListDTO.ts', (0, _IListDTO.default)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- IListDTO.ts ${_messages.default.created}`, '\x1b[0m');
+  if (!_fs.default.existsSync('src/dtos/IObjectDTO.ts')) {
+    _fs.default.appendFile('src/dtos/IObjectDTO.ts', (0, _IObjectDTO.default)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    _fs.default.truncate('src/dtos/IObjectDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    _fs.default.appendFile('src/dtos/IObjectDTO.ts', (0, _IObjectDTO.default)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- IObjectDTO.ts ${_messages.default.created}`, '\x1b[0m');
+  if (!_fs.default.existsSync('src/dtos/IResponseDTO.ts')) {
+    _fs.default.appendFile('src/dtos/IResponseDTO.ts', (0, _IResponseDTO.default)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    _fs.default.truncate('src/dtos/IResponseDTO.ts', error => {
+      if (error) console.log(error);
+    });
+    _fs.default.appendFile('src/dtos/IResponseDTO.ts', (0, _IResponseDTO.default)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- IResponseDTO.ts ${_messages.default.created}`, '\x1b[0m');
   if (!_fs.default.existsSync('src/middlewares/RateLimiter.ts')) {
     _fs.default.appendFile('src/middlewares/RateLimiter.ts', (0, _rateLimiter.default)(), error => {
       if (error) throw error;

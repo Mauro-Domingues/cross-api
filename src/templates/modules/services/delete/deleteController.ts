@@ -3,7 +3,8 @@ export default function deleteController(
   upperModuleName: string,
   pluralLowerModuleName: string,
 ): string {
-  return `import { Request, Response } from 'express';
+  return `import IObjectDTO from '@dtos/IObjectDTO';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import Delete${upperModuleName}Service from './Delete${upperModuleName}Service';

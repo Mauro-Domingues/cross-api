@@ -5,7 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = deleteDependentController;
 function deleteDependentController(lowerModuleName, upperModuleName, pluralLowerModuleName) {
-  return `import { Request, Response } from 'express';
+  return `import IObjectDTO from '@dtos/IObjectDTO';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import Delete${upperModuleName}Service from './Delete${upperModuleName}Service';

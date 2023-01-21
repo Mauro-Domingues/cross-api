@@ -8,9 +8,10 @@ function listDependentService(upperModuleName, pluralLowerModuleName, pluralUppe
   return `import { injectable, inject } from 'tsyringe';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import ICacheDTO from '@dtos/ICacheDTO';
+import IListDTO from '@dtos/IListDTO';
 
 @injectable()
 export default class List${upperModuleName}Service {

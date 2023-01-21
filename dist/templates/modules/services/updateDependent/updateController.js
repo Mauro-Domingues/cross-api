@@ -9,6 +9,7 @@ function updateDependentController(lowerModuleName, upperModuleName, pluralFathe
 import { container } from 'tsyringe';
 
 import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
+import IObjectDTO from '@dtos/IObjectDTO';
 import Update${upperModuleName}Service from './Update${upperModuleName}Service';
 
 export default class Update${upperModuleName}Controller {

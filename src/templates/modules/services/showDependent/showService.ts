@@ -11,6 +11,8 @@ import AppError from '@shared/errors/AppError';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import IObjectDTO from '@dtos/IObjectDTO';
+import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
 export default class Show${upperModuleName}Service {

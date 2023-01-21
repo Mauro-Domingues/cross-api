@@ -7,6 +7,7 @@ export default function updateController(
 import { container } from 'tsyringe';
 
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import IObjectDTO from '@dtos/IObjectDTO';
 import Update${upperModuleName}Service from './Update${upperModuleName}Service';
 
 export default class Update${upperModuleName}Controller {

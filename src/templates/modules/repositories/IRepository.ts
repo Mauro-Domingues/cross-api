@@ -7,6 +7,7 @@ export default function createIRepository(
   return `import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
+import IObjectDTO from '@dtos/IObjectDTO';
 
 export default interface I${pluralUpperModuleName}Repository {
   findAll(

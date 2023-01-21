@@ -6,9 +6,10 @@ export default function listService(
   return `import { injectable, inject } from 'tsyringe';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import ICacheDTO from '@dtos/ICacheDTO';
+import IListDTO from '@dtos/IListDTO';
 
 @injectable()
 export default class List${upperModuleName}Service {

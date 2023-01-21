@@ -15,6 +15,8 @@ import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerMod
 import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
 import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import IObjectDTO from '@dtos/IObjectDTO';
+import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
 export default class Update${upperModuleName}Service {
