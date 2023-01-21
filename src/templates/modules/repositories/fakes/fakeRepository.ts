@@ -17,35 +17,27 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async findBy(
     ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
   ): Promise<${upperModuleName} | null> {
+    let find${upperModuleName}: ${upperModuleName} | undefined
     if (${lowerModuleName}Data && Array.isArray(${lowerModuleName}Data)) {
       ${lowerModuleName}Data.forEach((data: IObjectDTO) => {
         Object.keys(data).forEach((key: string) => {
-          const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
+          find${upperModuleName} = this.${pluralLowerModuleName}.find(
             (${lowerModuleName}: any) => ${lowerModuleName}[key] === data[key],
           );
-
-          if (find${upperModuleName}) {
-            return find${upperModuleName};
-          }
-
-          return null;
         });
       });
     } else if (${lowerModuleName}Data) {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
-        const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
+        find${upperModuleName} = this.${pluralLowerModuleName}.find(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
-
-        if (find${upperModuleName}) {
-          return find${upperModuleName};
-        }
-
-        return null;
       });
     }
 
-    return null;
+    if (!find${upperModuleName}) {
+      return null;
+    }
+    return find${upperModuleName};
   }
 
   public async findAll(
