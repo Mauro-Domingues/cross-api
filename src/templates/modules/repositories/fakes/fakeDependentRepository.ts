@@ -30,7 +30,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
 
           return null;
         })
-      }
+      })
     } else if (${lowerModuleName}Data) {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
         const find${upperModuleName}: ${upperModuleName} | undefined = this.${pluralLowerModuleName}.find(
@@ -63,7 +63,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
 
           applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
         })
-      }
+      })
     } else if (conditions) {
       Object.keys(conditions).forEach((key: string) => {
         const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
@@ -108,9 +108,9 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
 
       this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
     } else {
-      Object.keys(conditions).forEach((key: string) => {
+      Object.keys(${lowerModuleName}Data).forEach((key: string) => {
         const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
         if (find${upperModuleName}) {
@@ -123,16 +123,16 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<void> {
     if (${lowerModuleName}Data instanceof ${upperModuleName}) {
       const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
-        (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+        (${lowerModuleName}: any) => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
       );
 
       if (find${upperModuleName}) {
         this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
       }
     } else {
-      Object.keys(conditions).forEach((key: string) => {
+      Object.keys(${lowerModuleName}Data).forEach((key: string) => {
         const find${upperModuleName}: number = this.${pluralLowerModuleName}.findIndex(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
         if (find${upperModuleName}) {
