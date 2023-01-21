@@ -9,8 +9,6 @@ export default function createService(
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-
-import IResponseDTO from '@dtos/IResponseDTO';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 

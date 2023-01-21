@@ -9,9 +9,7 @@ export default function listDependentService(
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import IListDTO from '@dtos/IListDTO';
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
-import ICacheDTO from '@dtos/ICacheDTO';
 
 @injectable()
 export default class List${upperModuleName}Service {

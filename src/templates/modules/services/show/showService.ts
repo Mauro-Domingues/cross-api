@@ -9,8 +9,6 @@ export default function showService(
 import AppError from '@shared/errors/AppError';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import IObjectDTO from '@dtos/IObjectDTO';
-import IResponseDTO from '@dtos/IResponseDTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 
 @injectable()

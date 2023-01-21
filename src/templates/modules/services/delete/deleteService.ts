@@ -11,8 +11,6 @@ import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import IObjectDTO from '@dtos/IObjectDTO';
-import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
 export default class Delete${upperModuleName}Service {
@@ -33,7 +31,7 @@ export default class Delete${upperModuleName}Service {
 
     await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
 
-    this.${pluralLowerModuleName}Repository.delete(${lowerModuleName}Param);
+    this.${pluralLowerModuleName}Repository.delete${lowerModuleName});
 
     return {
       code: 204,

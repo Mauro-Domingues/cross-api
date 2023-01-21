@@ -1,9 +1,7 @@
 import messages from '../../../tools/messages';
 
 export default function createMapAndClone(): string {
-  return `import IObjectDTO from '@dtos/IObjectDTO';
-
-/**
+  return `/**
  * ${messages.mapAndClone}
  * @param attribute IObjectDTO
  * @param params string[]

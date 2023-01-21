@@ -6,11 +6,10 @@ export default function createDependentRepository(
   pluralFatherLowerModuleName: string,
 ): string {
   return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import IObjectDTO from '@dtos/IObjectDTO';
 import { AppDataSource } from '@shared/typeorm/dataSource';
 
 export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
@@ -60,12 +59,18 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     return this.ormRepository.save(${lowerModuleName}Data);
   }
 
-  public async delete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    this.ormRepository.delete(${lowerModuleName}Data);
+  public async delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
+    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
+      return this.ormRepository.delete({ id: ${lowerModuleName}Data });
+    } else {
+    return this.ormRepository.delete(${lowerModuleName}Data);
   }
 
-  public async softDelete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    this.ormRepository.softDelete(${lowerModuleName}Data);
+  public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
+    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
+      return this.ormRepository.softDelete({ id: ${lowerModuleName}Data.id });
+    } else {
+    return this.ormRepository.softDelete(${lowerModuleName}Data);
   }
 }
 `;

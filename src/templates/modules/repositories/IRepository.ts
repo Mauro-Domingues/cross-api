@@ -5,8 +5,8 @@ export default function createIRepository(
   pluralUpperModuleName: string,
 ): string {
   return `import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
-import IObjectDTO from '@dtos/IObjectDTO';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import { DeleteResult } from 'typeorm';
 
 export default interface I${pluralUpperModuleName}Repository {
   findAll(
@@ -21,8 +21,8 @@ export default interface I${pluralUpperModuleName}Repository {
   ): Promise<${upperModuleName} | null>;
   create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
   update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
-  delete(${lowerModuleName}Data: IObjectDTO): void;
-  softDelete(${lowerModuleName}Data: IObjectDTO): void;
+  delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+  softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
 }
 `;
 }

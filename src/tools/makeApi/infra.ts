@@ -8,14 +8,11 @@ export default async function makeInfra(): Promise<void> {
   if (!fs.existsSync('src/config')) {
     fs.mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/@types')) {
-    fs.mkdirSync('src/@types');
+  if (!fs.existsSync('src/@global')) {
+    fs.mkdirSync('src/@global');
   }
   if (!fs.existsSync('src/assets')) {
     fs.mkdirSync('src/assets');
-  }
-  if (!fs.existsSync('src/dtos')) {
-    fs.mkdirSync('src/dtos');
   }
   if (!fs.existsSync('src/middlewares')) {
     fs.mkdirSync('src/middlewares');

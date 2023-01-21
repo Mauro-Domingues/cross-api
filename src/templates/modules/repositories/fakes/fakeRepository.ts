@@ -4,14 +4,11 @@ export default function createFakeRepository(
   pluralLowerModuleName: string,
   pluralUpperModuleName: string,
 ): string {
-  return `/* eslint-disable guard-for-in */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-restricted-syntax */
+  return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import { v4 as uuid } from 'uuid';
-import IObjectDTO from '@dtos/IObjectDTO';
 
 export default class Fake${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
   private ${pluralLowerModuleName}: ${upperModuleName}[] = [];
@@ -19,31 +16,28 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
   public async findBy(
     ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
   ): Promise<${upperModuleName} | null> {
-    let find${upperModuleName}: ${upperModuleName} | ${upperModuleName}[] | undefined;
     if (${lowerModuleName}Data && Array.isArray(${lowerModuleName}Data)) {
-      for (const property of ${lowerModuleName}Data) {
-        find${upperModuleName} = this.${pluralLowerModuleName}.find(
-          (${lowerModuleName}: any) =>
-            ${lowerModuleName}[Object.keys(property)[0]] ===
-            property[Object.keys(property)[0]],
-        );
+      ${lowerModuleName}Data.forEach((data: IObjectDTO) => {
+        Object.keys(data).forEach((key: string) => {
+          const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
+            (${lowerModuleName}: any) => ${lowerModuleName}[key] === data[key]),
+          );
 
-        if (find${upperModuleName} !== undefined) {
-          return find${upperModuleName};
-        }
+          if (find${upperModuleName}) {
+            return find${upperModuleName};
+          }
+        })
       }
     } else if (${lowerModuleName}Data) {
-      for (const key in ${lowerModuleName}Data) {
-        find${upperModuleName} = this.${pluralLowerModuleName}.filter(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
+      Object.keys(${lowerModuleName}Data).forEach((key: string) => {
+        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key]),
         );
-      }
 
-      find${upperModuleName} = this.${pluralLowerModuleName}.find(${lowerModuleName} => ${lowerModuleName});
-
-      if (find${upperModuleName}) {
-        return find${upperModuleName};
-      }
+        if (find${upperModuleName}) {
+          return find${upperModuleName};
+        }
+      })
     }
 
     return null;
@@ -54,38 +48,36 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     limit: number,
     conditions?: IObjectDTO | IObjectDTO[],
   ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
-    let filter${upperModuleName}: ${upperModuleName}[] | undefined;
+    const filter${pluralUpperModuleName}: ${upperModuleName}[] = [];
     if (conditions && Array.isArray(conditions)) {
-      for (const property of conditions) {
-        filter${upperModuleName} = this.${pluralLowerModuleName}.filter(
-          (${lowerModuleName}: any) =>
-            ${lowerModuleName}[Object.keys(property)[0]] ===
-            property[Object.keys(property)[0]],
-        );
+      conditions.forEach((condition: IObjectDTO) => {
+        Object.keys(condition).forEach((key: string) => {
+          const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
+            (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+          );
 
-        if (filter${upperModuleName} !== undefined) {
-          return { ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length };
-        }
+          applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
+        })
       }
     } else if (conditions) {
-      for (const key in conditions) {
-        filter${upperModuleName} = this.${pluralLowerModuleName}.filter(
-          (${lowerModuleName}: any) => ${lowerModuleName}[key] === conditions[key],
+      Object.keys(conditions).forEach((key: string) => {
+        const applyFilter: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
         );
-      }
 
-      filter${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
-
-      return { ${pluralLowerModuleName}: filter${upperModuleName}, amount: filter${upperModuleName}.length };
+        applyFilter.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
+      })
+    } else {
+      this.${pluralLowerModuleName}.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
     }
 
-    const find${upperModuleName} = this.${pluralLowerModuleName}.slice((page - 1) * limit, page * limit);
+    filter${pluralUpperModuleName}.slice((page - 1) * limit, page * limit);
 
-    return { ${pluralLowerModuleName}: find${upperModuleName}, amount: find${upperModuleName}.length };
+    return { ${pluralLowerModuleName}: find${pluralLowerModuleName}, amount: find${upperModuleName}.length };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
-    const ${lowerModuleName} = new ${upperModuleName}();
+    const ${lowerModuleName}: ${upperModuleName} = new ${upperModuleName}();
 
     Object.assign(${lowerModuleName}, { id: uuid() }, ${lowerModuleName}Data);
     this.${pluralLowerModuleName}.push(${lowerModuleName});
@@ -103,20 +95,40 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
     return ${lowerModuleName}Data;
   }
 
-  public async delete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
-      ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
-    );
+  public async delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<void> {
+    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
+      const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+        ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
+      );
 
-    this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
+      this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
+    } else {
+      Object.keys(conditions).forEach((key: string) => {
+        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+        );
+
+        if(find${upperModuleName}) {
+          this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
+        }
+      })
+    }
   }
 
-  public async softDelete(${lowerModuleName}Data: IObjectDTO): Promise<void> {
-    const find${upperModuleName} = this.${pluralLowerModuleName}.findIndex(
-      ${lowerModuleName} => ${lowerModuleName}.id === ${lowerModuleName}Data.id,
-    );
+  public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<void> {
+    if(${lowerModuleName}Data instanceof ${upperModuleName}) {
+      find${upperModuleName}.deleted_at = new Date();
+    } else {
+      Object.keys(conditions).forEach((key: string) => {
+        const find${upperModuleName}: ${upperModuleName} = this.${pluralLowerModuleName}.find(
+          (${lowerModuleName}: any) => ${lowerModuleName}[key] === condition[key]),
+        );
 
-    this.${pluralLowerModuleName}.splice(find${upperModuleName}, 1);
+        if(find${upperModuleName}) {
+          find${upperModuleName}.deleted_at = new Date();
+        }
+      })
+    }
   }
 }
 `;

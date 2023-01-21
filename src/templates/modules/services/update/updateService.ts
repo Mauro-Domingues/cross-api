@@ -12,8 +12,6 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 
 import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
 import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
-import IResponseDTO from '@dtos/IResponseDTO';
-import IObjectDTO from '@dtos/IObjectDTO';
 import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
 import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
 

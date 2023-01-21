@@ -31,11 +31,11 @@ yarn cross make:module [name]
 <h4>First of all you need to understand what IObjectDTO is, because you will see a lot within the code. </h4>
 <hr>
 <br>
-<h3>IObjectDTO</h3><h4> IObjectDTO is a generic interface that accepts any object with a number between 1 and infinite key and value pairs, you can add more input types according to your need.</h4>
+<h3>IObjectDTO</h3><h4> IObjectDTO is a generic interface that accepts any object with a number between 1 and infinite key and value pairs</h4>
 
 ```typescript
 interface IObjectDTO {
-  [key: string]: string | number | any type you want to add;
+  [key: string]: any;
 };
 
 const simpleKey: IObjectDTO = {
@@ -153,7 +153,7 @@ await this.examplesRepository.update(example);
 ```
 <hr>
 <br>
-<h3>delete</h3><h4> Classic delete, receives as parameter the type IObjectDTO and delete all related data</h4>
+<h3>delete</h3><h4> Classic delete, receives as parameter the type of the entity to delete it or an IObjectDTO to delete all related data</h4>
 
 ```typescript
 const example = await this.examplesRepository.findBy(
@@ -164,11 +164,19 @@ if(!example){
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.delete({ id: example.id });
+await this.examplesRepository.delete(example);
+
+// delete example
+```
+
+```typescript
+await this.examplesRepository.delete({ name: "example" });
+
+// delete all example where name = example
 ```
 <hr>
 <br>
-<h3>softDelete</h3><h4> Security delete, receives as parameter the IObjectDTO type and invalidates all related data but does not delete</h4>
+<h3>softDelete</h3><h4> Security delete, receives as parameter the type of the entity to invalidate it or an IObjectDTO type and invalidates all related data (does not delete them)</h4>
 
 ```typescript
 const example = await this.examplesRepository.findBy(
@@ -179,9 +187,15 @@ if(!example){
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.softDelete(
-  { id: example.id },
-);
+await this.examplesRepository.softDelete(example);
+
+// invalidate example
+```
+
+```typescript
+await this.examplesRepository.softDelete({ name: "example" });
+
+// invalidate all example where name = example
 ```
 <hr>
 <br>

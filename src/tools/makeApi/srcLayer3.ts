@@ -1,5 +1,5 @@
 import fs from 'fs';
-import createExpressNamespace from '@templates/@types/expressNamespace';
+import createExpressNamespace from '@templates/namespaces/expressNamespace';
 import createApp from '@templates/api/app';
 import createServer from '@templates/api/server';
 import createDomains from '@templates/assets/domains';
@@ -14,20 +14,20 @@ import createDomainsManager from '@templates/utils/domains';
 import messages from '@tools/messages';
 
 export default async function makeThirdLayer(): Promise<void> {
-  if (!fs.existsSync('src/@types/express.d.ts')) {
+  if (!fs.existsSync('src/@global/express.d.ts')) {
     fs.appendFile(
-      'src/@types/express.d.ts',
+      'src/@global/express.d.ts',
       createExpressNamespace(),
       error => {
         if (error) throw error;
       },
     );
   } else {
-    fs.truncate('src/@types/express.d.ts', error => {
+    fs.truncate('src/@global/express.d.ts', error => {
       if (error) console.log(error);
     });
     fs.appendFile(
-      'src/@types/express.d.ts',
+      'src/@global/express.d.ts',
       createExpressNamespace(),
       error => {
         if (error) throw error;
@@ -37,6 +37,74 @@ export default async function makeThirdLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- express.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/@global/ICacheDTO.d.ts')) {
+    fs.appendFile('src/@global/ICacheDTO.d.ts', createICacheDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/@global/ICacheDTO.d.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/@global/ICacheDTO.d.ts', createICacheDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- ICacheDTO.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/@global/IListDTO.d.ts')) {
+    fs.appendFile('src/@global/IListDTO.d.ts', createIListDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/@global/IListDTO.d.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/@global/IListDTO.d.ts', createIListDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IListDTO.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/@global/IObjectDTO.d.ts')) {
+    fs.appendFile('src/@global/IObjectDTO.d.ts', createIObjectDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/@global/IObjectDTO.d.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/@global/IObjectDTO.d.ts', createIObjectDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IObjectDTO.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!fs.existsSync('src/@global/IResponseDTO.d.ts')) {
+    fs.appendFile('src/@global/IResponseDTO.d.ts', createIResponseDTO(), error => {
+      if (error) throw error;
+    });
+  } else {
+    fs.truncate('src/@global/IResponseDTO.d.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile('src/@global/IResponseDTO.d.ts', createIResponseDTO(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- IResponseDTO.d.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/assets/domains.txt')) {
@@ -54,74 +122,6 @@ export default async function makeThirdLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- domains.txt ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {
-    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/dtos/ICacheDTO.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- ICacheDTO.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/dtos/IListDTO.ts')) {
-    fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/dtos/IListDTO.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- IListDTO.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/dtos/IObjectDTO.ts')) {
-    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/dtos/IObjectDTO.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- IObjectDTO.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/dtos/IResponseDTO.ts')) {
-    fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/dtos/IResponseDTO.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- IResponseDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!fs.existsSync('src/middlewares/RateLimiter.ts')) {
