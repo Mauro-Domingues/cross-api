@@ -657,4 +657,6 @@ output = {
 <h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
 <h3>shared</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where public providers/error handlers/connection configuration/app and server are located</h4>
+<h3>utils</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where useful tools for various use cases are stored</h4>
 <hr>
