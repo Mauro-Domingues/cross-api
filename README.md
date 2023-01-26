@@ -646,15 +646,15 @@ output = {
 <h3>assets</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, images...</h4>
 <h3>config</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where global settings are located in which providers consume</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where public settings are located in which providers consume</h4>
 <h3>dtos</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the global interfaces of the project are declared</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the public interfaces of the project are declared</h4>
 <h3>middlewares</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the global project middlewares are declared</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the public project middlewares are declared</h4>
 <h3>modules</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the sets of private dtos/entities/repositories/private providers/private middlewares/controllers/services and unit tests of each module are located</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where private dtos/entities/repositories/private providers/private middlewares/controllers/services and unit tests of each module are located</h4>
 <h3>routes</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
 <h3>shared</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the sets of public providers/error handlers/connection configuration/app and server are located</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where public providers/error handlers/connection configuration/app and server are located</h4>
 <hr>
