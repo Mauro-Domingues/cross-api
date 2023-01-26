@@ -641,5 +641,23 @@ output = {
 <h4>Providers are implementations of services that assist in the business rules of your project, such as storage providers, sending messages, leads... By default, they are created within the "src/shared/containers" directory, where they act as public and independent services, but can also be generated within the modules in "src/modules/[name]/providers". They can contain one or more implementations, you decide which one to use, to switch between them just change the key in .env</h4>
 <hr>
 <br>
-<h3>Next topics: </h3>
-<h4>Introduction about api structure</h4>
+<h2>Api Structure</h2>
+<h3>Src</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the entire structure of the api is located</h4>
+<h3>@types</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the global project typings are declared</h4>
+<h3>assets</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, images...</h4>
+<h3>config</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where global settings are located in which providers consume</h4>
+<h3>dtos</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the global interfaces of the project are declared</h4>
+<h3>middlewares</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the global project middlewares are declared</h4>
+<h3>modules</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the sets of private dtos/entities/repositories/private providers/private middlewares/controllers/services and unit tests of each module are located</h4>
+<h3>routes</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
+<h3>shared</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the sets of public providers/error handlers/connection configuration/app and server are located</h4>
+<hr>

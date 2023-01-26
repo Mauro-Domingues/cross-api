@@ -10,6 +10,11 @@ function createICrypto() {
 export default interface ICryptoProvider {
   encrypt(text: string): ICryptoDTO;
   decrypt(hash: ICryptoDTO): string;
+  generateKeys(): {
+    hashToken: string;
+    publicKey: string;
+    privateKey: string;
+  }
 }
 `;
 }

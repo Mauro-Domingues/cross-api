@@ -42,6 +42,41 @@ class CryptoProvider implements ICryptoProvider {
 
     return decrpyted.toString();
   }
+
+  public generateKeys(): {
+    hashToken: string;
+    publicKey: string;
+    privateKey: string;
+  } {
+    const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+      modulusLength: 2048,
+    });
+
+    const publicExported = publicKey
+      .export({
+        format: 'pem',
+        type: 'pkcs1',
+      })
+      .toString();
+
+    const privateExported = privateKey
+      .export({
+        format: 'pem',
+        type: 'pkcs1',
+      })
+      .toString();
+
+    const hash = crypto
+      .createHash('sha256')
+      .update(publicExported)
+      .digest('hex');
+
+    return {
+      hashToken: hash,
+      publicKey: publicExported,
+      privateKey: privateExported,
+    };
+  }
 }
 
 export default CryptoProvider;

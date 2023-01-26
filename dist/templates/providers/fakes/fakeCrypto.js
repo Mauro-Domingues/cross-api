@@ -19,6 +19,18 @@ class FakeCryptoProvider implements ICryptoProvider {
   decrypt(hash: ICryptoDTO): string {
     return hash.content;
   }
+
+  generateKeys(): {
+    hashToken: string;
+    publicKey: string;
+    privateKey: string;
+  } {
+    return {
+      hashToken: 'token',
+      publicKey: 'pubic_key',
+      privateKey: 'private_key',
+    };
+  }
 }
 
 export default FakeCryptoProvider;
