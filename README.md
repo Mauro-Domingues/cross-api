@@ -25,13 +25,10 @@ yarn cross make:module [name]
 ```
 
 <hr>
-
+<br>
 <h2>Understanding the project and code examples</h2>
 
-<h4>First of all you need to understand what IObjectDTO is, because you will see a lot within the code. </h4>
-<hr>
-<br>
-<h3>IObjectDTO</h3><h4> IObjectDTO is a generic interface that accepts any object with a number between 1 and infinite key and value pairs</h4>
+<h3>IObjectDTO</h3><h4> First of all you need to understand what IObjectDTO is, because you will see a lot within the code. IObjectDTO is a generic interface that accepts any object with a number between 1 and infinite key and value pairs</h4>
 
 ```typescript
 interface IObjectDTO {
@@ -642,7 +639,7 @@ output = {
 <hr>
 <br>
 <h2>Api Structure</h2>
-<h3>Src</h3>
+<h3>src</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the entire structure of the api is located</h4>
 <h3>@types</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the global project typings are declared</h4>
