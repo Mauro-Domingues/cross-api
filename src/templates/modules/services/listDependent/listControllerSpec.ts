@@ -31,7 +31,7 @@ describe('List${upperModuleName}Controller', () => {
     const response = await request(app).get('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}');
 
     expect(response.status).toBe(200);
-    expect(response.body.data.list[0]).toHaveProperty('id');
+    expect(response.body.data[0]).toHaveProperty('id');
   });
 });
 `;

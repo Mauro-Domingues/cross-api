@@ -2,8 +2,6 @@
 import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
-
-// eslint-disable-next-line import/no-relative-packages, import/order
 import userJson from '../../../../package.json';
 import config from '@templates/assets/config';
 import enUs from '@templates/assets/en-us';
@@ -19,7 +17,6 @@ class LanguageOption {
 
 export default function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newScript: any = userJson;
 
   newScript.scripts = {

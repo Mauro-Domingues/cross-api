@@ -69,9 +69,9 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
       this.${pluralLowerModuleName}.forEach((${lowerModuleName}: ${upperModuleName}) => filter${pluralUpperModuleName}.push(${lowerModuleName}));
     }
 
-    filter${pluralUpperModuleName}.slice((page - 1) * limit, page * limit);
+    const filtred${pluralUpperModuleName} = filter${pluralUpperModuleName}.slice((page - 1) * limit, page * limit);
 
-    return { ${pluralLowerModuleName}: filter${pluralUpperModuleName}, amount: filter${pluralUpperModuleName}.length };
+    return { ${pluralLowerModuleName}: filtred${pluralUpperModuleName}, amount: filter${pluralUpperModuleName}.length };
   }
 
   public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
@@ -107,7 +107,7 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
         );
         
         find${upperModuleName}.forEach(each${upperModuleName} => {
-          const ${lowerModuleName}Index = this.${pluralLowerModuleName}.findIndex(
+          const ${lowerModuleName}Index: number = this.${pluralLowerModuleName}.findIndex(
             ${lowerModuleName} => ${lowerModuleName}.id === each${upperModuleName}.id,
           );
 
@@ -126,12 +126,12 @@ export default class Fake${pluralUpperModuleName}Repository implements I${plural
       this.${pluralLowerModuleName}[find${upperModuleName}].deleted_at = new Date();
     } else {
       Object.keys(${lowerModuleName}Data).forEach((key: string) => {
-        const find${upperModuleName}: number = this.${pluralLowerModuleName}.filter(
+        const find${upperModuleName}: ${upperModuleName}[] = this.${pluralLowerModuleName}.filter(
           (${lowerModuleName}: any) => ${lowerModuleName}[key] === ${lowerModuleName}Data[key],
         );
 
         find${upperModuleName}.forEach(each${upperModuleName} => {
-          const ${lowerModuleName}Index = this.${pluralLowerModuleName}.findIndex(
+          const ${lowerModuleName}Index: number = this.${pluralLowerModuleName}.findIndex(
             ${lowerModuleName} => ${lowerModuleName}.id === each${upperModuleName}.id,
           );
 

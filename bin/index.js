@@ -19,12 +19,11 @@ class GetName {
     if (!name) {
       return undefined;
     }
-    const lowerModuleName = `${name.slice(0, 1).toLowerCase()}${name.slice(1)}`;
-    const upperModuleName = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;
+    const lowerModuleName = name.replace(name.charAt(0), name.charAt(0).toLowerCase());
+    const upperModuleName = name.replace(name.charAt(0), name.charAt(0).toUpperCase());
     const pluralLowerModuleName = lowerModuleName.slice(-1) === 's' ? lowerModuleName : `${lowerModuleName}s`;
     const pluralUpperModuleName = upperModuleName.slice(-1) === 's' ? upperModuleName : `${upperModuleName}s`;
     let dbModuleName = '';
-    // eslint-disable-next-line no-restricted-syntax
     for (const letter of pluralLowerModuleName) {
       if (letter === letter.toUpperCase()) {
         dbModuleName = `${dbModuleName}_${letter.toLowerCase()}`;

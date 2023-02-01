@@ -37,12 +37,13 @@ export default class List${upperModuleName}Service {
       code: 200,
       message_code: 'OK',
       message: '${pluralUpperModuleName} found successfully',
-      data: {
+      pagination: {
         total: cache.total,
         page,
         perPage: limit,
-        list: cache.data,
+        lastPage: cache.total % limit,
       },
+      data: cache.data,
     };
   }
 }

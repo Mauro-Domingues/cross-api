@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "A CLI which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
   "keywords": [
     "cross",
@@ -22,7 +22,7 @@
     "cross": "./bin/index.js"
   },
   "scripts": {
-    "test": "ts-node -r tsconfig-paths/register index.ts",
+    "test": "ts-node -r tsconfig-paths/register index/index.ts",
     "build:src": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "build:bin": "babel index --extensions \".js,.ts\" --out-dir bin --copy-files"
   },

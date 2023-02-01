@@ -7,19 +7,14 @@ exports.default = createIListDTO;
 function createIListDTO() {
   return `import IResponseDTO from './IResponseDTO';
 
-export default interface IListDTO<T>
-  extends IResponseDTO<{
+export default interface IListDTO<T> extends IResponseDTO<T[]> {
+  pagination: {
     total: number;
     page: number;
     perPage: number;
-    list: T[];
-  }> {
-  data: {
-    total: number;
-    page: number;
-    perPage: number;
-    list: T[];
+    lastPage: number;
   };
+  data: T[];
 }
 `;
 }

@@ -14,8 +14,6 @@ var _ptBr = _interopRequireDefault(require("../../dist/templates/assets/pt-br"))
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /* eslint-disable no-param-reassign */
 
-// eslint-disable-next-line import/no-relative-packages, import/order
-
 class LanguageOption {
   constructor(Language) {
     this.Language = void 0;
@@ -24,7 +22,6 @@ class LanguageOption {
 }
 function configJson() {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newScript = _package.default;
   newScript.scripts = {
     ...newScript.scripts,
