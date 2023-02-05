@@ -18,7 +18,7 @@ var _rateLimiter = _interopRequireDefault(require("../../../dist/templates/middl
 var _decimalAdjust = _interopRequireDefault(require("../../../dist/templates/utils/decimalAdjust"));
 var _domains2 = _interopRequireDefault(require("../../../dist/templates/utils/domains"));
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
-var _getSecret = _interopRequireDefault(require("../../../dist/templates/utils/getSecret"));
+var _ensureAuthenticated = _interopRequireDefault(require("../../../dist/templates/middlewares/ensureAuthenticated"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeThirdLayer() {
   if (!_fs.default.existsSync('src/@types/express.d.ts')) {
@@ -112,6 +112,19 @@ async function makeThirdLayer() {
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${_messages.default.created}`, '\x1b[0m');
+  if (!_fs.default.existsSync('src/middlewares/EnsureAuthenticated.ts')) {
+    _fs.default.appendFile('src/middlewares/EnsureAuthenticated.ts', (0, _ensureAuthenticated.default)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    _fs.default.truncate('src/middlewares/EnsureAuthenticated.ts', error => {
+      if (error) console.log(error);
+    });
+    _fs.default.appendFile('src/middlewares/EnsureAuthenticated.ts', (0, _ensureAuthenticated.default)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${_messages.default.created}`, '\x1b[0m');
   if (!_fs.default.existsSync('src/routes/index.ts')) {
     _fs.default.appendFile('src/routes/index.ts', (0, _routes.default)(), error => {
       if (error) throw error;
@@ -177,17 +190,4 @@ async function makeThirdLayer() {
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- domainsManager.ts ${_messages.default.created}`, '\x1b[0m');
-  if (!_fs.default.existsSync('src/utils/getJwkSecret.ts')) {
-    _fs.default.appendFile('src/utils/getJwkSecret.ts', (0, _getSecret.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate('src/utils/getJwkSecret.ts', error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile('src/utils/getJwkSecret.ts', (0, _getSecret.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log('\x1b[38;2;255;255;0m', `- getJwkSecret.ts ${_messages.default.created}`, '\x1b[0m');
 }

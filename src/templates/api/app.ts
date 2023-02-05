@@ -8,6 +8,7 @@ import AppError from '@shared/errors/AppError';
 import { expressjwt } from 'express-jwt';
 import getJwkSecret from '@utils/getJwkSecret';
 import corsconfig from '@config/cors';
+import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
 import routes from '../routes';
 import '@shared/container';
 
@@ -16,13 +17,9 @@ app.use(cors(corsconfig));
 
 // app.use('/files', express.static(uploadConfig.uploadsFolder)); // uploadProvider
 
-// app.use(express.static('src/assets')); // protect routes feature
-// app.use(
-//   expressjwt({
-//     secret: getJwkSecret(),
-//     algorithms: ['RS256'],
-//   }), // .unless({ path: ['/', 'example'] }), // set the non-protected routes here
-// );
+app.use(express.static('src/assets')); // expose public key feature
+// protect routes through the exposed public key, use optional .unless to set non-protected routes
+// app.use(ensureAuthenticated.unless({ path: ['/', '/example'] }));
 
 app.use(express.json());
 app.use(routes);

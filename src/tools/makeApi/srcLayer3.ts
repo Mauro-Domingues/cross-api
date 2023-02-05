@@ -12,7 +12,7 @@ import createRateLimiter from '@templates/middlewares/rateLimiter';
 import createDecimaAdjust from '@templates/utils/decimalAdjust';
 import createDomainsManager from '@templates/utils/domains';
 import messages from '@tools/messages';
-import createGetSecret from '@templates/utils/getSecret';
+import createEnsureAuthenticated from '@templates/middlewares/ensureAuthenticated';
 
 export default async function makeThirdLayer(): Promise<void> {
   if (!fs.existsSync('src/@types/express.d.ts')) {
@@ -150,6 +150,31 @@ export default async function makeThirdLayer(): Promise<void> {
     `- RateLimiter.ts ${messages.created}`,
     '\x1b[0m',
   );
+  if (!fs.existsSync('src/middlewares/EnsureAuthenticated.ts')) {
+    fs.appendFile(
+      'src/middlewares/EnsureAuthenticated.ts',
+      createEnsureAuthenticated(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    fs.truncate('src/middlewares/EnsureAuthenticated.ts', error => {
+      if (error) console.log(error);
+    });
+    fs.appendFile(
+      'src/middlewares/EnsureAuthenticated.ts',
+      createEnsureAuthenticated(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- RateLimiter.ts ${messages.created}`,
+    '\x1b[0m',
+  );
   if (!fs.existsSync('src/routes/index.ts')) {
     fs.appendFile('src/routes/index.ts', createRoutes(), error => {
       if (error) throw error;
@@ -241,23 +266,6 @@ export default async function makeThirdLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- domainsManager.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/utils/getJwkSecret.ts')) {
-    fs.appendFile('src/utils/getJwkSecret.ts', createGetSecret(), error => {
-      if (error) throw error;
-    });
-  } else {
-    fs.truncate('src/utils/getJwkSecret.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile('src/utils/getJwkSecret.ts', createGetSecret(), error => {
-      if (error) throw error;
-    });
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- getJwkSecret.ts ${messages.created}`,
     '\x1b[0m',
   );
 }
