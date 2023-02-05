@@ -7,7 +7,9 @@ exports.default = createMapAndClone;
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function createMapAndClone() {
-  return `/**
+  return `import IObjectDTO from "@dtos/IObjectDTO";
+
+/**
  * ${_messages.default.mapAndClone}
  * @param attribute IObjectDTO
  * @param params string[]
