@@ -6,60 +6,51 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = createApp;
 function createApp() {
   return `import 'express-async-errors';
-import DomainsManager from '@utils/domainsManager';
-
 // import uploadConfig from '@config/upload'; // uploadProvider
 import { errors } from 'celebrate';
-import cors, { CorsOptions } from 'cors';
+import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
-
 import AppError from '@shared/errors/AppError';
-
+import { expressjwt } from 'express-jwt';
+import getJwkSecret from '@utils/getJwkSecret';
+import corsconfig from '@config/cors';
 import routes from '../routes';
-
 import '@shared/container';
 
 const app = express();
+app.use(cors(corsconfig));
 
-const corsOptions: CorsOptions = {
-  origin(origin, callback) {
-    if (origin && new DomainsManager().read().indexOf(origin) !== -1) {
-      callback(null, true);
-    } else if (
-      process.env.NODE_ENV === 'test' ||
-      process.env.NODE_ENV === 'development'
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error(\`\${origin} not allowed by CORS\`));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
-app.use(express.json());
 // app.use('/files', express.static(uploadConfig.uploadsFolder)); // uploadProvider
+
+// app.use(express.static('src/assets')); // protect routes feature
+// app.use(
+//   expressjwt({
+//     secret: getJwkSecret(),
+//     algorithms: ['RS256'],
+//   }), // .unless({ path: ['/', 'example'] }), // set the non-protected routes here
+// );
+
+app.use(express.json());
 app.use(routes);
 
 app.use(errors());
-
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
-      return response.status(error.statusCode).json({
+      return response.status(error.statusCode).send({
         status: 'error',
         message: error.message,
       });
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      return response.status(500).json({
+      return response.status(500).send({
         status: error.name,
         message: error.message,
       });
     }
 
-    return response.status(500).json({
+    return response.status(500).send({
       status: 'error',
       message: 'Internal server error',
     });

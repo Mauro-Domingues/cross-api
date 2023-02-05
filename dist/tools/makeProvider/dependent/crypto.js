@@ -9,7 +9,6 @@ var _container = _interopRequireDefault(require("../../../../dist/templates/inde
 var _cryptoConfig = _interopRequireDefault(require("../../../../dist/templates/providers/config/cryptoConfig"));
 var _cryptoIndex = _interopRequireDefault(require("../../../../dist/templates/providers/cryptoIndex"));
 var _ICryptoDTO = _interopRequireDefault(require("../../../../dist/templates/providers/dtos/ICryptoDTO"));
-var _fakeCrypto = _interopRequireDefault(require("../../../../dist/templates/providers/fakes/fakeCrypto"));
 var _Crypto = _interopRequireDefault(require("../../../../dist/templates/providers/implementations/Crypto"));
 var _ICrypto = _interopRequireDefault(require("../../../../dist/templates/providers/models/ICrypto"));
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
@@ -52,9 +51,6 @@ async function makeDependentCryptoProvider(fatherData) {
   if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`)) {
     _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`);
-  }
   if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`)) {
     _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`);
   }
@@ -88,18 +84,6 @@ async function makeDependentCryptoProvider(fatherData) {
       if (error) console.log(error);
     });
     _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, (0, _ICryptoDTO.default)(), error => {
-      if (error) throw error;
-    });
-  }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`, (0, _fakeCrypto.default)(), error => {
-      if (error) throw error;
-    });
-  } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`, error => {
-      if (error) console.log(error);
-    });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`, (0, _fakeCrypto.default)(), error => {
       if (error) throw error;
     });
   }

@@ -3,7 +3,6 @@ import createContainer from '@templates/index/container';
 import createCryptoConfig from '@templates/providers/config/cryptoConfig';
 import createCryptoIndex from '@templates/providers/cryptoIndex';
 import createICryptoDTO from '@templates/providers/dtos/ICryptoDTO';
-import createFakeCrypto from '@templates/providers/fakes/fakeCrypto';
 import createCrypto from '@templates/providers/implementations/Crypto';
 import createICrypto from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
@@ -72,15 +71,6 @@ export default async function makeDependentCryptoProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
-    )
-  ) {
-    fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes`,
-    );
-  }
-  if (
-    !fs.existsSync(
       `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
     )
   ) {
@@ -145,33 +135,6 @@ export default async function makeDependentCryptoProvider(fatherData: {
     fs.appendFile(
       `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
       createICryptoDTO(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  if (
-    !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
-    )
-  ) {
-    fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
-      createFakeCrypto(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/fakes/FakeCryptoProvider.ts`,
-      createFakeCrypto(),
       error => {
         if (error) throw error;
       },

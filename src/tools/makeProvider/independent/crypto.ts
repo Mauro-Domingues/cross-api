@@ -2,7 +2,6 @@ import fs from 'fs';
 import createCryptoConfig from '@templates/providers/config/cryptoConfig';
 import createCryptoIndex from '@templates/providers/cryptoIndex';
 import createICryptoDTO from '@templates/providers/dtos/ICryptoDTO';
-import createFakeCrypto from '@templates/providers/fakes/fakeCrypto';
 import createCrypto from '@templates/providers/implementations/Crypto';
 import createICrypto from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
@@ -28,9 +27,6 @@ export default async function makeCryptoProvider(): Promise<void> {
   }
   if (!fs.existsSync('src/shared/container/providers/CryptoProvider/dtos')) {
     fs.mkdirSync('src/shared/container/providers/CryptoProvider/dtos');
-  }
-  if (!fs.existsSync('src/shared/container/providers/CryptoProvider/fakes')) {
-    fs.mkdirSync('src/shared/container/providers/CryptoProvider/fakes');
   }
   if (
     !fs.existsSync(
@@ -85,33 +81,6 @@ export default async function makeCryptoProvider(): Promise<void> {
     fs.appendFile(
       'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
       createICryptoDTO(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  if (
-    !fs.existsSync(
-      'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
-    )
-  ) {
-    fs.appendFile(
-      'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
-      createFakeCrypto(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.truncate(
-      'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    fs.appendFile(
-      'src/shared/container/providers/CryptoProvider/fakes/FakeCryptoProvider.ts',
-      createFakeCrypto(),
       error => {
         if (error) throw error;
       },

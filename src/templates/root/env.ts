@@ -1,14 +1,15 @@
 export default function createEnv(): string {
-  return `# App
-APP_PORT=3333
-APP_API_URL=http://localhost:3333
-APP_WEB_URL=http://localhost:3000
+  return `# Api
+PORT=3333
+API_URL=http://localhost:3333
+WEB_URL=http://localhost:3000
 NODE_ENV=development
 
 # Auth
 JWT_TOKEN_SECRET=
 REFRESH_TOKEN_SECRET=
 JWT_LIFETIME=
+REFRESH_LIFETIME=
 
 # Crypto
 CRYPTO_SECRET_KEY=
