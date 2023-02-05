@@ -69,7 +69,7 @@ class CryptoProvider implements ICryptoProvider {
 
   public generateKeys(): JWK<Extras> {
     const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
-      modulusLength: 2048,
+      modulusLength: 3072,
     });
 
     const publicExported = publicKey
