@@ -11,8 +11,6 @@ import { errors } from 'celebrate';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import AppError from '@shared/errors/AppError';
-import { expressjwt } from 'express-jwt';
-import getJwkSecret from '@utils/getJwkSecret';
 import corsconfig from '@config/cors';
 import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
 import routes from '../routes';
