@@ -24,7 +24,7 @@ export default async function makeDependentFunctionalities(
       createDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
       error => {
@@ -43,7 +43,7 @@ export default async function makeDependentFunctionalities(
       createDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
         fatherData.pluralLowerModuleName,
       ),
       error => {
@@ -100,7 +100,7 @@ export default async function makeDependentFunctionalities(
       deleteDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -118,7 +118,7 @@ export default async function makeDependentFunctionalities(
       deleteDependentController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;

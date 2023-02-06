@@ -18,14 +18,14 @@ var _updateService = _interopRequireDefault(require("../../../../dist/templates/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeFunctionalities(moduleData) {
   if (!_fs.default.existsSync(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`, (0, _createController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`, (0, _createController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName), error => {
       if (error) throw error;
     });
   } else {
     _fs.default.truncate(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`, (0, _createController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`, (0, _createController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName), error => {
       if (error) throw error;
     });
   }
@@ -42,14 +42,14 @@ async function makeFunctionalities(moduleData) {
     });
   }
   if (!_fs.default.existsSync(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`, (0, _deleteController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`, (0, _deleteController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralUpperModuleName), error => {
       if (error) throw error;
     });
   } else {
     _fs.default.truncate(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`, (0, _deleteController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`, (0, _deleteController.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralUpperModuleName), error => {
       if (error) throw error;
     });
   }

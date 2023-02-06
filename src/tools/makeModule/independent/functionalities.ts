@@ -24,6 +24,7 @@ export default async function makeFunctionalities(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -42,6 +43,7 @@ export default async function makeFunctionalities(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -95,7 +97,7 @@ export default async function makeFunctionalities(moduleData: {
       deleteController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -113,7 +115,7 @@ export default async function makeFunctionalities(moduleData: {
       deleteController(
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
+        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;

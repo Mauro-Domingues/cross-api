@@ -1,7 +1,7 @@
 export default function createDependentController(
   lowerModuleName: string,
   upperModuleName: string,
-  pluralLowerModuleName: string,
+  pluralUpperModuleName: string,
   pluralFatherLowerModuleName: string,
 ): string {
   return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
@@ -14,9 +14,9 @@ export default class Create${upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
 
-    const create${pluralLowerModuleName} = container.resolve(Create${upperModuleName}Service);
+    const create${pluralUpperModuleName} = container.resolve(Create${upperModuleName}Service);
 
-    const ${lowerModuleName} = await create${pluralLowerModuleName}.execute(${lowerModuleName}Data);
+    const ${lowerModuleName} = await create${pluralUpperModuleName}.execute(${lowerModuleName}Data);
 
     return response.send(${lowerModuleName});
   }

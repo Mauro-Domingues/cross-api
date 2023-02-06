@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createDependentController;
-function createDependentController(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralFatherLowerModuleName) {
+function createDependentController(lowerModuleName, upperModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
   return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -15,9 +15,9 @@ export default class Create${upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
 
-    const create${pluralLowerModuleName} = container.resolve(Create${upperModuleName}Service);
+    const create${pluralUpperModuleName} = container.resolve(Create${upperModuleName}Service);
 
-    const ${lowerModuleName} = await create${pluralLowerModuleName}.execute(${lowerModuleName}Data);
+    const ${lowerModuleName} = await create${pluralUpperModuleName}.execute(${lowerModuleName}Data);
 
     return response.send(${lowerModuleName});
   }

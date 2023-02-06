@@ -12,8 +12,6 @@ var _config = _interopRequireDefault(require("../../dist/templates/assets/config
 var _enUs = _interopRequireDefault(require("../../dist/templates/assets/en-us"));
 var _ptBr = _interopRequireDefault(require("../../dist/templates/assets/pt-br"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/* eslint-disable no-param-reassign */
-
 class LanguageOption {
   constructor(Language) {
     this.Language = void 0;
@@ -22,15 +20,14 @@ class LanguageOption {
 }
 function configJson() {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
-  const newScript = _package.default;
-  newScript.scripts = {
-    ...newScript.scripts,
+  _package.default.scripts = {
+    ..._package.default.scripts,
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js'
   };
-  _fs.default.writeFileSync('./package.json', JSON.stringify(newScript), {
+  _fs.default.writeFileSync('./package.json', JSON.stringify(_package.default), {
     encoding: 'utf8',
     flag: 'w'
   });

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import fs from 'fs';
 import readline from 'readline';
 import shell from 'shelljs';
@@ -17,17 +16,16 @@ class LanguageOption {
 
 export default function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
-  const newScript: any = userJson;
 
-  newScript.scripts = {
-    ...newScript.scripts,
+  userJson.scripts = {
+    ...userJson.scripts,
     dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js',
   };
 
-  fs.writeFileSync('./package.json', JSON.stringify(newScript), {
+  fs.writeFileSync('./package.json', JSON.stringify(userJson), {
     encoding: 'utf8',
     flag: 'w',
   });
