@@ -24,7 +24,6 @@ export default async function makeFunctionalities(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -43,7 +42,6 @@ export default async function makeFunctionalities(moduleData: {
         moduleData.lowerModuleName,
         moduleData.upperModuleName,
         moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
       ),
       error => {
         if (error) throw error;
@@ -94,11 +92,7 @@ export default async function makeFunctionalities(moduleData: {
   ) {
     fs.appendFile(
       `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      deleteController(moduleData.lowerModuleName, moduleData.upperModuleName),
       error => {
         if (error) throw error;
       },
@@ -112,11 +106,7 @@ export default async function makeFunctionalities(moduleData: {
     );
     fs.appendFile(
       `src/modules/${moduleData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      deleteController(moduleData.lowerModuleName, moduleData.upperModuleName),
       error => {
         if (error) throw error;
       },
