@@ -20,7 +20,7 @@ export default async function mapAndCloneAttribute(
   attribute: IObjectDTO,
 ): Promise<IObjectDTO[]> {
   const objectArray: IObjectDTO[] = [];
-  params.forEach(param => {
+  params.forEach((param: string) => {
     objectArray.push({
       [param]: Object.values(attribute)[0],
     });

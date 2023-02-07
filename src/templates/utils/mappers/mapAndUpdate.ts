@@ -11,13 +11,12 @@ export default async function mapAndUpdateAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
 ): Promise<Entity> {
-  const updatedAttributes: any = oldAttributes;
   for (const attribute in newAttributes) {
     if (oldAttributes?.hasOwnProperty(attribute)) {
-      updatedAttributes[attribute] = newAttributes[attribute];
+      Object.assign(oldAttributes, { [attribute]: newAttributes[attribute] });
     }
   }
-  return updatedAttributes;
+  return oldAttributes;
 }
 `;
 }

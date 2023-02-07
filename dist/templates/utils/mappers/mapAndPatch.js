@@ -17,15 +17,12 @@ export default async function mapAndPatchAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
 ): Promise<Entity> {
-  const patchedAttributes: any = oldAttributes;
   for (const attribute in newAttributes) {
-    if (newAttributes[attribute]) {
-      if (oldAttributes?.hasOwnProperty(attribute)) {
-        patchedAttributes[attribute] = newAttributes[attribute];
-      }
+    if (newAttributes[attribute] && oldAttributes?.hasOwnProperty(attribute)) {
+      Object.assign(oldAttributes, { [attribute]: newAttributes[attribute] });
     }
   }
-  return patchedAttributes;
+  return oldAttributes;
 }
 `;
 }
