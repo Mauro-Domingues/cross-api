@@ -14,7 +14,7 @@ import INotificationProvider from '../models/INotificationProvider';
 
 @injectable()
 class OneSignalProvider implements INotificationProvider {
-  async sendNotification(data: ISendNotificationlDTO): Promise<void> {
+  public async sendNotification(data: ISendNotificationlDTO): Promise<void> {
     const { device_id } = data;
 
     const message = {

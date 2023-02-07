@@ -8,7 +8,7 @@ import ICryptoDTO from '../dtos/ICryptoDTO';
 import ICryptoProvider from '../models/ICryptoProvider';
 
 class CryptoProvider implements ICryptoProvider {
-  public encrypt(text: string): ICryptoDTO {
+  public async encrypt(text: string): ICryptoDTO {
     const iv = crypto.randomBytes(16);
 
     const cipher = crypto.createCipheriv(
@@ -25,7 +25,7 @@ class CryptoProvider implements ICryptoProvider {
     };
   }
 
-  public decrypt(data: ICryptoDTO): string {
+  public async decrypt(data: ICryptoDTO): string {
     const decipher = crypto.createDecipheriv(
       cryptoConfig.algorithm,
       cryptoConfig.secretKey,
@@ -40,7 +40,7 @@ class CryptoProvider implements ICryptoProvider {
     return decrpyted.toString();
   }
 
-  generateJwt(
+  public async generateJwt(
     payload: object,
     options?: SignOptions,
   ): {
