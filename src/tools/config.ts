@@ -56,7 +56,7 @@ export default function configJson(): void {
     'swagger-ui-express',
     'ts-jest',
     'tsyringe',
-    'typeorm',
+    'typeorm@^0.3.11',
     'uuid',
   ];
 
