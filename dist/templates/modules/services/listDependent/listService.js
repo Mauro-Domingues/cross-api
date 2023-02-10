@@ -24,7 +24,7 @@ export default class List${names.upperModuleName}Service {
   ) {}
 
   async execute(page: number, limit: number): Promise<IListDTO<${names.upperModuleName}>> {
-    const cacheKey = \`${names.pluralLowerModuleName}:\${names.page}:\${names.limit}\`;
+    const cacheKey = \`${names.pluralLowerModuleName}:\${page}:\${limit}\`;
 
     let cache = await this.cacheProvider.recovery<ICacheDTO<${names.upperModuleName}>>(cacheKey);
 
