@@ -4,34 +4,34 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createSpecDependentService;
-function createSpecDependentService(lowerModuleName, upperModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
+function createSpecDependentService(names, fatherNames) {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/fakes/Fake${pluralUpperModuleName}Repository';
-import Create${upperModuleName}Services from './Create${upperModuleName}Service';
+import Fake${names.upperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
+import Create${names.upperModuleName}Services from './Create${names.upperModuleName}Service';
 
-let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
+let fake${names.upperModuleName}Repository: Fake${names.upperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let create${upperModuleName}: Create${upperModuleName}Services;
+let create${names.upperModuleName}: Create${names.upperModuleName}Services;
 
-describe('Create${upperModuleName}Service', () => {
+describe('Create${names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
+    fake${names.upperModuleName}Repository = new Fake${names.upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    create${upperModuleName} = new Create${upperModuleName}Services(
-      fake${upperModuleName}Repository,
+    create${names.upperModuleName} = new Create${names.upperModuleName}Services(
+      fake${names.upperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
-  it('should be able to create a new ${lowerModuleName}', async () => {
-    const ${lowerModuleName} = await create${upperModuleName}.execute({
-      name: '${lowerModuleName}',
-      description: 'This is a ${lowerModuleName}',
+  it('should be able to create a new ${names.lowerModuleName}', async () => {
+    const ${names.lowerModuleName} = await create${names.upperModuleName}.execute({
+      name: '${names.lowerModuleName}',
+      description: 'This is a ${names.lowerModuleName}',
     });
 
-    expect(${lowerModuleName}.data).toHaveProperty('id');
+    expect(${names.lowerModuleName}.data).toHaveProperty('id');
   });
 });
 `;

@@ -14,7 +14,7 @@ var _IStorage = _interopRequireDefault(require("../../../../dist/templates/provi
 var _storageIndex = _interopRequireDefault(require("../../../../dist/templates/providers/storageIndex"));
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentStorageProvider(fatherData) {
+async function makeDependentStorageProvider(fatherNames) {
   if (!_fs.default.existsSync('src')) {
     _fs.default.mkdirSync('src');
   }
@@ -35,33 +35,33 @@ async function makeDependentStorageProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, '', error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`);
   }
-  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherData.pluralLowerModuleName}/providers';`, error => {
+  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`, error => {
     if (error) throw error;
   });
-  _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, `\nimport './StorageProvider';`, error => {
+  _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './StorageProvider';`, error => {
     if (error) throw error;
   });
   if (!_fs.default.existsSync('src/config/upload.ts')) {
@@ -76,63 +76,63 @@ async function makeDependentStorageProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, (0, _fakeStorage.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, (0, _fakeStorage.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, (0, _fakeStorage.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, (0, _fakeStorage.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, (0, _DiskStorage.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, (0, _DiskStorage.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, (0, _DiskStorage.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, (0, _DiskStorage.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, (0, _S3Storage.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, (0, _S3Storage.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, (0, _S3Storage.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, (0, _S3Storage.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, (0, _IStorage.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, (0, _IStorage.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, (0, _IStorage.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, (0, _IStorage.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`, (0, _storageIndex.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, (0, _storageIndex.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`, (0, _storageIndex.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, (0, _storageIndex.default)(), error => {
       if (error) throw error;
     });
   }

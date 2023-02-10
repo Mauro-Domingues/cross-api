@@ -1,6 +1,7 @@
+import IModuleNamesDTO from 'index';
+
 export default function createEntity(
-  upperModuleName: string,
-  dbModuleName: string,
+  names: Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>,
 ): string {
   return `import {
   Entity,
@@ -11,8 +12,8 @@ export default function createEntity(
   DeleteDateColumn,
 } from 'typeorm';
 
-@Entity('${dbModuleName}')
-export default class ${upperModuleName} {
+@Entity('${names.dbModuleName}')
+export default class ${names.upperModuleName} {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

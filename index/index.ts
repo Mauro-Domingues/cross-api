@@ -9,50 +9,82 @@ import createApi from '@tools/makeApi';
 import createModule from '@tools/makeModule';
 import createProvider from '@tools/makeProvider';
 import messages from '@tools/messages';
+import { plural, singular, isSingular } from 'pluralize';
 
 const [comand] = process.argv.slice(2);
 const [arg] = process.argv.slice(3);
 const [father] = process.argv.slice(4);
 
-class GetName {
-  getModuleName(name: string):
-    | {
-        [key: string]: string;
-      }
-    | undefined {
+export default interface IModuleNamesDTO {
+  lowerModuleName: string;
+  upperModuleName: string;
+  pluralLowerModuleName: string;
+  pluralUpperModuleName: string;
+  dbModuleName: string;
+  routeModuleName: string;
+}
+
+class GetNames {
+  private getSingularAndPlural(word: string): {
+    singular: string;
+    pluralName: string;
+  } {
+    if (isSingular(word)) {
+      return {
+        singular: word,
+        pluralName: plural(word),
+      };
+    }
+    return {
+      singular: singular(word),
+      pluralName: word,
+    };
+  }
+
+  getModuleNames(name: string): IModuleNamesDTO | undefined {
     if (!name) {
       return undefined;
     }
 
-    const lowerModuleName = name.replace(
-      name.charAt(0),
-      name.charAt(0).toLowerCase(),
+    const { singular, pluralName } = this.getSingularAndPlural(name);
+
+    const lowerModuleName = singular.replace(
+      singular.charAt(0),
+      singular.charAt(0).toLowerCase(),
     );
 
-    const upperModuleName = name.replace(
-      name.charAt(0),
-      name.charAt(0).toUpperCase(),
+    const upperModuleName = singular.replace(
+      singular.charAt(0),
+      singular.charAt(0).toUpperCase(),
     );
 
-    const pluralLowerModuleName =
-      lowerModuleName.slice(-1) === 's'
-        ? lowerModuleName
-        : `${lowerModuleName}s`;
+    const pluralLowerModuleName = pluralName.replace(
+      pluralName.charAt(0),
+      pluralName.charAt(0).toLowerCase(),
+    );
 
-    const pluralUpperModuleName =
-      upperModuleName.slice(-1) === 's'
-        ? upperModuleName
-        : `${upperModuleName}s`;
+    const pluralUpperModuleName = pluralName.replace(
+      pluralName.charAt(0),
+      pluralName.charAt(0).toUpperCase(),
+    );
 
-    let dbModuleName = '';
+    const dbModuleName = Array.from(pluralLowerModuleName).reduce(
+      (accumulator, letter) => {
+        if (letter === letter.toUpperCase()) {
+          return `${accumulator}_${letter.toLowerCase()}`;
+        }
+        return `${accumulator}${letter}`;
+      },
+    );
 
-    for (const letter of pluralLowerModuleName) {
-      if (letter === letter.toUpperCase()) {
-        dbModuleName = `${dbModuleName}_${letter.toLowerCase()}`;
-      } else {
-        dbModuleName = `${dbModuleName}${letter}`;
-      }
-    }
+    const routeModuleName = Array.from(pluralLowerModuleName).reduce(
+      (accumulator, letter) => {
+        if (letter === letter.toUpperCase()) {
+          return `${accumulator}-${letter.toLowerCase()}`;
+        }
+        return `${accumulator}${letter}`;
+      },
+    );
 
     return {
       lowerModuleName,
@@ -60,6 +92,7 @@ class GetName {
       pluralLowerModuleName,
       pluralUpperModuleName,
       dbModuleName,
+      routeModuleName,
     };
   }
 }
@@ -83,12 +116,12 @@ if (comand) {
       break;
     case 'make:module':
       createModule(
-        new GetName().getModuleName(arg),
-        new GetName().getModuleName(father),
+        new GetNames().getModuleNames(arg),
+        new GetNames().getModuleNames(father),
       );
       break;
     case 'make:provider':
-      createProvider(arg, new GetName().getModuleName(father));
+      createProvider(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
       shell.exec(

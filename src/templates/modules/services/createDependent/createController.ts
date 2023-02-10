@@ -1,23 +1,27 @@
+import IModuleNamesDTO from 'index';
+
 export default function createDependentController(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralFatherLowerModuleName: string,
+  names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
+  fatherNames: Pick<
+    IModuleNamesDTO,
+    'pluralLowerModuleName' | 'upperModuleName'
+  >,
 ): string {
-  return `import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
+  return `import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Create${upperModuleName}Service from './Create${upperModuleName}Service';
+import Create${names.upperModuleName}Service from './Create${names.upperModuleName}Service';
 
-export default class Create${upperModuleName}Controller {
+export default class Create${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
+    const ${names.lowerModuleName}Data: I${names.upperModuleName}DTO = request.body;
 
-    const create${upperModuleName} = container.resolve(Create${upperModuleName}Service);
+    const create${names.upperModuleName} = container.resolve(Create${names.upperModuleName}Service);
 
-    const ${lowerModuleName} = await create${upperModuleName}.execute(${lowerModuleName}Data);
+    const ${names.lowerModuleName} = await create${names.upperModuleName}.execute(${names.lowerModuleName}Data);
 
-    return response.send(${lowerModuleName});
+    return response.send(${names.lowerModuleName});
   }
 }
 `;

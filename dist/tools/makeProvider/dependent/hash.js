@@ -13,7 +13,7 @@ var _BCrypt = _interopRequireDefault(require("../../../../dist/templates/provide
 var _IHash = _interopRequireDefault(require("../../../../dist/templates/providers/models/IHash"));
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentHashProvider(fatherData) {
+async function makeDependentHashProvider(fatherNames) {
   if (!_fs.default.existsSync('src')) {
     _fs.default.mkdirSync('src');
   }
@@ -34,33 +34,33 @@ async function makeDependentHashProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, '', error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models`);
   }
-  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherData.pluralLowerModuleName}/providers';`, error => {
+  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`, error => {
     if (error) throw error;
   });
-  _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, `\nimport './HashProvider';`, error => {
+  _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './HashProvider';`, error => {
     if (error) throw error;
   });
   if (!_fs.default.existsSync('src/config/hash.ts')) {
@@ -75,51 +75,51 @@ async function makeDependentHashProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, (0, _fakeHash.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, (0, _fakeHash.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, (0, _fakeHash.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`, (0, _fakeHash.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, (0, _BCrypt.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, (0, _BCrypt.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, (0, _BCrypt.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`, (0, _BCrypt.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, (0, _IHash.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, (0, _IHash.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, (0, _IHash.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`, (0, _IHash.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`, (0, _hashIndex.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`, (0, _hashIndex.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/HashProvider/index.ts`, (0, _hashIndex.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`, (0, _hashIndex.default)(), error => {
       if (error) throw error;
     });
   }

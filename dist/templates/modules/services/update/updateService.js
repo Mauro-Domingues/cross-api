@@ -4,51 +4,51 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = updateService;
-function updateService(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralUpperModuleName) {
+function updateService(names) {
   return `import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
+import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
-import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import ${names.upperModuleName} from '@modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Update${upperModuleName}Service {
+export default class Update${names.upperModuleName}Service {
   constructor(
-    @inject('${pluralUpperModuleName}Repository')
-    private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
+    @inject('${names.pluralUpperModuleName}Repository')
+    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
 
   async execute(
-    ${lowerModuleName}Param: IObjectDTO,
-    ${lowerModuleName}Data: I${upperModuleName}DTO,
-  ): Promise<IResponseDTO<${upperModuleName}>> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param);
+    ${names.lowerModuleName}Param: IObjectDTO,
+    ${names.lowerModuleName}Data: I${names.upperModuleName}DTO,
+  ): Promise<IResponseDTO<${names.upperModuleName}>> {
+    const ${names.lowerModuleName} = await this.${names.pluralLowerModuleName}Repository.findBy(${names.lowerModuleName}Param);
 
-    if (!${lowerModuleName}) {
-      throw new AppError('${upperModuleName} not found', 404);
+    if (!${names.lowerModuleName}) {
+      throw new AppError('${names.upperModuleName} not found', 404);
     }
 
-    await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
+    await this.cacheProvider.invalidatePrefix('${names.pluralLowerModuleName}');
 
-    await this.${pluralLowerModuleName}Repository.update(
-      await mapAndUpdateAttribute(${lowerModuleName}, ${lowerModuleName}Data),
+    await this.${names.pluralLowerModuleName}Repository.update(
+      await mapAndUpdateAttribute(${names.lowerModuleName}, ${names.lowerModuleName}Data),
     );
 
     return {
       code: 200,
       message_code: 'OK',
-      message: 'successfully updated ${lowerModuleName}',
-      data: ${lowerModuleName},
+      message: 'successfully updated ${names.lowerModuleName}',
+      data: ${names.lowerModuleName},
     };
   }
 }

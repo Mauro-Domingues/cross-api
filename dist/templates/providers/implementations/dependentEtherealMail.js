@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createDependentEtherealMail;
-function createDependentEtherealMail(pluralFatherLowerModuleName) {
+function createDependentEtherealMail(fatherNames) {
   return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@modules/${pluralFatherLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import IMailTemplateProvider from '@modules/${fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';

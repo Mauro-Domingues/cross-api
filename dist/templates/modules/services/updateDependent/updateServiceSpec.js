@@ -4,45 +4,45 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = updateSpecDependentService;
-function updateSpecDependentService(lowerModuleName, upperModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
+function updateSpecDependentService(names, fatherNames) {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/fakes/Fake${pluralUpperModuleName}Repository';
-import Update${upperModuleName}Service from './Update${upperModuleName}Service';
+import Fake${names.upperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
+import Update${names.upperModuleName}Service from './Update${names.upperModuleName}Service';
 
-let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
+let fake${names.upperModuleName}Repository: Fake${names.upperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let update${upperModuleName}Service: Update${upperModuleName}Service;
+let update${names.upperModuleName}Service: Update${names.upperModuleName}Service;
 
-describe('Update${upperModuleName}Service', () => {
+describe('Update${names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
+    fake${names.upperModuleName}Repository = new Fake${names.upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    update${upperModuleName}Service = new Update${upperModuleName}Service(
-      fake${upperModuleName}Repository,
+    update${names.upperModuleName}Service = new Update${names.upperModuleName}Service(
+      fake${names.upperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
-  it('should update the ${lowerModuleName}', async () => {
-    const ${lowerModuleName} = await fake${upperModuleName}Repository.create({
-      name: '${lowerModuleName}',
-      description: 'This is a ${lowerModuleName}',
+  it('should update the ${names.lowerModuleName}', async () => {
+    const ${names.lowerModuleName} = await fake${names.upperModuleName}Repository.create({
+      name: '${names.lowerModuleName}',
+      description: 'This is a ${names.lowerModuleName}',
     });
 
-    const updated${upperModuleName} = await update${upperModuleName}Service.execute(
-      { id: ${lowerModuleName}.id },
-      { name: 'updated${upperModuleName}', description: 'This is a updated${lowerModuleName}' },
+    const updated${names.upperModuleName} = await update${names.upperModuleName}Service.execute(
+      { id: ${names.lowerModuleName}.id },
+      { name: 'updated${names.upperModuleName}', description: 'This is a updated${names.lowerModuleName}' },
     );
 
-    expect(updated${upperModuleName}.data.name).toEqual('updated${upperModuleName}');
+    expect(updated${names.upperModuleName}.data.name).toEqual('updated${names.upperModuleName}');
   });
 
   it('should return App Error', async () => {
     await expect(
-      update${upperModuleName}Service.execute({}, { name: '', description: '' }),
+      update${names.upperModuleName}Service.execute({}, { name: '', description: '' }),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

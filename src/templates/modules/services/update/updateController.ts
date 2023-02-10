@@ -1,25 +1,28 @@
+import IModuleNamesDTO from 'index';
+
 export default function updateController(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
+  names: Pick<
+    IModuleNamesDTO,
+    'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
+  >,
 ): string {
   return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import IObjectDTO from '@dtos/IObjectDTO';
-import Update${upperModuleName}Service from './Update${upperModuleName}Service';
+import Update${names.upperModuleName}Service from './Update${names.upperModuleName}Service';
 
-export default class Update${upperModuleName}Controller {
+export default class Update${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const update${upperModuleName} = container.resolve(Update${upperModuleName}Service);
+    const update${names.upperModuleName} = container.resolve(Update${names.upperModuleName}Service);
 
-    const ${lowerModuleName}Param: IObjectDTO = request.params;
-    const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
+    const ${names.lowerModuleName}Param: IObjectDTO = request.params;
+    const ${names.lowerModuleName}Data: I${names.upperModuleName}DTO = request.body;
 
-    const ${lowerModuleName} = await update${upperModuleName}.execute(${lowerModuleName}Param, ${lowerModuleName}Data);
+    const ${names.lowerModuleName} = await update${names.upperModuleName}.execute(${names.lowerModuleName}Param, ${names.lowerModuleName}Data);
 
-    return response.send(${lowerModuleName});
+    return response.send(${names.lowerModuleName});
   }
 }
 `;

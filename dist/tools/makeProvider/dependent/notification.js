@@ -14,7 +14,7 @@ var _INotification = _interopRequireDefault(require("../../../../dist/templates/
 var _notificationIndex = _interopRequireDefault(require("../../../../dist/templates/providers/notificationIndex"));
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentNotificationProvider(fatherData) {
+async function makeDependentNotificationProvider(fatherNames) {
   if (!_fs.default.existsSync('src')) {
     _fs.default.mkdirSync('src');
   }
@@ -35,36 +35,36 @@ async function makeDependentNotificationProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, '', error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`);
   }
-  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherData.pluralLowerModuleName}/providers';`, error => {
+  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`, error => {
     if (error) throw error;
   });
-  _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, `\nimport './NotificationProvider';`, error => {
+  _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './NotificationProvider';`, error => {
     if (error) throw error;
   });
   if (!_fs.default.existsSync('src/config/notification.ts')) {
@@ -79,63 +79,63 @@ async function makeDependentNotificationProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, (0, _INotificationDTO.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, (0, _INotificationDTO.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, (0, _INotificationDTO.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`, (0, _INotificationDTO.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, (0, _fakeNotification.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, (0, _fakeNotification.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, (0, _fakeNotification.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`, (0, _fakeNotification.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, (0, _OneSignalNotification.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, (0, _OneSignalNotification.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, (0, _OneSignalNotification.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`, (0, _OneSignalNotification.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, (0, _INotification.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, (0, _INotification.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, (0, _INotification.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`, (0, _INotification.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, (0, _notificationIndex.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, (0, _notificationIndex.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, (0, _notificationIndex.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`, (0, _notificationIndex.default)(), error => {
       if (error) throw error;
     });
   }

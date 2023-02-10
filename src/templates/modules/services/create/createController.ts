@@ -1,23 +1,26 @@
+import IModuleNamesDTO from 'index';
+
 export default function createController(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
+  names: Pick<
+    IModuleNamesDTO,
+    'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
+  >,
 ): string {
-  return `import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+  return `import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Create${upperModuleName}Service from './Create${upperModuleName}Service';
+import Create${names.upperModuleName}Service from './Create${names.upperModuleName}Service';
 
-export default class Create${upperModuleName}Controller {
+export default class Create${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const ${lowerModuleName}Data: I${upperModuleName}DTO = request.body;
+    const ${names.lowerModuleName}Data: I${names.upperModuleName}DTO = request.body;
 
-    const create${upperModuleName} = container.resolve(Create${upperModuleName}Service);
+    const create${names.upperModuleName} = container.resolve(Create${names.upperModuleName}Service);
 
-    const ${lowerModuleName} = await create${upperModuleName}.execute(${lowerModuleName}Data);
+    const ${names.lowerModuleName} = await create${names.upperModuleName}.execute(${names.lowerModuleName}Data);
 
-    return response.send(${lowerModuleName});
+    return response.send(${names.lowerModuleName});
   }
 }
 `;

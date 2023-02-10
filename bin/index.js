@@ -10,33 +10,55 @@ var _makeApi = _interopRequireDefault(require("../dist/tools/makeApi"));
 var _makeModule = _interopRequireDefault(require("../dist/tools/makeModule"));
 var _makeProvider = _interopRequireDefault(require("../dist/tools/makeProvider"));
 var _messages = _interopRequireDefault(require("../dist/tools/messages"));
+var _pluralize = require("pluralize");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const [comand] = process.argv.slice(2);
 const [arg] = process.argv.slice(3);
 const [father] = process.argv.slice(4);
-class GetName {
-  getModuleName(name) {
+class GetNames {
+  getSingularAndPlural(word) {
+    if ((0, _pluralize.isSingular)(word)) {
+      return {
+        singular: word,
+        pluralName: (0, _pluralize.plural)(word)
+      };
+    }
+    return {
+      singular: (0, _pluralize.singular)(word),
+      pluralName: word
+    };
+  }
+  getModuleNames(name) {
     if (!name) {
       return undefined;
     }
-    const lowerModuleName = name.replace(name.charAt(0), name.charAt(0).toLowerCase());
-    const upperModuleName = name.replace(name.charAt(0), name.charAt(0).toUpperCase());
-    const pluralLowerModuleName = lowerModuleName.slice(-1) === 's' ? lowerModuleName : `${lowerModuleName}s`;
-    const pluralUpperModuleName = upperModuleName.slice(-1) === 's' ? upperModuleName : `${upperModuleName}s`;
-    let dbModuleName = '';
-    for (const letter of pluralLowerModuleName) {
+    const {
+      singular,
+      pluralName
+    } = this.getSingularAndPlural(name);
+    const lowerModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toLowerCase());
+    const upperModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toUpperCase());
+    const pluralLowerModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toLowerCase());
+    const pluralUpperModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toUpperCase());
+    const dbModuleName = Array.from(pluralLowerModuleName).reduce((accumulator, letter) => {
       if (letter === letter.toUpperCase()) {
-        dbModuleName = `${dbModuleName}_${letter.toLowerCase()}`;
-      } else {
-        dbModuleName = `${dbModuleName}${letter}`;
+        return `${accumulator}_${letter.toLowerCase()}`;
       }
-    }
+      return `${accumulator}${letter}`;
+    });
+    const routeModuleName = Array.from(pluralLowerModuleName).reduce((accumulator, letter) => {
+      if (letter === letter.toUpperCase()) {
+        return `${accumulator}-${letter.toLowerCase()}`;
+      }
+      return `${accumulator}${letter}`;
+    });
     return {
       lowerModuleName,
       upperModuleName,
       pluralLowerModuleName,
       pluralUpperModuleName,
-      dbModuleName
+      dbModuleName,
+      routeModuleName
     };
   }
 }
@@ -58,10 +80,10 @@ if (comand) {
       (0, _makeApi.default)();
       break;
     case 'make:module':
-      (0, _makeModule.default)(new GetName().getModuleName(arg), new GetName().getModuleName(father));
+      (0, _makeModule.default)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
       break;
     case 'make:provider':
-      (0, _makeProvider.default)(arg, new GetName().getModuleName(father));
+      (0, _makeProvider.default)(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
       _shelljs.default.exec('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');

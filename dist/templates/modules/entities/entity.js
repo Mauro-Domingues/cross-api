@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createEntity;
-function createEntity(upperModuleName, dbModuleName) {
+function createEntity(names) {
   return `import {
   Entity,
   PrimaryGeneratedColumn,
@@ -14,8 +14,8 @@ function createEntity(upperModuleName, dbModuleName) {
   DeleteDateColumn,
 } from 'typeorm';
 
-@Entity('${dbModuleName}')
-export default class ${upperModuleName} {
+@Entity('${names.dbModuleName}')
+export default class ${names.upperModuleName} {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

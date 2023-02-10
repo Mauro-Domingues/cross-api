@@ -1,9 +1,8 @@
+import IModuleNamesDTO from 'index';
+
 export default function listSpecDependentController(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
-  pluralFatherLowerModuleName: string,
-  dbModuleName: string,
+  names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>,
+  fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>,
 ): string {
   return `import request from 'supertest';
 import { DataSource } from 'typeorm';
@@ -12,13 +11,13 @@ import app from '@shared/app';
 
 let connection: DataSource;
 
-describe('List${upperModuleName}Controller', () => {
+describe('List${names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
 
     return connection.query(
-      \`INSERT INTO ${dbModuleName}(id, name, description) values('12345', '${lowerModuleName}', 'This is a ${lowerModuleName}')\`,
+      \`INSERT INTO ${names.dbModuleName}(id, name, description) values('12345', '${names.lowerModuleName}', 'This is a ${names.lowerModuleName}')\`,
     );
   });
 
@@ -27,8 +26,8 @@ describe('List${upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to list ${pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}');
+  it('Should be able to list ${names.pluralLowerModuleName}', async () => {
+    const response = await request(app).get('/${fatherNames.routeModuleName}/track/${names.routeModuleName}');
 
     expect(response.status).toBe(200);
     expect(response.body.data[0]).toHaveProperty('id');

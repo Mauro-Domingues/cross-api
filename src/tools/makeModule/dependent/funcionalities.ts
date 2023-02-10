@@ -9,41 +9,34 @@ import showDependentController from '@templates/modules/services/showDependent/s
 import showDependentService from '@templates/modules/services/showDependent/showService';
 import updateDependentController from '@templates/modules/services/updateDependent/updateController';
 import updateDependentService from '@templates/modules/services/updateDependent/updateService';
+import IModuleNamesDTO from 'index';
 
 export default async function makeDependentFunctionalities(
-  moduleData: { [key: string]: string },
-  fatherData: { [key: string]: string },
+  names: IModuleNamesDTO,
+  fatherNames: IModuleNamesDTO,
 ): Promise<void> {
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
-      createDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`,
+      createDependentController(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Controller.ts`,
-      createDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`,
+      createDependentController(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -51,38 +44,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
-      createDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`,
+      createDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}/Create${moduleData.upperModuleName}Service.ts`,
-      createDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`,
+      createDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -90,32 +71,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`,
+      deleteDependentController(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Controller.ts`,
-      deleteDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`,
+      deleteDependentController(names),
       error => {
         if (error) throw error;
       },
@@ -123,38 +98,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
-      deleteDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`,
+      deleteDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}/Delete${moduleData.upperModuleName}Service.ts`,
-      deleteDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`,
+      deleteDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -162,32 +125,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
-      listDependentController(
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`,
+      listDependentController(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Controller.ts`,
-      listDependentController(
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`,
+      listDependentController(names),
       error => {
         if (error) throw error;
       },
@@ -195,36 +152,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
-      listDependentService(
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`,
+      listDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}/List${moduleData.upperModuleName}Service.ts`,
-      listDependentService(
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`,
+      listDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -232,32 +179,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
-      showDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`,
+      showDependentController(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Controller.ts`,
-      showDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`,
+      showDependentController(names),
       error => {
         if (error) throw error;
       },
@@ -265,38 +206,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
-      showDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`,
+      showDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}/Show${moduleData.upperModuleName}Service.ts`,
-      showDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`,
+      showDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -304,34 +233,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
-      updateDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`,
+      updateDependentController(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Controller.ts`,
-      updateDependentController(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`,
+      updateDependentController(names, fatherNames),
       error => {
         if (error) throw error;
       },
@@ -339,38 +260,26 @@ export default async function makeDependentFunctionalities(
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
-      updateDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`,
+      updateDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}/Update${moduleData.upperModuleName}Service.ts`,
-      updateDependentService(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-        fatherData.pluralLowerModuleName,
-      ),
+      `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`,
+      updateDependentService(names, fatherNames),
       error => {
         if (error) throw error;
       },

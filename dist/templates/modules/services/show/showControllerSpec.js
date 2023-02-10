@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = showSpecController;
-function showSpecController(lowerModuleName, upperModuleName, pluralLowerModuleName, dbModuleName) {
+function showSpecController(names) {
   return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';
@@ -12,13 +12,13 @@ import app from '@shared/app';
 
 let connection: DataSource;
 
-describe('Show${upperModuleName}Controller', () => {
+describe('Show${names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
 
     return connection.query(
-      \`INSERT INTO ${dbModuleName}(id, name, description) values('12345', '${lowerModuleName}', 'This is a ${lowerModuleName}')\`,
+      \`INSERT INTO ${names.dbModuleName}(id, name, description) values('12345', '${names.lowerModuleName}', 'This is a ${names.lowerModuleName}')\`,
     );
   });
 
@@ -27,8 +27,8 @@ describe('Show${upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to show ${pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${pluralLowerModuleName}/12345');
+  it('Should be able to show ${names.pluralLowerModuleName}', async () => {
+    const response = await request(app).get('/${names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);
     expect(response.body.data).toHaveProperty('id');

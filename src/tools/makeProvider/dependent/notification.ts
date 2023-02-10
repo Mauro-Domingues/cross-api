@@ -7,10 +7,11 @@ import createOneSignalNotification from '@templates/providers/implementations/On
 import createINotification from '@templates/providers/models/INotification';
 import createNotificationIndex from '@templates/providers/notificationIndex';
 import messages from '@tools/messages';
+import IModuleNamesDTO from 'index';
 
-export default async function makeDependentNotificationProvider(fatherData: {
-  [key: string]: string;
-}): Promise<void> {
+export default async function makeDependentNotificationProvider(
+  fatherNames: IModuleNamesDTO,
+): Promise<void> {
   if (!fs.existsSync('src')) {
     fs.mkdirSync('src');
   }
@@ -31,21 +32,21 @@ export default async function makeDependentNotificationProvider(fatherData: {
       if (error) throw error;
     });
   }
-  if (!fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
   if (
-    !fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)
+    !fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
   ) {
-    fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
       '',
       error => {
         if (error) throw error;
@@ -54,58 +55,58 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`,
     );
   }
   fs.appendFile(
     `src/shared/container/index.ts`,
-    `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+    `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`,
     error => {
       if (error) throw error;
     },
   );
   fs.appendFile(
-    `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+    `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     `\nimport './NotificationProvider';`,
     error => {
       if (error) throw error;
@@ -133,11 +134,11 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
       createINotificationDTO(),
       error => {
         if (error) throw error;
@@ -145,13 +146,13 @@ export default async function makeDependentNotificationProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
       createINotificationDTO(),
       error => {
         if (error) throw error;
@@ -160,11 +161,11 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
       createFakeNotification(),
       error => {
         if (error) throw error;
@@ -172,13 +173,13 @@ export default async function makeDependentNotificationProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
       createFakeNotification(),
       error => {
         if (error) throw error;
@@ -187,11 +188,11 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
       createOneSignalNotification(),
       error => {
         if (error) throw error;
@@ -199,13 +200,13 @@ export default async function makeDependentNotificationProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
       createOneSignalNotification(),
       error => {
         if (error) throw error;
@@ -214,11 +215,11 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
       createINotification(),
       error => {
         if (error) throw error;
@@ -226,13 +227,13 @@ export default async function makeDependentNotificationProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
       createINotification(),
       error => {
         if (error) throw error;
@@ -241,11 +242,11 @@ export default async function makeDependentNotificationProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
       createNotificationIndex(),
       error => {
         if (error) throw error;
@@ -253,13 +254,13 @@ export default async function makeDependentNotificationProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
       createNotificationIndex(),
       error => {
         if (error) throw error;

@@ -1,10 +1,14 @@
+import IModuleNamesDTO from 'index';
+
 export default function createDependentEtherealMail(
-  pluralFatherLowerModuleName: string,
+  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {
   return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@modules/${pluralFatherLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import IMailTemplateProvider from '@modules/${
+    fatherNames.pluralLowerModuleName
+  }/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';

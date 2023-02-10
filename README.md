@@ -18,7 +18,7 @@ npm cross config
 yarn cross comands
 ```
 
-<h3>IMPORTANT: Declare the names of the modules in lowercase and singular when using</h3>
+<h3>IMPORTANT: Declare the names of the modules in lowerCamelCase</h3>
 
 ```
 yarn cross make:module [name]

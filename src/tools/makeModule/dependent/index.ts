@@ -1,25 +1,22 @@
 import messages from '@tools/messages';
+import IModuleNamesDTO from 'index';
 import makeDependentFunctionalities from './funcionalities';
 import makeDependentInfra from './infra';
 import makeDependentStructure from './structure';
 import makeDependentUnitTests from './unitTests';
 
 export default async function makeDependentModule(
-  moduleData: {
-    [key: string]: string;
-  },
-  fatherData: {
-    [key: string]: string;
-  },
+  names: IModuleNamesDTO,
+  fatherNames: IModuleNamesDTO,
 ): Promise<void> {
-  await makeDependentStructure(moduleData, fatherData);
-  await makeDependentInfra(moduleData, fatherData);
-  await makeDependentFunctionalities(moduleData, fatherData);
-  await makeDependentUnitTests(moduleData, fatherData);
+  await makeDependentStructure(names, fatherNames);
+  await makeDependentInfra(names, fatherNames);
+  await makeDependentFunctionalities(names, fatherNames);
+  await makeDependentUnitTests(names, fatherNames);
 
   return console.log(
     '\x1b[38;2;255;255;0m',
-    `- ${moduleData.lowerModuleName}Module ${messages.created}`,
+    `- ${names.lowerModuleName}Module ${messages.created}`,
     '\x1b[0m',
   );
 }

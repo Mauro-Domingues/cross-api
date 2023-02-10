@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createDependentInjection;
-function createDependentInjection(pluralUpperModuleName, pluralFatherLowerModuleName) {
-  return `import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import ${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/${pluralUpperModuleName}Repository';
+function createDependentInjection(names, fatherNames) {
+  return `import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
+import ${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository';
 
-container.registerSingleton<I${pluralUpperModuleName}Repository>(
-  '${pluralUpperModuleName}Repository',
-  ${pluralUpperModuleName}Repository,
+container.registerSingleton<I${names.pluralUpperModuleName}Repository>(
+  '${names.pluralUpperModuleName}Repository',
+  ${names.pluralUpperModuleName}Repository,
 );
 `;
 }

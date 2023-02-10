@@ -1,4 +1,5 @@
 import messages from '@tools/messages';
+import IModuleNamesDTO from 'index';
 import makeDependentCacheProvider from './cache';
 import makeDependentCryptoProvider from './crypto';
 import makeDependentHashProvider from './hash';
@@ -10,32 +11,32 @@ import makeDependentStorageProvider from './storage';
 
 export default async function makeDependentProvider(
   providerName: string,
-  fatherData: { [key: string]: string },
+  fatherNames: IModuleNamesDTO,
 ): Promise<void> {
   switch (providerName) {
     case 'cache':
-      makeDependentCacheProvider(fatherData);
+      makeDependentCacheProvider(fatherNames);
       break;
     case 'storage':
-      makeDependentStorageProvider(fatherData);
+      makeDependentStorageProvider(fatherNames);
       break;
     case 'mailTemplate':
-      makeDependentMailTemplateProvider(fatherData);
+      makeDependentMailTemplateProvider(fatherNames);
       break;
     case 'mail':
-      makeDependentMailProvider(fatherData);
+      makeDependentMailProvider(fatherNames);
       break;
     case 'notification':
-      makeDependentNotificationProvider(fatherData);
+      makeDependentNotificationProvider(fatherNames);
       break;
     case 'lead':
-      makeDependentLeadProvider(fatherData);
+      makeDependentLeadProvider(fatherNames);
       break;
     case 'crypto':
-      makeDependentCryptoProvider(fatherData);
+      makeDependentCryptoProvider(fatherNames);
       break;
     case 'hash':
-      makeDependentHashProvider(fatherData);
+      makeDependentHashProvider(fatherNames);
       break;
     default:
       console.log(

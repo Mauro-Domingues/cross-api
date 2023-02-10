@@ -1,22 +1,23 @@
+import IModuleNamesDTO from 'index';
+
 export default function showController(
-  lowerModuleName: string,
-  upperModuleName: string,
+  names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
 ): string {
   return `import IObjectDTO from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Show${upperModuleName}Service from './Show${upperModuleName}Service';
+import Show${names.upperModuleName}Service from './Show${names.upperModuleName}Service';
 
-export default class Show${upperModuleName}Controller {
+export default class Show${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const show${upperModuleName} = container.resolve(Show${upperModuleName}Service);
+    const show${names.upperModuleName} = container.resolve(Show${names.upperModuleName}Service);
 
-    const ${lowerModuleName}Param: IObjectDTO = request.params;
+    const ${names.lowerModuleName}Param: IObjectDTO = request.params;
 
-    const ${lowerModuleName} = await show${upperModuleName}.execute(${lowerModuleName}Param);
+    const ${names.lowerModuleName} = await show${names.upperModuleName}.execute(${names.lowerModuleName}Param);
 
-    return response.send(${lowerModuleName});
+    return response.send(${names.lowerModuleName});
   }
 }
 `;

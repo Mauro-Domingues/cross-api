@@ -1,13 +1,17 @@
-export default function createInjection(
-  pluralLowerModuleName: string,
-  pluralUpperModuleName: string,
-): string {
-  return `import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import ${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/${pluralUpperModuleName}Repository';
+import IModuleNamesDTO from 'index';
 
-container.registerSingleton<I${pluralUpperModuleName}Repository>(
-  '${pluralUpperModuleName}Repository',
-  ${pluralUpperModuleName}Repository,
+export default function createInjection(
+  names: Pick<
+    IModuleNamesDTO,
+    'pluralLowerModuleName' | 'pluralUpperModuleName'
+  >,
+): string {
+  return `import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
+import ${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository';
+
+container.registerSingleton<I${names.pluralUpperModuleName}Repository>(
+  '${names.pluralUpperModuleName}Repository',
+  ${names.pluralUpperModuleName}Repository,
 );
 `;
 }

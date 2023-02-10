@@ -9,10 +9,9 @@ import createIRepository from '@templates/modules/repositories/IRepository';
 import createRepository from '@templates/modules/repositories/repository';
 import createIndependentRoute from '@templates/modules/routes/independentRoutes';
 import createIndexRoute from '@templates/modules/routes/indexRouter';
+import IModuleNamesDTO from 'index';
 
-export default async function makeInfra(moduleData: {
-  [key: string]: string;
-}): Promise<void> {
+export default async function makeInfra(names: IModuleNamesDTO): Promise<void> {
   if (!fs.existsSync('src/shared/container/index.ts')) {
     fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
@@ -25,26 +24,26 @@ export default async function makeInfra(moduleData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${moduleData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`,
+      `src/modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`,
-      createModuleDTO(moduleData.upperModuleName),
+      `src/modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
+      createModuleDTO(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${moduleData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`,
+      `src/modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`,
-      createModuleDTO(moduleData.upperModuleName),
+      `src/modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
+      createModuleDTO(names),
       error => {
         if (error) throw error;
       },
@@ -52,26 +51,26 @@ export default async function makeInfra(moduleData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${moduleData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`,
+      `src/modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`,
-      createEntity(moduleData.upperModuleName, moduleData.dbModuleName),
+      `src/modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
+      createEntity(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${moduleData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`,
+      `src/modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`,
-      createEntity(moduleData.upperModuleName, moduleData.dbModuleName),
+      `src/modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
+      createEntity(names),
       error => {
         if (error) throw error;
       },
@@ -79,36 +78,26 @@ export default async function makeInfra(moduleData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
-      createRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
+      createRepository(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`,
-      createRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
+      createRepository(names),
       error => {
         if (error) throw error;
       },
@@ -116,36 +105,26 @@ export default async function makeInfra(moduleData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
-      createIRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
+      createIRepository(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`,
-      createIRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
+      createIRepository(names),
       error => {
         if (error) throw error;
       },
@@ -153,36 +132,26 @@ export default async function makeInfra(moduleData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
-      createFakeRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
+      createFakeRepository(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
     fs.truncate(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
+      `src/modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${moduleData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`,
-      createFakeRepository(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-        moduleData.pluralUpperModuleName,
-      ),
+      `src/modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
+      createFakeRepository(names),
       error => {
         if (error) throw error;
       },
@@ -190,50 +159,32 @@ export default async function makeInfra(moduleData: {
   }
   fs.appendFile(
     'src/shared/container/index.ts',
-    createInjection(
-      moduleData.pluralLowerModuleName,
-      moduleData.pluralUpperModuleName,
-    ),
+    createInjection(names),
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync(`src/routes/${moduleData.lowerModuleName}Router.ts`)) {
+  if (!fs.existsSync(`src/routes/${names.lowerModuleName}Router.ts`)) {
     fs.appendFile(
-      `src/routes/${moduleData.lowerModuleName}Router.ts`,
-      createIndependentRoute(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
+      `src/routes/${names.lowerModuleName}Router.ts`,
+      createIndependentRoute(names),
       error => {
         if (error) throw error;
       },
     );
   } else {
-    fs.truncate(`src/routes/${moduleData.lowerModuleName}Router.ts`, error => {
+    fs.truncate(`src/routes/${names.lowerModuleName}Router.ts`, error => {
       if (error) console.log(error);
     });
     fs.appendFile(
-      `src/routes/${moduleData.lowerModuleName}Router.ts`,
-      createIndependentRoute(
-        moduleData.lowerModuleName,
-        moduleData.upperModuleName,
-        moduleData.pluralLowerModuleName,
-      ),
+      `src/routes/${names.lowerModuleName}Router.ts`,
+      createIndependentRoute(names),
       error => {
         if (error) throw error;
       },
     );
   }
-  fs.appendFile(
-    `src/routes/index.ts`,
-    createIndexRoute(
-      moduleData.lowerModuleName,
-      moduleData.pluralLowerModuleName,
-    ),
-    error => {
-      if (error) throw error;
-    },
-  );
+  fs.appendFile(`src/routes/index.ts`, createIndexRoute(names), error => {
+    if (error) throw error;
+  });
 }

@@ -15,6 +15,7 @@ export default async (): Promise<DataSource> => {
 // @Column({ type: 'varchar', nullable: true })
 // image: string
 
+// import { Expose } from 'class-transformer'
 // @Expose({ name: "avatar_url" })
 // getAvatarUrl(): string | null {
 //   if (!this.image) {

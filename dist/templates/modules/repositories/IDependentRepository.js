@@ -4,27 +4,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createIDependentRepository;
-function createIDependentRepository(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
-  return `import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
-import I${upperModuleName}DTO from '@modules/${pluralFatherLowerModuleName}/dtos/I${upperModuleName}DTO';
+function createIDependentRepository(names, fatherNames) {
+  return `import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
 import IObjectDTO from '@dtos/IObjectDTO';
 
-export default interface I${pluralUpperModuleName}Repository {
+export default interface I${names.pluralUpperModuleName}Repository {
   findAll(
     page: number,
     limit: number,
     conditions?: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }>;
+  ): Promise<{ ${names.pluralLowerModuleName}: ${names.upperModuleName}[]; amount: number }>;
   findBy(
-    ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
+    ${names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<${upperModuleName} | null>;
-  create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}>;
-  update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}>;
-  delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
-  softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+  ): Promise<${names.upperModuleName} | null>;
+  create(${names.lowerModuleName}Data: I${names.upperModuleName}DTO): Promise<${names.upperModuleName}>;
+  update(${names.lowerModuleName}Data: ${names.upperModuleName}): Promise<${names.upperModuleName}>;
+  delete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+  softDelete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
 }
 `;
 }

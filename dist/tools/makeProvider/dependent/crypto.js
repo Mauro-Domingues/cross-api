@@ -13,7 +13,7 @@ var _Crypto = _interopRequireDefault(require("../../../../dist/templates/provide
 var _ICrypto = _interopRequireDefault(require("../../../../dist/templates/providers/models/ICrypto"));
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentCryptoProvider(fatherData) {
+async function makeDependentCryptoProvider(fatherNames) {
   if (!_fs.default.existsSync('src')) {
     _fs.default.mkdirSync('src');
   }
@@ -34,33 +34,33 @@ async function makeDependentCryptoProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, '', error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models`);
   }
-  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherData.pluralLowerModuleName}/providers';`, error => {
+  _fs.default.appendFile(`src/shared/container/index.ts`, `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`, error => {
     if (error) throw error;
   });
-  _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`, `\nimport './CryptoProvider';`, error => {
+  _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './CryptoProvider';`, error => {
     if (error) throw error;
   });
   if (!_fs.default.existsSync('src/config/crypto.ts')) {
@@ -75,51 +75,51 @@ async function makeDependentCryptoProvider(fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, (0, _ICryptoDTO.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, (0, _ICryptoDTO.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, (0, _ICryptoDTO.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`, (0, _ICryptoDTO.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, (0, _Crypto.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, (0, _Crypto.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, (0, _Crypto.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`, (0, _Crypto.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, (0, _ICrypto.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, (0, _ICrypto.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, (0, _ICrypto.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`, (0, _ICrypto.default)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, (0, _cryptoIndex.default)(), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, (0, _cryptoIndex.default)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, (0, _cryptoIndex.default)(), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`, (0, _cryptoIndex.default)(), error => {
       if (error) throw error;
     });
   }

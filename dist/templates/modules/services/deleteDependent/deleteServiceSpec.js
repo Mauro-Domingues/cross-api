@@ -4,43 +4,43 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = deleteSpecDependentService;
-function deleteSpecDependentService(lowerModuleName, upperModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
+function deleteSpecDependentService(names, fatherNames) {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
-import Fake${upperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/fakes/Fake${pluralUpperModuleName}Repository';
-import Delete${upperModuleName}Services from './Delete${upperModuleName}Service';
+import Fake${names.upperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
+import Delete${names.upperModuleName}Services from './Delete${names.upperModuleName}Service';
 
-let fake${upperModuleName}Repository: Fake${upperModuleName}Repository;
+let fake${names.upperModuleName}Repository: Fake${names.upperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let delete${upperModuleName}: Delete${upperModuleName}Services;
+let delete${names.upperModuleName}: Delete${names.upperModuleName}Services;
 
-describe('Delete${upperModuleName}Service', () => {
+describe('Delete${names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${upperModuleName}Repository = new Fake${upperModuleName}Repository();
+    fake${names.upperModuleName}Repository = new Fake${names.upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    delete${upperModuleName} = new Delete${upperModuleName}Services(
-      fake${upperModuleName}Repository,
+    delete${names.upperModuleName} = new Delete${names.upperModuleName}Services(
+      fake${names.upperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
-  it('should be able to delete a ${lowerModuleName}', async () => {
-    const ${lowerModuleName} = await fake${upperModuleName}Repository.create({
-      name: '${lowerModuleName}',
-      description: 'This is a ${lowerModuleName}',
+  it('should be able to delete a ${names.lowerModuleName}', async () => {
+    const ${names.lowerModuleName} = await fake${names.upperModuleName}Repository.create({
+      name: '${names.lowerModuleName}',
+      description: 'This is a ${names.lowerModuleName}',
     });
 
-    await delete${upperModuleName}.execute({ id: ${lowerModuleName}.id });
+    await delete${names.upperModuleName}.execute({ id: ${names.lowerModuleName}.id });
 
-    const deleted${upperModuleName} = await fake${upperModuleName}Repository.findBy({ id: ${lowerModuleName}.id });
+    const deleted${names.upperModuleName} = await fake${names.upperModuleName}Repository.findBy({ id: ${names.lowerModuleName}.id });
 
-    expect(deleted${upperModuleName}).toBe(null);
+    expect(deleted${names.upperModuleName}).toBe(null);
   });
 
   it('should return App error', async () => {
-    await expect(delete${upperModuleName}.execute({})).rejects.toBeInstanceOf(AppError);
+    await expect(delete${names.upperModuleName}.execute({})).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

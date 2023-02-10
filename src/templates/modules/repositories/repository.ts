@@ -1,34 +1,33 @@
+import IModuleNamesDTO from 'index';
+
 export default function createRepository(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
-  pluralUpperModuleName: string,
+  names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
 ): string {
-  return `import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
+  return `import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { DeleteResult, Repository } from 'typeorm';
 
-import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
-import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
+import ${names.upperModuleName} from '@modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import { AppDataSource } from '@shared/typeorm/dataSource';
 import IObjectDTO from '@dtos/IObjectDTO';
 
-export default class ${pluralUpperModuleName}Repository implements I${pluralUpperModuleName}Repository {
-  private ormRepository: Repository<${upperModuleName}>;
+export default class ${names.pluralUpperModuleName}Repository implements I${names.pluralUpperModuleName}Repository {
+  private ormRepository: Repository<${names.upperModuleName}>;
 
   constructor() {
-    this.ormRepository = AppDataSource.getRepository(${upperModuleName});
+    this.ormRepository = AppDataSource.getRepository(${names.upperModuleName});
   }
 
   public async findBy(
-    ${lowerModuleName}Data: IObjectDTO | IObjectDTO[],
+    ${names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<${upperModuleName} | null> {
-    const ${lowerModuleName} = await this.ormRepository.findOne({
-      where: ${lowerModuleName}Data,
+  ): Promise<${names.upperModuleName} | null> {
+    const ${names.lowerModuleName} = await this.ormRepository.findOne({
+      where: ${names.lowerModuleName}Data,
       relations,
     });
 
-    return ${lowerModuleName};
+    return ${names.lowerModuleName};
   }
 
   public async findAll(
@@ -36,41 +35,41 @@ export default class ${pluralUpperModuleName}Repository implements I${pluralUppe
     limit: number,
     conditions?: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<{ ${pluralLowerModuleName}: ${upperModuleName}[]; amount: number }> {
-    const [${pluralLowerModuleName}, amount] = await this.ormRepository.findAndCount({
+  ): Promise<{ ${names.pluralLowerModuleName}: ${names.upperModuleName}[]; amount: number }> {
+    const [${names.pluralLowerModuleName}, amount] = await this.ormRepository.findAndCount({
       where: conditions,
       take: limit,
       skip: (page - 1) * limit,
       relations,
     });
 
-    return { ${pluralLowerModuleName}, amount };
+    return { ${names.pluralLowerModuleName}, amount };
   }
 
-  public async create(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<${upperModuleName}> {
-    const ${lowerModuleName} = this.ormRepository.create(${lowerModuleName}Data);
+  public async create(${names.lowerModuleName}Data: I${names.upperModuleName}DTO): Promise<${names.upperModuleName}> {
+    const ${names.lowerModuleName} = this.ormRepository.create(${names.lowerModuleName}Data);
 
-    await this.ormRepository.save(${lowerModuleName});
+    await this.ormRepository.save(${names.lowerModuleName});
 
-    return ${lowerModuleName};
+    return ${names.lowerModuleName};
   }
 
-  public async update(${lowerModuleName}Data: ${upperModuleName}): Promise<${upperModuleName}> {
-    return this.ormRepository.save(${lowerModuleName}Data);
+  public async update(${names.lowerModuleName}Data: ${names.upperModuleName}): Promise<${names.upperModuleName}> {
+    return this.ormRepository.save(${names.lowerModuleName}Data);
   }
 
-  public async delete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
-    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
-      return this.ormRepository.delete({ id: ${lowerModuleName}Data.id });
+  public async delete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult> {
+    if (${names.lowerModuleName}Data instanceof ${names.upperModuleName}) {
+      return this.ormRepository.delete({ id: ${names.lowerModuleName}Data.id });
     }
-    return this.ormRepository.delete(${lowerModuleName}Data);
+    return this.ormRepository.delete(${names.lowerModuleName}Data);
   }
 
-  public async softDelete(${lowerModuleName}Data: ${upperModuleName} | IObjectDTO): Promise<DeleteResult> {
-    if (${lowerModuleName}Data instanceof ${upperModuleName}) {
-      return this.ormRepository.softDelete({ id: ${lowerModuleName}Data.id });
+  public async softDelete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult> {
+    if (${names.lowerModuleName}Data instanceof ${names.upperModuleName}) {
+      return this.ormRepository.softDelete({ id: ${names.lowerModuleName}Data.id });
     }
-    return this.ormRepository.softDelete(${lowerModuleName}Data);
+    return this.ormRepository.softDelete(${names.lowerModuleName}Data);
   }
 }
 `;

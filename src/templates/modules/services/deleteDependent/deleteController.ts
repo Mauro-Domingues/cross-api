@@ -1,22 +1,23 @@
+import IModuleNamesDTO from 'index';
+
 export default function deleteDependentController(
-  lowerModuleName: string,
-  upperModuleName: string,
+  names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
 ): string {
   return `import IObjectDTO from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Delete${upperModuleName}Service from './Delete${upperModuleName}Service';
+import Delete${names.upperModuleName}Service from './Delete${names.upperModuleName}Service';
 
-export default class Delete${upperModuleName}Controller {
+export default class Delete${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const delete${upperModuleName} = container.resolve(Delete${upperModuleName}Service);
+    const delete${names.upperModuleName} = container.resolve(Delete${names.upperModuleName}Service);
 
-    const ${lowerModuleName}Param: IObjectDTO = request.params;
+    const ${names.lowerModuleName}Param: IObjectDTO = request.params;
 
-    const ${lowerModuleName} = await delete${upperModuleName}.execute(${lowerModuleName}Param);
+    const ${names.lowerModuleName} = await delete${names.upperModuleName}.execute(${names.lowerModuleName}Param);
 
-    return response.send(${lowerModuleName});
+    return response.send(${names.lowerModuleName});
   }
 }
 `;

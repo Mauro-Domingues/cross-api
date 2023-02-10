@@ -8,9 +8,9 @@ var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _dependent = _interopRequireDefault(require("./dependent"));
 var _independent = _interopRequireDefault(require("./independent"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function createProvider(providerName, fatherData) {
-  if (providerName && fatherData) {
-    (0, _dependent.default)(providerName, fatherData);
+async function createProvider(providerName, fatherNames) {
+  if (providerName && fatherNames) {
+    (0, _dependent.default)(providerName, fatherNames);
   } else if (providerName) {
     (0, _independent.default)(providerName);
   } else {

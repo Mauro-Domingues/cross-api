@@ -4,35 +4,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = showDependentService;
-function showDependentService(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralUpperModuleName, pluralFatherLowerModuleName) {
+function showDependentService(names, fatherNames) {
   return `import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
+import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Show${upperModuleName}Service {
+export default class Show${names.upperModuleName}Service {
   constructor(
-    @inject('${pluralUpperModuleName}Repository')
-    private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
+    @inject('${names.pluralUpperModuleName}Repository')
+    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
   ) {}
 
-  async execute(${lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<${upperModuleName}>> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param, []);
+  async execute(${names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<${names.upperModuleName}>> {
+    const ${names.lowerModuleName} = await this.${names.pluralLowerModuleName}Repository.findBy(${names.lowerModuleName}Param, []);
 
-    if (!${lowerModuleName}) {
-      throw new AppError('${upperModuleName} not found', 404);
+    if (!${names.lowerModuleName}) {
+      throw new AppError('${names.upperModuleName} not found', 404);
     }
 
     return {
       code: 200,
       message_code: 'OK',
-      message: '${upperModuleName} found successfully',
-      data: ${lowerModuleName},
+      message: '${names.upperModuleName} found successfully',
+      data: ${names.lowerModuleName},
     };
   }
 }

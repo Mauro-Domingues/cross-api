@@ -4,36 +4,36 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createService;
-function createService(lowerModuleName, upperModuleName, pluralLowerModuleName, pluralUpperModuleName) {
+function createService(names) {
   return `import { injectable, inject } from 'tsyringe';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import I${pluralUpperModuleName}Repository from '@modules/${pluralLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
-import I${upperModuleName}DTO from '@modules/${pluralLowerModuleName}/dtos/I${upperModuleName}DTO';
-import ${upperModuleName} from '@modules/${pluralLowerModuleName}/entities/${upperModuleName}';
+import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
+import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
+import ${names.upperModuleName} from '@modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Create${upperModuleName}Service {
+export default class Create${names.upperModuleName}Service {
   constructor(
-    @inject('${pluralUpperModuleName}Repository')
-    private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
+    @inject('${names.pluralUpperModuleName}Repository')
+    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${lowerModuleName}Data: I${upperModuleName}DTO): Promise<IResponseDTO<${upperModuleName}>> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.create(${lowerModuleName}Data);
+  async execute(${names.lowerModuleName}Data: I${names.upperModuleName}DTO): Promise<IResponseDTO<${names.upperModuleName}>> {
+    const ${names.lowerModuleName} = await this.${names.pluralLowerModuleName}Repository.create(${names.lowerModuleName}Data);
 
-    await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
+    await this.cacheProvider.invalidatePrefix('${names.pluralLowerModuleName}');
 
     return {
       code: 201,
       message_code: 'CREATED',
-      message: '${upperModuleName} successfully created',
-      data: ${lowerModuleName},
+      message: '${names.upperModuleName} successfully created',
+      data: ${names.lowerModuleName},
     };
   }
 }

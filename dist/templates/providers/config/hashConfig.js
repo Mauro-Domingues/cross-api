@@ -10,7 +10,7 @@ function createHashConfig() {
 }
 
 export default {
-  secret: process.env.HASH_SECRET_KEY || 10,
+  secret: Number(process.env.HASH_SECRET_KEY) || 10,
 } as IHashConfig;
 `;
 }

@@ -7,10 +7,11 @@ import createS3Storage from '@templates/providers/implementations/S3Storage';
 import createIStorage from '@templates/providers/models/IStorage';
 import createStorageIndex from '@templates/providers/storageIndex';
 import messages from '@tools/messages';
+import IModuleNamesDTO from 'index';
 
-export default async function makeDependentStorageProvider(fatherData: {
-  [key: string]: string;
-}): Promise<void> {
+export default async function makeDependentStorageProvider(
+  fatherNames: IModuleNamesDTO,
+): Promise<void> {
   if (!fs.existsSync('src')) {
     fs.mkdirSync('src');
   }
@@ -31,21 +32,21 @@ export default async function makeDependentStorageProvider(fatherData: {
       if (error) throw error;
     });
   }
-  if (!fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
   if (
-    !fs.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`)
+    !fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
   ) {
-    fs.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/providers`);
+    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
       '',
       error => {
         if (error) throw error;
@@ -54,49 +55,49 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`,
     );
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`,
     )
   ) {
     fs.mkdirSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`,
     );
   }
   fs.appendFile(
     `src/shared/container/index.ts`,
-    `import '@modules/${fatherData.pluralLowerModuleName}/providers';`,
+    `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`,
     error => {
       if (error) throw error;
     },
   );
   fs.appendFile(
-    `src/modules/${fatherData.pluralLowerModuleName}/providers/index.ts`,
+    `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     `\nimport './StorageProvider';`,
     error => {
       if (error) throw error;
@@ -116,11 +117,11 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
       createFakeStorage(),
       error => {
         if (error) throw error;
@@ -128,13 +129,13 @@ export default async function makeDependentStorageProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
       createFakeStorage(),
       error => {
         if (error) throw error;
@@ -143,11 +144,11 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
       createDiskStorage(),
       error => {
         if (error) throw error;
@@ -155,13 +156,13 @@ export default async function makeDependentStorageProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
       createDiskStorage(),
       error => {
         if (error) throw error;
@@ -170,11 +171,11 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
       createS3Storage(),
       error => {
         if (error) throw error;
@@ -182,13 +183,13 @@ export default async function makeDependentStorageProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
       createS3Storage(),
       error => {
         if (error) throw error;
@@ -197,11 +198,11 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
       createIStorage(),
       error => {
         if (error) throw error;
@@ -209,13 +210,13 @@ export default async function makeDependentStorageProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
       createIStorage(),
       error => {
         if (error) throw error;
@@ -224,11 +225,11 @@ export default async function makeDependentStorageProvider(fatherData: {
   }
   if (
     !fs.existsSync(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
     )
   ) {
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
       createStorageIndex(),
       error => {
         if (error) throw error;
@@ -236,13 +237,13 @@ export default async function makeDependentStorageProvider(fatherData: {
     );
   } else {
     fs.truncate(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
       error => {
         if (error) console.log(error);
       },
     );
     fs.appendFile(
-      `src/modules/${fatherData.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
+      `src/modules/${fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
       createStorageIndex(),
       error => {
         if (error) throw error;

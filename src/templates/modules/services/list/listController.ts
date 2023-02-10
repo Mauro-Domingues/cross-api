@@ -1,21 +1,22 @@
+import IModuleNamesDTO from 'index';
+
 export default function listController(
-  upperModuleName: string,
-  pluralLowerModuleName: string,
+  names: Pick<IModuleNamesDTO, 'upperModuleName' | 'pluralLowerModuleName'>,
 ): string {
   return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import List${upperModuleName}Service from './List${upperModuleName}Service';
+import List${names.upperModuleName}Service from './List${names.upperModuleName}Service';
 
-export default class List${upperModuleName}Controller {
+export default class List${names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const list${upperModuleName} = container.resolve(List${upperModuleName}Service);
+    const list${names.upperModuleName} = container.resolve(List${names.upperModuleName}Service);
 
     const { page = 1, limit = 20 } = request.query;
 
-    const ${pluralLowerModuleName} = await list${upperModuleName}.execute(Number(page), Number(limit));
+    const ${names.pluralLowerModuleName} = await list${names.upperModuleName}.execute(Number(page), Number(limit));
 
-    return response.send(${pluralLowerModuleName});
+    return response.send(${names.pluralLowerModuleName});
   }
 }
 `;

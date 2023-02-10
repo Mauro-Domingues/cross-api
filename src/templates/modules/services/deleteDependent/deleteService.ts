@@ -1,44 +1,43 @@
+import IModuleNamesDTO from 'index';
+
 export default function deleteDependentService(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
-  pluralUpperModuleName: string,
-  pluralFatherLowerModuleName: string,
+  names: Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>,
+  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {
   return `import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
+import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Delete${upperModuleName}Service {
+export default class Delete${names.upperModuleName}Service {
   constructor(
-    @inject('${pluralUpperModuleName}Repository')
-    private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
+    @inject('${names.pluralUpperModuleName}Repository')
+    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<null>> {
-    const ${lowerModuleName} = await this.${pluralLowerModuleName}Repository.findBy(${lowerModuleName}Param);
+  async execute(${names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<null>> {
+    const ${names.lowerModuleName} = await this.${names.pluralLowerModuleName}Repository.findBy(${names.lowerModuleName}Param);
 
-    if (!${lowerModuleName}) {
-      throw new AppError('${upperModuleName} not found', 404);
+    if (!${names.lowerModuleName}) {
+      throw new AppError('${names.upperModuleName} not found', 404);
     }
 
-    await this.cacheProvider.invalidatePrefix('${pluralLowerModuleName}');
+    await this.cacheProvider.invalidatePrefix('${names.pluralLowerModuleName}');
 
-    this.${pluralLowerModuleName}Repository.delete(${lowerModuleName});
+    this.${names.pluralLowerModuleName}Repository.delete(${names.lowerModuleName});
 
     return {
       code: 204,
       message_code: 'NO_CONTENT',
-      message: 'successfully deleted ${lowerModuleName}',
+      message: 'successfully deleted ${names.lowerModuleName}',
       data: null,
     };
   }

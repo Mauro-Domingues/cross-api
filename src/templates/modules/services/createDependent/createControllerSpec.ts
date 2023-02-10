@@ -1,8 +1,11 @@
+import IModuleNamesDTO from 'index';
+
 export default function createSpecDependentController(
-  lowerModuleName: string,
-  upperModuleName: string,
-  pluralLowerModuleName: string,
-  pluralFatherLowerModuleName: string,
+  names: Pick<
+    IModuleNamesDTO,
+    'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
+  >,
+  fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>,
 ): string {
   return `import request from 'supertest';
 import { DataSource } from 'typeorm';
@@ -11,7 +14,7 @@ import app from '@shared/app';
 
 let connection: DataSource;
 
-describe('Create${upperModuleName}Controller', () => {
+describe('Create${names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     return connection.runMigrations();
@@ -22,10 +25,10 @@ describe('Create${upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to create a new ${lowerModuleName}', async () => {
-    const response = await request(app).post('/${pluralFatherLowerModuleName}/track/${pluralLowerModuleName}').send({
-      name: '${lowerModuleName}',
-      description: 'This is a ${lowerModuleName}',
+  it('Should be able to create a new ${names.lowerModuleName}', async () => {
+    const response = await request(app).post('/${fatherNames.routeModuleName}/track/${names.routeModuleName}').send({
+      name: '${names.lowerModuleName}',
+      description: 'This is a ${names.lowerModuleName}',
     });
 
     expect(response.status).toBe(200);

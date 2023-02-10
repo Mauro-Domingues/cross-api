@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createIndexRoute;
-function createIndexRoute(lowerModuleName, pluralLowerModuleName) {
-  return `import ${lowerModuleName}Router from './${lowerModuleName}Router';
-routes.use('/${pluralLowerModuleName}', ${lowerModuleName}Router);
+function createIndexRoute(names) {
+  return `import ${names.lowerModuleName}Router from './${names.lowerModuleName}Router';
+routes.use('/${names.routeModuleName}', ${names.lowerModuleName}Router);
 `;
 }

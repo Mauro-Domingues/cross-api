@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = makeDependentStructure;
 var _fs = _interopRequireDefault(require("fs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentStructure(moduleData, fatherData) {
+async function makeDependentStructure(names, fatherNames) {
   if (!_fs.default.existsSync('src')) {
     _fs.default.mkdirSync('src');
   }
@@ -22,37 +22,37 @@ async function makeDependentStructure(moduleData, fatherData) {
   if (!_fs.default.existsSync('src/routes')) {
     _fs.default.mkdirSync('src/routes');
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/dtos`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/dtos`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/dtos`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/dtos`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/entities`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/entities`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/entities`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/entities`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services/create${moduleData.upperModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services/delete${moduleData.upperModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services/list${moduleData.upperModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services/show${moduleData.upperModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}`);
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}`)) {
-    _fs.default.mkdirSync(`src/modules/${fatherData.pluralLowerModuleName}/services/update${moduleData.upperModuleName}`);
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}`)) {
+    _fs.default.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}`);
   }
 }

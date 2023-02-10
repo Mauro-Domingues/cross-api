@@ -10,10 +10,10 @@ var _functionalities = _interopRequireDefault(require("./functionalities"));
 var _structure = _interopRequireDefault(require("./structure"));
 var _unitTests = _interopRequireDefault(require("./unitTests"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeModule(moduleData) {
-  await (0, _structure.default)(moduleData);
-  await (0, _infra.default)(moduleData);
-  await (0, _functionalities.default)(moduleData);
-  await (0, _unitTests.default)(moduleData);
-  return console.log('\x1b[38;2;255;255;0m', `- ${moduleData.lowerModuleName}Module ${_messages.default.created}`, '\x1b[0m');
+async function makeModule(names) {
+  await (0, _structure.default)(names);
+  await (0, _infra.default)(names);
+  await (0, _functionalities.default)(names);
+  await (0, _unitTests.default)(names);
+  return console.log('\x1b[38;2;255;255;0m', `- ${names.lowerModuleName}Module ${_messages.default.created}`, '\x1b[0m');
 }

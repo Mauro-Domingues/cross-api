@@ -1,42 +1,45 @@
+import IModuleNamesDTO from 'index';
+
 export default function listDependentService(
-  upperModuleName: string,
-  pluralLowerModuleName: string,
-  pluralUpperModuleName: string,
-  pluralFatherLowerModuleName: string,
+  names: Pick<
+    IModuleNamesDTO,
+    'upperModuleName' | 'pluralLowerModuleName' | 'pluralUpperModuleName'
+  >,
+  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {
   return `import { injectable, inject } from 'tsyringe';
 
-import I${pluralUpperModuleName}Repository from '@modules/${pluralFatherLowerModuleName}/repositories/I${pluralUpperModuleName}Repository';
+import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import ${upperModuleName} from '@modules/${pluralFatherLowerModuleName}/entities/${upperModuleName}';
+import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
 import ICacheDTO from '@dtos/ICacheDTO';
 import IListDTO from '@dtos/IListDTO';
 
 @injectable()
-export default class List${upperModuleName}Service {
+export default class List${names.upperModuleName}Service {
   constructor(
-    @inject('${pluralUpperModuleName}Repository')
-    private ${pluralLowerModuleName}Repository: I${pluralUpperModuleName}Repository,
+    @inject('${names.pluralUpperModuleName}Repository')
+    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(page: number, limit: number): Promise<IListDTO<${upperModuleName}>> {
-    const cacheKey = \`${pluralLowerModuleName}:\${page}:\${limit}\`;
+  async execute(page: number, limit: number): Promise<IListDTO<${names.upperModuleName}>> {
+    const cacheKey = \`${names.pluralLowerModuleName}:\${names.page}:\${names.limit}\`;
 
-    let cache = await this.cacheProvider.recovery<ICacheDTO<${upperModuleName}>>(cacheKey);
+    let cache = await this.cacheProvider.recovery<ICacheDTO<${names.upperModuleName}>>(cacheKey);
 
     if (!cache) {
-      const ${pluralLowerModuleName} = await this.${pluralLowerModuleName}Repository.findAll(page, limit);
-      cache = { data: ${pluralLowerModuleName}.${pluralLowerModuleName}, total: ${pluralLowerModuleName}.amount };
+      const ${names.pluralLowerModuleName} = await this.${names.pluralLowerModuleName}Repository.findAll(page, limit);
+      cache = { data: ${names.pluralLowerModuleName}.${names.pluralLowerModuleName}, total: ${names.pluralLowerModuleName}.amount };
       await this.cacheProvider.save(cacheKey, cache);
     }
 
     return {
       code: 200,
       message_code: 'OK',
-      message: '${pluralUpperModuleName} found successfully',
+      message: '${names.pluralUpperModuleName} found successfully',
       pagination: {
         total: cache.total,
         page,

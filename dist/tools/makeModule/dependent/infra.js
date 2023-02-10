@@ -17,7 +17,7 @@ var _fullDependentRoutes = _interopRequireDefault(require("../../../../dist/temp
 var _indexDependentRouter = _interopRequireDefault(require("../../../../dist/templates/modules/routes/indexDependentRouter"));
 var _fs = _interopRequireDefault(require("fs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function makeDependentInfra(moduleData, fatherData) {
+async function makeDependentInfra(names, fatherNames) {
   if (!_fs.default.existsSync('src/shared/container/index.ts')) {
     _fs.default.appendFile('src/shared/container/index.ts', (0, _container.default)(), error => {
       if (error) throw error;
@@ -28,79 +28,79 @@ async function makeDependentInfra(moduleData, fatherData) {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`, (0, _moduleDTO.default)(moduleData.upperModuleName), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`, (0, _moduleDTO.default)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/dtos/I${moduleData.upperModuleName}DTO.ts`, (0, _moduleDTO.default)(moduleData.upperModuleName), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`, (0, _moduleDTO.default)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`, (0, _entity.default)(moduleData.upperModuleName, moduleData.dbModuleName), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`, (0, _entity.default)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/entities/${moduleData.upperModuleName}.ts`, (0, _entity.default)(moduleData.upperModuleName, moduleData.dbModuleName), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`, (0, _entity.default)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`, (0, _dependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`, (0, _dependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/${moduleData.pluralUpperModuleName}Repository.ts`, (0, _dependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`, (0, _dependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`, (0, _IDependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`, (0, _IDependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/I${moduleData.pluralUpperModuleName}Repository.ts`, (0, _IDependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`, (0, _IDependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`)) {
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`, (0, _fakeDependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+  if (!_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`)) {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`, (0, _fakeDependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`, error => {
+    _fs.default.truncate(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${fatherData.pluralLowerModuleName}/repositories/fakes/Fake${moduleData.pluralUpperModuleName}Repository.ts`, (0, _fakeDependentRepository.default)(moduleData.lowerModuleName, moduleData.upperModuleName, moduleData.pluralLowerModuleName, moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`, (0, _fakeDependentRepository.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/routes/${fatherData.lowerModuleName}Router.ts`)) {
-    _fs.default.appendFile(`src/routes/${fatherData.lowerModuleName}Router.ts`, (0, _fullDependentRoutes.default)(moduleData.upperModuleName, moduleData.pluralLowerModuleName, fatherData.lowerModuleName, fatherData.pluralLowerModuleName), error => {
+  if (!_fs.default.existsSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`)) {
+    _fs.default.appendFile(`src/routes/${fatherNames.lowerModuleName}Router.ts`, (0, _fullDependentRoutes.default)(names, fatherNames), error => {
       if (error) throw error;
     });
-    _fs.default.appendFile(`src/routes/index.ts`, (0, _indexDependentRouter.default)(fatherData.lowerModuleName, fatherData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/routes/index.ts`, (0, _indexDependentRouter.default)(fatherNames), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.appendFile(`src/routes/${fatherData.lowerModuleName}Router.ts`, (0, _dependentRoutes.default)(moduleData.upperModuleName, moduleData.pluralLowerModuleName, fatherData.lowerModuleName, fatherData.pluralLowerModuleName), error => {
+    _fs.default.appendFile(`src/routes/${fatherNames.lowerModuleName}Router.ts`, (0, _dependentRoutes.default)(names, fatherNames), error => {
       if (error) throw error;
     });
   }
-  _fs.default.appendFile('src/shared/container/index.ts', (0, _dependentInjection.default)(moduleData.pluralUpperModuleName, fatherData.pluralLowerModuleName), error => {
+  _fs.default.appendFile('src/shared/container/index.ts', (0, _dependentInjection.default)(names, fatherNames), error => {
     if (error) throw error;
   });
 }

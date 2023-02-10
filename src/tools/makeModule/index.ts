@@ -1,13 +1,14 @@
+import IModuleNamesDTO from 'index';
 import makeDependentModule from './dependent';
 import makeModule from './independent';
 
 export default async function createModule(
-  moduleData: { [key: string]: string } | undefined,
-  fatherData: { [key: string]: string } | undefined,
+  names: IModuleNamesDTO | undefined,
+  fatherNames: IModuleNamesDTO | undefined,
 ): Promise<void> {
-  if (moduleData && fatherData) {
-    makeDependentModule(moduleData, fatherData);
-  } else if (moduleData) {
-    makeModule(moduleData);
+  if (names && fatherNames) {
+    makeDependentModule(names, fatherNames);
+  } else if (names) {
+    makeModule(names);
   }
 }
