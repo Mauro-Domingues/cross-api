@@ -18,7 +18,7 @@ export default class Fake${names.pluralUpperModuleName}Repository implements I${
   public async findBy(
     ${names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
   ): Promise<${names.upperModuleName} | null> {
-    let find${names.upperModuleName}: ${names.upperModuleName} | undefined
+    let find${names.upperModuleName}: ${names.upperModuleName} | undefined;
     if (${names.lowerModuleName}Data && Array.isArray(${names.lowerModuleName}Data)) {
       ${names.lowerModuleName}Data.forEach((data: IObjectDTO) => {
         Object.keys(data).forEach((key: string) => {
@@ -106,7 +106,7 @@ export default class Fake${names.pluralUpperModuleName}Repository implements I${
         const find${names.upperModuleName}: ${names.upperModuleName}[] = this.${names.pluralLowerModuleName}.filter(
           (${names.lowerModuleName}: any) => ${names.lowerModuleName}[key] === ${names.lowerModuleName}Data[key],
         );
-        
+
         find${names.upperModuleName}.forEach(each${names.upperModuleName} => {
           const ${names.lowerModuleName}Index: number = this.${names.pluralLowerModuleName}.findIndex(
             ${names.lowerModuleName} => ${names.lowerModuleName}.id === each${names.upperModuleName}.id,
