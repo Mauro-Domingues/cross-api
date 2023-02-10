@@ -22,7 +22,7 @@ function configJson() {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
   _package.default.scripts = {
     ..._package.default.scripts,
-    dev: 'ts-node-dev -r tsconfig-paths/register src/shared/server.ts',
+    dev: 'ts-node-dev -r --inspect --transpile-only tsconfig-paths/register src/shared/server.ts',
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js'
