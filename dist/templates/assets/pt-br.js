@@ -10,7 +10,7 @@ var _default = `module.exports = {
   answer: 'Sua resposta: ',
   created: 'criado',
   reversed: 'desfazer',
-  noReversed: 'Não há comandos para desfazer',
+  noReversed: '➤  Não há comandos para desfazer',
   configured: 'Já configurado',
   providerNotFound: 'provedor não encontrado',
   moduleNotFound: 'módulo não encontrado',

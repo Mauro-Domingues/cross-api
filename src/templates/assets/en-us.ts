@@ -4,7 +4,7 @@ export default `module.exports = {
   answer: 'Your answer: ',
   created: 'created',
   reversed: 'undo',
-  noReversed: 'There are no commands to undo',
+  noReversed: '➤  There are no commands to undo',
   configured: 'Already configured',
   providerNotFound: 'provider not found',
   moduleNotFound: 'module not found',

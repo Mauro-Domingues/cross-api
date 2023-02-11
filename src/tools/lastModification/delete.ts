@@ -290,9 +290,10 @@ export default async function deleteRegister(): Promise<void> {
     console.log('');
     console.log(
       '\x1b[1m',
-      '\x1b[38;2;255;255;0m',
+      '\x1b[38;2;255;0;0m',
       `${messages.noReversed}`,
       '\x1b[0m',
     );
+    console.log('');
   }
 }
