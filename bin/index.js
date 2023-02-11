@@ -103,7 +103,7 @@ if (comand) {
       _shelljs.default.exec('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
       break;
     case 'revert':
-      (0, _delete.default)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
+      (0, _delete.default)();
       break;
     default:
       console.log('');

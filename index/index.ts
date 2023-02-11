@@ -150,10 +150,7 @@ if (comand) {
       );
       break;
     case 'revert':
-      deleteRegister(
-        new GetNames().getModuleNames(arg),
-        new GetNames().getModuleNames(father),
-      );
+      deleteRegister();
       break;
     default:
       console.log('');

@@ -5,12 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = deleteRegister;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _bin = require("bin");
 var _fsExtra = _interopRequireDefault(require("fs-extra"));
 var _fs = _interopRequireDefault(require("fs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-async function deleteRegister(names, fatherNames) {
+async function deleteRegister() {
   const register = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', 'ascii');
   const comand = register.split(',')[0];
+  const names = new _bin.GetNames().getModuleNames(register.split(',')[1]);
+  const fatherNames = new _bin.GetNames().getModuleNames(register.split(',')[2]);
   if (comand && comand === 'make:provider') {
     if (names && fatherNames) {
       const oldProviders = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', 'ascii');
