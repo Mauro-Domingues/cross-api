@@ -79,6 +79,9 @@ async function deleteRegister() {
       _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`, error => {
         if (error) throw error;
       });
+      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`, error => {
+        if (error) throw error;
+      });
       _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
@@ -96,10 +99,10 @@ async function deleteRegister() {
         if (error) throw error;
       });
       const routeInjection = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', 'ascii');
-      _fs.default.truncate(`src/routes/${fatherNames.lowerModuleName}Routes.ts`, error => {
+      _fs.default.truncate(`src/routes/${fatherNames.lowerModuleName}Router.ts`, error => {
         if (error) throw error;
       });
-      _fs.default.appendFile(`src/routes/${fatherNames.lowerModuleName}Routes.ts`, routeInjection, error => {
+      _fs.default.appendFile(`src/routes/${fatherNames.lowerModuleName}Router.ts`, routeInjection, error => {
         if (error) throw error;
       });
       console.log('');

@@ -144,6 +144,12 @@ export default async function deleteRegister(): Promise<void> {
         },
       );
       fs.unlink(
+        `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
+        error => {
+          if (error) throw error;
+        },
+      );
+      fs.unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
@@ -183,13 +189,13 @@ export default async function deleteRegister(): Promise<void> {
         'ascii',
       );
       fs.truncate(
-        `src/routes/${fatherNames.lowerModuleName}Routes.ts`,
+        `src/routes/${fatherNames.lowerModuleName}Router.ts`,
         error => {
           if (error) throw error;
         },
       );
       fs.appendFile(
-        `src/routes/${fatherNames.lowerModuleName}Routes.ts`,
+        `src/routes/${fatherNames.lowerModuleName}Router.ts`,
         routeInjection,
         error => {
           if (error) throw error;
