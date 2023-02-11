@@ -66,6 +66,7 @@ class GetNames {
   }
 }
 if (comand) {
+  (0, _save.default)(fullComand, undefined, undefined, undefined);
   switch (comand) {
     case 'config':
       (0, _config.default)();
@@ -80,7 +81,6 @@ if (comand) {
       (0, _listProvider.default)();
       break;
     case 'make:api':
-      (0, _save.default)(fullComand, undefined, undefined, undefined);
       (0, _makeApi.default)();
       break;
     case 'make:module':

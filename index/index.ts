@@ -101,6 +101,7 @@ class GetNames {
 }
 
 if (comand) {
+  createRegister(fullComand, undefined, undefined, undefined);
   switch (comand) {
     case 'config':
       configJson();
@@ -115,7 +116,6 @@ if (comand) {
       listProvider();
       break;
     case 'make:api':
-      createRegister(fullComand, undefined, undefined, undefined);
       createApi();
       break;
     case 'make:module':
