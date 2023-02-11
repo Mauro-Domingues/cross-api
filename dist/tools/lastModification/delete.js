@@ -9,6 +9,16 @@ var _fsExtra = _interopRequireDefault(require("fs-extra"));
 var _fs = _interopRequireDefault(require("fs"));
 var _pluralize = require("pluralize");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const providers = {
+  cache: 'CacheProvider',
+  crypto: 'CryptoProvider',
+  hash: 'HashProvider',
+  lead: 'leadProvider',
+  mail: 'MailProvider',
+  mailTemplate: 'MailTemplateProvider',
+  notification: 'NotificationProvider',
+  storage: 'StorageProvider'
+};
 class GetNames {
   getSingularAndPlural(word) {
     if ((0, _pluralize.isSingular)(word)) {
@@ -56,6 +66,7 @@ async function deleteRegister() {
       _fs.default.appendFile(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, oldProviders, error => {
         if (error) throw error;
       });
+      _fsExtra.default.removeSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/${providers[names.upperModuleName]}`);
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${_messages.default.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
@@ -66,6 +77,7 @@ async function deleteRegister() {
       _fs.default.appendFile('src/shared/container/providers/index.ts', oldProviders, error => {
         if (error) throw error;
       });
+      _fsExtra.default.removeSync(`src/shared/container/providers/${providers[names.upperModuleName]}`);
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${_messages.default.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
     }

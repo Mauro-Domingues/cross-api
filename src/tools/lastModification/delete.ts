@@ -4,6 +4,17 @@ import fs from 'fs';
 import IModuleNamesDTO from 'index';
 import { isSingular, plural, singular } from 'pluralize';
 
+const providers: { [key: string]: string } = {
+  cache: 'CacheProvider',
+  crypto: 'CryptoProvider',
+  hash: 'HashProvider',
+  lead: 'leadProvider',
+  mail: 'MailProvider',
+  mailTemplate: 'MailTemplateProvider',
+  notification: 'NotificationProvider',
+  storage: 'StorageProvider',
+};
+
 class GetNames {
   private getSingularAndPlural(word: string): {
     singular: string;
@@ -89,6 +100,11 @@ export default async function deleteRegister(): Promise<void> {
           if (error) throw error;
         },
       );
+      fsExtra.removeSync(
+        `src/modules/${fatherNames.pluralLowerModuleName}/providers/${
+          providers[names.upperModuleName]
+        }`,
+      );
       console.log('');
       console.log(
         '\x1b[1m',
@@ -111,6 +127,9 @@ export default async function deleteRegister(): Promise<void> {
         error => {
           if (error) throw error;
         },
+      );
+      fsExtra.removeSync(
+        `src/shared/container/providers/${providers[names.upperModuleName]}`,
       );
       console.log('');
       console.log(

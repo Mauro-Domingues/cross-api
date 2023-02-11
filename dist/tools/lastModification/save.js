@@ -9,13 +9,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 async function createRegister(comand, providerName, names, fatherNames) {
   if (comand && comand[0] === 'make:provider') {
     if (providerName && fatherNames) {
-      const providerInjection = _fs.default.readFileSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, 'ascii');
       _fs.default.truncate('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', error => {
         if (error) throw error;
       });
-      _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection, error => {
-        if (error) throw error;
-      });
+      if (_fs.default.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
+        const providerInjection = _fs.default.readFileSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, 'ascii');
+        _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection, error => {
+          if (error) throw error;
+        });
+      } else {
+        _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', '', error => {
+          if (error) throw error;
+        });
+      }
     } else if (providerName) {
       const providerInjection = _fs.default.readFileSync('src/shared/container/providers/index.ts', 'ascii');
       _fs.default.truncate('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', error => {

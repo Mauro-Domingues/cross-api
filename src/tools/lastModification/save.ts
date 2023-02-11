@@ -9,23 +9,37 @@ export default async function createRegister(
 ): Promise<void> {
   if (comand && comand[0] === 'make:provider') {
     if (providerName && fatherNames) {
-      const providerInjection = fs.readFileSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
-        'ascii',
-      );
       fs.truncate(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
         error => {
           if (error) throw error;
         },
       );
-      fs.appendFile(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
-        providerInjection,
-        error => {
-          if (error) throw error;
-        },
-      );
+      if (
+        fs.existsSync(
+          `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        )
+      ) {
+        const providerInjection = fs.readFileSync(
+          `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+          'ascii',
+        );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+          providerInjection,
+          error => {
+            if (error) throw error;
+          },
+        );
+      } else {
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+          '',
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
     } else if (providerName) {
       const providerInjection = fs.readFileSync(
         'src/shared/container/providers/index.ts',
