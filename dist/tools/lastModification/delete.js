@@ -77,7 +77,7 @@ async function deleteRegister() {
       _fs.default.appendFile('src/shared/container/providers/index.ts', oldProviders, error => {
         if (error) throw error;
       });
-      _fsExtra.default.removeSync(`src/shared/container/providers/${providers[names.upperModuleName]}`);
+      _fsExtra.default.removeSync(`src/shared/container/providers/${providers[names.lowerModuleName]}`);
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${_messages.default.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
     }

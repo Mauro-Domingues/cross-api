@@ -129,7 +129,7 @@ export default async function deleteRegister(): Promise<void> {
         },
       );
       fsExtra.removeSync(
-        `src/shared/container/providers/${providers[names.upperModuleName]}`,
+        `src/shared/container/providers/${providers[names.lowerModuleName]}`,
       );
       console.log('');
       console.log(
