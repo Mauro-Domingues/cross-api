@@ -156,7 +156,7 @@ export default async function deleteRegister(): Promise<void> {
         },
       );
       fs.unlink(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.upperModuleName}Repository.ts`,
+        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },

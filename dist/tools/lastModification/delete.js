@@ -85,7 +85,7 @@ async function deleteRegister() {
       _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
-      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.upperModuleName}Repository.ts`, error => {
+      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
       const moduleInjection = _fs.default.readFileSync('src/shared/container/index.ts', 'ascii');
