@@ -18,7 +18,7 @@ npm cross config
 yarn cross comands
 ```
 
-<h3>IMPORTANT: Declare the names of the modules in lowerCamelCase</h3>
+<h3>IMPORTANT: Declare the names of the modules in camelCase</h3>
 
 ```
 yarn cross make:module [name]
@@ -169,7 +169,7 @@ await this.examplesRepository.delete(example);
 ```typescript
 await this.examplesRepository.delete({ name: "example" });
 
-// delete all example where name = example
+// delete all where name = example
 ```
 <hr>
 <br>
@@ -192,7 +192,7 @@ await this.examplesRepository.softDelete(example);
 ```typescript
 await this.examplesRepository.softDelete({ name: "example" });
 
-// invalidate all example where name = example
+// invalidate all where name = example
 ```
 <hr>
 <br>

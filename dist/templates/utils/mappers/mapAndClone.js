@@ -12,12 +12,12 @@ function createMapAndClone() {
 /**
  * ${_messages.default.mapAndClone}
  * @param attribute IObjectDTO
- * @param params string[]
  * @returns Promise: IObjectDTO[]
+ * @param params string[]
  */
 export default async function mapAndCloneAttribute(
-  params: string[],
   attribute: IObjectDTO,
+  params: string[],
 ): Promise<IObjectDTO[]> {
   const objectArray: IObjectDTO[] = [];
   params.forEach((param: string) => {
