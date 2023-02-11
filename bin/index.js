@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GetNames = void 0;
 var _shelljs = _interopRequireDefault(require("shelljs"));
 var _board = _interopRequireDefault(require("../dist/tools/board"));
 var _config = _interopRequireDefault(require("../dist/tools/config"));
@@ -11,10 +15,13 @@ var _makeModule = _interopRequireDefault(require("../dist/tools/makeModule"));
 var _makeProvider = _interopRequireDefault(require("../dist/tools/makeProvider"));
 var _messages = _interopRequireDefault(require("../dist/tools/messages"));
 var _pluralize = require("pluralize");
+var _save = _interopRequireDefault(require("../dist/tools/lastModification/save"));
+var _delete = _interopRequireDefault(require("../dist/tools/lastModification/delete"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const [comand] = process.argv.slice(2);
-const [arg] = process.argv.slice(3);
-const [father] = process.argv.slice(4);
+const fullComand = process.argv.slice(2);
+const comand = process.argv[2];
+const arg = process.argv[3];
+const father = process.argv[4];
 class GetNames {
   getSingularAndPlural(word) {
     if ((0, _pluralize.isSingular)(word)) {
@@ -62,6 +69,7 @@ class GetNames {
     };
   }
 }
+exports.GetNames = GetNames;
 if (comand) {
   switch (comand) {
     case 'config':
@@ -77,12 +85,15 @@ if (comand) {
       (0, _listProvider.default)();
       break;
     case 'make:api':
+      (0, _save.default)(fullComand, undefined, undefined, undefined);
       (0, _makeApi.default)();
       break;
     case 'make:module':
+      (0, _save.default)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
       (0, _makeModule.default)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
       break;
     case 'make:provider':
+      (0, _save.default)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
       (0, _makeProvider.default)(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
@@ -90,6 +101,9 @@ if (comand) {
       break;
     case 'migration:run':
       _shelljs.default.exec('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+      break;
+    case 'revert':
+      (0, _delete.default)();
       break;
     default:
       console.log('');

@@ -10,10 +10,13 @@ import createModule from '@tools/makeModule';
 import createProvider from '@tools/makeProvider';
 import messages from '@tools/messages';
 import { plural, singular, isSingular } from 'pluralize';
+import createRegister from '@tools/lastModification/save';
+import deleteRegister from '@tools/lastModification/delete';
 
-const [comand] = process.argv.slice(2);
-const [arg] = process.argv.slice(3);
-const [father] = process.argv.slice(4);
+const fullComand = process.argv.slice(2);
+const comand = process.argv[2];
+const arg = process.argv[3];
+const father = process.argv[4];
 
 export default interface IModuleNamesDTO {
   lowerModuleName: string;
@@ -24,7 +27,7 @@ export default interface IModuleNamesDTO {
   routeModuleName: string;
 }
 
-class GetNames {
+export class GetNames {
   private getSingularAndPlural(word: string): {
     singular: string;
     pluralName: string;
@@ -112,15 +115,28 @@ if (comand) {
       listProvider();
       break;
     case 'make:api':
+      createRegister(fullComand, undefined, undefined, undefined);
       createApi();
       break;
     case 'make:module':
+      createRegister(
+        fullComand,
+        arg,
+        new GetNames().getModuleNames(arg),
+        new GetNames().getModuleNames(father),
+      );
       createModule(
         new GetNames().getModuleNames(arg),
         new GetNames().getModuleNames(father),
       );
       break;
     case 'make:provider':
+      createRegister(
+        fullComand,
+        arg,
+        new GetNames().getModuleNames(arg),
+        new GetNames().getModuleNames(father),
+      );
       createProvider(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
@@ -132,6 +148,9 @@ if (comand) {
       shell.exec(
         'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
       );
+      break;
+    case 'revert':
+      deleteRegister();
       break;
     default:
       console.log('');

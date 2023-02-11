@@ -9,6 +9,8 @@ var _default = `module.exports = {
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
   created: 'created',
+  reversed: 'undo',
+  noReversed: 'There are no commands to undo',
   configured: 'Already configured',
   providerNotFound: 'provider not found',
   moduleNotFound: 'module not found',
@@ -37,6 +39,7 @@ var _default = `module.exports = {
     'It is used to generate a provider                                          ',
   makeProviderD:
     'It is used to generate a provider inside a module                          ',
+  undo: 'It is used to undo the last creation command                               ',
   mapAndClone:
     'CLONE VALUES -> Receives as parameter a string array and another object of type { [key: string]: string }, returns an array of objects with the same value, is useful for queries find WHERE + OR.',
   mapAndPatch:

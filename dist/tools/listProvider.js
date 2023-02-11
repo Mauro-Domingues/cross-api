@@ -28,7 +28,7 @@ function listProvider() {
     Provider: 'MailTemplateProvider'
   }, {
     Name: 'notification',
-    Provider: 'notificationProvider'
+    Provider: 'NotificationProvider'
   }, {
     Name: 'storage     ',
     Provider: 'StorageProvider     '

@@ -15,7 +15,7 @@ export default function listProvider(): void {
     { Name: 'lead        ', Provider: 'leadProvider        ' },
     { Name: 'mail        ', Provider: 'MailProvider        ' },
     { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
-    { Name: 'notification', Provider: 'notificationProvider' },
+    { Name: 'notification', Provider: 'NotificationProvider' },
     { Name: 'storage     ', Provider: 'StorageProvider     ' },
   ];
 

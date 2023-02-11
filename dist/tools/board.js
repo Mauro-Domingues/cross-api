@@ -45,6 +45,9 @@ function board() {
   }, {
     title: 'migration:generate           ',
     description: _messages.default.migrationGenerate
+  }, {
+    title: 'revert                       ',
+    description: _messages.default.undo
   }];
   console.log('');
   console.log('\x1b[1m', '\x1b[38;2;0;155;255m', ` /================================================${_messages.default.comandTitle}=================================================\\`, '\x1b[0m');

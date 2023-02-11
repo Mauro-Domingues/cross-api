@@ -49,6 +49,10 @@ export default function board(): void {
       title: 'migration:generate           ',
       description: messages.migrationGenerate,
     },
+    {
+      title: 'revert                       ',
+      description: messages.undo,
+    },
   ];
 
   console.log('');

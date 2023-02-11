@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A CLI which can generate a good, clean and strongly typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests. All contributors are welcome",
   "keywords": [
     "cross",
@@ -28,9 +28,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.11.16",
     "@types/pluralize": "^0.0.29",
     "@types/shelljs": "^0.8.11",
+    "fs-extra": "^11.1.0",
     "pluralize": "^8.0.0",
     "shelljs": "^0.8.5",
     "ts-node": "^10.9.1",

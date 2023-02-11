@@ -3,6 +3,8 @@ export default `module.exports = {
   invalidLanguage: ' não é uma opção válida',
   answer: 'Sua resposta: ',
   created: 'criado',
+  reversed: 'desfazer',
+  noReversed: 'Não há comandos para desfazer',
   configured: 'Já configurado',
   providerNotFound: 'provedor não encontrado',
   moduleNotFound: 'módulo não encontrado',
@@ -31,6 +33,7 @@ export default `module.exports = {
     'É utilizado para gerar um provedor                                         ',
   makeProviderD:
     'É usado para criar um provedor dentro de um módulo                         ',
+  undo: 'É usado para desfazer o útimo comando de criação                           ',
   mapAndClone:
     'CLONE VALUES -> Recebe como parâmetro um array de string e outro objeto do tipo { [key: string]: string }, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
   mapAndPatch:
