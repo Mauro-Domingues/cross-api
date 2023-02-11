@@ -1,17 +1,18 @@
 import messages from '@tools/messages';
-import { GetNames } from 'index';
+import IModuleNamesDTO from 'index';
 import fsExtra from 'fs-extra';
 import fs from 'fs';
 
-export default async function deleteRegister(): Promise<void> {
+export default async function deleteRegister(
+  names: IModuleNamesDTO | undefined,
+  fatherNames: IModuleNamesDTO | undefined,
+): Promise<void> {
   const register = fs.readFileSync(
     './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
     'ascii',
   );
 
   const comand = register.split(',')[0];
-  const names = new GetNames().getModuleNames(register.split(',')[1]);
-  const fatherNames = new GetNames().getModuleNames(register.split(',')[2]);
 
   if (comand && comand === 'make:provider') {
     if (names && fatherNames) {
