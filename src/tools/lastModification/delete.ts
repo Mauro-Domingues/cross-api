@@ -102,7 +102,7 @@ export default async function deleteRegister(): Promise<void> {
       );
       fsExtra.removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/providers/${
-          providers[names.upperModuleName]
+          providers[names.lowerModuleName]
         }`,
       );
       console.log('');
