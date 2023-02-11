@@ -34,13 +34,15 @@ async function createRegister(comand, providerName, names, fatherNames) {
       _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection, error => {
         if (error) throw error;
       });
-      const routeInjection = _fs.default.readFileSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`, 'ascii');
       _fs.default.truncate('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', error => {
         if (error) throw error;
       });
-      _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
-        if (error) throw error;
-      });
+      if (_fs.default.existsSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`)) {
+        const routeInjection = _fs.default.readFileSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`, 'ascii');
+        _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
+          if (error) throw error;
+        });
+      }
     } else if (names) {
       const moduleInjection = _fs.default.readFileSync('src/shared/container/index.ts', 'ascii');
       _fs.default.truncate('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', error => {

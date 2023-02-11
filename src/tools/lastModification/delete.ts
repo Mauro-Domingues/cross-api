@@ -144,13 +144,13 @@ export default async function deleteRegister(): Promise<void> {
         },
       );
       fs.unlink(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repositoriy.ts`,
+        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },
       );
       fs.unlink(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repositoriy.ts`,
+        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },
@@ -204,7 +204,7 @@ export default async function deleteRegister(): Promise<void> {
       );
     } else if (names) {
       fsExtra.removeSync(`src/modules/${names.pluralLowerModuleName}`);
-      fs.unlink(`src/routes/${names.lowerModuleName}.ts`, error => {
+      fs.unlink(`src/routes/${names.lowerModuleName}Router.ts`, error => {
         if (error) throw error;
       });
       const moduleInjection = fs.readFileSync(

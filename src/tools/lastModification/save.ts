@@ -64,23 +64,25 @@ export default async function createRegister(
           if (error) throw error;
         },
       );
-      const routeInjection = fs.readFileSync(
-        `src/routes/${fatherNames.lowerModuleName}Router.ts`,
-        'ascii',
-      );
       fs.truncate(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
         error => {
           if (error) throw error;
         },
       );
-      fs.appendFile(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
-        routeInjection,
-        error => {
-          if (error) throw error;
-        },
-      );
+      if (fs.existsSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`)) {
+        const routeInjection = fs.readFileSync(
+          `src/routes/${fatherNames.lowerModuleName}Router.ts`,
+          'ascii',
+        );
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+          routeInjection,
+          error => {
+            if (error) throw error;
+          },
+        );
+      }
     } else if (names) {
       const moduleInjection = fs.readFileSync(
         'src/shared/container/index.ts',

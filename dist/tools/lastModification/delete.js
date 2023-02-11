@@ -79,10 +79,10 @@ async function deleteRegister() {
       _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`, error => {
         if (error) throw error;
       });
-      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repositoriy.ts`, error => {
+      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
-      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repositoriy.ts`, error => {
+      _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
       _fs.default.unlink(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.upperModuleName}Repository.ts`, error => {
@@ -106,7 +106,7 @@ async function deleteRegister() {
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${_messages.default.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
       _fsExtra.default.removeSync(`src/modules/${names.pluralLowerModuleName}`);
-      _fs.default.unlink(`src/routes/${names.lowerModuleName}.ts`, error => {
+      _fs.default.unlink(`src/routes/${names.lowerModuleName}Router.ts`, error => {
         if (error) throw error;
       });
       const moduleInjection = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', 'ascii');
