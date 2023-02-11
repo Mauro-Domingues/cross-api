@@ -27,7 +27,7 @@ export default interface IModuleNamesDTO {
   routeModuleName: string;
 }
 
-export class GetNames {
+class GetNames {
   private getSingularAndPlural(word: string): {
     singular: string;
     pluralName: string;

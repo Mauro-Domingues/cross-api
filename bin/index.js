@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GetNames = void 0;
 var _shelljs = _interopRequireDefault(require("shelljs"));
 var _board = _interopRequireDefault(require("../dist/tools/board"));
 var _config = _interopRequireDefault(require("../dist/tools/config"));
@@ -69,7 +65,6 @@ class GetNames {
     };
   }
 }
-exports.GetNames = GetNames;
 if (comand) {
   switch (comand) {
     case 'config':

@@ -5,15 +5,48 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = deleteRegister;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
-var _bin = require("bin");
 var _fsExtra = _interopRequireDefault(require("fs-extra"));
 var _fs = _interopRequireDefault(require("fs"));
+var _pluralize = require("pluralize");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+class GetNames {
+  getSingularAndPlural(word) {
+    if ((0, _pluralize.isSingular)(word)) {
+      return {
+        singular: word,
+        pluralName: (0, _pluralize.plural)(word)
+      };
+    }
+    return {
+      singular: (0, _pluralize.singular)(word),
+      pluralName: word
+    };
+  }
+  getModuleNames(name) {
+    if (!name) {
+      return undefined;
+    }
+    const {
+      singular,
+      pluralName
+    } = this.getSingularAndPlural(name);
+    const lowerModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toLowerCase());
+    const upperModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toUpperCase());
+    const pluralLowerModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toLowerCase());
+    const pluralUpperModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toUpperCase());
+    return {
+      lowerModuleName,
+      upperModuleName,
+      pluralLowerModuleName,
+      pluralUpperModuleName
+    };
+  }
+}
 async function deleteRegister() {
   const register = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', 'ascii');
   const comand = register.split(',')[0];
-  const names = new _bin.GetNames().getModuleNames(register.split(',')[1]);
-  const fatherNames = new _bin.GetNames().getModuleNames(register.split(',')[2]);
+  const names = new GetNames().getModuleNames(register.split(',')[1]);
+  const fatherNames = new GetNames().getModuleNames(register.split(',')[2]);
   if (comand && comand === 'make:provider') {
     if (names && fatherNames) {
       const oldProviders = _fs.default.readFileSync('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', 'ascii');

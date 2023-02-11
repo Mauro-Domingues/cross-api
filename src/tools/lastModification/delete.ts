@@ -1,7 +1,63 @@
 import messages from '@tools/messages';
-import { GetNames } from 'bin';
 import fsExtra from 'fs-extra';
 import fs from 'fs';
+import IModuleNamesDTO from 'index';
+import { isSingular, plural, singular } from 'pluralize';
+
+class GetNames {
+  private getSingularAndPlural(word: string): {
+    singular: string;
+    pluralName: string;
+  } {
+    if (isSingular(word)) {
+      return {
+        singular: word,
+        pluralName: plural(word),
+      };
+    }
+    return {
+      singular: singular(word),
+      pluralName: word,
+    };
+  }
+
+  getModuleNames(
+    name: string,
+  ): Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'> | undefined {
+    if (!name) {
+      return undefined;
+    }
+
+    const { singular, pluralName } = this.getSingularAndPlural(name);
+
+    const lowerModuleName = singular.replace(
+      singular.charAt(0),
+      singular.charAt(0).toLowerCase(),
+    );
+
+    const upperModuleName = singular.replace(
+      singular.charAt(0),
+      singular.charAt(0).toUpperCase(),
+    );
+
+    const pluralLowerModuleName = pluralName.replace(
+      pluralName.charAt(0),
+      pluralName.charAt(0).toLowerCase(),
+    );
+
+    const pluralUpperModuleName = pluralName.replace(
+      pluralName.charAt(0),
+      pluralName.charAt(0).toUpperCase(),
+    );
+
+    return {
+      lowerModuleName,
+      upperModuleName,
+      pluralLowerModuleName,
+      pluralUpperModuleName,
+    };
+  }
+}
 
 export default async function deleteRegister(): Promise<void> {
   const register = fs.readFileSync(
