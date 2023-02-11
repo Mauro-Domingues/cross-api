@@ -82,6 +82,20 @@ export default async function createRegister(
             if (error) throw error;
           },
         );
+      } else {
+        const routeInjection = `import { Router } from 'express';
+
+const ${fatherNames.lowerModuleName}Router = Router();
+
+export default ${fatherNames.lowerModuleName}Router;
+`;
+        fs.appendFile(
+          './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+          routeInjection,
+          error => {
+            if (error) throw error;
+          },
+        );
       }
     } else if (names) {
       const moduleInjection = fs.readFileSync(

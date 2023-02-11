@@ -42,6 +42,16 @@ async function createRegister(comand, providerName, names, fatherNames) {
         _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
           if (error) throw error;
         });
+      } else {
+        const routeInjection = `import { Router } from 'express';
+
+const ${fatherNames.lowerModuleName}Router = Router();
+
+export default ${fatherNames.lowerModuleName}Router;
+`;
+        _fs.default.appendFile('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
+          if (error) throw error;
+        });
       }
     } else if (names) {
       const moduleInjection = _fs.default.readFileSync('src/shared/container/index.ts', 'ascii');
