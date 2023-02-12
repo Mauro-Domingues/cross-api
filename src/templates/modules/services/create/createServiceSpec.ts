@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createSpecService(
+export function createSpecService(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';

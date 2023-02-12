@@ -3,61 +3,61 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = makeInfra;
+exports.makeInfra = makeInfra;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
-var _fs = _interopRequireDefault(require("fs"));
+var _fs = require("fs");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeInfra() {
-  if (!_fs.default.existsSync('src')) {
-    _fs.default.mkdirSync('src');
+  if (!(0, _fs.existsSync)('src')) {
+    (0, _fs.mkdirSync)('src');
   }
-  if (!_fs.default.existsSync('src/config')) {
-    _fs.default.mkdirSync('src/config');
+  if (!(0, _fs.existsSync)('src/config')) {
+    (0, _fs.mkdirSync)('src/config');
   }
-  if (!_fs.default.existsSync('src/@types')) {
-    _fs.default.mkdirSync('src/@types');
+  if (!(0, _fs.existsSync)('src/@types')) {
+    (0, _fs.mkdirSync)('src/@types');
   }
-  if (!_fs.default.existsSync('src/dtos')) {
-    _fs.default.mkdirSync('src/dtos');
+  if (!(0, _fs.existsSync)('src/dtos')) {
+    (0, _fs.mkdirSync)('src/dtos');
   }
-  if (!_fs.default.existsSync('src/assets')) {
-    _fs.default.mkdirSync('src/assets');
+  if (!(0, _fs.existsSync)('src/assets')) {
+    (0, _fs.mkdirSync)('src/assets');
   }
-  if (!_fs.default.existsSync('src/middlewares')) {
-    _fs.default.mkdirSync('src/middlewares');
+  if (!(0, _fs.existsSync)('src/middlewares')) {
+    (0, _fs.mkdirSync)('src/middlewares');
   }
-  if (!_fs.default.existsSync('src/modules')) {
-    _fs.default.mkdirSync('src/modules');
+  if (!(0, _fs.existsSync)('src/modules')) {
+    (0, _fs.mkdirSync)('src/modules');
   }
-  if (!_fs.default.existsSync('src/routes')) {
-    _fs.default.mkdirSync('src/routes');
+  if (!(0, _fs.existsSync)('src/routes')) {
+    (0, _fs.mkdirSync)('src/routes');
   }
-  if (!_fs.default.existsSync('src/shared')) {
-    _fs.default.mkdirSync('src/shared');
+  if (!(0, _fs.existsSync)('src/shared')) {
+    (0, _fs.mkdirSync)('src/shared');
   }
-  if (!_fs.default.existsSync('src/utils')) {
-    _fs.default.mkdirSync('src/utils');
+  if (!(0, _fs.existsSync)('src/utils')) {
+    (0, _fs.mkdirSync)('src/utils');
   }
-  if (!_fs.default.existsSync('src/utils/mappers')) {
-    _fs.default.mkdirSync('src/utils/mappers');
+  if (!(0, _fs.existsSync)('src/utils/mappers')) {
+    (0, _fs.mkdirSync)('src/utils/mappers');
   }
-  if (!_fs.default.existsSync('src/shared/container')) {
-    _fs.default.mkdirSync('src/shared/container');
+  if (!(0, _fs.existsSync)('src/shared/container')) {
+    (0, _fs.mkdirSync)('src/shared/container');
   }
-  if (!_fs.default.existsSync('src/shared/errors')) {
-    _fs.default.mkdirSync('src/shared/errors');
+  if (!(0, _fs.existsSync)('src/shared/errors')) {
+    (0, _fs.mkdirSync)('src/shared/errors');
   }
-  if (!_fs.default.existsSync('src/shared/typeorm')) {
-    _fs.default.mkdirSync('src/shared/typeorm');
+  if (!(0, _fs.existsSync)('src/shared/typeorm')) {
+    (0, _fs.mkdirSync)('src/shared/typeorm');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers')) {
-    _fs.default.mkdirSync('src/shared/container/providers');
+  if (!(0, _fs.existsSync)('src/shared/container/providers')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers');
   }
-  if (!_fs.default.existsSync('src/shared/typeorm/migrations')) {
-    _fs.default.mkdirSync('src/shared/typeorm/migrations');
+  if (!(0, _fs.existsSync)('src/shared/typeorm/migrations')) {
+    (0, _fs.mkdirSync)('src/shared/typeorm/migrations');
   }
-  if (!_fs.default.existsSync('src/shared/typeorm/seeds')) {
-    _fs.default.mkdirSync('src/shared/typeorm/seeds');
+  if (!(0, _fs.existsSync)('src/shared/typeorm/seeds')) {
+    (0, _fs.mkdirSync)('src/shared/typeorm/seeds');
   }
   console.log('\x1b[1m', '\x1b[38;2;0;155;255m', _messages.default.apiCreated, '\x1b[0m');
 }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createMailConfig;
+exports.createMailConfig = createMailConfig;
 function createMailConfig() {
   return `interface IMailConfig {
   driver: 'ethereal' | 'ses';

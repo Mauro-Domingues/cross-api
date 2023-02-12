@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createDependentSESMail(
+export function createDependentSESMail(
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {
   return `import mailConfig from '@config/mail';

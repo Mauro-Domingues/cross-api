@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createTsConfig;
+exports.createTsConfig = createTsConfig;
 function createTsConfig() {
   return `{
   "compilerOptions": {

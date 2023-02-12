@@ -1,4 +1,4 @@
-export default function createICrypto(): string {
+export function createICrypto(): string {
   return `import { SignOptions } from 'jsonwebtoken';
 import { Extras, JWK } from 'pem-jwk';
 import ICryptoDTO from '../dtos/ICryptoDTO';

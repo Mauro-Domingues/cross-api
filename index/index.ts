@@ -1,24 +1,24 @@
 #!/usr/bin/env node
 
-import shell from 'shelljs';
-import board from '@tools/board';
-import configJson from '@tools/config';
-import configLanguage from '@tools/languageConfig';
-import listProvider from '@tools/listProvider';
-import createApi from '@tools/makeApi';
-import createModule from '@tools/makeModule';
-import createProvider from '@tools/makeProvider';
+import { exec } from 'shelljs';
+import { board } from '@tools/board';
+import { configJson } from '@tools/config';
+import { configLanguage } from '@tools/languageConfig';
+import { listProvider } from '@tools/listProvider';
+import { createApi } from '@tools/makeApi';
+import { createModule } from '@tools/makeModule';
+import { createProvider } from '@tools/makeProvider';
 import messages from '@tools/messages';
 import { plural, singular, isSingular } from 'pluralize';
-import createRegister from '@tools/lastModification/save';
-import deleteRegister from '@tools/lastModification/delete';
+import { createRegister } from '@tools/lastModification/save';
+import { deleteRegister } from '@tools/lastModification/delete';
 
 const fullComand = process.argv.slice(2);
 const comand = process.argv[2];
 const arg = process.argv[3];
 const father = process.argv[4];
 
-export default interface IModuleNamesDTO {
+export interface IModuleNamesDTO {
   lowerModuleName: string;
   upperModuleName: string;
   pluralLowerModuleName: string;
@@ -101,7 +101,12 @@ class GetNames {
 }
 
 if (comand) {
-  createRegister(fullComand, undefined, undefined, undefined);
+  createRegister(
+    fullComand,
+    arg,
+    new GetNames().getModuleNames(arg),
+    new GetNames().getModuleNames(father),
+  );
   switch (comand) {
     case 'config':
       configJson();
@@ -119,33 +124,21 @@ if (comand) {
       createApi();
       break;
     case 'make:module':
-      createRegister(
-        fullComand,
-        arg,
-        new GetNames().getModuleNames(arg),
-        new GetNames().getModuleNames(father),
-      );
       createModule(
         new GetNames().getModuleNames(arg),
         new GetNames().getModuleNames(father),
       );
       break;
     case 'make:provider':
-      createRegister(
-        fullComand,
-        arg,
-        new GetNames().getModuleNames(arg),
-        new GetNames().getModuleNames(father),
-      );
       createProvider(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
-      shell.exec(
+      exec(
         'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
       );
       break;
     case 'migration:run':
-      shell.exec(
+      exec(
         'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
       );
       break;

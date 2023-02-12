@@ -1,4 +1,4 @@
-export default function createNotificationConfig(): string {
+export function createNotificationConfig(): string {
   return `export default {
   onesignal: {
     options: {

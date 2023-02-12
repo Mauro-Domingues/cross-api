@@ -1,50 +1,50 @@
-import fs from 'fs';
-import createContainer from '@templates/index/container';
-import createCacheIndex from '@templates/providers/cacheIndex';
-import createCacheConfig from '@templates/providers/config/cacheConfig';
-import createFakeRedis from '@templates/providers/fakes/fakeCache';
-import createRedisCache from '@templates/providers/implementations/RedisCache';
-import createICache from '@templates/providers/models/ICache';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createContainer } from '@templates/index/container';
+import { createCacheIndex } from '@templates/providers/cacheIndex';
+import { createCacheConfig } from '@templates/providers/config/cacheConfig';
+import { createFakeRedis } from '@templates/providers/fakes/fakeCache';
+import { createRedisCache } from '@templates/providers/implementations/RedisCache';
+import { createICache } from '@templates/providers/models/ICache';
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default async function makeDependentCacheProvider(
+export async function makeDependentCacheProvider(
   fatherNames: IModuleNamesDTO,
 ): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/modules')) {
-    fs.mkdirSync('src/modules');
+  if (!existsSync('src/modules')) {
+    mkdirSync('src/modules');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/index.ts')) {
-    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+  if (!existsSync('src/shared/container/index.ts')) {
+    appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
     });
   }
-  if (!fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
+  if (!existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
   if (
-    !fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
+    !existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
   ) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
       '',
       error => {
@@ -53,73 +53,73 @@ export default async function makeDependentCacheProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`,
     );
   }
-  fs.appendFile(
+  appendFile(
     `src/shared/container/index.ts`,
     `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`,
     error => {
       if (error) throw error;
     },
   );
-  fs.appendFile(
+  appendFile(
     `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     `\nimport './CacheProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/cache.ts')) {
-    fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+  if (!existsSync('src/config/cache.ts')) {
+    appendFile('src/config/cache.ts', createCacheConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/cache.ts', error => {
+    truncate('src/config/cache.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/cache.ts', createCacheConfig(), error => {
+    appendFile('src/config/cache.ts', createCacheConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
       createFakeRedis(),
       error => {
@@ -127,13 +127,13 @@ export default async function makeDependentCacheProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
       createFakeRedis(),
       error => {
@@ -142,11 +142,11 @@ export default async function makeDependentCacheProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
       createRedisCache(),
       error => {
@@ -154,13 +154,13 @@ export default async function makeDependentCacheProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
       createRedisCache(),
       error => {
@@ -169,11 +169,11 @@ export default async function makeDependentCacheProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
       createICache(),
       error => {
@@ -181,13 +181,13 @@ export default async function makeDependentCacheProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
       createICache(),
       error => {
@@ -196,11 +196,11 @@ export default async function makeDependentCacheProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
       createCacheIndex(),
       error => {
@@ -208,13 +208,13 @@ export default async function makeDependentCacheProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
       createCacheIndex(),
       error => {

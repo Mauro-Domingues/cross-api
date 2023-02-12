@@ -1,4 +1,4 @@
-export default function createMailIndex(): string {
+export function createMailIndex(): string {
   return `import mailConfig from '@config/mail';
 import { container } from 'tsyringe';
 

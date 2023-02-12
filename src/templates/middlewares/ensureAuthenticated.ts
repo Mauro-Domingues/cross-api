@@ -1,4 +1,4 @@
-export default function createEnsureAuthenticated(): string {
+export function createEnsureAuthenticated(): string {
   return `import { expressjwt } from 'express-jwt';
 import AppError from '@shared/errors/AppError';
 import {

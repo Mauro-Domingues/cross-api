@@ -1,64 +1,62 @@
-import fs from 'fs';
-import createNotificationConfig from '@templates/providers/config/notificationConfig';
-import createINotificationDTO from '@templates/providers/dtos/INotificationDTO';
-import createFakeNotification from '@templates/providers/fakes/fakeNotification';
-import createOneSignalNotification from '@templates/providers/implementations/OneSignalNotification';
-import createINotification from '@templates/providers/models/INotification';
-import createNotificationIndex from '@templates/providers/notificationIndex';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createNotificationConfig } from '@templates/providers/config/notificationConfig';
+import { createINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
+import { createFakeNotification } from '@templates/providers/fakes/fakeNotification';
+import { createOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
+import { createINotification } from '@templates/providers/models/INotification';
+import { createNotificationIndex } from '@templates/providers/notificationIndex';
 import messages from '@tools/messages';
 
-export default async function makeNotificationProvider(): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+export async function makeNotificationProvider(): Promise<void> {
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/providers')) {
-    fs.mkdirSync('src/shared/container/providers');
+  if (!existsSync('src/shared/container/providers')) {
+    mkdirSync('src/shared/container/providers');
   }
-  if (!fs.existsSync('src/shared/container/providers/NotificationProvider')) {
-    fs.mkdirSync('src/shared/container/providers/NotificationProvider');
+  if (!existsSync('src/shared/container/providers/NotificationProvider')) {
+    mkdirSync('src/shared/container/providers/NotificationProvider');
+  }
+  if (!existsSync('src/shared/container/providers/NotificationProvider/dtos')) {
+    mkdirSync('src/shared/container/providers/NotificationProvider/dtos');
   }
   if (
-    !fs.existsSync('src/shared/container/providers/NotificationProvider/dtos')
+    !existsSync('src/shared/container/providers/NotificationProvider/fakes')
   ) {
-    fs.mkdirSync('src/shared/container/providers/NotificationProvider/dtos');
+    mkdirSync('src/shared/container/providers/NotificationProvider/fakes');
   }
   if (
-    !fs.existsSync('src/shared/container/providers/NotificationProvider/fakes')
-  ) {
-    fs.mkdirSync('src/shared/container/providers/NotificationProvider/fakes');
-  }
-  if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/NotificationProvider/implementations',
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       'src/shared/container/providers/NotificationProvider/implementations',
     );
   }
   if (
-    !fs.existsSync('src/shared/container/providers/NotificationProvider/models')
+    !existsSync('src/shared/container/providers/NotificationProvider/models')
   ) {
-    fs.mkdirSync('src/shared/container/providers/NotificationProvider/models');
+    mkdirSync('src/shared/container/providers/NotificationProvider/models');
   }
-  fs.appendFile(
+  appendFile(
     'src/shared/container/providers/index.ts',
     `\nimport './NotificationProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/notification.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/config/notification.ts')) {
+    appendFile(
       'src/config/notification.ts',
       createNotificationConfig(),
       error => {
@@ -66,10 +64,10 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/config/notification.ts', error => {
+    truncate('src/config/notification.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/config/notification.ts',
       createNotificationConfig(),
       error => {
@@ -78,11 +76,11 @@ export default async function makeNotificationProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
       createINotificationDTO(),
       error => {
@@ -90,13 +88,13 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
       createINotificationDTO(),
       error => {
@@ -105,11 +103,11 @@ export default async function makeNotificationProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
       createFakeNotification(),
       error => {
@@ -117,13 +115,13 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
       createFakeNotification(),
       error => {
@@ -132,11 +130,11 @@ export default async function makeNotificationProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
       createOneSignalNotification(),
       error => {
@@ -144,13 +142,13 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
       createOneSignalNotification(),
       error => {
@@ -159,11 +157,11 @@ export default async function makeNotificationProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
       createINotification(),
       error => {
@@ -171,13 +169,13 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
       createINotification(),
       error => {
@@ -186,11 +184,9 @@ export default async function makeNotificationProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
-      'src/shared/container/providers/NotificationProvider/index.ts',
-    )
+    !existsSync('src/shared/container/providers/NotificationProvider/index.ts')
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/index.ts',
       createNotificationIndex(),
       error => {
@@ -198,13 +194,13 @@ export default async function makeNotificationProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/NotificationProvider/index.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/NotificationProvider/index.ts',
       createNotificationIndex(),
       error => {

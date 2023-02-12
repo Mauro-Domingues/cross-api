@@ -1,11 +1,11 @@
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
-import makeDependentFunctionalities from './funcionalities';
-import makeDependentInfra from './infra';
-import makeDependentStructure from './structure';
-import makeDependentUnitTests from './unitTests';
+import { IModuleNamesDTO } from 'index';
+import { makeDependentFunctionalities } from './funcionalities';
+import { makeDependentInfra } from './infra';
+import { makeDependentStructure } from './structure';
+import { makeDependentUnitTests } from './unitTests';
 
-export default async function makeDependentModule(
+export async function makeDependentModule(
   names: IModuleNamesDTO,
   fatherNames: IModuleNamesDTO,
 ): Promise<void> {

@@ -1,4 +1,4 @@
-export default function createRoutes(): string {
+export function createRoutes(): string {
   return `import { Router } from 'express';
 
 const routes = Router();

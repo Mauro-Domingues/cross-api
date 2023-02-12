@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFullDependentRoute;
+exports.createFullDependentRoute = createFullDependentRoute;
 function createFullDependentRoute(names, fatherNames) {
   return `import { Router } from 'express';
 

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createServer;
+exports.createServer = createServer;
 function createServer() {
   return `import createConnection from '@shared/typeorm';
 import swaggerUi from 'swagger-ui-express';

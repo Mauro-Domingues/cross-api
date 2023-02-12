@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createStorageIndex;
+exports.createStorageIndex = createStorageIndex;
 function createStorageIndex() {
   return `import uploadConfig from '@config/upload';
 import { container } from 'tsyringe';

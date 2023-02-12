@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createINotification;
+exports.createINotification = createINotification;
 function createINotification() {
   return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
 

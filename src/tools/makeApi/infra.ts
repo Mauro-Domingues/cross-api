@@ -1,57 +1,57 @@
 import messages from '@tools/messages';
-import fs from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 
-export default async function makeInfra(): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+export async function makeInfra(): Promise<void> {
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/@types')) {
-    fs.mkdirSync('src/@types');
+  if (!existsSync('src/@types')) {
+    mkdirSync('src/@types');
   }
-  if (!fs.existsSync('src/dtos')) {
-    fs.mkdirSync('src/dtos');
+  if (!existsSync('src/dtos')) {
+    mkdirSync('src/dtos');
   }
-  if (!fs.existsSync('src/assets')) {
-    fs.mkdirSync('src/assets');
+  if (!existsSync('src/assets')) {
+    mkdirSync('src/assets');
   }
-  if (!fs.existsSync('src/middlewares')) {
-    fs.mkdirSync('src/middlewares');
+  if (!existsSync('src/middlewares')) {
+    mkdirSync('src/middlewares');
   }
-  if (!fs.existsSync('src/modules')) {
-    fs.mkdirSync('src/modules');
+  if (!existsSync('src/modules')) {
+    mkdirSync('src/modules');
   }
-  if (!fs.existsSync('src/routes')) {
-    fs.mkdirSync('src/routes');
+  if (!existsSync('src/routes')) {
+    mkdirSync('src/routes');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/utils')) {
-    fs.mkdirSync('src/utils');
+  if (!existsSync('src/utils')) {
+    mkdirSync('src/utils');
   }
-  if (!fs.existsSync('src/utils/mappers')) {
-    fs.mkdirSync('src/utils/mappers');
+  if (!existsSync('src/utils/mappers')) {
+    mkdirSync('src/utils/mappers');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/errors')) {
-    fs.mkdirSync('src/shared/errors');
+  if (!existsSync('src/shared/errors')) {
+    mkdirSync('src/shared/errors');
   }
-  if (!fs.existsSync('src/shared/typeorm')) {
-    fs.mkdirSync('src/shared/typeorm');
+  if (!existsSync('src/shared/typeorm')) {
+    mkdirSync('src/shared/typeorm');
   }
-  if (!fs.existsSync('src/shared/container/providers')) {
-    fs.mkdirSync('src/shared/container/providers');
+  if (!existsSync('src/shared/container/providers')) {
+    mkdirSync('src/shared/container/providers');
   }
-  if (!fs.existsSync('src/shared/typeorm/migrations')) {
-    fs.mkdirSync('src/shared/typeorm/migrations');
+  if (!existsSync('src/shared/typeorm/migrations')) {
+    mkdirSync('src/shared/typeorm/migrations');
   }
-  if (!fs.existsSync('src/shared/typeorm/seeds')) {
-    fs.mkdirSync('src/shared/typeorm/seeds');
+  if (!existsSync('src/shared/typeorm/seeds')) {
+    mkdirSync('src/shared/typeorm/seeds');
   }
   console.log(
     '\x1b[1m',

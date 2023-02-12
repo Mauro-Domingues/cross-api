@@ -1,4 +1,4 @@
-export default function createDataSource(): string {
+export function createDataSource(): string {
   return `import { DataSource } from 'typeorm';
 import 'dotenv/config';
 import 'reflect-metadata';

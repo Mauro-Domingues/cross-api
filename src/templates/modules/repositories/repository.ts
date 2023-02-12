@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createRepository(
+export function createRepository(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
 ): string {
   return `import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentService;
+exports.createDependentService = createDependentService;
 function createDependentService(names, fatherNames) {
   return `import { injectable, inject } from 'tsyringe';
 

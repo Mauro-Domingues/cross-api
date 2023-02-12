@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEnsureAuthenticated;
+exports.createEnsureAuthenticated = createEnsureAuthenticated;
 function createEnsureAuthenticated() {
   return `import { expressjwt } from 'express-jwt';
 import AppError from '@shared/errors/AppError';

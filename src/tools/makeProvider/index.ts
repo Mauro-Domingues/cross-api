@@ -1,9 +1,9 @@
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
-import makeDependentProvider from './dependent';
-import makeProvider from './independent';
+import { IModuleNamesDTO } from 'index';
+import { makeDependentProvider } from './dependent';
+import { makeProvider } from './independent';
 
-export default async function createProvider(
+export async function createProvider(
   providerName: string | undefined,
   fatherNames: IModuleNamesDTO | undefined,
 ): Promise<void> {

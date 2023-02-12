@@ -9,7 +9,7 @@ function renderEmptyLine(): void {
   );
 }
 
-export default function board(): void {
+export function board(): void {
   const tools = [
     { title: 'comands             ', description: messages.comands },
     { title: 'language            ', description: messages.changeLanguage },

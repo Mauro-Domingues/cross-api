@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createGitIgnore;
+exports.createGitIgnore = createGitIgnore;
 function createGitIgnore() {
   return `# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

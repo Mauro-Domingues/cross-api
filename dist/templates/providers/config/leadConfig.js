@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createLeadConfig;
+exports.createLeadConfig = createLeadConfig;
 function createLeadConfig() {
   return `interface ILeadConfig {
   clientId: string;

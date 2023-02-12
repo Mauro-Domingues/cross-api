@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function listSpecService(
+export function listSpecService(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
 ): string {
   return `import Fake${names.upperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentRepository;
+exports.createDependentRepository = createDependentRepository;
 function createDependentRepository(names, fatherNames) {
   return `import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { DeleteResult, Repository } from 'typeorm';

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDataSource;
+exports.createDataSource = createDataSource;
 function createDataSource() {
   return `import { DataSource } from 'typeorm';
 import 'dotenv/config';

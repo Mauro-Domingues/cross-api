@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createS3Storage;
+exports.createS3Storage = createS3Storage;
 function createS3Storage() {
   return `import uploadConfig from '@config/upload';
 import aws, { S3 } from 'aws-sdk';

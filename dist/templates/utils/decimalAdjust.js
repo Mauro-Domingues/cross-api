@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDecimaAdjust;
+exports.createDecimaAdjust = createDecimaAdjust;
 function createDecimaAdjust() {
   return `export function roundDecimal(v: number, exp?: number) {
   if (typeof exp === 'undefined') {

@@ -1,4 +1,4 @@
-export default function createServer(): string {
+export function createServer(): string {
   return `import createConnection from '@shared/typeorm';
 import swaggerUi from 'swagger-ui-express';
 import app from './app';

@@ -1,72 +1,70 @@
-import fs from 'fs';
-import createLeadConfig from '@templates/providers/config/leadConfig';
-import createILeadDTO from '@templates/providers/dtos/ILeadDTO';
-import createFakeLead from '@templates/providers/fakes/fakeLead';
-import createRDStationLead from '@templates/providers/implementations/RDStationLead';
-import createLeadIndex from '@templates/providers/leadIndex';
-import createILead from '@templates/providers/models/ILead';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createLeadConfig } from '@templates/providers/config/leadConfig';
+import { createILeadDTO } from '@templates/providers/dtos/ILeadDTO';
+import { createFakeLead } from '@templates/providers/fakes/fakeLead';
+import { createRDStationLead } from '@templates/providers/implementations/RDStationLead';
+import { createLeadIndex } from '@templates/providers/leadIndex';
+import { createILead } from '@templates/providers/models/ILead';
 import messages from '@tools/messages';
 
-export default async function makeLeadProvider(): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+export async function makeLeadProvider(): Promise<void> {
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/providers')) {
-    fs.mkdirSync('src/shared/container/providers');
+  if (!existsSync('src/shared/container/providers')) {
+    mkdirSync('src/shared/container/providers');
   }
-  if (!fs.existsSync('src/shared/container/providers/LeadProvider')) {
-    fs.mkdirSync('src/shared/container/providers/LeadProvider');
+  if (!existsSync('src/shared/container/providers/LeadProvider')) {
+    mkdirSync('src/shared/container/providers/LeadProvider');
   }
-  if (!fs.existsSync('src/shared/container/providers/LeadProvider/dtos')) {
-    fs.mkdirSync('src/shared/container/providers/LeadProvider/dtos');
+  if (!existsSync('src/shared/container/providers/LeadProvider/dtos')) {
+    mkdirSync('src/shared/container/providers/LeadProvider/dtos');
   }
-  if (!fs.existsSync('src/shared/container/providers/LeadProvider/fakes')) {
-    fs.mkdirSync('src/shared/container/providers/LeadProvider/fakes');
+  if (!existsSync('src/shared/container/providers/LeadProvider/fakes')) {
+    mkdirSync('src/shared/container/providers/LeadProvider/fakes');
   }
   if (
-    !fs.existsSync(
-      'src/shared/container/providers/LeadProvider/implementations',
-    )
+    !existsSync('src/shared/container/providers/LeadProvider/implementations')
   ) {
-    fs.mkdirSync('src/shared/container/providers/LeadProvider/implementations');
+    mkdirSync('src/shared/container/providers/LeadProvider/implementations');
   }
-  if (!fs.existsSync('src/shared/container/providers/LeadProvider/models')) {
-    fs.mkdirSync('src/shared/container/providers/LeadProvider/models');
+  if (!existsSync('src/shared/container/providers/LeadProvider/models')) {
+    mkdirSync('src/shared/container/providers/LeadProvider/models');
   }
-  fs.appendFile(
+  appendFile(
     'src/shared/container/providers/index.ts',
     `\nimport './LeadProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/lead.ts')) {
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+  if (!existsSync('src/config/lead.ts')) {
+    appendFile('src/config/lead.ts', createLeadConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/lead.ts', error => {
+    truncate('src/config/lead.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+    appendFile('src/config/lead.ts', createLeadConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
       createILeadDTO(),
       error => {
@@ -74,13 +72,13 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
       createILeadDTO(),
       error => {
@@ -89,11 +87,11 @@ export default async function makeLeadProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
       createFakeLead(),
       error => {
@@ -101,13 +99,13 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
       createFakeLead(),
       error => {
@@ -116,11 +114,11 @@ export default async function makeLeadProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
       createRDStationLead(),
       error => {
@@ -128,13 +126,13 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
       createRDStationLead(),
       error => {
@@ -143,11 +141,11 @@ export default async function makeLeadProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
       createILead(),
       error => {
@@ -155,13 +153,13 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
       createILead(),
       error => {
@@ -169,8 +167,8 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   }
-  if (!fs.existsSync('src/shared/container/providers/LeadProvider/index.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/shared/container/providers/LeadProvider/index.ts')) {
+    appendFile(
       'src/shared/container/providers/LeadProvider/index.ts',
       createLeadIndex(),
       error => {
@@ -178,13 +176,10 @@ export default async function makeLeadProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
-      'src/shared/container/providers/LeadProvider/index.ts',
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    fs.appendFile(
+    truncate('src/shared/container/providers/LeadProvider/index.ts', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
       'src/shared/container/providers/LeadProvider/index.ts',
       createLeadIndex(),
       error => {

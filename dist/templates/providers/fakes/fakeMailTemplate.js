@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFakeMailTemplate;
+exports.createFakeMailTemplate = createFakeMailTemplate;
 function createFakeMailTemplate() {
   return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
 

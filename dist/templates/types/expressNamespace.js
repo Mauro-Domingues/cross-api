@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createExpressNamespace;
+exports.createExpressNamespace = createExpressNamespace;
 function createExpressNamespace() {
   return `declare namespace Express {
   export interface Request {

@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createFakeRepository(
+export function createFakeRepository(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'dbModuleName'>,
 ): string {
   return `/* eslint-disable @typescript-eslint/no-explicit-any */

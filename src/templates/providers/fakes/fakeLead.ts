@@ -1,4 +1,4 @@
-export default function createFakeLead(): string {
+export function createFakeLead(): string {
   return `import ILeadProvider from '../models/ILeadProvider';
 import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
 

@@ -1,4 +1,4 @@
-export default function createFakeHash(): string {
+export function createFakeHash(): string {
   return `import IHashProvider from '../models/IHashProvider';
 
 class FakeHashProvider implements IHashProvider {

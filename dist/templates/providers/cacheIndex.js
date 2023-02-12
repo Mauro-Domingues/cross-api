@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createCacheIndex;
+exports.createCacheIndex = createCacheIndex;
 function createCacheIndex() {
   return `import { container } from 'tsyringe';
 

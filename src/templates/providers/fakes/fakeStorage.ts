@@ -1,4 +1,4 @@
-export default function createFakeStorage(): string {
+export function createFakeStorage(): string {
   return `import IStorageProvider from '../models/IStorageProvider';
 
 class FakeStorageProvider implements IStorageProvider {

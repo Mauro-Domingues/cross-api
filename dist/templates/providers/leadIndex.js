@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createLeadIndex;
+exports.createLeadIndex = createLeadIndex;
 function createLeadIndex() {
   return `import { container } from 'tsyringe';
 

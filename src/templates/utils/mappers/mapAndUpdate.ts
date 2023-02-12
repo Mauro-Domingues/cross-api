@@ -1,6 +1,6 @@
 import messages from '@tools/messages';
 
-export default function createMapAndUpdate(): string {
+export function createMapAndUpdate(): string {
   return `/**
  * ${messages.mapAndUpdate}
  * @param oldAttributes Entity

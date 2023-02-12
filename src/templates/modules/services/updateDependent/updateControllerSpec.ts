@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function updateSpecDependentController(
+export function updateSpecDependentController(
   names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>,
   fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>,
 ): string {

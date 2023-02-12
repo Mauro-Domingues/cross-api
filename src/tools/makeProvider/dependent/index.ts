@@ -1,15 +1,15 @@
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
-import makeDependentCacheProvider from './cache';
-import makeDependentCryptoProvider from './crypto';
-import makeDependentHashProvider from './hash';
-import makeDependentLeadProvider from './lead';
-import makeDependentMailProvider from './mail';
-import makeDependentMailTemplateProvider from './mailTemplate';
-import makeDependentNotificationProvider from './notification';
-import makeDependentStorageProvider from './storage';
+import { IModuleNamesDTO } from 'index';
+import { makeDependentCacheProvider } from './cache';
+import { makeDependentCryptoProvider } from './crypto';
+import { makeDependentHashProvider } from './hash';
+import { makeDependentLeadProvider } from './lead';
+import { makeDependentMailProvider } from './mail';
+import { makeDependentMailTemplateProvider } from './mailTemplate';
+import { makeDependentNotificationProvider } from './notification';
+import { makeDependentStorageProvider } from './storage';
 
-export default async function makeDependentProvider(
+export async function makeDependentProvider(
   providerName: string,
   fatherNames: IModuleNamesDTO,
 ): Promise<void> {

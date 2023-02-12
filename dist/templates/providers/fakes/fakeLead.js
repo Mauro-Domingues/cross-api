@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFakeLead;
+exports.createFakeLead = createFakeLead;
 function createFakeLead() {
   return `import ILeadProvider from '../models/ILeadProvider';
 import ICreateLeadDTO from '../dtos/ICreateLeadDTO';

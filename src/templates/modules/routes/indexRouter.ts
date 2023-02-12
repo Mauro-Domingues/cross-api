@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createIndexRoute(
+export function createIndexRoute(
   names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>,
 ): string {
   return `import ${names.lowerModuleName}Router from './${names.lowerModuleName}Router';

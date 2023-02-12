@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createContainer;
+exports.createContainer = createContainer;
 function createContainer() {
   return `import './providers';
 

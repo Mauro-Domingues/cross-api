@@ -3,12 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = configJson;
-var _fs = _interopRequireDefault(require("fs"));
-var _readline = _interopRequireDefault(require("readline"));
-var _shelljs = _interopRequireDefault(require("shelljs"));
+exports.configJson = configJson;
+var _fs = require("fs");
+var _readline = require("readline");
+var _shelljs = require("shelljs");
 var _package = _interopRequireDefault(require("../../../../package.json"));
-var _config = _interopRequireDefault(require("../../dist/templates/assets/config"));
+var _config = require("../../dist/templates/assets/config");
 var _enUs = _interopRequireDefault(require("../../dist/templates/assets/en-us"));
 var _ptBr = _interopRequireDefault(require("../../dist/templates/assets/pt-br"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27,7 +27,7 @@ function configJson() {
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js'
   };
-  _fs.default.writeFileSync('./package.json', JSON.stringify(_package.default), {
+  (0, _fs.writeFileSync)('./package.json', JSON.stringify(_package.default), {
     encoding: 'utf8',
     flag: 'w'
   });
@@ -38,7 +38,7 @@ function configJson() {
   console.log('');
   console.table([languages[0], languages[1]]);
   console.log('\x1b[1m');
-  const rl = _readline.default.createInterface({
+  const rl = (0, _readline.createInterface)({
     input: process.stdin,
     output: process.stdout
   });
@@ -55,7 +55,7 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '==============={ Installing Yarn }===============', '\x1b[0m');
         console.log('');
-        _shelljs.default.exec('npm install yarn --location=global');
+        (0, _shelljs.exec)('npm install yarn --location=global');
         console.log('\x1b[38;2;255;255;0m', `- yarn installed`, '\x1b[0m');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '==========={ Installing Dependencies }===========', '\x1b[0m');
         console.log('');
@@ -63,7 +63,7 @@ function configJson() {
           acc += ` ${dependency}`;
           return acc;
         });
-        _shelljs.default.exec(`yarn add ${dependenciesToInstall}`);
+        (0, _shelljs.exec)(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
           console.log('\x1b[38;2;255;255;0m', `- ${dependency} installed`, '\x1b[0m');
         });
@@ -74,7 +74,7 @@ function configJson() {
           acc += ` ${devDependency}`;
           return acc;
         });
-        _shelljs.default.exec(`yarn add ${devDependenciesToInstall} -D`);
+        (0, _shelljs.exec)(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
           console.log('\x1b[38;2;255;255;0m', `- ${devDependency} installed`, '\x1b[0m');
         });
@@ -83,10 +83,10 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '➤  Execute', '\x1b[38;2;255;255;0m', 'yarn cross comands', '\x1b[38;2;0;155;255m', 'to see available commands', '\x1b[0m');
         console.log('');
-        _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+        (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
           if (error) console.log(error);
         });
-        _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _enUs.default, error => {
+        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', _enUs.default, error => {
           if (error) console.log(error);
         });
       } else {
@@ -95,7 +95,7 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '==================={ Instalando Yarn }==================', '\x1b[0m');
         console.log('');
-        _shelljs.default.exec('npm install yarn --location=global');
+        (0, _shelljs.exec)('npm install yarn --location=global');
         console.log('\x1b[38;2;255;255;0m', `- yarn instalado`, '\x1b[0m');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '=============={ Instalando Dependências }===============', '\x1b[0m');
         console.log('');
@@ -103,7 +103,7 @@ function configJson() {
           acc += ` ${dependency}`;
           return acc;
         });
-        _shelljs.default.exec(`yarn add ${dependenciesToInstall}`);
+        (0, _shelljs.exec)(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
           console.log('\x1b[38;2;255;255;0m', `- ${dependency} instalado`, '\x1b[0m');
         });
@@ -114,7 +114,7 @@ function configJson() {
           acc += ` ${devDependency}`;
           return acc;
         });
-        _shelljs.default.exec(`yarn add ${devDependenciesToInstall} -D`);
+        (0, _shelljs.exec)(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
           console.log('\x1b[38;2;255;255;0m', `- ${devDependency} instalado`, '\x1b[0m');
         });
@@ -123,15 +123,15 @@ function configJson() {
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '➤  Execute', '\x1b[38;2;255;255;0m', 'yarn cross comands', '\x1b[38;2;0;155;255m', 'para ver os comandos disponíveis', '\x1b[0m');
         console.log('');
-        _fs.default.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+        (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
           if (error) console.log(error);
         });
-        _fs.default.appendFile('./node_modules/cross-api/dist/tools/messages.js', _ptBr.default, error => {
+        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', _ptBr.default, error => {
           if (error) console.log(error);
         });
       }
       rl.close();
     }
   });
-  (0, _config.default)();
+  (0, _config.config)();
 }

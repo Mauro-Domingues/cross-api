@@ -1,4 +1,4 @@
-export default function createContainer(): string {
+export function createContainer(): string {
   return `import './providers';
 
 import { container } from 'tsyringe';

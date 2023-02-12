@@ -1,4 +1,4 @@
-export default function createEditorConfig(): string {
+export function createEditorConfig(): string {
   return `root = true
 
 [*]

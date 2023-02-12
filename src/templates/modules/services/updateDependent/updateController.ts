@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function updateDependentController(
+export function updateDependentController(
   names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {

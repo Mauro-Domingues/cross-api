@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createINotificationDTO;
+exports.createINotificationDTO = createINotificationDTO;
 function createINotificationDTO() {
   return `export default interface ISendNotificationlDTO {
   name: string;

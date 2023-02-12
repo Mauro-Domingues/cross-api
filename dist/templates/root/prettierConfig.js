@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createPrettierConfig;
+exports.createPrettierConfig = createPrettierConfig;
 function createPrettierConfig() {
   return `module.exports = {
   singleQuote: true,

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createICryptoDTO;
+exports.createICryptoDTO = createICryptoDTO;
 function createICryptoDTO() {
   return `export default interface ICryptoDTO {
   iv: string;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFakeStorage;
+exports.createFakeStorage = createFakeStorage;
 function createFakeStorage() {
   return `import IStorageProvider from '../models/IStorageProvider';
 

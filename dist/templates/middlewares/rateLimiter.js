@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createRateLimiter;
+exports.createRateLimiter = createRateLimiter;
 function createRateLimiter() {
   return `import { Request, Response, NextFunction } from 'express';
 import { RateLimiterRedis } from 'rate-limiter-flexible';

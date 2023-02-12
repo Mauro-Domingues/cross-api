@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createCryptoConfig;
+exports.createCryptoConfig = createCryptoConfig;
 function createCryptoConfig() {
   return `enum encodingTypes {
   'default' = 'hex',

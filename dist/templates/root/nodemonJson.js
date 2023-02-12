@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createNodemonJson;
+exports.createNodemonJson = createNodemonJson;
 function createNodemonJson() {
   return `{
   "execMap":{

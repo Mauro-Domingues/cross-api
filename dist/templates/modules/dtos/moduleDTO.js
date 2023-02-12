@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createModuleDTO;
+exports.createModuleDTO = createModuleDTO;
 function createModuleDTO(names) {
   return `export default interface I${names.upperModuleName}DTO {
   name: string;

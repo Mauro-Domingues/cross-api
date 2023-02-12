@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createIndependentRoute(
+export function createIndependentRoute(
   names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'

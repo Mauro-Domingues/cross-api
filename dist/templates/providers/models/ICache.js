@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createICache;
+exports.createICache = createICache;
 function createICache() {
   return `export default interface ICacheProvider {
   save(key: string, value: any): Promise<void>;

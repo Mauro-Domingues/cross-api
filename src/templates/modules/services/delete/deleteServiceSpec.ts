@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function deleteSpecService(
+export function deleteSpecService(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
 ): string {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createRDStationLead;
+exports.createRDStationLead = createRDStationLead;
 function createRDStationLead() {
   return `import leadConfig from '@config/lead';
 import axios from 'axios';

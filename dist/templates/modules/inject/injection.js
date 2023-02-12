@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createInjection;
+exports.createInjection = createInjection;
 function createInjection(names) {
   return `import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import ${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository';

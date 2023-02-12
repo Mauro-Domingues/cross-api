@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = listSpecDependentService;
+exports.listSpecDependentService = listSpecDependentService;
 function listSpecDependentService(names, fatherNames) {
   return `import Fake${names.upperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';

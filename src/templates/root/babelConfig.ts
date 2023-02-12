@@ -1,4 +1,4 @@
-export default function createBabelConfig(): string {
+export function createBabelConfig(): string {
   return `module.exports = {
   presets: [
     ['@babel/preset-env', {targets: {node: 'current'}}],

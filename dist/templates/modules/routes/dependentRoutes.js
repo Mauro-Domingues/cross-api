@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentRoute;
+exports.createDependentRoute = createDependentRoute;
 function createDependentRoute(names, fatherNames) {
   return `import Create${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller';
 import Show${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller';

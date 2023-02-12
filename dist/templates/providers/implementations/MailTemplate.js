@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createMailTemplate;
+exports.createMailTemplate = createMailTemplate;
 function createMailTemplate() {
   return `import fs from 'fs';
 import handlebars from 'handlebars';

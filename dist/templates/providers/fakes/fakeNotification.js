@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFakeNotification;
+exports.createFakeNotification = createFakeNotification;
 function createFakeNotification() {
   return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
 import INotificationProvider from '../models/INotificationProvider';

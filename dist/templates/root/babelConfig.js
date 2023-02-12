@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createBabelConfig;
+exports.createBabelConfig = createBabelConfig;
 function createBabelConfig() {
   return `module.exports = {
   presets: [

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createIResponseDTO;
+exports.createIResponseDTO = createIResponseDTO;
 function createIResponseDTO() {
   return `export default interface IResponseDTO<T> {
   code: number;

@@ -1,4 +1,4 @@
-export default function createNotificationIndex(): string {
+export function createNotificationIndex(): string {
   return `import { container } from 'tsyringe';
 
 import OneSignalProvider from './implementations/OneSignalProvider';

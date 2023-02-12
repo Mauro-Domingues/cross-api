@@ -1,5 +1,5 @@
-import fs from 'fs';
-import readline from 'readline';
+import { appendFile, truncate } from 'fs';
+import { createInterface } from 'readline';
 
 import enUs from '@templates/assets/en-us';
 import ptBr from '@templates/assets/pt-br';
@@ -13,7 +13,7 @@ class LanguageOption {
   }
 }
 
-export default function configLanguage(): void {
+export function configLanguage(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   console.log('');
@@ -27,7 +27,7 @@ export default function configLanguage(): void {
   console.table([languages[0], languages[1]]);
   console.log('');
 
-  const rl = readline.createInterface({
+  const rl = createInterface({
     input: process.stdin,
     output: process.stdout,
   });
@@ -44,12 +44,12 @@ export default function configLanguage(): void {
       rl.close();
       configLanguage();
     } else {
-      fs.truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+      truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
         if (error) console.log(error);
       });
 
       if (languageOption === '0') {
-        fs.appendFile(
+        appendFile(
           './node_modules/cross-api/dist/tools/messages.js',
           enUs,
           error => {
@@ -66,7 +66,7 @@ export default function configLanguage(): void {
         );
         console.log('');
       } else {
-        fs.appendFile(
+        appendFile(
           './node_modules/cross-api/dist/tools/messages.js',
           ptBr,
           error => {

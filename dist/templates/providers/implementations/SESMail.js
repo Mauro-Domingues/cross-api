@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createSESMail;
+exports.createSESMail = createSESMail;
 function createSESMail() {
   return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';

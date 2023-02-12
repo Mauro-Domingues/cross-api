@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = listController;
+exports.listController = listController;
 function listController(names) {
   return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';

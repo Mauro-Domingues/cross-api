@@ -1,4 +1,4 @@
-export default function createUploadConfig(): string {
+export function createUploadConfig(): string {
   return `import crypto from 'crypto';
 import multer, { StorageEngine } from 'multer';
 import path from 'path';

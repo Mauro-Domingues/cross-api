@@ -1,4 +1,4 @@
-export default function createICache(): string {
+export function createICache(): string {
   return `export default interface ICacheProvider {
   save(key: string, value: any): Promise<void>;
   recovery<T>(key: string): Promise<T | null>;

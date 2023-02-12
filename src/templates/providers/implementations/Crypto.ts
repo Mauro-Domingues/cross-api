@@ -1,4 +1,4 @@
-export default function createCrypto(): string {
+export function createCrypto(): string {
   return `import crypto from 'crypto';
 import cryptoConfig from '@config/crypto';
 import fs from 'fs';

@@ -1,4 +1,4 @@
-export default function createIMailTemplateDTO(): string {
+export function createIMailTemplateDTO(): string {
   return `interface ITemplateVariables {
   [key: string]: string | number;
 }

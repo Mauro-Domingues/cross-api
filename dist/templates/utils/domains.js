@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDomainsManager;
+exports.createDomainsManager = createDomainsManager;
 function createDomainsManager() {
   return `import fs from 'fs';
 

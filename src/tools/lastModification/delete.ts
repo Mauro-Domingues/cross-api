@@ -1,7 +1,7 @@
 import messages from '@tools/messages';
-import fsExtra from 'fs-extra';
-import fs from 'fs';
-import IModuleNamesDTO from 'index';
+import { appendFile, removeSync, truncate, unlink } from 'fs-extra';
+import { readFileSync } from 'fs';
+import { IModuleNamesDTO } from 'index';
 import { isSingular, plural, singular } from 'pluralize';
 
 const providers: { [key: string]: string } = {
@@ -70,8 +70,8 @@ class GetNames {
   }
 }
 
-export default async function deleteRegister(): Promise<void> {
-  const register = fs.readFileSync(
+export async function deleteRegister(): Promise<void> {
+  const register = readFileSync(
     './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
     'ascii',
   );
@@ -82,25 +82,25 @@ export default async function deleteRegister(): Promise<void> {
 
   if (comand && comand === 'make:provider') {
     if (names && fatherNames) {
-      const oldProviders = fs.readFileSync(
+      const oldProviders = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
         'ascii',
       );
 
-      fs.truncate(
+      truncate(
         `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
         error => {
           if (error) throw error;
         },
       );
-      fs.appendFile(
+      appendFile(
         `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
         oldProviders,
         error => {
           if (error) throw error;
         },
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/providers/${
           providers[names.lowerModuleName]
         }`,
@@ -113,22 +113,22 @@ export default async function deleteRegister(): Promise<void> {
         '\x1b[0m',
       );
     } else if (names) {
-      const oldProviders = fs.readFileSync(
+      const oldProviders = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
         'ascii',
       );
 
-      fs.truncate('src/shared/container/providers/index.ts', error => {
+      truncate('src/shared/container/providers/index.ts', error => {
         if (error) throw error;
       });
-      fs.appendFile(
+      appendFile(
         'src/shared/container/providers/index.ts',
         oldProviders,
         error => {
           if (error) throw error;
         },
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/shared/container/providers/${providers[names.lowerModuleName]}`,
       );
       console.log('');
@@ -141,79 +141,76 @@ export default async function deleteRegister(): Promise<void> {
     }
   } else if (comand && comand === 'make:module') {
     if (names && fatherNames) {
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`,
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}`,
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}`,
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}`,
       );
-      fsExtra.removeSync(
+      removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}`,
       );
-      fs.unlink(
+      unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
         error => {
           if (error) throw error;
         },
       );
-      fs.unlink(
+      unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
         error => {
           if (error) throw error;
         },
       );
-      fs.unlink(
+      unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },
       );
-      fs.unlink(
+      unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },
       );
-      fs.unlink(
+      unlink(
         `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
         error => {
           if (error) throw error;
         },
       );
-      const moduleInjection = fs.readFileSync(
+      const moduleInjection = readFileSync(
         'src/shared/container/index.ts',
         'ascii',
       );
-      fs.truncate(
+      truncate(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         error => {
           if (error) throw error;
         },
       );
-      fs.appendFile(
+      appendFile(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         moduleInjection,
         error => {
           if (error) throw error;
         },
       );
-      const routeInjection = fs.readFileSync(
+      const routeInjection = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
         'ascii',
       );
-      fs.truncate(
-        `src/routes/${fatherNames.lowerModuleName}Router.ts`,
-        error => {
-          if (error) throw error;
-        },
-      );
-      fs.appendFile(
+      truncate(`src/routes/${fatherNames.lowerModuleName}Router.ts`, error => {
+        if (error) throw error;
+      });
+      appendFile(
         `src/routes/${fatherNames.lowerModuleName}Router.ts`,
         routeInjection,
         error => {
@@ -228,28 +225,28 @@ export default async function deleteRegister(): Promise<void> {
         '\x1b[0m',
       );
     } else if (names) {
-      fsExtra.removeSync(`src/modules/${names.pluralLowerModuleName}`);
-      fs.unlink(`src/routes/${names.lowerModuleName}Router.ts`, error => {
+      removeSync(`src/modules/${names.pluralLowerModuleName}`);
+      unlink(`src/routes/${names.lowerModuleName}Router.ts`, error => {
         if (error) throw error;
       });
-      const moduleInjection = fs.readFileSync(
+      const moduleInjection = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         'ascii',
       );
-      fs.truncate('src/shared/container/index.ts', error => {
+      truncate('src/shared/container/index.ts', error => {
         if (error) throw error;
       });
-      fs.appendFile('src/shared/container/index.ts', moduleInjection, error => {
+      appendFile('src/shared/container/index.ts', moduleInjection, error => {
         if (error) throw error;
       });
-      const routeInjection = fs.readFileSync(
+      const routeInjection = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
         'ascii',
       );
-      fs.truncate('src/routes/index.ts', error => {
+      truncate('src/routes/index.ts', error => {
         if (error) throw error;
       });
-      fs.appendFile('src/routes/index.ts', routeInjection, error => {
+      appendFile('src/routes/index.ts', routeInjection, error => {
         if (error) throw error;
       });
       console.log('');
@@ -261,41 +258,41 @@ export default async function deleteRegister(): Promise<void> {
       );
     }
   } else if (comand && comand === 'make:api') {
-    fsExtra.removeSync('src');
-    fs.unlink('.editorconfig', error => {
+    removeSync('src');
+    unlink('.editorconfig', error => {
       if (error) throw error;
     });
-    fs.unlink('.env', error => {
+    unlink('.env', error => {
       if (error) throw error;
     });
-    fs.unlink('.env.template', error => {
+    unlink('.env.template', error => {
       if (error) throw error;
     });
-    fs.unlink('.eslintignore', error => {
+    unlink('.eslintignore', error => {
       if (error) throw error;
     });
-    fs.unlink('.eslintrc.json', error => {
+    unlink('.eslintrc.json', error => {
       if (error) throw error;
     });
-    fs.unlink('.gitignore', error => {
+    unlink('.gitignore', error => {
       if (error) throw error;
     });
-    fs.unlink('babel.config.js', error => {
+    unlink('babel.config.js', error => {
       if (error) throw error;
     });
-    fs.unlink('docker-compose.yml', error => {
+    unlink('docker-compose.yml', error => {
       if (error) throw error;
     });
-    fs.unlink('jest.config.ts', error => {
+    unlink('jest.config.ts', error => {
       if (error) throw error;
     });
-    fs.unlink('nodemon.json', error => {
+    unlink('nodemon.json', error => {
       if (error) throw error;
     });
-    fs.unlink('prettier.config.js', error => {
+    unlink('prettier.config.js', error => {
       if (error) throw error;
     });
-    fs.unlink('tsconfig.json', error => {
+    unlink('tsconfig.json', error => {
       if (error) throw error;
     });
     console.log('');

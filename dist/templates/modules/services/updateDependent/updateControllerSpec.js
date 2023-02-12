@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = updateSpecDependentController;
+exports.updateSpecDependentController = updateSpecDependentController;
 function updateSpecDependentController(names, fatherNames) {
   return `import request from 'supertest';
 import { DataSource } from 'typeorm';

@@ -1,4 +1,4 @@
-export default function createRDStationLead(): string {
+export function createRDStationLead(): string {
   return `import leadConfig from '@config/lead';
 import axios from 'axios';
 

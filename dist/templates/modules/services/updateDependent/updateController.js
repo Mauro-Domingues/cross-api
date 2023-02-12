@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = updateDependentController;
+exports.updateDependentController = updateDependentController;
 function updateDependentController(names, fatherNames) {
   return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';

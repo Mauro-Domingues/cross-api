@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function deleteSpecDependentService(
+export function deleteSpecDependentService(
   names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'pluralUpperModuleName'

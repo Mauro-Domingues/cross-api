@@ -1,25 +1,23 @@
-import fs from 'fs';
-import createSpecController from '@templates/modules/services/create/createControllerSpec';
-import createSpecService from '@templates/modules/services/create/createServiceSpec';
-import deleteSpecController from '@templates/modules/services/delete/deleteControllerSpec';
-import deleteSpecService from '@templates/modules/services/delete/deleteServiceSpec';
-import listSpecController from '@templates/modules/services/list/listControllerSpec';
-import listSpecService from '@templates/modules/services/list/listServiceSpec';
-import showSpecController from '@templates/modules/services/show/showControllerSpec';
-import showSpecService from '@templates/modules/services/show/showServiceSpec';
-import updateSpecController from '@templates/modules/services/update/updateControllerSpec';
-import updateSpecService from '@templates/modules/services/update/updateServiceSpec';
-import IModuleNamesDTO from 'index';
+import { appendFile, existsSync, truncate } from 'fs';
+import { createSpecController } from '@templates/modules/services/create/createControllerSpec';
+import { createSpecService } from '@templates/modules/services/create/createServiceSpec';
+import { deleteSpecController } from '@templates/modules/services/delete/deleteControllerSpec';
+import { deleteSpecService } from '@templates/modules/services/delete/deleteServiceSpec';
+import { listSpecController } from '@templates/modules/services/list/listControllerSpec';
+import { listSpecService } from '@templates/modules/services/list/listServiceSpec';
+import { showSpecController } from '@templates/modules/services/show/showControllerSpec';
+import { showSpecService } from '@templates/modules/services/show/showServiceSpec';
+import { updateSpecController } from '@templates/modules/services/update/updateControllerSpec';
+import { updateSpecService } from '@templates/modules/services/update/updateServiceSpec';
+import { IModuleNamesDTO } from 'index';
 
-export default async function makeUnitTests(
-  names: IModuleNamesDTO,
-): Promise<void> {
+export async function makeUnitTests(names: IModuleNamesDTO): Promise<void> {
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.spec.ts`,
       createSpecController(names),
       error => {
@@ -27,13 +25,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.spec.ts`,
       createSpecController(names),
       error => {
@@ -42,11 +40,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.spec.ts`,
       createSpecService(names),
       error => {
@@ -54,13 +52,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.spec.ts`,
       createSpecService(names),
       error => {
@@ -69,11 +67,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.spec.ts`,
       deleteSpecController(names),
       error => {
@@ -81,13 +79,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.spec.ts`,
       deleteSpecController(names),
       error => {
@@ -96,11 +94,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.spec.ts`,
       deleteSpecService(names),
       error => {
@@ -108,13 +106,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.spec.ts`,
       deleteSpecService(names),
       error => {
@@ -123,11 +121,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.spec.ts`,
       listSpecController(names),
       error => {
@@ -135,13 +133,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.spec.ts`,
       listSpecController(names),
       error => {
@@ -150,11 +148,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.spec.ts`,
       listSpecService(names),
       error => {
@@ -162,13 +160,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.spec.ts`,
       listSpecService(names),
       error => {
@@ -177,11 +175,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.spec.ts`,
       showSpecController(names),
       error => {
@@ -189,13 +187,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.spec.ts`,
       showSpecController(names),
       error => {
@@ -204,11 +202,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.spec.ts`,
       showSpecService(names),
       error => {
@@ -216,13 +214,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.spec.ts`,
       showSpecService(names),
       error => {
@@ -231,11 +229,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.spec.ts`,
       updateSpecController(names),
       error => {
@@ -243,13 +241,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.spec.ts`,
       updateSpecController(names),
       error => {
@@ -258,11 +256,11 @@ export default async function makeUnitTests(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.spec.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.spec.ts`,
       updateSpecService(names),
       error => {
@@ -270,13 +268,13 @@ export default async function makeUnitTests(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.spec.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.spec.ts`,
       updateSpecService(names),
       error => {

@@ -1,27 +1,27 @@
-import createBabelConfig from '@templates/root/babelConfig';
-import createDockerCompose from '@templates/root/dockerCompose';
-import createEditorConfig from '@templates/root/editorConfig';
-import createEnv from '@templates/root/env';
-import createEsLintIgnore from '@templates/root/esLintIgnore';
-import createEsLintrcJson from '@templates/root/esLintrcJson';
-import createGitIgnore from '@templates/root/gitIgnore';
-import createJestConfig from '@templates/root/jestConfig';
-import createNodemonJson from '@templates/root/nodemonJson';
-import createPrettierConfig from '@templates/root/prettierConfig';
-import createTsConfig from '@templates/root/tsConfig';
+import { createBabelConfig } from '@templates/root/babelConfig';
+import { createDockerCompose } from '@templates/root/dockerCompose';
+import { createEditorConfig } from '@templates/root/editorConfig';
+import { createEnv } from '@templates/root/env';
+import { createEsLintIgnore } from '@templates/root/esLintIgnore';
+import { createEsLintrcJson } from '@templates/root/esLintrcJson';
+import { createGitIgnore } from '@templates/root/gitIgnore';
+import { createJestConfig } from '@templates/root/jestConfig';
+import { createNodemonJson } from '@templates/root/nodemonJson';
+import { createPrettierConfig } from '@templates/root/prettierConfig';
+import { createTsConfig } from '@templates/root/tsConfig';
 import messages from '@tools/messages';
-import fs from 'fs';
+import { appendFile, existsSync, truncate } from 'fs';
 
-export default async function makeFirstLayer(): Promise<void> {
-  if (!fs.existsSync('.editorconfig')) {
-    fs.appendFile('.editorconfig', createEditorConfig(), error => {
+export async function makeFirstLayer(): Promise<void> {
+  if (!existsSync('.editorconfig')) {
+    appendFile('.editorconfig', createEditorConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.editorconfig', error => {
+    truncate('.editorconfig', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.editorconfig', createEditorConfig(), error => {
+    appendFile('.editorconfig', createEditorConfig(), error => {
       if (error) throw error;
     });
   }
@@ -30,28 +30,28 @@ export default async function makeFirstLayer(): Promise<void> {
     `- .editorconfig ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('.env')) {
-    fs.appendFile('.env', createEnv(), error => {
+  if (!existsSync('.env')) {
+    appendFile('.env', createEnv(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.env', error => {
+    truncate('.env', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.env', createEnv(), error => {
+    appendFile('.env', createEnv(), error => {
       if (error) throw error;
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- .env ${messages.created}`, '\x1b[0m');
-  if (!fs.existsSync('.env.template')) {
-    fs.appendFile('.env.template', createEnv(), error => {
+  if (!existsSync('.env.template')) {
+    appendFile('.env.template', createEnv(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.env.template', error => {
+    truncate('.env.template', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.env.template', createEnv(), error => {
+    appendFile('.env.template', createEnv(), error => {
       if (error) throw error;
     });
   }
@@ -60,15 +60,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- .env.template ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('.eslintignore')) {
-    fs.appendFile('.eslintignore', createEsLintIgnore(), error => {
+  if (!existsSync('.eslintignore')) {
+    appendFile('.eslintignore', createEsLintIgnore(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.eslintignore', error => {
+    truncate('.eslintignore', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.eslintignore', createEsLintIgnore(), error => {
+    appendFile('.eslintignore', createEsLintIgnore(), error => {
       if (error) throw error;
     });
   }
@@ -77,15 +77,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- .eslintignore ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('.eslintrc.json')) {
-    fs.appendFile('.eslintrc.json', createEsLintrcJson(), error => {
+  if (!existsSync('.eslintrc.json')) {
+    appendFile('.eslintrc.json', createEsLintrcJson(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.eslintrc.json', error => {
+    truncate('.eslintrc.json', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.eslintrc.json', createEsLintrcJson(), error => {
+    appendFile('.eslintrc.json', createEsLintrcJson(), error => {
       if (error) throw error;
     });
   }
@@ -94,15 +94,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- .eslintrc.json ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('.gitignore')) {
-    fs.appendFile('.gitignore', createGitIgnore(), error => {
+  if (!existsSync('.gitignore')) {
+    appendFile('.gitignore', createGitIgnore(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('.gitignore', error => {
+    truncate('.gitignore', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('.gitignore', createGitIgnore(), error => {
+    appendFile('.gitignore', createGitIgnore(), error => {
       if (error) throw error;
     });
   }
@@ -111,15 +111,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- .gitignore ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('babel.config.js')) {
-    fs.appendFile('babel.config.js', createBabelConfig(), error => {
+  if (!existsSync('babel.config.js')) {
+    appendFile('babel.config.js', createBabelConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('babel.config.js', error => {
+    truncate('babel.config.js', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('babel.config.js', createBabelConfig(), error => {
+    appendFile('babel.config.js', createBabelConfig(), error => {
       if (error) throw error;
     });
   }
@@ -128,15 +128,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- babel.config.js ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('docker-compose.yml')) {
-    fs.appendFile('docker-compose.yml', createDockerCompose(), error => {
+  if (!existsSync('docker-compose.yml')) {
+    appendFile('docker-compose.yml', createDockerCompose(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('docker-compose.yml', error => {
+    truncate('docker-compose.yml', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('docker-compose.yml', createDockerCompose(), error => {
+    appendFile('docker-compose.yml', createDockerCompose(), error => {
       if (error) throw error;
     });
   }
@@ -145,15 +145,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- docker-compose.yml ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('jest.config.ts')) {
-    fs.appendFile('jest.config.ts', createJestConfig(), error => {
+  if (!existsSync('jest.config.ts')) {
+    appendFile('jest.config.ts', createJestConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('jest.config.ts', error => {
+    truncate('jest.config.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('jest.config.ts', createJestConfig(), error => {
+    appendFile('jest.config.ts', createJestConfig(), error => {
       if (error) throw error;
     });
   }
@@ -162,15 +162,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- jest.config.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('nodemon.json')) {
-    fs.appendFile('nodemon.json', createNodemonJson(), error => {
+  if (!existsSync('nodemon.json')) {
+    appendFile('nodemon.json', createNodemonJson(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('nodemon.json', error => {
+    truncate('nodemon.json', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('nodemon.json', createNodemonJson(), error => {
+    appendFile('nodemon.json', createNodemonJson(), error => {
       if (error) throw error;
     });
   }
@@ -179,15 +179,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- nodemon.json ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('prettier.config.js')) {
-    fs.appendFile('prettier.config.js', createPrettierConfig(), error => {
+  if (!existsSync('prettier.config.js')) {
+    appendFile('prettier.config.js', createPrettierConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('prettier.config.js', error => {
+    truncate('prettier.config.js', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('prettier.config.js', createPrettierConfig(), error => {
+    appendFile('prettier.config.js', createPrettierConfig(), error => {
       if (error) throw error;
     });
   }
@@ -196,15 +196,15 @@ export default async function makeFirstLayer(): Promise<void> {
     `- prettier.config.js ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('tsconfig.json')) {
-    fs.appendFile('tsconfig.json', createTsConfig(), error => {
+  if (!existsSync('tsconfig.json')) {
+    appendFile('tsconfig.json', createTsConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('tsconfig.json', error => {
+    truncate('tsconfig.json', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('tsconfig.json', createTsConfig(), error => {
+    appendFile('tsconfig.json', createTsConfig(), error => {
       if (error) throw error;
     });
   }

@@ -1,4 +1,4 @@
-export default function createMailConfig(): string {
+export function createMailConfig(): string {
   return `interface IMailConfig {
   driver: 'ethereal' | 'ses';
 

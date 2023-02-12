@@ -1,4 +1,4 @@
-export default function createCacheConfig(): string {
+export function createCacheConfig(): string {
   return `import { RedisOptions } from 'ioredis';
 
 interface ICacheConfig {

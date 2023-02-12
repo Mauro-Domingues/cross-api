@@ -1,4 +1,4 @@
-export default function createHashConfig(): string {
+export function createHashConfig(): string {
   return `interface IHashConfig {
   secret: string | number;
 }

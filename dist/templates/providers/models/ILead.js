@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createILead;
+exports.createILead = createILead;
 function createILead() {
   return `import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
 

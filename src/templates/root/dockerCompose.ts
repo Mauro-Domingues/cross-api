@@ -1,4 +1,4 @@
-export default function createDockerCompose(): string {
+export function createDockerCompose(): string {
   return `version: '3'
 
 services:

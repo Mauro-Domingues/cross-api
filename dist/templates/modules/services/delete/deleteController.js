@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = deleteController;
+exports.deleteController = deleteController;
 function deleteController(names) {
   return `import IObjectDTO from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';

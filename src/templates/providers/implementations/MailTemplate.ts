@@ -1,4 +1,4 @@
-export default function createMailTemplate(): string {
+export function createMailTemplate(): string {
   return `import fs from 'fs';
 import handlebars from 'handlebars';
 

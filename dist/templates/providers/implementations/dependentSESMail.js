@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentSESMail;
+exports.createDependentSESMail = createDependentSESMail;
 function createDependentSESMail(fatherNames) {
   return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';

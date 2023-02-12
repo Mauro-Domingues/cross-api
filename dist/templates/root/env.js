@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEnv;
+exports.createEnv = createEnv;
 function createEnv() {
   return `# Api
 PORT=3333

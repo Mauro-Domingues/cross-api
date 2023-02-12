@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = listProvider;
+exports.listProvider = listProvider;
 function renderEmptyLine() {
   console.log('\x1b[1m', '\x1b[38;2;0;155;255m', '|                                                         |', '\x1b[0m');
 }

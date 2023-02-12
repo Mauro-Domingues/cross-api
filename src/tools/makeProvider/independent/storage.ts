@@ -1,71 +1,69 @@
-import fs from 'fs';
-import createUploadConfig from '@templates/providers/config/uploadConfig';
-import createFakeStorage from '@templates/providers/fakes/fakeStorage';
-import createDiskStorage from '@templates/providers/implementations/DiskStorage';
-import createS3Storage from '@templates/providers/implementations/S3Storage';
-import createIStorage from '@templates/providers/models/IStorage';
-import createStorageIndex from '@templates/providers/storageIndex';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createUploadConfig } from '@templates/providers/config/uploadConfig';
+import { createFakeStorage } from '@templates/providers/fakes/fakeStorage';
+import { createDiskStorage } from '@templates/providers/implementations/DiskStorage';
+import { createS3Storage } from '@templates/providers/implementations/S3Storage';
+import { createIStorage } from '@templates/providers/models/IStorage';
+import { createStorageIndex } from '@templates/providers/storageIndex';
 import messages from '@tools/messages';
 
-export default async function makeStorageProvider(): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+export async function makeStorageProvider(): Promise<void> {
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/providers')) {
-    fs.mkdirSync('src/shared/container/providers');
+  if (!existsSync('src/shared/container/providers')) {
+    mkdirSync('src/shared/container/providers');
   }
-  if (!fs.existsSync('src/shared/container/providers/StorageProvider')) {
-    fs.mkdirSync('src/shared/container/providers/StorageProvider');
+  if (!existsSync('src/shared/container/providers/StorageProvider')) {
+    mkdirSync('src/shared/container/providers/StorageProvider');
   }
-  if (!fs.existsSync('src/shared/container/providers/StorageProvider/fakes')) {
-    fs.mkdirSync('src/shared/container/providers/StorageProvider/fakes');
+  if (!existsSync('src/shared/container/providers/StorageProvider/fakes')) {
+    mkdirSync('src/shared/container/providers/StorageProvider/fakes');
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/StorageProvider/implementations',
     )
   ) {
-    fs.mkdirSync(
-      'src/shared/container/providers/StorageProvider/implementations',
-    );
+    mkdirSync('src/shared/container/providers/StorageProvider/implementations');
   }
-  if (!fs.existsSync('src/shared/container/providers/StorageProvider/models')) {
-    fs.mkdirSync('src/shared/container/providers/StorageProvider/models');
+  if (!existsSync('src/shared/container/providers/StorageProvider/models')) {
+    mkdirSync('src/shared/container/providers/StorageProvider/models');
   }
-  fs.appendFile(
+  appendFile(
     'src/shared/container/providers/index.ts',
     `\nimport './StorageProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/upload.ts')) {
-    fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
+  if (!existsSync('src/config/upload.ts')) {
+    appendFile('src/config/upload.ts', createUploadConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/upload.ts', error => {
+    truncate('src/config/upload.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/upload.ts', createUploadConfig(), error => {
+    appendFile('src/config/upload.ts', createUploadConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
       createFakeStorage(),
       error => {
@@ -73,13 +71,13 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
       createFakeStorage(),
       error => {
@@ -88,11 +86,11 @@ export default async function makeStorageProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
       createDiskStorage(),
       error => {
@@ -100,13 +98,13 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
       createDiskStorage(),
       error => {
@@ -115,11 +113,11 @@ export default async function makeStorageProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
       createS3Storage(),
       error => {
@@ -127,13 +125,13 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
       createS3Storage(),
       error => {
@@ -142,11 +140,11 @@ export default async function makeStorageProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
       createIStorage(),
       error => {
@@ -154,13 +152,13 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
       createIStorage(),
       error => {
@@ -168,10 +166,8 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   }
-  if (
-    !fs.existsSync('src/shared/container/providers/StorageProvider/index.ts')
-  ) {
-    fs.appendFile(
+  if (!existsSync('src/shared/container/providers/StorageProvider/index.ts')) {
+    appendFile(
       'src/shared/container/providers/StorageProvider/index.ts',
       createStorageIndex(),
       error => {
@@ -179,13 +175,13 @@ export default async function makeStorageProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/StorageProvider/index.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/StorageProvider/index.ts',
       createStorageIndex(),
       error => {

@@ -1,4 +1,4 @@
-export default function createAuthConfig(): string {
+export function createAuthConfig(): string {
   return `interface IAuthConfig {
   jwt: {
     jwtSecret: string;

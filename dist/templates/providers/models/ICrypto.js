@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createICrypto;
+exports.createICrypto = createICrypto;
 function createICrypto() {
   return `import { SignOptions } from 'jsonwebtoken';
 import { Extras, JWK } from 'pem-jwk';

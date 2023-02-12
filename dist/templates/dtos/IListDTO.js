@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createIListDTO;
+exports.createIListDTO = createIListDTO;
 function createIListDTO() {
   return `import IResponseDTO from './IResponseDTO';
 

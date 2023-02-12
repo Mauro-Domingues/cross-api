@@ -1,50 +1,50 @@
-import fs from 'fs';
-import createContainer from '@templates/index/container';
-import createCryptoConfig from '@templates/providers/config/cryptoConfig';
-import createCryptoIndex from '@templates/providers/cryptoIndex';
-import createICryptoDTO from '@templates/providers/dtos/ICryptoDTO';
-import createCrypto from '@templates/providers/implementations/Crypto';
-import createICrypto from '@templates/providers/models/ICrypto';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createContainer } from '@templates/index/container';
+import { createCryptoConfig } from '@templates/providers/config/cryptoConfig';
+import { createCryptoIndex } from '@templates/providers/cryptoIndex';
+import { createICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { createCrypto } from '@templates/providers/implementations/Crypto';
+import { createICrypto } from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default async function makeDependentCryptoProvider(
+export async function makeDependentCryptoProvider(
   fatherNames: IModuleNamesDTO,
 ): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/modules')) {
-    fs.mkdirSync('src/modules');
+  if (!existsSync('src/modules')) {
+    mkdirSync('src/modules');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/index.ts')) {
-    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+  if (!existsSync('src/shared/container/index.ts')) {
+    appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
     });
   }
-  if (!fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
+  if (!existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
   if (
-    !fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
+    !existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
   ) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
       '',
       error => {
@@ -53,73 +53,73 @@ export default async function makeDependentCryptoProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models`,
     );
   }
-  fs.appendFile(
+  appendFile(
     `src/shared/container/index.ts`,
     `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`,
     error => {
       if (error) throw error;
     },
   );
-  fs.appendFile(
+  appendFile(
     `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     `\nimport './CryptoProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/crypto.ts')) {
-    fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
+  if (!existsSync('src/config/crypto.ts')) {
+    appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/crypto.ts', error => {
+    truncate('src/config/crypto.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
+    appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
       createICryptoDTO(),
       error => {
@@ -127,13 +127,13 @@ export default async function makeDependentCryptoProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
       createICryptoDTO(),
       error => {
@@ -142,11 +142,11 @@ export default async function makeDependentCryptoProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
       createCrypto(),
       error => {
@@ -154,13 +154,13 @@ export default async function makeDependentCryptoProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
       createCrypto(),
       error => {
@@ -169,11 +169,11 @@ export default async function makeDependentCryptoProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
       createICrypto(),
       error => {
@@ -181,13 +181,13 @@ export default async function makeDependentCryptoProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
       createICrypto(),
       error => {
@@ -196,11 +196,11 @@ export default async function makeDependentCryptoProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
       createCryptoIndex(),
       error => {
@@ -208,13 +208,13 @@ export default async function makeDependentCryptoProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
       createCryptoIndex(),
       error => {

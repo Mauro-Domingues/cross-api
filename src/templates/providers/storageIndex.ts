@@ -1,4 +1,4 @@
-export default function createStorageIndex(): string {
+export function createStorageIndex(): string {
   return `import uploadConfig from '@config/upload';
 import { container } from 'tsyringe';
 

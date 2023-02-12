@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = showDependentController;
+exports.showDependentController = showDependentController;
 function showDependentController(names) {
   return `import IObjectDTO from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';

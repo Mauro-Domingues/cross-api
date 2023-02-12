@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = showSpecService;
+exports.showSpecService = showSpecService;
 function showSpecService(names) {
   return `import AppError from '@shared/errors/AppError';
 import Fake${names.upperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';

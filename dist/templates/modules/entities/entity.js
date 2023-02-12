@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEntity;
+exports.createEntity = createEntity;
 function createEntity(names) {
   return `import {
   Entity,

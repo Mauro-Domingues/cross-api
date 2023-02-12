@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createController(
+export function createController(
   names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'

@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createDependentRepository(
+export function createDependentRepository(
   names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {

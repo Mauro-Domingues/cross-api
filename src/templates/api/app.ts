@@ -1,4 +1,4 @@
-export default function createApp(): string {
+export function createApp(): string {
   return `import 'express-async-errors';
 // import uploadConfig from '@config/upload'; // uploadProvider
 import { errors } from 'celebrate';

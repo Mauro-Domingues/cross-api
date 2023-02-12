@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 "use strict";
 
-var _shelljs = _interopRequireDefault(require("shelljs"));
-var _board = _interopRequireDefault(require("../dist/tools/board"));
-var _config = _interopRequireDefault(require("../dist/tools/config"));
-var _languageConfig = _interopRequireDefault(require("../dist/tools/languageConfig"));
-var _listProvider = _interopRequireDefault(require("../dist/tools/listProvider"));
-var _makeApi = _interopRequireDefault(require("../dist/tools/makeApi"));
-var _makeModule = _interopRequireDefault(require("../dist/tools/makeModule"));
-var _makeProvider = _interopRequireDefault(require("../dist/tools/makeProvider"));
+var _shelljs = require("shelljs");
+var _board = require("../dist/tools/board");
+var _config = require("../dist/tools/config");
+var _languageConfig = require("../dist/tools/languageConfig");
+var _listProvider = require("../dist/tools/listProvider");
+var _makeApi = require("../dist/tools/makeApi");
+var _makeModule = require("../dist/tools/makeModule");
+var _makeProvider = require("../dist/tools/makeProvider");
 var _messages = _interopRequireDefault(require("../dist/tools/messages"));
 var _pluralize = require("pluralize");
-var _save = _interopRequireDefault(require("../dist/tools/lastModification/save"));
-var _delete = _interopRequireDefault(require("../dist/tools/lastModification/delete"));
+var _save = require("../dist/tools/lastModification/save");
+var _delete = require("../dist/tools/lastModification/delete");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const fullComand = process.argv.slice(2);
 const comand = process.argv[2];
@@ -66,39 +66,37 @@ class GetNames {
   }
 }
 if (comand) {
-  (0, _save.default)(fullComand, undefined, undefined, undefined);
+  (0, _save.createRegister)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
   switch (comand) {
     case 'config':
-      (0, _config.default)();
+      (0, _config.configJson)();
       break;
     case 'comands':
-      (0, _board.default)();
+      (0, _board.board)();
       break;
     case 'language':
-      (0, _languageConfig.default)();
+      (0, _languageConfig.configLanguage)();
       break;
     case 'list:provider':
-      (0, _listProvider.default)();
+      (0, _listProvider.listProvider)();
       break;
     case 'make:api':
-      (0, _makeApi.default)();
+      (0, _makeApi.createApi)();
       break;
     case 'make:module':
-      (0, _save.default)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
-      (0, _makeModule.default)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
+      (0, _makeModule.createModule)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
       break;
     case 'make:provider':
-      (0, _save.default)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
-      (0, _makeProvider.default)(arg, new GetNames().getModuleNames(father));
+      (0, _makeProvider.createProvider)(arg, new GetNames().getModuleNames(father));
       break;
     case 'migration:generate':
-      _shelljs.default.exec('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
+      (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
       break;
     case 'migration:run':
-      _shelljs.default.exec('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+      (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
       break;
     case 'revert':
-      (0, _delete.default)();
+      (0, _delete.deleteRegister)();
       break;
     default:
       console.log('');

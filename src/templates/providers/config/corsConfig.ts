@@ -1,4 +1,4 @@
-export default function createCorsConfig(): string {
+export function createCorsConfig(): string {
   return `import DomainsManager from '@utils/domainsManager';
 import { CorsOptions } from 'cors';
 

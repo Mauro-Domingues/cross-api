@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDockerCompose;
+exports.createDockerCompose = createDockerCompose;
 function createDockerCompose() {
   return `version: '3'
 

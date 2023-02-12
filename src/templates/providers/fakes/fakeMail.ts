@@ -1,4 +1,4 @@
-export default function createFakeMail(): string {
+export function createFakeMail(): string {
   return `import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
 

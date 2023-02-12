@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createFullDependentRoute(
+export function createFullDependentRoute(
   names: Pick<IModuleNamesDTO, 'upperModuleName' | 'routeModuleName'>,
   fatherNames: Pick<
     IModuleNamesDTO,

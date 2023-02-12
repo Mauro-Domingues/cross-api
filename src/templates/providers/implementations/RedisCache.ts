@@ -1,4 +1,4 @@
-export default function createRedisCache(): string {
+export function createRedisCache(): string {
   return `import cacheConfig from '@config/cache';
 import Redis, { Redis as RedisClient } from 'ioredis';
 

@@ -1,4 +1,4 @@
-export default function createFakeNotification(): string {
+export function createFakeNotification(): string {
   return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
 import INotificationProvider from '../models/INotificationProvider';
 

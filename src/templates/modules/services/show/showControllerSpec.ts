@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function showSpecController(
+export function showSpecController(
   names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>,
 ): string {
   return `import request from 'supertest';

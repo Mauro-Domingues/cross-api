@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createHashIndex;
+exports.createHashIndex = createHashIndex;
 function createHashIndex() {
   return `import { container } from 'tsyringe';
 

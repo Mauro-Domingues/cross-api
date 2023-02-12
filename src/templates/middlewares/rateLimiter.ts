@@ -1,4 +1,4 @@
-export default function createRateLimiter(): string {
+export function createRateLimiter(): string {
   return `import { Request, Response, NextFunction } from 'express';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
 import redis from 'redis';

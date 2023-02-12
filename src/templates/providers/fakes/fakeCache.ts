@@ -1,4 +1,4 @@
-export default function createFakeRedis(): string {
+export function createFakeRedis(): string {
   return `import ICacheProvider from '../models/ICacheProvider';
 
 interface ICacheData {

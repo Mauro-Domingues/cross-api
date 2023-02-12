@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEtherealMail;
+exports.createEtherealMail = createEtherealMail;
 function createEtherealMail() {
   return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';

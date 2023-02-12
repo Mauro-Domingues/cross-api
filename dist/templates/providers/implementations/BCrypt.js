@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createHash;
+exports.createHash = createHash;
 function createHash() {
   return `import { hash, compare } from 'bcrypt';
 import hashConfig from '@config/hash';

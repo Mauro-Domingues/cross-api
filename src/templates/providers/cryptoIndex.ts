@@ -1,4 +1,4 @@
-export default function createCryptoIndex(): string {
+export function createCryptoIndex(): string {
   return `import { container } from 'tsyringe';
 
 import CryptoProvider from './implementations/CryptoProvider';

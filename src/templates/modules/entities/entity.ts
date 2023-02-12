@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createEntity(
+export function createEntity(
   names: Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>,
 ): string {
   return `import {

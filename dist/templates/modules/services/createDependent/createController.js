@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentController;
+exports.createDependentController = createDependentController;
 function createDependentController(names, fatherNames) {
   return `import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import { Request, Response } from 'express';

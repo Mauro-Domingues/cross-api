@@ -1,4 +1,4 @@
-export default function createSESMail(): string {
+export function createSESMail(): string {
   return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';
 import nodemailer, { Transporter } from 'nodemailer';

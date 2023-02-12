@@ -1,16 +1,16 @@
 import messages from '@tools/messages';
-import fs from 'fs';
+import { appendFile, existsSync, truncate } from 'fs';
 
-export default async function makeSecondLayer(): Promise<void> {
-  if (!fs.existsSync('src/swagger.json')) {
-    fs.appendFile('src/swagger.json', '{}', error => {
+export async function makeSecondLayer(): Promise<void> {
+  if (!existsSync('src/swagger.json')) {
+    appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/swagger.json', error => {
+    truncate('src/swagger.json', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/swagger.json', '{}', error => {
+    appendFile('src/swagger.json', '{}', error => {
       if (error) throw error;
     });
   }

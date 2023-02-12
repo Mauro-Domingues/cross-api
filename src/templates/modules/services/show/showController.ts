@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function showController(
+export function showController(
   names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
 ): string {
   return `import IObjectDTO from '@dtos/IObjectDTO';

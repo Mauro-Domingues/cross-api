@@ -3,20 +3,20 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = makeSecondLayer;
+exports.makeSecondLayer = makeSecondLayer;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
-var _fs = _interopRequireDefault(require("fs"));
+var _fs = require("fs");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeSecondLayer() {
-  if (!_fs.default.existsSync('src/swagger.json')) {
-    _fs.default.appendFile('src/swagger.json', '{}', error => {
+  if (!(0, _fs.existsSync)('src/swagger.json')) {
+    (0, _fs.appendFile)('src/swagger.json', '{}', error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/swagger.json', error => {
+    (0, _fs.truncate)('src/swagger.json', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/swagger.json', '{}', error => {
+    (0, _fs.appendFile)('src/swagger.json', '{}', error => {
       if (error) throw error;
     });
   }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createCacheConfig;
+exports.createCacheConfig = createCacheConfig;
 function createCacheConfig() {
   return `import { RedisOptions } from 'ioredis';
 

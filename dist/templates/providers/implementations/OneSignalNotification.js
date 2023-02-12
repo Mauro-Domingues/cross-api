@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createOneSignalNotification;
+exports.createOneSignalNotification = createOneSignalNotification;
 function createOneSignalNotification() {
   return `import oneSignalConfig from '@config/notification';
 import https from 'https';

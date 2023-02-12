@@ -1,4 +1,4 @@
-export default function createIMailTemplate(): string {
+export function createIMailTemplate(): string {
   return `import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
 
 export default interface IMailTemplateProvider {

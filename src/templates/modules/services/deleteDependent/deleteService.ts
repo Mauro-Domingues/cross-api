@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function deleteDependentService(
+export function deleteDependentService(
   names: Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>,
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {

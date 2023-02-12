@@ -1,4 +1,4 @@
-export default function createPrettierConfig(): string {
+export function createPrettierConfig(): string {
   return `module.exports = {
   singleQuote: true,
   trailingComma: 'all',

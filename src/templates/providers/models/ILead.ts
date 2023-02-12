@@ -1,4 +1,4 @@
-export default function createILead(): string {
+export function createILead(): string {
   return `import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
 
 export default interface ILeadProvider {

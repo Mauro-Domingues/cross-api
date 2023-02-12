@@ -1,6 +1,6 @@
 import messages from '@tools/messages';
 
-export default function createMapAndClone(): string {
+export function createMapAndClone(): string {
   return `import IObjectDTO from "@dtos/IObjectDTO";
 
 /**

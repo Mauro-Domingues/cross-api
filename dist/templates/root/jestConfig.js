@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createJestConfig;
+exports.createJestConfig = createJestConfig;
 function createJestConfig() {
   return `import { pathsToModuleNameMapper } from 'ts-jest';
 

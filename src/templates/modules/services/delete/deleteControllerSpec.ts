@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function deleteSpecController(
+export function deleteSpecController(
   names: Omit<
     IModuleNamesDTO,
     'pluralUpperModuleName' | 'pluralLowerModuleName'

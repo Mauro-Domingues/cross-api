@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createMailIndex;
+exports.createMailIndex = createMailIndex;
 function createMailIndex() {
   return `import mailConfig from '@config/mail';
 import { container } from 'tsyringe';

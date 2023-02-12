@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createFakeRedis;
+exports.createFakeRedis = createFakeRedis;
 function createFakeRedis() {
   return `import ICacheProvider from '../models/ICacheProvider';
 

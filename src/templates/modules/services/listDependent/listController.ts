@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function listDependentController(
+export function listDependentController(
   names: Pick<IModuleNamesDTO, 'upperModuleName' | 'pluralLowerModuleName'>,
 ): string {
   return `import { Request, Response } from 'express';

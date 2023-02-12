@@ -1,4 +1,4 @@
-export default function createIObjectDTO(): string {
+export function createIObjectDTO(): string {
   return `export default interface IObjectDTO {
   [key: string]: any;
 }

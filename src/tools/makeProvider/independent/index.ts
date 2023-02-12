@@ -1,16 +1,14 @@
 import messages from '@tools/messages';
-import makeCacheProvider from './cache';
-import makeCryptoProvider from './crypto';
-import makeHashProvider from './hash';
-import makeLeadProvider from './lead';
-import makeMailProvider from './mail';
-import makeMailTemplateProvider from './mailTemplate';
-import makeNotificationProvider from './notification';
-import makeStorageProvider from './storage';
+import { makeCacheProvider } from './cache';
+import { makeCryptoProvider } from './crypto';
+import { makeHashProvider } from './hash';
+import { makeLeadProvider } from './lead';
+import { makeMailProvider } from './mail';
+import { makeMailTemplateProvider } from './mailTemplate';
+import { makeNotificationProvider } from './notification';
+import { makeStorageProvider } from './storage';
 
-export default async function makeProvider(
-  providerName: string,
-): Promise<void> {
+export async function makeProvider(providerName: string): Promise<void> {
   switch (providerName) {
     case 'cache':
       makeCacheProvider();

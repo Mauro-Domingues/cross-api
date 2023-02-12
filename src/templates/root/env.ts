@@ -1,4 +1,4 @@
-export default function createEnv(): string {
+export function createEnv(): string {
   return `# Api
 PORT=3333
 API_URL=http://localhost:3333

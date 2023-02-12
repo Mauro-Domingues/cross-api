@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDependentFakeRepository;
+exports.createDependentFakeRepository = createDependentFakeRepository;
 function createDependentFakeRepository(names, fatherNames) {
   return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import IObjectDTO from '@dtos/IObjectDTO';

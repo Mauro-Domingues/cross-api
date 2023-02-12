@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createILeadDTO;
+exports.createILeadDTO = createILeadDTO;
 function createILeadDTO() {
   return `export default interface ICreateLeadDTO {
   event_uuid: string;

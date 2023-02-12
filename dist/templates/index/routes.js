@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createRoutes;
+exports.createRoutes = createRoutes;
 function createRoutes() {
   return `import { Router } from 'express';
 

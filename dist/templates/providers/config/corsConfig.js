@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createCorsConfig;
+exports.createCorsConfig = createCorsConfig;
 function createCorsConfig() {
   return `import DomainsManager from '@utils/domainsManager';
 import { CorsOptions } from 'cors';

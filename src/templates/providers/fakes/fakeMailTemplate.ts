@@ -1,4 +1,4 @@
-export default function createFakeMailTemplate(): string {
+export function createFakeMailTemplate(): string {
   return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
 
 class FakeMailTemplateProvider implements IMailTemplateProvider {

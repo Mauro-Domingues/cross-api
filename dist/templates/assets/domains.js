@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDomains;
+exports.createDomains = createDomains;
 function createDomains() {
   return `Your domains here
 http://localhost:3000/

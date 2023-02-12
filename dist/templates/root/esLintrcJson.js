@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEsLintrcJson;
+exports.createEsLintrcJson = createEsLintrcJson;
 function createEsLintrcJson() {
   return `{
   "env": {

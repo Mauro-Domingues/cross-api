@@ -1,51 +1,51 @@
-import fs from 'fs';
-import createContainer from '@templates/index/container';
-import createLeadConfig from '@templates/providers/config/leadConfig';
-import createILeadDTO from '@templates/providers/dtos/ILeadDTO';
-import createFakeLead from '@templates/providers/fakes/fakeLead';
-import createRDStationLead from '@templates/providers/implementations/RDStationLead';
-import createLeadIndex from '@templates/providers/leadIndex';
-import createILead from '@templates/providers/models/ILead';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createContainer } from '@templates/index/container';
+import { createLeadConfig } from '@templates/providers/config/leadConfig';
+import { createILeadDTO } from '@templates/providers/dtos/ILeadDTO';
+import { createFakeLead } from '@templates/providers/fakes/fakeLead';
+import { createRDStationLead } from '@templates/providers/implementations/RDStationLead';
+import { createLeadIndex } from '@templates/providers/leadIndex';
+import { createILead } from '@templates/providers/models/ILead';
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default async function makeDependentLeadProvider(
+export async function makeDependentLeadProvider(
   fatherNames: IModuleNamesDTO,
 ): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/modules')) {
-    fs.mkdirSync('src/modules');
+  if (!existsSync('src/modules')) {
+    mkdirSync('src/modules');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/index.ts')) {
-    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+  if (!existsSync('src/shared/container/index.ts')) {
+    appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
     });
   }
-  if (!fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
+  if (!existsSync(`src/modules/${fatherNames.pluralLowerModuleName}`)) {
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}`);
   }
   if (
-    !fs.existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
+    !existsSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`)
   ) {
-    fs.mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
+    mkdirSync(`src/modules/${fatherNames.pluralLowerModuleName}/providers`);
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
       '',
       error => {
@@ -54,82 +54,82 @@ export default async function makeDependentLeadProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations`,
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models`,
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models`,
     );
   }
-  fs.appendFile(
+  appendFile(
     `src/shared/container/index.ts`,
     `import '@modules/${fatherNames.pluralLowerModuleName}/providers';`,
     error => {
       if (error) throw error;
     },
   );
-  fs.appendFile(
+  appendFile(
     `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
     `\nimport './LeadProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/lead.ts')) {
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+  if (!existsSync('src/config/lead.ts')) {
+    appendFile('src/config/lead.ts', createLeadConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/lead.ts', error => {
+    truncate('src/config/lead.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/lead.ts', createLeadConfig(), error => {
+    appendFile('src/config/lead.ts', createLeadConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
       createILeadDTO(),
       error => {
@@ -137,13 +137,13 @@ export default async function makeDependentLeadProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
       createILeadDTO(),
       error => {
@@ -152,11 +152,11 @@ export default async function makeDependentLeadProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
       createFakeLead(),
       error => {
@@ -164,13 +164,13 @@ export default async function makeDependentLeadProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
       createFakeLead(),
       error => {
@@ -179,11 +179,11 @@ export default async function makeDependentLeadProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
       createRDStationLead(),
       error => {
@@ -191,13 +191,13 @@ export default async function makeDependentLeadProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
       createRDStationLead(),
       error => {
@@ -206,11 +206,11 @@ export default async function makeDependentLeadProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
       createILead(),
       error => {
@@ -218,13 +218,13 @@ export default async function makeDependentLeadProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
       createILead(),
       error => {
@@ -233,11 +233,11 @@ export default async function makeDependentLeadProvider(
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
     )
   ) {
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
       createLeadIndex(),
       error => {
@@ -245,13 +245,13 @@ export default async function makeDependentLeadProvider(
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       `src/modules/${fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
       createLeadIndex(),
       error => {

@@ -1,4 +1,4 @@
-export default function createHashIndex(): string {
+export function createHashIndex(): string {
   return `import { container } from 'tsyringe';
 
 import BCryptHashProvider from './implementations/BCryptHashProvider';

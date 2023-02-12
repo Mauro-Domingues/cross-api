@@ -7,7 +7,7 @@ function renderEmptyLine(): void {
   );
 }
 
-export default function listProvider(): void {
+export function listProvider(): void {
   const providers = [
     { Name: 'cache       ', Provider: 'CacheProvider       ' },
     { Name: 'crypto      ', Provider: 'CryptoProvider      ' },

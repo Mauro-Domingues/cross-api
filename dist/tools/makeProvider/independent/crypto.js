@@ -3,103 +3,103 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = makeCryptoProvider;
-var _fs = _interopRequireDefault(require("fs"));
-var _cryptoConfig = _interopRequireDefault(require("../../../../dist/templates/providers/config/cryptoConfig"));
-var _cryptoIndex = _interopRequireDefault(require("../../../../dist/templates/providers/cryptoIndex"));
-var _ICryptoDTO = _interopRequireDefault(require("../../../../dist/templates/providers/dtos/ICryptoDTO"));
-var _Crypto = _interopRequireDefault(require("../../../../dist/templates/providers/implementations/Crypto"));
-var _ICrypto = _interopRequireDefault(require("../../../../dist/templates/providers/models/ICrypto"));
+exports.makeCryptoProvider = makeCryptoProvider;
+var _fs = require("fs");
+var _cryptoConfig = require("../../../../dist/templates/providers/config/cryptoConfig");
+var _cryptoIndex = require("../../../../dist/templates/providers/cryptoIndex");
+var _ICryptoDTO = require("../../../../dist/templates/providers/dtos/ICryptoDTO");
+var _Crypto = require("../../../../dist/templates/providers/implementations/Crypto");
+var _ICrypto = require("../../../../dist/templates/providers/models/ICrypto");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeCryptoProvider() {
-  if (!_fs.default.existsSync('src')) {
-    _fs.default.mkdirSync('src');
+  if (!(0, _fs.existsSync)('src')) {
+    (0, _fs.mkdirSync)('src');
   }
-  if (!_fs.default.existsSync('src/config')) {
-    _fs.default.mkdirSync('src/config');
+  if (!(0, _fs.existsSync)('src/config')) {
+    (0, _fs.mkdirSync)('src/config');
   }
-  if (!_fs.default.existsSync('src/shared')) {
-    _fs.default.mkdirSync('src/shared');
+  if (!(0, _fs.existsSync)('src/shared')) {
+    (0, _fs.mkdirSync)('src/shared');
   }
-  if (!_fs.default.existsSync('src/shared/container')) {
-    _fs.default.mkdirSync('src/shared/container');
+  if (!(0, _fs.existsSync)('src/shared/container')) {
+    (0, _fs.mkdirSync)('src/shared/container');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers')) {
-    _fs.default.mkdirSync('src/shared/container/providers');
+  if (!(0, _fs.existsSync)('src/shared/container/providers')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider')) {
-    _fs.default.mkdirSync('src/shared/container/providers/CryptoProvider');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/CryptoProvider');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/dtos')) {
-    _fs.default.mkdirSync('src/shared/container/providers/CryptoProvider/dtos');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/dtos')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/CryptoProvider/dtos');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/implementations')) {
-    _fs.default.mkdirSync('src/shared/container/providers/CryptoProvider/implementations');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/implementations')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/CryptoProvider/implementations');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/models')) {
-    _fs.default.mkdirSync('src/shared/container/providers/CryptoProvider/models');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/models')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/CryptoProvider/models');
   }
-  _fs.default.appendFile('src/shared/container/providers/index.ts', `\nimport './CryptoProvider';`, error => {
+  (0, _fs.appendFile)('src/shared/container/providers/index.ts', `\nimport './CryptoProvider';`, error => {
     if (error) throw error;
   });
-  if (!_fs.default.existsSync('src/config/crypto.ts')) {
-    _fs.default.appendFile('src/config/crypto.ts', (0, _cryptoConfig.default)(), error => {
+  if (!(0, _fs.existsSync)('src/config/crypto.ts')) {
+    (0, _fs.appendFile)('src/config/crypto.ts', (0, _cryptoConfig.createCryptoConfig)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/config/crypto.ts', error => {
+    (0, _fs.truncate)('src/config/crypto.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/config/crypto.ts', (0, _cryptoConfig.default)(), error => {
+    (0, _fs.appendFile)('src/config/crypto.ts', (0, _cryptoConfig.createCryptoConfig)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', (0, _ICryptoDTO.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', (0, _ICryptoDTO.createICryptoDTO)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', (0, _ICryptoDTO.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', (0, _ICryptoDTO.createICryptoDTO)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', (0, _Crypto.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', (0, _Crypto.createCrypto)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', (0, _Crypto.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', (0, _Crypto.createCrypto)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', (0, _ICrypto.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', (0, _ICrypto.createICrypto)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', (0, _ICrypto.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', (0, _ICrypto.createICrypto)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/CryptoProvider/index.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/index.ts', (0, _cryptoIndex.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/CryptoProvider/index.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/index.ts', (0, _cryptoIndex.createCryptoIndex)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/CryptoProvider/index.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/index.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/CryptoProvider/index.ts', (0, _cryptoIndex.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/index.ts', (0, _cryptoIndex.createCryptoIndex)(), error => {
       if (error) throw error;
     });
   }

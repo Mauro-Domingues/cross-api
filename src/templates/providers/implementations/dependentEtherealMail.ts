@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createDependentEtherealMail(
+export function createDependentEtherealMail(
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {
   return `import nodemailer, { Transporter } from 'nodemailer';

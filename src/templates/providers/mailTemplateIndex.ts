@@ -1,4 +1,4 @@
-export default function createMailTemplateIndex(): string {
+export function createMailTemplateIndex(): string {
   return `import { container } from 'tsyringe';
 
 import HandlebarsMailTemplateProvider from './implementations/HandlebarsMailTemplateProvider';

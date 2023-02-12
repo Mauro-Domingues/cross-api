@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createSpecDependentController(
+export function createSpecDependentController(
   names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'routeModuleName'

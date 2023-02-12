@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEditorConfig;
+exports.createEditorConfig = createEditorConfig;
 function createEditorConfig() {
   return `root = true
 

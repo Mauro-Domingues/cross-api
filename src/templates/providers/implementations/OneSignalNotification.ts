@@ -1,4 +1,4 @@
-export default function createOneSignalNotification(): string {
+export function createOneSignalNotification(): string {
   return `import oneSignalConfig from '@config/notification';
 import https from 'https';
 import { injectable } from 'tsyringe';

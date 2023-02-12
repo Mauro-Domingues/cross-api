@@ -1,4 +1,4 @@
-export default function createTypeorm(): string {
+export function createTypeorm(): string {
   return `import { DataSource } from 'typeorm';
 
 import { AppDataSource } from './dataSource';

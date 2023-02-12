@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createEsLintIgnore;
+exports.createEsLintIgnore = createEsLintIgnore;
 function createEsLintIgnore() {
   return `/*.js
 node_modules

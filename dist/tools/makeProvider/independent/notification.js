@@ -3,119 +3,119 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = makeNotificationProvider;
-var _fs = _interopRequireDefault(require("fs"));
-var _notificationConfig = _interopRequireDefault(require("../../../../dist/templates/providers/config/notificationConfig"));
-var _INotificationDTO = _interopRequireDefault(require("../../../../dist/templates/providers/dtos/INotificationDTO"));
-var _fakeNotification = _interopRequireDefault(require("../../../../dist/templates/providers/fakes/fakeNotification"));
-var _OneSignalNotification = _interopRequireDefault(require("../../../../dist/templates/providers/implementations/OneSignalNotification"));
-var _INotification = _interopRequireDefault(require("../../../../dist/templates/providers/models/INotification"));
-var _notificationIndex = _interopRequireDefault(require("../../../../dist/templates/providers/notificationIndex"));
+exports.makeNotificationProvider = makeNotificationProvider;
+var _fs = require("fs");
+var _notificationConfig = require("../../../../dist/templates/providers/config/notificationConfig");
+var _INotificationDTO = require("../../../../dist/templates/providers/dtos/INotificationDTO");
+var _fakeNotification = require("../../../../dist/templates/providers/fakes/fakeNotification");
+var _OneSignalNotification = require("../../../../dist/templates/providers/implementations/OneSignalNotification");
+var _INotification = require("../../../../dist/templates/providers/models/INotification");
+var _notificationIndex = require("../../../../dist/templates/providers/notificationIndex");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeNotificationProvider() {
-  if (!_fs.default.existsSync('src')) {
-    _fs.default.mkdirSync('src');
+  if (!(0, _fs.existsSync)('src')) {
+    (0, _fs.mkdirSync)('src');
   }
-  if (!_fs.default.existsSync('src/config')) {
-    _fs.default.mkdirSync('src/config');
+  if (!(0, _fs.existsSync)('src/config')) {
+    (0, _fs.mkdirSync)('src/config');
   }
-  if (!_fs.default.existsSync('src/shared')) {
-    _fs.default.mkdirSync('src/shared');
+  if (!(0, _fs.existsSync)('src/shared')) {
+    (0, _fs.mkdirSync)('src/shared');
   }
-  if (!_fs.default.existsSync('src/shared/container')) {
-    _fs.default.mkdirSync('src/shared/container');
+  if (!(0, _fs.existsSync)('src/shared/container')) {
+    (0, _fs.mkdirSync)('src/shared/container');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers')) {
-    _fs.default.mkdirSync('src/shared/container/providers');
+  if (!(0, _fs.existsSync)('src/shared/container/providers')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider')) {
-    _fs.default.mkdirSync('src/shared/container/providers/NotificationProvider');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/NotificationProvider');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/dtos')) {
-    _fs.default.mkdirSync('src/shared/container/providers/NotificationProvider/dtos');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/dtos')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/NotificationProvider/dtos');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/fakes')) {
-    _fs.default.mkdirSync('src/shared/container/providers/NotificationProvider/fakes');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/fakes')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/NotificationProvider/fakes');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/implementations')) {
-    _fs.default.mkdirSync('src/shared/container/providers/NotificationProvider/implementations');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/implementations')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/NotificationProvider/implementations');
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/models')) {
-    _fs.default.mkdirSync('src/shared/container/providers/NotificationProvider/models');
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/models')) {
+    (0, _fs.mkdirSync)('src/shared/container/providers/NotificationProvider/models');
   }
-  _fs.default.appendFile('src/shared/container/providers/index.ts', `\nimport './NotificationProvider';`, error => {
+  (0, _fs.appendFile)('src/shared/container/providers/index.ts', `\nimport './NotificationProvider';`, error => {
     if (error) throw error;
   });
-  if (!_fs.default.existsSync('src/config/notification.ts')) {
-    _fs.default.appendFile('src/config/notification.ts', (0, _notificationConfig.default)(), error => {
+  if (!(0, _fs.existsSync)('src/config/notification.ts')) {
+    (0, _fs.appendFile)('src/config/notification.ts', (0, _notificationConfig.createNotificationConfig)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/config/notification.ts', error => {
+    (0, _fs.truncate)('src/config/notification.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/config/notification.ts', (0, _notificationConfig.default)(), error => {
+    (0, _fs.appendFile)('src/config/notification.ts', (0, _notificationConfig.createNotificationConfig)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', (0, _INotificationDTO.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', (0, _INotificationDTO.createINotificationDTO)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', (0, _INotificationDTO.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', (0, _INotificationDTO.createINotificationDTO)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', (0, _fakeNotification.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', (0, _fakeNotification.createFakeNotification)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', (0, _fakeNotification.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', (0, _fakeNotification.createFakeNotification)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', (0, _OneSignalNotification.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', (0, _OneSignalNotification.createOneSignalNotification)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', (0, _OneSignalNotification.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', (0, _OneSignalNotification.createOneSignalNotification)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', (0, _INotification.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', (0, _INotification.createINotification)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', (0, _INotification.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', (0, _INotification.createINotification)(), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync('src/shared/container/providers/NotificationProvider/index.ts')) {
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/index.ts', (0, _notificationIndex.default)(), error => {
+  if (!(0, _fs.existsSync)('src/shared/container/providers/NotificationProvider/index.ts')) {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/index.ts', (0, _notificationIndex.createNotificationIndex)(), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate('src/shared/container/providers/NotificationProvider/index.ts', error => {
+    (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/index.ts', error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile('src/shared/container/providers/NotificationProvider/index.ts', (0, _notificationIndex.default)(), error => {
+    (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/index.ts', (0, _notificationIndex.createNotificationIndex)(), error => {
       if (error) throw error;
     });
   }

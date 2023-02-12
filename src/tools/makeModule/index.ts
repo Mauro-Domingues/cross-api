@@ -1,8 +1,8 @@
-import IModuleNamesDTO from 'index';
-import makeDependentModule from './dependent';
-import makeModule from './independent';
+import { IModuleNamesDTO } from 'index';
+import { makeDependentModule } from './dependent';
+import { makeModule } from './independent';
 
-export default async function createModule(
+export async function createModule(
   names: IModuleNamesDTO | undefined,
   fatherNames: IModuleNamesDTO | undefined,
 ): Promise<void> {

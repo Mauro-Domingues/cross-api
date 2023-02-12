@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = deleteSpecDependentService;
+exports.deleteSpecDependentService = deleteSpecDependentService;
 function deleteSpecDependentService(names, fatherNames) {
   return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';

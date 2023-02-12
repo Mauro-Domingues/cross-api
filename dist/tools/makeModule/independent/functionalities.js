@@ -3,137 +3,136 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = makeFunctionalities;
-var _fs = _interopRequireDefault(require("fs"));
-var _createController = _interopRequireDefault(require("../../../../dist/templates/modules/services/create/createController"));
-var _createService = _interopRequireDefault(require("../../../../dist/templates/modules/services/create/createService"));
-var _deleteController = _interopRequireDefault(require("../../../../dist/templates/modules/services/delete/deleteController"));
-var _deleteService = _interopRequireDefault(require("../../../../dist/templates/modules/services/delete/deleteService"));
-var _listController = _interopRequireDefault(require("../../../../dist/templates/modules/services/list/listController"));
-var _listService = _interopRequireDefault(require("../../../../dist/templates/modules/services/list/listService"));
-var _showController = _interopRequireDefault(require("../../../../dist/templates/modules/services/show/showController"));
-var _showService = _interopRequireDefault(require("../../../../dist/templates/modules/services/show/showService"));
-var _updateController = _interopRequireDefault(require("../../../../dist/templates/modules/services/update/updateController"));
-var _updateService = _interopRequireDefault(require("../../../../dist/templates/modules/services/update/updateService"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.makeFunctionalities = makeFunctionalities;
+var _fs = require("fs");
+var _createController = require("../../../../dist/templates/modules/services/create/createController");
+var _createService = require("../../../../dist/templates/modules/services/create/createService");
+var _deleteController = require("../../../../dist/templates/modules/services/delete/deleteController");
+var _deleteService = require("../../../../dist/templates/modules/services/delete/deleteService");
+var _listController = require("../../../../dist/templates/modules/services/list/listController");
+var _listService = require("../../../../dist/templates/modules/services/list/listService");
+var _showController = require("../../../../dist/templates/modules/services/show/showController");
+var _showService = require("../../../../dist/templates/modules/services/show/showService");
+var _updateController = require("../../../../dist/templates/modules/services/update/updateController");
+var _updateService = require("../../../../dist/templates/modules/services/update/updateService");
 async function makeFunctionalities(names) {
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, (0, _createController.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, (0, _createController.createController)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, (0, _createController.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller.ts`, (0, _createController.createController)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, (0, _createService.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, (0, _createService.createService)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, (0, _createService.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Service.ts`, (0, _createService.createService)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, (0, _deleteController.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, (0, _deleteController.deleteController)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, (0, _deleteController.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller.ts`, (0, _deleteController.deleteController)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, (0, _deleteService.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, (0, _deleteService.deleteService)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, (0, _deleteService.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Service.ts`, (0, _deleteService.deleteService)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, (0, _listController.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, (0, _listController.listController)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, (0, _listController.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller.ts`, (0, _listController.listController)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, (0, _listService.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, (0, _listService.listService)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, (0, _listService.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Service.ts`, (0, _listService.listService)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, (0, _showController.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, (0, _showController.showController)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, (0, _showController.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller.ts`, (0, _showController.showController)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, (0, _showService.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, (0, _showService.showService)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, (0, _showService.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Service.ts`, (0, _showService.showService)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, (0, _updateController.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, (0, _updateController.updateController)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, (0, _updateController.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller.ts`, (0, _updateController.updateController)(names), error => {
       if (error) throw error;
     });
   }
-  if (!_fs.default.existsSync(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`)) {
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, (0, _updateService.default)(names), error => {
+  if (!(0, _fs.existsSync)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`)) {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, (0, _updateService.updateService)(names), error => {
       if (error) throw error;
     });
   } else {
-    _fs.default.truncate(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, error => {
+    (0, _fs.truncate)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, error => {
       if (error) console.log(error);
     });
-    _fs.default.appendFile(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, (0, _updateService.default)(names), error => {
+    (0, _fs.appendFile)(`src/modules/${names.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Service.ts`, (0, _updateService.updateService)(names), error => {
       if (error) throw error;
     });
   }

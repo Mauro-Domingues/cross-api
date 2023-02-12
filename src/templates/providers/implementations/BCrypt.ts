@@ -1,4 +1,4 @@
-export default function createHash(): string {
+export function createHash(): string {
   return `import { hash, compare } from 'bcrypt';
 import hashConfig from '@config/hash';
 

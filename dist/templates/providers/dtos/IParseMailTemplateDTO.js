@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createIMailTemplateDTO;
+exports.createIMailTemplateDTO = createIMailTemplateDTO;
 function createIMailTemplateDTO() {
   return `interface ITemplateVariables {
   [key: string]: string | number;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = deleteDependentService;
+exports.deleteDependentService = deleteDependentService;
 function deleteDependentService(names, fatherNames) {
   return `import { injectable, inject } from 'tsyringe';
 

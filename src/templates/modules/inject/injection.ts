@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createInjection(
+export function createInjection(
   names: Pick<
     IModuleNamesDTO,
     'pluralLowerModuleName' | 'pluralUpperModuleName'

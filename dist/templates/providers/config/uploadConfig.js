@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createUploadConfig;
+exports.createUploadConfig = createUploadConfig;
 function createUploadConfig() {
   return `import crypto from 'crypto';
 import multer, { StorageEngine } from 'multer';

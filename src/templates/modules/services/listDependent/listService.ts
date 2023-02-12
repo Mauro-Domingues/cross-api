@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function listDependentService(
+export function listDependentService(
   names: Pick<
     IModuleNamesDTO,
     'upperModuleName' | 'pluralLowerModuleName' | 'pluralUpperModuleName'

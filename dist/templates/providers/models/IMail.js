@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createIMail;
+exports.createIMail = createIMail;
 function createIMail() {
   return `import ISendMailDTO from '../dtos/ISendMailDTO';
 

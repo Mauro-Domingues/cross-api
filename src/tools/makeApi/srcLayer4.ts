@@ -1,19 +1,19 @@
-import createTypeorm from '@templates/api/typeorm';
-import createAppError from '@templates/errors/appError';
-import createContainer from '@templates/index/container';
-import createDataSource from '@templates/api/dataSource';
-import createMapAndClone from '@templates/utils/mappers/mapAndClone';
-import createMapAndInsert from '@templates/utils/mappers/mapAndInsert';
-import createMapAndPatch from '@templates/utils/mappers/mapAndPatch';
-import createMapAndPatchString from '@templates/utils/mappers/mapAndPatchString';
-import createMapAndUpdate from '@templates/utils/mappers/mapAndUpdate';
-import createMapAndUpdateString from '@templates/utils/mappers/mapAndUpdateString';
+import { createTypeorm } from '@templates/api/typeorm';
+import { createAppError } from '@templates/errors/appError';
+import { createContainer } from '@templates/index/container';
+import { createDataSource } from '@templates/api/dataSource';
+import { createMapAndClone } from '@templates/utils/mappers/mapAndClone';
+import { createMapAndInsert } from '@templates/utils/mappers/mapAndInsert';
+import { createMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
+import { createMapAndPatchString } from '@templates/utils/mappers/mapAndPatchString';
+import { createMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
+import { createMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import messages from '@tools/messages';
-import fs from 'fs';
+import { appendFile, existsSync, truncate } from 'fs';
 
-export default async function makeFourthLayer(): Promise<void> {
-  if (!fs.existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {
-    fs.appendFile(
+export async function makeFourthLayer(): Promise<void> {
+  if (!existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndCloneAttribute.ts',
       createMapAndClone(),
       error => {
@@ -21,10 +21,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndCloneAttribute.ts', error => {
+    truncate('src/utils/mappers/mapAndCloneAttribute.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndCloneAttribute.ts',
       createMapAndClone(),
       error => {
@@ -37,8 +37,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndCloneAttribute.ts.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndInsertAttribute.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/utils/mappers/mapAndInsertAttribute.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndInsertAttribute.ts',
       createMapAndInsert(),
       error => {
@@ -46,10 +46,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndInsertAttribute.ts', error => {
+    truncate('src/utils/mappers/mapAndInsertAttribute.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndInsertAttribute.ts',
       createMapAndInsert(),
       error => {
@@ -62,8 +62,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndInsertAttribute.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndPatchAttribute.ts',
       createMapAndPatch(),
       error => {
@@ -71,10 +71,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndPatchAttribute.ts', error => {
+    truncate('src/utils/mappers/mapAndPatchAttribute.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndPatchAttribute.ts',
       createMapAndPatch(),
       error => {
@@ -87,8 +87,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndPatchAttribute.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndPatchString.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/utils/mappers/mapAndPatchString.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndPatchString.ts',
       createMapAndPatchString(),
       error => {
@@ -96,10 +96,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndPatchString.ts', error => {
+    truncate('src/utils/mappers/mapAndPatchString.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndPatchString.ts',
       createMapAndPatchString(),
       error => {
@@ -112,8 +112,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndPatchString.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndUpdateAttribute.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/utils/mappers/mapAndUpdateAttribute.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndUpdateAttribute.ts',
       createMapAndUpdate(),
       error => {
@@ -121,10 +121,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
+    truncate('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndUpdateAttribute.ts',
       createMapAndUpdate(),
       error => {
@@ -137,8 +137,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndUpdateAttribute.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/mappers/mapAndUpdateString.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/utils/mappers/mapAndUpdateString.ts')) {
+    appendFile(
       'src/utils/mappers/mapAndUpdateString.ts',
       createMapAndUpdateString(),
       error => {
@@ -146,10 +146,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/utils/mappers/mapAndUpdateString.ts', error => {
+    truncate('src/utils/mappers/mapAndUpdateString.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/utils/mappers/mapAndUpdateString.ts',
       createMapAndUpdateString(),
       error => {
@@ -162,15 +162,15 @@ export default async function makeFourthLayer(): Promise<void> {
     `- mapAndUpdateString.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/container/index.ts')) {
-    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+  if (!existsSync('src/shared/container/index.ts')) {
+    appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/shared/container/index.ts', error => {
+    truncate('src/shared/container/index.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/shared/container/index.ts', createContainer(), error => {
+    appendFile('src/shared/container/index.ts', createContainer(), error => {
       if (error) throw error;
     });
   }
@@ -179,15 +179,15 @@ export default async function makeFourthLayer(): Promise<void> {
     `- container/index.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/errors/AppError.ts')) {
-    fs.appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
+  if (!existsSync('src/shared/errors/AppError.ts')) {
+    appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/shared/errors/AppError.ts', error => {
+    truncate('src/shared/errors/AppError.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
+    appendFile('src/shared/errors/AppError.ts', createAppError(), error => {
       if (error) throw error;
     });
   }
@@ -196,15 +196,15 @@ export default async function makeFourthLayer(): Promise<void> {
     `- AppError.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/typeorm/index.ts')) {
-    fs.appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
+  if (!existsSync('src/shared/typeorm/index.ts')) {
+    appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/shared/typeorm/index.ts', error => {
+    truncate('src/shared/typeorm/index.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
+    appendFile('src/shared/typeorm/index.ts', createTypeorm(), error => {
       if (error) throw error;
     });
   }
@@ -213,8 +213,8 @@ export default async function makeFourthLayer(): Promise<void> {
     `- typeorm/index.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/typeorm/dataSource.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/shared/typeorm/dataSource.ts')) {
+    appendFile(
       'src/shared/typeorm/dataSource.ts',
       createDataSource(),
       error => {
@@ -222,10 +222,10 @@ export default async function makeFourthLayer(): Promise<void> {
       },
     );
   } else {
-    fs.truncate('src/shared/typeorm/dataSource.ts', error => {
+    truncate('src/shared/typeorm/dataSource.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
+    appendFile(
       'src/shared/typeorm/dataSource.ts',
       createDataSource(),
       error => {

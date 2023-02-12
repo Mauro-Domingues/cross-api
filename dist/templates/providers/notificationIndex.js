@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createNotificationIndex;
+exports.createNotificationIndex = createNotificationIndex;
 function createNotificationIndex() {
   return `import { container } from 'tsyringe';
 

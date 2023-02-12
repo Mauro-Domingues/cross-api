@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createAppError;
+exports.createAppError = createAppError;
 function createAppError() {
   return `class AppError {
   public readonly message: string;

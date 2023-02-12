@@ -1,6 +1,6 @@
 import messages from '@tools/messages';
 
-export default function createMapAndPatchString(): string {
+export function createMapAndPatchString(): string {
   return `import mapAndPatchAttribute from './mapAndPatchAttribute';
 
 /**

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createTypeorm;
+exports.createTypeorm = createTypeorm;
 function createTypeorm() {
   return `import { DataSource } from 'typeorm';
 

@@ -1,4 +1,4 @@
-export default function createCryptoConfig(): string {
+export function createCryptoConfig(): string {
   return `enum encodingTypes {
   'default' = 'hex',
   'unicode8' = 'utf-8',

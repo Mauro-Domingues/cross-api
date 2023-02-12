@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function showSpecDependentService(
+export function showSpecDependentService(
   names: Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>,
   fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
 ): string {

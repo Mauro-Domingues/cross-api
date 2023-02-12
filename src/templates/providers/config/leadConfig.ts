@@ -1,4 +1,4 @@
-export default function createLeadConfig(): string {
+export function createLeadConfig(): string {
   return `interface ILeadConfig {
   clientId: string;
   clientSecret: string;

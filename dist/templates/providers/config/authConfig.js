@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createAuthConfig;
+exports.createAuthConfig = createAuthConfig;
 function createAuthConfig() {
   return `interface IAuthConfig {
   jwt: {

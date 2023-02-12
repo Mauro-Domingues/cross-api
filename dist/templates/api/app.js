@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createApp;
+exports.createApp = createApp;
 function createApp() {
   return `import 'express-async-errors';
 // import uploadConfig from '@config/upload'; // uploadProvider

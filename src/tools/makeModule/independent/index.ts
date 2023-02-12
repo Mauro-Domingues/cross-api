@@ -1,13 +1,11 @@
 import messages from '@tools/messages';
-import IModuleNamesDTO from 'index';
-import makeInfra from './infra';
-import makeFunctionalities from './functionalities';
-import makeStructure from './structure';
-import makeUnitTests from './unitTests';
+import { IModuleNamesDTO } from 'index';
+import { makeInfra } from './infra';
+import { makeFunctionalities } from './functionalities';
+import { makeStructure } from './structure';
+import { makeUnitTests } from './unitTests';
 
-export default async function makeModule(
-  names: IModuleNamesDTO,
-): Promise<void> {
+export async function makeModule(names: IModuleNamesDTO): Promise<void> {
   await makeStructure(names);
   await makeInfra(names);
   await makeFunctionalities(names);

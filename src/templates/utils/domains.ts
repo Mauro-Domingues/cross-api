@@ -1,4 +1,4 @@
-export default function createDomainsManager(): string {
+export function createDomainsManager(): string {
   return `import fs from 'fs';
 
 class DomainsManager {

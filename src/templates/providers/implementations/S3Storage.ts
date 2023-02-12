@@ -1,4 +1,4 @@
-export default function createS3Storage(): string {
+export function createS3Storage(): string {
   return `import uploadConfig from '@config/upload';
 import aws, { S3 } from 'aws-sdk';
 import fs from 'fs';

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createIMailTemplate;
+exports.createIMailTemplate = createIMailTemplate;
 function createIMailTemplate() {
   return `import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
 

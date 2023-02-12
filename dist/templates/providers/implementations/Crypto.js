@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createCrypto;
+exports.createCrypto = createCrypto;
 function createCrypto() {
   return `import crypto from 'crypto';
 import cryptoConfig from '@config/crypto';

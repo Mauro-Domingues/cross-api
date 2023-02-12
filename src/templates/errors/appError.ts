@@ -1,4 +1,4 @@
-export default function createAppError(): string {
+export function createAppError(): string {
   return `class AppError {
   public readonly message: string;
 

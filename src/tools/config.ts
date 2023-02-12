@@ -1,8 +1,8 @@
-import fs from 'fs';
-import readline from 'readline';
-import shell from 'shelljs';
+import { appendFile, truncate, writeFileSync } from 'fs';
+import { createInterface } from 'readline';
+import { exec } from 'shelljs';
 import userJson from '../../../../package.json';
-import config from '@templates/assets/config';
+import { config } from '@templates/assets/config';
 import enUs from '@templates/assets/en-us';
 import ptBr from '@templates/assets/pt-br';
 
@@ -14,7 +14,7 @@ class LanguageOption {
   }
 }
 
-export default function configJson(): void {
+export function configJson(): void {
   const languages = [new LanguageOption('en-us'), new LanguageOption('pt-br')];
 
   userJson.scripts = {
@@ -25,7 +25,7 @@ export default function configJson(): void {
     start: 'node dist/shared/server.js',
   };
 
-  fs.writeFileSync('./package.json', JSON.stringify(userJson), {
+  writeFileSync('./package.json', JSON.stringify(userJson), {
     encoding: 'utf8',
     flag: 'w',
   });
@@ -112,7 +112,7 @@ export default function configJson(): void {
   console.table([languages[0], languages[1]]);
   console.log('\x1b[1m');
 
-  const rl = readline.createInterface({
+  const rl = createInterface({
     input: process.stdin,
     output: process.stdout,
   });
@@ -145,7 +145,7 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        shell.exec('npm install yarn --location=global');
+        exec('npm install yarn --location=global');
         console.log('\x1b[38;2;255;255;0m', `- yarn installed`, '\x1b[0m');
         console.log(
           '\x1b[1m',
@@ -158,7 +158,7 @@ export default function configJson(): void {
           acc += ` ${dependency}`;
           return acc;
         });
-        shell.exec(`yarn add ${dependenciesToInstall}`);
+        exec(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
           console.log(
             '\x1b[38;2;255;255;0m',
@@ -180,7 +180,7 @@ export default function configJson(): void {
             return acc;
           },
         );
-        shell.exec(`yarn add ${devDependenciesToInstall} -D`);
+        exec(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
           console.log(
             '\x1b[38;2;255;255;0m',
@@ -211,13 +211,13 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        fs.truncate(
+        truncate(
           './node_modules/cross-api/dist/tools/messages.js',
           error => {
             if (error) console.log(error);
           },
         );
-        fs.appendFile(
+        appendFile(
           './node_modules/cross-api/dist/tools/messages.js',
           enUs,
           error => {
@@ -240,7 +240,7 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        shell.exec('npm install yarn --location=global');
+        exec('npm install yarn --location=global');
         console.log('\x1b[38;2;255;255;0m', `- yarn instalado`, '\x1b[0m');
         console.log(
           '\x1b[1m',
@@ -253,7 +253,7 @@ export default function configJson(): void {
           acc += ` ${dependency}`;
           return acc;
         });
-        shell.exec(`yarn add ${dependenciesToInstall}`);
+        exec(`yarn add ${dependenciesToInstall}`);
         dependencies.forEach(dependency => {
           console.log(
             '\x1b[38;2;255;255;0m',
@@ -275,7 +275,7 @@ export default function configJson(): void {
             return acc;
           },
         );
-        shell.exec(`yarn add ${devDependenciesToInstall} -D`);
+        exec(`yarn add ${devDependenciesToInstall} -D`);
         devDependencies.forEach(devDependency => {
           console.log(
             '\x1b[38;2;255;255;0m',
@@ -306,13 +306,13 @@ export default function configJson(): void {
           '\x1b[0m',
         );
         console.log('');
-        fs.truncate(
+        truncate(
           './node_modules/cross-api/dist/tools/messages.js',
           error => {
             if (error) console.log(error);
           },
         );
-        fs.appendFile(
+        appendFile(
           './node_modules/cross-api/dist/tools/messages.js',
           ptBr,
           error => {

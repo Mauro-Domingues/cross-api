@@ -1,86 +1,84 @@
-import fs from 'fs';
-import createMailConfig from '@templates/providers/config/mailConfig';
-import createIMailDTO from '@templates/providers/dtos/IMailDTO';
-import createIMailTemplateDTO from '@templates/providers/dtos/IParseMailTemplateDTO';
-import createFakeMail from '@templates/providers/fakes/fakeMail';
-import createFakeMailTemplate from '@templates/providers/fakes/fakeMailTemplate';
-import createEtherealMail from '@templates/providers/implementations/EtherealMail';
-import createMailTemplate from '@templates/providers/implementations/MailTemplate';
-import createSESMail from '@templates/providers/implementations/SESMail';
-import createMailIndex from '@templates/providers/mailIndex';
-import createMailTemplateIndex from '@templates/providers/mailTemplateIndex';
-import createIMail from '@templates/providers/models/IMail';
-import createIMailTemplate from '@templates/providers/models/IMailTemplate';
+import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { createMailConfig } from '@templates/providers/config/mailConfig';
+import { createIMailDTO } from '@templates/providers/dtos/IMailDTO';
+import { createIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
+import { createFakeMail } from '@templates/providers/fakes/fakeMail';
+import { createFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
+import { createEtherealMail } from '@templates/providers/implementations/EtherealMail';
+import { createMailTemplate } from '@templates/providers/implementations/MailTemplate';
+import { createSESMail } from '@templates/providers/implementations/SESMail';
+import { createMailIndex } from '@templates/providers/mailIndex';
+import { createMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
+import { createIMail } from '@templates/providers/models/IMail';
+import { createIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import messages from '@tools/messages';
 
-export default async function makeMailProvider(): Promise<void> {
-  if (!fs.existsSync('src')) {
-    fs.mkdirSync('src');
+export async function makeMailProvider(): Promise<void> {
+  if (!existsSync('src')) {
+    mkdirSync('src');
   }
-  if (!fs.existsSync('src/config')) {
-    fs.mkdirSync('src/config');
+  if (!existsSync('src/config')) {
+    mkdirSync('src/config');
   }
-  if (!fs.existsSync('src/shared')) {
-    fs.mkdirSync('src/shared');
+  if (!existsSync('src/shared')) {
+    mkdirSync('src/shared');
   }
-  if (!fs.existsSync('src/shared/container')) {
-    fs.mkdirSync('src/shared/container');
+  if (!existsSync('src/shared/container')) {
+    mkdirSync('src/shared/container');
   }
-  if (!fs.existsSync('src/shared/container/providers')) {
-    fs.mkdirSync('src/shared/container/providers');
+  if (!existsSync('src/shared/container/providers')) {
+    mkdirSync('src/shared/container/providers');
   }
-  if (!fs.existsSync('src/shared/container/providers/MailTemplateProvider')) {
-    fs.mkdirSync('src/shared/container/providers/MailTemplateProvider');
+  if (!existsSync('src/shared/container/providers/MailTemplateProvider')) {
+    mkdirSync('src/shared/container/providers/MailTemplateProvider');
+  }
+  if (!existsSync('src/shared/container/providers/MailTemplateProvider/dtos')) {
+    mkdirSync('src/shared/container/providers/MailTemplateProvider/dtos');
   }
   if (
-    !fs.existsSync('src/shared/container/providers/MailTemplateProvider/dtos')
+    !existsSync('src/shared/container/providers/MailTemplateProvider/fakes')
   ) {
-    fs.mkdirSync('src/shared/container/providers/MailTemplateProvider/dtos');
+    mkdirSync('src/shared/container/providers/MailTemplateProvider/fakes');
   }
   if (
-    !fs.existsSync('src/shared/container/providers/MailTemplateProvider/fakes')
-  ) {
-    fs.mkdirSync('src/shared/container/providers/MailTemplateProvider/fakes');
-  }
-  if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailTemplateProvider/implementations',
     )
   ) {
-    fs.mkdirSync(
+    mkdirSync(
       'src/shared/container/providers/MailTemplateProvider/implementations',
     );
   }
   if (
-    !fs.existsSync('src/shared/container/providers/MailTemplateProvider/models')
+    !existsSync('src/shared/container/providers/MailTemplateProvider/models')
   ) {
-    fs.mkdirSync('src/shared/container/providers/MailTemplateProvider/models');
+    mkdirSync('src/shared/container/providers/MailTemplateProvider/models');
   }
-  fs.appendFile(
+  appendFile(
     'src/shared/container/providers/index.ts',
     `\nimport './MailTemplateProvider';`,
     error => {
       if (error) throw error;
     },
   );
-  if (!fs.existsSync('src/config/mail.ts')) {
-    fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
+  if (!existsSync('src/config/mail.ts')) {
+    appendFile('src/config/mail.ts', createMailConfig(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/config/mail.ts', error => {
+    truncate('src/config/mail.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/config/mail.ts', createMailConfig(), error => {
+    appendFile('src/config/mail.ts', createMailConfig(), error => {
       if (error) throw error;
     });
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
       createIMailTemplateDTO(),
       error => {
@@ -88,13 +86,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
       createIMailTemplateDTO(),
       error => {
@@ -103,11 +101,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
       createFakeMailTemplate(),
       error => {
@@ -115,13 +113,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
       createFakeMailTemplate(),
       error => {
@@ -130,11 +128,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
       createMailTemplate(),
       error => {
@@ -142,13 +140,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
       createMailTemplate(),
       error => {
@@ -157,11 +155,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
       createIMailTemplate(),
       error => {
@@ -169,13 +167,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
       createIMailTemplate(),
       error => {
@@ -184,11 +182,9 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
-      'src/shared/container/providers/MailTemplateProvider/index.ts',
-    )
+    !existsSync('src/shared/container/providers/MailTemplateProvider/index.ts')
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/index.ts',
       createMailTemplateIndex(),
       error => {
@@ -196,13 +192,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailTemplateProvider/index.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailTemplateProvider/index.ts',
       createMailTemplateIndex(),
       error => {
@@ -215,26 +211,24 @@ export default async function makeMailProvider(): Promise<void> {
     `- MailTemplateProvider ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/container/providers/MailProvider')) {
-    fs.mkdirSync('src/shared/container/providers/MailProvider');
+  if (!existsSync('src/shared/container/providers/MailProvider')) {
+    mkdirSync('src/shared/container/providers/MailProvider');
   }
-  if (!fs.existsSync('src/shared/container/providers/MailProvider/dtos')) {
-    fs.mkdirSync('src/shared/container/providers/MailProvider/dtos');
+  if (!existsSync('src/shared/container/providers/MailProvider/dtos')) {
+    mkdirSync('src/shared/container/providers/MailProvider/dtos');
   }
-  if (!fs.existsSync('src/shared/container/providers/MailProvider/fakes')) {
-    fs.mkdirSync('src/shared/container/providers/MailProvider/fakes');
+  if (!existsSync('src/shared/container/providers/MailProvider/fakes')) {
+    mkdirSync('src/shared/container/providers/MailProvider/fakes');
   }
   if (
-    !fs.existsSync(
-      'src/shared/container/providers/MailProvider/implementations',
-    )
+    !existsSync('src/shared/container/providers/MailProvider/implementations')
   ) {
-    fs.mkdirSync('src/shared/container/providers/MailProvider/implementations');
+    mkdirSync('src/shared/container/providers/MailProvider/implementations');
   }
-  if (!fs.existsSync('src/shared/container/providers/MailProvider/models')) {
-    fs.mkdirSync('src/shared/container/providers/MailProvider/models');
+  if (!existsSync('src/shared/container/providers/MailProvider/models')) {
+    mkdirSync('src/shared/container/providers/MailProvider/models');
   }
-  fs.appendFile(
+  appendFile(
     'src/shared/container/providers/index.ts',
     `\nimport './MailProvider';`,
     error => {
@@ -242,11 +236,11 @@ export default async function makeMailProvider(): Promise<void> {
     },
   );
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
       createIMailDTO(),
       error => {
@@ -254,13 +248,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
       createIMailDTO(),
       error => {
@@ -269,11 +263,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
       createFakeMail(),
       error => {
@@ -281,13 +275,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
       createFakeMail(),
       error => {
@@ -296,11 +290,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
       createEtherealMail(),
       error => {
@@ -308,13 +302,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
       createEtherealMail(),
       error => {
@@ -323,11 +317,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
       createSESMail(),
       error => {
@@ -335,13 +329,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
       createSESMail(),
       error => {
@@ -350,11 +344,11 @@ export default async function makeMailProvider(): Promise<void> {
     );
   }
   if (
-    !fs.existsSync(
+    !existsSync(
       'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
     )
   ) {
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
       createIMail(),
       error => {
@@ -362,13 +356,13 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
+    truncate(
       'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
       error => {
         if (error) console.log(error);
       },
     );
-    fs.appendFile(
+    appendFile(
       'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
       createIMail(),
       error => {
@@ -376,8 +370,8 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   }
-  if (!fs.existsSync('src/shared/container/providers/MailProvider/index.ts')) {
-    fs.appendFile(
+  if (!existsSync('src/shared/container/providers/MailProvider/index.ts')) {
+    appendFile(
       'src/shared/container/providers/MailProvider/index.ts',
       createMailIndex(),
       error => {
@@ -385,13 +379,10 @@ export default async function makeMailProvider(): Promise<void> {
       },
     );
   } else {
-    fs.truncate(
-      'src/shared/container/providers/MailProvider/index.ts',
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    fs.appendFile(
+    truncate('src/shared/container/providers/MailProvider/index.ts', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
       'src/shared/container/providers/MailProvider/index.ts',
       createMailIndex(),
       error => {

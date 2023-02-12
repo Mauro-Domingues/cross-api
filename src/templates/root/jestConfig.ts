@@ -1,4 +1,4 @@
-export default function createJestConfig(): string {
+export function createJestConfig(): string {
   return `import { pathsToModuleNameMapper } from 'ts-jest';
 
 import { compilerOptions } from './tsconfig.json';

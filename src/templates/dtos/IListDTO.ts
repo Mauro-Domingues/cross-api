@@ -1,4 +1,4 @@
-export default function createIListDTO(): string {
+export function createIListDTO(): string {
   return `import IResponseDTO from './IResponseDTO';
 
 export default interface IListDTO<T> extends IResponseDTO<T[]> {

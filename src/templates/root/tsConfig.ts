@@ -1,4 +1,4 @@
-export default function createTsConfig(): string {
+export function createTsConfig(): string {
   return `{
   "compilerOptions": {
     "target": "es6",

@@ -1,4 +1,4 @@
-export default function createDiskStorage(): string {
+export function createDiskStorage(): string {
   return `import uploadConfig from '@config/upload';
 import fs from 'fs';
 import path from 'path';

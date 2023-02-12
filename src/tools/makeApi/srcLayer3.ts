@@ -1,54 +1,46 @@
-import fs from 'fs';
-import createExpressNamespace from '@templates/types/expressNamespace';
-import createApp from '@templates/api/app';
-import createServer from '@templates/api/server';
-import createDomains from '@templates/assets/domains';
-import createICacheDTO from '@templates/dtos/ICacheDTO';
-import createIListDTO from '@templates/dtos/IListDTO';
-import createIObjectDTO from '@templates/dtos/IObjectDTO';
-import createIResponseDTO from '@templates/dtos/IResponseDTO';
-import createRoutes from '@templates/index/routes';
-import createRateLimiter from '@templates/middlewares/rateLimiter';
-import createDecimaAdjust from '@templates/utils/decimalAdjust';
-import createDomainsManager from '@templates/utils/domains';
+import { appendFile, existsSync, truncate } from 'fs';
+import { createExpressNamespace } from '@templates/types/expressNamespace';
+import { createApp } from '@templates/api/app';
+import { createServer } from '@templates/api/server';
+import { createDomains } from '@templates/assets/domains';
+import { createICacheDTO } from '@templates/dtos/ICacheDTO';
+import { createIListDTO } from '@templates/dtos/IListDTO';
+import { createIObjectDTO } from '@templates/dtos/IObjectDTO';
+import { createIResponseDTO } from '@templates/dtos/IResponseDTO';
+import { createRoutes } from '@templates/index/routes';
+import { createRateLimiter } from '@templates/middlewares/rateLimiter';
+import { createDecimaAdjust } from '@templates/utils/decimalAdjust';
+import { createDomainsManager } from '@templates/utils/domains';
 import messages from '@tools/messages';
-import createEnsureAuthenticated from '@templates/middlewares/ensureAuthenticated';
+import { createEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
 
-export default async function makeThirdLayer(): Promise<void> {
-  if (!fs.existsSync('src/@types/express.d.ts')) {
-    fs.appendFile(
-      'src/@types/express.d.ts',
-      createExpressNamespace(),
-      error => {
-        if (error) throw error;
-      },
-    );
+export async function makeThirdLayer(): Promise<void> {
+  if (!existsSync('src/@types/express.d.ts')) {
+    appendFile('src/@types/express.d.ts', createExpressNamespace(), error => {
+      if (error) throw error;
+    });
   } else {
-    fs.truncate('src/@types/express.d.ts', error => {
+    truncate('src/@types/express.d.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
-      'src/@types/express.d.ts',
-      createExpressNamespace(),
-      error => {
-        if (error) throw error;
-      },
-    );
+    appendFile('src/@types/express.d.ts', createExpressNamespace(), error => {
+      if (error) throw error;
+    });
   }
   console.log(
     '\x1b[38;2;255;255;0m',
     `- express.d.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/assets/domains.txt')) {
-    fs.appendFile('src/assets/domains.txt', createDomains(), error => {
+  if (!existsSync('src/assets/domains.txt')) {
+    appendFile('src/assets/domains.txt', createDomains(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/assets/domains.txt', error => {
+    truncate('src/assets/domains.txt', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/assets/domains.txt', createDomains(), error => {
+    appendFile('src/assets/domains.txt', createDomains(), error => {
       if (error) throw error;
     });
   }
@@ -57,15 +49,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- domains.txt ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/dtos/ICacheDTO.ts')) {
-    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
+  if (!existsSync('src/dtos/ICacheDTO.ts')) {
+    appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/dtos/ICacheDTO.ts', error => {
+    truncate('src/dtos/ICacheDTO.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
+    appendFile('src/dtos/ICacheDTO.ts', createICacheDTO(), error => {
       if (error) throw error;
     });
   }
@@ -74,15 +66,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- ICacheDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/dtos/IListDTO.ts')) {
-    fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
+  if (!existsSync('src/dtos/IListDTO.ts')) {
+    appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/dtos/IListDTO.ts', error => {
+    truncate('src/dtos/IListDTO.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
+    appendFile('src/dtos/IListDTO.ts', createIListDTO(), error => {
       if (error) throw error;
     });
   }
@@ -91,15 +83,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- IListDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/dtos/IObjectDTO.ts')) {
-    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
+  if (!existsSync('src/dtos/IObjectDTO.ts')) {
+    appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/dtos/IObjectDTO.ts', error => {
+    truncate('src/dtos/IObjectDTO.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
+    appendFile('src/dtos/IObjectDTO.ts', createIObjectDTO(), error => {
       if (error) throw error;
     });
   }
@@ -108,15 +100,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- IObjectDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/dtos/IResponseDTO.ts')) {
-    fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
+  if (!existsSync('src/dtos/IResponseDTO.ts')) {
+    appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/dtos/IResponseDTO.ts', error => {
+    truncate('src/dtos/IResponseDTO.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
+    appendFile('src/dtos/IResponseDTO.ts', createIResponseDTO(), error => {
       if (error) throw error;
     });
   }
@@ -125,65 +117,57 @@ export default async function makeThirdLayer(): Promise<void> {
     `- IResponseDTO.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/middlewares/RateLimiter.ts')) {
-    fs.appendFile(
-      'src/middlewares/RateLimiter.ts',
-      createRateLimiter(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.truncate('src/middlewares/RateLimiter.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile(
-      'src/middlewares/RateLimiter.ts',
-      createRateLimiter(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- RateLimiter.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/middlewares/EnsureAuthenticated.ts')) {
-    fs.appendFile(
-      'src/middlewares/EnsureAuthenticated.ts',
-      createEnsureAuthenticated(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    fs.truncate('src/middlewares/EnsureAuthenticated.ts', error => {
-      if (error) console.log(error);
-    });
-    fs.appendFile(
-      'src/middlewares/EnsureAuthenticated.ts',
-      createEnsureAuthenticated(),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  console.log(
-    '\x1b[38;2;255;255;0m',
-    `- RateLimiter.ts ${messages.created}`,
-    '\x1b[0m',
-  );
-  if (!fs.existsSync('src/routes/index.ts')) {
-    fs.appendFile('src/routes/index.ts', createRoutes(), error => {
+  if (!existsSync('src/middlewares/RateLimiter.ts')) {
+    appendFile('src/middlewares/RateLimiter.ts', createRateLimiter(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/routes/index.ts', error => {
+    truncate('src/middlewares/RateLimiter.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/routes/index.ts', createRoutes(), error => {
+    appendFile('src/middlewares/RateLimiter.ts', createRateLimiter(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- RateLimiter.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!existsSync('src/middlewares/EnsureAuthenticated.ts')) {
+    appendFile(
+      'src/middlewares/EnsureAuthenticated.ts',
+      createEnsureAuthenticated(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  } else {
+    truncate('src/middlewares/EnsureAuthenticated.ts', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
+      'src/middlewares/EnsureAuthenticated.ts',
+      createEnsureAuthenticated(),
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- RateLimiter.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!existsSync('src/routes/index.ts')) {
+    appendFile('src/routes/index.ts', createRoutes(), error => {
+      if (error) throw error;
+    });
+  } else {
+    truncate('src/routes/index.ts', error => {
+      if (error) console.log(error);
+    });
+    appendFile('src/routes/index.ts', createRoutes(), error => {
       if (error) throw error;
     });
   }
@@ -192,15 +176,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- routes.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/app.ts')) {
-    fs.appendFile('src/shared/app.ts', createApp(), error => {
+  if (!existsSync('src/shared/app.ts')) {
+    appendFile('src/shared/app.ts', createApp(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/shared/app.ts', error => {
+    truncate('src/shared/app.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/shared/app.ts', createApp(), error => {
+    appendFile('src/shared/app.ts', createApp(), error => {
       if (error) throw error;
     });
   }
@@ -209,15 +193,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- app.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/shared/server.ts')) {
-    fs.appendFile('src/shared/server.ts', createServer(), error => {
+  if (!existsSync('src/shared/server.ts')) {
+    appendFile('src/shared/server.ts', createServer(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/shared/server.ts', error => {
+    truncate('src/shared/server.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/shared/server.ts', createServer(), error => {
+    appendFile('src/shared/server.ts', createServer(), error => {
       if (error) throw error;
     });
   }
@@ -226,15 +210,15 @@ export default async function makeThirdLayer(): Promise<void> {
     `- server.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/decimalAdjust.ts')) {
-    fs.appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
+  if (!existsSync('src/utils/decimalAdjust.ts')) {
+    appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
       if (error) throw error;
     });
   } else {
-    fs.truncate('src/utils/decimalAdjust.ts', error => {
+    truncate('src/utils/decimalAdjust.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
+    appendFile('src/utils/decimalAdjust.ts', createDecimaAdjust(), error => {
       if (error) throw error;
     });
   }
@@ -243,25 +227,17 @@ export default async function makeThirdLayer(): Promise<void> {
     `- decimalAdjust.ts ${messages.created}`,
     '\x1b[0m',
   );
-  if (!fs.existsSync('src/utils/domainsManager.ts')) {
-    fs.appendFile(
-      'src/utils/domainsManager.ts',
-      createDomainsManager(),
-      error => {
-        if (error) throw error;
-      },
-    );
+  if (!existsSync('src/utils/domainsManager.ts')) {
+    appendFile('src/utils/domainsManager.ts', createDomainsManager(), error => {
+      if (error) throw error;
+    });
   } else {
-    fs.truncate('src/utils/domainsManager.ts', error => {
+    truncate('src/utils/domainsManager.ts', error => {
       if (error) console.log(error);
     });
-    fs.appendFile(
-      'src/utils/domainsManager.ts',
-      createDomainsManager(),
-      error => {
-        if (error) throw error;
-      },
-    );
+    appendFile('src/utils/domainsManager.ts', createDomainsManager(), error => {
+      if (error) throw error;
+    });
   }
   console.log(
     '\x1b[38;2;255;255;0m',

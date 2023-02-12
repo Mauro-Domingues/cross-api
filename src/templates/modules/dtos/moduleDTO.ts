@@ -1,6 +1,6 @@
-import IModuleNamesDTO from 'index';
+import { IModuleNamesDTO } from 'index';
 
-export default function createModuleDTO(
+export function createModuleDTO(
   names: Pick<IModuleNamesDTO, 'upperModuleName'>,
 ): string {
   return `export default interface I${names.upperModuleName}DTO {

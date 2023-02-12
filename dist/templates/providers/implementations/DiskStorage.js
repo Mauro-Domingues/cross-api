@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createDiskStorage;
+exports.createDiskStorage = createDiskStorage;
 function createDiskStorage() {
   return `import uploadConfig from '@config/upload';
 import fs from 'fs';

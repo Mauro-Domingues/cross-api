@@ -1,4 +1,4 @@
-export default function createLeadIndex(): string {
+export function createLeadIndex(): string {
   return `import { container } from 'tsyringe';
 
 import ILeadProvider from './models/ILeadProvider';

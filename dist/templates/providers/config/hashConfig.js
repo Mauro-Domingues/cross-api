@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createHashConfig;
+exports.createHashConfig = createHashConfig;
 function createHashConfig() {
   return `interface IHashConfig {
   secret: string | number;

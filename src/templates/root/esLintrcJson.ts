@@ -1,4 +1,4 @@
-export default function createEsLintrcJson(): string {
+export function createEsLintrcJson(): string {
   return `{
   "env": {
       "es2020": true,
