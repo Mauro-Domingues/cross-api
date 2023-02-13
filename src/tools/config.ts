@@ -19,7 +19,7 @@ export function configJson(): void {
 
   userJson.scripts = {
     ...userJson.scripts,
-    dev: 'ts-node-dev -r --inspect --transpile-only tsconfig-paths/register src/shared/server.ts',
+    dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
     test: 'set NODE_ENV=test&&jest --runInBand',
     build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
     start: 'node dist/shared/server.js',

@@ -1,14 +1,14 @@
 export function createCrypto(): string {
   return `import crypto from 'crypto';
-import cryptoConfig from '@config/crypto';
 import fs from 'fs';
 import { sign, SignOptions } from 'jsonwebtoken';
-import { Extras, JWK, pem2jwk } from 'pem-jwk';
+import { JWK, pem2jwk } from 'pem-jwk';
+import cryptoConfig from '@config/crypto';
 import ICryptoDTO from '../dtos/ICryptoDTO';
 import ICryptoProvider from '../models/ICryptoProvider';
 
 class CryptoProvider implements ICryptoProvider {
-  public async encrypt(text: string): ICryptoDTO {
+  public async encrypt(text: string): Promise<ICryptoDTO> {
     const iv = crypto.randomBytes(16);
 
     const cipher = crypto.createCipheriv(
@@ -25,7 +25,7 @@ class CryptoProvider implements ICryptoProvider {
     };
   }
 
-  public async decrypt(data: ICryptoDTO): string {
+  public async decrypt(data: ICryptoDTO): Promise<string> {
     const decipher = crypto.createDecipheriv(
       cryptoConfig.algorithm,
       cryptoConfig.secretKey,
@@ -43,10 +43,10 @@ class CryptoProvider implements ICryptoProvider {
   public async generateJwt(
     payload: object,
     options?: SignOptions,
-  ): {
-    jwtToken: string;
-    refreshToken: string;
-  } {
+  ): Promise<{
+    jwt_token: string;
+    refresh_token: string;
+  }> {
     const secret = fs.readFileSync('src/assets/keys/private.pem');
     const jwtToken = sign(payload, secret, {
       expiresIn: process.env.JWT_LIFETIME || '1h',
@@ -62,12 +62,16 @@ class CryptoProvider implements ICryptoProvider {
       .digest('hex');
 
     return {
-      jwtToken,
-      refreshToken,
+      jwt_token: jwtToken,
+      refresh_token: refreshToken,
     };
   }
 
-  public generateKeys(): JWK<Extras> {
+  public async generateKeys(): Promise<
+    JWK<{
+      use: string;
+    }>
+  > {
     const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
       modulusLength: 3072,
     });
@@ -86,13 +90,12 @@ class CryptoProvider implements ICryptoProvider {
       })
       .toString();
 
-    const parsedJwk = pem2jwk(publicExported);
+    const parsedJwk = pem2jwk(publicExported, { use: 'sig' });
 
     const jwksJson = {
       keys: [
         {
-          ...parsedJwk,
-          use: 'sig',
+          parsedJwk,
         },
       ],
     };
@@ -143,10 +146,7 @@ class CryptoProvider implements ICryptoProvider {
       },
     );
 
-    return {
-      ...parsedJwk,
-      use: 'sig',
-    };
+    return parsedJwk;
   }
 }
 
