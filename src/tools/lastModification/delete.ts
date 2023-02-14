@@ -187,22 +187,15 @@ export async function deleteRegister(): Promise<void> {
         },
       );
       const moduleInjection = readFileSync(
-        'src/shared/container/index.ts',
+        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         'ascii',
       );
-      truncate(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
-        error => {
-          if (error) throw error;
-        },
-      );
-      appendFile(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
-        moduleInjection,
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncate('src/shared/container/index.ts', error => {
+        if (error) throw error;
+      });
+      appendFile('src/shared/container/index.ts', moduleInjection, error => {
+        if (error) throw error;
+      });
       const routeInjection = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
         'ascii',

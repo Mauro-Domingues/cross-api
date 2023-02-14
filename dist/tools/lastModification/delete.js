@@ -103,11 +103,11 @@ async function deleteRegister() {
       (0, _fsExtra.unlink)(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`, error => {
         if (error) throw error;
       });
-      const moduleInjection = (0, _fs.readFileSync)('src/shared/container/index.ts', 'ascii');
-      (0, _fsExtra.truncate)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', error => {
+      const moduleInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', 'ascii');
+      (0, _fsExtra.truncate)('src/shared/container/index.ts', error => {
         if (error) throw error;
       });
-      (0, _fsExtra.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection, error => {
+      (0, _fsExtra.appendFile)('src/shared/container/index.ts', moduleInjection, error => {
         if (error) throw error;
       });
       const routeInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', 'ascii');
