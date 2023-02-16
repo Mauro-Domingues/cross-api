@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "2.7.3",
+  "version": "2.7.4",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.",
   "keywords": [
     "cross",
@@ -26,7 +26,7 @@
     "build:src": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "build:bin": "babel index --extensions \".js,.ts\" --out-dir bin --copy-files"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.11.16",
