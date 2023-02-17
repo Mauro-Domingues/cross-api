@@ -10,6 +10,7 @@ import AppError from '@shared/errors/AppError';
 
 import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import { instanceToInstance } from 'class-transformer';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 
@@ -31,7 +32,7 @@ export default class Show${names.upperModuleName}Service {
       code: 200,
       message_code: 'OK',
       message: '${names.upperModuleName} found successfully',
-      data: ${names.lowerModuleName},
+      data: instanceToInstance(${names.lowerModuleName}),
     };
   }
 }

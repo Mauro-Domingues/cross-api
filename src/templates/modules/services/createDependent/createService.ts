@@ -11,6 +11,7 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import { instanceToInstance } from 'class-transformer';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
@@ -32,7 +33,7 @@ export default class Create${names.upperModuleName}Service {
       code: 201,
       message_code: 'CREATED',
       message: '${names.upperModuleName} successfully created',
-      data: ${names.lowerModuleName},
+      data: instanceToInstance(${names.lowerModuleName}),
     };
   }
 }

@@ -13,6 +13,7 @@ import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLo
 import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
 import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
 import ${names.upperModuleName} from '@modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import { instanceToInstance } from 'class-transformer';
 import IObjectDTO from '@dtos/IObjectDTO';
 import IResponseDTO from '@dtos/IResponseDTO';
 
@@ -46,7 +47,7 @@ export default class Update${names.upperModuleName}Service {
       code: 200,
       message_code: 'OK',
       message: 'successfully updated ${names.lowerModuleName}',
-      data: ${names.lowerModuleName},
+      data: instanceToInstance(${names.lowerModuleName}),
     };
   }
 }

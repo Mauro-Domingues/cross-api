@@ -10,12 +10,12 @@ export default async (): Promise<DataSource> => {
 // Image examples
 
 // import uploadConfig from "@config/upload";
-// import { Expose } from "class-transformer";
-
+// import { Exclude, Expose } from "class-transformer";
+//
+//@Exclude()
 // @Column({ type: 'varchar', nullable: true })
 // image: string
-
-// import { Expose } from 'class-transformer'
+//
 // @Expose({ name: "avatar_url" })
 // getAvatarUrl(): string | null {
 //   if (!this.image) {

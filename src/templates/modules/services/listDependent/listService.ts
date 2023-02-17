@@ -12,6 +12,7 @@ export function listDependentService(
 import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import { instanceToInstance } from 'class-transformer';
 import ICacheDTO from '@dtos/ICacheDTO';
 import IListDTO from '@dtos/IListDTO';
 
@@ -31,8 +32,8 @@ export default class List${names.upperModuleName}Service {
     let cache = await this.cacheProvider.recovery<ICacheDTO<${names.upperModuleName}>>(cacheKey);
 
     if (!cache) {
-      const ${names.pluralLowerModuleName} = await this.${names.pluralLowerModuleName}Repository.findAll(page, limit);
-      cache = { data: ${names.pluralLowerModuleName}.${names.pluralLowerModuleName}, total: ${names.pluralLowerModuleName}.amount };
+      const { ${names.pluralLowerModuleName}, amount } = await this.${names.pluralLowerModuleName}Repository.findAll(page, limit);
+      cache = { data: instanceToInstance(${names.pluralLowerModuleName}), total: amount };
       await this.cacheProvider.save(cacheKey, cache);
     }
 
