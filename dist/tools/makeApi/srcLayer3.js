@@ -19,6 +19,7 @@ var _decimalAdjust = require("../../../dist/templates/utils/decimalAdjust");
 var _domains2 = require("../../../dist/templates/utils/domains");
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _ensureAuthenticated = require("../../../dist/templates/middlewares/ensureAuthenticated");
+var _envNamespace = require("../../../dist/templates/types/envNamespace");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function makeThirdLayer() {
   if (!(0, _fs.existsSync)('src/@types/express.d.ts')) {
@@ -34,6 +35,19 @@ async function makeThirdLayer() {
     });
   }
   console.log('\x1b[38;2;255;255;0m', `- express.d.ts ${_messages.default.created}`, '\x1b[0m');
+  if (!(0, _fs.existsSync)('src/@types/env.d.ts')) {
+    (0, _fs.appendFile)('src/@types/env.d.ts', (0, _envNamespace.createEnvNamespace)(), error => {
+      if (error) throw error;
+    });
+  } else {
+    (0, _fs.truncate)('src/@types/env.d.ts', error => {
+      if (error) console.log(error);
+    });
+    (0, _fs.appendFile)('src/@types/env.d.ts', (0, _envNamespace.createEnvNamespace)(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log('\x1b[38;2;255;255;0m', `- env.d.ts ${_messages.default.created}`, '\x1b[0m');
   if (!(0, _fs.existsSync)('src/assets/domains.txt')) {
     (0, _fs.appendFile)('src/assets/domains.txt', (0, _domains.createDomains)(), error => {
       if (error) throw error;

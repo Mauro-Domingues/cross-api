@@ -13,6 +13,7 @@ import { createDecimaAdjust } from '@templates/utils/decimalAdjust';
 import { createDomainsManager } from '@templates/utils/domains';
 import messages from '@tools/messages';
 import { createEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
+import { createEnvNamespace } from '@templates/types/envNamespace';
 
 export async function makeThirdLayer(): Promise<void> {
   if (!existsSync('src/@types/express.d.ts')) {
@@ -30,6 +31,23 @@ export async function makeThirdLayer(): Promise<void> {
   console.log(
     '\x1b[38;2;255;255;0m',
     `- express.d.ts ${messages.created}`,
+    '\x1b[0m',
+  );
+  if (!existsSync('src/@types/env.d.ts')) {
+    appendFile('src/@types/env.d.ts', createEnvNamespace(), error => {
+      if (error) throw error;
+    });
+  } else {
+    truncate('src/@types/env.d.ts', error => {
+      if (error) console.log(error);
+    });
+    appendFile('src/@types/env.d.ts', createEnvNamespace(), error => {
+      if (error) throw error;
+    });
+  }
+  console.log(
+    '\x1b[38;2;255;255;0m',
+    `- env.d.ts ${messages.created}`,
     '\x1b[0m',
   );
   if (!existsSync('src/assets/domains.txt')) {
