@@ -42,7 +42,7 @@ export function createEsLintrcJson(): string {
     "no-console": "off",
     "no-useless-constructor": "off",
     "no-empty-function": "off",
-    "lines-between-class-members": "error",
+    "lines-between-class-members": "warn",
     "import/extensions": [
       "error",
       "ignorePackages",

@@ -6,15 +6,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.createDomainsManager = createDomainsManager;
 function createDomainsManager() {
   return `import fs from 'fs';
+import path from 'path';
 
 class DomainsManager {
-  public read(path = 'src/assets/domains.txt'): string {
+  basePath: string;
+
+  constructor() {
+    this.basePath = path.resolve(__dirname, '..', 'assets', 'domains.txt');
+  }
+
+  public read(path = this.basePath): string {
     const domains = fs.readFileSync(path, 'utf-8');
 
     return domains;
   }
 
-  public write(file: string, path = 'src/assets/domains.txt'): void {
+  public write(file: string, path = this.basePath): void {
     if (!fs.existsSync(path)) {
       fs.mkdirSync(path);
     }
@@ -32,7 +39,7 @@ class DomainsManager {
     }
   }
 
-  public delete(file: string, path = 'src/assets/domains.txt'): void {
+  public delete(file: string, path = this.basePath): void {
     const domains = fs.readFileSync(path, 'utf-8');
     const ArrayOfDomain = domains.split('\\${'n'}');
 

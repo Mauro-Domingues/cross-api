@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createCryptoConfig = createCryptoConfig;
 function createCryptoConfig() {
-  return `enum encodingTypes {
+  return `import path from 'path';
+
+enum encodingTypes {
   'default' = 'hex',
   'unicode8' = 'utf-8',
   'unicode16' = 'utf-16',
@@ -19,6 +21,7 @@ interface ICryptoConfig {
   algorithm: string;
   encoding: encodingTypes.default;
   secretKey: string;
+  basePath: string;
 }
 
 export default {
@@ -26,6 +29,7 @@ export default {
   algorithm: 'aes-256-ctr',
   encoding: 'hex',
   secretKey: process.env.CRYPTO_SECRET_KEY || '',
+  basePath: path.resolve(__dirname, '..', '..', '..', '..', '..', 'assets'),
 } as ICryptoConfig;
 `;
 }

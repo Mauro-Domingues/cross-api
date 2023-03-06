@@ -18,8 +18,8 @@ interface IUploadConfig {
   multer: {
     storage: StorageEngine;
   };
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  config: { disk: {}; aws: { bucket: string } };
+
+  config: { disk: object; aws: { bucket: string } };
 }
 
 export default {
@@ -29,7 +29,7 @@ export default {
   multer: {
     storage: multer.diskStorage({
       destination: tmpFolder,
-      filename(request, file, callback) {
+      filename(_request, file, callback) {
         const fileHash = crypto.randomBytes(10).toString('hex');
         const fileName = \`\${fileHash}-\${file.originalname}\`;
 

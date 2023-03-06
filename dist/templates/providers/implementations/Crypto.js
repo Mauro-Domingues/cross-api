@@ -7,6 +7,7 @@ exports.createCrypto = createCrypto;
 function createCrypto() {
   return `import crypto from 'crypto';
 import fs from 'fs';
+import path from 'path';
 import { sign, SignOptions } from 'jsonwebtoken';
 import { JWK, pem2jwk } from 'pem-jwk';
 import cryptoConfig from '@config/crypto';
@@ -53,18 +54,19 @@ class CryptoProvider implements ICryptoProvider {
     jwt_token: string;
     refresh_token: string;
   }> {
-    const secret = fs.readFileSync('src/assets/keys/private.pem');
+    const secret = fs.readFileSync(
+      path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
+    );
+
     const jwtToken = sign(payload, secret, {
       expiresIn: process.env.JWT_LIFETIME || '1h',
       ...options,
       algorithm: 'RS256',
     });
 
-    const publicPem = fs.readFileSync('src/assets/keys/public.pem');
-
     const refreshToken = crypto
       .createHash('sha256')
-      .update(publicPem)
+      .update(jwtToken)
       .digest('hex');
 
     return {
@@ -73,11 +75,7 @@ class CryptoProvider implements ICryptoProvider {
     };
   }
 
-  public async generateKeys(): Promise<
-    JWK<{
-      use: string;
-    }>
-  > {
+  public async generateKeys(): Promise<JWK<{ use: string }>> {
     const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
       modulusLength: 3072,
     });
@@ -99,53 +97,74 @@ class CryptoProvider implements ICryptoProvider {
     const parsedJwk = pem2jwk(publicExported, { use: 'sig' });
 
     const jwksJson = {
-      keys: [
-        {
-          parsedJwk,
-        },
-      ],
+      keys: [parsedJwk],
     };
 
-    if (!fs.existsSync('src/assets/keys')) {
-      fs.mkdir('src/assets/keys', error => {
+    if (!fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys'))) {
+      fs.mkdir(path.resolve(cryptoConfig.basePath, 'keys'), error => {
         if (error) throw error;
       });
     }
 
-    if (!fs.existsSync('src/assets/.well-known')) {
-      fs.mkdir('src/assets/.well-known', error => {
+    if (!fs.existsSync(path.resolve(cryptoConfig.basePath, '.well-known'))) {
+      fs.mkdir(path.resolve(cryptoConfig.basePath, '.well-known'), error => {
         if (error) throw error;
       });
     }
 
-    if (fs.existsSync('src/assets/keys/private.pem')) {
-      fs.truncate('src/assets/keys/private.pem', error => {
-        if (error) throw error;
-      });
-    }
-
-    fs.appendFile('src/assets/keys/private.pem', privateExported, error => {
-      if (error) throw error;
-    });
-
-    if (fs.existsSync('src/assets/keys/public.pem')) {
-      fs.truncate('src/assets/keys/public.pem', error => {
-        if (error) throw error;
-      });
-    }
-
-    fs.appendFile('src/assets/keys/public.pem', publicExported, error => {
-      if (error) throw error;
-    });
-
-    if (fs.existsSync('src/assets/.well-known/jwks.json')) {
-      fs.truncate('src/assets/.well-known/jwks.json', error => {
-        if (error) throw error;
-      });
+    if (
+      fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'))
+    ) {
+      fs.truncate(
+        path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
+        error => {
+          if (error) throw error;
+        },
+      );
     }
 
     fs.appendFile(
-      'src/assets/.well-known/jwks.json',
+      path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
+      privateExported,
+      error => {
+        if (error) throw error;
+      },
+    );
+
+    if (
+      fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'))
+    ) {
+      fs.truncate(
+        path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+
+    fs.appendFile(
+      path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
+      publicExported,
+      error => {
+        if (error) throw error;
+      },
+    );
+
+    if (
+      fs.existsSync(
+        path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
+      )
+    ) {
+      fs.truncate(
+        path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+
+    fs.appendFile(
+      path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
       JSON.stringify(jwksJson),
       error => {
         if (error) throw error;
