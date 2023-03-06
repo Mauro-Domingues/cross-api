@@ -32,7 +32,7 @@ yarn cross make:module [name]
 
 ```typescript
 interface IObjectDTO {
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 const simpleKey: IObjectDTO = {
@@ -636,6 +636,7 @@ output = {
 <br>
 <h2>Providers</h2>
 <h4>Providers are implementations of services that assist in the business rules of your project, such as storage providers, sending messages, leads... By default, they are created within the "src/shared/containers" directory, where they act as public and independent services, but can also be generated within the modules in "src/modules/[name]/providers". They can contain one or more implementations, you decide which one to use, to switch between them just change the key in .env</h4>
+<h3>Payment providers coming soon!</h3>
 <hr>
 <br>
 <h2>Api Structure</h2>
