@@ -29,7 +29,7 @@ export default {
   algorithm: 'aes-256-ctr',
   encoding: 'hex',
   secretKey: process.env.CRYPTO_SECRET_KEY || '',
-  basePath: path.resolve(__dirname, '..', '..', '..', '..', '..', 'assets'),
+  basePath: path.resolve(__dirname, '..', 'assets'),
 } as ICryptoConfig;
 `;
 }
