@@ -1,12 +1,14 @@
 {
   "name": "cross-api",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.",
   "keywords": [
     "cross",
     "api",
     "cross-api",
-    "cross api"
+    "cross api",
+    "npm cross-api",
+    "npm cross api"
   ],
   "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
   "contributors": [],

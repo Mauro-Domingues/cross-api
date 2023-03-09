@@ -1,6 +1,6 @@
 export function createHashConfig(): string {
   return `interface IHashConfig {
-  secret: string | number;
+  secret: number;
 }
 
 export default {

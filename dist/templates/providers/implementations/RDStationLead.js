@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.createRDStationLead = createRDStationLead;
 function createRDStationLead() {
   return `import leadConfig from '@config/lead';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import AppError from '@shared/errors/AppError';
 
@@ -34,7 +34,7 @@ class RDStationProvider implements ILeadProvider {
       axios.defaults.headers.common.Authorization = \`Bearer \${response.data.access_token}\`;
 
       const leadResponse = await axios.post<ICreateLeadDTO>(
-        \`https://api.rd.services/platform/conversions?api_key=\${leadConfig.public_api_key}\`,
+        \`https://api.rd.services/platform/conversions?api_key=\${leadConfig.publicApiKey}\`,
         {
           event_type: 'CONVERSION',
           event_family: 'CDP',
@@ -47,8 +47,12 @@ class RDStationProvider implements ILeadProvider {
       );
 
       return leadResponse.data;
-    } catch (error: any) {
-      throw new AppError(error.response.statusText, error.response.status);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError && error.response) {
+        throw new AppError(error.response.statusText, error.response.status);
+      } else {
+        throw error;
+      }
     }
   }
 }
