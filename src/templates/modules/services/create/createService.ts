@@ -1,40 +1,46 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createService(
-  names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
-): string {
-  return `import { injectable, inject } from 'tsyringe';
+export class CreateService {
+  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import { injectable, inject } from 'tsyringe';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import I${names.pluralUpperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
-import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
-import ${names.upperModuleName} from '@modules/${names.pluralLowerModuleName}/entities/${names.upperModuleName}';
+import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import ${this.names.upperModuleName} from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
 import IResponseDTO from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Create${names.upperModuleName}Service {
+export default class Create${this.names.upperModuleName}Service {
   constructor(
-    @inject('${names.pluralUpperModuleName}Repository')
-    private ${names.pluralLowerModuleName}Repository: I${names.pluralUpperModuleName}Repository,
+    @inject('${this.names.pluralUpperModuleName}Repository')
+    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
   ) {}
 
-  async execute(${names.lowerModuleName}Data: I${names.upperModuleName}DTO): Promise<IResponseDTO<${names.upperModuleName}>> {
-    const ${names.lowerModuleName} = await this.${names.pluralLowerModuleName}Repository.create(${names.lowerModuleName}Data);
+  async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+    const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(${this.names.lowerModuleName}Data);
 
-    await this.cacheProvider.invalidatePrefix('${names.pluralLowerModuleName}');
+    await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
 
     return {
       code: 201,
       message_code: 'CREATED',
-      message: '${names.upperModuleName} successfully created',
-      data: instanceToInstance(${names.lowerModuleName}),
+      message: '${this.names.upperModuleName} successfully created',
+      data: instanceToInstance(${this.names.lowerModuleName}),
     };
   }
 }
 `;
+  }
 }

@@ -1,5 +1,6 @@
-export function createDomainsManager(): string {
-  return `import fs from 'fs';
+export class CreateDomainsManager {
+  public execute(): string {
+    return `import fs from 'fs';
 import path from 'path';
 
 class DomainsManager {
@@ -54,4 +55,5 @@ class DomainsManager {
 
 export default DomainsManager;
 `;
+  }
 }

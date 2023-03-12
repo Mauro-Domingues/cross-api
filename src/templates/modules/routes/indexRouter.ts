@@ -1,9 +1,15 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createIndexRoute(
-  names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>,
-): string {
-  return `import ${names.lowerModuleName}Router from './${names.lowerModuleName}Router';
-routes.use('/${names.routeModuleName}', ${names.lowerModuleName}Router);
+export class CreateIndexRoute {
+  private names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import ${this.names.lowerModuleName}Router from './${this.names.lowerModuleName}Router';
+routes.use('/${this.names.routeModuleName}', ${this.names.lowerModuleName}Router);
 `;
+  }
 }

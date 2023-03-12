@@ -1,5 +1,6 @@
-export function createServer(): string {
-  return `import createConnection from '@shared/typeorm';
+export class CreateServer {
+  public execute(): string {
+    return `import createConnection from '@shared/typeorm';
 import swaggerUi from 'swagger-ui-express';
 import app from './app';
 
@@ -16,4 +17,5 @@ app.listen(process.env.PORT, () => {
   console.log(\`🚀 Server started on port \${process.env.PORT}!\`);
 });
 `;
+  }
 }

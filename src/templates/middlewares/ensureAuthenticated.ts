@@ -1,5 +1,6 @@
-export function createEnsureAuthenticated(): string {
-  return `import { expressjwt } from 'express-jwt';
+export class CreateEnsureAuthenticated {
+  public execute(): string {
+    return `import { expressjwt } from 'express-jwt';
 import AppError from '@shared/errors/AppError';
 import {
   expressJwtSecret,
@@ -28,4 +29,5 @@ export default expressjwt({
   algorithms: ['RS256'],
 });
 `;
+  }
 }

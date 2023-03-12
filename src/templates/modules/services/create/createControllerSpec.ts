@@ -1,19 +1,24 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createSpecController(
-  names: Pick<
+export class CreateSpecController {
+  private names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
-  >,
-): string {
-  return `import request from 'supertest';
+  >;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';
 import app from '@shared/app';
 
 let connection: DataSource;
 
-describe('Create${names.upperModuleName}Controller', () => {
+describe('Create${this.names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     return connection.runMigrations();
@@ -24,10 +29,10 @@ describe('Create${names.upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to create a new ${names.lowerModuleName}', async () => {
-    const response = await request(app).post('/${names.routeModuleName}').send({
-      name: '${names.lowerModuleName}',
-      description: 'This is a ${names.lowerModuleName}',
+  it('Should be able to create a new ${this.names.lowerModuleName}', async () => {
+    const response = await request(app).post('/${this.names.routeModuleName}').send({
+      name: '${this.names.lowerModuleName}',
+      description: 'This is a ${this.names.lowerModuleName}',
     });
 
     expect(response.status).toBe(200);
@@ -35,4 +40,5 @@ describe('Create${names.upperModuleName}Controller', () => {
   });
 });
 `;
+  }
 }

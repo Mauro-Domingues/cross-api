@@ -1,5 +1,6 @@
-export function createTypeorm(): string {
-  return `import { DataSource } from 'typeorm';
+export class CreateTypeorm {
+  public execute(): string {
+    return `import { DataSource } from 'typeorm';
 
 import { AppDataSource } from './dataSource';
 
@@ -62,4 +63,5 @@ export default async (): Promise<DataSource> => {
 // })
 // relationEntity: relationEntity[];
 `;
+  }
 }

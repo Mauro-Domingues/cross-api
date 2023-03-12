@@ -1,5 +1,6 @@
-export function createAppError(): string {
-  return `class AppError {
+export class CreateAppError {
+  public execute(): string {
+    return `class AppError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -12,4 +13,5 @@ export function createAppError(): string {
 
 export default AppError;
 `;
+  }
 }

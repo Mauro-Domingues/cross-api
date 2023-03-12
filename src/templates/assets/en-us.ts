@@ -1,4 +1,8 @@
-export default `module.exports = {
+export class Messages {
+  public messages: string;
+
+  constructor() {
+    this.messages = `module.exports = {
   language: '➤  Which language do you prefer?',
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
@@ -48,3 +52,9 @@ export default `module.exports = {
     'PUT STRINGIFIED OBJECT -> Takes as parameter a stringified object and another object, converts, maps, and returns the stringified object with the updated properties. Considers empty values sent, but non-entity-type properties are discarded.',
 };
 `;
+  }
+
+  execute(): string {
+    return this.messages;
+  }
+}

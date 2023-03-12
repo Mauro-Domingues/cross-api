@@ -1,5 +1,6 @@
-export function createEnvNamespace(): string {
-  return `declare namespace NodeJS {
+export class CreateEnvNamespace {
+  public execute(): string {
+    return `declare namespace NodeJS {
   export interface ProcessEnv {
     PORT: string;
     API_URL: string;
@@ -47,4 +48,5 @@ export function createEnvNamespace(): string {
   }
 }
 `;
+  }
 }

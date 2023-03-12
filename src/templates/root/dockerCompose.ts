@@ -1,5 +1,6 @@
-export function createDockerCompose(): string {
-  return `version: '3'
+export class CreateDockerCompose {
+  public execute(): string {
+    return `version: '3'
 
 services:
   database:
@@ -28,4 +29,5 @@ services:
 networks:
   rs-network:
     driver: bridge`;
+  }
 }

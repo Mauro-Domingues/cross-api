@@ -1,6 +1,10 @@
 import { appendFile, truncate } from 'fs';
 
-const configBody = `Object.defineProperty(exports, '__esModule', {
+export class Config {
+  private configBody: string;
+
+  constructor() {
+    this.configBody = `Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 exports.configJson = configJson;
@@ -21,16 +25,18 @@ function configJson() {
 }
 configJson();
 `;
+  }
 
-export function config(): void {
-  truncate('./node_modules/cross-api/dist/tools/config.js', error => {
-    if (error) console.log(error);
-  });
-  appendFile(
-    './node_modules/cross-api/dist/tools/config.js',
-    configBody,
-    error => {
-      if (error) throw error;
-    },
-  );
+  public execute(): void {
+    truncate('./node_modules/cross-api/dist/tools/config.js', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
+      './node_modules/cross-api/dist/tools/config.js',
+      this.configBody,
+      error => {
+        if (error) throw error;
+      },
+    );
+  }
 }

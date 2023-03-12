@@ -1,5 +1,6 @@
-export function createRateLimiter(): string {
-  return `import { Request, Response, NextFunction } from 'express';
+export class CreateRateLimiter {
+  public execute(): string {
+    return `import { Request, Response, NextFunction } from 'express';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
 import redis from 'redis';
 
@@ -30,4 +31,5 @@ export default async function rateLimiter(
   }
 }
 `;
+  }
 }

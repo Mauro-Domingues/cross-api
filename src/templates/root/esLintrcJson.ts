@@ -1,5 +1,6 @@
-export function createEsLintrcJson(): string {
-  return `{
+export class CreateEsLintrcJson {
+  public execute(): string {
+    return `{
   "env": {
       "es2020": true,
       "node": true,
@@ -69,4 +70,5 @@ export function createEsLintrcJson(): string {
       }
   }
 }`;
+  }
 }

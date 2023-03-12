@@ -1,9 +1,14 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createEntity(
-  names: Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>,
-): string {
-  return `import {
+export class CreateEntity {
+  private names: Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
@@ -12,8 +17,8 @@ export function createEntity(
   DeleteDateColumn,
 } from 'typeorm';
 
-@Entity('${names.dbModuleName}')
-export default class ${names.upperModuleName} {
+@Entity('${this.names.dbModuleName}')
+export default class ${this.names.upperModuleName} {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -33,4 +38,5 @@ export default class ${names.upperModuleName} {
   deleted_at: Date;
 }
 `;
+  }
 }

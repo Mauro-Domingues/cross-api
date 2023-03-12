@@ -1,5 +1,6 @@
-export function createTsConfig(): string {
-  return `{
+export class CreateTsConfig {
+  public execute(): string {
+    return `{
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -27,4 +28,5 @@ export function createTsConfig(): string {
   "exclude": ["node_modules", "dist"],
   "ts-node": {"files": true}
 }`;
+  }
 }

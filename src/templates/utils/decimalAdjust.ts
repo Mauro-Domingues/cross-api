@@ -1,5 +1,6 @@
-export function createDecimaAdjust(): string {
-  return `export function roundDecimal(v: number, exp?: number) {
+export class CreateDecimaAdjust {
+  public execute(): string {
+    return `export function roundDecimal(v: number, exp?: number) {
   if (typeof exp === 'undefined') {
     return NaN;
   }
@@ -35,4 +36,5 @@ export function createDecimaAdjust(): string {
   return negative ? result * -1 : result;
 }
 `;
+  }
 }

@@ -1,28 +1,35 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createDependentRoute(
-  names: Pick<IModuleNamesDTO, 'upperModuleName' | 'routeModuleName'>,
-  fatherNames: Pick<
+export class CreateDependentRoute {
+  private names: Pick<IModuleNamesDTO, 'upperModuleName' | 'routeModuleName'>;
+  private fatherNames: Pick<
     IModuleNamesDTO,
     'pluralLowerModuleName' | 'lowerModuleName'
-  >,
-): string {
-  return `import Create${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}/Create${names.upperModuleName}Controller';
-import Show${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}/Show${names.upperModuleName}Controller';
-import List${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}/List${names.upperModuleName}Controller';
-import Update${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}/Update${names.upperModuleName}Controller';
-import Delete${names.upperModuleName}Controller from '@modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}/Delete${names.upperModuleName}Controller';
+  >;
 
-const create${names.upperModuleName}Controller = new Create${names.upperModuleName}Controller();
-const list${names.upperModuleName}Controller = new List${names.upperModuleName}Controller();
-const show${names.upperModuleName}Controller = new Show${names.upperModuleName}Controller();
-const update${names.upperModuleName}Controller = new Update${names.upperModuleName}Controller();
-const delete${names.upperModuleName}Controller = new Delete${names.upperModuleName}Controller();
+  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
 
-${fatherNames.lowerModuleName}Router.post('/track/${names.routeModuleName}', create${names.upperModuleName}Controller.handle);
-${fatherNames.lowerModuleName}Router.get('/track/${names.routeModuleName}', list${names.upperModuleName}Controller.handle);
-${fatherNames.lowerModuleName}Router.get('/track/${names.routeModuleName}/:id', show${names.upperModuleName}Controller.handle);
-${fatherNames.lowerModuleName}Router.put('/track/${names.routeModuleName}/:id', update${names.upperModuleName}Controller.handle);
-${fatherNames.lowerModuleName}Router.delete('/track/${names.routeModuleName}/:id', delete${names.upperModuleName}Controller.handle);
+  public execute(): string {
+    return `import Create${this.names.upperModuleName}Controller from '@modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
+import Show${this.names.upperModuleName}Controller from '@modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
+import List${this.names.upperModuleName}Controller from '@modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller';
+import Update${this.names.upperModuleName}Controller from '@modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller';
+import Delete${this.names.upperModuleName}Controller from '@modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller';
+
+const create${this.names.upperModuleName}Controller = new Create${this.names.upperModuleName}Controller();
+const list${this.names.upperModuleName}Controller = new List${this.names.upperModuleName}Controller();
+const show${this.names.upperModuleName}Controller = new Show${this.names.upperModuleName}Controller();
+const update${this.names.upperModuleName}Controller = new Update${this.names.upperModuleName}Controller();
+const delete${this.names.upperModuleName}Controller = new Delete${this.names.upperModuleName}Controller();
+
+${this.fatherNames.lowerModuleName}Router.post('/track/${this.names.routeModuleName}', create${this.names.upperModuleName}Controller.handle);
+${this.fatherNames.lowerModuleName}Router.get('/track/${this.names.routeModuleName}', list${this.names.upperModuleName}Controller.handle);
+${this.fatherNames.lowerModuleName}Router.get('/track/${this.names.routeModuleName}/:id', show${this.names.upperModuleName}Controller.handle);
+${this.fatherNames.lowerModuleName}Router.put('/track/${this.names.routeModuleName}/:id', update${this.names.upperModuleName}Controller.handle);
+${this.fatherNames.lowerModuleName}Router.delete('/track/${this.names.routeModuleName}/:id', delete${this.names.upperModuleName}Controller.handle);
 `;
+  }
 }

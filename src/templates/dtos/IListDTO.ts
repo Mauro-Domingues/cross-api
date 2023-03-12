@@ -1,5 +1,6 @@
-export function createIListDTO(): string {
-  return `import IResponseDTO from './IResponseDTO';
+export class CreateIListDTO {
+  public execute(): string {
+    return `import IResponseDTO from './IResponseDTO';
 
 export default interface IListDTO<T> extends IResponseDTO<T[]> {
   pagination: {
@@ -11,4 +12,5 @@ export default interface IListDTO<T> extends IResponseDTO<T[]> {
   data: T[];
 }
 `;
+  }
 }

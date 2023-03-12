@@ -1,8 +1,15 @@
 import messages from '@tools/messages';
 
-export function createMapAndPatch(): string {
-  return `/**
- * ${messages.mapAndPatch}
+export class CreateMapAndPatch {
+  private messages: typeof messages;
+
+  constructor() {
+    this.messages = messages;
+  }
+
+  public execute(): string {
+    return `/**
+ * ${this.messages.mapAndPatch}
  * @param oldAttributes Entity
  * @param newAttributes Object
  * @returns Promise: Entity
@@ -19,4 +26,5 @@ export default async function mapAndPatchAttribute<Entity, DTO>(
   return oldAttributes;
 }
 `;
+  }
 }

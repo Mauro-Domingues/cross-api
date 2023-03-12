@@ -1,5 +1,6 @@
-export function createBabelConfig(): string {
-  return `module.exports = {
+export class CreateBabelConfig {
+  public execute(): string {
+    return `module.exports = {
   presets: [
     ['@babel/preset-env', {targets: {node: 'current'}}],
     '@babel/preset-typescript'
@@ -20,4 +21,5 @@ export function createBabelConfig(): string {
   ],
 }
 `;
+  }
 }

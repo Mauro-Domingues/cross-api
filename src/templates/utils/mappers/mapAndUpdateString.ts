@@ -1,10 +1,17 @@
 import messages from '@tools/messages';
 
-export function createMapAndUpdateString(): string {
-  return `import mapAndUpdateAttribute from './mapAndUpdateAttribute';
+export class CreateMapAndUpdateString {
+  private messages: typeof messages;
+
+  constructor() {
+    this.messages = messages;
+  }
+
+  public execute(): string {
+    return `import mapAndUpdateAttribute from './mapAndUpdateAttribute';
 
 /**
- * ${messages.mapAndUpdateString}
+ * ${this.messages.mapAndUpdateString}
  * @param oldAttributes string
  * @param newAttributes Object
  * @returns Promise: string
@@ -20,4 +27,5 @@ export default async function mapAndUpdateStringify<Type>(
   return JSON.stringify(updatedAttributes);
 }
 `;
+  }
 }

@@ -1,18 +1,25 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createDependentInjection(
-  names: Pick<
+export class CreateDependentInjection {
+  private names: Pick<
     IModuleNamesDTO,
     'pluralUpperModuleName' | 'pluralLowerModuleName'
-  >,
-  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
-): string {
-  return `import I${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository';
-import ${names.pluralUpperModuleName}Repository from '@modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository';
+  >;
+  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
 
-container.registerSingleton<I${names.pluralUpperModuleName}Repository>(
-  '${names.pluralUpperModuleName}Repository',
-  ${names.pluralUpperModuleName}Repository,
+  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import ${this.names.pluralUpperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository';
+
+container.registerSingleton<I${this.names.pluralUpperModuleName}Repository>(
+  '${this.names.pluralUpperModuleName}Repository',
+  ${this.names.pluralUpperModuleName}Repository,
 );
 `;
+  }
 }

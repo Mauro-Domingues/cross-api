@@ -1,9 +1,18 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createIndexDependentRoute(
-  fatherNames: Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>,
-): string {
-  return `import ${fatherNames.lowerModuleName}Router from './${fatherNames.lowerModuleName}Router';
-routes.use('/${fatherNames.routeModuleName}', ${fatherNames.lowerModuleName}Router);
+export class CreateIndexDependentRoute {
+  private fatherNames: Pick<
+    IModuleNamesDTO,
+    'lowerModuleName' | 'routeModuleName'
+  >;
+
+  constructor(fatherNames: IModuleNamesDTO) {
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import ${this.fatherNames.lowerModuleName}Router from './${this.fatherNames.lowerModuleName}Router';
+routes.use('/${this.fatherNames.routeModuleName}', ${this.fatherNames.lowerModuleName}Router);
 `;
+  }
 }

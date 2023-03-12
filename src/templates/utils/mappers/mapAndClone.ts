@@ -1,10 +1,17 @@
 import messages from '@tools/messages';
 
-export function createMapAndClone(): string {
-  return `import IObjectDTO from "@dtos/IObjectDTO";
+export class CreateMapAndClone {
+  private messages: typeof messages;
+
+  constructor() {
+    this.messages = messages;
+  }
+
+  public execute(): string {
+    return `import IObjectDTO from "@dtos/IObjectDTO";
 
 /**
- * ${messages.mapAndClone}
+ * ${this.messages.mapAndClone}
  * @param attribute IObjectDTO
  * @returns Promise: IObjectDTO[]
  * @param params string[]
@@ -23,4 +30,5 @@ export default async function mapAndCloneAttribute(
   return objectArray;
 }
 `;
+  }
 }

@@ -1,7 +1,9 @@
-export function createNodemonJson(): string {
-  return `{
+export class CreateNodemonJson {
+  public execute(): string {
+    return `{
   "execMap":{
       "js": "node -r sucrase/register"
   }
 }`;
+  }
 }

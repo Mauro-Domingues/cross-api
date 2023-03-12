@@ -1,5 +1,6 @@
-export function createApp(): string {
-  return `import 'express-async-errors';
+export class CreateApp {
+  public execute(): string {
+    return `import 'express-async-errors';
 // import uploadConfig from '@config/upload'; // uploadProvider
 import { errors } from 'celebrate';
 import cors from 'cors';
@@ -55,4 +56,5 @@ app.use(
 
 export default app;
 `;
+  }
 }

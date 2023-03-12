@@ -1,29 +1,36 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createIDependentRepository(
-  names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
-  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
-): string {
-  return `import ${names.upperModuleName} from '@modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}';
-import I${names.upperModuleName}DTO from '@modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
+export class CreateIDependentRepository {
+  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;
+  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+
+  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import ${this.names.upperModuleName} from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import I${this.names.upperModuleName}DTO from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
 import IObjectDTO from '@dtos/IObjectDTO';
 
-export default interface I${names.pluralUpperModuleName}Repository {
+export default interface I${this.names.pluralUpperModuleName}Repository {
   findAll(
     page: number,
     limit: number,
     conditions?: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<{ ${names.pluralLowerModuleName}: ${names.upperModuleName}[]; amount: number }>;
+  ): Promise<{ ${this.names.pluralLowerModuleName}: ${this.names.upperModuleName}[]; amount: number }>;
   findBy(
-    ${names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
+    ${this.names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
     relations?: string[],
-  ): Promise<${names.upperModuleName} | null>;
-  create(${names.lowerModuleName}Data: I${names.upperModuleName}DTO): Promise<${names.upperModuleName}>;
-  update(${names.lowerModuleName}Data: ${names.upperModuleName}): Promise<${names.upperModuleName}>;
-  delete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
-  softDelete(${names.lowerModuleName}Data: ${names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+  ): Promise<${this.names.upperModuleName} | null>;
+  create(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<${this.names.upperModuleName}>;
+  update(${this.names.lowerModuleName}Data: ${this.names.upperModuleName}): Promise<${this.names.upperModuleName}>;
+  delete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+  softDelete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
 }
 `;
+  }
 }

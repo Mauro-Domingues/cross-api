@@ -1,27 +1,33 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createController(
-  names: Pick<
+export class CreateController {
+  private names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
-  >,
-): string {
-  return `import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
+  >;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Create${names.upperModuleName}Service from './Create${names.upperModuleName}Service';
+import Create${this.names.upperModuleName}Service from './Create${this.names.upperModuleName}Service';
 
-export default class Create${names.upperModuleName}Controller {
+export default class Create${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const ${names.lowerModuleName}Data: I${names.upperModuleName}DTO = request.body;
+    const ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO = request.body;
 
-    const create${names.upperModuleName} = container.resolve(Create${names.upperModuleName}Service);
+    const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);
 
-    const ${names.lowerModuleName} = await create${names.upperModuleName}.execute(${names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Data);
 
-    return response.send(${names.lowerModuleName});
+    return response.send(${this.names.lowerModuleName});
   }
 }
 `;
+  }
 }

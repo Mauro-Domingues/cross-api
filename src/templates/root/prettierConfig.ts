@@ -1,8 +1,10 @@
-export function createPrettierConfig(): string {
-  return `module.exports = {
+export class CreatePrettierConfig {
+  public execute(): string {
+    return `module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'avoid',
 }
 `;
+  }
 }

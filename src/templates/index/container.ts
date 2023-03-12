@@ -1,6 +1,8 @@
-export function createContainer(): string {
-  return `import './providers';
+export class CreateContainer {
+  public execute(): string {
+    return `import './providers';
 
 import { container } from 'tsyringe';
 `;
+  }
 }

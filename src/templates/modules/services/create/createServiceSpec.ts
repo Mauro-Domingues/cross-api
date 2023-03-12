@@ -1,36 +1,42 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createSpecService(
-  names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
-): string {
-  return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+export class CreateSpecService {
+  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;
 
-import Fake${names.upperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
-import Create${names.upperModuleName}Services from './Create${names.upperModuleName}Service';
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
 
-let fake${names.upperModuleName}Repository: Fake${names.upperModuleName}Repository;
+  public execute(): string {
+    return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+
+import Fake${this.names.upperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import Create${this.names.upperModuleName}Services from './Create${this.names.upperModuleName}Service';
+
+let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let create${names.upperModuleName}: Create${names.upperModuleName}Services;
+let create${this.names.upperModuleName}: Create${this.names.upperModuleName}Services;
 
-describe('Create${names.upperModuleName}Service', () => {
+describe('Create${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${names.upperModuleName}Repository = new Fake${names.upperModuleName}Repository();
+    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    create${names.upperModuleName} = new Create${names.upperModuleName}Services(
-      fake${names.upperModuleName}Repository,
+    create${this.names.upperModuleName} = new Create${this.names.upperModuleName}Services(
+      fake${this.names.upperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
-  it('should be able to create a new ${names.lowerModuleName}', async () => {
-    const ${names.lowerModuleName} = await create${names.upperModuleName}.execute({
-      name: '${names.lowerModuleName}',
-      description: 'This is a ${names.lowerModuleName}',
+  it('should be able to create a new ${this.names.lowerModuleName}', async () => {
+    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute({
+      name: '${this.names.lowerModuleName}',
+      description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    expect(${names.lowerModuleName}.data).toHaveProperty('id');
+    expect(${this.names.lowerModuleName}.data).toHaveProperty('id');
   });
 });
 `;
+  }
 }
