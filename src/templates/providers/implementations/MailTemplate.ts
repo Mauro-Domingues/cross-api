@@ -1,5 +1,6 @@
-export function createMailTemplate(): string {
-  return `import fs from 'fs';
+export class CreateMailTemplate {
+  public execute(): string {
+    return `import fs from 'fs';
 import handlebars from 'handlebars';
 
 import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
@@ -22,4 +23,5 @@ class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
 
 export default HandlebarsMailTemplateProvider;
 `;
+  }
 }

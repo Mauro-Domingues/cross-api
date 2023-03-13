@@ -1,5 +1,6 @@
-export function createCrypto(): string {
-  return `import crypto from 'crypto';
+export class CreateCrypto {
+  public execute(): string {
+    return `import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { sign, SignOptions } from 'jsonwebtoken';
@@ -171,4 +172,5 @@ class CryptoProvider implements ICryptoProvider {
 
 export default CryptoProvider;
 `;
+  }
 }

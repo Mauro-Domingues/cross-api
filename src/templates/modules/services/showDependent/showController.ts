@@ -1,24 +1,30 @@
 import { IModuleNamesDTO } from 'index';
 
-export function showDependentController(
-  names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>,
-): string {
-  return `import IObjectDTO from '@dtos/IObjectDTO';
+export class ShowDependentController {
+  private names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import IObjectDTO from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Show${names.upperModuleName}Service from './Show${names.upperModuleName}Service';
+import Show${this.names.upperModuleName}Service from './Show${this.names.upperModuleName}Service';
 
-export default class Show${names.upperModuleName}Controller {
+export default class Show${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const show${names.upperModuleName} = container.resolve(Show${names.upperModuleName}Service);
+    const show${this.names.upperModuleName} = container.resolve(Show${this.names.upperModuleName}Service);
 
-    const ${names.lowerModuleName}Param: IObjectDTO = request.params;
+    const ${this.names.lowerModuleName}Param: IObjectDTO = request.params;
 
-    const ${names.lowerModuleName} = await show${names.upperModuleName}.execute(${names.lowerModuleName}Param);
+    const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param);
 
-    return response.send(${names.lowerModuleName});
+    return response.send(${this.names.lowerModuleName});
   }
 }
 `;
+  }
 }

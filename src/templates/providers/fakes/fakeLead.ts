@@ -1,5 +1,6 @@
-export function createFakeLead(): string {
-  return `import ILeadProvider from '../models/ILeadProvider';
+export class CreateFakeLead {
+  public execute(): string {
+    return `import ILeadProvider from '../models/ILeadProvider';
 import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
 
 class FakeLeadProvider implements ILeadProvider {
@@ -14,4 +15,5 @@ class FakeLeadProvider implements ILeadProvider {
 
 export default FakeLeadProvider;
 `;
+  }
 }

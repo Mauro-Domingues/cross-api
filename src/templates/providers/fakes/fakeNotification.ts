@@ -1,5 +1,6 @@
-export function createFakeNotification(): string {
-  return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
+export class CreateFakeNotification {
+  public execute(): string {
+    return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
 import INotificationProvider from '../models/INotificationProvider';
 
 class FakeNotificationProvider implements INotificationProvider {
@@ -12,4 +13,5 @@ class FakeNotificationProvider implements INotificationProvider {
 
 export default FakeNotificationProvider;
 `;
+  }
 }

@@ -1,5 +1,6 @@
-export function createNotificationIndex(): string {
-  return `import { container } from 'tsyringe';
+export class CreateNotificationIndex {
+  public execute(): string {
+    return `import { container } from 'tsyringe';
 
 import OneSignalProvider from './implementations/OneSignalProvider';
 import INotificationProvider from './models/INotificationProvider';
@@ -13,4 +14,5 @@ container.registerInstance<INotificationProvider>(
   providers.onesignal,
 );
 `;
+  }
 }

@@ -1,5 +1,6 @@
-export function createCacheIndex(): string {
-  return `import { container } from 'tsyringe';
+export class CreateCacheIndex {
+  public execute(): string {
+    return `import { container } from 'tsyringe';
 
 import RedisCacheProvider from './implementations/RedisCacheProvider';
 import ICacheProvider from './models/ICacheProvider';
@@ -10,4 +11,5 @@ const providers = {
 
 container.registerInstance<ICacheProvider>('CacheProvider', providers.redis);
 `;
+  }
 }

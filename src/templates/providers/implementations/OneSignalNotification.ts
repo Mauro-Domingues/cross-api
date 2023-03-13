@@ -1,5 +1,6 @@
-export function createOneSignalNotification(): string {
-  return `import oneSignalConfig from '@config/notification';
+export class CreateOneSignalNotification {
+  public execute(): string {
+    return `import oneSignalConfig from '@config/notification';
 import https from 'https';
 import { injectable } from 'tsyringe';
 
@@ -40,4 +41,5 @@ class OneSignalProvider implements INotificationProvider {
 
 export default OneSignalProvider;
 `;
+  }
 }

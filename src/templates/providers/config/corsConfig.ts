@@ -1,5 +1,6 @@
-export function createCorsConfig(): string {
-  return `import DomainsManager from '@utils/domainsManager';
+export class CreateCorsConfig {
+  public execute(): string {
+    return `import DomainsManager from '@utils/domainsManager';
 import { CorsOptions } from 'cors';
 
 export default {
@@ -17,4 +18,5 @@ export default {
   },
 } as CorsOptions;
 `;
+  }
 }

@@ -1,6 +1,8 @@
-export function createILeadDTO(): string {
-  return `export default interface ICreateLeadDTO {
+export class CreateILeadDTO {
+  public execute(): string {
+    return `export default interface ICreateLeadDTO {
   event_uuid: string;
 }
 `;
+  }
 }

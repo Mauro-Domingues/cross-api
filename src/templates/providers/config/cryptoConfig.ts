@@ -1,5 +1,6 @@
-export function createCryptoConfig(): string {
-  return `import path from 'path';
+export class createCryptoConfig {
+  public execute(): string {
+    return `import path from 'path';
 
 enum encodingTypes {
   'default' = 'hex',
@@ -26,4 +27,5 @@ export default {
   basePath: path.resolve(__dirname, '..', 'assets'),
 } as ICryptoConfig;
 `;
+  }
 }

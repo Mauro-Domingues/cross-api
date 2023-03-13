@@ -1,5 +1,6 @@
-export function createSESMail(): string {
-  return `import mailConfig from '@config/mail';
+export class CreateSESMail {
+  public execute(): string {
+    return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
@@ -50,4 +51,5 @@ class SESMailProvider implements IMailProvider {
 
 export default SESMailProvider;
 `;
+  }
 }

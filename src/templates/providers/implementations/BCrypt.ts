@@ -1,5 +1,6 @@
-export function createHash(): string {
-  return `import { hash, compare } from 'bcrypt';
+export class CreateHash {
+  public execute(): string {
+    return `import { hash, compare } from 'bcrypt';
 import hashConfig from '@config/hash';
 
 import IHashProvider from '../models/IHashProvider';
@@ -16,4 +17,5 @@ class BCryptHashProvider implements IHashProvider {
 
 export default BCryptHashProvider;
 `;
+  }
 }

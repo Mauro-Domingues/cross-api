@@ -1,5 +1,6 @@
-export function createCacheConfig(): string {
-  return `import { RedisOptions } from 'ioredis';
+export class CreateCacheConfig {
+  public execute(): string {
+    return `import { RedisOptions } from 'ioredis';
 
 interface ICacheConfig {
   driver: 'redis';
@@ -19,4 +20,5 @@ export default {
   },
 } as ICacheConfig;
 `;
+  }
 }

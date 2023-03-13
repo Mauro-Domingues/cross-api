@@ -1,23 +1,29 @@
 import { IModuleNamesDTO } from 'index';
 
-export function updateSpecDependentController(
-  names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>,
-  fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>,
-): string {
-  return `import request from 'supertest';
+export class UpdateSpecDependentController {
+  private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>;
+  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>;
+
+  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';
 import app from '@shared/app';
 
 let connection: DataSource;
 
-describe('Update${names.upperModuleName}Controller', () => {
+describe('Update${this.names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
 
     return connection.query(
-      \`INSERT INTO ${names.dbModuleName}(id, name, description) values('12345', '${names.lowerModuleName}', 'This is a ${names.lowerModuleName}')\`,
+      \`INSERT INTO ${this.names.dbModuleName}(id, name, description) values('12345', '${this.names.lowerModuleName}', 'This is a ${this.names.lowerModuleName}')\`,
     );
   });
 
@@ -26,14 +32,15 @@ describe('Update${names.upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to update ${names.pluralLowerModuleName}', async () => {
-    const response = await request(app).put('/${fatherNames.routeModuleName}/track/${names.routeModuleName}/12345').send({
-      name: 'updated${names.upperModuleName}',
+  it('Should be able to update ${this.names.pluralLowerModuleName}', async () => {
+    const response = await request(app).put('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345').send({
+      name: 'updated${this.names.upperModuleName}',
     });
 
     expect(response.status).toBe(200);
-    expect(response.body.data.name).toEqual('updated${names.upperModuleName}');
+    expect(response.body.data.name).toEqual('updated${this.names.upperModuleName}');
   });
 });
 `;
+  }
 }

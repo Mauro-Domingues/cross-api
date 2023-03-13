@@ -1,14 +1,19 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createDependentEtherealMail(
-  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
-): string {
-  return `import nodemailer, { Transporter } from 'nodemailer';
+export class CreateDependentEtherealMail {
+  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+
+  constructor(fatherNames: IModuleNamesDTO) {
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import IMailTemplateProvider from '@modules/${
-    fatherNames.pluralLowerModuleName
-  }/providers/MailTemplateProvider/models/IMailTemplateProvider';
+      this.fatherNames.pluralLowerModuleName
+    }/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
@@ -72,4 +77,5 @@ class EtherealMailProvider implements IMailProvider {
 
 export default EtherealMailProvider;
 `;
+  }
 }

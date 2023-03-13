@@ -1,5 +1,6 @@
-export function createLeadIndex(): string {
-  return `import { container } from 'tsyringe';
+export class CreateLeadIndex {
+  public execute(): string {
+    return `import { container } from 'tsyringe';
 
 import ILeadProvider from './models/ILeadProvider';
 import RDStationProvider from './implementations/RDStationProvider';
@@ -10,4 +11,5 @@ const providers = {
 
 container.registerInstance<ILeadProvider>('LeadProvider', providers.rdStation);
 `;
+  }
 }

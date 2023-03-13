@@ -1,5 +1,6 @@
-export function createMailConfig(): string {
-  return `interface IMailConfig {
+export class CreateMailConfig {
+  public execute(): string {
+    return `interface IMailConfig {
   driver: 'ethereal' | 'ses';
 
   defaults: {
@@ -21,4 +22,5 @@ export default {
   },
 } as IMailConfig;
 `;
+  }
 }

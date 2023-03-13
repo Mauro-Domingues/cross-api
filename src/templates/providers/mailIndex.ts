@@ -1,5 +1,6 @@
-export function createMailIndex(): string {
-  return `import mailConfig from '@config/mail';
+export class CreateMailIndex {
+  public execute(): string {
+    return `import mailConfig from '@config/mail';
 import { container } from 'tsyringe';
 
 import EtherealMailProvider from './implementations/EtherealMailProvider';
@@ -16,4 +17,5 @@ container.registerInstance<IMailProvider>(
   providers[mailConfig.driver],
 );
 `;
+  }
 }

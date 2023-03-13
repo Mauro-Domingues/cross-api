@@ -1,14 +1,19 @@
 import { IModuleNamesDTO } from 'index';
 
-export function createDependentSESMail(
-  fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>,
-): string {
-  return `import mailConfig from '@config/mail';
+export class CreateDependentSESMail {
+  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+
+  constructor(fatherNames: IModuleNamesDTO) {
+    this.fatherNames = fatherNames;
+  }
+
+  public execute(): string {
+    return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@modules/${fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import IMailTemplateProvider from '@modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
 import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
@@ -54,4 +59,5 @@ class SESMailProvider implements IMailProvider {
 
 export default SESMailProvider;
 `;
+  }
 }

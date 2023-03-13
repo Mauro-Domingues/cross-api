@@ -1,29 +1,35 @@
 import { IModuleNamesDTO } from 'index';
 
-export function updateController(
-  names: Pick<
+export class UpdateController {
+  private names: Pick<
     IModuleNamesDTO,
     'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
-  >,
-): string {
-  return `import { Request, Response } from 'express';
+  >;
+
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import I${names.upperModuleName}DTO from '@modules/${names.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO';
+import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import IObjectDTO from '@dtos/IObjectDTO';
-import Update${names.upperModuleName}Service from './Update${names.upperModuleName}Service';
+import Update${this.names.upperModuleName}Service from './Update${this.names.upperModuleName}Service';
 
-export default class Update${names.upperModuleName}Controller {
+export default class Update${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
-    const update${names.upperModuleName} = container.resolve(Update${names.upperModuleName}Service);
+    const update${this.names.upperModuleName} = container.resolve(Update${this.names.upperModuleName}Service);
 
-    const ${names.lowerModuleName}Param: IObjectDTO = request.params;
-    const ${names.lowerModuleName}Data: I${names.upperModuleName}DTO = request.body;
+    const ${this.names.lowerModuleName}Param: IObjectDTO = request.params;
+    const ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO = request.body;
 
-    const ${names.lowerModuleName} = await update${names.upperModuleName}.execute(${names.lowerModuleName}Param, ${names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param, ${this.names.lowerModuleName}Data);
 
-    return response.send(${names.lowerModuleName});
+    return response.send(${this.names.lowerModuleName});
   }
 }
 `;
+  }
 }

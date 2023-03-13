@@ -1,5 +1,6 @@
-export function createS3Storage(): string {
-  return `import uploadConfig from '@config/upload';
+export class CreateS3Storage {
+  public execute(): string {
+    return `import uploadConfig from '@config/upload';
 import aws, { S3 } from 'aws-sdk';
 import fs from 'fs';
 import mime from 'mime';
@@ -56,4 +57,5 @@ class S3StorageProvider implements IStorageProvider {
 
 export default S3StorageProvider;
 `;
+  }
 }

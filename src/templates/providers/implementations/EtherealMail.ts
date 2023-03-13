@@ -1,5 +1,6 @@
-export function createEtherealMail(): string {
-  return `import nodemailer, { Transporter } from 'nodemailer';
+export class CreateEtherealMail {
+  public execute(): string {
+    return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
@@ -66,4 +67,5 @@ class EtherealMailProvider implements IMailProvider {
 
 export default EtherealMailProvider;
 `;
+  }
 }

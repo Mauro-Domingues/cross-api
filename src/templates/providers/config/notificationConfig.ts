@@ -1,5 +1,6 @@
-export function createNotificationConfig(): string {
-  return `export default {
+export class CreateNotificationConfig {
+  public execute(): string {
+    return `export default {
   onesignal: {
     options: {
       host: 'onesignal.com',
@@ -14,4 +15,5 @@ export function createNotificationConfig(): string {
   },
 };
 `;
+  }
 }

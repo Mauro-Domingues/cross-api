@@ -1,5 +1,6 @@
-export function createFakeStorage(): string {
-  return `import IStorageProvider from '../models/IStorageProvider';
+export class CreateFakeStorage {
+  public execute(): string {
+    return `import IStorageProvider from '../models/IStorageProvider';
 
 class FakeStorageProvider implements IStorageProvider {
   private storage: string[] = [];
@@ -21,4 +22,5 @@ class FakeStorageProvider implements IStorageProvider {
 
 export default FakeStorageProvider;
 `;
+  }
 }

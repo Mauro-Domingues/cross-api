@@ -1,5 +1,6 @@
-export function createRedisCache(): string {
-  return `import cacheConfig from '@config/cache';
+export class CreateRedisCache {
+  public execute(): string {
+    return `import cacheConfig from '@config/cache';
 import Redis, { Redis as RedisClient } from 'ioredis';
 
 import ICacheProvider from '../models/ICacheProvider';
@@ -46,4 +47,5 @@ class RedisCacheProvider implements ICacheProvider {
 
 export default RedisCacheProvider;
 `;
+  }
 }

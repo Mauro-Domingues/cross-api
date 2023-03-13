@@ -1,5 +1,6 @@
-export function createStorageIndex(): string {
-  return `import uploadConfig from '@config/upload';
+export class CreateStorageIndex {
+  public execute(): string {
+    return `import uploadConfig from '@config/upload';
 import { container } from 'tsyringe';
 
 import DiskStorageProvider from './implementations/DiskStorageProvider';
@@ -16,4 +17,5 @@ container.registerSingleton<IStorageProvider>(
   providers[uploadConfig.driver],
 );
 `;
+  }
 }

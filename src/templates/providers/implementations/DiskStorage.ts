@@ -1,5 +1,6 @@
-export function createDiskStorage(): string {
-  return `import uploadConfig from '@config/upload';
+export class CreateDiskStorage {
+  public execute(): string {
+    return `import uploadConfig from '@config/upload';
 import fs from 'fs';
 import path from 'path';
 
@@ -38,4 +39,5 @@ class DiskStorageProvider implements IStorageProvider {
 
 export default DiskStorageProvider;
 `;
+  }
 }

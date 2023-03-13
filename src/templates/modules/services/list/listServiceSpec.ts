@@ -1,81 +1,87 @@
 import { IModuleNamesDTO } from 'index';
 
-export function listSpecService(
-  names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>,
-): string {
-  return `import Fake${names.upperModuleName}Repository from '@modules/${names.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import List${names.upperModuleName}Service from './List${names.upperModuleName}Service';
+export class ListSpecService {
+  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;
 
-let fake${names.upperModuleName}Repository: Fake${names.upperModuleName}Repository;
-let list${names.upperModuleName}: List${names.upperModuleName}Service;
+  constructor(names: IModuleNamesDTO) {
+    this.names = names;
+  }
+
+  public execute(): string {
+    return `import Fake${this.names.upperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import List${this.names.upperModuleName}Service from './List${this.names.upperModuleName}Service';
+
+let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
+let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
 
-describe('List${names.upperModuleName}Service', () => {
+describe('List${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${names.upperModuleName}Repository = new Fake${names.upperModuleName}Repository();
+    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    list${names.upperModuleName} = new List${names.upperModuleName}Service(fake${names.upperModuleName}Repository, fakeCacheProvider);
+    list${this.names.upperModuleName} = new List${this.names.upperModuleName}Service(fake${this.names.upperModuleName}Repository, fakeCacheProvider);
   });
 
-  it('should be able to list all the ${names.pluralLowerModuleName}', async () => {
-    const ${names.lowerModuleName}01 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 1',
-      description: 'This is the first ${names.lowerModuleName}',
+  it('should be able to list all the ${this.names.pluralLowerModuleName}', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 1',
+      description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${names.lowerModuleName}02 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 2',
-      description: 'This is the second ${names.lowerModuleName}',
+    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 2',
+      description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    const ${names.lowerModuleName}List = await list${names.upperModuleName}.execute(1, 2);
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2);
 
-    expect(${names.lowerModuleName}List.data).toEqual([${names.lowerModuleName}01, ${names.lowerModuleName}02]);
+    expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should be able to list all the ${names.pluralLowerModuleName} using cache', async () => {
-    const ${names.lowerModuleName}01 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 1',
-      description: 'This is the first ${names.lowerModuleName}',
+  it('should be able to list all the ${this.names.pluralLowerModuleName} using cache', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 1',
+      description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${names.lowerModuleName}02 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 2',
-      description: 'This is the second ${names.lowerModuleName}',
+    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 2',
+      description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await list${names.upperModuleName}.execute(1, 2);
+    await list${this.names.upperModuleName}.execute(1, 2);
 
-    const ${names.lowerModuleName}List = await list${names.upperModuleName}.execute(1, 2);
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2);
 
-    expect(${names.lowerModuleName}List.data).toEqual([${names.lowerModuleName}01, ${names.lowerModuleName}02]);
+    expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should be able to list the ${names.pluralLowerModuleName} with the specified pagination', async () => {
-    const ${names.lowerModuleName}01 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 1',
-      description: 'This is the first ${names.lowerModuleName}',
+  it('should be able to list the ${this.names.pluralLowerModuleName} with the specified pagination', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 1',
+      description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${names.lowerModuleName}02 = await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 2',
-      description: 'This is the second ${names.lowerModuleName}',
+    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 2',
+      description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await fake${names.upperModuleName}Repository.create({
-      name: '${names.lowerModuleName} 3',
-      description: 'This is the third ${names.lowerModuleName}',
+    await fake${this.names.upperModuleName}Repository.create({
+      name: '${this.names.lowerModuleName} 3',
+      description: 'This is the third ${this.names.lowerModuleName}',
     });
 
-    const ${names.lowerModuleName}List01 = await list${names.upperModuleName}.execute(1, 1);
+    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}.execute(1, 1);
 
-    expect(${names.lowerModuleName}List01.data).toEqual([${names.lowerModuleName}01]);
+    expect(${this.names.lowerModuleName}List01.data).toEqual([${this.names.lowerModuleName}01]);
 
-    const ${names.lowerModuleName}List02 = await list${names.upperModuleName}.execute(1, 2);
-    expect(${names.lowerModuleName}List02.data).toEqual([${names.lowerModuleName}01, ${names.lowerModuleName}02]);
+    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}.execute(1, 2);
+    expect(${this.names.lowerModuleName}List02.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
 });
 `;
+  }
 }

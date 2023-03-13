@@ -1,5 +1,6 @@
-export function createAuthConfig(): string {
-  return `interface IAuthConfig {
+export class CreateAuthConfig {
+  public execute(): string {
+    return `interface IAuthConfig {
   jwt: {
     jwtSecret: string;
     refreshSecret: string;
@@ -16,4 +17,5 @@ export default {
   },
 } as IAuthConfig;
 `;
+  }
 }

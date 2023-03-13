@@ -1,5 +1,6 @@
-export function createRDStationLead(): string {
-  return `import leadConfig from '@config/lead';
+export class CreateRDStationLead {
+  public execute(): string {
+    return `import leadConfig from '@config/lead';
 import axios, { AxiosError } from 'axios';
 
 import AppError from '@shared/errors/AppError';
@@ -53,4 +54,5 @@ class RDStationProvider implements ILeadProvider {
 
 export default RDStationProvider;
 `;
+  }
 }

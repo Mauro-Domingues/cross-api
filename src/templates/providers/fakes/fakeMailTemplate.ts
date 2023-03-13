@@ -1,5 +1,6 @@
-export function createFakeMailTemplate(): string {
-  return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
+export class CreateFakeMailTemplate {
+  public execute(): string {
+    return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
 
 class FakeMailTemplateProvider implements IMailTemplateProvider {
   public async parse(): Promise<string> {
@@ -9,4 +10,5 @@ class FakeMailTemplateProvider implements IMailTemplateProvider {
 
 export default FakeMailTemplateProvider;
 `;
+  }
 }

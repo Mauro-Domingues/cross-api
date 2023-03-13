@@ -1,5 +1,6 @@
-export function createFakeRedis(): string {
-  return `import ICacheProvider from '../models/ICacheProvider';
+export class CreateFakeRedis {
+  public execute(): string {
+    return `import ICacheProvider from '../models/ICacheProvider';
 
 interface ICacheData {
   [key: string]: string;
@@ -41,4 +42,5 @@ class FakeCacheProvider implements ICacheProvider {
 
 export default FakeCacheProvider;
 `;
+  }
 }

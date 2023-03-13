@@ -1,5 +1,6 @@
-export function createIMailDTO(): string {
-  return `import IParseMailTemplateDTO from '@shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO';
+export class CreateIMailDTO {
+  public execute(): string {
+    return `import IParseMailTemplateDTO from '@shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO';
 
 interface IMailContact {
   name: string;
@@ -13,4 +14,5 @@ export default interface ISendMailDTO {
   templateData: IParseMailTemplateDTO;
 }
 `;
+  }
 }

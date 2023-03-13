@@ -1,5 +1,6 @@
-export function createLeadConfig(): string {
-  return `interface ILeadConfig {
+export class CreateLeadConfig {
+  public execute(): string {
+    return `interface ILeadConfig {
   clientId: string;
   clientSecret: string;
   code: string;
@@ -13,4 +14,5 @@ export default {
   publicApiKey: process.env.RD_PUBLIC_API_KEY,
 } as ILeadConfig;
 `;
+  }
 }
