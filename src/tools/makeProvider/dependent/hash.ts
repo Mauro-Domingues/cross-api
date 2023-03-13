@@ -1,23 +1,47 @@
 import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
-import { createContainer } from '@templates/index/container';
-import { createHashConfig } from '@templates/providers/config/hashConfig';
-import { createFakeHash } from '@templates/providers/fakes/fakeHash';
-import { createHashIndex } from '@templates/providers/hashIndex';
-import { createHash } from '@templates/providers/implementations/BCrypt';
-import { createIHash } from '@templates/providers/models/IHash';
+import { CreateContainer } from '@templates/index/container';
+import { CreateHashConfig } from '@templates/providers/config/hashConfig';
+import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
+import { CreateHashIndex } from '@templates/providers/hashIndex';
+import { CreateHash } from '@templates/providers/implementations/BCrypt';
+import { CreateIHash } from '@templates/providers/models/IHash';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class MakeDependentHashProvider {
-  private fatherNames: IModuleNamesDTO;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
   private messages: typeof messages;
+  private createIHash: CreateIHash;
+  private createHash: CreateHash;
+  private createFakeHash: CreateFakeHash;
+  private createHashConfig: CreateHashConfig;
+  private createHashIndex: CreateHashIndex;
+  private createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO) {
+  constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = messages;
+    this.createIHash = new CreateIHash();
+    this.createHash = new CreateHash();
+    this.createFakeHash = new CreateFakeHash();
+    this.createHashConfig = new CreateHashConfig();
+    this.createHashIndex = new CreateHashIndex();
+    this.createContainer = new CreateContainer();
   }
 
-  public async makeDependentHashProvider(): Promise<void> {
+  public async execute(): Promise<void> {
+    if (!this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.providerNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     if (!existsSync('src')) {
       mkdirSync('src');
     }
@@ -34,9 +58,13 @@ export class MakeDependentHashProvider {
       mkdirSync('src/shared/container');
     }
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile('src/shared/container/index.ts', createContainer(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/shared/container/index.ts',
+        this.createContainer.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     }
     if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
       mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
@@ -114,16 +142,24 @@ export class MakeDependentHashProvider {
       },
     );
     if (!existsSync('src/config/hash.ts')) {
-      appendFile('src/config/hash.ts', createHashConfig(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/config/hash.ts',
+        this.createHashConfig.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     } else {
       truncate('src/config/hash.ts', error => {
         if (error) console.log(error);
       });
-      appendFile('src/config/hash.ts', createHashConfig(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/config/hash.ts',
+        this.createHashConfig.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     }
     if (
       !existsSync(
@@ -132,7 +168,7 @@ export class MakeDependentHashProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
-        createFakeHash(),
+        this.createFakeHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -146,7 +182,7 @@ export class MakeDependentHashProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
-        createFakeHash(),
+        this.createFakeHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -159,7 +195,7 @@ export class MakeDependentHashProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
-        createHash(),
+        this.createHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -173,7 +209,7 @@ export class MakeDependentHashProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
-        createHash(),
+        this.createHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -186,7 +222,7 @@ export class MakeDependentHashProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
-        createIHash(),
+        this.createIHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -200,7 +236,7 @@ export class MakeDependentHashProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
-        createIHash(),
+        this.createIHash.execute(),
         error => {
           if (error) throw error;
         },
@@ -213,7 +249,7 @@ export class MakeDependentHashProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
-        createHashIndex(),
+        this.createHashIndex.execute(),
         error => {
           if (error) throw error;
         },
@@ -227,7 +263,7 @@ export class MakeDependentHashProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
-        createHashIndex(),
+        this.createHashIndex.execute(),
         error => {
           if (error) throw error;
         },

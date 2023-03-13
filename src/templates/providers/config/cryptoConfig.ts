@@ -1,4 +1,4 @@
-export class createCryptoConfig {
+export class CreateCryptoConfig {
   public execute(): string {
     return `import path from 'path';
 

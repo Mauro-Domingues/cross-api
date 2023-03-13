@@ -1,13 +1,30 @@
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
 export class CreateDependentEtherealMail {
-  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
+  private messages: typeof messages;
 
-  constructor(fatherNames: IModuleNamesDTO) {
+  constructor(
+    fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
+  ) {
     this.fatherNames = fatherNames;
+    this.messages = messages;
   }
 
   public execute(): string {
+    if (!this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.providerNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 

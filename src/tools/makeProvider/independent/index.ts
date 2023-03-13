@@ -1,46 +1,70 @@
 import messages from '@tools/messages';
-import { makeCacheProvider } from './cache';
-import { makeCryptoProvider } from './crypto';
-import { makeHashProvider } from './hash';
-import { makeLeadProvider } from './lead';
-import { makeMailProvider } from './mail';
-import { makeMailTemplateProvider } from './mailTemplate';
-import { makeNotificationProvider } from './notification';
-import { makeStorageProvider } from './storage';
+import { MakeCacheProvider } from './cache';
+import { MakeCryptoProvider } from './crypto';
+import { MakeHashProvider } from './hash';
+import { MakeLeadProvider } from './lead';
+import { MakeMailProvider } from './mail';
+import { MakeMailTemplateProvider } from './mailTemplate';
+import { MakeNotificationProvider } from './notification';
+import { MakeStorageProvider } from './storage';
 
-export async function makeProvider(providerName: string): Promise<void> {
-  switch (providerName) {
-    case 'cache':
-      makeCacheProvider();
-      break;
-    case 'storage':
-      makeStorageProvider();
-      break;
-    case 'mailTemplate':
-      makeMailTemplateProvider();
-      break;
-    case 'mail':
-      makeMailProvider();
-      break;
-    case 'notification':
-      makeNotificationProvider();
-      break;
-    case 'lead':
-      makeLeadProvider();
-      break;
-    case 'crypto':
-      makeCryptoProvider();
-      break;
-    case 'hash':
-      makeHashProvider();
-      break;
-    default:
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
-        messages.providerNotFound,
-        '\x1b[0m',
-      );
-      break;
+export class MakeProvider {
+  private providerName: string | undefined;
+  private makeStorageProvider: MakeStorageProvider;
+  private makeNotificationProvider: MakeNotificationProvider;
+  private makeMailTemplateProvider: MakeMailTemplateProvider;
+  private makeMailProvider: MakeMailProvider;
+  private makeLeadProvider: MakeLeadProvider;
+  private makeHashProvider: MakeHashProvider;
+  private makeCryptoProvider: MakeCryptoProvider;
+  private makeCacheProvider: MakeCacheProvider;
+
+  constructor(providerName: string | undefined) {
+    this.providerName = providerName;
+    this.makeStorageProvider = new MakeStorageProvider();
+    this.makeNotificationProvider = new MakeNotificationProvider();
+    this.makeMailTemplateProvider = new MakeMailTemplateProvider();
+    this.makeMailProvider = new MakeMailProvider();
+    this.makeLeadProvider = new MakeLeadProvider();
+    this.makeHashProvider = new MakeHashProvider();
+    this.makeCryptoProvider = new MakeCryptoProvider();
+    this.makeCacheProvider = new MakeCacheProvider();
+  }
+
+  public async execute(): Promise<void> {
+    switch (this.providerName) {
+      case 'cache':
+        await this.makeCacheProvider.execute();
+        break;
+      case 'storage':
+        await this.makeStorageProvider.execute();
+        break;
+      case 'mailTemplate':
+        await this.makeMailTemplateProvider.execute();
+        break;
+      case 'mail':
+        await this.makeMailProvider.execute();
+        break;
+      case 'notification':
+        await this.makeNotificationProvider.execute();
+        break;
+      case 'lead':
+        await this.makeLeadProvider.execute();
+        break;
+      case 'crypto':
+        await this.makeCryptoProvider.execute();
+        break;
+      case 'hash':
+        await this.makeHashProvider.execute();
+        break;
+      default:
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;255;0;0m',
+          messages.providerNotFound,
+          '\x1b[0m',
+        );
+        break;
+    }
   }
 }

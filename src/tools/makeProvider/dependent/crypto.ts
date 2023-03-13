@@ -1,23 +1,47 @@
 import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
-import { createContainer } from '@templates/index/container';
-import { createCryptoConfig } from '@templates/providers/config/cryptoConfig';
-import { createCryptoIndex } from '@templates/providers/cryptoIndex';
-import { createICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
-import { createCrypto } from '@templates/providers/implementations/Crypto';
-import { createICrypto } from '@templates/providers/models/ICrypto';
+import { CreateContainer } from '@templates/index/container';
+import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
+import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
+import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { CreateCrypto } from '@templates/providers/implementations/Crypto';
+import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class MakeDependentCryptoProvider {
-  private fatherNames: IModuleNamesDTO;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
   private messages: typeof messages;
+  private createICrypto: CreateICrypto;
+  private createICryptoDTO: CreateICryptoDTO;
+  private createCrypto: CreateCrypto;
+  private createCryptoConfig: CreateCryptoConfig;
+  private createCryptoIndex: CreateCryptoIndex;
+  private createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO) {
+  constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = messages;
+    this.createICrypto = new CreateICrypto();
+    this.createICryptoDTO = new CreateICryptoDTO();
+    this.createCrypto = new CreateCrypto();
+    this.createCryptoConfig = new CreateCryptoConfig();
+    this.createCryptoIndex = new CreateCryptoIndex();
+    this.createContainer = new CreateContainer();
   }
 
   public async execute(): Promise<void> {
+    if (!this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.providerNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     if (!existsSync('src')) {
       mkdirSync('src');
     }
@@ -34,9 +58,13 @@ export class MakeDependentCryptoProvider {
       mkdirSync('src/shared/container');
     }
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile('src/shared/container/index.ts', createContainer(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/shared/container/index.ts',
+        this.createContainer.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     }
     if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
       mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
@@ -114,16 +142,24 @@ export class MakeDependentCryptoProvider {
       },
     );
     if (!existsSync('src/config/crypto.ts')) {
-      appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/config/crypto.ts',
+        this.createCryptoConfig.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     } else {
       truncate('src/config/crypto.ts', error => {
         if (error) console.log(error);
       });
-      appendFile('src/config/crypto.ts', createCryptoConfig(), error => {
-        if (error) throw error;
-      });
+      appendFile(
+        'src/config/crypto.ts',
+        this.createCryptoConfig.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
     }
     if (
       !existsSync(
@@ -132,7 +168,7 @@ export class MakeDependentCryptoProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
-        createICryptoDTO(),
+        this.createICryptoDTO.execute(),
         error => {
           if (error) throw error;
         },
@@ -146,7 +182,7 @@ export class MakeDependentCryptoProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
-        createICryptoDTO(),
+        this.createICryptoDTO.execute(),
         error => {
           if (error) throw error;
         },
@@ -159,7 +195,7 @@ export class MakeDependentCryptoProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
-        createCrypto(),
+        this.createCrypto.execute(),
         error => {
           if (error) throw error;
         },
@@ -173,7 +209,7 @@ export class MakeDependentCryptoProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
-        createCrypto(),
+        this.createCrypto.execute(),
         error => {
           if (error) throw error;
         },
@@ -186,7 +222,7 @@ export class MakeDependentCryptoProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
-        createICrypto(),
+        this.createICrypto.execute(),
         error => {
           if (error) throw error;
         },
@@ -200,7 +236,7 @@ export class MakeDependentCryptoProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
-        createICrypto(),
+        this.createICrypto.execute(),
         error => {
           if (error) throw error;
         },
@@ -213,7 +249,7 @@ export class MakeDependentCryptoProvider {
     ) {
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
-        createCryptoIndex(),
+        this.createCryptoIndex.execute(),
         error => {
           if (error) throw error;
         },
@@ -227,7 +263,7 @@ export class MakeDependentCryptoProvider {
       );
       appendFile(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
-        createCryptoIndex(),
+        this.createCryptoIndex.execute(),
         error => {
           if (error) throw error;
         },
