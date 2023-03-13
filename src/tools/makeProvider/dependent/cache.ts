@@ -6,7 +6,7 @@ import { createFakeRedis } from '@templates/providers/fakes/fakeCache';
 import { createRedisCache } from '@templates/providers/implementations/RedisCache';
 import { createICache } from '@templates/providers/models/ICache';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class MakeDependentCacheProvider {
   private fatherNames: IModuleNamesDTO;

@@ -9,7 +9,7 @@ import { showDependentController } from '@templates/modules/services/showDepende
 import { showDependentService } from '@templates/modules/services/showDependent/showService';
 import { updateDependentController } from '@templates/modules/services/updateDependent/updateController';
 import { updateDependentService } from '@templates/modules/services/updateDependent/updateService';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentFunctionalities(
   names: IModuleNamesDTO,

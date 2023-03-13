@@ -9,96 +9,14 @@ import { createApi } from '@tools/makeApi';
 import { createModule } from '@tools/makeModule';
 import { createProvider } from '@tools/makeProvider';
 import messages from '@tools/messages';
-import { plural, singular, isSingular } from 'pluralize';
 import { createRegister } from '@tools/lastModification/save';
 import { deleteRegister } from '@tools/lastModification/delete';
+import { GetNames } from '@tools/names';
 
 const fullComand = process.argv.slice(2);
 const comand = process.argv[2];
 const arg = process.argv[3];
 const father = process.argv[4];
-
-export interface IModuleNamesDTO {
-  lowerModuleName: string;
-  upperModuleName: string;
-  pluralLowerModuleName: string;
-  pluralUpperModuleName: string;
-  dbModuleName: string;
-  routeModuleName: string;
-}
-
-class GetNames {
-  private getSingularAndPlural(word: string): {
-    singular: string;
-    pluralName: string;
-  } {
-    if (isSingular(word)) {
-      return {
-        singular: word,
-        pluralName: plural(word),
-      };
-    }
-    return {
-      singular: singular(word),
-      pluralName: word,
-    };
-  }
-
-  getModuleNames(name: string): IModuleNamesDTO | undefined {
-    if (!name) {
-      return undefined;
-    }
-
-    const { singular, pluralName } = this.getSingularAndPlural(name);
-
-    const lowerModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toLowerCase(),
-    );
-
-    const upperModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toUpperCase(),
-    );
-
-    const pluralLowerModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toLowerCase(),
-    );
-
-    const pluralUpperModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toUpperCase(),
-    );
-
-    const dbModuleName = Array.from(pluralLowerModuleName).reduce(
-      (accumulator, letter) => {
-        if (letter === letter.toUpperCase()) {
-          return `${accumulator}_${letter.toLowerCase()}`;
-        }
-        return `${accumulator}${letter}`;
-      },
-    );
-
-    const routeModuleName = Array.from(pluralLowerModuleName).reduce(
-      (accumulator, letter) => {
-        if (letter === letter.toUpperCase()) {
-          return `${accumulator}-${letter.toLowerCase()}`;
-        }
-        return `${accumulator}${letter}`;
-      },
-    );
-
-    return {
-      lowerModuleName,
-      upperModuleName,
-      pluralLowerModuleName,
-      pluralUpperModuleName,
-      dbModuleName,
-      routeModuleName,
-    };
-  }
-}
 
 if (comand) {
   createRegister(

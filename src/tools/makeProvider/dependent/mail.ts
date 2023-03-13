@@ -13,7 +13,7 @@ import { createMailTemplateIndex } from '@templates/providers/mailTemplateIndex'
 import { createIMail } from '@templates/providers/models/IMail';
 import { createIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentMailProvider(
   fatherNames: IModuleNamesDTO,

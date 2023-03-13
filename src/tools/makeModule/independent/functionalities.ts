@@ -9,7 +9,7 @@ import { showController } from '@templates/modules/services/show/showController'
 import { showService } from '@templates/modules/services/show/showService';
 import { updateController } from '@templates/modules/services/update/updateController';
 import { updateService } from '@templates/modules/services/update/updateService';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeFunctionalities(
   names: IModuleNamesDTO,

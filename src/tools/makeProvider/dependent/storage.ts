@@ -7,7 +7,7 @@ import { createS3Storage } from '@templates/providers/implementations/S3Storage'
 import { createIStorage } from '@templates/providers/models/IStorage';
 import { createStorageIndex } from '@templates/providers/storageIndex';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentStorageProvider(
   fatherNames: IModuleNamesDTO,

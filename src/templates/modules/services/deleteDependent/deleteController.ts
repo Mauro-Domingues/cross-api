@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class DeleteDependentController {
   private names: Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>;

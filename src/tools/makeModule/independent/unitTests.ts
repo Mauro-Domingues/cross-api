@@ -9,7 +9,7 @@ import { showSpecController } from '@templates/modules/services/show/showControl
 import { showSpecService } from '@templates/modules/services/show/showServiceSpec';
 import { updateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { updateSpecService } from '@templates/modules/services/update/updateServiceSpec';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeUnitTests(names: IModuleNamesDTO): Promise<void> {
   if (

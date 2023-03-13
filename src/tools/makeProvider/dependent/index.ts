@@ -1,5 +1,5 @@
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 import { makeDependentCacheProvider } from './cache';
 import { makeDependentCryptoProvider } from './crypto';
 import { makeDependentHashProvider } from './hash';

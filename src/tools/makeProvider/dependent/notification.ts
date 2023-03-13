@@ -7,7 +7,7 @@ import { createOneSignalNotification } from '@templates/providers/implementation
 import { createINotification } from '@templates/providers/models/INotification';
 import { createNotificationIndex } from '@templates/providers/notificationIndex';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentNotificationProvider(
   fatherNames: IModuleNamesDTO,

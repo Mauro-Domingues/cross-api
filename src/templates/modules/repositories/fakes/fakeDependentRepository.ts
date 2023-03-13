@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class CreateDependentFakeRepository {
   private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'dbModuleName'>;

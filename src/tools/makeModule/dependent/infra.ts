@@ -10,7 +10,7 @@ import { createDependentRoute } from '@templates/modules/routes/dependentRoutes'
 import { createFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { createIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
 import { appendFile, existsSync, truncate } from 'fs';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentInfra(
   names: IModuleNamesDTO,

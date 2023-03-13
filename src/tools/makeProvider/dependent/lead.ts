@@ -7,7 +7,7 @@ import { createRDStationLead } from '@templates/providers/implementations/RDStat
 import { createLeadIndex } from '@templates/providers/leadIndex';
 import { createILead } from '@templates/providers/models/ILead';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentLeadProvider(
   fatherNames: IModuleNamesDTO,

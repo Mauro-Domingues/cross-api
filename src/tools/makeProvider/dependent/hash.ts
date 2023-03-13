@@ -6,7 +6,7 @@ import { createHashIndex } from '@templates/providers/hashIndex';
 import { createHash } from '@templates/providers/implementations/BCrypt';
 import { createIHash } from '@templates/providers/models/IHash';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class MakeDependentHashProvider {
   private fatherNames: IModuleNamesDTO;

@@ -6,7 +6,7 @@ import { createMailTemplate } from '@templates/providers/implementations/MailTem
 import { createMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { createIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentMailTemplateProvider(
   fatherNames: IModuleNamesDTO,

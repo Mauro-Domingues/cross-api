@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class ShowSpecController {
   private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>;

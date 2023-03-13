@@ -1,13 +1,28 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 import { appendFile, existsSync, readFileSync, truncate } from 'fs';
 
-export async function createRegister(
-  comand: string[] | undefined,
-  providerName: string | undefined,
-  names: IModuleNamesDTO | undefined,
-  fatherNames: IModuleNamesDTO | undefined,
-): Promise<void> {
-  if (comand && comand[0] === 'make:provider') {
+export class CreateRegister {
+  private comand: string[] | undefined;
+  private providerName: string | undefined;
+  private names: IModuleNamesDTO | undefined;
+  private fatherNames: IModuleNamesDTO | undefined;
+
+  constructor(
+    comand: string[] | undefined,
+    providerName: string | undefined,
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
+  ) {
+    this.comand = comand;
+    this.providerName = providerName;
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+
+  private makeProvider(
+    providerName: string | undefined,
+    fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
+  ) {
     if (providerName && fatherNames) {
       truncate(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
@@ -59,7 +74,12 @@ export async function createRegister(
         },
       );
     }
-  } else if (comand && comand[0] === 'make:module') {
+  }
+
+  private makeModule(
+    names: unknown | undefined,
+    fatherNames: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
+  ) {
     if (names && fatherNames) {
       const moduleInjection = readFileSync(
         'src/shared/container/index.ts',
@@ -145,17 +165,31 @@ export default ${fatherNames.lowerModuleName}Router;
       );
     }
   }
-  truncate(
-    './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-    error => {
-      if (error) throw error;
-    },
-  );
-  appendFile(
-    './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-    String(comand),
-    error => {
-      if (error) throw error;
-    },
-  );
+
+  public async execute(): Promise<void> {
+    if (this.comand) {
+      switch (this.comand[0]) {
+        case 'make:provider':
+          this.makeProvider(this.providerName, this.fatherNames);
+          break;
+        case 'make:module':
+          this.makeModule(this.names, this.fatherNames);
+          break;
+        default:
+          truncate(
+            './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+            error => {
+              if (error) throw error;
+            },
+          );
+          appendFile(
+            './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+            String(this.comand),
+            error => {
+              if (error) throw error;
+            },
+          );
+      }
+    }
+  }
 }

@@ -1,86 +1,35 @@
 import messages from '@tools/messages';
 import { appendFile, removeSync, truncate, unlink } from 'fs-extra';
 import { readFileSync } from 'fs';
-import { IModuleNamesDTO } from 'index';
-import { isSingular, plural, singular } from 'pluralize';
+import { GetNames, IModuleNamesDTO } from '@tools/names';
 
-const providers: { [key: string]: string } = {
-  cache: 'CacheProvider',
-  crypto: 'CryptoProvider',
-  hash: 'HashProvider',
-  lead: 'leadProvider',
-  mail: 'MailProvider',
-  mailTemplate: 'MailTemplateProvider',
-  notification: 'NotificationProvider',
-  storage: 'StorageProvider',
-};
+export class DeleteRegister {
+  private messages: typeof messages;
+  private providers: { [key: string]: string };
+  private getNames: GetNames;
 
-class GetNames {
-  private getSingularAndPlural(word: string): {
-    singular: string;
-    pluralName: string;
-  } {
-    if (isSingular(word)) {
-      return {
-        singular: word,
-        pluralName: plural(word),
-      };
-    }
-    return {
-      singular: singular(word),
-      pluralName: word,
+  constructor() {
+    this.messages = messages;
+    this.getNames = new GetNames();
+    this.providers = {
+      cache: 'CacheProvider',
+      crypto: 'CryptoProvider',
+      hash: 'HashProvider',
+      lead: 'leadProvider',
+      mail: 'MailProvider',
+      mailTemplate: 'MailTemplateProvider',
+      notification: 'NotificationProvider',
+      storage: 'StorageProvider',
     };
   }
 
-  getModuleNames(
-    name: string,
-  ): Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'> | undefined {
-    if (!name) {
-      return undefined;
-    }
-
-    const { singular, pluralName } = this.getSingularAndPlural(name);
-
-    const lowerModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toLowerCase(),
-    );
-
-    const upperModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toUpperCase(),
-    );
-
-    const pluralLowerModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toLowerCase(),
-    );
-
-    const pluralUpperModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toUpperCase(),
-    );
-
-    return {
-      lowerModuleName,
-      upperModuleName,
-      pluralLowerModuleName,
-      pluralUpperModuleName,
-    };
-  }
-}
-
-export async function deleteRegister(): Promise<void> {
-  const register = readFileSync(
-    './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-    'ascii',
-  );
-
-  const comand = register.split(',')[0];
-  const names = new GetNames().getModuleNames(register.split(',')[1]);
-  const fatherNames = new GetNames().getModuleNames(register.split(',')[2]);
-
-  if (comand && comand === 'make:provider') {
+  private makeProvider(
+    comand: string,
+    names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
+    fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
     if (names && fatherNames) {
       const oldProviders = readFileSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
@@ -102,14 +51,14 @@ export async function deleteRegister(): Promise<void> {
       );
       removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/providers/${
-          providers[names.lowerModuleName]
+          this.providers[names.lowerModuleName]
         }`,
       );
       console.log('');
       console.log(
         '\x1b[1m',
         '\x1b[38;2;255;255;0m',
-        `- ${messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         '\x1b[0m',
       );
     } else if (names) {
@@ -129,17 +78,29 @@ export async function deleteRegister(): Promise<void> {
         },
       );
       removeSync(
-        `src/shared/container/providers/${providers[names.lowerModuleName]}`,
+        `src/shared/container/providers/${
+          this.providers[names.lowerModuleName]
+        }`,
       );
       console.log('');
       console.log(
         '\x1b[1m',
         '\x1b[38;2;255;255;0m',
-        `- ${messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         '\x1b[0m',
       );
     }
-  } else if (comand && comand === 'make:module') {
+  }
+
+  private makeModule(
+    comand: string,
+    names:
+      | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
+      | undefined,
+    fatherNames:
+      | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     if (names && fatherNames) {
       removeSync(
         `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`,
@@ -214,7 +175,7 @@ export async function deleteRegister(): Promise<void> {
       console.log(
         '\x1b[1m',
         '\x1b[38;2;255;255;0m',
-        `- ${messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         '\x1b[0m',
       );
     } else if (names) {
@@ -246,11 +207,13 @@ export async function deleteRegister(): Promise<void> {
       console.log(
         '\x1b[1m',
         '\x1b[38;2;255;255;0m',
-        `- ${messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         '\x1b[0m',
       );
     }
-  } else if (comand && comand === 'make:api') {
+  }
+
+  private makeAPi(comand: string) {
     removeSync('src');
     unlink('.editorconfig', error => {
       if (error) throw error;
@@ -292,17 +255,41 @@ export async function deleteRegister(): Promise<void> {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;255;255;0m',
-      `- ${messages.reversed}: ${comand}`,
+      `- ${this.messages.reversed}: ${comand}`,
       '\x1b[0m',
     );
-  } else {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;0;0m',
-      `${messages.noReversed}`,
-      '\x1b[0m',
+  }
+
+  public async execute(): Promise<void> {
+    const register = readFileSync(
+      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      'ascii',
     );
-    console.log('');
+
+    const comand = register.split(',')[0];
+    const names = this.getNames.getModuleNames(register.split(',')[1]);
+    const fatherNames = this.getNames.getModuleNames(register.split(',')[2]);
+
+    switch (comand) {
+      case 'make:provider':
+        this.makeProvider(comand, names, fatherNames);
+        break;
+      case 'make:module':
+        this.makeModule(comand, names, fatherNames);
+        break;
+      case 'make:api':
+        this.makeAPi(comand);
+        break;
+      default:
+        console.log('');
+        console.log(
+          '\x1b[1m',
+          '\x1b[38;2;255;0;0m',
+          `${this.messages.noReversed}`,
+          '\x1b[0m',
+        );
+        console.log('');
+        break;
+    }
   }
 }

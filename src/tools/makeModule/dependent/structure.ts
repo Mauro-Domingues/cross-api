@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from 'fs';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentStructure(
   names: IModuleNamesDTO,

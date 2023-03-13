@@ -9,7 +9,7 @@ import { showSpecDependentController } from '@templates/modules/services/showDep
 import { showSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec';
 import { updateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
 import { updateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeDependentUnitTests(
   names: IModuleNamesDTO,

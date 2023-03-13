@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 import { makeDependentModule } from './dependent';
 import { makeModule } from './independent';
 

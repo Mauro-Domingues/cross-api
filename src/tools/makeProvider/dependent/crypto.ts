@@ -6,7 +6,7 @@ import { createICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { createCrypto } from '@templates/providers/implementations/Crypto';
 import { createICrypto } from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class MakeDependentCryptoProvider {
   private fatherNames: IModuleNamesDTO;

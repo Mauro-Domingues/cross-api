@@ -9,7 +9,7 @@ import { createIRepository } from '@templates/modules/repositories/IRepository';
 import { createRepository } from '@templates/modules/repositories/repository';
 import { createIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { createIndexRoute } from '@templates/modules/routes/indexRouter';
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export async function makeInfra(names: IModuleNamesDTO): Promise<void> {
   if (!existsSync('src/shared/container/index.ts')) {

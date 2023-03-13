@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from 'index';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class CreateRepository {
   private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;

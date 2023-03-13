@@ -1,17 +1,37 @@
-import { makeProvider } from '@tools/makeProvider/independent';
-import { makeInfra } from './infra';
-import { makeFirstLayer } from './srcLayer1';
-import { makeSecondLayer } from './srcLayer2';
-import { makeThirdLayer } from './srcLayer3';
-import { makeFourthLayer } from './srcLayer4';
-import { makeTemporary } from './temporary';
+import { MakeProvider } from '@tools/makeProvider/independent';
+import { MakeInfra } from './infra';
+import { MakeFirstLayer } from './srcLayer1';
+import { MakeSecondLayer } from './srcLayer2';
+import { MakeThirdLayer } from './srcLayer3';
+import { MakeFourthLayer } from './srcLayer4';
+import { MakeTemporary } from './temporary';
 
-export async function createApi(): Promise<void> {
-  await makeInfra();
-  await makeFirstLayer();
-  await makeSecondLayer();
-  await makeThirdLayer();
-  await makeFourthLayer();
-  await makeTemporary();
-  return makeProvider('cache');
+export class CreateApi {
+  private makeProvider: MakeProvider;
+  private makeTemporary: MakeTemporary;
+  private makeFourthLayer: MakeFourthLayer;
+  private makeThirdLayer: MakeThirdLayer;
+  private makeSecondLayer: MakeSecondLayer;
+  private makeFirstLayer: MakeFirstLayer;
+  private makeInfra: MakeInfra;
+
+  constructor() {
+    this.makeProvider = new MakeProvider();
+    this.makeTemporary = new MakeTemporary();
+    this.makeFourthLayer = new MakeFourthLayer();
+    this.makeThirdLayer = new MakeThirdLayer();
+    this.makeSecondLayer = new MakeSecondLayer();
+    this.makeFirstLayer = new MakeFirstLayer();
+    this.makeInfra = new MakeInfra();
+  }
+
+  public async execute(): Promise<void> {
+    await this.makeInfra.execute();
+    await this.makeFirstLayer.execute();
+    await this.makeSecondLayer.execute();
+    await this.makeThirdLayer.execute();
+    await this.makeFourthLayer.execute();
+    await this.makeTemporary.execute();
+    return this.makeProvider.execute('cache');
+  }
 }
