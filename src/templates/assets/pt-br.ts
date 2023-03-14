@@ -6,6 +6,7 @@ export class PortugueseMessages {
   language: '➤  Qual linguagem você prefere?',
   invalidLanguage: ' não é uma opção válida',
   answer: 'Sua resposta: ',
+  choice: '➤  Você escolheu a linguagem: ',
   created: 'criado',
   reversed: 'desfazer',
   noReversed: '➤  Não há comandos para desfazer',

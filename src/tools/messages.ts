@@ -2,6 +2,7 @@ export default {
   language: '➤  Which language do you prefer?',
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
+  choice: '➤  You chose the language: ',
   created: 'created',
   reversed: 'undo',
   noReversed: '➤  There are no commands to undo',

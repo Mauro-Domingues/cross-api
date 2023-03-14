@@ -26,7 +26,7 @@ export class GetNames {
     };
   }
 
-  getModuleNames(name: string): IModuleNamesDTO | undefined {
+  public getModuleNames(name: string): IModuleNamesDTO | undefined {
     if (!name) {
       return undefined;
     }

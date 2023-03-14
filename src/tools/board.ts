@@ -1,160 +1,185 @@
 import messages from './messages';
 
-function renderEmptyLine(): void {
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    '|                                                                                                                        |',
-    '\x1b[0m',
-  );
+interface IOptionDTO {
+  title: string;
+  description: string;
 }
 
-export function board(): void {
-  const tools = [
-    { title: 'comands             ', description: messages.comands },
-    { title: 'language            ', description: messages.changeLanguage },
-    { title: 'list:provider       ', description: messages.listProvider },
-  ];
+export class Board {
+  private messages: typeof messages;
+  private toolOptions: IOptionDTO[];
+  private ormOptions: IOptionDTO[];
+  private structureOptions: IOptionDTO[];
 
-  const orm = [
-    {
-      title: 'migration:generate           ',
-      description: messages.migrationGenerate,
-    },
-    {
-      title: 'migration:run                ',
-      description: messages.migrationRun,
-    },
-  ];
+  constructor() {
+    this.messages = messages;
+    this.toolOptions = [
+      { title: 'comands             ', description: messages.comands },
+      { title: 'language            ', description: messages.changeLanguage },
+      { title: 'list:provider       ', description: messages.listProvider },
+    ];
+    this.ormOptions = [
+      {
+        title: 'migration:generate           ',
+        description: messages.migrationGenerate,
+      },
+      {
+        title: 'migration:run                ',
+        description: messages.migrationRun,
+      },
+    ];
+    this.structureOptions = [
+      { title: 'make:api                     ', description: messages.makeApi },
+      {
+        title: 'make:module [name]           ',
+        description: messages.makeModule,
+      },
+      {
+        title: 'make:module [name] [father]  ',
+        description: messages.makeModuleD,
+      },
+      {
+        title: 'make:provider [name]         ',
+        description: messages.makeProvider,
+      },
+      {
+        title: 'make:provider [name] [father]',
+        description: messages.makeProviderD,
+      },
+      {
+        title: 'migration:generate           ',
+        description: messages.migrationGenerate,
+      },
+      {
+        title: 'revert                       ',
+        description: messages.undo,
+      },
+    ];
+  }
 
-  const structure = [
-    { title: 'make:api                     ', description: messages.makeApi },
-    {
-      title: 'make:module [name]           ',
-      description: messages.makeModule,
-    },
-    {
-      title: 'make:module [name] [father]  ',
-      description: messages.makeModuleD,
-    },
-    {
-      title: 'make:provider [name]         ',
-      description: messages.makeProvider,
-    },
-    {
-      title: 'make:provider [name] [father]',
-      description: messages.makeProviderD,
-    },
-    {
-      title: 'migration:generate           ',
-      description: messages.migrationGenerate,
-    },
-    {
-      title: 'revert                       ',
-      description: messages.undo,
-    },
-  ];
+  private renderEmptyLine(): void {
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      '|                                                                                                                        |',
+      '\x1b[0m',
+    );
+  }
 
-  console.log('');
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    ` /================================================${messages.comandTitle}=================================================\\`,
-    '\x1b[0m',
-  );
-  renderEmptyLine();
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    '|',
-    '\x1b[38;2;0;255;155m',
-    ` 〇 ${messages.tools}`,
-    '\x1b[38;2;0;155;255m',
-    '                                                                                                     |',
-    '\x1b[0m',
-  );
-  renderEmptyLine();
-  tools.forEach(tool => {
+  private renderToolOptions() {
+    this.renderEmptyLine();
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
       '|',
-      '\x1b[38;2;255;255;0m',
-      `   ➤  ${tool.title}         `,
+      '\x1b[38;2;0;255;155m',
+      ` 〇 ${this.messages.tools}`,
       '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[0m',
-      `${tool.description}`,
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '                          |',
+      '                                                                                                     |',
       '\x1b[0m',
     );
-    renderEmptyLine();
-  });
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    '|',
-    '\x1b[38;2;0;255;155m',
-    ` 〇 ORM`,
-    '\x1b[38;2;0;155;255m',
-    '                                                                                                             |',
-    '\x1b[0m',
-  );
-  renderEmptyLine();
-  orm.forEach(orm => {
+    this.renderEmptyLine();
+    this.toolOptions.forEach(tool => {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[38;2;255;255;0m',
+        `   ➤  ${tool.title}         `,
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+        `${tool.description}`,
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '                          |',
+        '\x1b[0m',
+      );
+      this.renderEmptyLine();
+    });
+  }
+
+  private renderOrmOptions() {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
       '|',
-      '\x1b[38;2;255;255;0m',
-      `   ➤  ${orm.title}`,
+      '\x1b[38;2;0;255;155m',
+      ` 〇 ORM`,
       '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[0m',
-      `${orm.description}`,
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
+      '                                                                                                             |',
       '\x1b[0m',
     );
-    renderEmptyLine();
-  });
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    '|',
-    '\x1b[38;2;0;255;155m',
-    ` 〇 ${messages.structure}`,
-    '\x1b[38;2;0;155;255m',
-    '                                                                                            |',
-    '\x1b[0m',
-  );
-  renderEmptyLine();
-  structure.forEach(structure => {
+    this.renderEmptyLine();
+    this.ormOptions.forEach(orm => {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[38;2;255;255;0m',
+        `   ➤  ${orm.title}`,
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+        `${orm.description}`,
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+      );
+      this.renderEmptyLine();
+    });
+  }
+
+  private renderStructureOptions() {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
       '|',
-      '\x1b[38;2;255;255;0m',
-      `   ➤  ${structure.title}`,
+      '\x1b[38;2;0;255;155m',
+      ` 〇 ${this.messages.structure}`,
       '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[0m',
-      `${structure.description}`,
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
+      '                                                                                            |',
       '\x1b[0m',
     );
-    renderEmptyLine();
-  });
-  console.log(
-    '\x1b[1m',
-    '\x1b[38;2;0;155;255m',
-    ` \\======================================================================================================================/`,
-    '\x1b[0m',
-  );
-  console.log('');
+    this.renderEmptyLine();
+    this.structureOptions.forEach(structure => {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[38;2;255;255;0m',
+        `   ➤  ${structure.title}`,
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+        `${structure.description}`,
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+      );
+      this.renderEmptyLine();
+    });
+  }
+
+  public execute(): void {
+    console.log('');
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      ` /================================================${this.messages.comandTitle}=================================================\\`,
+      '\x1b[0m',
+    );
+    this.renderToolOptions();
+    this.renderOrmOptions();
+    this.renderStructureOptions();
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      ` \\======================================================================================================================/`,
+      '\x1b[0m',
+    );
+    console.log('');
+  }
 }
