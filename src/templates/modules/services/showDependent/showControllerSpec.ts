@@ -1,15 +1,31 @@
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
 export class ShowSpecDependentController {
-  private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'>;
-  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'>;
+  private messages: typeof messages;
+  private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'> | undefined;
+  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'> | undefined;
 
-  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+  constructor(
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
+  ) {
+    this.messages = messages;
     this.names = names;
     this.fatherNames = fatherNames;
   }
 
   public execute(): string {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import createConnection from '@shared/typeorm';

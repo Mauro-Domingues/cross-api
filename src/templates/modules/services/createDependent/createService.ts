@@ -1,15 +1,35 @@
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
 export class CreateDependentService {
-  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>;
-  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+  private messages: typeof messages;
+  private names:
+    | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
+    | undefined;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
 
-  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+  constructor(
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
+  ) {
+    this.messages = messages;
     this.names = names;
     this.fatherNames = fatherNames;
   }
 
   public execute(): string {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     return `import { injectable, inject } from 'tsyringe';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';

@@ -1,13 +1,28 @@
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
 export class CreateFakeRepository {
-  private names: Omit<IModuleNamesDTO, 'dbModuleName' | 'dbModuleName'>;
+  private messages: typeof messages;
+  private names:
+    | Omit<IModuleNamesDTO, 'dbModuleName' | 'dbModuleName'>
+    | undefined;
 
-  constructor(names: IModuleNamesDTO) {
+  constructor(names: IModuleNamesDTO | undefined) {
+    this.messages = messages;
     this.names = names;
   }
 
   public execute(): string {
+    if (!this.names) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import IObjectDTO from '@dtos/IObjectDTO';
 import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';

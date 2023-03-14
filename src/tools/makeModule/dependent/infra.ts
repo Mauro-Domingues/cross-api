@@ -1,198 +1,269 @@
-import { createContainer } from '@templates/index/container';
-import { createRoutes } from '@templates/index/routes';
-import { createModuleDTO } from '@templates/modules/dtos/moduleDTO';
-import { createEntity } from '@templates/modules/entities/entity';
-import { createDependentInjection } from '@templates/modules/inject/dependentInjection';
-import { createDependentRepository } from '@templates/modules/repositories/dependentRepository';
-import { createDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository';
-import { createIDependentRepository } from '@templates/modules/repositories/IDependentRepository';
-import { createDependentRoute } from '@templates/modules/routes/dependentRoutes';
-import { createFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
-import { createIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
+import { CreateContainer } from '@templates/index/container';
+import { CreateRoutes } from '@templates/index/routes';
+import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
+import { CreateEntity } from '@templates/modules/entities/entity';
+import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection';
+import { CreateDependentRepository } from '@templates/modules/repositories/dependentRepository';
+import { CreateDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository';
+import { CreateIDependentRepository } from '@templates/modules/repositories/IDependentRepository';
+import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
+import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
+import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
 import { appendFile, existsSync, truncate } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
-export async function makeDependentInfra(
-  names: IModuleNamesDTO,
-  fatherNames: IModuleNamesDTO,
-): Promise<void> {
-  if (!existsSync('src/shared/container/index.ts')) {
-    appendFile('src/shared/container/index.ts', createContainer(), error => {
-      if (error) throw error;
-    });
-  }
+export class MakeDependentInfra {
+  private messages: typeof messages;
+  private names: IModuleNamesDTO | undefined;
+  private fatherNames: IModuleNamesDTO | undefined;
+  private createIndexDependentRoute: CreateIndexDependentRoute;
+  private createFullDependentRoute: CreateFullDependentRoute;
+  private createDependentRoute: CreateDependentRoute;
+  private createIDependentRepository: CreateIDependentRepository;
+  private createDependentFakeRepository: CreateDependentFakeRepository;
+  private createDependentRepository: CreateDependentRepository;
+  private createDependentInjection: CreateDependentInjection;
+  private createEntity: CreateEntity;
+  private createModuleDTO: CreateModuleDTO;
+  private createRoutes: CreateRoutes;
+  private createContainer: CreateContainer;
 
-  if (!existsSync('src/routes/index.ts')) {
-    appendFile('src/routes/index.ts', createRoutes(), error => {
-      if (error) throw error;
-    });
-  }
-
-  if (
-    !existsSync(
-      `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
-    )
+  constructor(
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
   ) {
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
-      createModuleDTO(names),
-      error => {
-        if (error) throw error;
-      },
+    this.messages = messages;
+    this.names = names;
+    this.fatherNames = fatherNames;
+    this.createIndexDependentRoute = new CreateIndexDependentRoute(
+      this.fatherNames,
     );
-  } else {
-    truncate(
-      `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
-      error => {
-        if (error) console.log(error);
-      },
+    this.createFullDependentRoute = new CreateFullDependentRoute(
+      this.names,
+      this.fatherNames,
     );
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
-      createModuleDTO(names),
-      error => {
-        if (error) throw error;
-      },
+    this.createDependentRoute = new CreateDependentRoute(
+      this.names,
+      this.fatherNames,
     );
-  }
-  if (
-    !existsSync(
-      `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
-    )
-  ) {
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
-      createEntity(names),
-      error => {
-        if (error) throw error;
-      },
+    this.createIDependentRepository = new CreateIDependentRepository(
+      this.names,
+      this.fatherNames,
     );
-  } else {
-    truncate(
-      `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
-      error => {
-        if (error) console.log(error);
-      },
+    this.createDependentFakeRepository = new CreateDependentFakeRepository(
+      this.names,
+      this.fatherNames,
     );
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
-      createEntity(names),
-      error => {
-        if (error) throw error;
-      },
+    this.createDependentRepository = new CreateDependentRepository(
+      this.names,
+      this.fatherNames,
     );
-  }
-  if (
-    !existsSync(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
-    )
-  ) {
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
-      createDependentRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
+    this.createDependentInjection = new CreateDependentInjection(
+      this.names,
+      this.fatherNames,
     );
-  } else {
-    truncate(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
-      createDependentRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  if (
-    !existsSync(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
-    )
-  ) {
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
-      createIDependentRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    truncate(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
-      createIDependentRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
-  }
-  if (
-    !existsSync(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
-    )
-  ) {
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
-      createDependentFakeRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    truncate(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
-      error => {
-        if (error) console.log(error);
-      },
-    );
-    appendFile(
-      `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
-      createDependentFakeRepository(names, fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
+    this.createEntity = new CreateEntity(this.names);
+    this.createModuleDTO = new CreateModuleDTO(this.names);
+    this.createRoutes = new CreateRoutes();
+    this.createContainer = new CreateContainer();
   }
 
-  if (!existsSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`)) {
-    appendFile(
-      `src/routes/${fatherNames.lowerModuleName}Router.ts`,
-      createFullDependentRoute(names, fatherNames),
-      error => {
+  public async execute(): Promise<void> {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
+    if (!existsSync('src/shared/container/index.ts')) {
+      appendFile(
+        'src/shared/container/index.ts',
+        this.createContainer.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+
+    if (!existsSync('src/routes/index.ts')) {
+      appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
         if (error) throw error;
-      },
-    );
+      });
+    }
+
+    if (
+      !existsSync(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+      )
+    ) {
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        this.createModuleDTO.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      truncate(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        error => {
+          if (error) console.log(error);
+        },
+      );
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        this.createModuleDTO.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+    if (
+      !existsSync(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+      )
+    ) {
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        this.createEntity.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      truncate(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        error => {
+          if (error) console.log(error);
+        },
+      );
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        this.createEntity.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+    if (
+      !existsSync(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+      )
+    ) {
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createDependentRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      truncate(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        error => {
+          if (error) console.log(error);
+        },
+      );
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createDependentRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+    if (
+      !existsSync(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+      )
+    ) {
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createIDependentRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      truncate(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        error => {
+          if (error) console.log(error);
+        },
+      );
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createIDependentRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+    if (
+      !existsSync(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+      )
+    ) {
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createDependentFakeRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      truncate(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        error => {
+          if (error) console.log(error);
+        },
+      );
+      appendFile(
+        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        this.createDependentFakeRepository.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
+
+    if (
+      !existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
+    ) {
+      appendFile(
+        `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
+        this.createFullDependentRoute.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+      appendFile(
+        `src/routes/index.ts`,
+        this.createIndexDependentRoute.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    } else {
+      appendFile(
+        `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
+        this.createDependentRoute.execute(),
+        error => {
+          if (error) throw error;
+        },
+      );
+    }
     appendFile(
-      `src/routes/index.ts`,
-      createIndexDependentRoute(fatherNames),
-      error => {
-        if (error) throw error;
-      },
-    );
-  } else {
-    appendFile(
-      `src/routes/${fatherNames.lowerModuleName}Router.ts`,
-      createDependentRoute(names, fatherNames),
+      'src/shared/container/index.ts',
+      this.createDependentInjection.execute(),
       error => {
         if (error) throw error;
       },
     );
   }
-  appendFile(
-    'src/shared/container/index.ts',
-    createDependentInjection(names, fatherNames),
-    error => {
-      if (error) throw error;
-    },
-  );
 }

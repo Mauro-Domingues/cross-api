@@ -1,15 +1,35 @@
 import { IModuleNamesDTO } from '@tools/names';
+import messages from '@tools/messages';
 
 export class ListSpecDependentService {
-  private names: Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>;
-  private fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'>;
+  private messages: typeof messages;
+  private names:
+    | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
+    | undefined;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
 
-  constructor(names: IModuleNamesDTO, fatherNames: IModuleNamesDTO) {
+  constructor(
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
+  ) {
+    this.messages = messages;
     this.names = names;
     this.fatherNames = fatherNames;
   }
 
   public execute(): string {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
+    }
+
     return `import Fake${this.names.upperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import List${this.names.upperModuleName}Service from './List${this.names.upperModuleName}Service';
