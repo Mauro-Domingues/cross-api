@@ -1,5 +1,5 @@
 import { appendFile, truncate } from 'fs';
-import { createInterface, Interface } from 'readline';
+import { createInterface } from 'readline';
 
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
@@ -17,26 +17,17 @@ interface ILanguageConfigDTO {
 
 export class ConfigLanguage {
   private messages: typeof messages;
-  private rl: Interface;
   private Language: ILanguageOptionsDTO;
-  private languageIndex: string[];
   private englishMessages: EnglishMessages;
   private portugueseMessages: PortugueseMessages;
   private languageConfig: ILanguageConfigDTO;
   public parsedMessages: typeof messages;
-  private chosen: keyof ILanguageOptionsDTO | string;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
     this.portugueseMessages = new PortugueseMessages();
-    this.chosen = '';
     this.messages = messages;
     this.parsedMessages = messages;
-    this.rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-    this.languageIndex = ['en-us', 'pt-br'];
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
@@ -59,19 +50,25 @@ export class ConfigLanguage {
     console.table(Object.keys(this.Language));
     console.log('');
 
-    this.rl.question(this.messages.answer, optionChosen => {
-      this.chosen = optionChosen;
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
 
+    rl.question(this.messages.answer, optionChosen => {
       if (
-        this.isLanguageOptionsKeyType(this.chosen) &&
-        Object.keys(this.Language)[Number(this.chosen)]
+        this.isLanguageOptionsKeyType(optionChosen) &&
+        Object.keys(this.Language)[Number(optionChosen)]
       ) {
         this.languageConfig = {
-          option: this.chosen,
+          option: optionChosen,
           index: Number(optionChosen),
         };
+        rl.close();
+        this.setLanguageOption();
       } else {
-        this.rl.close();
+        rl.close();
+        this.validateOption(optionChosen);
       }
     });
   }
@@ -87,8 +84,6 @@ export class ConfigLanguage {
   }
 
   private setLanguageOption({ option, index } = this.languageConfig) {
-    this.parsedMessages = JSON.parse(this[this.Language[option]].execute());
-
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) console.log(error);
     });
@@ -100,6 +95,8 @@ export class ConfigLanguage {
         if (error) console.log(error);
       },
     );
+
+    this.parsedMessages = messages;
 
     console.log('');
     console.log(
@@ -119,10 +116,5 @@ export class ConfigLanguage {
 
   public async execute(): Promise<void> {
     this.showLanguageOptions();
-    while (!Object.keys(this.Language)[Number(this.chosen)]) {
-      this.validateOption(this.chosen);
-      this.showLanguageOptions();
-    }
-    this.setLanguageOption();
   }
 }
