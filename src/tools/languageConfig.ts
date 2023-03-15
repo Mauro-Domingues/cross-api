@@ -10,17 +10,25 @@ interface ILanguageOptionsDTO {
   'pt-br': 'portugueseMessages';
 }
 
+interface ILanguageConfigDTO {
+  option: keyof ILanguageOptionsDTO;
+  index: number;
+}
+
 export class ConfigLanguage {
-  private englishMessages: EnglishMessages;
-  private portugueseMessages: PortugueseMessages;
   private messages: typeof messages;
   private rl: Interface;
   private Language: ILanguageOptionsDTO;
+  private englishMessages: EnglishMessages;
+  private portugueseMessages: PortugueseMessages;
+  private languageConfig: ILanguageConfigDTO;
+  public parsedMessages: typeof messages;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
     this.portugueseMessages = new PortugueseMessages();
     this.messages = messages;
+    this.parsedMessages = messages;
     this.rl = createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -28,6 +36,10 @@ export class ConfigLanguage {
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
+    };
+    this.languageConfig = {
+      option: 'en-us',
+      index: 0,
     };
   }
 
@@ -56,10 +68,8 @@ export class ConfigLanguage {
     this.execute();
   }
 
-  private setLanguageOption(option: keyof ILanguageOptionsDTO, index: number) {
-    const parsedMessages: typeof messages = JSON.parse(
-      this[this.Language[option]].execute(),
-    );
+  private setLanguageOption({ option, index } = this.languageConfig) {
+    this.parsedMessages = JSON.parse(this[this.Language[option]].execute());
 
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) console.log(error);
@@ -77,15 +87,15 @@ export class ConfigLanguage {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;255;155m',
-      `${parsedMessages.choice}${Object.keys(this.Language)[index]}`,
+      `${this.parsedMessages.choice}${Object.keys(this.Language)[index]}`,
       '\x1b[0m',
     );
     console.log('');
   }
 
   private isLanguageOptionsKeyType(
-    secret: keyof ILanguageOptionsDTO | string,
-  ): secret is keyof ILanguageOptionsDTO {
+    option: keyof ILanguageOptionsDTO | string,
+  ): option is keyof ILanguageOptionsDTO {
     return true;
   }
 
@@ -98,7 +108,11 @@ export class ConfigLanguage {
       if (!this.isLanguageOptionsKeyType(option)) {
         this.validateOption(optionChosen);
       } else {
-        this.setLanguageOption(option, Number(optionChosen));
+        this.languageConfig = {
+          option,
+          index: Number(optionChosen),
+        };
+        this.setLanguageOption(this.languageConfig);
       }
 
       this.rl.close();

@@ -1,5 +1,6 @@
 export default {
   language: '➤  Which language do you prefer?',
+
   invalidLanguage: ' is not a valid option',
   answer: 'Your answer: ',
   choice: '➤  You chose the language: ',
@@ -12,8 +13,12 @@ export default {
   apiCreated: 'api structure created',
   available: 'not available yet',
   notFound: '➤  No commands detected',
-  try: '- execute "yarn cross comands" to see available commands',
-  dependencies: 'Installing dependencies',
+  try: ['➤  Execute', 'yarn cross comands', 'to see available commands'],
+  yarn: '==============={ Installing Yarn }===============',
+  dependencies: '==========={ Installing Dependencies }===========',
+  devDependencies: '====={ Installing Development Dependencies }=====',
+  marketplaceTool: ['Download', 'to help you'],
+  installed: 'installed',
   comandTitle: '=={ COMANDS LIST }===',
   tools: 'TOOLS      ',
   comands: 'It is used to view the available commands        ',

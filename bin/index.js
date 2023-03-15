@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _shelljs = require("shelljs");
 var _board = require("../dist/tools/board");
 var _config = require("../dist/tools/config");
@@ -10,106 +14,88 @@ var _makeApi = require("../dist/tools/makeApi");
 var _makeModule = require("../dist/tools/makeModule");
 var _makeProvider = require("../dist/tools/makeProvider");
 var _messages = _interopRequireDefault(require("../dist/tools/messages"));
-var _pluralize = require("pluralize");
 var _save = require("../dist/tools/lastModification/save");
 var _delete = require("../dist/tools/lastModification/delete");
+var _names = require("../dist/tools/names");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const fullComand = process.argv.slice(2);
-const comand = process.argv[2];
-const arg = process.argv[3];
-const father = process.argv[4];
-class GetNames {
-  getSingularAndPlural(word) {
-    if ((0, _pluralize.isSingular)(word)) {
-      return {
-        singular: word,
-        pluralName: (0, _pluralize.plural)(word)
-      };
-    }
-    return {
-      singular: (0, _pluralize.singular)(word),
-      pluralName: word
-    };
+class Index {
+  constructor() {
+    this.fullComand = process.argv.slice(2);
+    this.comand = process.argv[2];
+    this.arg = process.argv[3];
+    this.father = process.argv[4];
+    this.messages = void 0;
+    this.getNames = void 0;
+    this.deleteRegister = void 0;
+    this.createRegister = void 0;
+    this.createProvider = void 0;
+    this.createModule = void 0;
+    this.createApi = void 0;
+    this.listProvider = void 0;
+    this.configLanguage = void 0;
+    this.configJson = void 0;
+    this.board = void 0;
+    this.messages = _messages.default;
+    this.getNames = new _names.GetNames();
+    this.deleteRegister = new _delete.DeleteRegister();
+    this.createRegister = new _save.CreateRegister(this.fullComand, this.arg, this.getNames.execute(this.arg), this.getNames.execute(this.father));
+    this.createProvider = new _makeProvider.CreateProvider(this.arg, this.getNames.execute(this.arg));
+    this.createModule = new _makeModule.CreateModule(this.getNames.execute(this.arg), this.getNames.execute(this.father));
+    this.createApi = new _makeApi.CreateApi();
+    this.listProvider = new _listProvider.ListProvider();
+    this.configLanguage = new _languageConfig.ConfigLanguage();
+    this.configJson = new _config.ConfigJson();
+    this.board = new _board.Board();
   }
-  getModuleNames(name) {
-    if (!name) {
-      return undefined;
+  execute() {
+    if (this.comand) {
+      this.createRegister.execute();
+      switch (this.comand) {
+        case 'config':
+          this.configJson.execute();
+          break;
+        case 'comands':
+          this.board.execute();
+          break;
+        case 'language':
+          this.configLanguage.execute();
+          break;
+        case 'list:provider':
+          this.listProvider.execute();
+          break;
+        case 'make:api':
+          this.createApi.execute();
+          break;
+        case 'make:module':
+          this.createModule.execute();
+          break;
+        case 'make:provider':
+          this.createProvider.execute();
+          break;
+        case 'migration:generate':
+          (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
+          break;
+        case 'migration:run':
+          (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+          break;
+        case 'revert':
+          this.deleteRegister.execute();
+          break;
+        default:
+          console.log('');
+          console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
+          console.log('');
+          console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
+          console.log('');
+          break;
+      }
+    } else {
+      console.log('');
+      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
+      console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
+      console.log('');
     }
-    const {
-      singular,
-      pluralName
-    } = this.getSingularAndPlural(name);
-    const lowerModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toLowerCase());
-    const upperModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toUpperCase());
-    const pluralLowerModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toLowerCase());
-    const pluralUpperModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toUpperCase());
-    const dbModuleName = Array.from(pluralLowerModuleName).reduce((accumulator, letter) => {
-      if (letter === letter.toUpperCase()) {
-        return `${accumulator}_${letter.toLowerCase()}`;
-      }
-      return `${accumulator}${letter}`;
-    });
-    const routeModuleName = Array.from(pluralLowerModuleName).reduce((accumulator, letter) => {
-      if (letter === letter.toUpperCase()) {
-        return `${accumulator}-${letter.toLowerCase()}`;
-      }
-      return `${accumulator}${letter}`;
-    });
-    return {
-      lowerModuleName,
-      upperModuleName,
-      pluralLowerModuleName,
-      pluralUpperModuleName,
-      dbModuleName,
-      routeModuleName
-    };
   }
 }
-if (comand) {
-  (0, _save.createRegister)(fullComand, arg, new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
-  switch (comand) {
-    case 'config':
-      (0, _config.configJson)();
-      break;
-    case 'comands':
-      (0, _board.board)();
-      break;
-    case 'language':
-      (0, _languageConfig.configLanguage)();
-      break;
-    case 'list:provider':
-      (0, _listProvider.listProvider)();
-      break;
-    case 'make:api':
-      (0, _makeApi.createApi)();
-      break;
-    case 'make:module':
-      (0, _makeModule.createModule)(new GetNames().getModuleNames(arg), new GetNames().getModuleNames(father));
-      break;
-    case 'make:provider':
-      (0, _makeProvider.createProvider)(arg, new GetNames().getModuleNames(father));
-      break;
-    case 'migration:generate':
-      (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
-      break;
-    case 'migration:run':
-      (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
-      break;
-    case 'revert':
-      (0, _delete.deleteRegister)();
-      break;
-    default:
-      console.log('');
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', _messages.default.notFound, '\x1b[0m');
-      console.log('');
-      console.log('\x1b[1m', '\x1b[38;2;255;255;0m', _messages.default.try, '\x1b[0m');
-      console.log('');
-      break;
-  }
-} else {
-  console.log('');
-  console.log('\x1b[1m', '\x1b[38;2;255;0;0m', _messages.default.notFound, '\x1b[0m');
-  console.log('');
-  console.log('\x1b[1m', '\x1b[38;2;255;255;0m', _messages.default.try, '\x1b[0m');
-  console.log('');
-}
+var _default = new Index().execute();
+exports.default = _default;
