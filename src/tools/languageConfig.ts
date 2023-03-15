@@ -97,7 +97,7 @@ export class ConfigLanguage {
     return true;
   }
 
-  public execute(): void {
+  public async execute(): Promise<void> {
     this.showLanguageOptions();
 
     this.rl.question(this.messages.answer, optionChosen => {

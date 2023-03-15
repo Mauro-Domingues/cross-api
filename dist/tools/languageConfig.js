@@ -65,7 +65,7 @@ class ConfigLanguage {
   isLanguageOptionsKeyType(option) {
     return true;
   }
-  execute() {
+  async execute() {
     this.showLanguageOptions();
     this.rl.question(this.messages.answer, optionChosen => {
       const option = optionChosen;

@@ -55,9 +55,9 @@ class Index {
     this.board = new Board();
   }
 
-  public execute(): void {
+  public async execute(): Promise<void> {
     if (this.comand) {
-      this.createRegister.execute();
+      await this.createRegister.execute();
       switch (this.comand) {
         case 'config':
           this.configJson.execute();
@@ -66,19 +66,19 @@ class Index {
           this.board.execute();
           break;
         case 'language':
-          this.configLanguage.execute();
+          await this.configLanguage.execute();
           break;
         case 'list:provider':
           this.listProvider.execute();
           break;
         case 'make:api':
-          this.createApi.execute();
+          await this.createApi.execute();
           break;
         case 'make:module':
-          this.createModule.execute();
+          await this.createModule.execute();
           break;
         case 'make:provider':
-          this.createProvider.execute();
+          await this.createProvider.execute();
           break;
         case 'migration:generate':
           exec(
@@ -91,7 +91,7 @@ class Index {
           );
           break;
         case 'revert':
-          this.deleteRegister.execute();
+          await this.deleteRegister.execute();
           break;
         default:
           console.log('');
