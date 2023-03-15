@@ -36,7 +36,7 @@ export class ConfigLanguage {
     };
   }
 
-  private async showLanguageOptions(): Promise<void> {
+  private showLanguageOptions(): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -63,14 +63,14 @@ export class ConfigLanguage {
           option: choice,
           index: Number(optionChosen),
         };
+        rl.close();
         this.setLanguageOption();
       } else {
+        rl.close();
         this.validateOption(optionChosen);
         this.execute();
       }
     });
-
-    rl.close();
   }
 
   private validateOption(optionChosen: string): void {
@@ -115,6 +115,6 @@ export class ConfigLanguage {
   }
 
   public async execute(): Promise<void> {
-    return this.showLanguageOptions();
+    this.showLanguageOptions();
   }
 }

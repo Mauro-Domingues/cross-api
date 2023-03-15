@@ -164,10 +164,10 @@ export class ConfigJson {
     console.log('');
   }
 
-  public execute(): void {
+  public async execute(): Promise<void> {
     this.patchPackage();
 
-    this.configLanguage.execute();
+    await this.configLanguage.execute();
 
     this.installYarn();
 
@@ -198,6 +198,6 @@ export class ConfigJson {
     );
     console.log('');
 
-    // this.config.execute();
+    this.config.execute();
   }
 }

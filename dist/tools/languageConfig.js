@@ -29,7 +29,7 @@ class ConfigLanguage {
       index: 0
     };
   }
-  async showLanguageOptions() {
+  showLanguageOptions() {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `${this.messages.language}`, '\x1b[0m');
     console.log('\x1b[1m');
@@ -46,13 +46,14 @@ class ConfigLanguage {
           option: choice,
           index: Number(optionChosen)
         };
+        rl.close();
         this.setLanguageOption();
       } else {
+        rl.close();
         this.validateOption(optionChosen);
         this.execute();
       }
     });
-    rl.close();
   }
   validateOption(optionChosen) {
     console.log('');
@@ -77,7 +78,7 @@ class ConfigLanguage {
     return true;
   }
   async execute() {
-    return this.showLanguageOptions();
+    this.showLanguageOptions();
   }
 }
 exports.ConfigLanguage = ConfigLanguage;
