@@ -15,18 +15,22 @@ class ConfigLanguage {
     this.messages = void 0;
     this.rl = void 0;
     this.Language = void 0;
+    this.languageIndex = void 0;
     this.englishMessages = void 0;
     this.portugueseMessages = void 0;
     this.languageConfig = void 0;
     this.parsedMessages = void 0;
+    this.chosen = void 0;
     this.englishMessages = new _enUs.EnglishMessages();
     this.portugueseMessages = new _ptBr.PortugueseMessages();
+    this.chosen = '';
     this.messages = _messages.default;
     this.parsedMessages = _messages.default;
     this.rl = (0, _readline.createInterface)({
       input: process.stdin,
       output: process.stdout
     });
+    this.languageIndex = ['en-us', 'pt-br'];
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages'
@@ -42,6 +46,17 @@ class ConfigLanguage {
     console.log('\x1b[1m');
     console.table(Object.keys(this.Language));
     console.log('');
+    this.rl.question(this.messages.answer, optionChosen => {
+      this.chosen = optionChosen;
+      if (this.isLanguageOptionsKeyType(this.chosen) && Object.keys(this.Language)[Number(this.chosen)]) {
+        this.languageConfig = {
+          option: this.chosen,
+          index: Number(optionChosen)
+        };
+      } else {
+        this.rl.close();
+      }
+    });
   }
   validateOption(optionChosen) {
     console.log('');
@@ -67,21 +82,11 @@ class ConfigLanguage {
   }
   async execute() {
     this.showLanguageOptions();
-    this.rl.question(this.messages.answer, optionChosen => {
-      const option = optionChosen;
-      if (!this.isLanguageOptionsKeyType(option)) {
-        this.validateOption(optionChosen);
-        this.rl.close();
-        this.execute();
-      } else {
-        this.languageConfig = {
-          option,
-          index: Number(optionChosen)
-        };
-        this.setLanguageOption(this.languageConfig);
-      }
-      this.rl.close();
-    });
+    while (!Object.keys(this.Language)[Number(this.chosen)]) {
+      this.validateOption(this.chosen);
+      this.showLanguageOptions();
+    }
+    this.setLanguageOption();
   }
 }
 exports.ConfigLanguage = ConfigLanguage;

@@ -10,6 +10,12 @@ export interface IModuleNamesDTO {
 }
 
 export class GetNames {
+  private name: string | undefined;
+
+  constructor(name: string | undefined) {
+    this.name = name;
+  }
+
   private getSingularAndPlural(word: string): {
     singular: string;
     pluralName: string;
@@ -26,12 +32,12 @@ export class GetNames {
     };
   }
 
-  public execute(name: string): IModuleNamesDTO | undefined {
-    if (!name) {
+  public execute(): IModuleNamesDTO | undefined {
+    if (!this.name) {
       return undefined;
     }
 
-    const { singular, pluralName } = this.getSingularAndPlural(name);
+    const { singular, pluralName } = this.getSingularAndPlural(this.name);
 
     const lowerModuleName = singular.replace(
       singular.charAt(0),

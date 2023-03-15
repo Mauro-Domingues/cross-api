@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.GetNames = void 0;
 var _pluralize = require("pluralize");
 class GetNames {
+  constructor(name) {
+    this.name = void 0;
+    this.name = name;
+  }
   getSingularAndPlural(word) {
     if ((0, _pluralize.isSingular)(word)) {
       return {
@@ -18,14 +22,14 @@ class GetNames {
       pluralName: word
     };
   }
-  execute(name) {
-    if (!name) {
+  execute() {
+    if (!this.name) {
       return undefined;
     }
     const {
       singular,
       pluralName
-    } = this.getSingularAndPlural(name);
+    } = this.getSingularAndPlural(this.name);
     const lowerModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toLowerCase());
     const upperModuleName = singular.replace(singular.charAt(0), singular.charAt(0).toUpperCase());
     const pluralLowerModuleName = pluralName.replace(pluralName.charAt(0), pluralName.charAt(0).toLowerCase());

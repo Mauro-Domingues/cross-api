@@ -6,11 +6,9 @@ import { GetNames, IModuleNamesDTO } from '@tools/names';
 export class DeleteRegister {
   private messages: typeof messages;
   private providers: { [key: string]: string };
-  private getNames: GetNames;
 
   constructor() {
     this.messages = messages;
-    this.getNames = new GetNames();
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',
@@ -267,8 +265,8 @@ export class DeleteRegister {
     );
 
     const comand = register.split(',')[0];
-    const names = this.getNames.execute(register.split(',')[1]);
-    const fatherNames = this.getNames.execute(register.split(',')[2]);
+    const names = new GetNames(register.split(',')[1]).execute();
+    const fatherNames = new GetNames(register.split(',')[2]).execute();
 
     switch (comand) {
       case 'make:provider':

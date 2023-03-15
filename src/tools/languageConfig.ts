@@ -19,20 +19,24 @@ export class ConfigLanguage {
   private messages: typeof messages;
   private rl: Interface;
   private Language: ILanguageOptionsDTO;
+  private languageIndex: string[];
   private englishMessages: EnglishMessages;
   private portugueseMessages: PortugueseMessages;
   private languageConfig: ILanguageConfigDTO;
   public parsedMessages: typeof messages;
+  private chosen: keyof ILanguageOptionsDTO | string;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
     this.portugueseMessages = new PortugueseMessages();
+    this.chosen = '';
     this.messages = messages;
     this.parsedMessages = messages;
     this.rl = createInterface({
       input: process.stdin,
       output: process.stdout,
     });
+    this.languageIndex = ['en-us', 'pt-br'];
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
@@ -54,6 +58,22 @@ export class ConfigLanguage {
     console.log('\x1b[1m');
     console.table(Object.keys(this.Language));
     console.log('');
+
+    this.rl.question(this.messages.answer, optionChosen => {
+      this.chosen = optionChosen;
+
+      if (
+        this.isLanguageOptionsKeyType(this.chosen) &&
+        Object.keys(this.Language)[Number(this.chosen)]
+      ) {
+        this.languageConfig = {
+          option: this.chosen,
+          index: Number(optionChosen),
+        };
+      } else {
+        this.rl.close();
+      }
+    });
   }
 
   private validateOption(optionChosen: string) {
@@ -99,23 +119,10 @@ export class ConfigLanguage {
 
   public async execute(): Promise<void> {
     this.showLanguageOptions();
-
-    this.rl.question(this.messages.answer, optionChosen => {
-      const option: keyof ILanguageOptionsDTO | string = optionChosen;
-
-      if (!this.isLanguageOptionsKeyType(option)) {
-        this.validateOption(optionChosen);
-        this.rl.close();
-        this.execute();
-      } else {
-        this.languageConfig = {
-          option,
-          index: Number(optionChosen),
-        };
-        this.setLanguageOption(this.languageConfig);
-      }
-
-      this.rl.close();
-    });
+    while (!Object.keys(this.Language)[Number(this.chosen)]) {
+      this.validateOption(this.chosen);
+      this.showLanguageOptions();
+    }
+    this.setLanguageOption();
   }
 }

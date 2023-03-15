@@ -13,9 +13,7 @@ class DeleteRegister {
   constructor() {
     this.messages = void 0;
     this.providers = void 0;
-    this.getNames = void 0;
     this.messages = _messages.default;
-    this.getNames = new _names.GetNames();
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',
@@ -157,8 +155,8 @@ class DeleteRegister {
   async execute() {
     const register = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', 'ascii');
     const comand = register.split(',')[0];
-    const names = this.getNames.execute(register.split(',')[1]);
-    const fatherNames = this.getNames.execute(register.split(',')[2]);
+    const names = new _names.GetNames(register.split(',')[1]).execute();
+    const fatherNames = new _names.GetNames(register.split(',')[2]).execute();
     switch (comand) {
       case 'make:provider':
         this.makeProvider(comand, names, fatherNames);
