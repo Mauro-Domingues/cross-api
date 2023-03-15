@@ -36,7 +36,7 @@ export class ConfigLanguage {
     };
   }
 
-  private showLanguageOptions() {
+  private async showLanguageOptions(): Promise<void> {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -66,13 +66,14 @@ export class ConfigLanguage {
         this.setLanguageOption();
       } else {
         this.validateOption(optionChosen);
+        this.execute();
       }
     });
 
     rl.close();
   }
 
-  private validateOption(optionChosen: string) {
+  private validateOption(optionChosen: string): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -82,7 +83,7 @@ export class ConfigLanguage {
     );
   }
 
-  private setLanguageOption({ option, index } = this.languageConfig) {
+  private setLanguageOption({ option, index } = this.languageConfig): void {
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) console.log(error);
     });
@@ -114,6 +115,6 @@ export class ConfigLanguage {
   }
 
   public async execute(): Promise<void> {
-    this.showLanguageOptions();
+    return this.showLanguageOptions();
   }
 }
