@@ -28,7 +28,7 @@ export class ListProvider {
     );
   }
 
-  private renderProviderOptions() {
+  private renderProviderOptions(): void {
     this.providers.forEach(provider => {
       console.log(
         '\x1b[1m',

@@ -66,7 +66,7 @@ export class Board {
     );
   }
 
-  private renderToolOptions() {
+  private renderToolOptions(): void {
     this.renderEmptyLine();
     console.log(
       '\x1b[1m',
@@ -99,7 +99,7 @@ export class Board {
     });
   }
 
-  private renderOrmOptions() {
+  private renderOrmOptions(): void {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
@@ -131,7 +131,7 @@ export class Board {
     });
   }
 
-  private renderStructureOptions() {
+  private renderStructureOptions(): void {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',

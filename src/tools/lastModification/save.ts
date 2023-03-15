@@ -5,7 +5,9 @@ export class CreateRegister {
   private comand: string[] | undefined;
   private providerName: string | undefined;
   private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
+    | undefined;
 
   constructor(
     comand: string[] | undefined,
@@ -19,11 +21,8 @@ export class CreateRegister {
     this.fatherNames = fatherNames;
   }
 
-  private makeProvider(
-    providerName: string | undefined,
-    fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
-  ) {
-    if (providerName && fatherNames) {
+  private makeProvider(): void {
+    if (this.providerName && this.fatherNames) {
       truncate(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
         error => {
@@ -32,11 +31,11 @@ export class CreateRegister {
       );
       if (
         existsSync(
-          `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+          `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
         )
       ) {
         const providerInjection = readFileSync(
-          `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+          `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
           'ascii',
         );
         appendFile(
@@ -55,7 +54,7 @@ export class CreateRegister {
           },
         );
       }
-    } else if (providerName) {
+    } else if (this.providerName) {
       const providerInjection = readFileSync(
         'src/shared/container/providers/index.ts',
         'ascii',
@@ -76,11 +75,8 @@ export class CreateRegister {
     }
   }
 
-  private makeModule(
-    names: unknown | undefined,
-    fatherNames: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
-  ) {
-    if (names && fatherNames) {
+  private makeModule(): void {
+    if (this.names && this.fatherNames) {
       const moduleInjection = readFileSync(
         'src/shared/container/index.ts',
         'ascii',
@@ -104,9 +100,11 @@ export class CreateRegister {
           if (error) throw error;
         },
       );
-      if (existsSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`)) {
+      if (
+        existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
+      ) {
         const routeInjection = readFileSync(
-          `src/routes/${fatherNames.lowerModuleName}Router.ts`,
+          `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
           'ascii',
         );
         appendFile(
@@ -119,9 +117,9 @@ export class CreateRegister {
       } else {
         const routeInjection = `import { Router } from 'express';
 
-const ${fatherNames.lowerModuleName}Router = Router();
+const ${this.fatherNames.lowerModuleName}Router = Router();
 
-export default ${fatherNames.lowerModuleName}Router;
+export default ${this.fatherNames.lowerModuleName}Router;
 `;
         appendFile(
           './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
@@ -131,7 +129,7 @@ export default ${fatherNames.lowerModuleName}Router;
           },
         );
       }
-    } else if (names) {
+    } else if (this.names) {
       const moduleInjection = readFileSync(
         'src/shared/container/index.ts',
         'ascii',
@@ -170,10 +168,10 @@ export default ${fatherNames.lowerModuleName}Router;
     if (this.comand) {
       switch (this.comand[0]) {
         case 'make:provider':
-          this.makeProvider(this.providerName, this.fatherNames);
+          this.makeProvider();
           break;
         case 'make:module':
-          this.makeModule(this.names, this.fatherNames);
+          this.makeModule();
           break;
         default:
           truncate(

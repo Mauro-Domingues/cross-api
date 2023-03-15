@@ -69,7 +69,7 @@ class ConfigJson {
   }
   async execute() {
     this.patchPackage();
-    await this.configLanguage.execute();
+    await Promise.resolve(this.configLanguage.execute());
     this.installYarn();
     this.installDependencies();
     this.installDevDependencies();
@@ -77,7 +77,7 @@ class ConfigJson {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[2]}`, '\x1b[0m');
     console.log('');
-    this.config.execute();
+    return this.config.execute();
   }
 }
 exports.ConfigJson = ConfigJson;

@@ -167,7 +167,7 @@ export class ConfigJson {
   public async execute(): Promise<void> {
     this.patchPackage();
 
-    await this.configLanguage.execute();
+    await Promise.resolve(this.configLanguage.execute());
 
     this.installYarn();
 
@@ -198,6 +198,6 @@ export class ConfigJson {
     );
     console.log('');
 
-    this.config.execute();
+    return this.config.execute();
   }
 }
