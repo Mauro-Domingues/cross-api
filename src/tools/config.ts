@@ -108,7 +108,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.yarn}`,
+      `${this.configLanguage.messages.yarn}`,
       '\x1b[0m',
     );
     console.log('');
@@ -120,7 +120,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.dependencies}`,
+      `${this.configLanguage.messages.dependencies}`,
       '\x1b[0m',
     );
     console.log('');
@@ -133,7 +133,7 @@ export class ConfigJson {
     this.dependencies.forEach(dependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
-        `- ${dependency} ${this.configLanguage.parsedMessages.installed}`,
+        `- ${dependency} ${this.configLanguage.messages.installed}`,
         '\x1b[0m',
       );
     });
@@ -144,7 +144,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.devDependencies}`,
+      `${this.configLanguage.messages.devDependencies}`,
       '\x1b[0m',
     );
     console.log('');
@@ -157,7 +157,7 @@ export class ConfigJson {
     this.devDependencies.forEach(devDependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
-        `- ${devDependency} ${this.configLanguage.parsedMessages.installed}`,
+        `- ${devDependency} ${this.configLanguage.messages.installed}`,
         '\x1b[0m',
       );
     });
@@ -178,22 +178,22 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.marketplaceTool[0]}`,
+      `${this.configLanguage.messages.marketplaceTool[0]}`,
       '\x1b[38;2;255;0;255m',
       'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.marketplaceTool[1]}`,
+      `${this.configLanguage.messages.marketplaceTool[1]}`,
       '\x1b[0m',
     );
     console.log('');
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.try[0]}`,
+      `${this.configLanguage.messages.try[0]}`,
       '\x1b[38;2;255;255;0m',
-      `${this.configLanguage.parsedMessages.try[1]}`,
+      `${this.configLanguage.messages.try[1]}`,
       '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.parsedMessages.try[2]}`,
+      `${this.configLanguage.messages.try[2]}`,
       '\x1b[0m',
     );
     console.log('');

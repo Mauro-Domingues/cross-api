@@ -17,11 +17,9 @@ class ConfigLanguage {
     this.englishMessages = void 0;
     this.portugueseMessages = void 0;
     this.languageConfig = void 0;
-    this.parsedMessages = void 0;
     this.englishMessages = new _enUs.EnglishMessages();
     this.portugueseMessages = new _ptBr.PortugueseMessages();
     this.messages = _messages.default;
-    this.parsedMessages = _messages.default;
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages'
@@ -42,22 +40,22 @@ class ConfigLanguage {
       output: process.stdout
     });
     rl.question(this.messages.answer, optionChosen => {
-      if (this.isLanguageOptionsKeyType(optionChosen) && Object.keys(this.Language)[Number(optionChosen)]) {
+      const choice = Object.keys(this.Language)[Number(optionChosen)];
+      if (this.isLanguageOptionsKeyType(choice) && Object.keys(this.Language)[Number(optionChosen)]) {
         this.languageConfig = {
-          option: optionChosen,
+          option: choice,
           index: Number(optionChosen)
         };
-        rl.close();
         this.setLanguageOption();
       } else {
-        rl.close();
         this.validateOption(optionChosen);
       }
     });
+    rl.close();
   }
   validateOption(optionChosen) {
     console.log('');
-    console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `"${optionChosen}${this.messages.invalidLanguage}`, '\x1b[0m');
+    console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `"${optionChosen}"${this.messages.invalidLanguage}`, '\x1b[0m');
   }
   setLanguageOption({
     option,
@@ -69,9 +67,9 @@ class ConfigLanguage {
     (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', this[this.Language[option]].execute(), error => {
       if (error) console.log(error);
     });
-    this.parsedMessages = _messages.default;
+    this.messages = _messages.default;
     console.log('');
-    console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `${this.parsedMessages.choice}${Object.keys(this.Language)[index]}`, '\x1b[0m');
+    console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `${this.messages.choice}${Object.keys(this.Language)[index]}`, '\x1b[0m');
     console.log('');
   }
   isLanguageOptionsKeyType(option) {

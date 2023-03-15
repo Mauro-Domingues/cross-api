@@ -16,18 +16,16 @@ interface ILanguageConfigDTO {
 }
 
 export class ConfigLanguage {
-  private messages: typeof messages;
+  public messages: typeof messages;
   private Language: ILanguageOptionsDTO;
   private englishMessages: EnglishMessages;
   private portugueseMessages: PortugueseMessages;
   private languageConfig: ILanguageConfigDTO;
-  public parsedMessages: typeof messages;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
     this.portugueseMessages = new PortugueseMessages();
     this.messages = messages;
-    this.parsedMessages = messages;
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
@@ -56,21 +54,22 @@ export class ConfigLanguage {
     });
 
     rl.question(this.messages.answer, optionChosen => {
+      const choice = Object.keys(this.Language)[Number(optionChosen)];
       if (
-        this.isLanguageOptionsKeyType(optionChosen) &&
+        this.isLanguageOptionsKeyType(choice) &&
         Object.keys(this.Language)[Number(optionChosen)]
       ) {
         this.languageConfig = {
-          option: optionChosen,
+          option: choice,
           index: Number(optionChosen),
         };
-        rl.close();
         this.setLanguageOption();
       } else {
-        rl.close();
         this.validateOption(optionChosen);
       }
     });
+
+    rl.close();
   }
 
   private validateOption(optionChosen: string) {
@@ -78,7 +77,7 @@ export class ConfigLanguage {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;255;0;0m',
-      `"${optionChosen}${this.messages.invalidLanguage}`,
+      `"${optionChosen}"${this.messages.invalidLanguage}`,
       '\x1b[0m',
     );
   }
@@ -96,13 +95,13 @@ export class ConfigLanguage {
       },
     );
 
-    this.parsedMessages = messages;
+    this.messages = messages;
 
     console.log('');
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;255;155m',
-      `${this.parsedMessages.choice}${Object.keys(this.Language)[index]}`,
+      `${this.messages.choice}${Object.keys(this.Language)[index]}`,
       '\x1b[0m',
     );
     console.log('');
