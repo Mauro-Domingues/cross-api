@@ -64,8 +64,6 @@ export class ConfigLanguage {
       `"${optionChosen}${this.messages.invalidLanguage}`,
       '\x1b[0m',
     );
-    this.rl.close();
-    this.execute();
   }
 
   private setLanguageOption({ option, index } = this.languageConfig) {
@@ -107,6 +105,8 @@ export class ConfigLanguage {
 
       if (!this.isLanguageOptionsKeyType(option)) {
         this.validateOption(optionChosen);
+        this.rl.close();
+        this.execute();
       } else {
         this.languageConfig = {
           option,

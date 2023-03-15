@@ -46,8 +46,6 @@ class ConfigLanguage {
   validateOption(optionChosen) {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `"${optionChosen}${this.messages.invalidLanguage}`, '\x1b[0m');
-    this.rl.close();
-    this.execute();
   }
   setLanguageOption({
     option,
@@ -73,6 +71,8 @@ class ConfigLanguage {
       const option = optionChosen;
       if (!this.isLanguageOptionsKeyType(option)) {
         this.validateOption(optionChosen);
+        this.rl.close();
+        this.execute();
       } else {
         this.languageConfig = {
           option,

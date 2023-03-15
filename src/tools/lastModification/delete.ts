@@ -267,8 +267,8 @@ export class DeleteRegister {
     );
 
     const comand = register.split(',')[0];
-    const names = this.getNames.getModuleNames(register.split(',')[1]);
-    const fatherNames = this.getNames.getModuleNames(register.split(',')[2]);
+    const names = this.getNames.execute(register.split(',')[1]);
+    const fatherNames = this.getNames.execute(register.split(',')[2]);
 
     switch (comand) {
       case 'make:provider':

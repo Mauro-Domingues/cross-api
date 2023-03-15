@@ -198,6 +198,6 @@ export class ConfigJson {
     );
     console.log('');
 
-    this.config.execute();
+    // this.config.execute();
   }
 }

@@ -157,8 +157,8 @@ class DeleteRegister {
   async execute() {
     const register = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', 'ascii');
     const comand = register.split(',')[0];
-    const names = this.getNames.getModuleNames(register.split(',')[1]);
-    const fatherNames = this.getNames.getModuleNames(register.split(',')[2]);
+    const names = this.getNames.execute(register.split(',')[1]);
+    const fatherNames = this.getNames.execute(register.split(',')[2]);
     switch (comand) {
       case 'make:provider':
         this.makeProvider(comand, names, fatherNames);

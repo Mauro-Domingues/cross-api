@@ -42,7 +42,7 @@ class Index {
     );
     this.createProvider = new CreateProvider(
       this.arg,
-      this.getNames.execute(this.arg),
+      this.getNames.execute(this.father),
     );
     this.createModule = new CreateModule(
       this.getNames.execute(this.arg),
@@ -138,4 +138,4 @@ class Index {
   }
 }
 
-export default new Index().execute();
+new Index().execute();
