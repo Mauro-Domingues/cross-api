@@ -97,8 +97,9 @@ class ConfigJson {
           index: Number(optionChosen)
         };
         rl.close();
-        this.configLanguage.setLanguageOption();
+        this.configLanguage.showChosenOption();
         this.setConfig();
+        this.configLanguage.setLanguageOption();
       } else {
         rl.close();
         this.configLanguage.validateOption(optionChosen);

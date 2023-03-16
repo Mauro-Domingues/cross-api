@@ -47,6 +47,7 @@ class ConfigLanguage {
           index: Number(optionChosen)
         };
         rl.close();
+        this.showChosenOption();
         this.setLanguageOption();
       } else {
         rl.close();
@@ -59,21 +60,30 @@ class ConfigLanguage {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `"${optionChosen}"${this.messages.invalidLanguage}`, '\x1b[0m');
   }
-  setLanguageOption({
+  showChosenOption({
     option,
     index
   } = this.languageConfig) {
     const languageChosen = this[this.Language[option]].execute();
-    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
-      if (error) console.log(error);
-    });
-    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', `module.exports = ${JSON.stringify(languageChosen)}`, error => {
-      if (error) console.log(error);
-    });
     this.messages = languageChosen;
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `${this.messages.choice}${Object.keys(this.Language)[index]}`, '\x1b[0m');
     console.log('');
+  }
+  setLanguageOption() {
+    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
+      if (error) console.log(error);
+    });
+    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', `"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = ${JSON.stringify(this.messages)};
+exports.default = _default;`, error => {
+      if (error) console.log(error);
+    });
   }
   isLanguageOptionsKeyType(option) {
     return true;

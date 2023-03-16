@@ -65,6 +65,7 @@ export class ConfigLanguage {
         };
 
         rl.close();
+        this.showChosenOption();
         this.setLanguageOption();
       } else {
         rl.close();
@@ -84,19 +85,8 @@ export class ConfigLanguage {
     );
   }
 
-  public setLanguageOption({ option, index } = this.languageConfig): void {
+  public showChosenOption({ option, index } = this.languageConfig): void {
     const languageChosen = this[this.Language[option]].execute();
-
-    truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-      if (error) console.log(error);
-    });
-    appendFile(
-      './node_modules/cross-api/dist/tools/messages.js',
-      `module.exports = ${JSON.stringify(languageChosen)}`,
-      error => {
-        if (error) console.log(error);
-      },
-    );
 
     this.messages = languageChosen;
 
@@ -108,6 +98,27 @@ export class ConfigLanguage {
       '\x1b[0m',
     );
     console.log('');
+  }
+
+  public setLanguageOption(): void {
+
+    truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
+      './node_modules/cross-api/dist/tools/messages.js',
+      `"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = ${JSON.stringify(this.messages)};
+exports.default = _default;`,
+      error => {
+        if (error) console.log(error);
+      },
+    );
   }
 
   public isLanguageOptionsKeyType(
