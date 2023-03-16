@@ -77,7 +77,7 @@ class ConfigLanguage {
     return true;
   }
   async execute() {
-    this.showLanguageOptions();
+    return this.showLanguageOptions();
   }
 }
 exports.ConfigLanguage = ConfigLanguage;

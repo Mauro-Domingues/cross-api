@@ -118,6 +118,6 @@ export class ConfigLanguage {
   }
 
   public async execute(): Promise<void> {
-    this.showLanguageOptions();
+    return this.showLanguageOptions();
   }
 }
