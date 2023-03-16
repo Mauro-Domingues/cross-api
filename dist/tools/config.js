@@ -99,14 +99,15 @@ class ConfigJson {
         rl.close();
         this.configLanguage.setLanguageOption();
         this.setConfig();
+      } else {
+        rl.close();
+        this.configLanguage.validateOption(optionChosen);
+        this.execute();
       }
-      rl.close();
-      this.configLanguage.validateOption(optionChosen);
-      this.execute();
     });
   }
   async execute() {
-    this.showLanguageOptions();
+    return this.showLanguageOptions();
   }
 }
 exports.ConfigJson = ConfigJson;
