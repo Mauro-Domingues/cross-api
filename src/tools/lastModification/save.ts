@@ -165,29 +165,24 @@ export default ${this.fatherNames.lowerModuleName}Router;
   }
 
   public async execute(): Promise<void> {
-    if (this.comand) {
-      switch (this.comand[0]) {
-        case 'make:provider':
-          this.makeProvider();
-          break;
-        case 'make:module':
-          this.makeModule();
-          break;
-        default:
-          truncate(
-            './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-            error => {
-              if (error) throw error;
-            },
-          );
-          appendFile(
-            './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-            String(this.comand),
-            error => {
-              if (error) throw error;
-            },
-          );
-      }
+    if (this.comand && this.comand[0] === 'make:provider') {
+      this.makeProvider();
+    } else if (this.comand && this.comand[0] === 'make:module') {
+      this.makeModule();
     }
+
+    truncate(
+      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      error => {
+        if (error) throw error;
+      },
+    );
+    appendFile(
+      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      String(this.comand),
+      error => {
+        if (error) throw error;
+      },
+    );
   }
 }

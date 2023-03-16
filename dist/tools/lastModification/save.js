@@ -87,23 +87,17 @@ export default ${this.fatherNames.lowerModuleName}Router;
     }
   }
   async execute() {
-    if (this.comand) {
-      switch (this.comand[0]) {
-        case 'make:provider':
-          this.makeProvider();
-          break;
-        case 'make:module':
-          this.makeModule();
-          break;
-        default:
-          (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', error => {
-            if (error) throw error;
-          });
-          (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', String(this.comand), error => {
-            if (error) throw error;
-          });
-      }
+    if (this.comand && this.comand[0] === 'make:provider') {
+      this.makeProvider();
+    } else if (this.comand && this.comand[0] === 'make:module') {
+      this.makeModule();
     }
+    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', error => {
+      if (error) throw error;
+    });
+    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', String(this.comand), error => {
+      if (error) throw error;
+    });
   }
 }
 exports.CreateRegister = CreateRegister;

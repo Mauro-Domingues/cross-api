@@ -1,4 +1,4 @@
-import messages from './messages';
+import messages from '@tools/messages';
 
 interface IOptionDTO {
   title: string;
