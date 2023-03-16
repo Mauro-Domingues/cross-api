@@ -42,7 +42,10 @@ class Index {
       this.getNames.execute(),
       this.getFatherNames.execute(),
     );
-    this.createProvider = new CreateProvider(this.arg, this.getNames.execute());
+    this.createProvider = new CreateProvider(
+      this.arg,
+      this.getFatherNames.execute(),
+    );
     this.createModule = new CreateModule(
       this.getNames.execute(),
       this.getFatherNames.execute(),

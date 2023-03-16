@@ -37,7 +37,7 @@ class Index {
     this.getFatherNames = new _names.GetNames(this.father);
     this.deleteRegister = new _delete.DeleteRegister();
     this.createRegister = new _save.CreateRegister(this.fullComand, this.arg, this.getNames.execute(), this.getFatherNames.execute());
-    this.createProvider = new _makeProvider.CreateProvider(this.arg, this.getNames.execute());
+    this.createProvider = new _makeProvider.CreateProvider(this.arg, this.getFatherNames.execute());
     this.createModule = new _makeModule.CreateModule(this.getNames.execute(), this.getFatherNames.execute());
     this.createApi = new _makeApi.CreateApi();
     this.listProvider = new _listProvider.ListProvider();
