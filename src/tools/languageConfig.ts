@@ -63,6 +63,7 @@ export class ConfigLanguage {
           option: choice,
           index: Number(optionChosen),
         };
+
         rl.close();
         this.setLanguageOption();
       } else {

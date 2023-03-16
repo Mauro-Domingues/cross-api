@@ -169,48 +169,7 @@ export class ConfigJson {
     console.log('');
   }
 
-  public showLanguageOptions(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;255;0m',
-      `${this.configLanguage.messages.language}`,
-      '\x1b[0m',
-    );
-    console.log('\x1b[1m');
-    console.table(Object.keys(this.configLanguage.Language));
-    console.log('');
-
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question(this.configLanguage.messages.answer, optionChosen => {
-      const choice = Object.keys(this.configLanguage.Language)[
-        Number(optionChosen)
-      ];
-      if (
-        this.configLanguage.isLanguageOptionsKeyType(choice) &&
-        Object.keys(this.configLanguage.Language)[Number(optionChosen)]
-      ) {
-        this.configLanguage.languageConfig = {
-          option: choice,
-          index: Number(optionChosen),
-        };
-        rl.close();
-        this.configLanguage.setLanguageOption();
-      } else {
-        rl.close();
-        this.configLanguage.validateOption(optionChosen);
-        this.execute();
-      }
-    });
-  }
-
-  public async execute(): Promise<void> {
-    this.showLanguageOptions();
-
+  private setConfig(): void {
     this.patchPackage();
 
     this.installYarn();
@@ -242,6 +201,51 @@ export class ConfigJson {
     );
     console.log('');
 
-    return this.config.execute();
+    this.config.execute();
+  }
+
+  public showLanguageOptions(): void {
+    console.log('');
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;255;255;0m',
+      `${this.configLanguage.messages.language}`,
+      '\x1b[0m',
+    );
+    console.log('\x1b[1m');
+    console.table(Object.keys(this.configLanguage.Language));
+    console.log('');
+
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(this.configLanguage.messages.answer, optionChosen => {
+      const choice = Object.keys(this.configLanguage.Language)[
+        Number(optionChosen)
+      ];
+      if (
+        this.configLanguage.isLanguageOptionsKeyType(choice) &&
+        Object.keys(this.configLanguage.Language)[Number(optionChosen)]
+      ) {
+        this.configLanguage.languageConfig = {
+          option: choice,
+          index: Number(optionChosen),
+        };
+
+        rl.close();
+        this.configLanguage.setLanguageOption();
+        this.setConfig();
+      }
+
+      rl.close();
+      this.configLanguage.validateOption(optionChosen);
+      this.execute();
+    });
+  }
+
+  public async execute(): Promise<void> {
+    this.showLanguageOptions();
   }
 }

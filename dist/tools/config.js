@@ -68,6 +68,17 @@ class ConfigJson {
     });
     console.log('');
   }
+  setConfig() {
+    this.patchPackage();
+    this.installYarn();
+    this.installDependencies();
+    this.installDevDependencies();
+    console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.marketplaceTool[0]}`, '\x1b[38;2;255;0;255m', 'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.marketplaceTool[1]}`, '\x1b[0m');
+    console.log('');
+    console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[2]}`, '\x1b[0m');
+    console.log('');
+    this.config.execute();
+  }
   showLanguageOptions() {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.language}`, '\x1b[0m');
@@ -87,24 +98,15 @@ class ConfigJson {
         };
         rl.close();
         this.configLanguage.setLanguageOption();
-      } else {
-        rl.close();
-        this.configLanguage.validateOption(optionChosen);
-        this.execute();
+        this.setConfig();
       }
+      rl.close();
+      this.configLanguage.validateOption(optionChosen);
+      this.execute();
     });
   }
   async execute() {
     this.showLanguageOptions();
-    this.patchPackage();
-    this.installYarn();
-    this.installDependencies();
-    this.installDevDependencies();
-    console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.marketplaceTool[0]}`, '\x1b[38;2;255;0;255m', 'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.marketplaceTool[1]}`, '\x1b[0m');
-    console.log('');
-    console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[2]}`, '\x1b[0m');
-    console.log('');
-    return this.config.execute();
   }
 }
 exports.ConfigJson = ConfigJson;
