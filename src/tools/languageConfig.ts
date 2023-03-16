@@ -84,22 +84,20 @@ export class ConfigLanguage {
   }
 
   private setLanguageOption({ option, index } = this.languageConfig): void {
+    const languageChosen = this[this.Language[option]].execute();
+
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) console.log(error);
     });
     appendFile(
       './node_modules/cross-api/dist/tools/messages.js',
-      this[this.Language[option]].execute(),
+      `module.exports = ${JSON.stringify(languageChosen)}`,
       error => {
         if (error) console.log(error);
       },
     );
 
-    const abc = this[this.Language[option]].execute();
-
-    console.log(abc.slice(16, -2));
-
-    this.messages = messages;
+    this.messages = languageChosen;
 
     console.log('');
     console.log(

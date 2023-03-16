@@ -60,7 +60,7 @@ export class EnglishMessages {
     };
   }
 
-  execute(): string {
-    return `module.exports = ${JSON.stringify(this.messages)}`;
+  execute(): typeof messages {
+    return this.messages;
   }
 }

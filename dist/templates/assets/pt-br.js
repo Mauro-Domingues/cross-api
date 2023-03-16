@@ -50,7 +50,7 @@ class PortugueseMessages {
     };
   }
   execute() {
-    return `module.exports = ${JSON.stringify(this.messages)}`;
+    return this.messages;
   }
 }
 exports.PortugueseMessages = PortugueseMessages;

@@ -65,7 +65,7 @@ export class PortugueseMessages {
     };
   }
 
-  execute(): string {
-    return `module.exports = ${JSON.stringify(this.messages)}`;
+  execute(): typeof messages {
+    return this.messages;
   }
 }
