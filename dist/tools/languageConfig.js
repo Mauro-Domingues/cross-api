@@ -59,16 +59,19 @@ class ConfigLanguage {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `"${optionChosen}"${this.messages.invalidLanguage}`, '\x1b[0m');
   }
-  async setLanguageOption({
+  setLanguageOption({
     option,
     index
   } = this.languageConfig) {
-    await Promise.resolve([(0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
+    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) console.log(error);
-    }), (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', this[this.Language[option]].execute(), error => {
+    });
+    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', this[this.Language[option]].execute(), error => {
       if (error) console.log(error);
-    })]);
-    this.messages = Object.assign(_messages.default, this.messages);
+    });
+    const abc = this[this.Language[option]].execute();
+    console.log(JSON.parse(abc.slice(16, -2)));
+    this.messages = _messages.default;
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `${this.messages.choice}${Object.keys(this.Language)[index]}`, '\x1b[0m');
     console.log('');
@@ -76,8 +79,9 @@ class ConfigLanguage {
   isLanguageOptionsKeyType(option) {
     return true;
   }
-  async execute() {
-    return this.showLanguageOptions();
+  execute() {
+    this.showLanguageOptions();
+    return _messages.default;
   }
 }
 exports.ConfigLanguage = ConfigLanguage;

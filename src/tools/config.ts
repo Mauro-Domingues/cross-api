@@ -3,16 +3,16 @@ import { exec } from 'shelljs';
 import { Config } from '@templates/assets/config';
 import userJson from '../../../../package.json';
 import { ConfigLanguage } from './languageConfig';
-import messages from './messages';
 
 export class ConfigJson {
-  private messages: typeof messages;
   private config: Config;
+  private configLanguage: ConfigLanguage;
   private userJson: typeof userJson;
   private dependencies: string[];
   private devDependencies: string[];
 
   constructor() {
+    this.configLanguage = new ConfigLanguage();
     this.config = new Config();
     this.userJson = userJson;
     this.dependencies = [
@@ -86,7 +86,6 @@ export class ConfigJson {
       'tsconfig-paths',
       'typescript',
     ];
-    this.messages = new ConfigLanguage().execute();
   }
 
   private patchPackage(): void {
@@ -109,7 +108,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.yarn}`,
+      `${this.configLanguage.messages.yarn}`,
       '\x1b[0m',
     );
     console.log('');
@@ -121,7 +120,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.dependencies}`,
+      `${this.configLanguage.messages.dependencies}`,
       '\x1b[0m',
     );
     console.log('');
@@ -134,7 +133,7 @@ export class ConfigJson {
     this.dependencies.forEach(dependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
-        `- ${dependency} ${this.messages.installed}`,
+        `- ${dependency} ${this.configLanguage.messages.installed}`,
         '\x1b[0m',
       );
     });
@@ -145,7 +144,7 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.devDependencies}`,
+      `${this.configLanguage.messages.devDependencies}`,
       '\x1b[0m',
     );
     console.log('');
@@ -158,7 +157,7 @@ export class ConfigJson {
     this.devDependencies.forEach(devDependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
-        `- ${devDependency} ${this.messages.installed}`,
+        `- ${devDependency} ${this.configLanguage.messages.installed}`,
         '\x1b[0m',
       );
     });
@@ -167,6 +166,8 @@ export class ConfigJson {
 
   public async execute(): Promise<void> {
     this.patchPackage();
+
+    this.configLanguage.execute();
 
     this.installYarn();
 
@@ -177,22 +178,22 @@ export class ConfigJson {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.marketplaceTool[0]}`,
+      `${this.configLanguage.messages.marketplaceTool[0]}`,
       '\x1b[38;2;255;0;255m',
       'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.marketplaceTool[1]}`,
+      `${this.configLanguage.messages.marketplaceTool[1]}`,
       '\x1b[0m',
     );
     console.log('');
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
-      `${this.messages.try[0]}`,
+      `${this.configLanguage.messages.try[0]}`,
       '\x1b[38;2;255;255;0m',
-      `${this.messages.try[1]}`,
+      `${this.configLanguage.messages.try[1]}`,
       '\x1b[38;2;0;155;255m',
-      `${this.messages.try[2]}`,
+      `${this.configLanguage.messages.try[2]}`,
       '\x1b[0m',
     );
     console.log('');

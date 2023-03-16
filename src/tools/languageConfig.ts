@@ -36,7 +36,7 @@ export class ConfigLanguage {
     };
   }
 
-  private showLanguageOptions(): void {
+  public showLanguageOptions(): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -94,6 +94,10 @@ export class ConfigLanguage {
         if (error) console.log(error);
       },
     );
+
+    const abc = this[this.Language[option]].execute();
+
+    console.log(JSON.parse(abc.slice(16, -2)));
 
     this.messages = messages;
 

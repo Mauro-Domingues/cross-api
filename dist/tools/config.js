@@ -69,7 +69,7 @@ class ConfigJson {
   }
   async execute() {
     this.patchPackage();
-    await Promise.resolve(this.configLanguage.execute());
+    this.configLanguage.execute();
     this.installYarn();
     this.installDependencies();
     this.installDevDependencies();
