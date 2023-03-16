@@ -13,7 +13,6 @@ var _srcLayer4 = require("./srcLayer4");
 var _temporary = require("./temporary");
 class CreateApi {
   constructor() {
-    this.fatherNames = void 0;
     this.createProvider = void 0;
     this.makeTemporary = void 0;
     this.makeFourthLayer = void 0;
@@ -21,8 +20,7 @@ class CreateApi {
     this.makeSecondLayer = void 0;
     this.makeFirstLayer = void 0;
     this.makeInfra = void 0;
-    this.fatherNames = undefined;
-    this.createProvider = new _makeProvider.CreateProvider('cache', this.fatherNames);
+    this.createProvider = new _makeProvider.CreateProvider('cache', undefined);
     this.makeTemporary = new _temporary.MakeTemporary();
     this.makeFourthLayer = new _srcLayer4.MakeFourthLayer();
     this.makeThirdLayer = new _srcLayer3.MakeThirdLayer();

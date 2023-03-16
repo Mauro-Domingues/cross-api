@@ -1,5 +1,4 @@
 import { CreateProvider } from '@tools/makeProvider/index';
-import { IModuleNamesDTO } from '@tools/names';
 import { MakeInfra } from './infra';
 import { MakeFirstLayer } from './srcLayer1';
 import { MakeSecondLayer } from './srcLayer2';
@@ -8,7 +7,6 @@ import { MakeFourthLayer } from './srcLayer4';
 import { MakeTemporary } from './temporary';
 
 export class CreateApi {
-  private fatherNames: IModuleNamesDTO | undefined;
   private createProvider: CreateProvider;
   private makeTemporary: MakeTemporary;
   private makeFourthLayer: MakeFourthLayer;
@@ -18,8 +16,7 @@ export class CreateApi {
   private makeInfra: MakeInfra;
 
   constructor() {
-    this.fatherNames = undefined;
-    this.createProvider = new CreateProvider('cache', this.fatherNames);
+    this.createProvider = new CreateProvider('cache', undefined);
     this.makeTemporary = new MakeTemporary();
     this.makeFourthLayer = new MakeFourthLayer();
     this.makeThirdLayer = new MakeThirdLayer();
