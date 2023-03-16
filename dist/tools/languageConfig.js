@@ -70,7 +70,7 @@ class ConfigLanguage {
       if (error) console.log(error);
     });
     const abc = this[this.Language[option]].execute();
-    console.log(JSON.parse(abc.slice(16, -2)));
+    console.log(abc.slice(16, -2));
     this.messages = _messages.default;
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;255;155m', `${this.messages.choice}${Object.keys(this.Language)[index]}`, '\x1b[0m');

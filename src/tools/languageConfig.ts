@@ -97,7 +97,7 @@ export class ConfigLanguage {
 
     const abc = this[this.Language[option]].execute();
 
-    console.log(JSON.parse(abc.slice(16, -2)));
+    console.log(abc.slice(16, -2));
 
     this.messages = messages;
 
