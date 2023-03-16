@@ -14,9 +14,9 @@ class ConfigLanguage {
   constructor() {
     this.messages = void 0;
     this.Language = void 0;
+    this.languageConfig = void 0;
     this.englishMessages = void 0;
     this.portugueseMessages = void 0;
-    this.languageConfig = void 0;
     this.englishMessages = new _enUs.EnglishMessages();
     this.portugueseMessages = new _ptBr.PortugueseMessages();
     this.messages = _messages.default;
@@ -78,9 +78,8 @@ class ConfigLanguage {
   isLanguageOptionsKeyType(option) {
     return true;
   }
-  execute() {
-    this.showLanguageOptions();
-    return _messages.default;
+  async execute() {
+    return this.showLanguageOptions();
   }
 }
 exports.ConfigLanguage = ConfigLanguage;

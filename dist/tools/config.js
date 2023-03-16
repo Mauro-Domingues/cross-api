@@ -7,6 +7,7 @@ exports.ConfigJson = void 0;
 var _fs = require("fs");
 var _shelljs = require("shelljs");
 var _config = require("../../dist/templates/assets/config");
+var _readline = require("readline");
 var _package = _interopRequireDefault(require("../../../../package.json"));
 var _languageConfig = require("./languageConfig");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -41,7 +42,7 @@ class ConfigJson {
     console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.yarn}`, '\x1b[0m');
     console.log('');
     (0, _shelljs.exec)('npm install yarn --location=global');
-    console.log('\x1b[38;2;255;255;0m', `- yarn installed`, '\x1b[0m');
+    console.log('\x1b[38;2;255;255;0m', `- yarn ${this.configLanguage.messages.installed}`, '\x1b[0m');
   }
   installDependencies() {
     console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.dependencies}`, '\x1b[0m');
@@ -67,9 +68,35 @@ class ConfigJson {
     });
     console.log('');
   }
+  showLanguageOptions() {
+    console.log('');
+    console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.language}`, '\x1b[0m');
+    console.log('\x1b[1m');
+    console.table(Object.keys(this.configLanguage.Language));
+    console.log('');
+    const rl = (0, _readline.createInterface)({
+      input: process.stdin,
+      output: process.stdout
+    });
+    rl.question(this.configLanguage.messages.answer, optionChosen => {
+      const choice = Object.keys(this.configLanguage.Language)[Number(optionChosen)];
+      if (this.configLanguage.isLanguageOptionsKeyType(choice) && Object.keys(this.configLanguage.Language)[Number(optionChosen)]) {
+        this.configLanguage.languageConfig = {
+          option: choice,
+          index: Number(optionChosen)
+        };
+        rl.close();
+        this.configLanguage.setLanguageOption();
+      } else {
+        rl.close();
+        this.configLanguage.validateOption(optionChosen);
+        this.execute();
+      }
+    });
+  }
   async execute() {
+    this.showLanguageOptions();
     this.patchPackage();
-    this.configLanguage.execute();
     this.installYarn();
     this.installDependencies();
     this.installDevDependencies();

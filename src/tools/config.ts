@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs';
 import { exec } from 'shelljs';
 import { Config } from '@templates/assets/config';
+import { createInterface } from 'readline';
 import userJson from '../../../../package.json';
 import { ConfigLanguage } from './languageConfig';
 
@@ -113,7 +114,11 @@ export class ConfigJson {
     );
     console.log('');
     exec('npm install yarn --location=global');
-    console.log('\x1b[38;2;255;255;0m', `- yarn installed`, '\x1b[0m');
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- yarn ${this.configLanguage.messages.installed}`,
+      '\x1b[0m',
+    );
   }
 
   private installDependencies(): void {
@@ -164,10 +169,49 @@ export class ConfigJson {
     console.log('');
   }
 
-  public async execute(): Promise<void> {
-    this.patchPackage();
+  public showLanguageOptions(): void {
+    console.log('');
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;255;255;0m',
+      `${this.configLanguage.messages.language}`,
+      '\x1b[0m',
+    );
+    console.log('\x1b[1m');
+    console.table(Object.keys(this.configLanguage.Language));
+    console.log('');
 
-    this.configLanguage.execute();
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(this.configLanguage.messages.answer, optionChosen => {
+      const choice = Object.keys(this.configLanguage.Language)[
+        Number(optionChosen)
+      ];
+      if (
+        this.configLanguage.isLanguageOptionsKeyType(choice) &&
+        Object.keys(this.configLanguage.Language)[Number(optionChosen)]
+      ) {
+        this.configLanguage.languageConfig = {
+          option: choice,
+          index: Number(optionChosen),
+        };
+        rl.close();
+        this.configLanguage.setLanguageOption();
+      } else {
+        rl.close();
+        this.configLanguage.validateOption(optionChosen);
+        this.execute();
+      }
+    });
+  }
+
+  public async execute(): Promise<void> {
+    this.showLanguageOptions();
+
+    this.patchPackage();
 
     this.installYarn();
 

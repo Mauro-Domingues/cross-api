@@ -17,10 +17,10 @@ interface ILanguageConfigDTO {
 
 export class ConfigLanguage {
   public messages: typeof messages;
-  private Language: ILanguageOptionsDTO;
+  public Language: ILanguageOptionsDTO;
+  public languageConfig: ILanguageConfigDTO;
   private englishMessages: EnglishMessages;
   private portugueseMessages: PortugueseMessages;
-  private languageConfig: ILanguageConfigDTO;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
@@ -36,7 +36,7 @@ export class ConfigLanguage {
     };
   }
 
-  public showLanguageOptions(): void {
+  private showLanguageOptions(): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -73,7 +73,7 @@ export class ConfigLanguage {
     });
   }
 
-  private validateOption(optionChosen: string): void {
+  public validateOption(optionChosen: string): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -83,7 +83,7 @@ export class ConfigLanguage {
     );
   }
 
-  private setLanguageOption({ option, index } = this.languageConfig): void {
+  public setLanguageOption({ option, index } = this.languageConfig): void {
     const languageChosen = this[this.Language[option]].execute();
 
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
@@ -109,14 +109,13 @@ export class ConfigLanguage {
     console.log('');
   }
 
-  private isLanguageOptionsKeyType(
+  public isLanguageOptionsKeyType(
     option: keyof ILanguageOptionsDTO | string,
   ): option is keyof ILanguageOptionsDTO {
     return true;
   }
 
-  public execute(): typeof messages {
-    this.showLanguageOptions();
-    return messages;
+  public async execute(): Promise<void> {
+    return this.showLanguageOptions();
   }
 }
