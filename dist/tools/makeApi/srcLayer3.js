@@ -61,7 +61,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/@types/express.d.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/@types/express.d.ts', this.createExpressNamespace.execute(), error => {
         if (error) throw error;
@@ -74,7 +74,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/@types/env.d.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/@types/env.d.ts', this.createEnvNamespace.execute(), error => {
         if (error) throw error;
@@ -87,7 +87,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/assets/domains.txt', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/assets/domains.txt', this.createDomains.execute(), error => {
         if (error) throw error;
@@ -100,7 +100,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/dtos/ICacheDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute(), error => {
         if (error) throw error;
@@ -113,7 +113,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/dtos/IListDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/dtos/IListDTO.ts', this.createIListDTO.execute(), error => {
         if (error) throw error;
@@ -126,7 +126,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/dtos/IObjectDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute(), error => {
         if (error) throw error;
@@ -139,7 +139,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/dtos/IResponseDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute(), error => {
         if (error) throw error;
@@ -152,7 +152,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/middlewares/RateLimiter.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute(), error => {
         if (error) throw error;
@@ -165,7 +165,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/middlewares/EnsureAuthenticated.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute(), error => {
         if (error) throw error;
@@ -178,7 +178,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/routes/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/routes/index.ts', this.createRoutes.execute(), error => {
         if (error) throw error;
@@ -191,7 +191,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/app.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/app.ts', this.createApp.execute(), error => {
         if (error) throw error;
@@ -204,7 +204,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/server.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/server.ts', this.createServer.execute(), error => {
         if (error) throw error;
@@ -217,7 +217,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/decimalAdjust.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute(), error => {
         if (error) throw error;
@@ -230,7 +230,7 @@ class MakeThirdLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/domainsManager.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/domainsManager.ts', this.createDomainsManager.execute(), error => {
         if (error) throw error;

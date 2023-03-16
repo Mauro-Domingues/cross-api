@@ -95,7 +95,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/upload.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/upload.ts', this.createUploadConfig.execute(), error => {
         if (error) throw error;
@@ -107,7 +107,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, this.createFakeStorage.execute(), error => {
         if (error) throw error;
@@ -119,7 +119,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, this.createDiskStorage.execute(), error => {
         if (error) throw error;
@@ -131,7 +131,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, this.createS3Storage.execute(), error => {
         if (error) throw error;
@@ -143,7 +143,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, this.createIStorage.execute(), error => {
         if (error) throw error;
@@ -155,7 +155,7 @@ class MakeDependentStorageProvider {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, this.createStorageIndex.execute(), error => {
         if (error) throw error;

@@ -112,7 +112,7 @@ export class MakeDependentInfra {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -139,7 +139,7 @@ export class MakeDependentInfra {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -166,7 +166,7 @@ export class MakeDependentInfra {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -193,7 +193,7 @@ export class MakeDependentInfra {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -220,7 +220,7 @@ export class MakeDependentInfra {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

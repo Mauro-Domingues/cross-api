@@ -67,7 +67,7 @@ class MakeMailTemplateProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', this.createIMailTemplateDTO.execute(), error => {
         if (error) throw error;
@@ -79,7 +79,7 @@ class MakeMailTemplateProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', this.createFakeMailTemplate.execute(), error => {
         if (error) throw error;
@@ -91,7 +91,7 @@ class MakeMailTemplateProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', this.createMailTemplate.execute(), error => {
         if (error) throw error;
@@ -103,7 +103,7 @@ class MakeMailTemplateProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', this.createIMailTemplate.execute(), error => {
         if (error) throw error;
@@ -115,7 +115,7 @@ class MakeMailTemplateProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/index.ts', this.createMailTemplateIndex.execute(), error => {
         if (error) throw error;

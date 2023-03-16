@@ -154,7 +154,7 @@ export class MakeDependentStorageProvider {
       );
     } else {
       truncate('src/config/upload.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/upload.ts',
@@ -180,7 +180,7 @@ export class MakeDependentStorageProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -207,7 +207,7 @@ export class MakeDependentStorageProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -234,7 +234,7 @@ export class MakeDependentStorageProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -261,7 +261,7 @@ export class MakeDependentStorageProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -288,7 +288,7 @@ export class MakeDependentStorageProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

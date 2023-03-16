@@ -70,7 +70,7 @@ export class MakeHashProvider {
       );
     } else {
       truncate('src/config/hash.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/hash.ts',
@@ -96,7 +96,7 @@ export class MakeHashProvider {
       truncate(
         'src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -123,7 +123,7 @@ export class MakeHashProvider {
       truncate(
         'src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -150,7 +150,7 @@ export class MakeHashProvider {
       truncate(
         'src/shared/container/providers/HashProvider/models/IHashProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -173,7 +173,7 @@ export class MakeHashProvider {
       truncate(
         'src/shared/container/providers/HashProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

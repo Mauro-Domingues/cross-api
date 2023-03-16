@@ -55,7 +55,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`, this.createController.execute(), error => {
         if (error) throw error;
@@ -67,7 +67,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`, this.createService.execute(), error => {
         if (error) throw error;
@@ -79,7 +79,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`, this.deleteController.execute(), error => {
         if (error) throw error;
@@ -91,7 +91,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`, this.deleteService.execute(), error => {
         if (error) throw error;
@@ -103,7 +103,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`, this.listController.execute(), error => {
         if (error) throw error;
@@ -115,7 +115,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`, this.listService.execute(), error => {
         if (error) throw error;
@@ -127,7 +127,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`, this.showController.execute(), error => {
         if (error) throw error;
@@ -139,7 +139,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`, this.showService.execute(), error => {
         if (error) throw error;
@@ -151,7 +151,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`, this.updateController.execute(), error => {
         if (error) throw error;
@@ -163,7 +163,7 @@ class MakeFunctionalities {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`, this.updateService.execute(), error => {
         if (error) throw error;

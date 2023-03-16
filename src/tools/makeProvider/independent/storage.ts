@@ -77,7 +77,7 @@ export class MakeStorageProvider {
       );
     } else {
       truncate('src/config/upload.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/upload.ts',
@@ -103,7 +103,7 @@ export class MakeStorageProvider {
       truncate(
         'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -130,7 +130,7 @@ export class MakeStorageProvider {
       truncate(
         'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -157,7 +157,7 @@ export class MakeStorageProvider {
       truncate(
         'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -184,7 +184,7 @@ export class MakeStorageProvider {
       truncate(
         'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -209,7 +209,7 @@ export class MakeStorageProvider {
       truncate(
         'src/shared/container/providers/StorageProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

@@ -64,7 +64,7 @@ class MakeHashProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/hash.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/hash.ts', this.createHashConfig.execute(), error => {
         if (error) throw error;
@@ -76,7 +76,7 @@ class MakeHashProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/HashProvider/fakes/FakeHashProvider.ts', this.createFakeHash.execute(), error => {
         if (error) throw error;
@@ -88,7 +88,7 @@ class MakeHashProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/HashProvider/implementations/BCryptHashProvider.ts', this.createHash.execute(), error => {
         if (error) throw error;
@@ -100,7 +100,7 @@ class MakeHashProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/HashProvider/models/IHashProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/HashProvider/models/IHashProvider.ts', this.createIHash.execute(), error => {
         if (error) throw error;
@@ -112,7 +112,7 @@ class MakeHashProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/HashProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/HashProvider/index.ts', this.createHashIndex.execute(), error => {
         if (error) throw error;

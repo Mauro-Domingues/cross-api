@@ -57,7 +57,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, this.createSpecDependentController.execute(), error => {
         if (error) throw error;
@@ -69,7 +69,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, this.createSpecDependentService.execute(), error => {
         if (error) throw error;
@@ -81,7 +81,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, this.deleteSpecDependentController.execute(), error => {
         if (error) throw error;
@@ -93,7 +93,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, this.deleteSpecDependentService.execute(), error => {
         if (error) throw error;
@@ -105,7 +105,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, this.listSpecDependentController.execute(), error => {
         if (error) throw error;
@@ -117,7 +117,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, this.listSpecDependentService.execute(), error => {
         if (error) throw error;
@@ -129,7 +129,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, this.showSpecDependentController.execute(), error => {
         if (error) throw error;
@@ -141,7 +141,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, this.showSpecDependentService.execute(), error => {
         if (error) throw error;
@@ -153,7 +153,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, this.updateSpecDependentController.execute(), error => {
         if (error) throw error;
@@ -165,7 +165,7 @@ class MakeDependentUnitTests {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, this.updateSpecDependentService.execute(), error => {
         if (error) throw error;

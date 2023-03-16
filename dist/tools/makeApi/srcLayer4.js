@@ -49,7 +49,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndCloneAttribute.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndCloneAttribute.ts', this.createMapAndClone.execute(), error => {
         if (error) throw error;
@@ -62,7 +62,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndInsertAttribute.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndInsertAttribute.ts', this.createMapAndInsert.execute(), error => {
         if (error) throw error;
@@ -75,7 +75,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndPatchAttribute.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndPatchAttribute.ts', this.createMapAndPatch.execute(), error => {
         if (error) throw error;
@@ -88,7 +88,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndPatchString.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndPatchString.ts', this.createMapAndPatchString.execute(), error => {
         if (error) throw error;
@@ -101,7 +101,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateAttribute.ts', this.createMapAndUpdate.execute(), error => {
         if (error) throw error;
@@ -114,7 +114,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/utils/mappers/mapAndUpdateString.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateString.ts', this.createMapAndUpdateString.execute(), error => {
         if (error) throw error;
@@ -127,7 +127,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
         if (error) throw error;
@@ -140,7 +140,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/errors/AppError.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/errors/AppError.ts', this.createAppError.execute(), error => {
         if (error) throw error;
@@ -153,7 +153,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/typeorm/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/typeorm/index.ts', this.createTypeorm.execute(), error => {
         if (error) throw error;
@@ -166,7 +166,7 @@ class MakeFourthLayer {
       });
     } else {
       (0, _fs.truncate)('src/shared/typeorm/dataSource.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/typeorm/dataSource.ts', this.createDataSource.execute(), error => {
         if (error) throw error;

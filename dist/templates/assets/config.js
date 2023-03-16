@@ -31,7 +31,7 @@ exports.ConfigJson = ConfigJson;`;
   }
   execute() {
     (0, _fs.truncate)('./node_modules/cross-api/dist/tools/config.js', error => {
-      if (error) console.log(error);
+      if (error) throw error;
     });
     (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/config.js', this.configBody, error => {
       if (error) throw error;

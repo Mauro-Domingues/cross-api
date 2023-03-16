@@ -166,7 +166,7 @@ export class MakeDependentMailTemplateProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -193,7 +193,7 @@ export class MakeDependentMailTemplateProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -220,7 +220,7 @@ export class MakeDependentMailTemplateProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -247,7 +247,7 @@ export class MakeDependentMailTemplateProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -274,7 +274,7 @@ export class MakeDependentMailTemplateProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

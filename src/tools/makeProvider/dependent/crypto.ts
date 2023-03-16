@@ -151,7 +151,7 @@ export class MakeDependentCryptoProvider {
       );
     } else {
       truncate('src/config/crypto.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/crypto.ts',
@@ -177,7 +177,7 @@ export class MakeDependentCryptoProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/dtos/ICryptoDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -204,7 +204,7 @@ export class MakeDependentCryptoProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/implementations/CryptoProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -231,7 +231,7 @@ export class MakeDependentCryptoProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/models/ICryptoProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -258,7 +258,7 @@ export class MakeDependentCryptoProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CryptoProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

@@ -103,7 +103,7 @@ export class ConfigLanguage {
   public setLanguageOption(): void {
 
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-      if (error) console.log(error);
+      if (error) throw error;
     });
     appendFile(
       './node_modules/cross-api/dist/tools/messages.js',
@@ -116,7 +116,7 @@ exports.default = void 0;
 var _default = ${JSON.stringify(this.messages)};
 exports.default = _default;`,
       error => {
-        if (error) console.log(error);
+        if (error) throw error;
       },
     );
   }

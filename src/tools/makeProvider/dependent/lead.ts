@@ -163,7 +163,7 @@ export class MakeDependentLeadProvider {
       );
     } else {
       truncate('src/config/lead.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/lead.ts',
@@ -189,7 +189,7 @@ export class MakeDependentLeadProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -216,7 +216,7 @@ export class MakeDependentLeadProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -243,7 +243,7 @@ export class MakeDependentLeadProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -270,7 +270,7 @@ export class MakeDependentLeadProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -297,7 +297,7 @@ export class MakeDependentLeadProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

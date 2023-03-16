@@ -1,6 +1,6 @@
 import messages from '@tools/messages';
-import { appendFile, removeSync, truncate, unlink } from 'fs-extra';
-import { readFileSync } from 'fs';
+import { removeSync } from 'fs-extra';
+import { appendFile, readFileSync, truncate, unlink } from 'fs';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 
 export class DeleteRegister {

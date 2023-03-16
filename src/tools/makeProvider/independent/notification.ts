@@ -86,7 +86,7 @@ export class MakeNotificationProvider {
       );
     } else {
       truncate('src/config/notification.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/notification.ts',
@@ -112,7 +112,7 @@ export class MakeNotificationProvider {
       truncate(
         'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -139,7 +139,7 @@ export class MakeNotificationProvider {
       truncate(
         'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -166,7 +166,7 @@ export class MakeNotificationProvider {
       truncate(
         'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -193,7 +193,7 @@ export class MakeNotificationProvider {
       truncate(
         'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -220,7 +220,7 @@ export class MakeNotificationProvider {
       truncate(
         'src/shared/container/providers/NotificationProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

@@ -61,7 +61,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/@types/express.d.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/@types/express.d.ts',
@@ -86,7 +86,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/@types/env.d.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/@types/env.d.ts',
@@ -111,7 +111,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/assets/domains.txt', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/assets/domains.txt',
@@ -136,7 +136,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/dtos/ICacheDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/dtos/ICacheDTO.ts',
@@ -161,7 +161,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/dtos/IListDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/dtos/IListDTO.ts',
@@ -186,7 +186,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/dtos/IObjectDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/dtos/IObjectDTO.ts',
@@ -211,7 +211,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/dtos/IResponseDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/dtos/IResponseDTO.ts',
@@ -236,7 +236,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/middlewares/RateLimiter.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/middlewares/RateLimiter.ts',
@@ -261,7 +261,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/middlewares/EnsureAuthenticated.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/middlewares/EnsureAuthenticated.ts',
@@ -282,7 +282,7 @@ export class MakeThirdLayer {
       });
     } else {
       truncate('src/routes/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
         if (error) throw error;
@@ -299,7 +299,7 @@ export class MakeThirdLayer {
       });
     } else {
       truncate('src/shared/app.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile('src/shared/app.ts', this.createApp.execute(), error => {
         if (error) throw error;
@@ -316,7 +316,7 @@ export class MakeThirdLayer {
       });
     } else {
       truncate('src/shared/server.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile('src/shared/server.ts', this.createServer.execute(), error => {
         if (error) throw error;
@@ -337,7 +337,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/utils/decimalAdjust.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/utils/decimalAdjust.ts',
@@ -362,7 +362,7 @@ export class MakeThirdLayer {
       );
     } else {
       truncate('src/utils/domainsManager.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/utils/domainsManager.ts',

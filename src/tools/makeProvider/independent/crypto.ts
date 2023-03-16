@@ -74,7 +74,7 @@ export class MakeCryptoProvider {
       );
     } else {
       truncate('src/config/crypto.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/crypto.ts',
@@ -100,7 +100,7 @@ export class MakeCryptoProvider {
       truncate(
         'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -127,7 +127,7 @@ export class MakeCryptoProvider {
       truncate(
         'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -154,7 +154,7 @@ export class MakeCryptoProvider {
       truncate(
         'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -177,7 +177,7 @@ export class MakeCryptoProvider {
       truncate(
         'src/shared/container/providers/CryptoProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

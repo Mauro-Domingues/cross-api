@@ -183,7 +183,7 @@ export class MakeDependentMailProvider {
       );
     } else {
       truncate('src/config/mail.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/mail.ts',
@@ -209,7 +209,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -236,7 +236,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -263,7 +263,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -290,7 +290,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -317,7 +317,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -408,7 +408,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/dtos/ISendMailDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -435,7 +435,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/fakes/FakeMailProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -462,7 +462,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/implementations/EtherealMailProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -489,7 +489,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/implementations/SESMailProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -516,7 +516,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/models/IMailProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -543,7 +543,7 @@ export class MakeDependentMailProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

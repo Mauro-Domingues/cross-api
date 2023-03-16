@@ -64,7 +64,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/cache.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/cache.ts', this.createCacheConfig.execute(), error => {
         if (error) throw error;
@@ -76,7 +76,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts', this.createFakeRedis.execute(), error => {
         if (error) throw error;
@@ -88,7 +88,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/cache.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/cache.ts', this.createCacheConfig.execute(), error => {
         if (error) throw error;
@@ -100,7 +100,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts', this.createRedisCache.execute(), error => {
         if (error) throw error;
@@ -112,7 +112,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CacheProvider/models/ICacheProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CacheProvider/models/ICacheProvider.ts', this.createICache.execute(), error => {
         if (error) throw error;
@@ -124,7 +124,7 @@ class MakeCacheProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CacheProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CacheProvider/index.ts', this.createCacheIndex.execute(), error => {
         if (error) throw error;

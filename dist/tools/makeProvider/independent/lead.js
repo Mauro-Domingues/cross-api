@@ -70,7 +70,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/lead.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/lead.ts', this.createLeadConfig.execute(), error => {
         if (error) throw error;
@@ -82,7 +82,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute(), error => {
         if (error) throw error;
@@ -94,7 +94,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute(), error => {
         if (error) throw error;
@@ -106,7 +106,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute(), error => {
         if (error) throw error;
@@ -118,7 +118,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute(), error => {
         if (error) throw error;
@@ -130,7 +130,7 @@ class MakeLeadProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/LeadProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute(), error => {
         if (error) throw error;

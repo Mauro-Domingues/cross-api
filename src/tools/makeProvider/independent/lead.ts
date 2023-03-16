@@ -76,7 +76,7 @@ export class MakeLeadProvider {
       );
     } else {
       truncate('src/config/lead.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/lead.ts',
@@ -102,7 +102,7 @@ export class MakeLeadProvider {
       truncate(
         'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -129,7 +129,7 @@ export class MakeLeadProvider {
       truncate(
         'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -156,7 +156,7 @@ export class MakeLeadProvider {
       truncate(
         'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -183,7 +183,7 @@ export class MakeLeadProvider {
       truncate(
         'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -206,7 +206,7 @@ export class MakeLeadProvider {
       truncate(
         'src/shared/container/providers/LeadProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

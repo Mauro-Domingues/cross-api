@@ -151,7 +151,7 @@ export class MakeDependentCacheProvider {
       );
     } else {
       truncate('src/config/cache.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/cache.ts',
@@ -177,7 +177,7 @@ export class MakeDependentCacheProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -204,7 +204,7 @@ export class MakeDependentCacheProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -231,7 +231,7 @@ export class MakeDependentCacheProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -258,7 +258,7 @@ export class MakeDependentCacheProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

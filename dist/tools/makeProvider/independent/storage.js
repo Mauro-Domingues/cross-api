@@ -67,7 +67,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/upload.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/upload.ts', this.createUploadConfig.execute(), error => {
         if (error) throw error;
@@ -79,7 +79,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts', this.createFakeStorage.execute(), error => {
         if (error) throw error;
@@ -91,7 +91,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts', this.createDiskStorage.execute(), error => {
         if (error) throw error;
@@ -103,7 +103,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts', this.createS3Storage.execute(), error => {
         if (error) throw error;
@@ -115,7 +115,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/StorageProvider/models/IStorageProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/StorageProvider/models/IStorageProvider.ts', this.createIStorage.execute(), error => {
         if (error) throw error;
@@ -127,7 +127,7 @@ class MakeStorageProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/StorageProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/StorageProvider/index.ts', this.createStorageIndex.execute(), error => {
         if (error) throw error;

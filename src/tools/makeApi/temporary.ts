@@ -25,7 +25,7 @@ export class MakeTemporary {
       );
     } else {
       truncate('src/config/auth.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/auth.ts',
@@ -50,7 +50,7 @@ export class MakeTemporary {
       );
     } else {
       truncate('src/config/cors.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/cors.ts',

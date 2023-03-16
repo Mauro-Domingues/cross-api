@@ -65,7 +65,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute(), error => {
         if (error) throw error;
@@ -77,7 +77,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute(), error => {
         if (error) throw error;
@@ -89,7 +89,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createRepository.execute(), error => {
         if (error) throw error;
@@ -101,7 +101,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIRepository.execute(), error => {
         if (error) throw error;
@@ -113,7 +113,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createFakeRepository.execute(), error => {
         if (error) throw error;
@@ -128,7 +128,7 @@ class MakeInfra {
       });
     } else {
       (0, _fs.truncate)(`src/routes/${this.names.lowerModuleName}Router.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/routes/${this.names.lowerModuleName}Router.ts`, this.createIndependentRoute.execute(), error => {
         if (error) throw error;

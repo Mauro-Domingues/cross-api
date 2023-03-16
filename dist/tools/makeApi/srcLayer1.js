@@ -52,7 +52,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.editorconfig', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.editorconfig', this.createEditorConfig.execute(), error => {
         if (error) throw error;
@@ -65,7 +65,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.env', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.env', this.createEnv.execute(), error => {
         if (error) throw error;
@@ -78,7 +78,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.env.template', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.env.template', this.createEnv.execute(), error => {
         if (error) throw error;
@@ -91,7 +91,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.eslintignore', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.eslintignore', this.createEsLintIgnore.execute(), error => {
         if (error) throw error;
@@ -104,7 +104,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.eslintrc.json', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.eslintrc.json', this.createEsLintrcJson.execute(), error => {
         if (error) throw error;
@@ -117,7 +117,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('.gitignore', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('.gitignore', this.createGitIgnore.execute(), error => {
         if (error) throw error;
@@ -130,7 +130,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('babel.config.js', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('babel.config.js', this.createBabelConfig.execute(), error => {
         if (error) throw error;
@@ -143,7 +143,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('docker-compose.yml', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('docker-compose.yml', this.createDockerCompose.execute(), error => {
         if (error) throw error;
@@ -156,7 +156,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('jest.config.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('jest.config.ts', this.createJestConfig.execute(), error => {
         if (error) throw error;
@@ -169,7 +169,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('nodemon.json', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('nodemon.json', this.createNodemonJson.execute(), error => {
         if (error) throw error;
@@ -182,7 +182,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('prettier.config.js', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('prettier.config.js', this.createPrettierConfig.execute(), error => {
         if (error) throw error;
@@ -195,7 +195,7 @@ class MakeFirstLayer {
       });
     } else {
       (0, _fs.truncate)('tsconfig.json', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('tsconfig.json', this.createTsConfig.execute(), error => {
         if (error) throw error;

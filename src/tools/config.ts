@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { existsSync, unlink, writeFileSync } from 'fs';
 import { exec } from 'shelljs';
 import { Config } from '@templates/assets/config';
 import { createInterface } from 'readline';
@@ -56,7 +56,6 @@ export class ConfigJson {
       '@babel/preset-typescript',
       '@types/bcrypt',
       '@types/cors',
-      '@types/class-transformer',
       '@types/express',
       '@types/express-jwt',
       '@types/jest',
@@ -200,6 +199,12 @@ export class ConfigJson {
       '\x1b[0m',
     );
     console.log('');
+
+    if (existsSync('package-lock.json')) {
+      unlink('package-lock.json', error => {
+        if (error) throw error;
+      });
+    }
 
     this.config.execute();
   }

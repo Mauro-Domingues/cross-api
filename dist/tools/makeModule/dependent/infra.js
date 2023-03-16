@@ -70,7 +70,7 @@ class MakeDependentInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute(), error => {
         if (error) throw error;
@@ -82,7 +82,7 @@ class MakeDependentInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute(), error => {
         if (error) throw error;
@@ -94,7 +94,7 @@ class MakeDependentInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createDependentRepository.execute(), error => {
         if (error) throw error;
@@ -106,7 +106,7 @@ class MakeDependentInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIDependentRepository.execute(), error => {
         if (error) throw error;
@@ -118,7 +118,7 @@ class MakeDependentInfra {
       });
     } else {
       (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createDependentFakeRepository.execute(), error => {
         if (error) throw error;

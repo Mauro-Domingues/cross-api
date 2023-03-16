@@ -15,7 +15,7 @@ export class MakeSecondLayer {
       });
     } else {
       truncate('src/swagger.json', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile('src/swagger.json', '{}', error => {
         if (error) throw error;

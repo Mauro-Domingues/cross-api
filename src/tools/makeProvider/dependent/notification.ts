@@ -163,7 +163,7 @@ export class MakeDependentNotificationProvider {
       );
     } else {
       truncate('src/config/notification.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       appendFile(
         'src/config/notification.ts',
@@ -189,7 +189,7 @@ export class MakeDependentNotificationProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -216,7 +216,7 @@ export class MakeDependentNotificationProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -243,7 +243,7 @@ export class MakeDependentNotificationProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -270,7 +270,7 @@ export class MakeDependentNotificationProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -297,7 +297,7 @@ export class MakeDependentNotificationProvider {
       truncate(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

@@ -70,7 +70,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/notification.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/notification.ts', this.createNotificationConfig.execute(), error => {
         if (error) throw error;
@@ -82,7 +82,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts', this.createINotificationDTO.execute(), error => {
         if (error) throw error;
@@ -94,7 +94,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts', this.createFakeNotification.execute(), error => {
         if (error) throw error;
@@ -106,7 +106,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts', this.createOneSignalNotification.execute(), error => {
         if (error) throw error;
@@ -118,7 +118,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts', this.createINotification.execute(), error => {
         if (error) throw error;
@@ -130,7 +130,7 @@ class MakeNotificationProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/NotificationProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/NotificationProvider/index.ts', this.createNotificationIndex.execute(), error => {
         if (error) throw error;

@@ -25,7 +25,7 @@ class MakeTemporary {
       });
     } else {
       (0, _fs.truncate)('src/config/auth.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/auth.ts', this.createAuthConfig.execute(), error => {
         if (error) throw error;
@@ -38,7 +38,7 @@ class MakeTemporary {
       });
     } else {
       (0, _fs.truncate)('src/config/cors.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/cors.ts', this.createCorsConfig.execute(), error => {
         if (error) throw error;

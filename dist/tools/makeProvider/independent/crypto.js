@@ -64,7 +64,7 @@ class MakeCryptoProvider {
       });
     } else {
       (0, _fs.truncate)('src/config/crypto.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/config/crypto.ts', this.createCryptoConfig.execute(), error => {
         if (error) throw error;
@@ -76,7 +76,7 @@ class MakeCryptoProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts', this.createICryptoDTO.execute(), error => {
         if (error) throw error;
@@ -88,7 +88,7 @@ class MakeCryptoProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts', this.createCrypto.execute(), error => {
         if (error) throw error;
@@ -100,7 +100,7 @@ class MakeCryptoProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts', this.createICrypto.execute(), error => {
         if (error) throw error;
@@ -112,7 +112,7 @@ class MakeCryptoProvider {
       });
     } else {
       (0, _fs.truncate)('src/shared/container/providers/CryptoProvider/index.ts', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/shared/container/providers/CryptoProvider/index.ts', this.createCryptoIndex.execute(), error => {
         if (error) throw error;

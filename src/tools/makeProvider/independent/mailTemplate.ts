@@ -89,7 +89,7 @@ export class MakeMailTemplateProvider {
       truncate(
         'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -116,7 +116,7 @@ export class MakeMailTemplateProvider {
       truncate(
         'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -143,7 +143,7 @@ export class MakeMailTemplateProvider {
       truncate(
         'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -170,7 +170,7 @@ export class MakeMailTemplateProvider {
       truncate(
         'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(
@@ -197,7 +197,7 @@ export class MakeMailTemplateProvider {
       truncate(
         'src/shared/container/providers/MailTemplateProvider/index.ts',
         error => {
-          if (error) console.log(error);
+          if (error) throw error;
         },
       );
       appendFile(

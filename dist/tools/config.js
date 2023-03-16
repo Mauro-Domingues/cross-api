@@ -22,7 +22,7 @@ class ConfigJson {
     this.config = new _config.Config();
     this.userJson = _package.default;
     this.dependencies = ['aws-sdk', 'axios', 'bcrypt', 'celebrate', 'class-transformer', 'cors', 'dotenv', 'express', 'express-jwt', 'express-async-errors', 'handlebars', 'ioredis', 'jsonwebtoken', 'jwks-rsa', 'mime', 'multer', 'mysql', 'nodemailer', 'pem-jwk', 'rate-limiter-flexible', 'redis@^3.0.2', 'reflect-metadata', 'supertest', 'swagger-ui-express', 'ts-jest', 'tsyringe', 'typeorm@^0.3.11', 'uuid'];
-    this.devDependencies = ['@babel/cli', '@babel/core', '@babel/node', '@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-decorators', '@babel/preset-env', '@babel/preset-typescript', '@types/bcrypt', '@types/cors', '@types/class-transformer', '@types/express', '@types/express-jwt', '@types/jest', '@types/jsonwebtoken', '@types/mime', '@types/multer', '@types/nodemailer', '@types/pem-jwk', '@types/redis@^2.8.27', '@types/shelljs', '@types/supertest', '@types/swagger-ui-express', '@types/uuid', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'babel-plugin-module-resolver', 'babel-plugin-transform-typescript-metadata', 'eslint', 'eslint-config-airbnb-base', 'eslint-config-prettier', 'eslint-import-resolver-typescript', 'eslint-plugin-import', 'eslint-plugin-import-helpers', 'eslint-plugin-prettier', 'jest', 'prettier', 'ts-node-dev', 'tsconfig-paths', 'typescript'];
+    this.devDependencies = ['@babel/cli', '@babel/core', '@babel/node', '@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-decorators', '@babel/preset-env', '@babel/preset-typescript', '@types/bcrypt', '@types/cors', '@types/express', '@types/express-jwt', '@types/jest', '@types/jsonwebtoken', '@types/mime', '@types/multer', '@types/nodemailer', '@types/pem-jwk', '@types/redis@^2.8.27', '@types/shelljs', '@types/supertest', '@types/swagger-ui-express', '@types/uuid', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'babel-plugin-module-resolver', 'babel-plugin-transform-typescript-metadata', 'eslint', 'eslint-config-airbnb-base', 'eslint-config-prettier', 'eslint-import-resolver-typescript', 'eslint-plugin-import', 'eslint-plugin-import-helpers', 'eslint-plugin-prettier', 'jest', 'prettier', 'ts-node-dev', 'tsconfig-paths', 'typescript'];
   }
   patchPackage() {
     this.userJson.scripts = {
@@ -77,6 +77,11 @@ class ConfigJson {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[2]}`, '\x1b[0m');
     console.log('');
+    if ((0, _fs.existsSync)('package-lock.json')) {
+      (0, _fs.unlink)('package-lock.json', error => {
+        if (error) throw error;
+      });
+    }
     this.config.execute();
   }
   showLanguageOptions() {

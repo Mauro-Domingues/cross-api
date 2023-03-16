@@ -28,7 +28,7 @@ exports.ConfigJson = ConfigJson;`;
 
   public execute(): void {
     truncate('./node_modules/cross-api/dist/tools/config.js', error => {
-      if (error) console.log(error);
+      if (error) throw error;
     });
     appendFile(
       './node_modules/cross-api/dist/tools/config.js',

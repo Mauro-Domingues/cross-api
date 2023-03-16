@@ -19,7 +19,7 @@ class MakeSecondLayer {
       });
     } else {
       (0, _fs.truncate)('src/swagger.json', error => {
-        if (error) console.log(error);
+        if (error) throw error;
       });
       (0, _fs.appendFile)('src/swagger.json', '{}', error => {
         if (error) throw error;
