@@ -83,23 +83,19 @@ export class ConfigLanguage {
     );
   }
 
-  private async setLanguageOption(
-    { option, index } = this.languageConfig,
-  ): Promise<void> {
-    await Promise.resolve([
-      truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+  private setLanguageOption({ option, index } = this.languageConfig): void {
+    truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
+      if (error) console.log(error);
+    });
+    appendFile(
+      './node_modules/cross-api/dist/tools/messages.js',
+      this[this.Language[option]].execute(),
+      error => {
         if (error) console.log(error);
-      }),
-      appendFile(
-        './node_modules/cross-api/dist/tools/messages.js',
-        this[this.Language[option]].execute(),
-        error => {
-          if (error) console.log(error);
-        },
-      ),
-    ]);
+      },
+    );
 
-    this.messages = Object.assign(messages, this.messages);
+    this.messages = messages;
 
     console.log('');
     console.log(
@@ -117,7 +113,8 @@ export class ConfigLanguage {
     return true;
   }
 
-  public async execute(): Promise<void> {
-    return this.showLanguageOptions();
+  public execute(): typeof messages {
+    this.showLanguageOptions();
+    return messages;
   }
 }
