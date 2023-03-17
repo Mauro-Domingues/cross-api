@@ -18,6 +18,7 @@ class CreateTsConfig {
     "allowJs": true,
     "paths": {
       "@modules/*": ["modules/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
       "@dtos/*": ["dtos/*"],

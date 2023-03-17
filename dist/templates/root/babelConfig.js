@@ -17,6 +17,7 @@ class CreateBabelConfig {
         "@dtos": "./src/dtos",
         "@config": "./src/config",
         "@modules": "./src/modules",
+        "@middlewares": "./src/middlewares",
         "@shared": "./src/shared",
         "@utils": "./src/utils"
       }

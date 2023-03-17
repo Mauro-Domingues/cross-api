@@ -46,7 +46,7 @@ class EtherealMailProvider implements IMailProvider {
     this.createClient();
   }
 
-  private async createClient() {
+  private async createClient(): Promise<void> {
     try {
       const account = await nodemailer.createTestAccount();
 

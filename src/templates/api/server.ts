@@ -4,7 +4,7 @@ export class CreateServer {
 import swaggerUi from 'swagger-ui-express';
 import app from './app';
 
-import rateLimiter from '../middlewares/RateLimiter';
+import rateLimiter from '@middlewares/RateLimiter';
 import swaggerDocs from '../swagger.json';
 
 createConnection();

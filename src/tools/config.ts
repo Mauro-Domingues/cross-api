@@ -240,7 +240,7 @@ export class ConfigJson {
         };
 
         rl.close();
-        this.configLanguage.showChosenOption()
+        this.configLanguage.showChosenOption();
         this.setConfig();
         this.configLanguage.setLanguageOption();
       } else {

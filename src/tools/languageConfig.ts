@@ -101,7 +101,6 @@ export class ConfigLanguage {
   }
 
   public setLanguageOption(): void {
-
     truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
       if (error) throw error;
     });

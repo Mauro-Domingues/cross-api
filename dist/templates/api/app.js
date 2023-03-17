@@ -14,7 +14,7 @@ import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
 import AppError from '@shared/errors/AppError';
 import corsconfig from '@config/cors';
-import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
+import ensureAuthenticated from '@middlewares/EnsureAuthenticated';
 import routes from '../routes';
 import '@shared/container';
 
