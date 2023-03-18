@@ -14,12 +14,14 @@ import { CreateDomainsManager } from '@templates/utils/domains';
 import messages from '@tools/messages';
 import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
 import { CreateEnvNamespace } from '@templates/types/envNamespace';
+import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
 
 export class MakeThirdLayer {
   private messages: typeof messages;
   private createEnvNamespace: CreateEnvNamespace;
   private createEnsureAuthenticated: CreateEnsureAuthenticated;
   private createDomainsManager: CreateDomainsManager;
+  private createNormalizeQueryLink: CreateNormalizeQueryLink;
   private createDecimaAdjust: CreateDecimaAdjust;
   private createRateLimiter: CreateRateLimiter;
   private createRoutes: CreateRoutes;
@@ -36,6 +38,7 @@ export class MakeThirdLayer {
     this.messages = messages;
     this.createEnvNamespace = new CreateEnvNamespace();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
+    this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createDomainsManager = new CreateDomainsManager();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createRateLimiter = new CreateRateLimiter();
@@ -239,6 +242,23 @@ export class MakeThirdLayer {
     console.log(
       '\x1b[38;2;255;255;0m',
       `- domainsManager.ts ${this.messages.created}`,
+      '\x1b[0m',
+    );
+    if (!existsSync('src/utils/createNormalizeQueryLink.ts')) {
+      appendFileSync(
+        'src/utils/createNormalizeQueryLink.ts',
+        this.createNormalizeQueryLink.execute(),
+      );
+    } else {
+      truncateSync('src/utils/createNormalizeQueryLink.ts');
+      appendFileSync(
+        'src/utils/createNormalizeQueryLink.ts',
+        this.createNormalizeQueryLink.execute(),
+      );
+    }
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- createNormalizeQueryLink.ts ${this.messages.created}`,
       '\x1b[0m',
     );
   }
