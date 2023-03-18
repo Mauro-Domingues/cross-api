@@ -59,7 +59,6 @@ class Index {
 
   public execute(): void {
     if (this.comand) {
-      this.createRegister.execute();
       switch (this.comand) {
         case 'config':
           this.configJson.execute();
@@ -137,6 +136,7 @@ class Index {
       );
       console.log('');
     }
+    this.createRegister.execute();
   }
 }
 
