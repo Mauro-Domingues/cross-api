@@ -20,6 +20,7 @@ var _domains2 = require("../../../dist/templates/utils/domains");
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _ensureAuthenticated = require("../../../dist/templates/middlewares/ensureAuthenticated");
 var _envNamespace = require("../../../dist/templates/types/envNamespace");
+var _normalizeQueryLink = require("../../../dist/templates/utils/normalizeQueryLink");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeThirdLayer {
   constructor() {
@@ -27,6 +28,7 @@ class MakeThirdLayer {
     this.createEnvNamespace = void 0;
     this.createEnsureAuthenticated = void 0;
     this.createDomainsManager = void 0;
+    this.createNormalizeQueryLink = void 0;
     this.createDecimaAdjust = void 0;
     this.createRateLimiter = void 0;
     this.createRoutes = void 0;
@@ -41,6 +43,7 @@ class MakeThirdLayer {
     this.messages = _messages.default;
     this.createEnvNamespace = new _envNamespace.CreateEnvNamespace();
     this.createEnsureAuthenticated = new _ensureAuthenticated.CreateEnsureAuthenticated();
+    this.createNormalizeQueryLink = new _normalizeQueryLink.CreateNormalizeQueryLink();
     this.createDomainsManager = new _domains2.CreateDomainsManager();
     this.createDecimaAdjust = new _decimalAdjust.CreateDecimaAdjust();
     this.createRateLimiter = new _rateLimiter.CreateRateLimiter();
@@ -153,6 +156,13 @@ class MakeThirdLayer {
       (0, _fs.appendFileSync)('src/utils/domainsManager.ts', this.createDomainsManager.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domainsManager.ts ${this.messages.created}`, '\x1b[0m');
+    if (!(0, _fs.existsSync)('src/utils/createNormalizeQueryLink.ts')) {
+      (0, _fs.appendFileSync)('src/utils/createNormalizeQueryLink.ts', this.createNormalizeQueryLink.execute());
+    } else {
+      (0, _fs.truncateSync)('src/utils/createNormalizeQueryLink.ts');
+      (0, _fs.appendFileSync)('src/utils/createNormalizeQueryLink.ts', this.createNormalizeQueryLink.execute());
+    }
+    console.log('\x1b[38;2;255;255;0m', `- createNormalizeQueryLink.ts ${this.messages.created}`, '\x1b[0m');
   }
 }
 exports.MakeThirdLayer = MakeThirdLayer;
