@@ -59,6 +59,9 @@ class Index {
 
   public execute(): void {
     if (this.comand) {
+      if (this.comand !== 'revert') {
+        this.createRegister.execute();
+      }
       switch (this.comand) {
         case 'config':
           this.configJson.execute();
@@ -93,6 +96,7 @@ class Index {
           break;
         case 'revert':
           this.deleteRegister.execute();
+          this.createRegister.execute();
           break;
         default:
           console.log('');
@@ -136,7 +140,6 @@ class Index {
       );
       console.log('');
     }
-    this.createRegister.execute();
   }
 }
 
