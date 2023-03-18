@@ -22,7 +22,7 @@ class DeleteRegister {
       mail: 'MailProvider',
       mailTemplate: 'MailTemplateProvider',
       notification: 'NotificationProvider',
-      storage: 'StorageProvider'
+      upload: 'StorageProvider'
     };
   }
   makeProvider(comand, names, fatherNames) {
@@ -31,6 +31,9 @@ class DeleteRegister {
       (0, _fs.truncateSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`);
       (0, _fs.appendFileSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, oldProviders);
       (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/${this.providers[names.lowerModuleName]}`);
+      if ((0, _fs.existsSync)(`src/config/${names.lowerModuleName}.ts`)) {
+        (0, _fs.unlinkSync)(`src/config/${names.lowerModuleName}.ts`);
+      }
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
@@ -38,6 +41,9 @@ class DeleteRegister {
       (0, _fs.truncateSync)('src/shared/container/providers/index.ts');
       (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', oldProviders);
       (0, _fsExtra.removeSync)(`src/shared/container/providers/${this.providers[names.lowerModuleName]}`);
+      if ((0, _fs.existsSync)(`src/config/${names.lowerModuleName}.ts`)) {
+        (0, _fs.unlinkSync)(`src/config/${names.lowerModuleName}.ts`);
+      }
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
     }

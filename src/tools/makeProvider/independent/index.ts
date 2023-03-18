@@ -36,7 +36,7 @@ export class MakeProvider {
       case 'cache':
         await this.makeCacheProvider.execute();
         break;
-      case 'storage':
+      case 'upload':
         await this.makeStorageProvider.execute();
         break;
       case 'mailTemplate':

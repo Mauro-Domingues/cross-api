@@ -42,7 +42,7 @@ class MakeDependentProvider {
       case 'cache':
         await this.makeDependentCacheProvider.execute();
         break;
-      case 'storage':
+      case 'upload':
         await this.makeDependentStorageProvider.execute();
         break;
       case 'mailTemplate':

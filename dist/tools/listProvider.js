@@ -29,7 +29,7 @@ class ListProvider {
       Name: 'notification',
       Provider: 'NotificationProvider'
     }, {
-      Name: 'storage     ',
+      Name: 'upload      ',
       Provider: 'StorageProvider     '
     }];
   }

@@ -1,6 +1,12 @@
 import messages from '@tools/messages';
 import { removeSync } from 'fs-extra';
-import { appendFileSync, readFileSync, truncateSync, unlinkSync } from 'fs';
+import {
+  appendFileSync,
+  existsSync,
+  readFileSync,
+  truncateSync,
+  unlinkSync,
+} from 'fs';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 
 export class DeleteRegister {
@@ -17,7 +23,7 @@ export class DeleteRegister {
       mail: 'MailProvider',
       mailTemplate: 'MailTemplateProvider',
       notification: 'NotificationProvider',
-      storage: 'StorageProvider',
+      upload: 'StorageProvider',
     };
   }
 
@@ -46,6 +52,9 @@ export class DeleteRegister {
           this.providers[names.lowerModuleName]
         }`,
       );
+      if (existsSync(`src/config/${names.lowerModuleName}.ts`)) {
+        unlinkSync(`src/config/${names.lowerModuleName}.ts`);
+      }
       console.log('');
       console.log(
         '\x1b[1m',
@@ -66,6 +75,9 @@ export class DeleteRegister {
           this.providers[names.lowerModuleName]
         }`,
       );
+      if (existsSync(`src/config/${names.lowerModuleName}.ts`)) {
+        unlinkSync(`src/config/${names.lowerModuleName}.ts`);
+      }
       console.log('');
       console.log(
         '\x1b[1m',
