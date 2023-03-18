@@ -4,21 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GetNames = void 0;
-var _pluralize = require("pluralize");
+var _pluralize = require("../../dist/tools/pluralize");
 class GetNames {
   constructor(name) {
     this.name = void 0;
+    this.pluralize = void 0;
+    this.pluralize = new _pluralize.Pluralize(name);
     this.name = name;
   }
   getSingularAndPlural(word) {
-    if ((0, _pluralize.isSingular)(word)) {
+    if (this.pluralize.isSingular()) {
       return {
         singular: word,
-        pluralName: (0, _pluralize.plural)(word)
+        pluralName: this.pluralize.plural()
       };
     }
     return {
-      singular: (0, _pluralize.singular)(word),
+      singular: this.pluralize.singular(),
       pluralName: word
     };
   }

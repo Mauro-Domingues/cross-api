@@ -1,4 +1,4 @@
-import { plural, singular, isSingular } from 'pluralize';
+import { Pluralize } from '@tools/pluralize';
 
 export interface IModuleNamesDTO {
   lowerModuleName: string;
@@ -11,8 +11,10 @@ export interface IModuleNamesDTO {
 
 export class GetNames {
   private name: string | undefined;
+  private pluralize: Pluralize;
 
   constructor(name: string | undefined) {
+    this.pluralize = new Pluralize(name);
     this.name = name;
   }
 
@@ -20,14 +22,14 @@ export class GetNames {
     singular: string;
     pluralName: string;
   } {
-    if (isSingular(word)) {
+    if (this.pluralize.isSingular()) {
       return {
         singular: word,
-        pluralName: plural(word),
+        pluralName: this.pluralize.plural(),
       };
     }
     return {
-      singular: singular(word),
+      singular: this.pluralize.singular(),
       pluralName: word,
     };
   }
