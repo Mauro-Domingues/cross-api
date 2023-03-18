@@ -30,12 +30,8 @@ class ConfigJson {
 exports.ConfigJson = ConfigJson;`;
   }
   execute() {
-    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/config.js', error => {
-      if (error) throw error;
-    });
-    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/config.js', this.configBody, error => {
-      if (error) throw error;
-    });
+    (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/config.js');
+    (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/config.js', this.configBody);
   }
 }
 exports.Config = Config;

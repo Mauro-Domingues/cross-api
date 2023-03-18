@@ -1,5 +1,5 @@
 import { IModuleNamesDTO } from '@tools/names';
-import { appendFile, existsSync, readFileSync, truncate } from 'fs';
+import { appendFileSync, existsSync, readFileSync, truncateSync } from 'fs';
 
 export class CreateRegister {
   private comand: string[] | undefined;
@@ -23,11 +23,8 @@ export class CreateRegister {
 
   private makeProvider(): void {
     if (this.providerName && this.fatherNames) {
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
       if (
         existsSync(
@@ -38,20 +35,14 @@ export class CreateRegister {
           `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
           'ascii',
         );
-        appendFile(
+        appendFileSync(
           './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
           providerInjection,
-          error => {
-            if (error) throw error;
-          },
         );
       } else {
-        appendFile(
+        appendFileSync(
           './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
           '',
-          error => {
-            if (error) throw error;
-          },
         );
       }
     } else if (this.providerName) {
@@ -59,18 +50,12 @@ export class CreateRegister {
         'src/shared/container/providers/index.ts',
         'ascii',
       );
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
         providerInjection,
-        error => {
-          if (error) throw error;
-        },
       );
     }
   }
@@ -81,24 +66,15 @@ export class CreateRegister {
         'src/shared/container/index.ts',
         'ascii',
       );
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         moduleInjection,
-        error => {
-          if (error) throw error;
-        },
       );
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
       if (
         existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
@@ -107,12 +83,9 @@ export class CreateRegister {
           `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
           'ascii',
         );
-        appendFile(
+        appendFileSync(
           './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
           routeInjection,
-          error => {
-            if (error) throw error;
-          },
         );
       } else {
         const routeInjection = `import { Router } from 'express';
@@ -121,12 +94,9 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 
 export default ${this.fatherNames.lowerModuleName}Router;
 `;
-        appendFile(
+        appendFileSync(
           './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
           routeInjection,
-          error => {
-            if (error) throw error;
-          },
         );
       }
     } else if (this.names) {
@@ -134,32 +104,20 @@ export default ${this.fatherNames.lowerModuleName}Router;
         'src/shared/container/index.ts',
         'ascii',
       );
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
         moduleInjection,
-        error => {
-          if (error) throw error;
-        },
       );
       const routeInjection = readFileSync('src/routes/index.ts', 'ascii');
-      truncate(
+      truncateSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
         routeInjection,
-        error => {
-          if (error) throw error;
-        },
       );
     }
   }
@@ -171,18 +129,12 @@ export default ${this.fatherNames.lowerModuleName}Router;
       this.makeModule();
     }
 
-    truncate(
+    truncateSync(
       './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
-      error => {
-        if (error) throw error;
-      },
     );
-    appendFile(
+    appendFileSync(
       './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
       String(this.comand),
-      error => {
-        if (error) throw error;
-      },
     );
   }
 }

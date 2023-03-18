@@ -14,16 +14,10 @@ class MakeSecondLayer {
   }
   async execute() {
     if (!(0, _fs.existsSync)('src/swagger.json')) {
-      (0, _fs.appendFile)('src/swagger.json', '{}', error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/swagger.json', '{}');
     } else {
-      (0, _fs.truncate)('src/swagger.json', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/swagger.json', '{}', error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/swagger.json');
+      (0, _fs.appendFileSync)('src/swagger.json', '{}');
     }
     console.log('\x1b[38;2;255;255;0m', `- swagger.json ${this.messages.created}`, '\x1b[0m');
   }

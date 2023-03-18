@@ -1,4 +1,4 @@
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { CreateDependentController } from '@templates/modules/services/createDependent/createController';
 import { CreateDependentService } from '@templates/modules/services/createDependent/createService';
 import { DeleteDependentController } from '@templates/modules/services/deleteDependent/deleteController';
@@ -83,26 +83,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`,
         this.createDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`,
         this.createDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -110,26 +101,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`,
         this.createDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`,
         this.createDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -137,26 +119,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`,
         this.deleteDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`,
         this.deleteDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -164,26 +137,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`,
         this.deleteDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`,
         this.deleteDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -191,26 +155,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`,
         this.listDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`,
         this.listDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -218,26 +173,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`,
         this.listDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`,
         this.listDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -245,26 +191,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`,
         this.showDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`,
         this.showDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -272,26 +209,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`,
         this.showDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`,
         this.showDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -299,26 +227,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`,
         this.updateDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`,
         this.updateDependentController.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -326,26 +245,17 @@ export class MakeDependentFunctionalities {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`,
         this.updateDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`,
         this.updateDependentService.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
   }

@@ -52,124 +52,64 @@ class MakeDependentUnitTests {
       throw new Error();
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, this.createSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, this.createSpecDependentController.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, this.createSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`, this.createSpecDependentController.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, this.createSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, this.createSpecDependentService.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, this.createSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`, this.createSpecDependentService.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, this.deleteSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, this.deleteSpecDependentController.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, this.deleteSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`, this.deleteSpecDependentController.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, this.deleteSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, this.deleteSpecDependentService.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, this.deleteSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`, this.deleteSpecDependentService.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, this.listSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, this.listSpecDependentController.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, this.listSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`, this.listSpecDependentController.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, this.listSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, this.listSpecDependentService.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, this.listSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`, this.listSpecDependentService.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, this.showSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, this.showSpecDependentController.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, this.showSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`, this.showSpecDependentController.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, this.showSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, this.showSpecDependentService.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, this.showSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`, this.showSpecDependentService.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, this.updateSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, this.updateSpecDependentController.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, this.updateSpecDependentController.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`, this.updateSpecDependentController.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, this.updateSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, this.updateSpecDependentService.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, this.updateSpecDependentService.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`, this.updateSpecDependentService.execute());
     }
   }
 }

@@ -1,4 +1,4 @@
-import { appendFile, truncate } from 'fs';
+import { appendFileSync, truncateSync } from 'fs';
 import { createInterface } from 'readline';
 
 import { EnglishMessages } from '@templates/assets/en-us';
@@ -101,10 +101,8 @@ export class ConfigLanguage {
   }
 
   public setLanguageOption(): void {
-    truncate('./node_modules/cross-api/dist/tools/messages.js', error => {
-      if (error) throw error;
-    });
-    appendFile(
+    truncateSync('./node_modules/cross-api/dist/tools/messages.js');
+    appendFileSync(
       './node_modules/cross-api/dist/tools/messages.js',
       `"use strict";
 
@@ -114,9 +112,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = ${JSON.stringify(this.messages)};
 exports.default = _default;`,
-      error => {
-        if (error) throw error;
-      },
     );
   }
 

@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
 import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
@@ -59,58 +59,32 @@ export class MakeLeadProvider {
     if (!existsSync('src/shared/container/providers/LeadProvider/models')) {
       mkdirSync('src/shared/container/providers/LeadProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './LeadProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/lead.ts')) {
-      appendFile(
-        'src/config/lead.ts',
-        this.createLeadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
     } else {
-      truncate('src/config/lead.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/lead.ts',
-        this.createLeadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/lead.ts');
+      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
     }
     if (
       !existsSync(
         'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
         this.createILeadDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts',
         this.createILeadDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -118,26 +92,17 @@ export class MakeLeadProvider {
         'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
         this.createFakeLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts',
         this.createFakeLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -145,26 +110,17 @@ export class MakeLeadProvider {
         'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
         this.createRDStationLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts',
         this.createRDStationLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -172,49 +128,29 @@ export class MakeLeadProvider {
         'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
         this.createILead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/models/ILeadProvider.ts',
         this.createILead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync('src/shared/container/providers/LeadProvider/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/index.ts',
         this.createLeadIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
-        'src/shared/container/providers/LeadProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
-      );
-      appendFile(
+      truncateSync('src/shared/container/providers/LeadProvider/index.ts');
+      appendFileSync(
         'src/shared/container/providers/LeadProvider/index.ts',
         this.createLeadIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

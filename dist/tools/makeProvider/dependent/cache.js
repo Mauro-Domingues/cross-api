@@ -53,9 +53,7 @@ class MakeDependentCacheProvider {
       (0, _fs.mkdirSync)('src/shared/container');
     }
     if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
@@ -64,9 +62,7 @@ class MakeDependentCacheProvider {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`);
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '');
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`);
@@ -80,71 +76,37 @@ class MakeDependentCacheProvider {
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`);
     }
-    (0, _fs.appendFile)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`, error => {
-      if (error) throw error;
-    });
-    (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './CacheProvider';`, error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
+    (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './CacheProvider';`);
     if (!(0, _fs.existsSync)('src/config/cache.ts')) {
-      (0, _fs.appendFile)('src/config/cache.ts', this.createCacheConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/config/cache.ts', this.createCacheConfig.execute());
     } else {
-      (0, _fs.truncate)('src/config/cache.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/config/cache.ts', this.createCacheConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/config/cache.ts');
+      (0, _fs.appendFileSync)('src/config/cache.ts', this.createCacheConfig.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- CacheProvider ${this.messages.created}`, '\x1b[0m');
   }

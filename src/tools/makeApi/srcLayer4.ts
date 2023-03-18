@@ -9,7 +9,7 @@ import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchStr
 import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import messages from '@tools/messages';
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 
 export class MakeFourthLayer {
   private messages: typeof messages;
@@ -40,23 +40,15 @@ export class MakeFourthLayer {
 
   public async execute(): Promise<void> {
     if (!existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndCloneAttribute.ts',
         this.createMapAndClone.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndCloneAttribute.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndCloneAttribute.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndCloneAttribute.ts',
         this.createMapAndClone.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -65,23 +57,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/mappers/mapAndInsertAttribute.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndInsertAttribute.ts',
         this.createMapAndInsert.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndInsertAttribute.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndInsertAttribute.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndInsertAttribute.ts',
         this.createMapAndInsert.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -90,23 +74,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndPatchAttribute.ts',
         this.createMapAndPatch.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndPatchAttribute.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndPatchAttribute.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndPatchAttribute.ts',
         this.createMapAndPatch.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -115,23 +91,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/mappers/mapAndPatchString.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndPatchString.ts',
         this.createMapAndPatchString.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndPatchString.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndPatchString.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndPatchString.ts',
         this.createMapAndPatchString.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -140,23 +108,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/mappers/mapAndUpdateAttribute.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndUpdateAttribute.ts',
         this.createMapAndUpdate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndUpdateAttribute.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndUpdateAttribute.ts',
         this.createMapAndUpdate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -165,23 +125,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/mappers/mapAndUpdateString.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/mappers/mapAndUpdateString.ts',
         this.createMapAndUpdateString.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/mappers/mapAndUpdateString.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/mappers/mapAndUpdateString.ts');
+      appendFileSync(
         'src/utils/mappers/mapAndUpdateString.ts',
         this.createMapAndUpdateString.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -190,23 +142,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/shared/container/index.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/shared/container/index.ts');
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -215,23 +159,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/errors/AppError.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/errors/AppError.ts',
         this.createAppError.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/shared/errors/AppError.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/shared/errors/AppError.ts');
+      appendFileSync(
         'src/shared/errors/AppError.ts',
         this.createAppError.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -240,23 +176,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/typeorm/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/typeorm/index.ts',
         this.createTypeorm.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/shared/typeorm/index.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/shared/typeorm/index.ts');
+      appendFileSync(
         'src/shared/typeorm/index.ts',
         this.createTypeorm.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -265,23 +193,15 @@ export class MakeFourthLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/typeorm/dataSource.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/typeorm/dataSource.ts',
         this.createDataSource.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/shared/typeorm/dataSource.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/shared/typeorm/dataSource.ts');
+      appendFileSync(
         'src/shared/typeorm/dataSource.ts',
         this.createDataSource.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

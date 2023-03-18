@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
@@ -57,58 +57,32 @@ export class MakeCryptoProvider {
     if (!existsSync('src/shared/container/providers/CryptoProvider/models')) {
       mkdirSync('src/shared/container/providers/CryptoProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './CryptoProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/crypto.ts')) {
-      appendFile(
-        'src/config/crypto.ts',
-        this.createCryptoConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/crypto.ts', this.createCryptoConfig.execute());
     } else {
-      truncate('src/config/crypto.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/crypto.ts',
-        this.createCryptoConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/crypto.ts');
+      appendFileSync('src/config/crypto.ts', this.createCryptoConfig.execute());
     }
     if (
       !existsSync(
         'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
         this.createICryptoDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
         this.createICryptoDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -116,26 +90,17 @@ export class MakeCryptoProvider {
         'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
         this.createCrypto.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
         this.createCrypto.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -143,49 +108,29 @@ export class MakeCryptoProvider {
         'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
         this.createICrypto.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
         this.createICrypto.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync('src/shared/container/providers/CryptoProvider/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/index.ts',
         this.createCryptoIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
-        'src/shared/container/providers/CryptoProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
-      );
-      appendFile(
+      truncateSync('src/shared/container/providers/CryptoProvider/index.ts');
+      appendFileSync(
         'src/shared/container/providers/CryptoProvider/index.ts',
         this.createCryptoIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

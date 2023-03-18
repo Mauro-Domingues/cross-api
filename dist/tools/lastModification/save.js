@@ -18,46 +18,28 @@ class CreateRegister {
   }
   makeProvider() {
     if (this.providerName && this.fatherNames) {
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log');
       if ((0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
         const providerInjection = (0, _fs.readFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, 'ascii');
-        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection, error => {
-          if (error) throw error;
-        });
+        (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection);
       } else {
-        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', '', error => {
-          if (error) throw error;
-        });
+        (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', '');
       }
     } else if (this.providerName) {
       const providerInjection = (0, _fs.readFileSync)('src/shared/container/providers/index.ts', 'ascii');
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection, error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log');
+      (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', providerInjection);
     }
   }
   makeModule() {
     if (this.names && this.fatherNames) {
       const moduleInjection = (0, _fs.readFileSync)('src/shared/container/index.ts', 'ascii');
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection, error => {
-        if (error) throw error;
-      });
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log');
+      (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection);
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log');
       if ((0, _fs.existsSync)(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)) {
         const routeInjection = (0, _fs.readFileSync)(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`, 'ascii');
-        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
-          if (error) throw error;
-        });
+        (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection);
       } else {
         const routeInjection = `import { Router } from 'express';
 
@@ -65,25 +47,15 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 
 export default ${this.fatherNames.lowerModuleName}Router;
 `;
-        (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
-          if (error) throw error;
-        });
+        (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection);
       }
     } else if (this.names) {
       const moduleInjection = (0, _fs.readFileSync)('src/shared/container/index.ts', 'ascii');
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection, error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log');
+      (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', moduleInjection);
       const routeInjection = (0, _fs.readFileSync)('src/routes/index.ts', 'ascii');
-      (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection, error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log');
+      (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', routeInjection);
     }
   }
   async execute() {
@@ -92,12 +64,8 @@ export default ${this.fatherNames.lowerModuleName}Router;
     } else if (this.comand && this.comand[0] === 'make:module') {
       this.makeModule();
     }
-    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', error => {
-      if (error) throw error;
-    });
-    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', String(this.comand), error => {
-      if (error) throw error;
-    });
+    (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log');
+    (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', String(this.comand));
   }
 }
 exports.CreateRegister = CreateRegister;

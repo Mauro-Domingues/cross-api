@@ -9,7 +9,7 @@ import { CreateIDependentRepository } from '@templates/modules/repositories/IDep
 import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
 import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
 import messages from '@tools/messages';
 
@@ -81,19 +81,14 @@ export class MakeDependentInfra {
     }
 
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
 
     if (!existsSync('src/routes/index.ts')) {
-      appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
     }
 
     if (
@@ -101,26 +96,17 @@ export class MakeDependentInfra {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
         this.createModuleDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
         this.createModuleDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -128,26 +114,17 @@ export class MakeDependentInfra {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
         this.createEntity.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
         this.createEntity.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -155,26 +132,17 @@ export class MakeDependentInfra {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
         this.createDependentRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
         this.createDependentRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -182,26 +150,17 @@ export class MakeDependentInfra {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
         this.createIDependentRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
         this.createIDependentRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -209,61 +168,40 @@ export class MakeDependentInfra {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
         this.createDependentFakeRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
         this.createDependentFakeRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
 
     if (
       !existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
     ) {
-      appendFile(
+      appendFileSync(
         `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
         this.createFullDependentRoute.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/routes/index.ts`,
         this.createIndexDependentRoute.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      appendFile(
+      appendFileSync(
         `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
         this.createDependentRoute.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/index.ts',
       this.createDependentInjection.execute(),
-      error => {
-        if (error) throw error;
-      },
     );
   }
 }

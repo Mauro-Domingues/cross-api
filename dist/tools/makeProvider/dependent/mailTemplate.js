@@ -53,9 +53,7 @@ class MakeDependentMailTemplateProvider {
       (0, _fs.mkdirSync)('src/shared/container');
     }
     if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
@@ -64,9 +62,7 @@ class MakeDependentMailTemplateProvider {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`);
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '', error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '');
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider`);
@@ -83,71 +79,37 @@ class MakeDependentMailTemplateProvider {
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models`)) {
       (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models`);
     }
-    (0, _fs.appendFile)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`, error => {
-      if (error) throw error;
-    });
-    (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './MailTemplateProvider';`, error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
+    (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './MailTemplateProvider';`);
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`, this.createIMailTemplateDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`, this.createIMailTemplateDTO.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`, this.createIMailTemplateDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`, this.createIMailTemplateDTO.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`, this.createFakeMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`, this.createFakeMailTemplate.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`, this.createFakeMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`, this.createFakeMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`, this.createMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`, this.createMailTemplate.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`, this.createMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`, this.createMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`, this.createIMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`, this.createIMailTemplate.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`, this.createIMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`, this.createIMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`, this.createMailTemplateIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`, this.createMailTemplateIndex.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`, this.createMailTemplateIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`, this.createMailTemplateIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- MailTemplateProvider ${this.messages.created}`, '\x1b[0m');
   }

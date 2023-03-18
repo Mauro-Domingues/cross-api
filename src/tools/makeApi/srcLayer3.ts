@@ -1,4 +1,4 @@
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { CreateExpressNamespace } from '@templates/types/expressNamespace';
 import { CreateApp } from '@templates/api/app';
 import { CreateServer } from '@templates/api/server';
@@ -52,23 +52,15 @@ export class MakeThirdLayer {
 
   public async execute(): Promise<void> {
     if (!existsSync('src/@types/express.d.ts')) {
-      appendFile(
+      appendFileSync(
         'src/@types/express.d.ts',
         this.createExpressNamespace.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/@types/express.d.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/@types/express.d.ts');
+      appendFileSync(
         'src/@types/express.d.ts',
         this.createExpressNamespace.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -77,24 +69,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/@types/env.d.ts')) {
-      appendFile(
-        'src/@types/env.d.ts',
-        this.createEnvNamespace.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/@types/env.d.ts', this.createEnvNamespace.execute());
     } else {
-      truncate('src/@types/env.d.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/@types/env.d.ts',
-        this.createEnvNamespace.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/@types/env.d.ts');
+      appendFileSync('src/@types/env.d.ts', this.createEnvNamespace.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -102,24 +80,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/assets/domains.txt')) {
-      appendFile(
-        'src/assets/domains.txt',
-        this.createDomains.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/assets/domains.txt', this.createDomains.execute());
     } else {
-      truncate('src/assets/domains.txt', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/assets/domains.txt',
-        this.createDomains.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/assets/domains.txt');
+      appendFileSync('src/assets/domains.txt', this.createDomains.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -127,24 +91,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/dtos/ICacheDTO.ts')) {
-      appendFile(
-        'src/dtos/ICacheDTO.ts',
-        this.createICacheDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
     } else {
-      truncate('src/dtos/ICacheDTO.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/dtos/ICacheDTO.ts',
-        this.createICacheDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/dtos/ICacheDTO.ts');
+      appendFileSync('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -152,24 +102,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/dtos/IListDTO.ts')) {
-      appendFile(
-        'src/dtos/IListDTO.ts',
-        this.createIListDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/dtos/IListDTO.ts', this.createIListDTO.execute());
     } else {
-      truncate('src/dtos/IListDTO.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/dtos/IListDTO.ts',
-        this.createIListDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/dtos/IListDTO.ts');
+      appendFileSync('src/dtos/IListDTO.ts', this.createIListDTO.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -177,24 +113,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/dtos/IObjectDTO.ts')) {
-      appendFile(
-        'src/dtos/IObjectDTO.ts',
-        this.createIObjectDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
     } else {
-      truncate('src/dtos/IObjectDTO.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/dtos/IObjectDTO.ts',
-        this.createIObjectDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/dtos/IObjectDTO.ts');
+      appendFileSync('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -202,23 +124,15 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/dtos/IResponseDTO.ts')) {
-      appendFile(
+      appendFileSync(
         'src/dtos/IResponseDTO.ts',
         this.createIResponseDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/dtos/IResponseDTO.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/dtos/IResponseDTO.ts');
+      appendFileSync(
         'src/dtos/IResponseDTO.ts',
         this.createIResponseDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -227,23 +141,15 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/middlewares/RateLimiter.ts')) {
-      appendFile(
+      appendFileSync(
         'src/middlewares/RateLimiter.ts',
         this.createRateLimiter.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/middlewares/RateLimiter.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/middlewares/RateLimiter.ts');
+      appendFileSync(
         'src/middlewares/RateLimiter.ts',
         this.createRateLimiter.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -252,23 +158,15 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/middlewares/EnsureAuthenticated.ts')) {
-      appendFile(
+      appendFileSync(
         'src/middlewares/EnsureAuthenticated.ts',
         this.createEnsureAuthenticated.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/middlewares/EnsureAuthenticated.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/middlewares/EnsureAuthenticated.ts');
+      appendFileSync(
         'src/middlewares/EnsureAuthenticated.ts',
         this.createEnsureAuthenticated.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -277,16 +175,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/routes/index.ts')) {
-      appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
     } else {
-      truncate('src/routes/index.ts', error => {
-        if (error) throw error;
-      });
-      appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      truncateSync('src/routes/index.ts');
+      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -294,16 +186,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/app.ts')) {
-      appendFile('src/shared/app.ts', this.createApp.execute(), error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/shared/app.ts', this.createApp.execute());
     } else {
-      truncate('src/shared/app.ts', error => {
-        if (error) throw error;
-      });
-      appendFile('src/shared/app.ts', this.createApp.execute(), error => {
-        if (error) throw error;
-      });
+      truncateSync('src/shared/app.ts');
+      appendFileSync('src/shared/app.ts', this.createApp.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -311,16 +197,10 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/shared/server.ts')) {
-      appendFile('src/shared/server.ts', this.createServer.execute(), error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/shared/server.ts', this.createServer.execute());
     } else {
-      truncate('src/shared/server.ts', error => {
-        if (error) throw error;
-      });
-      appendFile('src/shared/server.ts', this.createServer.execute(), error => {
-        if (error) throw error;
-      });
+      truncateSync('src/shared/server.ts');
+      appendFileSync('src/shared/server.ts', this.createServer.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -328,23 +208,15 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/decimalAdjust.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/decimalAdjust.ts',
         this.createDecimaAdjust.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/decimalAdjust.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/decimalAdjust.ts');
+      appendFileSync(
         'src/utils/decimalAdjust.ts',
         this.createDecimaAdjust.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -353,23 +225,15 @@ export class MakeThirdLayer {
       '\x1b[0m',
     );
     if (!existsSync('src/utils/domainsManager.ts')) {
-      appendFile(
+      appendFileSync(
         'src/utils/domainsManager.ts',
         this.createDomainsManager.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/utils/domainsManager.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/utils/domainsManager.ts');
+      appendFileSync(
         'src/utils/domainsManager.ts',
         this.createDomainsManager.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateContainer } from '@templates/index/container';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
@@ -61,12 +61,9 @@ export class MakeDependentLeadProvider {
       mkdirSync('src/shared/container');
     }
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
@@ -86,12 +83,9 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
         '',
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -139,65 +133,36 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models`,
       );
     }
-    appendFile(
+    appendFileSync(
       `src/shared/container/index.ts`,
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-      error => {
-        if (error) throw error;
-      },
     );
-    appendFile(
+    appendFileSync(
       `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
       `\nimport './LeadProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/lead.ts')) {
-      appendFile(
-        'src/config/lead.ts',
-        this.createLeadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
     } else {
-      truncate('src/config/lead.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/lead.ts',
-        this.createLeadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/lead.ts');
+      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
     }
     if (
       !existsSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
         this.createILeadDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
         this.createILeadDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -205,26 +170,17 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
         this.createFakeLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
         this.createFakeLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -232,26 +188,17 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
         this.createRDStationLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
         this.createRDStationLead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -259,26 +206,17 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
         this.createILead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
         this.createILead.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -286,26 +224,17 @@ export class MakeDependentLeadProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
         this.createLeadIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
         this.createLeadIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

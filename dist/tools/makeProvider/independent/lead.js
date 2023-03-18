@@ -61,80 +61,42 @@ class MakeLeadProvider {
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/models')) {
       (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider/models');
     }
-    (0, _fs.appendFile)('src/shared/container/providers/index.ts', `\nimport './LeadProvider';`, error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', `\nimport './LeadProvider';`);
     if (!(0, _fs.existsSync)('src/config/lead.ts')) {
-      (0, _fs.appendFile)('src/config/lead.ts', this.createLeadConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/config/lead.ts', this.createLeadConfig.execute());
     } else {
-      (0, _fs.truncate)('src/config/lead.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/config/lead.ts', this.createLeadConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/config/lead.ts');
+      (0, _fs.appendFileSync)('src/config/lead.ts', this.createLeadConfig.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/LeadProvider/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/index.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- LeadProvider ${this.messages.created}`, '\x1b[0m');
   }

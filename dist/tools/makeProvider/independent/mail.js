@@ -79,80 +79,42 @@ class MakeMailProvider {
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/models')) {
       (0, _fs.mkdirSync)('src/shared/container/providers/MailTemplateProvider/models');
     }
-    (0, _fs.appendFile)('src/shared/container/providers/index.ts', `\nimport './MailTemplateProvider';`, error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', `\nimport './MailTemplateProvider';`);
     if (!(0, _fs.existsSync)('src/config/mail.ts')) {
-      (0, _fs.appendFile)('src/config/mail.ts', this.createMailConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/config/mail.ts', this.createMailConfig.execute());
     } else {
-      (0, _fs.truncate)('src/config/mail.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/config/mail.ts', this.createMailConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/config/mail.ts');
+      (0, _fs.appendFileSync)('src/config/mail.ts', this.createMailConfig.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', this.createIMailTemplateDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', this.createIMailTemplateDTO.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', this.createIMailTemplateDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts', this.createIMailTemplateDTO.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', this.createFakeMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', this.createFakeMailTemplate.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', this.createFakeMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts', this.createFakeMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', this.createMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', this.createMailTemplate.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', this.createMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts', this.createMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', this.createIMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', this.createIMailTemplate.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', this.createIMailTemplate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts', this.createIMailTemplate.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailTemplateProvider/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/index.ts', this.createMailTemplateIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/index.ts', this.createMailTemplateIndex.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailTemplateProvider/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailTemplateProvider/index.ts', this.createMailTemplateIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailTemplateProvider/index.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailTemplateProvider/index.ts', this.createMailTemplateIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- MailTemplateProvider ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider')) {
@@ -170,80 +132,42 @@ class MakeMailProvider {
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/models')) {
       (0, _fs.mkdirSync)('src/shared/container/providers/MailProvider/models');
     }
-    (0, _fs.appendFile)('src/shared/container/providers/index.ts', `\nimport './MailProvider';`, error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', `\nimport './MailProvider';`);
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts', this.createIMailDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts', this.createIMailDTO.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts', this.createIMailDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts', this.createIMailDTO.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts', this.createFakeMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts', this.createFakeMail.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts', this.createFakeMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts', this.createFakeMail.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts', this.createEtherealMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts', this.createEtherealMail.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts', this.createEtherealMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts', this.createEtherealMail.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts', this.createSESMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts', this.createSESMail.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts', this.createSESMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts', this.createSESMail.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/models/IMailProvider.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/models/IMailProvider.ts', this.createIMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/models/IMailProvider.ts', this.createIMail.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/models/IMailProvider.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/models/IMailProvider.ts', this.createIMail.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/models/IMailProvider.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/models/IMailProvider.ts', this.createIMail.execute());
     }
     if (!(0, _fs.existsSync)('src/shared/container/providers/MailProvider/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/index.ts', this.createMailIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/index.ts', this.createMailIndex.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/providers/MailProvider/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/providers/MailProvider/index.ts', this.createMailIndex.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/providers/MailProvider/index.ts');
+      (0, _fs.appendFileSync)('src/shared/container/providers/MailProvider/index.ts', this.createMailIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- MailProvider ${this.messages.created}`, '\x1b[0m');
   }

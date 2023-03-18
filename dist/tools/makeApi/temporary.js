@@ -20,29 +20,17 @@ class MakeTemporary {
   }
   async execute() {
     if (!(0, _fs.existsSync)('src/config/auth.ts')) {
-      (0, _fs.appendFile)('src/config/auth.ts', this.createAuthConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/config/auth.ts', this.createAuthConfig.execute());
     } else {
-      (0, _fs.truncate)('src/config/auth.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/config/auth.ts', this.createAuthConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/config/auth.ts');
+      (0, _fs.appendFileSync)('src/config/auth.ts', this.createAuthConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- auth.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/config/cors.ts')) {
-      (0, _fs.appendFile)('src/config/cors.ts', this.createCorsConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/config/cors.ts', this.createCorsConfig.execute());
     } else {
-      (0, _fs.truncate)('src/config/cors.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/config/cors.ts', this.createCorsConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/config/cors.ts');
+      (0, _fs.appendFileSync)('src/config/cors.ts', this.createCorsConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- cors.ts ${this.messages.created}`, '\x1b[0m');
   }

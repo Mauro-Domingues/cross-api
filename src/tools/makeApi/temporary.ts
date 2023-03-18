@@ -1,4 +1,4 @@
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 import messages from '@tools/messages';
 import { CreateAuthConfig } from '@templates/providers/config/authConfig';
 import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
@@ -16,24 +16,10 @@ export class MakeTemporary {
 
   public async execute(): Promise<void> {
     if (!existsSync('src/config/auth.ts')) {
-      appendFile(
-        'src/config/auth.ts',
-        this.createAuthConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/auth.ts', this.createAuthConfig.execute());
     } else {
-      truncate('src/config/auth.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/auth.ts',
-        this.createAuthConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/auth.ts');
+      appendFileSync('src/config/auth.ts', this.createAuthConfig.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',
@@ -41,24 +27,10 @@ export class MakeTemporary {
       '\x1b[0m',
     );
     if (!existsSync('src/config/cors.ts')) {
-      appendFile(
-        'src/config/cors.ts',
-        this.createCorsConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/cors.ts', this.createCorsConfig.execute());
     } else {
-      truncate('src/config/cors.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/cors.ts',
-        this.createCorsConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/cors.ts');
+      appendFileSync('src/config/cors.ts', this.createCorsConfig.execute());
     }
     console.log(
       '\x1b[38;2;255;255;0m',

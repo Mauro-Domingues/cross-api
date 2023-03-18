@@ -1,5 +1,5 @@
 import messages from '@tools/messages';
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 
 export class MakeSecondLayer {
   private messages: typeof messages;
@@ -10,16 +10,10 @@ export class MakeSecondLayer {
 
   public async execute(): Promise<void> {
     if (!existsSync('src/swagger.json')) {
-      appendFile('src/swagger.json', '{}', error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/swagger.json', '{}');
     } else {
-      truncate('src/swagger.json', error => {
-        if (error) throw error;
-      });
-      appendFile('src/swagger.json', '{}', error => {
-        if (error) throw error;
-      });
+      truncateSync('src/swagger.json');
+      appendFileSync('src/swagger.json', '{}');
     }
     console.log(
       '\x1b[38;2;255;255;0m',

@@ -50,93 +50,49 @@ class MakeInfra {
       throw new Error();
     }
     if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
     }
     if (!(0, _fs.existsSync)('src/routes/index.ts')) {
-      (0, _fs.appendFile)('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/routes/index.ts', this.createRoutes.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`, this.createModuleDTO.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`, this.createEntity.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createRepository.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`, this.createRepository.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIRepository.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`, this.createIRepository.execute());
     }
     if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`)) {
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createFakeRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createFakeRepository.execute());
     } else {
-      (0, _fs.truncate)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createFakeRepository.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`);
+      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`, this.createFakeRepository.execute());
     }
-    (0, _fs.appendFile)('src/shared/container/index.ts', this.createInjection.execute(), error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createInjection.execute());
     if (!(0, _fs.existsSync)(`src/routes/${this.names.lowerModuleName}Router.ts`)) {
-      (0, _fs.appendFile)(`src/routes/${this.names.lowerModuleName}Router.ts`, this.createIndependentRoute.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)(`src/routes/${this.names.lowerModuleName}Router.ts`, this.createIndependentRoute.execute());
     } else {
-      (0, _fs.truncate)(`src/routes/${this.names.lowerModuleName}Router.ts`, error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)(`src/routes/${this.names.lowerModuleName}Router.ts`, this.createIndependentRoute.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)(`src/routes/${this.names.lowerModuleName}Router.ts`);
+      (0, _fs.appendFileSync)(`src/routes/${this.names.lowerModuleName}Router.ts`, this.createIndependentRoute.execute());
     }
-    (0, _fs.appendFile)(`src/routes/index.ts`, this.createIndexRoute.execute(), error => {
-      if (error) throw error;
-    });
+    (0, _fs.appendFileSync)(`src/routes/index.ts`, this.createIndexRoute.execute());
   }
 }
 exports.MakeInfra = MakeInfra;

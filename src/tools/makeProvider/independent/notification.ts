@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
@@ -69,31 +69,20 @@ export class MakeNotificationProvider {
     ) {
       mkdirSync('src/shared/container/providers/NotificationProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './NotificationProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/notification.ts')) {
-      appendFile(
+      appendFileSync(
         'src/config/notification.ts',
         this.createNotificationConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate('src/config/notification.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync('src/config/notification.ts');
+      appendFileSync(
         'src/config/notification.ts',
         this.createNotificationConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -101,26 +90,17 @@ export class MakeNotificationProvider {
         'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
         this.createINotificationDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
         this.createINotificationDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -128,26 +108,17 @@ export class MakeNotificationProvider {
         'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
         this.createFakeNotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
         this.createFakeNotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -155,26 +126,17 @@ export class MakeNotificationProvider {
         'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
         this.createOneSignalNotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
         this.createOneSignalNotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -182,26 +144,17 @@ export class MakeNotificationProvider {
         'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
         this.createINotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
         this.createINotification.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -209,26 +162,17 @@ export class MakeNotificationProvider {
         'src/shared/container/providers/NotificationProvider/index.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/index.ts',
         this.createNotificationIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/NotificationProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/NotificationProvider/index.ts',
         this.createNotificationIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

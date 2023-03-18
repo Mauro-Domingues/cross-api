@@ -56,185 +56,101 @@ class MakeThirdLayer {
   }
   async execute() {
     if (!(0, _fs.existsSync)('src/@types/express.d.ts')) {
-      (0, _fs.appendFile)('src/@types/express.d.ts', this.createExpressNamespace.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/@types/express.d.ts', this.createExpressNamespace.execute());
     } else {
-      (0, _fs.truncate)('src/@types/express.d.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/@types/express.d.ts', this.createExpressNamespace.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/@types/express.d.ts');
+      (0, _fs.appendFileSync)('src/@types/express.d.ts', this.createExpressNamespace.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- express.d.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/@types/env.d.ts')) {
-      (0, _fs.appendFile)('src/@types/env.d.ts', this.createEnvNamespace.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/@types/env.d.ts', this.createEnvNamespace.execute());
     } else {
-      (0, _fs.truncate)('src/@types/env.d.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/@types/env.d.ts', this.createEnvNamespace.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/@types/env.d.ts');
+      (0, _fs.appendFileSync)('src/@types/env.d.ts', this.createEnvNamespace.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- env.d.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/assets/domains.txt')) {
-      (0, _fs.appendFile)('src/assets/domains.txt', this.createDomains.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/assets/domains.txt', this.createDomains.execute());
     } else {
-      (0, _fs.truncate)('src/assets/domains.txt', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/assets/domains.txt', this.createDomains.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/assets/domains.txt');
+      (0, _fs.appendFileSync)('src/assets/domains.txt', this.createDomains.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domains.txt ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/dtos/ICacheDTO.ts')) {
-      (0, _fs.appendFile)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
     } else {
-      (0, _fs.truncate)('src/dtos/ICacheDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/dtos/ICacheDTO.ts');
+      (0, _fs.appendFileSync)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- ICacheDTO.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/dtos/IListDTO.ts')) {
-      (0, _fs.appendFile)('src/dtos/IListDTO.ts', this.createIListDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/dtos/IListDTO.ts', this.createIListDTO.execute());
     } else {
-      (0, _fs.truncate)('src/dtos/IListDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/dtos/IListDTO.ts', this.createIListDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/dtos/IListDTO.ts');
+      (0, _fs.appendFileSync)('src/dtos/IListDTO.ts', this.createIListDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IListDTO.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/dtos/IObjectDTO.ts')) {
-      (0, _fs.appendFile)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
     } else {
-      (0, _fs.truncate)('src/dtos/IObjectDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/dtos/IObjectDTO.ts');
+      (0, _fs.appendFileSync)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IObjectDTO.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/dtos/IResponseDTO.ts')) {
-      (0, _fs.appendFile)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute());
     } else {
-      (0, _fs.truncate)('src/dtos/IResponseDTO.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/dtos/IResponseDTO.ts');
+      (0, _fs.appendFileSync)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IResponseDTO.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/middlewares/RateLimiter.ts')) {
-      (0, _fs.appendFile)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute());
     } else {
-      (0, _fs.truncate)('src/middlewares/RateLimiter.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/middlewares/RateLimiter.ts');
+      (0, _fs.appendFileSync)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/middlewares/EnsureAuthenticated.ts')) {
-      (0, _fs.appendFile)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute());
     } else {
-      (0, _fs.truncate)('src/middlewares/EnsureAuthenticated.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/middlewares/EnsureAuthenticated.ts');
+      (0, _fs.appendFileSync)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/routes/index.ts')) {
-      (0, _fs.appendFile)('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/routes/index.ts', this.createRoutes.execute());
     } else {
-      (0, _fs.truncate)('src/routes/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/routes/index.ts');
+      (0, _fs.appendFileSync)('src/routes/index.ts', this.createRoutes.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- routes.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/app.ts')) {
-      (0, _fs.appendFile)('src/shared/app.ts', this.createApp.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/app.ts', this.createApp.execute());
     } else {
-      (0, _fs.truncate)('src/shared/app.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/app.ts', this.createApp.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/app.ts');
+      (0, _fs.appendFileSync)('src/shared/app.ts', this.createApp.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- app.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/server.ts')) {
-      (0, _fs.appendFile)('src/shared/server.ts', this.createServer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/server.ts', this.createServer.execute());
     } else {
-      (0, _fs.truncate)('src/shared/server.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/server.ts', this.createServer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/server.ts');
+      (0, _fs.appendFileSync)('src/shared/server.ts', this.createServer.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- server.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/decimalAdjust.ts')) {
-      (0, _fs.appendFile)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute());
     } else {
-      (0, _fs.truncate)('src/utils/decimalAdjust.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/decimalAdjust.ts');
+      (0, _fs.appendFileSync)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- decimalAdjust.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/domainsManager.ts')) {
-      (0, _fs.appendFile)('src/utils/domainsManager.ts', this.createDomainsManager.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/domainsManager.ts', this.createDomainsManager.execute());
     } else {
-      (0, _fs.truncate)('src/utils/domainsManager.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/domainsManager.ts', this.createDomainsManager.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/domainsManager.ts');
+      (0, _fs.appendFileSync)('src/utils/domainsManager.ts', this.createDomainsManager.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domainsManager.ts ${this.messages.created}`, '\x1b[0m');
   }

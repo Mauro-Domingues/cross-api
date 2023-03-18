@@ -44,133 +44,73 @@ class MakeFourthLayer {
   }
   async execute() {
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndCloneAttribute.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndCloneAttribute.ts', this.createMapAndClone.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndCloneAttribute.ts', this.createMapAndClone.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndCloneAttribute.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndCloneAttribute.ts', this.createMapAndClone.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndCloneAttribute.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndCloneAttribute.ts', this.createMapAndClone.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndCloneAttribute.ts.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndInsertAttribute.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndInsertAttribute.ts', this.createMapAndInsert.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndInsertAttribute.ts', this.createMapAndInsert.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndInsertAttribute.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndInsertAttribute.ts', this.createMapAndInsert.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndInsertAttribute.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndInsertAttribute.ts', this.createMapAndInsert.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndInsertAttribute.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndPatchAttribute.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndPatchAttribute.ts', this.createMapAndPatch.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndPatchAttribute.ts', this.createMapAndPatch.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndPatchAttribute.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndPatchAttribute.ts', this.createMapAndPatch.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndPatchAttribute.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndPatchAttribute.ts', this.createMapAndPatch.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndPatchAttribute.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndPatchString.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndPatchString.ts', this.createMapAndPatchString.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndPatchString.ts', this.createMapAndPatchString.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndPatchString.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndPatchString.ts', this.createMapAndPatchString.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndPatchString.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndPatchString.ts', this.createMapAndPatchString.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndPatchString.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndUpdateAttribute.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateAttribute.ts', this.createMapAndUpdate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndUpdateAttribute.ts', this.createMapAndUpdate.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndUpdateAttribute.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateAttribute.ts', this.createMapAndUpdate.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndUpdateAttribute.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndUpdateAttribute.ts', this.createMapAndUpdate.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndUpdateAttribute.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/utils/mappers/mapAndUpdateString.ts')) {
-      (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateString.ts', this.createMapAndUpdateString.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndUpdateString.ts', this.createMapAndUpdateString.execute());
     } else {
-      (0, _fs.truncate)('src/utils/mappers/mapAndUpdateString.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/utils/mappers/mapAndUpdateString.ts', this.createMapAndUpdateString.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/utils/mappers/mapAndUpdateString.ts');
+      (0, _fs.appendFileSync)('src/utils/mappers/mapAndUpdateString.ts', this.createMapAndUpdateString.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- mapAndUpdateString.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
     } else {
-      (0, _fs.truncate)('src/shared/container/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/container/index.ts', this.createContainer.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/container/index.ts');
+      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- container/index.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/errors/AppError.ts')) {
-      (0, _fs.appendFile)('src/shared/errors/AppError.ts', this.createAppError.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/errors/AppError.ts', this.createAppError.execute());
     } else {
-      (0, _fs.truncate)('src/shared/errors/AppError.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/errors/AppError.ts', this.createAppError.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/errors/AppError.ts');
+      (0, _fs.appendFileSync)('src/shared/errors/AppError.ts', this.createAppError.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- AppError.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/typeorm/index.ts')) {
-      (0, _fs.appendFile)('src/shared/typeorm/index.ts', this.createTypeorm.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/typeorm/index.ts', this.createTypeorm.execute());
     } else {
-      (0, _fs.truncate)('src/shared/typeorm/index.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/typeorm/index.ts', this.createTypeorm.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/typeorm/index.ts');
+      (0, _fs.appendFileSync)('src/shared/typeorm/index.ts', this.createTypeorm.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- typeorm/index.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('src/shared/typeorm/dataSource.ts')) {
-      (0, _fs.appendFile)('src/shared/typeorm/dataSource.ts', this.createDataSource.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('src/shared/typeorm/dataSource.ts', this.createDataSource.execute());
     } else {
-      (0, _fs.truncate)('src/shared/typeorm/dataSource.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('src/shared/typeorm/dataSource.ts', this.createDataSource.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('src/shared/typeorm/dataSource.ts');
+      (0, _fs.appendFileSync)('src/shared/typeorm/dataSource.ts', this.createDataSource.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- dataSource.ts ${this.messages.created}`, '\x1b[0m');
   }

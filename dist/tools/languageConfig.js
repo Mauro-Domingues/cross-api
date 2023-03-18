@@ -71,19 +71,15 @@ class ConfigLanguage {
     console.log('');
   }
   setLanguageOption() {
-    (0, _fs.truncate)('./node_modules/cross-api/dist/tools/messages.js', error => {
-      if (error) throw error;
-    });
-    (0, _fs.appendFile)('./node_modules/cross-api/dist/tools/messages.js', `"use strict";
+    (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/messages.js');
+    (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/messages.js', `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 var _default = ${JSON.stringify(this.messages)};
-exports.default = _default;`, error => {
-      if (error) throw error;
-    });
+exports.default = _default;`);
   }
   isLanguageOptionsKeyType(option) {
     return true;

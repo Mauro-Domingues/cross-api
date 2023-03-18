@@ -1,4 +1,4 @@
-import { appendFile, existsSync, truncate } from 'fs';
+import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { CreateContainer } from '@templates/index/container';
 import { CreateRoutes } from '@templates/index/routes';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
@@ -53,44 +53,30 @@ export class MakeInfra {
     }
 
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync('src/routes/index.ts')) {
-      appendFile('src/routes/index.ts', this.createRoutes.execute(), error => {
-        if (error) throw error;
-      });
+      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
     }
     if (
       !existsSync(
         `src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
         this.createModuleDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
         this.createModuleDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -98,26 +84,17 @@ export class MakeInfra {
         `src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
         this.createEntity.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
         this.createEntity.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -125,26 +102,17 @@ export class MakeInfra {
         `src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
         this.createRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
         this.createRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -152,26 +120,17 @@ export class MakeInfra {
         `src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
         this.createIRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
         this.createIRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -179,61 +138,35 @@ export class MakeInfra {
         `src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
         this.createFakeRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
         this.createFakeRepository.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/index.ts',
       this.createInjection.execute(),
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync(`src/routes/${this.names.lowerModuleName}Router.ts`)) {
-      appendFile(
+      appendFileSync(
         `src/routes/${this.names.lowerModuleName}Router.ts`,
         this.createIndependentRoute.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(`src/routes/${this.names.lowerModuleName}Router.ts`, error => {
-        if (error) throw error;
-      });
-      appendFile(
+      truncateSync(`src/routes/${this.names.lowerModuleName}Router.ts`);
+      appendFileSync(
         `src/routes/${this.names.lowerModuleName}Router.ts`,
         this.createIndependentRoute.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
-    appendFile(
-      `src/routes/index.ts`,
-      this.createIndexRoute.execute(),
-      error => {
-        if (error) throw error;
-      },
-    );
+    appendFileSync(`src/routes/index.ts`, this.createIndexRoute.execute());
   }
 }

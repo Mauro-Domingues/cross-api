@@ -96,53 +96,37 @@ class CryptoProvider implements ICryptoProvider {
     };
 
     if (!fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys'))) {
-      fs.mkdir(path.resolve(cryptoConfig.basePath, 'keys'), error => {
-        if (error) throw error;
-      });
+      fs.mkdirSync(path.resolve(cryptoConfig.basePath, 'keys'));
     }
 
     if (!fs.existsSync(path.resolve(cryptoConfig.basePath, '.well-known'))) {
-      fs.mkdir(path.resolve(cryptoConfig.basePath, '.well-known'), error => {
-        if (error) throw error;
-      });
+      fs.mkdirSync(path.resolve(cryptoConfig.basePath, '.well-known');
     }
 
     if (
       fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'))
     ) {
-      fs.truncate(
+      fs.truncateSync(
         path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
-        error => {
-          if (error) throw error;
-        },
       );
     }
 
-    fs.appendFile(
+    fs.appendFileSync(
       path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
       privateExported,
-      error => {
-        if (error) throw error;
-      },
     );
 
     if (
       fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'))
     ) {
-      fs.truncate(
+      fs.truncateSync(
         path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
-        error => {
-          if (error) throw error;
-        },
       );
     }
 
-    fs.appendFile(
+    fs.appendFileSync(
       path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
       publicExported,
-      error => {
-        if (error) throw error;
-      },
     );
 
     if (
@@ -150,20 +134,14 @@ class CryptoProvider implements ICryptoProvider {
         path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
       )
     ) {
-      fs.truncate(
+      fs.truncateSync(
         path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
-        error => {
-          if (error) throw error;
-        },
       );
     }
 
-    fs.appendFile(
+    fs.appendFileSync(
       path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
       JSON.stringify(jwksJson),
-      error => {
-        if (error) throw error;
-      },
     );
 
     return parsedJwk;

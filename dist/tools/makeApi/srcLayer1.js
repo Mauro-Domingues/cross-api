@@ -47,159 +47,87 @@ class MakeFirstLayer {
   }
   async execute() {
     if (!(0, _fs.existsSync)('.editorconfig')) {
-      (0, _fs.appendFile)('.editorconfig', this.createEditorConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.editorconfig', this.createEditorConfig.execute());
     } else {
-      (0, _fs.truncate)('.editorconfig', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.editorconfig', this.createEditorConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.editorconfig');
+      (0, _fs.appendFileSync)('.editorconfig', this.createEditorConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .editorconfig ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('.env')) {
-      (0, _fs.appendFile)('.env', this.createEnv.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.env', this.createEnv.execute());
     } else {
-      (0, _fs.truncate)('.env', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.env', this.createEnv.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.env');
+      (0, _fs.appendFileSync)('.env', this.createEnv.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .env ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('.env.template')) {
-      (0, _fs.appendFile)('.env.template', this.createEnv.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.env.template', this.createEnv.execute());
     } else {
-      (0, _fs.truncate)('.env.template', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.env.template', this.createEnv.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.env.template');
+      (0, _fs.appendFileSync)('.env.template', this.createEnv.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .env.template ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('.eslintignore')) {
-      (0, _fs.appendFile)('.eslintignore', this.createEsLintIgnore.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.eslintignore', this.createEsLintIgnore.execute());
     } else {
-      (0, _fs.truncate)('.eslintignore', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.eslintignore', this.createEsLintIgnore.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.eslintignore');
+      (0, _fs.appendFileSync)('.eslintignore', this.createEsLintIgnore.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .eslintignore ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('.eslintrc.json')) {
-      (0, _fs.appendFile)('.eslintrc.json', this.createEsLintrcJson.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.eslintrc.json', this.createEsLintrcJson.execute());
     } else {
-      (0, _fs.truncate)('.eslintrc.json', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.eslintrc.json', this.createEsLintrcJson.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.eslintrc.json');
+      (0, _fs.appendFileSync)('.eslintrc.json', this.createEsLintrcJson.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .eslintrc.json ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('.gitignore')) {
-      (0, _fs.appendFile)('.gitignore', this.createGitIgnore.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('.gitignore', this.createGitIgnore.execute());
     } else {
-      (0, _fs.truncate)('.gitignore', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('.gitignore', this.createGitIgnore.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('.gitignore');
+      (0, _fs.appendFileSync)('.gitignore', this.createGitIgnore.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .gitignore ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('babel.config.js')) {
-      (0, _fs.appendFile)('babel.config.js', this.createBabelConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('babel.config.js', this.createBabelConfig.execute());
     } else {
-      (0, _fs.truncate)('babel.config.js', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('babel.config.js', this.createBabelConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('babel.config.js');
+      (0, _fs.appendFileSync)('babel.config.js', this.createBabelConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- babel.config.js ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('docker-compose.yml')) {
-      (0, _fs.appendFile)('docker-compose.yml', this.createDockerCompose.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('docker-compose.yml', this.createDockerCompose.execute());
     } else {
-      (0, _fs.truncate)('docker-compose.yml', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('docker-compose.yml', this.createDockerCompose.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('docker-compose.yml');
+      (0, _fs.appendFileSync)('docker-compose.yml', this.createDockerCompose.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- docker-compose.yml ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('jest.config.ts')) {
-      (0, _fs.appendFile)('jest.config.ts', this.createJestConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('jest.config.ts', this.createJestConfig.execute());
     } else {
-      (0, _fs.truncate)('jest.config.ts', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('jest.config.ts', this.createJestConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('jest.config.ts');
+      (0, _fs.appendFileSync)('jest.config.ts', this.createJestConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- jest.config.ts ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('nodemon.json')) {
-      (0, _fs.appendFile)('nodemon.json', this.createNodemonJson.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('nodemon.json', this.createNodemonJson.execute());
     } else {
-      (0, _fs.truncate)('nodemon.json', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('nodemon.json', this.createNodemonJson.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('nodemon.json');
+      (0, _fs.appendFileSync)('nodemon.json', this.createNodemonJson.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- nodemon.json ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('prettier.config.js')) {
-      (0, _fs.appendFile)('prettier.config.js', this.createPrettierConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('prettier.config.js', this.createPrettierConfig.execute());
     } else {
-      (0, _fs.truncate)('prettier.config.js', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('prettier.config.js', this.createPrettierConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('prettier.config.js');
+      (0, _fs.appendFileSync)('prettier.config.js', this.createPrettierConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- prettier.config.js ${this.messages.created}`, '\x1b[0m');
     if (!(0, _fs.existsSync)('tsconfig.json')) {
-      (0, _fs.appendFile)('tsconfig.json', this.createTsConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.appendFileSync)('tsconfig.json', this.createTsConfig.execute());
     } else {
-      (0, _fs.truncate)('tsconfig.json', error => {
-        if (error) throw error;
-      });
-      (0, _fs.appendFile)('tsconfig.json', this.createTsConfig.execute(), error => {
-        if (error) throw error;
-      });
+      (0, _fs.truncateSync)('tsconfig.json');
+      (0, _fs.appendFileSync)('tsconfig.json', this.createTsConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- tsconfig.json ${this.messages.created}`, '\x1b[0m');
   }

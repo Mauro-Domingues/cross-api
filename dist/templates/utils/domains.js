@@ -32,9 +32,7 @@ class DomainsManager {
     const checkIfDomainExists = ArrayOfDomain.find(x => x === file);
 
     if (!checkIfDomainExists) {
-      fs.appendFile(path, \`\\${'n'}\${file}\`, error => {
-        if (error) throw error;
-      });
+      fs.appendFileSync(path, \`\\${'n'}\${file}\`);
     } else {
       console.log(\`\${checkIfDomainExists} already subscribed\`);
     }

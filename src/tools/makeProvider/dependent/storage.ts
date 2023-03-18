@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateContainer } from '@templates/index/container';
 import { CreateUploadConfig } from '@templates/providers/config/uploadConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
@@ -61,12 +61,9 @@ export class MakeDependentStorageProvider {
       mkdirSync('src/shared/container');
     }
     if (!existsSync('src/shared/container/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/index.ts',
         this.createContainer.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
@@ -86,12 +83,9 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
         '',
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -130,65 +124,36 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`,
       );
     }
-    appendFile(
+    appendFileSync(
       `src/shared/container/index.ts`,
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-      error => {
-        if (error) throw error;
-      },
     );
-    appendFile(
+    appendFileSync(
       `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
       `\nimport './StorageProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/upload.ts')) {
-      appendFile(
-        'src/config/upload.ts',
-        this.createUploadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
     } else {
-      truncate('src/config/upload.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/upload.ts',
-        this.createUploadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/upload.ts');
+      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
     }
     if (
       !existsSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
         this.createFakeStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`,
         this.createFakeStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -196,26 +161,17 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
         this.createDiskStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`,
         this.createDiskStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -223,26 +179,17 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
         this.createS3Storage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`,
         this.createS3Storage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -250,26 +197,17 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
         this.createIStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`,
         this.createIStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -277,26 +215,17 @@ export class MakeDependentStorageProvider {
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
       )
     ) {
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
         this.createStorageIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`,
         this.createStorageIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

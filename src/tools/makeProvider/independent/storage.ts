@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateUploadConfig } from '@templates/providers/config/uploadConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
@@ -60,58 +60,32 @@ export class MakeStorageProvider {
     if (!existsSync('src/shared/container/providers/StorageProvider/models')) {
       mkdirSync('src/shared/container/providers/StorageProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './StorageProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/upload.ts')) {
-      appendFile(
-        'src/config/upload.ts',
-        this.createUploadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
     } else {
-      truncate('src/config/upload.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/upload.ts',
-        this.createUploadConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/upload.ts');
+      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
     }
     if (
       !existsSync(
         'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
         this.createFakeStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
         this.createFakeStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -119,26 +93,17 @@ export class MakeStorageProvider {
         'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
         this.createDiskStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
         this.createDiskStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -146,26 +111,17 @@ export class MakeStorageProvider {
         'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
         this.createS3Storage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
         this.createS3Storage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -173,51 +129,31 @@ export class MakeStorageProvider {
         'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
         this.createIStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
         this.createIStorage.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
       !existsSync('src/shared/container/providers/StorageProvider/index.ts')
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/index.ts',
         this.createStorageIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
-        'src/shared/container/providers/StorageProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
-      );
-      appendFile(
+      truncateSync('src/shared/container/providers/StorageProvider/index.ts');
+      appendFileSync(
         'src/shared/container/providers/StorageProvider/index.ts',
         this.createStorageIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(

@@ -1,4 +1,4 @@
-import { appendFile, existsSync, mkdirSync, truncate } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
@@ -87,58 +87,32 @@ export class MakeMailProvider {
     ) {
       mkdirSync('src/shared/container/providers/MailTemplateProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './MailTemplateProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (!existsSync('src/config/mail.ts')) {
-      appendFile(
-        'src/config/mail.ts',
-        this.createMailConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      appendFileSync('src/config/mail.ts', this.createMailConfig.execute());
     } else {
-      truncate('src/config/mail.ts', error => {
-        if (error) throw error;
-      });
-      appendFile(
-        'src/config/mail.ts',
-        this.createMailConfig.execute(),
-        error => {
-          if (error) throw error;
-        },
-      );
+      truncateSync('src/config/mail.ts');
+      appendFileSync('src/config/mail.ts', this.createMailConfig.execute());
     }
     if (
       !existsSync(
         'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
         this.createIMailTemplateDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
         this.createIMailTemplateDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -146,26 +120,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
         this.createFakeMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
         this.createFakeMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -173,26 +138,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
         this.createMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
         this.createMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -200,26 +156,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
         this.createIMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
         this.createIMailTemplate.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -227,26 +174,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailTemplateProvider/index.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/index.ts',
         this.createMailTemplateIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailTemplateProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailTemplateProvider/index.ts',
         this.createMailTemplateIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
@@ -271,38 +209,26 @@ export class MakeMailProvider {
     if (!existsSync('src/shared/container/providers/MailProvider/models')) {
       mkdirSync('src/shared/container/providers/MailProvider/models');
     }
-    appendFile(
+    appendFileSync(
       'src/shared/container/providers/index.ts',
       `\nimport './MailProvider';`,
-      error => {
-        if (error) throw error;
-      },
     );
     if (
       !existsSync(
         'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
         this.createIMailDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/dtos/ISendMailDTO.ts',
         this.createIMailDTO.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -310,26 +236,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
         this.createFakeMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/fakes/FakeMailProvider.ts',
         this.createFakeMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -337,26 +254,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
         this.createEtherealMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/implementations/EtherealMailProvider.ts',
         this.createEtherealMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -364,26 +272,17 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
         this.createSESMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/implementations/SESMailProvider.ts',
         this.createSESMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (
@@ -391,49 +290,29 @@ export class MakeMailProvider {
         'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
       )
     ) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
         this.createIMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
+      truncateSync(
         'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
-        error => {
-          if (error) throw error;
-        },
       );
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/models/IMailProvider.ts',
         this.createIMail.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     if (!existsSync('src/shared/container/providers/MailProvider/index.ts')) {
-      appendFile(
+      appendFileSync(
         'src/shared/container/providers/MailProvider/index.ts',
         this.createMailIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     } else {
-      truncate(
-        'src/shared/container/providers/MailProvider/index.ts',
-        error => {
-          if (error) throw error;
-        },
-      );
-      appendFile(
+      truncateSync('src/shared/container/providers/MailProvider/index.ts');
+      appendFileSync(
         'src/shared/container/providers/MailProvider/index.ts',
         this.createMailIndex.execute(),
-        error => {
-          if (error) throw error;
-        },
       );
     }
     console.log(
