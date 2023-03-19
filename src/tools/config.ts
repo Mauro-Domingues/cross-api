@@ -66,7 +66,6 @@ export class ConfigJson {
       '@types/nodemailer',
       '@types/pem-jwk',
       '@types/redis@^2.8.27',
-      '@types/shelljs',
       '@types/supertest',
       '@types/swagger-ui-express',
       '@types/uuid',
