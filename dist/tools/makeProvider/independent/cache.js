@@ -56,7 +56,7 @@ class MakeCacheProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'CacheProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'CacheProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './CacheProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './CacheProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'cache.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'cache.ts'), this.createCacheConfig.execute());
     } else {

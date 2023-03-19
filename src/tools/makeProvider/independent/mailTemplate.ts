@@ -155,7 +155,7 @@ export class MakeMailTemplateProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `\nimport './MailTemplateProvider';`,
+      `import './MailTemplateProvider';\n`,
     );
     if (
       !existsSync(

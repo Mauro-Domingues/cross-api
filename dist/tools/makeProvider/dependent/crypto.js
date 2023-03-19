@@ -78,7 +78,7 @@ class MakeDependentCryptoProvider {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CryptoProvider', 'models'));
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './CryptoProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './CryptoProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'crypto.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'crypto.ts'), this.createCryptoConfig.execute());
     } else {

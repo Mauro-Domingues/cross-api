@@ -62,7 +62,7 @@ class MakeNotificationProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'NotificationProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'NotificationProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './NotificationProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './NotificationProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'notification.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'notification.ts'), this.createNotificationConfig.execute());
     } else {

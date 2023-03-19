@@ -62,7 +62,7 @@ class MakeLeadProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './LeadProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './LeadProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'lead.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'lead.ts'), this.createLeadConfig.execute());
     } else {

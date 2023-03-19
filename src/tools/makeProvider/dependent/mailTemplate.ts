@@ -239,7 +239,7 @@ export class MakeDependentMailTemplateProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './MailTemplateProvider';`,
+      `import './MailTemplateProvider';\n`,
     );
     if (
       !existsSync(

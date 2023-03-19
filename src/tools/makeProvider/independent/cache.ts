@@ -120,7 +120,7 @@ export class MakeCacheProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `\nimport './CacheProvider';`,
+      `import './CacheProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
       appendFileSync(

@@ -84,7 +84,7 @@ class MakeDependentNotificationProvider {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'NotificationProvider', 'models'));
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './NotificationProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './NotificationProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'notification.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'notification.ts'), this.createNotificationConfig.execute());
     } else {

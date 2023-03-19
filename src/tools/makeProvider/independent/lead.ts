@@ -146,7 +146,7 @@ export class MakeLeadProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `\nimport './LeadProvider';`,
+      `import './LeadProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'lead.ts'))) {
       appendFileSync(

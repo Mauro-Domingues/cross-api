@@ -78,7 +78,7 @@ class MakeDependentHashProvider {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'HashProvider', 'models'));
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers;`);
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './HashProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './HashProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'hash.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'hash.ts'), this.createHashConfig.execute());
     } else {

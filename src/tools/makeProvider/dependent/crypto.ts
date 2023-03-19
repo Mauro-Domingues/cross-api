@@ -216,7 +216,7 @@ export class MakeDependentCryptoProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './CryptoProvider';`,
+      `import './CryptoProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'crypto.ts'))) {
       appendFileSync(

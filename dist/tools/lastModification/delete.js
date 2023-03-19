@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DeleteRegister = void 0;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
-var _fsExtra = require("fs-extra");
 var _path = require("path");
 var _fs = require("fs");
 var _names = require("../../../dist/tools/names");
@@ -31,7 +30,10 @@ class DeleteRegister {
       const oldProviders = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'providers', 'providerInjection.log'), 'ascii');
       (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'));
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), oldProviders);
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', this.providers[names.lowerModuleName]));
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', this.providers[names.lowerModuleName]), {
+        recursive: true,
+        force: true
+      });
       if ((0, _fs.existsSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
         (0, _fs.unlinkSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
       }
@@ -41,7 +43,10 @@ class DeleteRegister {
       const oldProviders = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'providers', 'providerInjection.log'), 'ascii');
       (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'));
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), oldProviders);
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', this.providers[names.lowerModuleName]));
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', this.providers[names.lowerModuleName]), {
+        recursive: true,
+        force: true
+      });
       if ((0, _fs.existsSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
         (0, _fs.unlinkSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
       }
@@ -51,11 +56,26 @@ class DeleteRegister {
   }
   makeModule(comand, names, fatherNames) {
     if (names && fatherNames) {
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `create${names.upperModuleName}`));
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `delete${names.upperModuleName}`));
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `list${names.upperModuleName}`));
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `show${names.upperModuleName}`));
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `update${names.upperModuleName}`));
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `create${names.upperModuleName}`), {
+        recursive: true,
+        force: true
+      });
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `delete${names.upperModuleName}`), {
+        recursive: true,
+        force: true
+      });
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `list${names.upperModuleName}`), {
+        recursive: true,
+        force: true
+      });
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `show${names.upperModuleName}`), {
+        recursive: true,
+        force: true
+      });
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `update${names.upperModuleName}`), {
+        recursive: true,
+        force: true
+      });
       (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'dtos', `I${names.upperModuleName}DTO.ts`));
       (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'entities', `${names.upperModuleName}.ts`));
       (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `${names.pluralUpperModuleName}Repository.ts`));
@@ -70,7 +90,10 @@ class DeleteRegister {
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
-      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', names.pluralLowerModuleName));
+      (0, _fs.rmSync)((0, _path.resolve)('src', 'modules', names.pluralLowerModuleName), {
+        recursive: true,
+        force: true
+      });
       (0, _fs.unlinkSync)((0, _path.resolve)('src', 'routes', `${names.lowerModuleName}Router.ts`));
       const moduleInjection = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'moduleInjection.log'), 'ascii');
       (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'));
@@ -83,7 +106,10 @@ class DeleteRegister {
     }
   }
   makeAPi(comand) {
-    (0, _fsExtra.removeSync)((0, _path.resolve)('src'));
+    (0, _fs.rmSync)((0, _path.resolve)('src'), {
+      recursive: true,
+      force: true
+    });
     (0, _fs.unlinkSync)((0, _path.resolve)('.editorconfig'));
     (0, _fs.unlinkSync)((0, _path.resolve)('.env'));
     (0, _fs.unlinkSync)((0, _path.resolve)('.env.template'));

@@ -102,7 +102,7 @@ class MakeDependentMailProvider {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'MailTemplateProvider', 'models'));
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './MailTemplateProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './MailTemplateProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'mail.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'mail.ts'), this.createMailConfig.execute());
     } else {
@@ -156,7 +156,7 @@ class MakeDependentMailProvider {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'MailProvider', 'models'));
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './MailProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './MailProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'MailProvider', 'dtos', 'ISendMailDTO.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'MailProvider', 'dtos', 'ISendMailDTO.ts'), this.createIMailDTO.execute());
     } else {

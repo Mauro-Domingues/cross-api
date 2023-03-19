@@ -120,7 +120,7 @@ export class MakeHashProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `\nimport './HashProvider';`,
+      `import './HashProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'hash.ts'))) {
       appendFileSync(

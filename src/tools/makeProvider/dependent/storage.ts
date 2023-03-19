@@ -219,7 +219,7 @@ export class MakeDependentStorageProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './StorageProvider';`,
+      `import './StorageProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'upload.ts'))) {
       appendFileSync(

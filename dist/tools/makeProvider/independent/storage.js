@@ -59,7 +59,7 @@ class MakeStorageProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'StorageProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'StorageProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './StorageProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './StorageProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'upload.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'upload.ts'), this.createUploadConfig.execute());
     } else {

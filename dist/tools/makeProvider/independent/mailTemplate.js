@@ -59,7 +59,7 @@ class MakeMailTemplateProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './MailTemplateProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './MailTemplateProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'dtos', 'IParseMailTemplateDTO.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'dtos', 'IParseMailTemplateDTO.ts'), this.createIMailTemplateDTO.execute());
     } else {

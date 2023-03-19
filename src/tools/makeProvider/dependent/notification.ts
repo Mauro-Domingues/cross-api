@@ -242,7 +242,7 @@ export class MakeDependentNotificationProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './NotificationProvider';`,
+      `import './NotificationProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'notification.ts'))) {
       appendFileSync(

@@ -242,7 +242,7 @@ export class MakeDependentLeadProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './LeadProvider';`,
+      `import './LeadProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'lead.ts'))) {
       appendFileSync(

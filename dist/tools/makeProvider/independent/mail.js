@@ -80,7 +80,7 @@ class MakeMailProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailTemplateProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './MailTemplateProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './MailTemplateProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'mail.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'mail.ts'), this.createMailConfig.execute());
     } else {
@@ -133,7 +133,7 @@ class MakeMailProvider {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailProvider', 'models'))) {
       (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailProvider', 'models'));
     }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './MailProvider';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `import './MailProvider';\n`);
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailProvider', 'dtos', 'ISendMailDTO.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'MailProvider', 'dtos', 'ISendMailDTO.ts'), this.createIMailDTO.execute());
     } else {

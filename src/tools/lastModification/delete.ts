@@ -1,5 +1,4 @@
 import messages from '@tools/messages';
-import { removeSync } from 'fs-extra';
 import { resolve } from 'path';
 import {
   appendFileSync,
@@ -7,6 +6,7 @@ import {
   readFileSync,
   truncateSync,
   unlinkSync,
+  rmSync,
 } from 'fs';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 
@@ -68,7 +68,7 @@ export class DeleteRegister {
         ),
         oldProviders,
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -76,6 +76,7 @@ export class DeleteRegister {
           'providers',
           this.providers[names.lowerModuleName],
         ),
+        { recursive: true, force: true },
       );
       if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
         unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
@@ -108,7 +109,7 @@ export class DeleteRegister {
         resolve('src', 'shared', 'container', 'providers', 'index.ts'),
         oldProviders,
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'shared',
@@ -116,6 +117,7 @@ export class DeleteRegister {
           'providers',
           this.providers[names.lowerModuleName],
         ),
+        { recursive: true, force: true },
       );
       if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
         unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
@@ -140,7 +142,7 @@ export class DeleteRegister {
       | undefined,
   ) {
     if (names && fatherNames) {
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -148,8 +150,9 @@ export class DeleteRegister {
           'services',
           `create${names.upperModuleName}`,
         ),
+        { recursive: true, force: true },
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -157,8 +160,9 @@ export class DeleteRegister {
           'services',
           `delete${names.upperModuleName}`,
         ),
+        { recursive: true, force: true },
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -166,8 +170,9 @@ export class DeleteRegister {
           'services',
           `list${names.upperModuleName}`,
         ),
+        { recursive: true, force: true },
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -175,8 +180,9 @@ export class DeleteRegister {
           'services',
           `show${names.upperModuleName}`,
         ),
+        { recursive: true, force: true },
       );
-      removeSync(
+      rmSync(
         resolve(
           'src',
           'modules',
@@ -184,6 +190,7 @@ export class DeleteRegister {
           'services',
           `update${names.upperModuleName}`,
         ),
+        { recursive: true, force: true },
       );
       unlinkSync(
         resolve(
@@ -275,7 +282,10 @@ export class DeleteRegister {
         '\x1b[0m',
       );
     } else if (names) {
-      removeSync(resolve('src', 'modules', names.pluralLowerModuleName));
+      rmSync(resolve('src', 'modules', names.pluralLowerModuleName), {
+        recursive: true,
+        force: true,
+      });
       unlinkSync(resolve('src', 'routes', `${names.lowerModuleName}Router.ts`));
       const moduleInjection = readFileSync(
         resolve(
@@ -319,7 +329,7 @@ export class DeleteRegister {
   }
 
   private makeAPi(comand: string) {
-    removeSync(resolve('src'));
+    rmSync(resolve('src'), { recursive: true, force: true });
     unlinkSync(resolve('.editorconfig'));
     unlinkSync(resolve('.env'));
     unlinkSync(resolve('.env.template'));

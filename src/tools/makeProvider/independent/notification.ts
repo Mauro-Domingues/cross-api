@@ -158,7 +158,7 @@ export class MakeNotificationProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `\nimport './NotificationProvider';`,
+      `import './NotificationProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'notification.ts'))) {
       appendFileSync(

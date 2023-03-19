@@ -262,7 +262,7 @@ export class MakeDependentMailProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './MailTemplateProvider';`,
+      `import './MailTemplateProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'mail.ts'))) {
       appendFileSync(
@@ -652,7 +652,7 @@ export class MakeDependentMailProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './MailProvider';`,
+      `import './MailProvider';\n`,
     );
     if (
       !existsSync(

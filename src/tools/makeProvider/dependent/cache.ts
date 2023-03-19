@@ -216,7 +216,7 @@ export class MakeDependentCacheProvider {
         'providers',
         'index.ts',
       ),
-      `\nimport './CacheProvider';`,
+      `import './CacheProvider';\n`,
     );
     if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
       appendFileSync(
