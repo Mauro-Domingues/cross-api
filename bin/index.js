@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 "use strict";
 
-var _shelljs = require("shelljs");
 var _board = require("../dist/tools/board");
 var _config = require("../dist/tools/config");
 var _languageConfig = require("../dist/tools/languageConfig");
@@ -13,6 +12,7 @@ var _messages = _interopRequireDefault(require("../dist/tools/messages"));
 var _save = require("../dist/tools/lastModification/save");
 var _delete = require("../dist/tools/lastModification/delete");
 var _names = require("../dist/tools/names");
+var _child_process = require("child_process");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class Index {
   constructor() {
@@ -45,6 +45,11 @@ class Index {
     this.configJson = new _config.ConfigJson();
     this.board = new _board.Board();
   }
+  execComand(cmd) {
+    return (0, _child_process.execSync)(cmd, {
+      encoding: 'utf-8'
+    });
+  }
   execute() {
     if (this.comand) {
       if (this.comand !== 'revert') {
@@ -73,10 +78,10 @@ class Index {
           this.createProvider.execute();
           break;
         case 'migration:generate':
-          (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
+          this.execComand('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
           break;
         case 'migration:run':
-          (0, _shelljs.exec)('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+          this.execComand('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
           break;
         case 'revert':
           this.deleteRegister.execute();

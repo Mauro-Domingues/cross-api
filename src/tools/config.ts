@@ -1,5 +1,5 @@
 import { existsSync, unlinkSync, writeFileSync } from 'fs';
-import { exec } from 'shelljs';
+import { execSync } from 'child_process';
 import { Config } from '@templates/assets/config';
 import { createInterface } from 'readline';
 import { resolve } from 'path';
@@ -89,6 +89,10 @@ export class ConfigJson {
     ];
   }
 
+  private execComand(cmd: string) {
+    return execSync(cmd, { encoding: 'utf-8' });
+  }
+
   private patchPackage(): void {
     this.userJson.scripts = {
       ...this.userJson.scripts,
@@ -113,7 +117,7 @@ export class ConfigJson {
       '\x1b[0m',
     );
     console.log('');
-    exec('npm install yarn --location=global');
+    this.execComand('npm install yarn --location=global');
     console.log(
       '\x1b[38;2;255;255;0m',
       `- yarn ${this.configLanguage.messages.installed}`,
@@ -134,7 +138,7 @@ export class ConfigJson {
         return `${acc} ${dependency}`;
       },
     );
-    exec(`yarn add ${dependenciesToInstall}`);
+    this.execComand(`yarn add ${dependenciesToInstall}`);
     this.dependencies.forEach(dependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
@@ -158,7 +162,7 @@ export class ConfigJson {
         return `${acc} ${devDependency}`;
       },
     );
-    exec(`yarn add ${devDependenciesToInstall} -D`);
+    this.execComand(`yarn add ${devDependenciesToInstall} -D`);
     this.devDependencies.forEach(devDependency => {
       console.log(
         '\x1b[38;2;255;255;0m',

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { exec } from 'shelljs';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { ConfigLanguage } from '@tools/languageConfig';
@@ -12,6 +11,7 @@ import messages from '@tools/messages';
 import { CreateRegister } from '@tools/lastModification/save';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
+import { execSync } from 'child_process';
 
 class Index {
   private fullComand: string[] = process.argv.slice(2);
@@ -57,6 +57,10 @@ class Index {
     this.board = new Board();
   }
 
+  private execComand(cmd: string) {
+    return execSync(cmd, { encoding: 'utf-8' });
+  }
+
   public execute(): void {
     if (this.comand) {
       if (this.comand !== 'revert') {
@@ -85,12 +89,12 @@ class Index {
           this.createProvider.execute();
           break;
         case 'migration:generate':
-          exec(
+          this.execComand(
             'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
           );
           break;
         case 'migration:run':
-          exec(
+          this.execComand(
             'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
           );
           break;
