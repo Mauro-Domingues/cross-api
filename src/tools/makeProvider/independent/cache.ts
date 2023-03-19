@@ -5,6 +5,7 @@ import { CreateFakeRedis } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeCacheProvider {
   private messages: typeof messages;
@@ -24,116 +25,320 @@ export class MakeCacheProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
-    }
-    if (!existsSync('src/shared/container/providers/CacheProvider')) {
-      mkdirSync('src/shared/container/providers/CacheProvider');
-    }
-    if (!existsSync('src/shared/container/providers/CacheProvider/fakes')) {
-      mkdirSync('src/shared/container/providers/CacheProvider/fakes');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CacheProvider/implementations',
+        resolve('src', 'shared', 'container', 'providers', 'CacheProvider'),
       )
     ) {
-      mkdirSync('src/shared/container/providers/CacheProvider/implementations');
+      mkdirSync(
+        resolve('src', 'shared', 'container', 'providers', 'CacheProvider'),
+      );
     }
-    if (!existsSync('src/shared/container/providers/CacheProvider/models')) {
-      mkdirSync('src/shared/container/providers/CacheProvider/models');
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+        ),
+      );
     }
     appendFileSync(
-      'src/shared/container/providers/index.ts',
+      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       `\nimport './CacheProvider';`,
     );
-    if (!existsSync('src/config/cache.ts')) {
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/cache.ts');
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
+      truncateSync(resolve('src', 'config', 'cache.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
         this.createFakeRedis.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/fakes/FakeCacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
         this.createFakeRedis.execute(),
       );
     }
-    if (!existsSync('src/config/cache.ts')) {
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
-    } else {
-      truncateSync('src/config/cache.ts');
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
-    }
-    if (
-      !existsSync(
-        'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
-      )
-    ) {
+    if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
-        this.createRedisCache.execute(),
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
       );
     } else {
-      truncateSync(
-        'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
-      );
+      truncateSync(resolve('src', 'config', 'cache.ts'));
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/implementations/RedisCacheProvider.ts',
-        this.createRedisCache.execute(),
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CacheProvider/models/ICacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/models/ICacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
+        this.createRedisCache.execute(),
+      );
+    } else {
+      truncateSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
+      );
+      appendFileSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
+        this.createRedisCache.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
         this.createICache.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/CacheProvider/models/ICacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/models/ICacheProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
         this.createICache.execute(),
       );
     }
-    if (!existsSync('src/shared/container/providers/CacheProvider/index.ts')) {
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
+      )
+    ) {
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
         this.createCacheIndex.execute(),
       );
     } else {
-      truncateSync('src/shared/container/providers/CacheProvider/index.ts');
+      truncateSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
+      );
       appendFileSync(
-        'src/shared/container/providers/CacheProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
         this.createCacheIndex.execute(),
       );
     }

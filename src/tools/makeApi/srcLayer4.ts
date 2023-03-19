@@ -10,6 +10,7 @@ import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import messages from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
+import { resolve } from 'path';
 
 export class MakeFourthLayer {
   private messages: typeof messages;
@@ -39,15 +40,19 @@ export class MakeFourthLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src/utils/mappers/mapAndCloneAttribute.ts')) {
+    if (
+      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'))
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndCloneAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
         this.createMapAndClone.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndCloneAttribute.ts');
+      truncateSync(
+        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
+      );
       appendFileSync(
-        'src/utils/mappers/mapAndCloneAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
         this.createMapAndClone.execute(),
       );
     }
@@ -56,15 +61,21 @@ export class MakeFourthLayer {
       `- mapAndCloneAttribute.ts.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/mappers/mapAndInsertAttribute.ts')) {
+    if (
+      !existsSync(
+        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
+      )
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndInsertAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
         this.createMapAndInsert.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndInsertAttribute.ts');
+      truncateSync(
+        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
+      );
       appendFileSync(
-        'src/utils/mappers/mapAndInsertAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
         this.createMapAndInsert.execute(),
       );
     }
@@ -73,15 +84,19 @@ export class MakeFourthLayer {
       `- mapAndInsertAttribute.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/mappers/mapAndPatchAttribute.ts')) {
+    if (
+      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'))
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndPatchAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
         this.createMapAndPatch.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndPatchAttribute.ts');
+      truncateSync(
+        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
+      );
       appendFileSync(
-        'src/utils/mappers/mapAndPatchAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
         this.createMapAndPatch.execute(),
       );
     }
@@ -90,15 +105,17 @@ export class MakeFourthLayer {
       `- mapAndPatchAttribute.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/mappers/mapAndPatchString.ts')) {
+    if (
+      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'))
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndPatchString.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'),
         this.createMapAndPatchString.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndPatchString.ts');
+      truncateSync(resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'));
       appendFileSync(
-        'src/utils/mappers/mapAndPatchString.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'),
         this.createMapAndPatchString.execute(),
       );
     }
@@ -107,15 +124,21 @@ export class MakeFourthLayer {
       `- mapAndPatchString.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/mappers/mapAndUpdateAttribute.ts')) {
+    if (
+      !existsSync(
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
+      )
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndUpdateAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
         this.createMapAndUpdate.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndUpdateAttribute.ts');
+      truncateSync(
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
+      );
       appendFileSync(
-        'src/utils/mappers/mapAndUpdateAttribute.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
         this.createMapAndUpdate.execute(),
       );
     }
@@ -124,15 +147,17 @@ export class MakeFourthLayer {
       `- mapAndUpdateAttribute.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/mappers/mapAndUpdateString.ts')) {
+    if (
+      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'))
+    ) {
       appendFileSync(
-        'src/utils/mappers/mapAndUpdateString.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'),
         this.createMapAndUpdateString.execute(),
       );
     } else {
-      truncateSync('src/utils/mappers/mapAndUpdateString.ts');
+      truncateSync(resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'));
       appendFileSync(
-        'src/utils/mappers/mapAndUpdateString.ts',
+        resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'),
         this.createMapAndUpdateString.execute(),
       );
     }
@@ -141,15 +166,15 @@ export class MakeFourthLayer {
       `- mapAndUpdateString.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     } else {
-      truncateSync('src/shared/container/index.ts');
+      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
@@ -158,15 +183,15 @@ export class MakeFourthLayer {
       `- container/index.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/errors/AppError.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'errors', 'AppError.ts'))) {
       appendFileSync(
-        'src/shared/errors/AppError.ts',
+        resolve('src', 'shared', 'errors', 'AppError.ts'),
         this.createAppError.execute(),
       );
     } else {
-      truncateSync('src/shared/errors/AppError.ts');
+      truncateSync(resolve('src', 'shared', 'errors', 'AppError.ts'));
       appendFileSync(
-        'src/shared/errors/AppError.ts',
+        resolve('src', 'shared', 'errors', 'AppError.ts'),
         this.createAppError.execute(),
       );
     }
@@ -175,15 +200,15 @@ export class MakeFourthLayer {
       `- AppError.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/typeorm/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'typeorm', 'index.ts'))) {
       appendFileSync(
-        'src/shared/typeorm/index.ts',
+        resolve('src', 'shared', 'typeorm', 'index.ts'),
         this.createTypeorm.execute(),
       );
     } else {
-      truncateSync('src/shared/typeorm/index.ts');
+      truncateSync(resolve('src', 'shared', 'typeorm', 'index.ts'));
       appendFileSync(
-        'src/shared/typeorm/index.ts',
+        resolve('src', 'shared', 'typeorm', 'index.ts'),
         this.createTypeorm.execute(),
       );
     }
@@ -192,15 +217,15 @@ export class MakeFourthLayer {
       `- typeorm/index.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/typeorm/dataSource.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'typeorm', 'dataSource.ts'))) {
       appendFileSync(
-        'src/shared/typeorm/dataSource.ts',
+        resolve('src', 'shared', 'typeorm', 'dataSource.ts'),
         this.createDataSource.execute(),
       );
     } else {
-      truncateSync('src/shared/typeorm/dataSource.ts');
+      truncateSync(resolve('src', 'shared', 'typeorm', 'dataSource.ts'));
       appendFileSync(
-        'src/shared/typeorm/dataSource.ts',
+        resolve('src', 'shared', 'typeorm', 'dataSource.ts'),
         this.createDataSource.execute(),
       );
     }

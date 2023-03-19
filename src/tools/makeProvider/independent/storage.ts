@@ -6,6 +6,7 @@ import { CreateS3Storage } from '@templates/providers/implementations/S3Storage'
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeStorageProvider {
   private messages: typeof messages;
@@ -27,132 +28,358 @@ export class MakeStorageProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
-    }
-    if (!existsSync('src/shared/container/providers/StorageProvider')) {
-      mkdirSync('src/shared/container/providers/StorageProvider');
-    }
-    if (!existsSync('src/shared/container/providers/StorageProvider/fakes')) {
-      mkdirSync('src/shared/container/providers/StorageProvider/fakes');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
     if (
       !existsSync(
-        'src/shared/container/providers/StorageProvider/implementations',
+        resolve('src', 'shared', 'container', 'providers', 'StorageProvider'),
       )
     ) {
       mkdirSync(
-        'src/shared/container/providers/StorageProvider/implementations',
+        resolve('src', 'shared', 'container', 'providers', 'StorageProvider'),
       );
     }
-    if (!existsSync('src/shared/container/providers/StorageProvider/models')) {
-      mkdirSync('src/shared/container/providers/StorageProvider/models');
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+        ),
+      );
     }
     appendFileSync(
-      'src/shared/container/providers/index.ts',
+      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       `\nimport './StorageProvider';`,
     );
-    if (!existsSync('src/config/upload.ts')) {
-      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'upload.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'upload.ts'),
+        this.createUploadConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/upload.ts');
-      appendFileSync('src/config/upload.ts', this.createUploadConfig.execute());
+      truncateSync(resolve('src', 'config', 'upload.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'upload.ts'),
+        this.createUploadConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ),
         this.createFakeStorage.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/fakes/FakeStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ),
         this.createFakeStorage.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ),
         this.createDiskStorage.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/implementations/DiskStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ),
         this.createDiskStorage.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ),
         this.createS3Storage.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/implementations/S3StorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ),
         this.createS3Storage.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ),
         this.createIStorage.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/models/IStorageProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ),
         this.createIStorage.execute(),
       );
     }
     if (
-      !existsSync('src/shared/container/providers/StorageProvider/index.ts')
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ),
+      )
     ) {
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ),
         this.createStorageIndex.execute(),
       );
     } else {
-      truncateSync('src/shared/container/providers/StorageProvider/index.ts');
+      truncateSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ),
+      );
       appendFileSync(
-        'src/shared/container/providers/StorageProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ),
         this.createStorageIndex.execute(),
       );
     }

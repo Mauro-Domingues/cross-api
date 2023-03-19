@@ -12,6 +12,7 @@ var _fakeCache = require("../../../../dist/templates/providers/fakes/fakeCache")
 var _RedisCache = require("../../../../dist/templates/providers/implementations/RedisCache");
 var _ICache = require("../../../../dist/templates/providers/models/ICache");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentCacheProvider {
   constructor(fatherNames) {
@@ -37,76 +38,76 @@ class MakeDependentCacheProvider {
       console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.providerNotFound, '\x1b[0m');
       throw new Error();
     }
-    if (!(0, _fs.existsSync)('src')) {
-      (0, _fs.mkdirSync)('src');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src'));
     }
-    if (!(0, _fs.existsSync)('src/config')) {
-      (0, _fs.mkdirSync)('src/config');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'config'));
     }
-    if (!(0, _fs.existsSync)('src/modules')) {
-      (0, _fs.mkdirSync)('src/modules');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules'));
     }
-    if (!(0, _fs.existsSync)('src/shared')) {
-      (0, _fs.mkdirSync)('src/shared');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container')) {
-      (0, _fs.mkdirSync)('src/shared/container');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), this.createContainer.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), '');
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models'));
     }
-    (0, _fs.appendFileSync)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './CacheProvider';`);
-    if (!(0, _fs.existsSync)('src/config/cache.ts')) {
-      (0, _fs.appendFileSync)('src/config/cache.ts', this.createCacheConfig.execute());
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './CacheProvider';`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'cache.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'cache.ts'), this.createCacheConfig.execute());
     } else {
-      (0, _fs.truncateSync)('src/config/cache.ts');
-      (0, _fs.appendFileSync)('src/config/cache.ts', this.createCacheConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'config', 'cache.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'cache.ts'), this.createCacheConfig.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes', 'FakeCacheProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes', 'FakeCacheProvider.ts'), this.createFakeRedis.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`, this.createFakeRedis.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes', 'FakeCacheProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'fakes', 'FakeCacheProvider.ts'), this.createFakeRedis.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations', 'RedisCacheProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations', 'RedisCacheProvider.ts'), this.createRedisCache.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`, this.createRedisCache.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations', 'RedisCacheProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'implementations', 'RedisCacheProvider.ts'), this.createRedisCache.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models', 'ICacheProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models', 'ICacheProvider.ts'), this.createICache.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`, this.createICache.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models', 'ICacheProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'models', 'ICacheProvider.ts'), this.createICache.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'index.ts'), this.createCacheIndex.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`, this.createCacheIndex.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'CacheProvider', 'index.ts'), this.createCacheIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- CacheProvider ${this.messages.created}`, '\x1b[0m');
   }

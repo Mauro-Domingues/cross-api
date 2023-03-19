@@ -5,6 +5,7 @@ import { CreateMailTemplate } from '@templates/providers/implementations/MailTem
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeMailTemplateProvider {
   private messages: typeof messages;
@@ -24,139 +25,381 @@ export class MakeMailTemplateProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
-    }
-    if (!existsSync('src/shared/container/providers/MailTemplateProvider')) {
-      mkdirSync('src/shared/container/providers/MailTemplateProvider');
-    }
-    if (
-      !existsSync('src/shared/container/providers/MailTemplateProvider/dtos')
-    ) {
-      mkdirSync('src/shared/container/providers/MailTemplateProvider/dtos');
-    }
-    if (
-      !existsSync('src/shared/container/providers/MailTemplateProvider/fakes')
-    ) {
-      mkdirSync('src/shared/container/providers/MailTemplateProvider/fakes');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+        ),
       )
     ) {
       mkdirSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+        ),
       );
     }
     if (
-      !existsSync('src/shared/container/providers/MailTemplateProvider/models')
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+        ),
+      )
     ) {
-      mkdirSync('src/shared/container/providers/MailTemplateProvider/models');
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+        ),
+      );
     }
     appendFileSync(
-      'src/shared/container/providers/index.ts',
+      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       `\nimport './MailTemplateProvider';`,
     );
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
         this.createIMailTemplateDTO.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
         this.createIMailTemplateDTO.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
         this.createFakeMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
         this.createFakeMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
         this.createMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
         this.createMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
         this.createIMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
         this.createIMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/MailTemplateProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
         this.createMailTemplateIndex.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/MailTemplateProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/MailTemplateProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
         this.createMailTemplateIndex.execute(),
       );
     }

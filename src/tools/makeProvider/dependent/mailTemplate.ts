@@ -7,6 +7,7 @@ import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex'
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { resolve } from 'path';
 
 export class MakeDependentMailTemplateProvider {
   private fatherNames:
@@ -42,189 +43,447 @@ export class MakeDependentMailTemplateProvider {
       throw new Error();
     }
 
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
-    if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
-    }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         '',
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+        ),
       );
     }
     appendFileSync(
-      `src/shared/container/index.ts`,
+      resolve('src', 'shared', 'container', 'index.ts'),
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
     appendFileSync(
-      `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
       `\nimport './MailTemplateProvider';`,
     );
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
         this.createIMailTemplateDTO.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ),
         this.createIMailTemplateDTO.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
         this.createFakeMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/fakes/FakeMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ),
         this.createFakeMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
         this.createMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ),
         this.createMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
         this.createIMailTemplate.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ),
         this.createIMailTemplate.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
         this.createMailTemplateIndex.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ),
         this.createMailTemplateIndex.execute(),
       );
     }

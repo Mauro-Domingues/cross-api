@@ -3,7 +3,8 @@ import { createInterface } from 'readline';
 
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
-import messages from './messages';
+import messages from '@tools/messages';
+import { resolve } from 'path';
 
 interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';
@@ -101,9 +102,11 @@ export class ConfigLanguage {
   }
 
   public setLanguageOption(): void {
-    truncateSync('./node_modules/cross-api/dist/tools/messages.js');
+    truncateSync(
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'),
+    );
     appendFileSync(
-      './node_modules/cross-api/dist/tools/messages.js',
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'),
       `"use strict";
 
 Object.defineProperty(exports, "__esModule", {

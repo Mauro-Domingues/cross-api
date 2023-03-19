@@ -5,6 +5,7 @@ import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeCryptoProvider {
   private messages: typeof messages;
@@ -24,112 +25,308 @@ export class MakeCryptoProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
-    }
-    if (!existsSync('src/shared/container/providers/CryptoProvider')) {
-      mkdirSync('src/shared/container/providers/CryptoProvider');
-    }
-    if (!existsSync('src/shared/container/providers/CryptoProvider/dtos')) {
-      mkdirSync('src/shared/container/providers/CryptoProvider/dtos');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CryptoProvider/implementations',
+        resolve('src', 'shared', 'container', 'providers', 'CryptoProvider'),
       )
     ) {
       mkdirSync(
-        'src/shared/container/providers/CryptoProvider/implementations',
+        resolve('src', 'shared', 'container', 'providers', 'CryptoProvider'),
       );
     }
-    if (!existsSync('src/shared/container/providers/CryptoProvider/models')) {
-      mkdirSync('src/shared/container/providers/CryptoProvider/models');
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+        ),
+      );
     }
     appendFileSync(
-      'src/shared/container/providers/index.ts',
+      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       `\nimport './CryptoProvider';`,
     );
-    if (!existsSync('src/config/crypto.ts')) {
-      appendFileSync('src/config/crypto.ts', this.createCryptoConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'crypto.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'crypto.ts'),
+        this.createCryptoConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/crypto.ts');
-      appendFileSync('src/config/crypto.ts', this.createCryptoConfig.execute());
+      truncateSync(resolve('src', 'config', 'crypto.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'crypto.ts'),
+        this.createCryptoConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
         this.createICryptoDTO.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/dtos/ICryptoDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
         this.createICryptoDTO.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
         this.createCrypto.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/implementations/CryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
         this.createCrypto.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
         this.createICrypto.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/models/ICryptoProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
         this.createICrypto.execute(),
       );
     }
-    if (!existsSync('src/shared/container/providers/CryptoProvider/index.ts')) {
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+      )
+    ) {
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
         this.createCryptoIndex.execute(),
       );
     } else {
-      truncateSync('src/shared/container/providers/CryptoProvider/index.ts');
+      truncateSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+      );
       appendFileSync(
-        'src/shared/container/providers/CryptoProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
         this.createCryptoIndex.execute(),
       );
     }

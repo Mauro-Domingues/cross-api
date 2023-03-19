@@ -15,6 +15,7 @@ import messages from '@tools/messages';
 import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
 import { CreateEnvNamespace } from '@templates/types/envNamespace';
 import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
+import { resolve } from 'path';
 
 export class MakeThirdLayer {
   private messages: typeof messages;
@@ -54,15 +55,15 @@ export class MakeThirdLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src/@types/express.d.ts')) {
+    if (!existsSync(resolve('src', '@types', 'express.d.ts'))) {
       appendFileSync(
-        'src/@types/express.d.ts',
+        resolve('src', '@types', 'express.d.ts'),
         this.createExpressNamespace.execute(),
       );
     } else {
-      truncateSync('src/@types/express.d.ts');
+      truncateSync(resolve('src', '@types', 'express.d.ts'));
       appendFileSync(
-        'src/@types/express.d.ts',
+        resolve('src', '@types', 'express.d.ts'),
         this.createExpressNamespace.execute(),
       );
     }
@@ -71,70 +72,100 @@ export class MakeThirdLayer {
       `- express.d.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/@types/env.d.ts')) {
-      appendFileSync('src/@types/env.d.ts', this.createEnvNamespace.execute());
+    if (!existsSync(resolve('src', '@types', 'env.d.ts'))) {
+      appendFileSync(
+        resolve('src', '@types', 'env.d.ts'),
+        this.createEnvNamespace.execute(),
+      );
     } else {
-      truncateSync('src/@types/env.d.ts');
-      appendFileSync('src/@types/env.d.ts', this.createEnvNamespace.execute());
+      truncateSync(resolve('src', '@types', 'env.d.ts'));
+      appendFileSync(
+        resolve('src', '@types', 'env.d.ts'),
+        this.createEnvNamespace.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- env.d.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/assets/domains.txt')) {
-      appendFileSync('src/assets/domains.txt', this.createDomains.execute());
+    if (!existsSync(resolve('src', 'assets', 'domains.txt'))) {
+      appendFileSync(
+        resolve('src', 'assets', 'domains.txt'),
+        this.createDomains.execute(),
+      );
     } else {
-      truncateSync('src/assets/domains.txt');
-      appendFileSync('src/assets/domains.txt', this.createDomains.execute());
+      truncateSync(resolve('src', 'assets', 'domains.txt'));
+      appendFileSync(
+        resolve('src', 'assets', 'domains.txt'),
+        this.createDomains.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- domains.txt ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/dtos/ICacheDTO.ts')) {
-      appendFileSync('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
+    if (!existsSync(resolve('src', 'dtos', 'ICacheDTO.ts'))) {
+      appendFileSync(
+        resolve('src', 'dtos', 'ICacheDTO.ts'),
+        this.createICacheDTO.execute(),
+      );
     } else {
-      truncateSync('src/dtos/ICacheDTO.ts');
-      appendFileSync('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
+      truncateSync(resolve('src', 'dtos', 'ICacheDTO.ts'));
+      appendFileSync(
+        resolve('src', 'dtos', 'ICacheDTO.ts'),
+        this.createICacheDTO.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- ICacheDTO.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/dtos/IListDTO.ts')) {
-      appendFileSync('src/dtos/IListDTO.ts', this.createIListDTO.execute());
+    if (!existsSync(resolve('src', 'dtos', 'IListDTO.ts'))) {
+      appendFileSync(
+        resolve('src', 'dtos', 'IListDTO.ts'),
+        this.createIListDTO.execute(),
+      );
     } else {
-      truncateSync('src/dtos/IListDTO.ts');
-      appendFileSync('src/dtos/IListDTO.ts', this.createIListDTO.execute());
+      truncateSync(resolve('src', 'dtos', 'IListDTO.ts'));
+      appendFileSync(
+        resolve('src', 'dtos', 'IListDTO.ts'),
+        this.createIListDTO.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- IListDTO.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/dtos/IObjectDTO.ts')) {
-      appendFileSync('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
+    if (!existsSync(resolve('src', 'dtos', 'IObjectDTO.ts'))) {
+      appendFileSync(
+        resolve('src', 'dtos', 'IObjectDTO.ts'),
+        this.createIObjectDTO.execute(),
+      );
     } else {
-      truncateSync('src/dtos/IObjectDTO.ts');
-      appendFileSync('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
+      truncateSync(resolve('src', 'dtos', 'IObjectDTO.ts'));
+      appendFileSync(
+        resolve('src', 'dtos', 'IObjectDTO.ts'),
+        this.createIObjectDTO.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- IObjectDTO.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/dtos/IResponseDTO.ts')) {
+    if (!existsSync(resolve('src', 'dtos', 'IResponseDTO.ts'))) {
       appendFileSync(
-        'src/dtos/IResponseDTO.ts',
+        resolve('src', 'dtos', 'IResponseDTO.ts'),
         this.createIResponseDTO.execute(),
       );
     } else {
-      truncateSync('src/dtos/IResponseDTO.ts');
+      truncateSync(resolve('src', 'dtos', 'IResponseDTO.ts'));
       appendFileSync(
-        'src/dtos/IResponseDTO.ts',
+        resolve('src', 'dtos', 'IResponseDTO.ts'),
         this.createIResponseDTO.execute(),
       );
     }
@@ -143,15 +174,15 @@ export class MakeThirdLayer {
       `- IResponseDTO.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/middlewares/RateLimiter.ts')) {
+    if (!existsSync(resolve('src', 'middlewares', 'RateLimiter.ts'))) {
       appendFileSync(
-        'src/middlewares/RateLimiter.ts',
+        resolve('src', 'middlewares', 'RateLimiter.ts'),
         this.createRateLimiter.execute(),
       );
     } else {
-      truncateSync('src/middlewares/RateLimiter.ts');
+      truncateSync(resolve('src', 'middlewares', 'RateLimiter.ts'));
       appendFileSync(
-        'src/middlewares/RateLimiter.ts',
+        resolve('src', 'middlewares', 'RateLimiter.ts'),
         this.createRateLimiter.execute(),
       );
     }
@@ -160,15 +191,15 @@ export class MakeThirdLayer {
       `- RateLimiter.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/middlewares/EnsureAuthenticated.ts')) {
+    if (!existsSync(resolve('src', 'middlewares', 'EnsureAuthenticated.ts'))) {
       appendFileSync(
-        'src/middlewares/EnsureAuthenticated.ts',
+        resolve('src', 'middlewares', 'EnsureAuthenticated.ts'),
         this.createEnsureAuthenticated.execute(),
       );
     } else {
-      truncateSync('src/middlewares/EnsureAuthenticated.ts');
+      truncateSync(resolve('src', 'middlewares', 'EnsureAuthenticated.ts'));
       appendFileSync(
-        'src/middlewares/EnsureAuthenticated.ts',
+        resolve('src', 'middlewares', 'EnsureAuthenticated.ts'),
         this.createEnsureAuthenticated.execute(),
       );
     }
@@ -177,48 +208,66 @@ export class MakeThirdLayer {
       `- RateLimiter.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/routes/index.ts')) {
-      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
+    if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
+      appendFileSync(
+        resolve('src', 'routes', 'index.ts'),
+        this.createRoutes.execute(),
+      );
     } else {
-      truncateSync('src/routes/index.ts');
-      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
+      truncateSync(resolve('src', 'routes', 'index.ts'));
+      appendFileSync(
+        resolve('src', 'routes', 'index.ts'),
+        this.createRoutes.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- routes.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/app.ts')) {
-      appendFileSync('src/shared/app.ts', this.createApp.execute());
+    if (!existsSync(resolve('src', 'shared', 'app.ts'))) {
+      appendFileSync(
+        resolve('src', 'shared', 'app.ts'),
+        this.createApp.execute(),
+      );
     } else {
-      truncateSync('src/shared/app.ts');
-      appendFileSync('src/shared/app.ts', this.createApp.execute());
+      truncateSync(resolve('src', 'shared', 'app.ts'));
+      appendFileSync(
+        resolve('src', 'shared', 'app.ts'),
+        this.createApp.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- app.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/shared/server.ts')) {
-      appendFileSync('src/shared/server.ts', this.createServer.execute());
+    if (!existsSync(resolve('src', 'shared', 'server.ts'))) {
+      appendFileSync(
+        resolve('src', 'shared', 'server.ts'),
+        this.createServer.execute(),
+      );
     } else {
-      truncateSync('src/shared/server.ts');
-      appendFileSync('src/shared/server.ts', this.createServer.execute());
+      truncateSync(resolve('src', 'shared', 'server.ts'));
+      appendFileSync(
+        resolve('src', 'shared', 'server.ts'),
+        this.createServer.execute(),
+      );
     }
     console.log(
       '\x1b[38;2;255;255;0m',
       `- server.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/decimalAdjust.ts')) {
+    if (!existsSync(resolve('src', 'utils', 'decimalAdjust.ts'))) {
       appendFileSync(
-        'src/utils/decimalAdjust.ts',
+        resolve('src', 'utils', 'decimalAdjust.ts'),
         this.createDecimaAdjust.execute(),
       );
     } else {
-      truncateSync('src/utils/decimalAdjust.ts');
+      truncateSync(resolve('src', 'utils', 'decimalAdjust.ts'));
       appendFileSync(
-        'src/utils/decimalAdjust.ts',
+        resolve('src', 'utils', 'decimalAdjust.ts'),
         this.createDecimaAdjust.execute(),
       );
     }
@@ -227,15 +276,15 @@ export class MakeThirdLayer {
       `- decimalAdjust.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/domainsManager.ts')) {
+    if (!existsSync(resolve('src', 'utils', 'domainsManager.ts'))) {
       appendFileSync(
-        'src/utils/domainsManager.ts',
+        resolve('src', 'utils', 'domainsManager.ts'),
         this.createDomainsManager.execute(),
       );
     } else {
-      truncateSync('src/utils/domainsManager.ts');
+      truncateSync(resolve('src', 'utils', 'domainsManager.ts'));
       appendFileSync(
-        'src/utils/domainsManager.ts',
+        resolve('src', 'utils', 'domainsManager.ts'),
         this.createDomainsManager.execute(),
       );
     }
@@ -244,15 +293,15 @@ export class MakeThirdLayer {
       `- domainsManager.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync('src/utils/createNormalizeQueryLink.ts')) {
+    if (!existsSync(resolve('src', 'utils', 'createNormalizeQueryLink.ts'))) {
       appendFileSync(
-        'src/utils/createNormalizeQueryLink.ts',
+        resolve('src', 'utils', 'createNormalizeQueryLink.ts'),
         this.createNormalizeQueryLink.execute(),
       );
     } else {
-      truncateSync('src/utils/createNormalizeQueryLink.ts');
+      truncateSync(resolve('src', 'utils', 'createNormalizeQueryLink.ts'));
       appendFileSync(
-        'src/utils/createNormalizeQueryLink.ts',
+        resolve('src', 'utils', 'createNormalizeQueryLink.ts'),
         this.createNormalizeQueryLink.execute(),
       );
     }

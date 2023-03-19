@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.DeleteRegister = void 0;
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _fsExtra = require("fs-extra");
+var _path = require("path");
 var _fs = require("fs");
 var _names = require("../../../dist/tools/names");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27,22 +28,22 @@ class DeleteRegister {
   }
   makeProvider(comand, names, fatherNames) {
     if (names && fatherNames) {
-      const oldProviders = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', 'ascii');
-      (0, _fs.truncateSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`, oldProviders);
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/providers/${this.providers[names.lowerModuleName]}`);
-      if ((0, _fs.existsSync)(`src/config/${names.lowerModuleName}.ts`)) {
-        (0, _fs.unlinkSync)(`src/config/${names.lowerModuleName}.ts`);
+      const oldProviders = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'providers', 'providerInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), oldProviders);
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', this.providers[names.lowerModuleName]));
+      if ((0, _fs.existsSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
+        (0, _fs.unlinkSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
       }
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
-      const oldProviders = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log', 'ascii');
-      (0, _fs.truncateSync)('src/shared/container/providers/index.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', oldProviders);
-      (0, _fsExtra.removeSync)(`src/shared/container/providers/${this.providers[names.lowerModuleName]}`);
-      if ((0, _fs.existsSync)(`src/config/${names.lowerModuleName}.ts`)) {
-        (0, _fs.unlinkSync)(`src/config/${names.lowerModuleName}.ts`);
+      const oldProviders = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'providers', 'providerInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), oldProviders);
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', this.providers[names.lowerModuleName]));
+      if ((0, _fs.existsSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
+        (0, _fs.unlinkSync)((0, _path.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
       }
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
@@ -50,56 +51,56 @@ class DeleteRegister {
   }
   makeModule(comand, names, fatherNames) {
     if (names && fatherNames) {
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`);
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}`);
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}`);
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}`);
-      (0, _fsExtra.removeSync)(`src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}`);
-      (0, _fs.unlinkSync)(`src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`);
-      (0, _fs.unlinkSync)(`src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`);
-      (0, _fs.unlinkSync)(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`);
-      (0, _fs.unlinkSync)(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`);
-      (0, _fs.unlinkSync)(`src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`);
-      const moduleInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', 'ascii');
-      (0, _fs.truncateSync)('src/shared/container/index.ts');
-      (0, _fs.appendFileSync)('src/shared/container/index.ts', moduleInjection);
-      const routeInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', 'ascii');
-      (0, _fs.truncateSync)(`src/routes/${fatherNames.lowerModuleName}Router.ts`);
-      (0, _fs.appendFileSync)(`src/routes/${fatherNames.lowerModuleName}Router.ts`, routeInjection);
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `create${names.upperModuleName}`));
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `delete${names.upperModuleName}`));
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `list${names.upperModuleName}`));
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `show${names.upperModuleName}`));
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `update${names.upperModuleName}`));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'dtos', `I${names.upperModuleName}DTO.ts`));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'entities', `${names.upperModuleName}.ts`));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `${names.pluralUpperModuleName}Repository.ts`));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `I${names.pluralUpperModuleName}Repository.ts`));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${names.pluralUpperModuleName}Repository.ts`));
+      const moduleInjection = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'moduleInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), moduleInjection);
+      const routeInjection = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'routeInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`), routeInjection);
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
     } else if (names) {
-      (0, _fsExtra.removeSync)(`src/modules/${names.pluralLowerModuleName}`);
-      (0, _fs.unlinkSync)(`src/routes/${names.lowerModuleName}Router.ts`);
-      const moduleInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log', 'ascii');
-      (0, _fs.truncateSync)('src/shared/container/index.ts');
-      (0, _fs.appendFileSync)('src/shared/container/index.ts', moduleInjection);
-      const routeInjection = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log', 'ascii');
-      (0, _fs.truncateSync)('src/routes/index.ts');
-      (0, _fs.appendFileSync)('src/routes/index.ts', routeInjection);
+      (0, _fsExtra.removeSync)((0, _path.resolve)('src', 'modules', names.pluralLowerModuleName));
+      (0, _fs.unlinkSync)((0, _path.resolve)('src', 'routes', `${names.lowerModuleName}Router.ts`));
+      const moduleInjection = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'moduleInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), moduleInjection);
+      const routeInjection = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'routeInjection.log'), 'ascii');
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'routes', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', 'index.ts'), routeInjection);
       console.log('');
       console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
     }
   }
   makeAPi(comand) {
-    (0, _fsExtra.removeSync)('src');
-    (0, _fs.unlinkSync)('.editorconfig');
-    (0, _fs.unlinkSync)('.env');
-    (0, _fs.unlinkSync)('.env.template');
-    (0, _fs.unlinkSync)('.eslintignore');
-    (0, _fs.unlinkSync)('.eslintrc.json');
-    (0, _fs.unlinkSync)('.gitignore');
-    (0, _fs.unlinkSync)('babel.config.js');
-    (0, _fs.unlinkSync)('docker-compose.yml');
-    (0, _fs.unlinkSync)('jest.config.ts');
-    (0, _fs.unlinkSync)('nodemon.json');
-    (0, _fs.unlinkSync)('prettier.config.js');
-    (0, _fs.unlinkSync)('tsconfig.json');
+    (0, _fsExtra.removeSync)((0, _path.resolve)('src'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.editorconfig'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.env'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.env.template'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.eslintignore'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.eslintrc.json'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('.gitignore'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('babel.config.js'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('docker-compose.yml'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('jest.config.ts'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('nodemon.json'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('prettier.config.js'));
+    (0, _fs.unlinkSync)((0, _path.resolve)('tsconfig.json'));
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand}`, '\x1b[0m');
   }
   async execute() {
-    const register = (0, _fs.readFileSync)('./node_modules/cross-api/dist/tools/lastModification/comands/comands.log', 'ascii');
+    const register = (0, _fs.readFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'comands', 'comands.log'), 'ascii');
     const comand = register.split(',')[0];
     const names = new _names.GetNames(register.split(',')[1]).execute();
     const fatherNames = new _names.GetNames(register.split(',')[2]).execute();

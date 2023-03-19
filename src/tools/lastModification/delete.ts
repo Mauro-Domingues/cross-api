@@ -1,5 +1,6 @@
 import messages from '@tools/messages';
 import { removeSync } from 'fs-extra';
+import { resolve } from 'path';
 import {
   appendFileSync,
   existsSync,
@@ -36,24 +37,48 @@ export class DeleteRegister {
   ) {
     if (names && fatherNames) {
       const oldProviders = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'providers',
+          'providerInjection.log',
+        ),
         'ascii',
       );
 
       truncateSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         oldProviders,
       );
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/providers/${
-          this.providers[names.lowerModuleName]
-        }`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'providers',
+          this.providers[names.lowerModuleName],
+        ),
       );
-      if (existsSync(`src/config/${names.lowerModuleName}.ts`)) {
-        unlinkSync(`src/config/${names.lowerModuleName}.ts`);
+      if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
+        unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
       }
       console.log('');
       console.log(
@@ -64,19 +89,36 @@ export class DeleteRegister {
       );
     } else if (names) {
       const oldProviders = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'providers',
+          'providerInjection.log',
+        ),
         'ascii',
       );
 
-      truncateSync('src/shared/container/providers/index.ts');
-      appendFileSync('src/shared/container/providers/index.ts', oldProviders);
-      removeSync(
-        `src/shared/container/providers/${
-          this.providers[names.lowerModuleName]
-        }`,
+      truncateSync(
+        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       );
-      if (existsSync(`src/config/${names.lowerModuleName}.ts`)) {
-        unlinkSync(`src/config/${names.lowerModuleName}.ts`);
+      appendFileSync(
+        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+        oldProviders,
+      );
+      removeSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          this.providers[names.lowerModuleName],
+        ),
+      );
+      if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
+        unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
       }
       console.log('');
       console.log(
@@ -99,48 +141,130 @@ export class DeleteRegister {
   ) {
     if (names && fatherNames) {
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/services/create${names.upperModuleName}`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'services',
+          `create${names.upperModuleName}`,
+        ),
       );
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/services/delete${names.upperModuleName}`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${names.upperModuleName}`,
+        ),
       );
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/services/list${names.upperModuleName}`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'services',
+          `list${names.upperModuleName}`,
+        ),
       );
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/services/show${names.upperModuleName}`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'services',
+          `show${names.upperModuleName}`,
+        ),
       );
       removeSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/services/update${names.upperModuleName}`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'services',
+          `update${names.upperModuleName}`,
+        ),
       );
       unlinkSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/dtos/I${names.upperModuleName}DTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${names.upperModuleName}DTO.ts`,
+        ),
       );
       unlinkSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/entities/${names.upperModuleName}.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'entities',
+          `${names.upperModuleName}.ts`,
+        ),
       );
       unlinkSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/${names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       unlinkSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/I${names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       unlinkSync(
-        `src/modules/${fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       const moduleInjection = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
         'ascii',
       );
-      truncateSync('src/shared/container/index.ts');
-      appendFileSync('src/shared/container/index.ts', moduleInjection);
-      const routeInjection = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
-        'ascii',
-      );
-      truncateSync(`src/routes/${fatherNames.lowerModuleName}Router.ts`);
+      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
       appendFileSync(
-        `src/routes/${fatherNames.lowerModuleName}Router.ts`,
+        resolve('src', 'shared', 'container', 'index.ts'),
+        moduleInjection,
+      );
+      const routeInjection = readFileSync(
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
+        'ascii',
+      );
+      truncateSync(
+        resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`),
+      );
+      appendFileSync(
+        resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`),
         routeInjection,
       );
       console.log('');
@@ -151,20 +275,39 @@ export class DeleteRegister {
         '\x1b[0m',
       );
     } else if (names) {
-      removeSync(`src/modules/${names.pluralLowerModuleName}`);
-      unlinkSync(`src/routes/${names.lowerModuleName}Router.ts`);
+      removeSync(resolve('src', 'modules', names.pluralLowerModuleName));
+      unlinkSync(resolve('src', 'routes', `${names.lowerModuleName}Router.ts`));
       const moduleInjection = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
         'ascii',
       );
-      truncateSync('src/shared/container/index.ts');
-      appendFileSync('src/shared/container/index.ts', moduleInjection);
+      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
+      appendFileSync(
+        resolve('src', 'shared', 'container', 'index.ts'),
+        moduleInjection,
+      );
       const routeInjection = readFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
         'ascii',
       );
-      truncateSync('src/routes/index.ts');
-      appendFileSync('src/routes/index.ts', routeInjection);
+      truncateSync(resolve('src', 'routes', 'index.ts'));
+      appendFileSync(resolve('src', 'routes', 'index.ts'), routeInjection);
       console.log('');
       console.log(
         '\x1b[1m',
@@ -176,19 +319,19 @@ export class DeleteRegister {
   }
 
   private makeAPi(comand: string) {
-    removeSync('src');
-    unlinkSync('.editorconfig');
-    unlinkSync('.env');
-    unlinkSync('.env.template');
-    unlinkSync('.eslintignore');
-    unlinkSync('.eslintrc.json');
-    unlinkSync('.gitignore');
-    unlinkSync('babel.config.js');
-    unlinkSync('docker-compose.yml');
-    unlinkSync('jest.config.ts');
-    unlinkSync('nodemon.json');
-    unlinkSync('prettier.config.js');
-    unlinkSync('tsconfig.json');
+    removeSync(resolve('src'));
+    unlinkSync(resolve('.editorconfig'));
+    unlinkSync(resolve('.env'));
+    unlinkSync(resolve('.env.template'));
+    unlinkSync(resolve('.eslintignore'));
+    unlinkSync(resolve('.eslintrc.json'));
+    unlinkSync(resolve('.gitignore'));
+    unlinkSync(resolve('babel.config.js'));
+    unlinkSync(resolve('docker-compose.yml'));
+    unlinkSync(resolve('jest.config.ts'));
+    unlinkSync(resolve('nodemon.json'));
+    unlinkSync(resolve('prettier.config.js'));
+    unlinkSync(resolve('tsconfig.json'));
     console.log('');
     console.log(
       '\x1b[1m',
@@ -200,7 +343,15 @@ export class DeleteRegister {
 
   public async execute(): Promise<void> {
     const register = readFileSync(
-      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      resolve(
+        'node_modules',
+        'cross-api',
+        'dist',
+        'tools',
+        'lastModification',
+        'comands',
+        'comands.log',
+      ),
       'ascii',
     );
 

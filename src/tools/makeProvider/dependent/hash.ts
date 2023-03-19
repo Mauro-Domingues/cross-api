@@ -7,6 +7,7 @@ import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { resolve } from 'path';
 
 export class MakeDependentHashProvider {
   private fatherNames:
@@ -42,168 +43,386 @@ export class MakeDependentHashProvider {
       throw new Error();
     }
 
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
-    if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
-    }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         '',
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+        ),
       );
     }
     appendFileSync(
-      `src/shared/container/index.ts`,
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
+      resolve('src', 'shared', 'container', 'index.ts'),
+      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers;`,
     );
     appendFileSync(
-      `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
       `\nimport './HashProvider';`,
     );
-    if (!existsSync('src/config/hash.ts')) {
-      appendFileSync('src/config/hash.ts', this.createHashConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'hash.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'hash.ts'),
+        this.createHashConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/hash.ts');
-      appendFileSync('src/config/hash.ts', this.createHashConfig.execute());
+      truncateSync(resolve('src', 'config', 'hash.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'hash.ts'),
+        this.createHashConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+          'FakeHashProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+          'FakeHashProvider.ts',
+        ),
         this.createFakeHash.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+          'FakeHashProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/fakes/FakeHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+          'FakeHashProvider.ts',
+        ),
         this.createFakeHash.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+          'BCryptHashProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+          'BCryptHashProvider.ts',
+        ),
         this.createHash.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+          'BCryptHashProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/implementations/BCryptHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+          'BCryptHashProvider.ts',
+        ),
         this.createHash.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+          'IHashProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+          'IHashProvider.ts',
+        ),
         this.createIHash.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+          'IHashProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/models/IHashProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+          'IHashProvider.ts',
+        ),
         this.createIHash.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'index.ts',
+        ),
         this.createHashIndex.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/HashProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'index.ts',
+        ),
         this.createHashIndex.execute(),
       );
     }

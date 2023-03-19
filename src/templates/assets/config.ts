@@ -1,4 +1,5 @@
 import { appendFileSync, truncateSync } from 'fs';
+import { resolve } from 'path';
 
 export class Config {
   private configBody: string;
@@ -27,9 +28,11 @@ exports.ConfigJson = ConfigJson;`;
   }
 
   public execute(): void {
-    truncateSync('./node_modules/cross-api/dist/tools/config.js');
+    truncateSync(
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
+    );
     appendFileSync(
-      './node_modules/cross-api/dist/tools/config.js',
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
       this.configBody,
     );
   }

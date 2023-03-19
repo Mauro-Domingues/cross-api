@@ -8,6 +8,7 @@ var _fs = require("fs");
 var _shelljs = require("shelljs");
 var _config = require("../../dist/templates/assets/config");
 var _readline = require("readline");
+var _path = require("path");
 var _package = _interopRequireDefault(require("../../../../package.json"));
 var _languageConfig = require("./languageConfig");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -32,7 +33,7 @@ class ConfigJson {
       build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
       start: 'node dist/shared/server.js'
     };
-    (0, _fs.writeFileSync)('./package.json', JSON.stringify(this.userJson), {
+    (0, _fs.writeFileSync)((0, _path.resolve)('package.json'), JSON.stringify(this.userJson), {
       encoding: 'utf8',
       flag: 'w'
     });
@@ -77,10 +78,8 @@ class ConfigJson {
     console.log('');
     console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.configLanguage.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.configLanguage.messages.try[2]}`, '\x1b[0m');
     console.log('');
-    if ((0, _fs.existsSync)('package-lock.json')) {
-      (0, _fs.unlink)('package-lock.json', error => {
-        if (error) throw error;
-      });
+    if ((0, _fs.existsSync)((0, _path.resolve)('package-lock.json'))) {
+      (0, _fs.unlinkSync)((0, _path.resolve)('package-lock.json'));
     }
     this.config.execute();
   }

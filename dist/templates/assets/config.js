@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Config = void 0;
 var _fs = require("fs");
+var _path = require("path");
 class Config {
   constructor() {
     this.configBody = void 0;
@@ -30,8 +31,8 @@ class ConfigJson {
 exports.ConfigJson = ConfigJson;`;
   }
   execute() {
-    (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/config.js');
-    (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/config.js', this.configBody);
+    (0, _fs.truncateSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
+    (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
   }
 }
 exports.Config = Config;

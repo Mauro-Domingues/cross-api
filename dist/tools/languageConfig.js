@@ -8,7 +8,8 @@ var _fs = require("fs");
 var _readline = require("readline");
 var _enUs = require("../../dist/templates/assets/en-us");
 var _ptBr = require("../../dist/templates/assets/pt-br");
-var _messages = _interopRequireDefault(require("./messages"));
+var _messages = _interopRequireDefault(require("../../dist/tools/messages"));
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class ConfigLanguage {
   constructor() {
@@ -71,8 +72,8 @@ class ConfigLanguage {
     console.log('');
   }
   setLanguageOption() {
-    (0, _fs.truncateSync)('./node_modules/cross-api/dist/tools/messages.js');
-    (0, _fs.appendFileSync)('./node_modules/cross-api/dist/tools/messages.js', `"use strict";
+    (0, _fs.truncateSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'));
+    (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'), `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true

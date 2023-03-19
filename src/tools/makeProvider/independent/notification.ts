@@ -6,6 +6,7 @@ import { CreateOneSignalNotification } from '@templates/providers/implementation
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeNotificationProvider {
   private messages: typeof messages;
@@ -27,151 +28,393 @@ export class MakeNotificationProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
-    }
-    if (!existsSync('src/shared/container/providers/NotificationProvider')) {
-      mkdirSync('src/shared/container/providers/NotificationProvider');
-    }
-    if (
-      !existsSync('src/shared/container/providers/NotificationProvider/dtos')
-    ) {
-      mkdirSync('src/shared/container/providers/NotificationProvider/dtos');
-    }
-    if (
-      !existsSync('src/shared/container/providers/NotificationProvider/fakes')
-    ) {
-      mkdirSync('src/shared/container/providers/NotificationProvider/fakes');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/implementations',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+        ),
       )
     ) {
       mkdirSync(
-        'src/shared/container/providers/NotificationProvider/implementations',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+        ),
       );
     }
     if (
-      !existsSync('src/shared/container/providers/NotificationProvider/models')
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+        ),
+      )
     ) {
-      mkdirSync('src/shared/container/providers/NotificationProvider/models');
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+        ),
+      );
     }
     appendFileSync(
-      'src/shared/container/providers/index.ts',
+      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
       `\nimport './NotificationProvider';`,
     );
-    if (!existsSync('src/config/notification.ts')) {
+    if (!existsSync(resolve('src', 'config', 'notification.ts'))) {
       appendFileSync(
-        'src/config/notification.ts',
+        resolve('src', 'config', 'notification.ts'),
         this.createNotificationConfig.execute(),
       );
     } else {
-      truncateSync('src/config/notification.ts');
+      truncateSync(resolve('src', 'config', 'notification.ts'));
       appendFileSync(
-        'src/config/notification.ts',
+        resolve('src', 'config', 'notification.ts'),
         this.createNotificationConfig.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
         this.createINotificationDTO.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/dtos/ISendNotificationDTO.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
         this.createINotificationDTO.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
         this.createFakeNotification.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/fakes/FakeNotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
         this.createFakeNotification.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
         this.createOneSignalNotification.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/implementations/OneSignalProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
         this.createOneSignalNotification.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
         this.createINotification.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/models/INotificationProvider.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
         this.createINotification.execute(),
       );
     }
     if (
       !existsSync(
-        'src/shared/container/providers/NotificationProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
         this.createNotificationIndex.execute(),
       );
     } else {
       truncateSync(
-        'src/shared/container/providers/NotificationProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        'src/shared/container/providers/NotificationProvider/index.ts',
+        resolve(
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
         this.createNotificationIndex.execute(),
       );
     }

@@ -1,5 +1,6 @@
 import messages from '@tools/messages';
 import { existsSync, mkdirSync } from 'fs';
+import { resolve } from 'path';
 
 export class MakeInfra {
   private messages: typeof messages;
@@ -9,56 +10,56 @@ export class MakeInfra {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/@types')) {
-      mkdirSync('src/@types');
+    if (!existsSync(resolve('src', '@types'))) {
+      mkdirSync(resolve('src', '@types'));
     }
-    if (!existsSync('src/dtos')) {
-      mkdirSync('src/dtos');
+    if (!existsSync(resolve('src', 'dtos'))) {
+      mkdirSync(resolve('src', 'dtos'));
     }
-    if (!existsSync('src/assets')) {
-      mkdirSync('src/assets');
+    if (!existsSync(resolve('src', 'assets'))) {
+      mkdirSync(resolve('src', 'assets'));
     }
-    if (!existsSync('src/middlewares')) {
-      mkdirSync('src/middlewares');
+    if (!existsSync(resolve('src', 'middlewares'))) {
+      mkdirSync(resolve('src', 'middlewares'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/routes')) {
-      mkdirSync('src/routes');
+    if (!existsSync(resolve('src', 'routes'))) {
+      mkdirSync(resolve('src', 'routes'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/utils')) {
-      mkdirSync('src/utils');
+    if (!existsSync(resolve('src', 'utils'))) {
+      mkdirSync(resolve('src', 'utils'));
     }
-    if (!existsSync('src/utils/mappers')) {
-      mkdirSync('src/utils/mappers');
+    if (!existsSync(resolve('src', 'utils', 'mappers'))) {
+      mkdirSync(resolve('src', 'utils', 'mappers'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/errors')) {
-      mkdirSync('src/shared/errors');
+    if (!existsSync(resolve('src', 'shared', 'errors'))) {
+      mkdirSync(resolve('src', 'shared', 'errors'));
     }
-    if (!existsSync('src/shared/typeorm')) {
-      mkdirSync('src/shared/typeorm');
+    if (!existsSync(resolve('src', 'shared', 'typeorm'))) {
+      mkdirSync(resolve('src', 'shared', 'typeorm'));
     }
-    if (!existsSync('src/shared/container/providers')) {
-      mkdirSync('src/shared/container/providers');
+    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
+      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
     }
-    if (!existsSync('src/shared/typeorm/migrations')) {
-      mkdirSync('src/shared/typeorm/migrations');
+    if (!existsSync(resolve('src', 'shared', 'typeorm', 'migrations'))) {
+      mkdirSync(resolve('src', 'shared', 'typeorm', 'migrations'));
     }
-    if (!existsSync('src/shared/typeorm/seeds')) {
-      mkdirSync('src/shared/typeorm/seeds');
+    if (!existsSync(resolve('src', 'shared', 'typeorm', 'seeds'))) {
+      mkdirSync(resolve('src', 'shared', 'typeorm', 'seeds'));
     }
     console.log(
       '\x1b[1m',

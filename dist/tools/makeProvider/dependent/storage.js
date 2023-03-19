@@ -13,6 +13,7 @@ var _S3Storage = require("../../../../dist/templates/providers/implementations/S
 var _IStorage = require("../../../../dist/templates/providers/models/IStorage");
 var _storageIndex = require("../../../../dist/templates/providers/storageIndex");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentStorageProvider {
   constructor(fatherNames) {
@@ -40,82 +41,82 @@ class MakeDependentStorageProvider {
       console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.providerNotFound, '\x1b[0m');
       throw new Error();
     }
-    if (!(0, _fs.existsSync)('src')) {
-      (0, _fs.mkdirSync)('src');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src'));
     }
-    if (!(0, _fs.existsSync)('src/config')) {
-      (0, _fs.mkdirSync)('src/config');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'config'));
     }
-    if (!(0, _fs.existsSync)('src/modules')) {
-      (0, _fs.mkdirSync)('src/modules');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules'));
     }
-    if (!(0, _fs.existsSync)('src/shared')) {
-      (0, _fs.mkdirSync)('src/shared');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container')) {
-      (0, _fs.mkdirSync)('src/shared/container');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/index.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/index.ts', this.createContainer.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), this.createContainer.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, '');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), '');
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations'));
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`)) {
-      (0, _fs.mkdirSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models'));
     }
-    (0, _fs.appendFileSync)(`src/shared/container/index.ts`, `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
-    (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`, `\nimport './StorageProvider';`);
-    if (!(0, _fs.existsSync)('src/config/upload.ts')) {
-      (0, _fs.appendFileSync)('src/config/upload.ts', this.createUploadConfig.execute());
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `\nimport './StorageProvider';`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'upload.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'upload.ts'), this.createUploadConfig.execute());
     } else {
-      (0, _fs.truncateSync)('src/config/upload.ts');
-      (0, _fs.appendFileSync)('src/config/upload.ts', this.createUploadConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'config', 'upload.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'upload.ts'), this.createUploadConfig.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, this.createFakeStorage.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'), this.createFakeStorage.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/fakes/FakeStorageProvider.ts`, this.createFakeStorage.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'), this.createFakeStorage.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, this.createDiskStorage.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'DiskStorageProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'DiskStorageProvider.ts'), this.createDiskStorage.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/DiskStorageProvider.ts`, this.createDiskStorage.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'DiskStorageProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'DiskStorageProvider.ts'), this.createDiskStorage.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, this.createS3Storage.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'S3StorageProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'S3StorageProvider.ts'), this.createS3Storage.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/implementations/S3StorageProvider.ts`, this.createS3Storage.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'S3StorageProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'implementations', 'S3StorageProvider.ts'), this.createS3Storage.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, this.createIStorage.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models', 'IStorageProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models', 'IStorageProvider.ts'), this.createIStorage.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/models/IStorageProvider.ts`, this.createIStorage.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models', 'IStorageProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'models', 'IStorageProvider.ts'), this.createIStorage.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, this.createStorageIndex.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'index.ts'), this.createStorageIndex.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.fatherNames.pluralLowerModuleName}/providers/StorageProvider/index.ts`, this.createStorageIndex.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'StorageProvider', 'index.ts'), this.createStorageIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- StorageProvider ${this.messages.created}`, '\x1b[0m');
   }

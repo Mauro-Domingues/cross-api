@@ -21,6 +21,7 @@ var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _ensureAuthenticated = require("../../../dist/templates/middlewares/ensureAuthenticated");
 var _envNamespace = require("../../../dist/templates/types/envNamespace");
 var _normalizeQueryLink = require("../../../dist/templates/utils/normalizeQueryLink");
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeThirdLayer {
   constructor() {
@@ -58,109 +59,109 @@ class MakeThirdLayer {
     this.createExpressNamespace = new _expressNamespace.CreateExpressNamespace();
   }
   async execute() {
-    if (!(0, _fs.existsSync)('src/@types/express.d.ts')) {
-      (0, _fs.appendFileSync)('src/@types/express.d.ts', this.createExpressNamespace.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', '@types', 'express.d.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', '@types', 'express.d.ts'), this.createExpressNamespace.execute());
     } else {
-      (0, _fs.truncateSync)('src/@types/express.d.ts');
-      (0, _fs.appendFileSync)('src/@types/express.d.ts', this.createExpressNamespace.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', '@types', 'express.d.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', '@types', 'express.d.ts'), this.createExpressNamespace.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- express.d.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/@types/env.d.ts')) {
-      (0, _fs.appendFileSync)('src/@types/env.d.ts', this.createEnvNamespace.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', '@types', 'env.d.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', '@types', 'env.d.ts'), this.createEnvNamespace.execute());
     } else {
-      (0, _fs.truncateSync)('src/@types/env.d.ts');
-      (0, _fs.appendFileSync)('src/@types/env.d.ts', this.createEnvNamespace.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', '@types', 'env.d.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', '@types', 'env.d.ts'), this.createEnvNamespace.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- env.d.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/assets/domains.txt')) {
-      (0, _fs.appendFileSync)('src/assets/domains.txt', this.createDomains.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'assets', 'domains.txt'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'assets', 'domains.txt'), this.createDomains.execute());
     } else {
-      (0, _fs.truncateSync)('src/assets/domains.txt');
-      (0, _fs.appendFileSync)('src/assets/domains.txt', this.createDomains.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'assets', 'domains.txt'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'assets', 'domains.txt'), this.createDomains.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domains.txt ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/dtos/ICacheDTO.ts')) {
-      (0, _fs.appendFileSync)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'dtos', 'ICacheDTO.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'ICacheDTO.ts'), this.createICacheDTO.execute());
     } else {
-      (0, _fs.truncateSync)('src/dtos/ICacheDTO.ts');
-      (0, _fs.appendFileSync)('src/dtos/ICacheDTO.ts', this.createICacheDTO.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'dtos', 'ICacheDTO.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'ICacheDTO.ts'), this.createICacheDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- ICacheDTO.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/dtos/IListDTO.ts')) {
-      (0, _fs.appendFileSync)('src/dtos/IListDTO.ts', this.createIListDTO.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'dtos', 'IListDTO.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IListDTO.ts'), this.createIListDTO.execute());
     } else {
-      (0, _fs.truncateSync)('src/dtos/IListDTO.ts');
-      (0, _fs.appendFileSync)('src/dtos/IListDTO.ts', this.createIListDTO.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'dtos', 'IListDTO.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IListDTO.ts'), this.createIListDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IListDTO.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/dtos/IObjectDTO.ts')) {
-      (0, _fs.appendFileSync)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'dtos', 'IObjectDTO.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IObjectDTO.ts'), this.createIObjectDTO.execute());
     } else {
-      (0, _fs.truncateSync)('src/dtos/IObjectDTO.ts');
-      (0, _fs.appendFileSync)('src/dtos/IObjectDTO.ts', this.createIObjectDTO.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'dtos', 'IObjectDTO.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IObjectDTO.ts'), this.createIObjectDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IObjectDTO.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/dtos/IResponseDTO.ts')) {
-      (0, _fs.appendFileSync)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'dtos', 'IResponseDTO.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IResponseDTO.ts'), this.createIResponseDTO.execute());
     } else {
-      (0, _fs.truncateSync)('src/dtos/IResponseDTO.ts');
-      (0, _fs.appendFileSync)('src/dtos/IResponseDTO.ts', this.createIResponseDTO.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'dtos', 'IResponseDTO.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'dtos', 'IResponseDTO.ts'), this.createIResponseDTO.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- IResponseDTO.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/middlewares/RateLimiter.ts')) {
-      (0, _fs.appendFileSync)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'middlewares', 'RateLimiter.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'middlewares', 'RateLimiter.ts'), this.createRateLimiter.execute());
     } else {
-      (0, _fs.truncateSync)('src/middlewares/RateLimiter.ts');
-      (0, _fs.appendFileSync)('src/middlewares/RateLimiter.ts', this.createRateLimiter.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'middlewares', 'RateLimiter.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'middlewares', 'RateLimiter.ts'), this.createRateLimiter.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/middlewares/EnsureAuthenticated.ts')) {
-      (0, _fs.appendFileSync)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'middlewares', 'EnsureAuthenticated.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'middlewares', 'EnsureAuthenticated.ts'), this.createEnsureAuthenticated.execute());
     } else {
-      (0, _fs.truncateSync)('src/middlewares/EnsureAuthenticated.ts');
-      (0, _fs.appendFileSync)('src/middlewares/EnsureAuthenticated.ts', this.createEnsureAuthenticated.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'middlewares', 'EnsureAuthenticated.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'middlewares', 'EnsureAuthenticated.ts'), this.createEnsureAuthenticated.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- RateLimiter.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/routes/index.ts')) {
-      (0, _fs.appendFileSync)('src/routes/index.ts', this.createRoutes.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'routes', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', 'index.ts'), this.createRoutes.execute());
     } else {
-      (0, _fs.truncateSync)('src/routes/index.ts');
-      (0, _fs.appendFileSync)('src/routes/index.ts', this.createRoutes.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'routes', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', 'index.ts'), this.createRoutes.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- routes.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/shared/app.ts')) {
-      (0, _fs.appendFileSync)('src/shared/app.ts', this.createApp.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'app.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'app.ts'), this.createApp.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/app.ts');
-      (0, _fs.appendFileSync)('src/shared/app.ts', this.createApp.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'app.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'app.ts'), this.createApp.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- app.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/shared/server.ts')) {
-      (0, _fs.appendFileSync)('src/shared/server.ts', this.createServer.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'server.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'server.ts'), this.createServer.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/server.ts');
-      (0, _fs.appendFileSync)('src/shared/server.ts', this.createServer.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'server.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'server.ts'), this.createServer.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- server.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/utils/decimalAdjust.ts')) {
-      (0, _fs.appendFileSync)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'utils', 'decimalAdjust.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'decimalAdjust.ts'), this.createDecimaAdjust.execute());
     } else {
-      (0, _fs.truncateSync)('src/utils/decimalAdjust.ts');
-      (0, _fs.appendFileSync)('src/utils/decimalAdjust.ts', this.createDecimaAdjust.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'utils', 'decimalAdjust.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'decimalAdjust.ts'), this.createDecimaAdjust.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- decimalAdjust.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/utils/domainsManager.ts')) {
-      (0, _fs.appendFileSync)('src/utils/domainsManager.ts', this.createDomainsManager.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'utils', 'domainsManager.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'domainsManager.ts'), this.createDomainsManager.execute());
     } else {
-      (0, _fs.truncateSync)('src/utils/domainsManager.ts');
-      (0, _fs.appendFileSync)('src/utils/domainsManager.ts', this.createDomainsManager.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'utils', 'domainsManager.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'domainsManager.ts'), this.createDomainsManager.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domainsManager.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('src/utils/createNormalizeQueryLink.ts')) {
-      (0, _fs.appendFileSync)('src/utils/createNormalizeQueryLink.ts', this.createNormalizeQueryLink.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
     } else {
-      (0, _fs.truncateSync)('src/utils/createNormalizeQueryLink.ts');
-      (0, _fs.appendFileSync)('src/utils/createNormalizeQueryLink.ts', this.createNormalizeQueryLink.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- createNormalizeQueryLink.ts ${this.messages.created}`, '\x1b[0m');
   }

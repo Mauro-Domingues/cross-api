@@ -12,6 +12,7 @@ var _RDStationLead = require("../../../../dist/templates/providers/implementatio
 var _leadIndex = require("../../../../dist/templates/providers/leadIndex");
 var _ILead = require("../../../../dist/templates/providers/models/ILead");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeLeadProvider {
   constructor() {
@@ -31,72 +32,72 @@ class MakeLeadProvider {
     this.createLeadIndex = new _leadIndex.CreateLeadIndex();
   }
   async execute() {
-    if (!(0, _fs.existsSync)('src')) {
-      (0, _fs.mkdirSync)('src');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src'));
     }
-    if (!(0, _fs.existsSync)('src/config')) {
-      (0, _fs.mkdirSync)('src/config');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'config'));
     }
-    if (!(0, _fs.existsSync)('src/shared')) {
-      (0, _fs.mkdirSync)('src/shared');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container')) {
-      (0, _fs.mkdirSync)('src/shared/container');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/dtos')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider/dtos');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/fakes')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider/fakes');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/implementations')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider/implementations');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations'));
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/models')) {
-      (0, _fs.mkdirSync)('src/shared/container/providers/LeadProvider/models');
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models'))) {
+      (0, _fs.mkdirSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models'));
     }
-    (0, _fs.appendFileSync)('src/shared/container/providers/index.ts', `\nimport './LeadProvider';`);
-    if (!(0, _fs.existsSync)('src/config/lead.ts')) {
-      (0, _fs.appendFileSync)('src/config/lead.ts', this.createLeadConfig.execute());
+    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), `\nimport './LeadProvider';`);
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'lead.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'lead.ts'), this.createLeadConfig.execute());
     } else {
-      (0, _fs.truncateSync)('src/config/lead.ts');
-      (0, _fs.appendFileSync)('src/config/lead.ts', this.createLeadConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'config', 'lead.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'lead.ts'), this.createLeadConfig.execute());
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'), this.createILeadDTO.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/dtos/ICreateLeadDTO.ts', this.createILeadDTO.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'), this.createILeadDTO.execute());
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'), this.createFakeLead.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/fakes/FakeLeadProvider.ts', this.createFakeLead.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'), this.createFakeLead.execute());
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations', 'RDStationProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations', 'RDStationProvider.ts'), this.createRDStationLead.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/implementations/RDStationProvider.ts', this.createRDStationLead.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations', 'RDStationProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'implementations', 'RDStationProvider.ts'), this.createRDStationLead.execute());
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models', 'ILeadProvider.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models', 'ILeadProvider.ts'), this.createILead.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/models/ILeadProvider.ts', this.createILead.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models', 'ILeadProvider.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'models', 'ILeadProvider.ts'), this.createILead.execute());
     }
-    if (!(0, _fs.existsSync)('src/shared/container/providers/LeadProvider/index.ts')) {
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'), this.createLeadIndex.execute());
     } else {
-      (0, _fs.truncateSync)('src/shared/container/providers/LeadProvider/index.ts');
-      (0, _fs.appendFileSync)('src/shared/container/providers/LeadProvider/index.ts', this.createLeadIndex.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'), this.createLeadIndex.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- LeadProvider ${this.messages.created}`, '\x1b[0m');
   }

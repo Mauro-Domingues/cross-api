@@ -1,5 +1,6 @@
 import { IModuleNamesDTO } from '@tools/names';
 import { appendFileSync, existsSync, readFileSync, truncateSync } from 'fs';
+import { resolve } from 'path';
 
 export class CreateRegister {
   private comand: string[] | undefined;
@@ -24,37 +25,89 @@ export class CreateRegister {
   private makeProvider(): void {
     if (this.providerName && this.fatherNames) {
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
       );
       if (
         existsSync(
-          `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+          resolve(
+            'src',
+            'modules',
+            this.fatherNames.pluralLowerModuleName,
+            'providers',
+            'index.ts',
+          ),
         )
       ) {
         const providerInjection = readFileSync(
-          `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+          resolve(
+            'src',
+            'modules',
+            this.fatherNames.pluralLowerModuleName,
+            'providers',
+            'index.ts',
+          ),
           'ascii',
         );
         appendFileSync(
-          './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+          resolve(
+            'node_modules',
+            'cross-api',
+            'dist',
+            'tools',
+            'lastModification',
+            'modules',
+            'routeInjection.log',
+          ),
           providerInjection,
         );
       } else {
         appendFileSync(
-          './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+          resolve(
+            'node_modules',
+            'cross-api',
+            'dist',
+            'tools',
+            'lastModification',
+            'modules',
+            'routeInjection.log',
+          ),
           '',
         );
       }
     } else if (this.providerName) {
       const providerInjection = readFileSync(
-        'src/shared/container/providers/index.ts',
+        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
         'ascii',
       );
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
       );
       appendFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/providers/providerInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
         providerInjection,
       );
     }
@@ -63,28 +116,70 @@ export class CreateRegister {
   private makeModule(): void {
     if (this.names && this.fatherNames) {
       const moduleInjection = readFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         'ascii',
       );
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
       );
       appendFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
         moduleInjection,
       );
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
       );
       if (
-        existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
+        existsSync(
+          resolve(
+            'src',
+            'routes',
+            `${this.fatherNames.lowerModuleName}Router.ts`,
+          ),
+        )
       ) {
         const routeInjection = readFileSync(
-          `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
+          resolve(
+            'src',
+            'routes',
+            `${this.fatherNames.lowerModuleName}Router.ts`,
+          ),
           'ascii',
         );
         appendFileSync(
-          './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+          resolve(
+            'node_modules',
+            'cross-api',
+            'dist',
+            'tools',
+            'lastModification',
+            'modules',
+            'routeInjection.log',
+          ),
           routeInjection,
         );
       } else {
@@ -95,28 +190,71 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 export default ${this.fatherNames.lowerModuleName}Router;
 `;
         appendFileSync(
-          './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+          resolve(
+            'node_modules',
+            'cross-api',
+            'dist',
+            'tools',
+            'lastModification',
+            'modules',
+            'routeInjection.log',
+          ),
           routeInjection,
         );
       }
     } else if (this.names) {
       const moduleInjection = readFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         'ascii',
       );
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
       );
       appendFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/moduleInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'moduleInjection.log',
+        ),
         moduleInjection,
       );
-      const routeInjection = readFileSync('src/routes/index.ts', 'ascii');
+      const routeInjection = readFileSync(
+        resolve('src', 'routes', 'index.ts'),
+        'ascii',
+      );
       truncateSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
       );
       appendFileSync(
-        './node_modules/cross-api/dist/tools/lastModification/modules/routeInjection.log',
+        resolve(
+          'node_modules',
+          'cross-api',
+          'dist',
+          'tools',
+          'lastModification',
+          'modules',
+          'routeInjection.log',
+        ),
         routeInjection,
       );
     }
@@ -130,10 +268,26 @@ export default ${this.fatherNames.lowerModuleName}Router;
     }
 
     truncateSync(
-      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      resolve(
+        'node_modules',
+        'cross-api',
+        'dist',
+        'tools',
+        'lastModification',
+        'comands',
+        'comands.log',
+      ),
     );
     appendFileSync(
-      './node_modules/cross-api/dist/tools/lastModification/comands/comands.log',
+      resolve(
+        'node_modules',
+        'cross-api',
+        'dist',
+        'tools',
+        'lastModification',
+        'comands',
+        'comands.log',
+      ),
       String(this.comand),
     );
   }

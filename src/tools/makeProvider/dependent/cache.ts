@@ -7,6 +7,7 @@ import { CreateRedisCache } from '@templates/providers/implementations/RedisCach
 import { CreateICache } from '@templates/providers/models/ICache';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { resolve } from 'path';
 
 export class MakeDependentCacheProvider {
   private fatherNames:
@@ -42,168 +43,386 @@ export class MakeDependentCacheProvider {
       throw new Error();
     }
 
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
-    if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
-    }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         '',
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+        ),
       );
     }
     appendFileSync(
-      `src/shared/container/index.ts`,
+      resolve('src', 'shared', 'container', 'index.ts'),
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
     appendFileSync(
-      `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
       `\nimport './CacheProvider';`,
     );
-    if (!existsSync('src/config/cache.ts')) {
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/cache.ts');
-      appendFileSync('src/config/cache.ts', this.createCacheConfig.execute());
+      truncateSync(resolve('src', 'config', 'cache.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'cache.ts'),
+        this.createCacheConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
         this.createFakeRedis.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/fakes/FakeCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ),
         this.createFakeRedis.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
         this.createRedisCache.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/implementations/RedisCacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ),
         this.createRedisCache.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
         this.createICache.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/models/ICacheProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ),
         this.createICache.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
         this.createCacheIndex.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/CacheProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ),
         this.createCacheIndex.execute(),
       );
     }

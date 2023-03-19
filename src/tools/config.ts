@@ -1,7 +1,8 @@
-import { existsSync, unlink, writeFileSync } from 'fs';
+import { existsSync, unlinkSync, writeFileSync } from 'fs';
 import { exec } from 'shelljs';
 import { Config } from '@templates/assets/config';
 import { createInterface } from 'readline';
+import { resolve } from 'path';
 import userJson from '../../../../package.json';
 import { ConfigLanguage } from './languageConfig';
 
@@ -97,7 +98,7 @@ export class ConfigJson {
       start: 'node dist/shared/server.js',
     };
 
-    writeFileSync('./package.json', JSON.stringify(this.userJson), {
+    writeFileSync(resolve('package.json'), JSON.stringify(this.userJson), {
       encoding: 'utf8',
       flag: 'w',
     });
@@ -200,10 +201,8 @@ export class ConfigJson {
     );
     console.log('');
 
-    if (existsSync('package-lock.json')) {
-      unlink('package-lock.json', error => {
-        if (error) throw error;
-      });
+    if (existsSync(resolve('package-lock.json'))) {
+      unlinkSync(resolve('package-lock.json'));
     }
 
     this.config.execute();

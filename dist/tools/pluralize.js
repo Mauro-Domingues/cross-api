@@ -45,7 +45,7 @@ class Pluralize {
     if (word === word.toLowerCase()) return token.toLowerCase();
     if (word === word.toUpperCase()) return token.toUpperCase();
     if (word[0] === word[0].toUpperCase()) {
-      return token.charAt(0).toUpperCase() + token.substr(1).toLowerCase();
+      return token.charAt(0).toUpperCase() + token.replace(token.charAt(0), token.charAt(0).toUpperCase());
     }
     return token.toLowerCase();
   }

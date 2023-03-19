@@ -8,6 +8,7 @@ import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { resolve } from 'path';
 
 export class MakeDependentLeadProvider {
   private messages: typeof messages;
@@ -45,195 +46,459 @@ export class MakeDependentLeadProvider {
       throw new Error();
     }
 
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
-    if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
-    }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         '',
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+        ),
       );
     }
     appendFileSync(
-      `src/shared/container/index.ts`,
+      resolve('src', 'shared', 'container', 'index.ts'),
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
     appendFileSync(
-      `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
       `\nimport './LeadProvider';`,
     );
-    if (!existsSync('src/config/lead.ts')) {
-      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
+    if (!existsSync(resolve('src', 'config', 'lead.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'lead.ts'),
+        this.createLeadConfig.execute(),
+      );
     } else {
-      truncateSync('src/config/lead.ts');
-      appendFileSync('src/config/lead.ts', this.createLeadConfig.execute());
+      truncateSync(resolve('src', 'config', 'lead.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'lead.ts'),
+        this.createLeadConfig.execute(),
+      );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ),
         this.createILeadDTO.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/dtos/ICreateLeadDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ),
         this.createILeadDTO.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ),
         this.createFakeLead.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/fakes/FakeLeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ),
         this.createFakeLead.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ),
         this.createRDStationLead.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/implementations/RDStationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ),
         this.createRDStationLead.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ),
         this.createILead.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/models/ILeadProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ),
         this.createILead.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'index.ts',
+        ),
         this.createLeadIndex.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/LeadProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'index.ts',
+        ),
         this.createLeadIndex.execute(),
       );
     }

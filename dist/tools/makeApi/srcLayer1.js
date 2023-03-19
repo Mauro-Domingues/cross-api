@@ -17,6 +17,7 @@ var _prettierConfig = require("../../../dist/templates/root/prettierConfig");
 var _tsConfig = require("../../../dist/templates/root/tsConfig");
 var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _fs = require("fs");
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeFirstLayer {
   constructor() {
@@ -46,88 +47,88 @@ class MakeFirstLayer {
     this.createBabelConfig = new _babelConfig.CreateBabelConfig();
   }
   async execute() {
-    if (!(0, _fs.existsSync)('.editorconfig')) {
-      (0, _fs.appendFileSync)('.editorconfig', this.createEditorConfig.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.editorconfig'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.editorconfig'), this.createEditorConfig.execute());
     } else {
-      (0, _fs.truncateSync)('.editorconfig');
-      (0, _fs.appendFileSync)('.editorconfig', this.createEditorConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.editorconfig'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.editorconfig'), this.createEditorConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .editorconfig ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('.env')) {
-      (0, _fs.appendFileSync)('.env', this.createEnv.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.env'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.env'), this.createEnv.execute());
     } else {
-      (0, _fs.truncateSync)('.env');
-      (0, _fs.appendFileSync)('.env', this.createEnv.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.env'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.env'), this.createEnv.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .env ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('.env.template')) {
-      (0, _fs.appendFileSync)('.env.template', this.createEnv.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.env.template'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.env.template'), this.createEnv.execute());
     } else {
-      (0, _fs.truncateSync)('.env.template');
-      (0, _fs.appendFileSync)('.env.template', this.createEnv.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.env.template'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.env.template'), this.createEnv.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .env.template ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('.eslintignore')) {
-      (0, _fs.appendFileSync)('.eslintignore', this.createEsLintIgnore.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.eslintignore'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.eslintignore'), this.createEsLintIgnore.execute());
     } else {
-      (0, _fs.truncateSync)('.eslintignore');
-      (0, _fs.appendFileSync)('.eslintignore', this.createEsLintIgnore.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.eslintignore'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.eslintignore'), this.createEsLintIgnore.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .eslintignore ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('.eslintrc.json')) {
-      (0, _fs.appendFileSync)('.eslintrc.json', this.createEsLintrcJson.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.eslintrc.json'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.eslintrc.json'), this.createEsLintrcJson.execute());
     } else {
-      (0, _fs.truncateSync)('.eslintrc.json');
-      (0, _fs.appendFileSync)('.eslintrc.json', this.createEsLintrcJson.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.eslintrc.json'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.eslintrc.json'), this.createEsLintrcJson.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .eslintrc.json ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('.gitignore')) {
-      (0, _fs.appendFileSync)('.gitignore', this.createGitIgnore.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('.gitignore'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('.gitignore'), this.createGitIgnore.execute());
     } else {
-      (0, _fs.truncateSync)('.gitignore');
-      (0, _fs.appendFileSync)('.gitignore', this.createGitIgnore.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('.gitignore'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('.gitignore'), this.createGitIgnore.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- .gitignore ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('babel.config.js')) {
-      (0, _fs.appendFileSync)('babel.config.js', this.createBabelConfig.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('babel.config.js'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('babel.config.js'), this.createBabelConfig.execute());
     } else {
-      (0, _fs.truncateSync)('babel.config.js');
-      (0, _fs.appendFileSync)('babel.config.js', this.createBabelConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('babel.config.js'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('babel.config.js'), this.createBabelConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- babel.config.js ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('docker-compose.yml')) {
-      (0, _fs.appendFileSync)('docker-compose.yml', this.createDockerCompose.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('docker-compose.yml'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('docker-compose.yml'), this.createDockerCompose.execute());
     } else {
-      (0, _fs.truncateSync)('docker-compose.yml');
-      (0, _fs.appendFileSync)('docker-compose.yml', this.createDockerCompose.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('docker-compose.yml'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('docker-compose.yml'), this.createDockerCompose.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- docker-compose.yml ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('jest.config.ts')) {
-      (0, _fs.appendFileSync)('jest.config.ts', this.createJestConfig.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('jest.config.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('jest.config.ts'), this.createJestConfig.execute());
     } else {
-      (0, _fs.truncateSync)('jest.config.ts');
-      (0, _fs.appendFileSync)('jest.config.ts', this.createJestConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('jest.config.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('jest.config.ts'), this.createJestConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- jest.config.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('nodemon.json')) {
-      (0, _fs.appendFileSync)('nodemon.json', this.createNodemonJson.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('nodemon.json'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('nodemon.json'), this.createNodemonJson.execute());
     } else {
-      (0, _fs.truncateSync)('nodemon.json');
-      (0, _fs.appendFileSync)('nodemon.json', this.createNodemonJson.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('nodemon.json'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('nodemon.json'), this.createNodemonJson.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- nodemon.json ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('prettier.config.js')) {
-      (0, _fs.appendFileSync)('prettier.config.js', this.createPrettierConfig.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('prettier.config.js'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('prettier.config.js'), this.createPrettierConfig.execute());
     } else {
-      (0, _fs.truncateSync)('prettier.config.js');
-      (0, _fs.appendFileSync)('prettier.config.js', this.createPrettierConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('prettier.config.js'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('prettier.config.js'), this.createPrettierConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- prettier.config.js ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)('tsconfig.json')) {
-      (0, _fs.appendFileSync)('tsconfig.json', this.createTsConfig.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('tsconfig.json'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('tsconfig.json'), this.createTsConfig.execute());
     } else {
-      (0, _fs.truncateSync)('tsconfig.json');
-      (0, _fs.appendFileSync)('tsconfig.json', this.createTsConfig.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('tsconfig.json'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('tsconfig.json'), this.createTsConfig.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- tsconfig.json ${this.messages.created}`, '\x1b[0m');
   }

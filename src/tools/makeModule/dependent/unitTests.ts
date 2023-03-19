@@ -11,6 +11,7 @@ import { UpdateSpecDependentController } from '@templates/modules/services/updat
 import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
 import { IModuleNamesDTO } from '@tools/names';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeDependentUnitTests {
   private messages: typeof messages;
@@ -89,181 +90,461 @@ export class MakeDependentUnitTests {
 
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.createSpecDependentController.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.createSpecDependentController.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.createSpecDependentService.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.createSpecDependentService.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.deleteSpecDependentController.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.deleteSpecDependentController.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.deleteSpecDependentService.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.deleteSpecDependentService.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.listSpecDependentController.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.listSpecDependentController.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.listSpecDependentService.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.listSpecDependentService.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.showSpecDependentController.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.showSpecDependentController.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.showSpecDependentService.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.showSpecDependentService.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.updateSpecDependentController.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.spec.ts`,
+        ),
         this.updateSpecDependentController.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.spec.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.updateSpecDependentService.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.spec.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.spec.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.spec.ts`,
+        ),
         this.updateSpecDependentService.execute(),
       );
     }

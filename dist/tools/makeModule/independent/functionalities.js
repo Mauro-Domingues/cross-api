@@ -16,6 +16,7 @@ var _showService = require("../../../../dist/templates/modules/services/show/sho
 var _updateController = require("../../../../dist/templates/modules/services/update/updateController");
 var _updateService = require("../../../../dist/templates/modules/services/update/updateService");
 var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _path = require("path");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeFunctionalities {
   constructor(names) {
@@ -49,65 +50,65 @@ class MakeFunctionalities {
       console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
       throw new Error();
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`, this.createController.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Controller.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Controller.ts`), this.createController.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller.ts`, this.createController.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Controller.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Controller.ts`), this.createController.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`, this.createService.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Service.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Service.ts`), this.createService.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Service.ts`, this.createService.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Service.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `create${this.names.upperModuleName}`, `Create${this.names.upperModuleName}Service.ts`), this.createService.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`, this.deleteController.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Controller.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Controller.ts`), this.deleteController.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller.ts`, this.deleteController.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Controller.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Controller.ts`), this.deleteController.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`, this.deleteService.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Service.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Service.ts`), this.deleteService.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Service.ts`, this.deleteService.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Service.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `delete${this.names.upperModuleName}`, `Delete${this.names.upperModuleName}Service.ts`), this.deleteService.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`, this.listController.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Controller.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Controller.ts`), this.listController.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller.ts`, this.listController.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Controller.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Controller.ts`), this.listController.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`, this.listService.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Service.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Service.ts`), this.listService.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Service.ts`, this.listService.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Service.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `list${this.names.upperModuleName}`, `List${this.names.upperModuleName}Service.ts`), this.listService.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`, this.showController.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Controller.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Controller.ts`), this.showController.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller.ts`, this.showController.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Controller.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Controller.ts`), this.showController.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`, this.showService.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Service.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Service.ts`), this.showService.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Service.ts`, this.showService.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Service.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `show${this.names.upperModuleName}`, `Show${this.names.upperModuleName}Service.ts`), this.showService.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`, this.updateController.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Controller.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Controller.ts`), this.updateController.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller.ts`, this.updateController.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Controller.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Controller.ts`), this.updateController.execute());
     }
-    if (!(0, _fs.existsSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`)) {
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`, this.updateService.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Service.ts`))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Service.ts`), this.updateService.execute());
     } else {
-      (0, _fs.truncateSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`);
-      (0, _fs.appendFileSync)(`src/modules/${this.names.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Service.ts`, this.updateService.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Service.ts`));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.names.pluralLowerModuleName, 'services', `update${this.names.upperModuleName}`, `Update${this.names.upperModuleName}Service.ts`), this.updateService.execute());
     }
   }
 }

@@ -12,6 +12,7 @@ import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDepend
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
 import messages from '@tools/messages';
+import { resolve } from 'path';
 
 export class MakeDependentInfra {
   private messages: typeof messages;
@@ -80,127 +81,268 @@ export class MakeDependentInfra {
       throw new Error();
     }
 
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
 
-    if (!existsSync('src/routes/index.ts')) {
-      appendFileSync('src/routes/index.ts', this.createRoutes.execute());
+    if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
+      appendFileSync(
+        resolve('src', 'routes', 'index.ts'),
+        this.createRoutes.execute(),
+      );
     }
 
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ),
         this.createModuleDTO.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ),
         this.createModuleDTO.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ),
         this.createEntity.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ),
         this.createEntity.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createDependentRepository.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createDependentRepository.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createIDependentRepository.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createIDependentRepository.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createDependentFakeRepository.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ),
         this.createDependentFakeRepository.execute(),
       );
     }
 
     if (
-      !existsSync(`src/routes/${this.fatherNames.lowerModuleName}Router.ts`)
+      !existsSync(
+        resolve(
+          'src',
+          'routes',
+          `${this.fatherNames.lowerModuleName}Router.ts`,
+        ),
+      )
     ) {
       appendFileSync(
-        `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
+        resolve(
+          'src',
+          'routes',
+          `${this.fatherNames.lowerModuleName}Router.ts`,
+        ),
         this.createFullDependentRoute.execute(),
       );
       appendFileSync(
-        `src/routes/index.ts`,
+        resolve('src', 'routes', 'index.ts'),
         this.createIndexDependentRoute.execute(),
       );
     } else {
       appendFileSync(
-        `src/routes/${this.fatherNames.lowerModuleName}Router.ts`,
+        resolve(
+          'src',
+          'routes',
+          `${this.fatherNames.lowerModuleName}Router.ts`,
+        ),
         this.createDependentRoute.execute(),
       );
     }
     appendFileSync(
-      'src/shared/container/index.ts',
+      resolve('src', 'shared', 'container', 'index.ts'),
       this.createDependentInjection.execute(),
     );
   }

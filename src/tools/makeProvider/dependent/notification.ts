@@ -8,6 +8,7 @@ import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
 import messages from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { resolve } from 'path';
 
 export class MakeDependentNotificationProvider {
   private fatherNames:
@@ -45,201 +46,459 @@ export class MakeDependentNotificationProvider {
       throw new Error();
     }
 
-    if (!existsSync('src')) {
-      mkdirSync('src');
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
     }
-    if (!existsSync('src/config')) {
-      mkdirSync('src/config');
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
     }
-    if (!existsSync('src/modules')) {
-      mkdirSync('src/modules');
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
     }
-    if (!existsSync('src/shared')) {
-      mkdirSync('src/shared');
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
     }
-    if (!existsSync('src/shared/container')) {
-      mkdirSync('src/shared/container');
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
     }
-    if (!existsSync('src/shared/container/index.ts')) {
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
-        'src/shared/container/index.ts',
+        resolve('src', 'shared', 'container', 'index.ts'),
         this.createContainer.execute(),
       );
     }
-    if (!existsSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`)) {
-      mkdirSync(`src/modules/${this.fatherNames.pluralLowerModuleName}`);
-    }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers`,
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
         '',
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+        ),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+        ),
       )
     ) {
       mkdirSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+        ),
       );
     }
     appendFileSync(
-      `src/shared/container/index.ts`,
+      resolve('src', 'shared', 'container', 'index.ts'),
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
     appendFileSync(
-      `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/index.ts`,
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
       `\nimport './NotificationProvider';`,
     );
-    if (!existsSync('src/config/notification.ts')) {
+    if (!existsSync(resolve('src', 'config', 'notification.ts'))) {
       appendFileSync(
-        'src/config/notification.ts',
+        resolve('src', 'config', 'notification.ts'),
         this.createNotificationConfig.execute(),
       );
     } else {
-      truncateSync('src/config/notification.ts');
+      truncateSync(resolve('src', 'config', 'notification.ts'));
       appendFileSync(
-        'src/config/notification.ts',
+        resolve('src', 'config', 'notification.ts'),
         this.createNotificationConfig.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
         this.createINotificationDTO.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/dtos/ISendNotificationDTO.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ),
         this.createINotificationDTO.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
         this.createFakeNotification.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/fakes/FakeNotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ),
         this.createFakeNotification.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
         this.createOneSignalNotification.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/implementations/OneSignalProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ),
         this.createOneSignalNotification.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
         this.createINotification.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/models/INotificationProvider.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ),
         this.createINotification.execute(),
       );
     }
     if (
       !existsSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
       )
     ) {
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
         this.createNotificationIndex.execute(),
       );
     } else {
       truncateSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
       );
       appendFileSync(
-        `src/modules/${this.fatherNames.pluralLowerModuleName}/providers/NotificationProvider/index.ts`,
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ),
         this.createNotificationIndex.execute(),
       );
     }
