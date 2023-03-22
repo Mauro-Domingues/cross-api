@@ -12,7 +12,7 @@ var _messages = _interopRequireDefault(require("../dist/tools/messages"));
 var _save = require("../dist/tools/lastModification/save");
 var _delete = require("../dist/tools/lastModification/delete");
 var _names = require("../dist/tools/names");
-var _child_process = require("child_process");
+var _shell = require("../dist/tools/shell");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class Index {
   constructor() {
@@ -22,6 +22,7 @@ class Index {
     this.father = process.argv[4];
     this.messages = void 0;
     this.getNames = void 0;
+    this.shell = void 0;
     this.getFatherNames = void 0;
     this.deleteRegister = void 0;
     this.createRegister = void 0;
@@ -33,6 +34,7 @@ class Index {
     this.configJson = void 0;
     this.board = void 0;
     this.messages = _messages.default;
+    this.shell = new _shell.Shell();
     this.getNames = new _names.GetNames(this.arg);
     this.getFatherNames = new _names.GetNames(this.father);
     this.deleteRegister = new _delete.DeleteRegister();
@@ -44,11 +46,6 @@ class Index {
     this.configLanguage = new _languageConfig.ConfigLanguage();
     this.configJson = new _config.ConfigJson();
     this.board = new _board.Board();
-  }
-  execComand(cmd) {
-    return (0, _child_process.execSync)(cmd, {
-      encoding: 'utf-8'
-    });
   }
   execute() {
     if (this.comand) {
@@ -78,10 +75,10 @@ class Index {
           this.createProvider.execute();
           break;
         case 'migration:generate':
-          this.execComand('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
+          this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
           break;
         case 'migration:run':
-          this.execComand('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+          this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
           break;
         case 'revert':
           this.deleteRegister.execute();

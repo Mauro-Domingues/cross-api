@@ -11,7 +11,7 @@ import messages from '@tools/messages';
 import { CreateRegister } from '@tools/lastModification/save';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
-import { execSync } from 'child_process';
+import { Shell } from '@tools/shell';
 
 class Index {
   private fullComand: string[] = process.argv.slice(2);
@@ -20,6 +20,7 @@ class Index {
   private father: string = process.argv[4];
   private messages: typeof messages;
   private getNames: GetNames;
+  private shell: Shell;
   private getFatherNames: GetNames;
   private deleteRegister: DeleteRegister;
   private createRegister: CreateRegister;
@@ -33,6 +34,7 @@ class Index {
 
   constructor() {
     this.messages = messages;
+    this.shell = new Shell();
     this.getNames = new GetNames(this.arg);
     this.getFatherNames = new GetNames(this.father);
     this.deleteRegister = new DeleteRegister();
@@ -55,10 +57,6 @@ class Index {
     this.configLanguage = new ConfigLanguage();
     this.configJson = new ConfigJson();
     this.board = new Board();
-  }
-
-  private execComand(cmd: string) {
-    return execSync(cmd, { encoding: 'utf-8' });
   }
 
   public execute(): void {
@@ -89,12 +87,12 @@ class Index {
           this.createProvider.execute();
           break;
         case 'migration:generate':
-          this.execComand(
+          this.shell.execute(
             'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
           );
           break;
         case 'migration:run':
-          this.execComand(
+          this.shell.execute(
             'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
           );
           break;

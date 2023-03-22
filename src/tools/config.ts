@@ -1,13 +1,14 @@
 import { existsSync, unlinkSync, writeFileSync } from 'fs';
-import { execSync } from 'child_process';
 import { Config } from '@templates/assets/config';
 import { createInterface } from 'readline';
 import { resolve } from 'path';
+import { Shell } from '@tools/shell';
+import { ConfigLanguage } from '@tools/languageConfig';
 import userJson from '../../../../package.json';
-import { ConfigLanguage } from './languageConfig';
 
 export class ConfigJson {
   private config: Config;
+  private shell: Shell;
   private configLanguage: ConfigLanguage;
   private userJson: typeof userJson;
   private dependencies: string[];
@@ -15,6 +16,7 @@ export class ConfigJson {
 
   constructor() {
     this.configLanguage = new ConfigLanguage();
+    this.shell = new Shell();
     this.config = new Config();
     this.userJson = userJson;
     this.dependencies = [
@@ -88,10 +90,6 @@ export class ConfigJson {
     ];
   }
 
-  private execComand(cmd: string) {
-    return execSync(cmd, { encoding: 'utf-8' });
-  }
-
   private patchPackage(): void {
     this.userJson.scripts = {
       ...this.userJson.scripts,
@@ -116,7 +114,7 @@ export class ConfigJson {
       '\x1b[0m',
     );
     console.log('');
-    this.execComand('npm install yarn --location=global');
+    this.shell.execute('npm install yarn --location=global');
     console.log(
       '\x1b[38;2;255;255;0m',
       `- yarn ${this.configLanguage.messages.installed}`,
@@ -137,7 +135,7 @@ export class ConfigJson {
         return `${acc} ${dependency}`;
       },
     );
-    this.execComand(`yarn add ${dependenciesToInstall}`);
+    this.shell.execute(`yarn add ${dependenciesToInstall}`);
     this.dependencies.forEach(dependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
@@ -161,7 +159,7 @@ export class ConfigJson {
         return `${acc} ${devDependency}`;
       },
     );
-    this.execComand(`yarn add ${devDependenciesToInstall} -D`);
+    this.shell.execute(`yarn add ${devDependenciesToInstall} -D`);
     this.devDependencies.forEach(devDependency => {
       console.log(
         '\x1b[38;2;255;255;0m',
