@@ -4,16 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.DeleteRegister = void 0;
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _path = require("path");
 var _fs = require("fs");
 var _names = require("../../../dist/tools/names");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class DeleteRegister {
   constructor() {
     this.messages = void 0;
     this.providers = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',

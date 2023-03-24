@@ -10,9 +10,8 @@ var _fakeMailTemplate = require("../../../../dist/templates/providers/fakes/fake
 var _MailTemplate = require("../../../../dist/templates/providers/implementations/MailTemplate");
 var _mailTemplateIndex = require("../../../../dist/templates/providers/mailTemplateIndex");
 var _IMailTemplate = require("../../../../dist/templates/providers/models/IMailTemplate");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeMailTemplateProvider {
   constructor() {
     this.messages = void 0;
@@ -21,7 +20,7 @@ class MakeMailTemplateProvider {
     this.createMailTemplate = void 0;
     this.createFakeMailTemplate = void 0;
     this.createMailTemplateIndex = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createIMailTemplate = new _IMailTemplate.CreateIMailTemplate();
     this.createIMailTemplateDTO = new _IParseMailTemplateDTO.CreateIMailTemplateDTO();
     this.createMailTemplate = new _MailTemplate.CreateMailTemplate();

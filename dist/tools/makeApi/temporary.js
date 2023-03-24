@@ -5,17 +5,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MakeTemporary = void 0;
 var _fs = require("fs");
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _authConfig = require("../../../dist/templates/providers/config/authConfig");
 var _corsConfig = require("../../../dist/templates/providers/config/corsConfig");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeTemporary {
   constructor() {
     this.messages = void 0;
     this.createCorsConfig = void 0;
     this.createAuthConfig = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createCorsConfig = new _corsConfig.CreateCorsConfig();
     this.createAuthConfig = new _authConfig.CreateAuthConfig();
   }

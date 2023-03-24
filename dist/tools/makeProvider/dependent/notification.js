@@ -12,9 +12,8 @@ var _fakeNotification = require("../../../../dist/templates/providers/fakes/fake
 var _OneSignalNotification = require("../../../../dist/templates/providers/implementations/OneSignalNotification");
 var _INotification = require("../../../../dist/templates/providers/models/INotification");
 var _notificationIndex = require("../../../../dist/templates/providers/notificationIndex");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentNotificationProvider {
   constructor(fatherNames) {
     this.fatherNames = void 0;
@@ -27,7 +26,7 @@ class MakeDependentNotificationProvider {
     this.createNotificationIndex = void 0;
     this.createContainer = void 0;
     this.fatherNames = fatherNames;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createINotification = new _INotification.CreateINotification();
     this.createINotificationDTO = new _INotificationDTO.CreateINotificationDTO();
     this.createOneSignalNotification = new _OneSignalNotification.CreateOneSignalNotification();

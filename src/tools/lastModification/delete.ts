@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 import {
   appendFileSync,
@@ -11,11 +11,11 @@ import {
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 
 export class DeleteRegister {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private providers: { [key: string]: string };
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',

@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { MakeCacheProvider } from './cache';
 import { MakeCryptoProvider } from './crypto';
 import { MakeHashProvider } from './hash';

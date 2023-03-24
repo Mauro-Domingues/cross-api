@@ -4,13 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CreateRepository = void 0;
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _messages = require("../../../../dist/tools/messages");
 class CreateRepository {
   constructor(names) {
     this.messages = void 0;
     this.names = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
   }
   execute() {

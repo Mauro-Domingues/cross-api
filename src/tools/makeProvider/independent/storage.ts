@@ -5,11 +5,11 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeStorageProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIStorage: CreateIStorage;
   private createDiskStorage: CreateDiskStorage;
   private createS3Storage: CreateS3Storage;
@@ -18,7 +18,7 @@ export class MakeStorageProvider {
   private createStorageIndex: CreateStorageIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createDiskStorage = new CreateDiskStorage();
     this.createS3Storage = new CreateS3Storage();
     this.createFakeStorage = new CreateFakeStorage();

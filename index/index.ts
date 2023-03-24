@@ -7,18 +7,18 @@ import { ListProvider } from '@tools/listProvider';
 import { CreateApi } from '@tools/makeApi';
 import { CreateModule } from '@tools/makeModule';
 import { CreateProvider } from '@tools/makeProvider';
-import messages from '@tools/messages';
 import { CreateRegister } from '@tools/lastModification/save';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
 import { Shell } from '@tools/shell';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 class Index {
   private fullComand: string[] = process.argv.slice(2);
   private comand: string = process.argv[2];
   private arg: string = process.argv[3];
   private father: string = process.argv[4];
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private getNames: GetNames;
   private shell: Shell;
   private getFatherNames: GetNames;
@@ -33,7 +33,7 @@ class Index {
   private board: Board;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.shell = new Shell();
     this.getNames = new GetNames(this.arg);
     this.getFatherNames = new GetNames(this.father);

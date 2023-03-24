@@ -5,7 +5,7 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeRedis } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
@@ -13,7 +13,7 @@ export class MakeDependentCacheProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createICache: CreateICache;
   private createRedisCache: CreateRedisCache;
   private createFakeRedis: CreateFakeRedis;
@@ -23,7 +23,7 @@ export class MakeDependentCacheProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createICache = new CreateICache();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeRedis = new CreateFakeRedis();

@@ -4,53 +4,52 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Board = void 0;
-var _messages = _interopRequireDefault(require("../../dist/tools/messages"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _messages = require("../../dist/tools/messages");
 class Board {
   constructor() {
     this.messages = void 0;
     this.toolOptions = void 0;
     this.ormOptions = void 0;
     this.structureOptions = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.toolOptions = [{
       title: 'comands             ',
-      description: _messages.default.comands
+      description: messages.comands
     }, {
       title: 'language            ',
-      description: _messages.default.changeLanguage
+      description: messages.changeLanguage
     }, {
       title: 'list:provider       ',
-      description: _messages.default.listProvider
+      description: messages.listProvider
     }];
     this.ormOptions = [{
       title: 'migration:generate           ',
-      description: _messages.default.migrationGenerate
+      description: messages.migrationGenerate
     }, {
       title: 'migration:run                ',
-      description: _messages.default.migrationRun
+      description: messages.migrationRun
     }];
     this.structureOptions = [{
       title: 'make:api                     ',
-      description: _messages.default.makeApi
+      description: messages.makeApi
     }, {
       title: 'make:module [name]           ',
-      description: _messages.default.makeModule
+      description: messages.makeModule
     }, {
       title: 'make:module [name] [father]  ',
-      description: _messages.default.makeModuleD
+      description: messages.makeModuleD
     }, {
       title: 'make:provider [name]         ',
-      description: _messages.default.makeProvider
+      description: messages.makeProvider
     }, {
       title: 'make:provider [name] [father]',
-      description: _messages.default.makeProviderD
+      description: messages.makeProviderD
     }, {
       title: 'migration:generate           ',
-      description: _messages.default.migrationGenerate
+      description: messages.migrationGenerate
     }, {
       title: 'revert                       ',
-      description: _messages.default.undo
+      description: messages.undo
     }];
   }
   renderEmptyLine() {

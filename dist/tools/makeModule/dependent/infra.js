@@ -16,9 +16,8 @@ var _dependentRoutes = require("../../../../dist/templates/modules/routes/depend
 var _fullDependentRoutes = require("../../../../dist/templates/modules/routes/fullDependentRoutes");
 var _indexDependentRouter = require("../../../../dist/templates/modules/routes/indexDependentRouter");
 var _fs = require("fs");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentInfra {
   constructor(names, fatherNames) {
     this.messages = void 0;
@@ -35,7 +34,7 @@ class MakeDependentInfra {
     this.createModuleDTO = void 0;
     this.createRoutes = void 0;
     this.createContainer = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.createIndexDependentRoute = new _indexDependentRouter.CreateIndexDependentRoute(this.fatherNames);

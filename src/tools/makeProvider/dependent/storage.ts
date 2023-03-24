@@ -6,7 +6,7 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
@@ -14,7 +14,7 @@ export class MakeDependentStorageProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIStorage: CreateIStorage;
   private createDiskStorage: CreateDiskStorage;
   private createS3Storage: CreateS3Storage;
@@ -25,7 +25,7 @@ export class MakeDependentStorageProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createDiskStorage = new CreateDiskStorage();
     this.createS3Storage = new CreateS3Storage();
     this.createFakeStorage = new CreateFakeStorage();

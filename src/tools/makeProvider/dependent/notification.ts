@@ -6,7 +6,7 @@ import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotificat
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
@@ -14,7 +14,7 @@ export class MakeDependentNotificationProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createINotification: CreateINotification;
   private createINotificationDTO: CreateINotificationDTO;
   private createOneSignalNotification: CreateOneSignalNotification;
@@ -25,7 +25,7 @@ export class MakeDependentNotificationProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createINotification = new CreateINotification();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();

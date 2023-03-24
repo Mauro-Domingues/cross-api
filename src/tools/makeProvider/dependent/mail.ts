@@ -12,7 +12,7 @@ import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
@@ -20,7 +20,7 @@ export class MakeDependentMailProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIMail: CreateIMail;
   private createFakeMail: CreateFakeMail;
   private createIMailDTO: CreateIMailDTO;
@@ -37,7 +37,7 @@ export class MakeDependentMailProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createIMail = new CreateIMail();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();

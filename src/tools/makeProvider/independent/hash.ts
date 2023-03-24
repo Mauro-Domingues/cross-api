@@ -4,11 +4,11 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeHashProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIHash: CreateIHash;
   private createHash: CreateHash;
   private createFakeHash: CreateFakeHash;
@@ -16,7 +16,7 @@ export class MakeHashProvider {
   private createHashIndex: CreateHashIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createIHash = new CreateIHash();
     this.createHash = new CreateHash();
     this.createFakeHash = new CreateFakeHash();

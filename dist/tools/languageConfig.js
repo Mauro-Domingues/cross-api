@@ -8,9 +8,9 @@ var _fs = require("fs");
 var _readline = require("readline");
 var _enUs = require("../../dist/templates/assets/en-us");
 var _ptBr = require("../../dist/templates/assets/pt-br");
-var _messages = _interopRequireDefault(require("../../dist/tools/messages"));
+var _messages = require("../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _defaultLanguage = require("../../dist/templates/assets/defaultLanguage");
 class ConfigLanguage {
   constructor() {
     this.messages = void 0;
@@ -18,9 +18,11 @@ class ConfigLanguage {
     this.languageConfig = void 0;
     this.englishMessages = void 0;
     this.portugueseMessages = void 0;
+    this.createDefaultLanguage = void 0;
     this.englishMessages = new _enUs.EnglishMessages();
     this.portugueseMessages = new _ptBr.PortugueseMessages();
-    this.messages = _messages.default;
+    this.createDefaultLanguage = new _defaultLanguage.CreateDefaultLanguage();
+    this.messages = new _messages.Messages().execute();
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages'
@@ -73,16 +75,9 @@ class ConfigLanguage {
   }
   setLanguageOption() {
     (0, _fs.truncateSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'));
-    (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'), `"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = ${JSON.stringify(this.messages)};
-exports.default = _default;`);
+    (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'), this.createDefaultLanguage.execute(JSON.stringify(this.messages)));
   }
-  isLanguageOptionsKeyType(option) {
+  isLanguageOptionsKeyType(_option) {
     return true;
   }
   async execute() {

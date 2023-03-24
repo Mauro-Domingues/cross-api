@@ -4,14 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.MakeInfra = void 0;
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _fs = require("fs");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeInfra {
   constructor() {
     this.messages = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
   }
   async execute() {
     if (!(0, _fs.existsSync)((0, _path.resolve)('src'))) {

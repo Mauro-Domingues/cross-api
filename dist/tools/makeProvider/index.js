@@ -4,10 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CreateProvider = void 0;
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
 var _dependent = require("./dependent");
 var _independent = require("./independent");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class CreateProvider {
   constructor(providerName, fatherNames) {
     this.providerName = void 0;
@@ -25,7 +23,7 @@ class CreateProvider {
     } else if (this.providerName) {
       await this.makeProvider.execute();
     } else {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', _messages.default.providerNotFound, '\x1b[0m');
+      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', messages.providerNotFound, '\x1b[0m');
     }
   }
 }

@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class Pluralize {
   private uncontableData: (string | RegExp)[] = [
@@ -233,7 +233,7 @@ export class Pluralize {
     [/m[ae]n$/i, 'men'],
     ['thou', 'you'],
   ];
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private word: string | undefined;
   private pluralRules: [RegExp, string][];
   private singularRules: [RegExp, string][];
@@ -243,7 +243,7 @@ export class Pluralize {
 
   constructor(word: string | undefined) {
     this.word = word;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.pluralRules = [];
     this.singularRules = [];
     this.irregularPlurals = {};

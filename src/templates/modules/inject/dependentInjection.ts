@@ -1,8 +1,8 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateDependentInjection {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names:
     | Pick<IModuleNamesDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
     | undefined;
@@ -14,7 +14,7 @@ export class CreateDependentInjection {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
   }

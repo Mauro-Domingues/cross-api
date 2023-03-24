@@ -1,14 +1,14 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateIndexRoute {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names:
     | Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>
     | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
   }
 

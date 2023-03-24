@@ -15,10 +15,9 @@ var _jestConfig = require("../../../dist/templates/root/jestConfig");
 var _nodemonJson = require("../../../dist/templates/root/nodemonJson");
 var _prettierConfig = require("../../../dist/templates/root/prettierConfig");
 var _tsConfig = require("../../../dist/templates/root/tsConfig");
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _fs = require("fs");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeFirstLayer {
   constructor() {
     this.messages = void 0;
@@ -33,7 +32,7 @@ class MakeFirstLayer {
     this.createEditorConfig = void 0;
     this.createDockerCompose = void 0;
     this.createBabelConfig = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createTsConfig = new _tsConfig.CreateTsConfig();
     this.createPrettierConfig = new _prettierConfig.CreatePrettierConfig();
     this.createNodemonJson = new _nodemonJson.CreateNodemonJson();

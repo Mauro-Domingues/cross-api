@@ -4,11 +4,11 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeMailTemplateProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIMailTemplate: CreateIMailTemplate;
   private createIMailTemplateDTO: CreateIMailTemplateDTO;
   private createMailTemplate: CreateMailTemplate;
@@ -16,7 +16,7 @@ export class MakeMailTemplateProvider {
   private createMailTemplateIndex: CreateMailTemplateIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createIMailTemplate = new CreateIMailTemplate();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createMailTemplate = new CreateMailTemplate();

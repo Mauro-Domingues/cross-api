@@ -17,12 +17,11 @@ var _routes = require("../../../dist/templates/index/routes");
 var _rateLimiter = require("../../../dist/templates/middlewares/rateLimiter");
 var _decimalAdjust = require("../../../dist/templates/utils/decimalAdjust");
 var _domains2 = require("../../../dist/templates/utils/domains");
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _ensureAuthenticated = require("../../../dist/templates/middlewares/ensureAuthenticated");
 var _envNamespace = require("../../../dist/templates/types/envNamespace");
 var _normalizeQueryLink = require("../../../dist/templates/utils/normalizeQueryLink");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeThirdLayer {
   constructor() {
     this.messages = void 0;
@@ -41,7 +40,7 @@ class MakeThirdLayer {
     this.createServer = void 0;
     this.createApp = void 0;
     this.createExpressNamespace = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createEnvNamespace = new _envNamespace.CreateEnvNamespace();
     this.createEnsureAuthenticated = new _ensureAuthenticated.CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new _normalizeQueryLink.CreateNormalizeQueryLink();

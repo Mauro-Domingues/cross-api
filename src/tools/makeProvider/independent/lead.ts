@@ -5,11 +5,11 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeLeadProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createILead: CreateILead;
   private createILeadDTO: CreateILeadDTO;
   private createRDStationLead: CreateRDStationLead;
@@ -18,7 +18,7 @@ export class MakeLeadProvider {
   private createLeadIndex: CreateLeadIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
     this.createRDStationLead = new CreateRDStationLead();

@@ -11,11 +11,11 @@ import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependen
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeDependentInfra {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private createIndexDependentRoute: CreateIndexDependentRoute;
@@ -34,7 +34,7 @@ export class MakeDependentInfra {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.createIndexDependentRoute = new CreateIndexDependentRoute(

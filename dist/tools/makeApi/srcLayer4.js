@@ -14,10 +14,9 @@ var _mapAndPatch = require("../../../dist/templates/utils/mappers/mapAndPatch");
 var _mapAndPatchString = require("../../../dist/templates/utils/mappers/mapAndPatchString");
 var _mapAndUpdate = require("../../../dist/templates/utils/mappers/mapAndUpdate");
 var _mapAndUpdateString = require("../../../dist/templates/utils/mappers/mapAndUpdateString");
-var _messages = _interopRequireDefault(require("../../../dist/tools/messages"));
+var _messages = require("../../../dist/tools/messages");
 var _fs = require("fs");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeFourthLayer {
   constructor() {
     this.messages = void 0;
@@ -31,7 +30,7 @@ class MakeFourthLayer {
     this.createContainer = void 0;
     this.createAppError = void 0;
     this.createTypeorm = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createMapAndUpdateString = new _mapAndUpdateString.CreateMapAndUpdateString();
     this.createMapAndUpdate = new _mapAndUpdate.CreateMapAndUpdate();
     this.createMapAndPatchString = new _mapAndPatchString.CreateMapAndPatchString();

@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.MakeDependentProvider = void 0;
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
 var _cache = require("./cache");
 var _crypto = require("./crypto");
 var _hash = require("./hash");
@@ -13,7 +12,6 @@ var _mail = require("./mail");
 var _mailTemplate = require("./mailTemplate");
 var _notification = require("./notification");
 var _storage = require("./storage");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentProvider {
   constructor(providerName, fatherNames) {
     this.providerName = void 0;
@@ -64,7 +62,7 @@ class MakeDependentProvider {
         await this.makeDependentHashProvider.execute();
         break;
       default:
-        console.log('\x1b[1m', '\x1b[38;2;255;0;0m', _messages.default.providerNotFound, '\x1b[0m');
+        console.log('\x1b[1m', '\x1b[38;2;255;0;0m', messages.providerNotFound, '\x1b[0m');
         break;
     }
   }

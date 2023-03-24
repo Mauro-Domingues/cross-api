@@ -10,11 +10,11 @@ import { ShowService } from '@templates/modules/services/show/showService';
 import { UpdateController } from '@templates/modules/services/update/updateController';
 import { UpdateService } from '@templates/modules/services/update/updateService';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeFunctionalities {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private updateService: UpdateService;
   private updateController: UpdateController;
@@ -28,7 +28,7 @@ export class MakeFunctionalities {
   private createController: CreateController;
 
   constructor(names: IModuleNamesDTO | undefined) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.updateService = new UpdateService(this.names);
     this.updateController = new UpdateController(this.names);

@@ -10,11 +10,11 @@ import { ShowSpecDependentService } from '@templates/modules/services/showDepend
 import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
 import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeDependentUnitTests {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private updateSpecDependentService: UpdateSpecDependentService;
@@ -32,7 +32,7 @@ export class MakeDependentUnitTests {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.updateSpecDependentService = new UpdateSpecDependentService(

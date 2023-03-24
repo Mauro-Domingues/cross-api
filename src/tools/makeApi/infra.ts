@@ -1,12 +1,12 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeInfra {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
   }
 
   public async execute(): Promise<void> {

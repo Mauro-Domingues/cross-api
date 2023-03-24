@@ -1,12 +1,12 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeSecondLayer {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
   }
 
   public async execute(): Promise<void> {

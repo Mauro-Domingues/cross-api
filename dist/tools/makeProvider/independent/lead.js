@@ -11,9 +11,8 @@ var _fakeLead = require("../../../../dist/templates/providers/fakes/fakeLead");
 var _RDStationLead = require("../../../../dist/templates/providers/implementations/RDStationLead");
 var _leadIndex = require("../../../../dist/templates/providers/leadIndex");
 var _ILead = require("../../../../dist/templates/providers/models/ILead");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeLeadProvider {
   constructor() {
     this.messages = void 0;
@@ -23,7 +22,7 @@ class MakeLeadProvider {
     this.createFakeLead = void 0;
     this.createLeadConfig = void 0;
     this.createLeadIndex = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createILead = new _ILead.CreateILead();
     this.createILeadDTO = new _ILeadDTO.CreateILeadDTO();
     this.createRDStationLead = new _RDStationLead.CreateRDStationLead();

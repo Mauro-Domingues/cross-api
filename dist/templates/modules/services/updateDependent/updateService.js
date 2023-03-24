@@ -4,14 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.UpdateDependentService = void 0;
-var _messages = _interopRequireDefault(require("../../../../../dist/tools/messages"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _messages = require("../../../../../dist/tools/messages");
 class UpdateDependentService {
   constructor(names, fatherNames) {
     this.messages = void 0;
     this.names = void 0;
     this.fatherNames = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
   }

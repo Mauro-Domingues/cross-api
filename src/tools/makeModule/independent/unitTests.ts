@@ -10,11 +10,11 @@ import { ShowSpecService } from '@templates/modules/services/show/showServiceSpe
 import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeUnitTests {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private updateSpecService: UpdateSpecService;
   private updateSpecController: UpdateSpecController;
@@ -28,7 +28,7 @@ export class MakeUnitTests {
   private createSpecController: CreateSpecController;
 
   constructor(names: IModuleNamesDTO | undefined) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.updateSpecService = new UpdateSpecService(this.names);
     this.updateSpecController = new UpdateSpecController(this.names);

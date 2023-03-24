@@ -4,12 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.MakeDependentModule = void 0;
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _funcionalities = require("./funcionalities");
 var _infra = require("./infra");
 var _structure = require("./structure");
 var _unitTests = require("./unitTests");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentModule {
   constructor(names, fatherNames) {
     this.messages = void 0;
@@ -19,7 +18,7 @@ class MakeDependentModule {
     this.makeDependentStructure = void 0;
     this.makeDependentInfra = void 0;
     this.makeDependentFunctionalities = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.makeDependentUnitTests = new _unitTests.MakeDependentUnitTests(this.names, this.fatherNames);

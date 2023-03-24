@@ -10,9 +10,8 @@ var _cryptoIndex = require("../../../../dist/templates/providers/cryptoIndex");
 var _ICryptoDTO = require("../../../../dist/templates/providers/dtos/ICryptoDTO");
 var _Crypto = require("../../../../dist/templates/providers/implementations/Crypto");
 var _ICrypto = require("../../../../dist/templates/providers/models/ICrypto");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeCryptoProvider {
   constructor() {
     this.messages = void 0;
@@ -21,7 +20,7 @@ class MakeCryptoProvider {
     this.createCrypto = void 0;
     this.createCryptoConfig = void 0;
     this.createCryptoIndex = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createICrypto = new _ICrypto.CreateICrypto();
     this.createICryptoDTO = new _ICryptoDTO.CreateICryptoDTO();
     this.createCrypto = new _Crypto.CreateCrypto();

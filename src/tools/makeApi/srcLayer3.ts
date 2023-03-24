@@ -11,14 +11,14 @@ import { CreateRoutes } from '@templates/index/routes';
 import { CreateRateLimiter } from '@templates/middlewares/rateLimiter';
 import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust';
 import { CreateDomainsManager } from '@templates/utils/domains';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
 import { CreateEnvNamespace } from '@templates/types/envNamespace';
 import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
 import { resolve } from 'path';
 
 export class MakeThirdLayer {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createEnvNamespace: CreateEnvNamespace;
   private createEnsureAuthenticated: CreateEnsureAuthenticated;
   private createDomainsManager: CreateDomainsManager;
@@ -36,7 +36,7 @@ export class MakeThirdLayer {
   private createExpressNamespace: CreateExpressNamespace;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createEnvNamespace = new CreateEnvNamespace();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();

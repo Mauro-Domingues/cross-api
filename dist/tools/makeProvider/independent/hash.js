@@ -10,9 +10,8 @@ var _fakeHash = require("../../../../dist/templates/providers/fakes/fakeHash");
 var _hashIndex = require("../../../../dist/templates/providers/hashIndex");
 var _BCrypt = require("../../../../dist/templates/providers/implementations/BCrypt");
 var _IHash = require("../../../../dist/templates/providers/models/IHash");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeHashProvider {
   constructor() {
     this.messages = void 0;
@@ -21,7 +20,7 @@ class MakeHashProvider {
     this.createFakeHash = void 0;
     this.createHashConfig = void 0;
     this.createHashIndex = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createIHash = new _IHash.CreateIHash();
     this.createHash = new _BCrypt.CreateHash();
     this.createFakeHash = new _fakeHash.CreateFakeHash();

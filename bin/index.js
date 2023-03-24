@@ -8,12 +8,11 @@ var _listProvider = require("../dist/tools/listProvider");
 var _makeApi = require("../dist/tools/makeApi");
 var _makeModule = require("../dist/tools/makeModule");
 var _makeProvider = require("../dist/tools/makeProvider");
-var _messages = _interopRequireDefault(require("../dist/tools/messages"));
 var _save = require("../dist/tools/lastModification/save");
 var _delete = require("../dist/tools/lastModification/delete");
 var _names = require("../dist/tools/names");
 var _shell = require("../dist/tools/shell");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _messages = require("../dist/tools/messages");
 class Index {
   constructor() {
     this.fullComand = process.argv.slice(2);
@@ -33,7 +32,7 @@ class Index {
     this.configLanguage = void 0;
     this.configJson = void 0;
     this.board = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.shell = new _shell.Shell();
     this.getNames = new _names.GetNames(this.arg);
     this.getFatherNames = new _names.GetNames(this.father);

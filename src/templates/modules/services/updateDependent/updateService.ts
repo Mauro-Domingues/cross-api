@@ -1,8 +1,8 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class UpdateDependentService {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names:
     | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
     | undefined;
@@ -14,7 +14,7 @@ export class UpdateDependentService {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
   }

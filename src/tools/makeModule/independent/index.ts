@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { MakeInfra } from './infra';
 import { MakeFunctionalities } from './functionalities';
@@ -6,7 +6,7 @@ import { MakeStructure } from './structure';
 import { MakeUnitTests } from './unitTests';
 
 export class MakeModule {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private makeUnitTests: MakeUnitTests;
   private makeStructure: MakeStructure;
@@ -14,7 +14,7 @@ export class MakeModule {
   private makeFunctionalities: MakeFunctionalities;
 
   constructor(names: IModuleNamesDTO | undefined) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.makeUnitTests = new MakeUnitTests(this.names);
     this.makeStructure = new MakeStructure(this.names);

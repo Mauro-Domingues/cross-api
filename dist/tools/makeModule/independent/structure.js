@@ -5,14 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MakeStructure = void 0;
 var _fs = require("fs");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeStructure {
   constructor(names) {
     this.messages = void 0;
     this.names = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
   }
   async execute() {

@@ -1,10 +1,10 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateMapAndUpdateString {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
   }
 
   public execute(): string {

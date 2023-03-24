@@ -15,9 +15,8 @@ var _showController = require("../../../../dist/templates/modules/services/show/
 var _showService = require("../../../../dist/templates/modules/services/show/showService");
 var _updateController = require("../../../../dist/templates/modules/services/update/updateController");
 var _updateService = require("../../../../dist/templates/modules/services/update/updateService");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeFunctionalities {
   constructor(names) {
     this.messages = void 0;
@@ -32,7 +31,7 @@ class MakeFunctionalities {
     this.deleteController = void 0;
     this.createService = void 0;
     this.createController = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
     this.updateService = new _updateService.UpdateService(this.names);
     this.updateController = new _updateController.UpdateController(this.names);

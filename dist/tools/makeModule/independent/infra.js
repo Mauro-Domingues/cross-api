@@ -15,9 +15,8 @@ var _IRepository = require("../../../../dist/templates/modules/repositories/IRep
 var _repository = require("../../../../dist/templates/modules/repositories/repository");
 var _independentRoutes = require("../../../../dist/templates/modules/routes/independentRoutes");
 var _indexRouter = require("../../../../dist/templates/modules/routes/indexRouter");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeInfra {
   constructor(names) {
     this.messages = void 0;
@@ -33,7 +32,7 @@ class MakeInfra {
     this.createRoutes = void 0;
     this.createContainer = void 0;
     this.names = names;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createIndexRoute = new _indexRouter.CreateIndexRoute(this.names);
     this.createIndependentRoute = new _independentRoutes.CreateIndependentRoute(this.names);
     this.createIRepository = new _IRepository.CreateIRepository(this.names);

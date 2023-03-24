@@ -10,11 +10,11 @@ import { CreateRepository } from '@templates/modules/repositories/repository';
 import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeInfra {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private createIndexRoute: CreateIndexRoute;
   private createIndependentRoute: CreateIndependentRoute;
@@ -29,7 +29,7 @@ export class MakeInfra {
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.names = names;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createIndexRoute = new CreateIndexRoute(this.names);
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
     this.createIRepository = new CreateIRepository(this.names);

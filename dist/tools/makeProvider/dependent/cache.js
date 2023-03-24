@@ -11,9 +11,8 @@ var _cacheConfig = require("../../../../dist/templates/providers/config/cacheCon
 var _fakeCache = require("../../../../dist/templates/providers/fakes/fakeCache");
 var _RedisCache = require("../../../../dist/templates/providers/implementations/RedisCache");
 var _ICache = require("../../../../dist/templates/providers/models/ICache");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentCacheProvider {
   constructor(fatherNames) {
     this.fatherNames = void 0;
@@ -25,7 +24,7 @@ class MakeDependentCacheProvider {
     this.createCacheIndex = void 0;
     this.createContainer = void 0;
     this.fatherNames = fatherNames;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createICache = new _ICache.CreateICache();
     this.createRedisCache = new _RedisCache.CreateRedisCache();
     this.createFakeRedis = new _fakeCache.CreateFakeRedis();

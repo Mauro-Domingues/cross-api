@@ -3,8 +3,9 @@ import { createInterface } from 'readline';
 
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 
 interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';
@@ -17,16 +18,18 @@ interface ILanguageConfigDTO {
 }
 
 export class ConfigLanguage {
-  public messages: typeof messages;
+  public messages: IMessagesDTO;
   public Language: ILanguageOptionsDTO;
   public languageConfig: ILanguageConfigDTO;
   private englishMessages: EnglishMessages;
   private portugueseMessages: PortugueseMessages;
+  private createDefaultLanguage: CreateDefaultLanguage;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
     this.portugueseMessages = new PortugueseMessages();
-    this.messages = messages;
+    this.createDefaultLanguage = new CreateDefaultLanguage();
+    this.messages = new Messages().execute();
     this.Language = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
@@ -107,20 +110,13 @@ export class ConfigLanguage {
     );
     appendFileSync(
       resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'),
-      `"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = ${JSON.stringify(this.messages)};
-exports.default = _default;`,
+      this.createDefaultLanguage.execute(JSON.stringify(this.messages)),
     );
   }
 
   public isLanguageOptionsKeyType(
-    option: keyof ILanguageOptionsDTO | string,
-  ): option is keyof ILanguageOptionsDTO {
+    _option: keyof ILanguageOptionsDTO | string,
+  ): _option is keyof ILanguageOptionsDTO {
     return true;
   }
 

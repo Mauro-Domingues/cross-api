@@ -4,11 +4,11 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeCryptoProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createICrypto: CreateICrypto;
   private createICryptoDTO: CreateICryptoDTO;
   private createCrypto: CreateCrypto;
@@ -16,7 +16,7 @@ export class MakeCryptoProvider {
   private createCryptoIndex: CreateCryptoIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createICrypto = new CreateICrypto();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createCrypto = new CreateCrypto();

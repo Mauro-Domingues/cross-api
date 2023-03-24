@@ -8,12 +8,12 @@ import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
 import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchString';
 import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeFourthLayer {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createMapAndUpdateString: CreateMapAndUpdateString;
   private createMapAndUpdate: CreateMapAndUpdate;
   private createMapAndPatchString: CreateMapAndPatchString;
@@ -26,7 +26,7 @@ export class MakeFourthLayer {
   private createTypeorm: CreateTypeorm;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndUpdate = new CreateMapAndUpdate();
     this.createMapAndPatchString = new CreateMapAndPatchString();

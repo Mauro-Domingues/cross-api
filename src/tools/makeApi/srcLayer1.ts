@@ -9,12 +9,12 @@ import { CreateJestConfig } from '@templates/root/jestConfig';
 import { CreateNodemonJson } from '@templates/root/nodemonJson';
 import { CreatePrettierConfig } from '@templates/root/prettierConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeFirstLayer {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createTsConfig: CreateTsConfig;
   private createPrettierConfig: CreatePrettierConfig;
   private createNodemonJson: CreateNodemonJson;
@@ -28,7 +28,7 @@ export class MakeFirstLayer {
   private createBabelConfig: CreateBabelConfig;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createTsConfig = new CreateTsConfig();
     this.createPrettierConfig = new CreatePrettierConfig();
     this.createNodemonJson = new CreateNodemonJson();

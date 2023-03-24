@@ -15,9 +15,8 @@ var _showControllerSpec = require("../../../../dist/templates/modules/services/s
 var _showServiceSpec = require("../../../../dist/templates/modules/services/showDependent/showServiceSpec");
 var _updateControllerSpec = require("../../../../dist/templates/modules/services/updateDependent/updateControllerSpec");
 var _updateServiceSpec = require("../../../../dist/templates/modules/services/updateDependent/updateServiceSpec");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentUnitTests {
   constructor(names, fatherNames) {
     this.messages = void 0;
@@ -33,7 +32,7 @@ class MakeDependentUnitTests {
     this.deleteSpecDependentController = void 0;
     this.createSpecDependentService = void 0;
     this.createSpecDependentController = void 0;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.updateSpecDependentService = new _updateServiceSpec.UpdateSpecDependentService(this.names, this.fatherNames);

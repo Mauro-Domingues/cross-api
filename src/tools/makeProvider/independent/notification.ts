@@ -5,11 +5,11 @@ import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotificat
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeNotificationProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createINotification: CreateINotification;
   private createINotificationDTO: CreateINotificationDTO;
   private createOneSignalNotification: CreateOneSignalNotification;
@@ -18,7 +18,7 @@ export class MakeNotificationProvider {
   private createNotificationIndex: CreateNotificationIndex;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createINotification = new CreateINotification();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();

@@ -6,12 +6,12 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
 export class MakeDependentLeadProvider {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -24,7 +24,7 @@ export class MakeDependentLeadProvider {
   private createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.fatherNames = fatherNames;
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();

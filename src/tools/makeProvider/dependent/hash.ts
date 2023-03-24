@@ -5,7 +5,7 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
 
@@ -13,7 +13,7 @@ export class MakeDependentHashProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createIHash: CreateIHash;
   private createHash: CreateHash;
   private createFakeHash: CreateFakeHash;
@@ -23,7 +23,7 @@ export class MakeDependentHashProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createIHash = new CreateIHash();
     this.createHash = new CreateHash();
     this.createFakeHash = new CreateFakeHash();

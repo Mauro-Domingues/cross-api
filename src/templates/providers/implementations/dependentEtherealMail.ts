@@ -1,17 +1,17 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateDependentEtherealMail {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
 
   constructor(
     fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     this.fatherNames = fatherNames;
-    this.messages = messages;
+    this.messages = new Messages().execute();
   }
 
   public execute(): string {

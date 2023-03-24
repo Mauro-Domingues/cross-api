@@ -1,8 +1,8 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class UpdateSpecDependentController {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'> | undefined;
   private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'> | undefined;
 
@@ -10,7 +10,7 @@ export class UpdateSpecDependentController {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
   }

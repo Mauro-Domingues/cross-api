@@ -12,9 +12,8 @@ var _DiskStorage = require("../../../../dist/templates/providers/implementations
 var _S3Storage = require("../../../../dist/templates/providers/implementations/S3Storage");
 var _IStorage = require("../../../../dist/templates/providers/models/IStorage");
 var _storageIndex = require("../../../../dist/templates/providers/storageIndex");
-var _messages = _interopRequireDefault(require("../../../../dist/tools/messages"));
+var _messages = require("../../../../dist/tools/messages");
 var _path = require("path");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class MakeDependentStorageProvider {
   constructor(fatherNames) {
     this.fatherNames = void 0;
@@ -27,7 +26,7 @@ class MakeDependentStorageProvider {
     this.createStorageIndex = void 0;
     this.createContainer = void 0;
     this.fatherNames = fatherNames;
-    this.messages = _messages.default;
+    this.messages = new _messages.Messages().execute();
     this.createDiskStorage = new _DiskStorage.CreateDiskStorage();
     this.createS3Storage = new _S3Storage.CreateS3Storage();
     this.createFakeStorage = new _fakeStorage.CreateFakeStorage();

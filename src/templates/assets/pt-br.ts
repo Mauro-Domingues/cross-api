@@ -1,7 +1,7 @@
-import messages from '@tools/messages';
+import { IMessagesDTO } from '@tools/messages';
 
 export class PortugueseMessages {
-  public messages: typeof messages;
+  public messages: IMessagesDTO;
 
   constructor() {
     this.messages = {
@@ -65,7 +65,7 @@ export class PortugueseMessages {
     };
   }
 
-  execute(): typeof messages {
+  execute(): IMessagesDTO {
     return this.messages;
   }
 }

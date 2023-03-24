@@ -1,16 +1,16 @@
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateDependentSESMail {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
 
   constructor(
     fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.fatherNames = fatherNames;
   }
 

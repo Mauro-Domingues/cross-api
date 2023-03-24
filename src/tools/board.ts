@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 interface IOptionDTO {
   title: string;
@@ -6,13 +6,13 @@ interface IOptionDTO {
 }
 
 export class Board {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private toolOptions: IOptionDTO[];
   private ormOptions: IOptionDTO[];
   private structureOptions: IOptionDTO[];
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.toolOptions = [
       { title: 'comands             ', description: messages.comands },
       { title: 'language            ', description: messages.changeLanguage },

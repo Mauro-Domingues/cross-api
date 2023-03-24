@@ -10,11 +10,11 @@ import { ShowDependentService } from '@templates/modules/services/showDependent/
 import { UpdateDependentController } from '@templates/modules/services/updateDependent/updateController';
 import { UpdateDependentService } from '@templates/modules/services/updateDependent/updateService';
 import { IModuleNamesDTO } from '@tools/names';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 
 export class MakeDependentFunctionalities {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private updateDependentService: UpdateDependentService;
@@ -32,7 +32,7 @@ export class MakeDependentFunctionalities {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.updateDependentService = new UpdateDependentService(

@@ -1,4 +1,4 @@
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { MakeDependentFunctionalities } from './funcionalities';
 import { MakeDependentInfra } from './infra';
@@ -6,7 +6,7 @@ import { MakeDependentStructure } from './structure';
 import { MakeDependentUnitTests } from './unitTests';
 
 export class MakeDependentModule {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private makeDependentUnitTests: MakeDependentUnitTests;
@@ -18,7 +18,7 @@ export class MakeDependentModule {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.names = names;
     this.fatherNames = fatherNames;
     this.makeDependentUnitTests = new MakeDependentUnitTests(

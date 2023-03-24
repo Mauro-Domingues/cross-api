@@ -1,16 +1,16 @@
 import { appendFileSync, existsSync, truncateSync } from 'fs';
-import messages from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages';
 import { CreateAuthConfig } from '@templates/providers/config/authConfig';
 import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
 import { resolve } from 'path';
 
 export class MakeTemporary {
-  private messages: typeof messages;
+  private messages: IMessagesDTO;
   private createCorsConfig: CreateCorsConfig;
   private createAuthConfig: CreateAuthConfig;
 
   constructor() {
-    this.messages = messages;
+    this.messages = new Messages().execute();
     this.createCorsConfig = new CreateCorsConfig();
     this.createAuthConfig = new CreateAuthConfig();
   }
