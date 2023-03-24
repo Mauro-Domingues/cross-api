@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateLeadIndex = void 0;
 class CreateLeadIndex {
-  execute() {
-    return `import { container } from 'tsyringe';
+    execute() {
+        return `import { container } from 'tsyringe';
 
 import ILeadProvider from './models/ILeadProvider';
 import RDStationProvider from './implementations/RDStationProvider';
@@ -17,6 +14,6 @@ const providers = {
 
 container.registerInstance<ILeadProvider>('LeadProvider', providers.rdStation);
 `;
-  }
+    }
 }
 exports.CreateLeadIndex = CreateLeadIndex;

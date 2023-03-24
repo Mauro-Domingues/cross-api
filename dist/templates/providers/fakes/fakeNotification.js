@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFakeNotification = void 0;
 class CreateFakeNotification {
-  execute() {
-    return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
+    execute() {
+        return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
 import INotificationProvider from '../models/INotificationProvider';
 
 class FakeNotificationProvider implements INotificationProvider {
@@ -19,6 +16,6 @@ class FakeNotificationProvider implements INotificationProvider {
 
 export default FakeNotificationProvider;
 `;
-  }
+    }
 }
 exports.CreateFakeNotification = CreateFakeNotification;

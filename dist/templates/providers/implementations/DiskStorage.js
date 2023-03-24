@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDiskStorage = void 0;
 class CreateDiskStorage {
-  execute() {
-    return `import uploadConfig from '@config/upload';
+    execute() {
+        return `import uploadConfig from '@config/upload';
 import fs from 'fs';
 import path from 'path';
 
@@ -45,6 +42,6 @@ class DiskStorageProvider implements IStorageProvider {
 
 export default DiskStorageProvider;
 `;
-  }
+    }
 }
 exports.CreateDiskStorage = CreateDiskStorage;

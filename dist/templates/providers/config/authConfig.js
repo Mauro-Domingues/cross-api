@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAuthConfig = void 0;
 class CreateAuthConfig {
-  execute() {
-    return `interface IAuthConfig {
+    execute() {
+        return `interface IAuthConfig {
   jwt: {
     jwtSecret: string;
     refreshSecret: string;
@@ -23,6 +20,6 @@ export default {
   },
 } as IAuthConfig;
 `;
-  }
+    }
 }
 exports.CreateAuthConfig = CreateAuthConfig;

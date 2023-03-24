@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDockerCompose = void 0;
 class CreateDockerCompose {
-  execute() {
-    return `version: '3'
+    execute() {
+        return `version: '3'
 
 services:
   database:
@@ -35,6 +32,6 @@ services:
 networks:
   rs-network:
     driver: bridge`;
-  }
+    }
 }
 exports.CreateDockerCompose = CreateDockerCompose;

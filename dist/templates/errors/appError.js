@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAppError = void 0;
 class CreateAppError {
-  execute() {
-    return `class AppError {
+    execute() {
+        return `class AppError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -19,6 +16,6 @@ class CreateAppError {
 
 export default AppError;
 `;
-  }
+    }
 }
 exports.CreateAppError = CreateAppError;

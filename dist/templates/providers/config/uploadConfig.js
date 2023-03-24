@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUploadConfig = void 0;
 class CreateUploadConfig {
-  execute() {
-    return `import crypto from 'crypto';
+    execute() {
+        return `import crypto from 'crypto';
 import multer, { StorageEngine } from 'multer';
 import path from 'path';
 
@@ -46,6 +43,6 @@ export default {
   },
 } as IUploadConfig;
 `;
-  }
+    }
 }
 exports.CreateUploadConfig = CreateUploadConfig;

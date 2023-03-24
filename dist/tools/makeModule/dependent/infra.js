@@ -1,102 +1,102 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.MakeDependentInfra = void 0;
-var _container = require("../../../../dist/templates/index/container");
-var _routes = require("../../../../dist/templates/index/routes");
-var _moduleDTO = require("../../../../dist/templates/modules/dtos/moduleDTO");
-var _entity = require("../../../../dist/templates/modules/entities/entity");
-var _dependentInjection = require("../../../../dist/templates/modules/inject/dependentInjection");
-var _dependentRepository = require("../../../../dist/templates/modules/repositories/dependentRepository");
-var _fakeDependentRepository = require("../../../../dist/templates/modules/repositories/fakes/fakeDependentRepository");
-var _IDependentRepository = require("../../../../dist/templates/modules/repositories/IDependentRepository");
-var _dependentRoutes = require("../../../../dist/templates/modules/routes/dependentRoutes");
-var _fullDependentRoutes = require("../../../../dist/templates/modules/routes/fullDependentRoutes");
-var _indexDependentRouter = require("../../../../dist/templates/modules/routes/indexDependentRouter");
-var _fs = require("fs");
-var _messages = require("../../../../dist/tools/messages");
-var _path = require("path");
+const container_1 = require("@templates/index/container");
+const routes_1 = require("@templates/index/routes");
+const moduleDTO_1 = require("@templates/modules/dtos/moduleDTO");
+const entity_1 = require("@templates/modules/entities/entity");
+const dependentInjection_1 = require("@templates/modules/inject/dependentInjection");
+const dependentRepository_1 = require("@templates/modules/repositories/dependentRepository");
+const fakeDependentRepository_1 = require("@templates/modules/repositories/fakes/fakeDependentRepository");
+const IDependentRepository_1 = require("@templates/modules/repositories/IDependentRepository");
+const dependentRoutes_1 = require("@templates/modules/routes/dependentRoutes");
+const fullDependentRoutes_1 = require("@templates/modules/routes/fullDependentRoutes");
+const indexDependentRouter_1 = require("@templates/modules/routes/indexDependentRouter");
+const fs_1 = require("fs");
+const messages_1 = require("@tools/messages");
+const path_1 = require("path");
 class MakeDependentInfra {
-  constructor(names, fatherNames) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.fatherNames = void 0;
-    this.createIndexDependentRoute = void 0;
-    this.createFullDependentRoute = void 0;
-    this.createDependentRoute = void 0;
-    this.createIDependentRepository = void 0;
-    this.createDependentFakeRepository = void 0;
-    this.createDependentRepository = void 0;
-    this.createDependentInjection = void 0;
-    this.createEntity = void 0;
-    this.createModuleDTO = void 0;
-    this.createRoutes = void 0;
-    this.createContainer = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-    this.fatherNames = fatherNames;
-    this.createIndexDependentRoute = new _indexDependentRouter.CreateIndexDependentRoute(this.fatherNames);
-    this.createFullDependentRoute = new _fullDependentRoutes.CreateFullDependentRoute(this.names, this.fatherNames);
-    this.createDependentRoute = new _dependentRoutes.CreateDependentRoute(this.names, this.fatherNames);
-    this.createIDependentRepository = new _IDependentRepository.CreateIDependentRepository(this.names, this.fatherNames);
-    this.createDependentFakeRepository = new _fakeDependentRepository.CreateDependentFakeRepository(this.names, this.fatherNames);
-    this.createDependentRepository = new _dependentRepository.CreateDependentRepository(this.names, this.fatherNames);
-    this.createDependentInjection = new _dependentInjection.CreateDependentInjection(this.names, this.fatherNames);
-    this.createEntity = new _entity.CreateEntity(this.names);
-    this.createModuleDTO = new _moduleDTO.CreateModuleDTO(this.names);
-    this.createRoutes = new _routes.CreateRoutes();
-    this.createContainer = new _container.CreateContainer();
-  }
-  async execute() {
-    if (!this.names || !this.fatherNames) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names, fatherNames) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
+        this.fatherNames = fatherNames;
+        this.createIndexDependentRoute = new indexDependentRouter_1.CreateIndexDependentRoute(this.fatherNames);
+        this.createFullDependentRoute = new fullDependentRoutes_1.CreateFullDependentRoute(this.names, this.fatherNames);
+        this.createDependentRoute = new dependentRoutes_1.CreateDependentRoute(this.names, this.fatherNames);
+        this.createIDependentRepository = new IDependentRepository_1.CreateIDependentRepository(this.names, this.fatherNames);
+        this.createDependentFakeRepository = new fakeDependentRepository_1.CreateDependentFakeRepository(this.names, this.fatherNames);
+        this.createDependentRepository = new dependentRepository_1.CreateDependentRepository(this.names, this.fatherNames);
+        this.createDependentInjection = new dependentInjection_1.CreateDependentInjection(this.names, this.fatherNames);
+        this.createEntity = new entity_1.CreateEntity(this.names);
+        this.createModuleDTO = new moduleDTO_1.CreateModuleDTO(this.names);
+        this.createRoutes = new routes_1.CreateRoutes();
+        this.createContainer = new container_1.CreateContainer();
     }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), this.createContainer.execute());
+    execute() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.names || !this.fatherNames) {
+                console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+                throw new Error();
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'), this.createContainer.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'routes', 'index.ts'))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', 'index.ts'), this.createRoutes.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`), this.createModuleDTO.execute());
+            }
+            else {
+                (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`));
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`), this.createModuleDTO.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`), this.createEntity.execute());
+            }
+            else {
+                (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`));
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`), this.createEntity.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentRepository.execute());
+            }
+            else {
+                (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`));
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentRepository.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`), this.createIDependentRepository.execute());
+            }
+            else {
+                (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`));
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`), this.createIDependentRepository.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentFakeRepository.execute());
+            }
+            else {
+                (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`));
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentFakeRepository.execute());
+            }
+            if (!(0, fs_1.existsSync)((0, path_1.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`))) {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`), this.createFullDependentRoute.execute());
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', 'index.ts'), this.createIndexDependentRoute.execute());
+            }
+            else {
+                (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`), this.createDependentRoute.execute());
+            }
+            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'), this.createDependentInjection.execute());
+        });
     }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'routes', 'index.ts'))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', 'index.ts'), this.createRoutes.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`), this.createModuleDTO.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos', `I${this.names.upperModuleName}DTO.ts`), this.createModuleDTO.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`), this.createEntity.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities', `${this.names.upperModuleName}.ts`), this.createEntity.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentRepository.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentRepository.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`), this.createIDependentRepository.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', `I${this.names.pluralUpperModuleName}Repository.ts`), this.createIDependentRepository.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentFakeRepository.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${this.names.pluralUpperModuleName}Repository.ts`), this.createDependentFakeRepository.execute());
-    }
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`), this.createFullDependentRoute.execute());
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', 'index.ts'), this.createIndexDependentRoute.execute());
-    } else {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`), this.createDependentRoute.execute());
-    }
-    (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), this.createDependentInjection.execute());
-  }
 }
 exports.MakeDependentInfra = MakeDependentInfra;

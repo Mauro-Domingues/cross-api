@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.",
   "keywords": [
     "cross",
@@ -19,29 +19,17 @@
   "bugs": {
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
   },
-  "main": "index.js",
   "bin": {
-    "cross": "./bin/index.js"
+    "cross": "./dist/bin/index.js"
   },
   "scripts": {
-    "test": "ts-node -r tsconfig-paths/register index/index.ts",
-    "build:src": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
-    "build:bin": "babel index --extensions \".js,.ts\" --out-dir bin --copy-files"
+    "build": "tsc"
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@babel/cli": "^7.20.7",
-    "@babel/core": "^7.20.12",
-    "@babel/node": "^7.20.7",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.20.7",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-typescript": "^7.18.6",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "@types/node": "^18.11.16",
-    "babel-plugin-module-resolver": "^5.0.0",
-    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "^8.30.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -50,7 +38,6 @@
     "eslint-plugin-import-helpers": "^1.3.1",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.1",
-    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }
 }

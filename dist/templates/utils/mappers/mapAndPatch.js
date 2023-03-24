@@ -1,17 +1,13 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMapAndPatch = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("@tools/messages");
 class CreateMapAndPatch {
-  constructor() {
-    this.messages = void 0;
-    this.messages = new _messages.Messages().execute();
-  }
-  execute() {
-    return `/**
+    constructor() {
+        this.messages = new messages_1.Messages().execute();
+    }
+    execute() {
+        return `/**
  * ${this.messages.mapAndPatch}
  * @param oldAttributes Entity
  * @param newAttributes Object
@@ -29,6 +25,6 @@ export default async function mapAndPatchAttribute<Entity, DTO>(
   return oldAttributes;
 }
 `;
-  }
+    }
 }
 exports.CreateMapAndPatch = CreateMapAndPatch;

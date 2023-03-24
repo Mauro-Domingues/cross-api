@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateOneSignalNotification = void 0;
 class CreateOneSignalNotification {
-  execute() {
-    return `import oneSignalConfig from '@config/notification';
+    execute() {
+        return `import oneSignalConfig from '@config/notification';
 import https from 'https';
 import { injectable } from 'tsyringe';
 
@@ -47,6 +44,6 @@ class OneSignalProvider implements INotificationProvider {
 
 export default OneSignalProvider;
 `;
-  }
+    }
 }
 exports.CreateOneSignalNotification = CreateOneSignalNotification;

@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEtherealMail = void 0;
 class CreateEtherealMail {
-  execute() {
-    return `import nodemailer, { Transporter } from 'nodemailer';
+    execute() {
+        return `import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
@@ -73,6 +70,6 @@ class EtherealMailProvider implements IMailProvider {
 
 export default EtherealMailProvider;
 `;
-  }
+    }
 }
 exports.CreateEtherealMail = CreateEtherealMail;

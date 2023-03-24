@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCacheConfig = void 0;
 class CreateCacheConfig {
-  execute() {
-    return `import { RedisOptions } from 'ioredis';
+    execute() {
+        return `import { RedisOptions } from 'ioredis';
 
 interface ICacheConfig {
   driver: 'redis';
@@ -26,6 +23,6 @@ export default {
   },
 } as ICacheConfig;
 `;
-  }
+    }
 }
 exports.CreateCacheConfig = CreateCacheConfig;

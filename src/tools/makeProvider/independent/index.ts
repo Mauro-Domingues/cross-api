@@ -9,6 +9,7 @@ import { MakeNotificationProvider } from './notification';
 import { MakeStorageProvider } from './storage';
 
 export class MakeProvider {
+  private messages: IMessagesDTO;
   private providerName: string | undefined;
   private makeStorageProvider: MakeStorageProvider;
   private makeNotificationProvider: MakeNotificationProvider;
@@ -21,6 +22,7 @@ export class MakeProvider {
 
   constructor(providerName: string | undefined) {
     this.providerName = providerName;
+    this.messages = new Messages().execute();
     this.makeStorageProvider = new MakeStorageProvider();
     this.makeNotificationProvider = new MakeNotificationProvider();
     this.makeMailTemplateProvider = new MakeMailTemplateProvider();
@@ -61,7 +63,7 @@ export class MakeProvider {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;255;0;0m',
-          messages.providerNotFound,
+          this.messages.providerNotFound,
           '\x1b[0m',
         );
         break;

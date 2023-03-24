@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEnsureAuthenticated = void 0;
 class CreateEnsureAuthenticated {
-  execute() {
-    return `import { expressjwt } from 'express-jwt';
+    execute() {
+        return `import { expressjwt } from 'express-jwt';
 import AppError from '@shared/errors/AppError';
 import {
   expressJwtSecret,
@@ -35,6 +32,6 @@ export default expressjwt({
   algorithms: ['RS256'],
 });
 `;
-  }
+    }
 }
 exports.CreateEnsureAuthenticated = CreateEnsureAuthenticated;

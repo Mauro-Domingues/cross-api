@@ -10,6 +10,7 @@ import { MakeDependentNotificationProvider } from './notification';
 import { MakeDependentStorageProvider } from './storage';
 
 export class MakeDependentProvider {
+  private messages: IMessagesDTO;
   private providerName: string | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private makeDependentStorageProvider: MakeDependentStorageProvider;
@@ -25,6 +26,7 @@ export class MakeDependentProvider {
     providerName: string | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
+    this.messages = new Messages().execute();
     this.providerName = providerName;
     this.fatherNames = fatherNames;
     this.makeDependentStorageProvider = new MakeDependentStorageProvider(
@@ -81,7 +83,7 @@ export class MakeDependentProvider {
         console.log(
           '\x1b[1m',
           '\x1b[38;2;255;0;0m',
-          messages.providerNotFound,
+          this.messages.providerNotFound,
           '\x1b[0m',
         );
         break;

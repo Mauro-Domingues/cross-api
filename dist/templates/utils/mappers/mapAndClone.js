@@ -1,17 +1,13 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMapAndClone = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("@tools/messages");
 class CreateMapAndClone {
-  constructor() {
-    this.messages = void 0;
-    this.messages = new _messages.Messages().execute();
-  }
-  execute() {
-    return `import IObjectDTO from "@dtos/IObjectDTO";
+    constructor() {
+        this.messages = new messages_1.Messages().execute();
+    }
+    execute() {
+        return `import IObjectDTO from "@dtos/IObjectDTO";
 
 /**
  * ${this.messages.mapAndClone}
@@ -33,6 +29,6 @@ export default async function mapAndCloneAttribute(
   return objectArray;
 }
 `;
-  }
+    }
 }
 exports.CreateMapAndClone = CreateMapAndClone;

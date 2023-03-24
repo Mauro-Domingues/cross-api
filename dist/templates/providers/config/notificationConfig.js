@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateNotificationConfig = void 0;
 class CreateNotificationConfig {
-  execute() {
-    return `export default {
+    execute() {
+        return `export default {
   onesignal: {
     options: {
       host: 'onesignal.com',
@@ -21,6 +18,6 @@ class CreateNotificationConfig {
   },
 };
 `;
-  }
+    }
 }
 exports.CreateNotificationConfig = CreateNotificationConfig;

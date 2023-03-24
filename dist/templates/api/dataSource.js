@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDataSource = void 0;
 class CreateDataSource {
-  execute() {
-    return `import { DataSource } from 'typeorm';
+    execute() {
+        return `import { DataSource } from 'typeorm';
 import 'dotenv/config';
 import 'reflect-metadata';
 
@@ -25,6 +22,6 @@ export const AppDataSource = new DataSource({
   migrations: [\`\${__dirname}/migrations/*.{js,ts}\`],
 });
 `;
-  }
+    }
 }
 exports.CreateDataSource = CreateDataSource;
