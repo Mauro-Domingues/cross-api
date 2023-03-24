@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.",
   "keywords": [
     "cross",
@@ -20,7 +20,7 @@
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
   },
   "bin": {
-    "cross": ".bin/index.js"
+    "cross": "./bin/index.js"
   },
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files && babel index --extensions \".js,.ts\" --out-dir bin --copy-files"
