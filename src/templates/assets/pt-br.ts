@@ -49,7 +49,7 @@ export class PortugueseMessages {
         'É utilizado para gerar um provedor                                         ',
       makeProviderD:
         'É usado para criar um provedor dentro de um módulo                         ',
-      undo: 'É usado para desfazer o útimo comando de criação                           ',
+      undo: 'É usado para desfazer o último comando de criação                          ',
       mapAndClone:
         'CLONE VALUES -> Recebe como parâmetro um array de string e outro objeto do tipo { [key: string]: string }, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
       mapAndPatch:
