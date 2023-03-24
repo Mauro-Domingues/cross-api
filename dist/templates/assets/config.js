@@ -1,11 +1,15 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.Config = void 0;
-const fs_1 = require("fs");
-const path_1 = require("path");
+var _fs = require("fs");
+var _path = require("path");
 class Config {
-    constructor() {
-        this.configBody = `"use strict";
+  constructor() {
+    this.configBody = void 0;
+    this.configBody = `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -25,10 +29,10 @@ class ConfigJson {
   }
 }
 exports.ConfigJson = ConfigJson;`;
-    }
-    execute() {
-        (0, fs_1.truncateSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
-        (0, fs_1.appendFileSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
-    }
+  }
+  execute() {
+    (0, _fs.truncateSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
+    (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
+  }
 }
 exports.Config = Config;

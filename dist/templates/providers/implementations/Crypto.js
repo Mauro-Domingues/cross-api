@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateCrypto = void 0;
 class CreateCrypto {
-    execute() {
-        return `import crypto from 'crypto';
+  execute() {
+    return `import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { sign, SignOptions } from 'jsonwebtoken';
@@ -153,6 +156,6 @@ class CryptoProvider implements ICryptoProvider {
 
 export default CryptoProvider;
 `;
-    }
+  }
 }
 exports.CreateCrypto = CreateCrypto;

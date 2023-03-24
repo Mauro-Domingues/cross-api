@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateTsConfig = void 0;
 class CreateTsConfig {
-    execute() {
-        return `{
+  execute() {
+    return `{
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -32,6 +35,6 @@ class CreateTsConfig {
   "exclude": ["node_modules", "dist"],
   "ts-node": {"files": true}
 }`;
-    }
+  }
 }
 exports.CreateTsConfig = CreateTsConfig;

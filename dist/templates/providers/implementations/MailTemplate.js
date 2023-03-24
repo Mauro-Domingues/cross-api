@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateMailTemplate = void 0;
 class CreateMailTemplate {
-    execute() {
-        return `import fs from 'fs';
+  execute() {
+    return `import fs from 'fs';
 import handlebars from 'handlebars';
 
 import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
@@ -26,6 +29,6 @@ class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
 
 export default HandlebarsMailTemplateProvider;
 `;
-    }
+  }
 }
 exports.CreateMailTemplate = CreateMailTemplate;

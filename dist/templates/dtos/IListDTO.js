@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateIListDTO = void 0;
 class CreateIListDTO {
-    execute() {
-        return `import IResponseDTO from './IResponseDTO';
+  execute() {
+    return `import IResponseDTO from './IResponseDTO';
 
 export default interface IListDTO<T> extends IResponseDTO<T[]> {
   pagination: {
@@ -15,6 +18,6 @@ export default interface IListDTO<T> extends IResponseDTO<T[]> {
   data: T[];
 }
 `;
-    }
+  }
 }
 exports.CreateIListDTO = CreateIListDTO;

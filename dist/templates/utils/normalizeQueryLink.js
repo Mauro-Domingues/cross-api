@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateNormalizeQueryLink = void 0;
 class CreateNormalizeQueryLink {
-    execute() {
-        return `
+  execute() {
+    return `
 export function normalizeQueryLink<T extends object>(
   baseUrl: string,
   data: T,
@@ -33,6 +36,6 @@ export function normalizeQueryLink<T extends object>(
   ).href;
 }
 `;
-    }
+  }
 }
 exports.CreateNormalizeQueryLink = CreateNormalizeQueryLink;

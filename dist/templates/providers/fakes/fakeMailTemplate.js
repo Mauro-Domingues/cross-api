@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateFakeMailTemplate = void 0;
 class CreateFakeMailTemplate {
-    execute() {
-        return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
+  execute() {
+    return `import IMailTemplateProvider from '../models/IMailTemplateProvider';
 
 class FakeMailTemplateProvider implements IMailTemplateProvider {
   public async parse(): Promise<string> {
@@ -13,6 +16,6 @@ class FakeMailTemplateProvider implements IMailTemplateProvider {
 
 export default FakeMailTemplateProvider;
 `;
-    }
+  }
 }
 exports.CreateFakeMailTemplate = CreateFakeMailTemplate;

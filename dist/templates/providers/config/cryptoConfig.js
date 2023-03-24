@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateCryptoConfig = void 0;
 class CreateCryptoConfig {
-    execute() {
-        return `import path from 'path';
+  execute() {
+    return `import path from 'path';
 
 enum encodingTypes {
   'default' = 'hex',
@@ -30,6 +33,6 @@ export default {
   basePath: path.resolve(__dirname, '..', 'assets'),
 } as ICryptoConfig;
 `;
-    }
+  }
 }
 exports.CreateCryptoConfig = CreateCryptoConfig;

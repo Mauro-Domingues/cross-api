@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateServer = void 0;
 class CreateServer {
-    execute() {
-        return `import createConnection from '@shared/typeorm';
+  execute() {
+    return `import createConnection from '@shared/typeorm';
 import swaggerUi from 'swagger-ui-express';
 import app from './app';
 
@@ -20,6 +23,6 @@ app.listen(process.env.PORT, () => {
   console.log(\`🚀 Server started on port \${process.env.PORT}!\`);
 });
 `;
-    }
+  }
 }
 exports.CreateServer = CreateServer;

@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateRedisCache = void 0;
 class CreateRedisCache {
-    execute() {
-        return `import cacheConfig from '@config/cache';
+  execute() {
+    return `import cacheConfig from '@config/cache';
 import Redis, { Redis as RedisClient } from 'ioredis';
 
 import ICacheProvider from '../models/ICacheProvider';
@@ -50,6 +53,6 @@ class RedisCacheProvider implements ICacheProvider {
 
 export default RedisCacheProvider;
 `;
-    }
+  }
 }
 exports.CreateRedisCache = CreateRedisCache;

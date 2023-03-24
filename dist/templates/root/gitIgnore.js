@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateGitIgnore = void 0;
 class CreateGitIgnore {
-    execute() {
-        return `# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+  execute() {
+    return `# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 /node_modules
 /coverage
@@ -11,6 +14,6 @@ class CreateGitIgnore {
 /dist
 /tmp
 `;
-    }
+  }
 }
 exports.CreateGitIgnore = CreateGitIgnore;

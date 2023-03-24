@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateDefaultLanguage = void 0;
 class CreateDefaultLanguage {
-    execute(languageData) {
-        return `"use strict";
+  execute(languageData) {
+    return `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -19,6 +22,6 @@ class Messages {
   }
 }
 exports.Messages = Messages;`;
-    }
+  }
 }
 exports.CreateDefaultLanguage = CreateDefaultLanguage;

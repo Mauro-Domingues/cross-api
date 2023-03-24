@@ -1,19 +1,25 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.ListDependentService = void 0;
-const messages_1 = require("@tools/messages");
+var _messages = require("../../../../../dist/tools/messages");
 class ListDependentService {
-    constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
-        this.names = names;
-        this.fatherNames = fatherNames;
+  constructor(names, fatherNames) {
+    this.messages = void 0;
+    this.names = void 0;
+    this.fatherNames = void 0;
+    this.messages = new _messages.Messages().execute();
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+  execute() {
+    if (!this.names || !this.fatherNames) {
+      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+      throw new Error();
     }
-    execute() {
-        if (!this.names || !this.fatherNames) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import { injectable, inject } from 'tsyringe';
+    return `import { injectable, inject } from 'tsyringe';
 
 import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
@@ -58,6 +64,6 @@ export default class List${this.names.upperModuleName}Service {
   }
 }
 `;
-    }
+  }
 }
 exports.ListDependentService = ListDependentService;
