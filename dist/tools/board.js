@@ -45,9 +45,6 @@ class Board {
       title: 'make:provider [name] [father]',
       description: this.messages.makeProviderD
     }, {
-      title: 'migration:generate           ',
-      description: this.messages.migrationGenerate
-    }, {
       title: 'revert                       ',
       description: this.messages.undo
     }];

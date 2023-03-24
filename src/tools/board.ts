@@ -56,10 +56,6 @@ export class Board {
         description: this.messages.makeProviderD,
       },
       {
-        title: 'migration:generate           ',
-        description: this.messages.migrationGenerate,
-      },
-      {
         title: 'revert                       ',
         description: this.messages.undo,
       },
