@@ -14,45 +14,54 @@ export class Board {
   constructor() {
     this.messages = new Messages().execute();
     this.toolOptions = [
-      { title: 'comands             ', description: messages.comands },
-      { title: 'language            ', description: messages.changeLanguage },
-      { title: 'list:provider       ', description: messages.listProvider },
+      { title: 'comands             ', description: this.messages.comands },
+      {
+        title: 'language            ',
+        description: this.messages.changeLanguage,
+      },
+      {
+        title: 'list:provider       ',
+        description: this.messages.listProvider,
+      },
     ];
     this.ormOptions = [
       {
         title: 'migration:generate           ',
-        description: messages.migrationGenerate,
+        description: this.messages.migrationGenerate,
       },
       {
         title: 'migration:run                ',
-        description: messages.migrationRun,
+        description: this.messages.migrationRun,
       },
     ];
     this.structureOptions = [
-      { title: 'make:api                     ', description: messages.makeApi },
+      {
+        title: 'make:api                     ',
+        description: this.messages.makeApi,
+      },
       {
         title: 'make:module [name]           ',
-        description: messages.makeModule,
+        description: this.messages.makeModule,
       },
       {
         title: 'make:module [name] [father]  ',
-        description: messages.makeModuleD,
+        description: this.messages.makeModuleD,
       },
       {
         title: 'make:provider [name]         ',
-        description: messages.makeProvider,
+        description: this.messages.makeProvider,
       },
       {
         title: 'make:provider [name] [father]',
-        description: messages.makeProviderD,
+        description: this.messages.makeProviderD,
       },
       {
         title: 'migration:generate           ',
-        description: messages.migrationGenerate,
+        description: this.messages.migrationGenerate,
       },
       {
         title: 'revert                       ',
-        description: messages.undo,
+        description: this.messages.undo,
       },
     ];
   }
