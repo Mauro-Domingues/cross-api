@@ -206,7 +206,7 @@ export class MakeDependentHashProvider {
     }
     appendFileSync(
       resolve('src', 'shared', 'container', 'index.ts'),
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers;`,
+      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
     appendFileSync(
       resolve(
