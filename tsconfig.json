@@ -11,7 +11,7 @@
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +20,7 @@
     "strictPropertyInitialization": true,
     "skipLibCheck": true
   },
-  "include": ["src", "bin"],
+  "include": ["src", "index"],
   "exclude": ["node_modules"],
   "ts-node": {"files": true}
 }

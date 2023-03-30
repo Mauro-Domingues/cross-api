@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateHash = void 0;
 class CreateHash {
-    execute() {
-        return `import { hash, compare } from 'bcrypt';
+  execute() {
+    return `import { hash, compare } from 'bcrypt';
 import hashConfig from '@config/hash';
 
 import IHashProvider from '../models/IHashProvider';
@@ -20,6 +23,6 @@ class BCryptHashProvider implements IHashProvider {
 
 export default BCryptHashProvider;
 `;
-    }
+  }
 }
 exports.CreateHash = CreateHash;

@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateRDStationLead = void 0;
 class CreateRDStationLead {
-    execute() {
-        return `import leadConfig from '@config/lead';
+  execute() {
+    return `import leadConfig from '@config/lead';
 import axios, { AxiosError } from 'axios';
 
 import AppError from '@shared/errors/AppError';
@@ -57,6 +60,6 @@ class RDStationProvider implements ILeadProvider {
 
 export default RDStationProvider;
 `;
-    }
+  }
 }
 exports.CreateRDStationLead = CreateRDStationLead;

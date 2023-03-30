@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateBabelConfig = void 0;
 class CreateBabelConfig {
-    execute() {
-        return `module.exports = {
+  execute() {
+    return `module.exports = {
   presets: [
     ['@babel/preset-env', {targets: {node: 'current'}}],
     '@babel/preset-typescript'
@@ -25,6 +28,6 @@ class CreateBabelConfig {
   ],
 }
 `;
-    }
+  }
 }
 exports.CreateBabelConfig = CreateBabelConfig;

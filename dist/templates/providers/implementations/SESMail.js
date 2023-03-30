@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateSESMail = void 0;
 class CreateSESMail {
-    execute() {
-        return `import mailConfig from '@config/mail';
+  execute() {
+    return `import mailConfig from '@config/mail';
 import aws from 'aws-sdk';
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
@@ -54,6 +57,6 @@ class SESMailProvider implements IMailProvider {
 
 export default SESMailProvider;
 `;
-    }
+  }
 }
 exports.CreateSESMail = CreateSESMail;

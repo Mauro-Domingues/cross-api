@@ -1,90 +1,102 @@
 #!/usr/bin/env node
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const board_1 = require("../dist/tools/board");
-const config_1 = require("../dist/tools/config");
-const languageConfig_1 = require("../dist/tools/languageConfig");
-const listProvider_1 = require("../dist/tools/listProvider");
-const makeApi_1 = require("../dist/tools/makeApi");
-const makeModule_1 = require("../dist/tools/makeModule");
-const makeProvider_1 = require("../dist/tools/makeProvider");
-const save_1 = require("../dist/tools/lastModification/save");
-const delete_1 = require("../dist/tools/lastModification/delete");
-const names_1 = require("../dist/tools/names");
-const shell_1 = require("../dist/tools/shell");
-const messages_1 = require("../dist/tools/messages");
+
+var _board = require("../dist/tools/board");
+var _config = require("../dist/tools/config");
+var _languageConfig = require("../dist/tools/languageConfig");
+var _listProvider = require("../dist/tools/listProvider");
+var _makeApi = require("../dist/tools/makeApi");
+var _makeModule = require("../dist/tools/makeModule");
+var _makeProvider = require("../dist/tools/makeProvider");
+var _save = require("../dist/tools/lastModification/save");
+var _delete = require("../dist/tools/lastModification/delete");
+var _names = require("../dist/tools/names");
+var _shell = require("../dist/tools/shell");
+var _messages = require("../dist/tools/messages");
 class Index {
-    constructor() {
-        this.fullComand = process.argv.slice(2);
-        this.comand = process.argv[2];
-        this.arg = process.argv[3];
-        this.father = process.argv[4];
-        this.messages = new messages_1.Messages().execute();
-        this.shell = new shell_1.Shell();
-        this.getNames = new names_1.GetNames(this.arg);
-        this.getFatherNames = new names_1.GetNames(this.father);
-        this.deleteRegister = new delete_1.DeleteRegister();
-        this.createRegister = new save_1.CreateRegister(this.fullComand, this.arg, this.getNames.execute(), this.getFatherNames.execute());
-        this.createProvider = new makeProvider_1.CreateProvider(this.arg, this.getFatherNames.execute());
-        this.createModule = new makeModule_1.CreateModule(this.getNames.execute(), this.getFatherNames.execute());
-        this.createApi = new makeApi_1.CreateApi();
-        this.listProvider = new listProvider_1.ListProvider();
-        this.configLanguage = new languageConfig_1.ConfigLanguage();
-        this.configJson = new config_1.ConfigJson();
-        this.board = new board_1.Board();
+  constructor() {
+    this.fullComand = process.argv.slice(2);
+    this.comand = process.argv[2];
+    this.arg = process.argv[3];
+    this.father = process.argv[4];
+    this.messages = void 0;
+    this.getNames = void 0;
+    this.shell = void 0;
+    this.getFatherNames = void 0;
+    this.deleteRegister = void 0;
+    this.createRegister = void 0;
+    this.createProvider = void 0;
+    this.createModule = void 0;
+    this.createApi = void 0;
+    this.listProvider = void 0;
+    this.configLanguage = void 0;
+    this.configJson = void 0;
+    this.board = void 0;
+    this.messages = new _messages.Messages().execute();
+    this.shell = new _shell.Shell();
+    this.getNames = new _names.GetNames(this.arg);
+    this.getFatherNames = new _names.GetNames(this.father);
+    this.deleteRegister = new _delete.DeleteRegister();
+    this.createRegister = new _save.CreateRegister(this.fullComand, this.arg, this.getNames.execute(), this.getFatherNames.execute());
+    this.createProvider = new _makeProvider.CreateProvider(this.arg, this.getFatherNames.execute());
+    this.createModule = new _makeModule.CreateModule(this.getNames.execute(), this.getFatherNames.execute());
+    this.createApi = new _makeApi.CreateApi();
+    this.listProvider = new _listProvider.ListProvider();
+    this.configLanguage = new _languageConfig.ConfigLanguage();
+    this.configJson = new _config.ConfigJson();
+    this.board = new _board.Board();
+  }
+  execute() {
+    if (this.comand) {
+      if (this.comand !== 'revert') {
+        this.createRegister.execute();
+      }
+      switch (this.comand) {
+        case 'config':
+          this.configJson.execute();
+          break;
+        case 'comands':
+          this.board.execute();
+          break;
+        case 'language':
+          this.configLanguage.execute();
+          break;
+        case 'list:provider':
+          this.listProvider.execute();
+          break;
+        case 'make:api':
+          this.createApi.execute();
+          break;
+        case 'make:module':
+          this.createModule.execute();
+          break;
+        case 'make:provider':
+          this.createProvider.execute();
+          break;
+        case 'migration:generate':
+          this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
+          break;
+        case 'migration:run':
+          this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
+          break;
+        case 'revert':
+          this.deleteRegister.execute();
+          this.createRegister.execute();
+          break;
+        default:
+          console.log('');
+          console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
+          console.log('');
+          console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
+          console.log('');
+          break;
+      }
+    } else {
+      console.log('');
+      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
+      console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
+      console.log('');
     }
-    execute() {
-        if (this.comand) {
-            if (this.comand !== 'revert') {
-                this.createRegister.execute();
-            }
-            switch (this.comand) {
-                case 'config':
-                    this.configJson.execute();
-                    break;
-                case 'comands':
-                    this.board.execute();
-                    break;
-                case 'language':
-                    this.configLanguage.execute();
-                    break;
-                case 'list:provider':
-                    this.listProvider.execute();
-                    break;
-                case 'make:api':
-                    this.createApi.execute();
-                    break;
-                case 'make:module':
-                    this.createModule.execute();
-                    break;
-                case 'make:provider':
-                    this.createProvider.execute();
-                    break;
-                case 'migration:generate':
-                    this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default');
-                    break;
-                case 'migration:run':
-                    this.shell.execute('ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run');
-                    break;
-                case 'revert':
-                    this.deleteRegister.execute();
-                    this.createRegister.execute();
-                    break;
-                default:
-                    console.log('');
-                    console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
-                    console.log('');
-                    console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
-                    console.log('');
-                    break;
-            }
-        }
-        else {
-            console.log('');
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.notFound, '\x1b[0m');
-            console.log('\x1b[1m', '\x1b[38;2;0;155;255m', `${this.messages.try[0]}`, '\x1b[38;2;255;255;0m', `${this.messages.try[1]}`, '\x1b[38;2;0;155;255m', `${this.messages.try[2]}`, '\x1b[0m');
-            console.log('');
-        }
-    }
+  }
 }
 new Index().execute();

@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateICrypto = void 0;
 class CreateICrypto {
-    execute() {
-        return `import { SignOptions } from 'jsonwebtoken';
+  execute() {
+    return `import { SignOptions } from 'jsonwebtoken';
 import { JWK } from 'pem-jwk';
 import ICryptoDTO from '../dtos/ICryptoDTO';
 
@@ -24,6 +27,6 @@ export default interface ICryptoProvider {
   }>;
 }
 `;
-    }
+  }
 }
 exports.CreateICrypto = CreateICrypto;

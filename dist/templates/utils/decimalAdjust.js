@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateDecimaAdjust = void 0;
 class CreateDecimaAdjust {
-    execute() {
-        return `export function roundDecimal(v: number, exp?: number) {
+  execute() {
+    return `export function roundDecimal(v: number, exp?: number) {
   if (typeof exp === 'undefined') {
     return NaN;
   }
@@ -39,6 +42,6 @@ class CreateDecimaAdjust {
   return negative ? result * -1 : result;
 }
 `;
-    }
+  }
 }
 exports.CreateDecimaAdjust = CreateDecimaAdjust;

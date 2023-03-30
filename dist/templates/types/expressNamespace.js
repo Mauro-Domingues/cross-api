@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateExpressNamespace = void 0;
 class CreateExpressNamespace {
-    execute() {
-        return `declare namespace Express {
+  execute() {
+    return `declare namespace Express {
   export interface Request {
     user: {
       id: string;
@@ -11,6 +14,6 @@ class CreateExpressNamespace {
   }
 }
 `;
-    }
+  }
 }
 exports.CreateExpressNamespace = CreateExpressNamespace;

@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateNotificationIndex = void 0;
 class CreateNotificationIndex {
-    execute() {
-        return `import { container } from 'tsyringe';
+  execute() {
+    return `import { container } from 'tsyringe';
 
 import OneSignalProvider from './implementations/OneSignalProvider';
 import INotificationProvider from './models/INotificationProvider';
@@ -17,6 +20,6 @@ container.registerInstance<INotificationProvider>(
   providers.onesignal,
 );
 `;
-    }
+  }
 }
 exports.CreateNotificationIndex = CreateNotificationIndex;

@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateTypeorm = void 0;
 class CreateTypeorm {
-    execute() {
-        return `import { DataSource } from 'typeorm';
+  execute() {
+    return `import { DataSource } from 'typeorm';
 
 import { AppDataSource } from './dataSource';
 
@@ -66,6 +69,6 @@ export default async (): Promise<DataSource> => {
 // })
 // relationEntity: relationEntity[];
 `;
-    }
+  }
 }
 exports.CreateTypeorm = CreateTypeorm;

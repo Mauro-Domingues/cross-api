@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.CreateCorsConfig = void 0;
 class CreateCorsConfig {
-    execute() {
-        return `import DomainsManager from '@utils/domainsManager';
+  execute() {
+    return `import DomainsManager from '@utils/domainsManager';
 import { CorsOptions } from 'cors';
 
 export default {
@@ -21,6 +24,6 @@ export default {
   },
 } as CorsOptions;
 `;
-    }
+  }
 }
 exports.CreateCorsConfig = CreateCorsConfig;
