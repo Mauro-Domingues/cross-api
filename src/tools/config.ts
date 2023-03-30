@@ -120,6 +120,7 @@ export class ConfigJson {
       `- yarn ${this.configLanguage.messages.installed}`,
       '\x1b[0m',
     );
+    console.log('');
   }
 
   private installDependencies(): void {
@@ -170,15 +171,7 @@ export class ConfigJson {
     console.log('');
   }
 
-  private setConfig(): void {
-    this.patchPackage();
-
-    this.installYarn();
-
-    this.installDependencies();
-
-    this.installDevDependencies();
-
+  private renderEnding(): void {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
@@ -201,6 +194,18 @@ export class ConfigJson {
       '\x1b[0m',
     );
     console.log('');
+  }
+
+  private setConfig(): void {
+    this.patchPackage();
+
+    this.installYarn();
+
+    this.installDependencies();
+
+    this.installDevDependencies();
+
+    this.renderEnding();
 
     if (existsSync(resolve('package-lock.json'))) {
       unlinkSync(resolve('package-lock.json'));
@@ -209,7 +214,7 @@ export class ConfigJson {
     this.config.execute();
   }
 
-  public showLanguageOptions(): void {
+  private showLanguageOptions(): void {
     console.log('');
     console.log(
       '\x1b[1m',

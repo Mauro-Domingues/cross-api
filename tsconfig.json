@@ -6,11 +6,16 @@
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "@templates/*": ["src/templates/*"],
-      "@tools/*": ["src/tools/*"],
+      "@templates/*": [
+        "src/templates/*"
+      ],
+      "@tools/*": [
+        "src/tools/*"
+      ],
     },
     "resolveJsonModule": true,
     "allowJs": true,
+    "rootDirs": ["./src", "./bin"],
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,7 +24,14 @@
     "strictPropertyInitialization": true,
     "skipLibCheck": true
   },
-  "include": ["src", "index"],
-  "exclude": ["node_modules"],
-  "ts-node": {"files": true}
+  "include": [
+    "src",
+    "bin"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "files": true
+  }
 }

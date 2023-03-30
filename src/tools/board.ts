@@ -71,6 +71,16 @@ export class Board {
     );
   }
 
+  private renderHeader(): void {
+    console.log('');
+    console.log(
+      '\x1b[1m',
+      '\x1b[38;2;0;155;255m',
+      ` /================================================${this.messages.comandTitle}=================================================\\`,
+      '\x1b[0m',
+    );
+  }
+
   private renderToolOptions(): void {
     this.renderEmptyLine();
     console.log(
@@ -168,17 +178,7 @@ export class Board {
     });
   }
 
-  public execute(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      ` /================================================${this.messages.comandTitle}=================================================\\`,
-      '\x1b[0m',
-    );
-    this.renderToolOptions();
-    this.renderOrmOptions();
-    this.renderStructureOptions();
+  private renderFooter(): void {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
@@ -186,5 +186,17 @@ export class Board {
       '\x1b[0m',
     );
     console.log('');
+  }
+
+  public execute(): void {
+    this.renderHeader();
+
+    this.renderToolOptions();
+
+    this.renderOrmOptions();
+
+    this.renderStructureOptions();
+
+    this.renderFooter();
   }
 }

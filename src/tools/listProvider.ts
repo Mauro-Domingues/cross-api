@@ -28,28 +28,7 @@ export class ListProvider {
     );
   }
 
-  private renderProviderOptions(): void {
-    this.providers.forEach(provider => {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[38;2;255;255;0m',
-        `➤  ${provider.Name}     `,
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-        `${provider.Provider}`,
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '       |',
-        '\x1b[0m',
-      );
-      this.renderEmptyLine();
-    });
-  }
-
-  public execute(): void {
+  private renderHeader(): void {
     console.log('');
     console.log(
       '\x1b[1m',
@@ -77,7 +56,30 @@ export class ListProvider {
       '| – – – – – – – – – – – – – – – – – – – – – – – – – – – – |',
       '\x1b[0m',
     );
-    this.renderProviderOptions();
+  }
+
+  private renderProviderOptions(): void {
+    this.providers.forEach(provider => {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[38;2;255;255;0m',
+        `➤  ${provider.Name}     `,
+        '\x1b[38;2;0;155;255m',
+        '|',
+        '\x1b[0m',
+        `${provider.Provider}`,
+        '\x1b[1m',
+        '\x1b[38;2;0;155;255m',
+        '       |',
+        '\x1b[0m',
+      );
+      this.renderEmptyLine();
+    });
+  }
+
+  private renderFooter(): void {
     console.log(
       '\x1b[1m',
       '\x1b[38;2;0;155;255m',
@@ -85,5 +87,11 @@ export class ListProvider {
       '\x1b[0m',
     );
     console.log('');
+  }
+
+  public execute(): void {
+    this.renderHeader();
+    this.renderProviderOptions();
+    this.renderFooter();
   }
 }
