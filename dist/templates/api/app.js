@@ -8,13 +8,13 @@ class CreateApp {
   execute() {
     return `import 'express-async-errors';
 // import uploadConfig from '@config/upload'; // uploadProvider
+// import cryptoConfig from '@config/crypto'; // cryptoProvider
 import { errors } from 'celebrate';
 import cors from 'cors';
 import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
 import AppError from '@shared/errors/AppError';
 import corsconfig from '@config/cors';
-import ensureAuthenticated from '@middlewares/EnsureAuthenticated';
 import routes from '../routes';
 import '@shared/container';
 
@@ -23,9 +23,7 @@ app.use(cors(corsconfig));
 
 // app.use('/files', express.static(uploadConfig.uploadsFolder)); // uploadProvider
 
-app.use(express.static(path.resolve(__dirname, '..', 'assets'))); // expose public key feature
-// protect routes through the exposed public key, use optional .unless to set non-protected routes
-// app.use(ensureAuthenticated.unless({ path: ['/', '/example'] }));
+// app.use('/keys', express.static(cryptoConfig.keysPath)); // expose public key feature
 
 app.use(express.json());
 app.use(routes);

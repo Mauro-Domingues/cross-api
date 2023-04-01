@@ -9,7 +9,7 @@ import {
 } from 'jwks-rsa';
 
 const secret = expressJwtSecret({
-  jwksUri: \`\${process.env.API_URL}/.well-known/jwks.json\`,
+  jwksUri: \`\${process.env.API_URL}/keys\`,
   cache: true,
   rateLimit: true,
 });

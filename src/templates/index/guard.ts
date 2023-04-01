@@ -47,7 +47,7 @@ const guardRouter = Router();
 const exceptions: IExceptionDTO = {
   path: [
     {
-      url: /^\\/example/,
+      url: /^\\/keys/, // expose public key feature, let this route opened
       methods: ['GET'],
     },
     {

@@ -23,6 +23,7 @@ interface ICryptoConfig {
   encoding: encodingTypes.default;
   secretKey: string;
   basePath: string;
+  keysPath: string;
 }
 
 export default {
@@ -31,6 +32,7 @@ export default {
   encoding: 'hex',
   secretKey: process.env.CRYPTO_SECRET_KEY || '',
   basePath: path.resolve(__dirname, '..', 'assets'),
+  keysPath: path.resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
 } as ICryptoConfig;
 `;
   }
