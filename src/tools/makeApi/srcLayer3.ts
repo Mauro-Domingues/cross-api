@@ -16,6 +16,8 @@ import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenti
 import { CreateEnvNamespace } from '@templates/types/envNamespace';
 import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
 import { resolve } from 'path';
+import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt';
+import { CreateGuard } from '@templates/index/guard';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
@@ -25,6 +27,8 @@ export class MakeThirdLayer {
   private createNormalizeQueryLink: CreateNormalizeQueryLink;
   private createDecimaAdjust: CreateDecimaAdjust;
   private createRateLimiter: CreateRateLimiter;
+  private createDecodeJwt: CreateDecodeJwt
+  private createGuard: CreateGuard;
   private createRoutes: CreateRoutes;
   private createIResponseDTO: CreateIResponseDTO;
   private createIObjectDTO: CreateIObjectDTO;
@@ -38,12 +42,14 @@ export class MakeThirdLayer {
   constructor() {
     this.messages = new Messages().execute();
     this.createEnvNamespace = new CreateEnvNamespace();
+    this.createDecodeJwt = new CreateDecodeJwt();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createDomainsManager = new CreateDomainsManager();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createRateLimiter = new CreateRateLimiter();
     this.createRoutes = new CreateRoutes();
+    this.createGuard = new CreateGuard();
     this.createIResponseDTO = new CreateIResponseDTO();
     this.createIObjectDTO = new CreateIObjectDTO();
     this.createIListDTO = new CreateIListDTO();
@@ -205,7 +211,41 @@ export class MakeThirdLayer {
     }
     console.log(
       '\x1b[38;2;255;255;0m',
-      `- RateLimiter.ts ${this.messages.created}`,
+      `- EnsureAuthenticated.ts ${this.messages.created}`,
+      '\x1b[0m',
+    );
+    if (!existsSync(resolve('src', 'middlewares', 'DecodeJwt.ts'))) {
+      appendFileSync(
+        resolve('src', 'middlewares', 'DecodeJwt.ts'),
+        this.createDecodeJwt.execute(),
+      );
+    } else {
+      truncateSync(resolve('src', 'middlewares', 'DecodeJwt.ts'));
+      appendFileSync(
+        resolve('src', 'middlewares', 'DecodeJwt.ts'),
+        this.createDecodeJwt.execute(),
+      );
+    }
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- DecodeJwt.ts ${this.messages.created}`,
+      '\x1b[0m',
+    );
+    if (!existsSync(resolve('src', 'routes', 'guardRouter.ts'))) {
+      appendFileSync(
+        resolve('src', 'routes', 'guardRouter.ts'),
+        this.createGuard.execute(),
+      );
+    } else {
+      truncateSync(resolve('src', 'routes', 'guardRouter.ts'));
+      appendFileSync(
+        resolve('src', 'routes', 'guardRouter.ts'),
+        this.createGuard.execute(),
+      );
+    }
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- guardRouter.ts ${this.messages.created}`,
       '\x1b[0m',
     );
     if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
