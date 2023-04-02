@@ -5,7 +5,7 @@ import { verify } from 'jsonwebtoken';
 import path from 'path';
 import fs from 'fs';
 
-interface ITokenPayload {
+interface ITokenPayloadDTO {
   iat: number;
   exp: number;
   sub: string;
@@ -33,7 +33,7 @@ export default async function decodeJwt(
   const [, token] = authHeader.split(' ');
   const secret = fs.readFileSync(basePath, 'ascii');
   const decoded = verify(token, secret);
-  const { sub } = decoded as ITokenPayload;
+  const { sub } = decoded as ITokenPayloadDTO;
 
   request.user = {
     id: sub,

@@ -106,7 +106,7 @@ class CryptoProvider implements ICryptoProvider {
     }
 
     if (!fs.existsSync(path.resolve(cryptoConfig.basePath, '.well-known'))) {
-      fs.mkdirSync(path.resolve(cryptoConfig.basePath, '.well-known');
+      fs.mkdirSync(path.resolve(cryptoConfig.basePath, '.well-known'));
     }
 
     if (
