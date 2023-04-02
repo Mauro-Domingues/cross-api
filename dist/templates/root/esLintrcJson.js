@@ -8,7 +8,7 @@ class CreateEsLintrcJson {
   execute() {
     return `{
   "env": {
-      "es2020": true,
+      "es6": true,
       "node": true,
       "jest": true
   },
@@ -20,7 +20,7 @@ class CreateEsLintrcJson {
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-      "ecmaVersion": 12,
+      "ecmaVersion": "latest",
       "sourceType": "module"
   },
   "plugins": [
@@ -38,7 +38,7 @@ class CreateEsLintrcJson {
         "selector": "interface",
         "format": ["PascalCase"],
         "custom": {
-          "regex": "^I[A-Z]",
+          "regex": "^I[A-Z]\\\\w*DTO$",
           "match": true
         }
       }
