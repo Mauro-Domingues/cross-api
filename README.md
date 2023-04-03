@@ -1,5 +1,9 @@
 ﻿﻿<h1>cross-api</h1>
 
+<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-api-using-cross-api">social-media-api-using-cross-api</a>
+
+<hr>
+
 <h3>To install the project:</h3>
 
 ```
