@@ -23,7 +23,7 @@ export class CreateIndexRoute {
       throw new Error();
     }
 
-    return `import ${this.names.lowerModuleName}Router from './${this.names.lowerModuleName}Router';
+    return `import { ${this.names.lowerModuleName}Router } from './${this.names.lowerModuleName}Router';
 routes.use('/', ${this.names.lowerModuleName}Router);
 `;
   }

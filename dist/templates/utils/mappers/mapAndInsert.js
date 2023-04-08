@@ -23,9 +23,10 @@ export function mapAndInsertAttribute<Entity, DTO>(
 ): Entity {
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
-      Object.assign(oldAttributes, {
+      oldAttributes = {
+        ...oldAttributes,
         [attribute]: newAttributes[attribute],
-      });
+      };
     }
   }
   return oldAttributes;

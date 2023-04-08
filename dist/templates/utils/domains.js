@@ -56,7 +56,7 @@ export class DomainsManager {
 
     const updatedDomains = ArrayOfDomain.join('\\${'n'}');
 
-    writeFile(path, updatedDomains);
+    writeFileSync(path, updatedDomains);
   }
 }
 `;

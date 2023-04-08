@@ -24,7 +24,7 @@ import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.p
 import { DeleteResult } from 'typeorm';
 import { IObjectDTO } from '@dtos/IObjectDTO';
 
-export interface I${this.names.pluralUpperModuleName}Repository {
+export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
   findAll(
     page: number,
     limit: number,

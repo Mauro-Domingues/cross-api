@@ -12,7 +12,7 @@ import { routes } from '../routes';
 import '@shared/container';
 
 const app = express();
-app.use(cors(corsconfig));
+app.use(cors(corsConfig));
 
 // app.use('/files', express.static(uploadConfig.uploadsFolder)); // uploadProvider
 

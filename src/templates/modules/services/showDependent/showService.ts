@@ -44,7 +44,7 @@ import { IResponseDTO } from '@dtos/IResponseDTO';
 export class Show${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
+    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
   ) {}
 
   async execute(${this.names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {

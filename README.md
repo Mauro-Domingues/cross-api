@@ -225,7 +225,7 @@ const example = await this.examplesRepository.findBy([
 ```typescript
 // using mapper
 
-import mapAndCloneAttribute from "@utils/mappers/mapAndCloneAttribute";
+import { mapAndCloneAttribute } from "@utils/mappers/mapAndCloneAttribute";
 
 const param: IObjectDTO = {
   key: "example",
@@ -282,7 +282,7 @@ output = {
 ```typescript
 // with mapper
 
-import mapAndUpdateAttribute from "@utils/mappers/mapAndUpdateAttribute";
+import { mapAndUpdateAttribute } from "@utils/mappers/mapAndUpdateAttribute";
 
 const example: Example = {
   name: "example",
@@ -369,7 +369,7 @@ output = {
 ```typescript
 // with mapper
 
-import mapAndPatchAttribute from "@utils/mappers/mapAndPatchAttribute";
+import { mapAndPatchAttribute } from "@utils/mappers/mapAndPatchAttribute";
 
 const example: Example = {
   name: "example",
@@ -441,7 +441,7 @@ output => example.data = "{\"name\": \"\",\"description\": \"this is a new descr
 ```typescript
 // with mapper
 
-import mapAndUpdateString from "@utils/mappers/mapAndUpdateString";
+import { mapAndUpdateString } from "@utils/mappers/mapAndUpdateString";
 
 const example: Example = {
   data: "{\"name\": \"example\",\"description\": \"this is an example\",\"extra\": \"\",\"size\": \"123\", \"price\": 100}",
@@ -510,7 +510,7 @@ output => example.data = "{\"name\": \"example\",\"description\": \"this is a ne
 ```typescript
 // with mapper
 
-import mapAndPatchString from "@utils/mappers/mapAndPatchString";
+import { mapAndPatchString } from "@utils/mappers/mapAndPatchString";
 
 const example: Example = {
   data: "{\"name\": \"example\",\"description\": \"this is an example\",\"extra\": \"\",\"size\": \"123\", \"price\": 100}",
@@ -598,7 +598,7 @@ output = {
 ```typescript
 // with mapper
 
-import mapAndInsertAttribute from '@utils/mappers/mapAndInsertAttribute';
+import { mapAndInsertAttribute } from '@utils/mappers/mapAndInsertAttribute';
 
 const example: Example = {
   name: "example",

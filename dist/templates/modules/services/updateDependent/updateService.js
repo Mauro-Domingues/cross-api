@@ -37,10 +37,10 @@ import { IResponseDTO } from '@dtos/IResponseDTO';
 export class Update${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
+    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProviderDTO,
   ) {}
 
   async execute(
