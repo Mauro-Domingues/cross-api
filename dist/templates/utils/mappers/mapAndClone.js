@@ -11,7 +11,7 @@ class CreateMapAndClone {
     this.messages = new _messages.Messages().execute();
   }
   execute() {
-    return `import IObjectDTO from "@dtos/IObjectDTO";
+    return `import { IObjectDTO } from "@dtos/IObjectDTO";
 
 /**
  * ${this.messages.mapAndClone}
@@ -19,15 +19,14 @@ class CreateMapAndClone {
  * @returns Promise: IObjectDTO[]
  * @param params string[]
  */
-export default async function mapAndCloneAttribute(
+export function mapAndCloneAttribute(
   attribute: IObjectDTO,
   params: string[],
-): Promise<IObjectDTO[]> {
-  const objectArray: IObjectDTO[] = [];
-  params.forEach((param: string) => {
-    objectArray.push({
+): IObjectDTO[] {
+  const objectArray: IObjectDTO[] = params.map((param: string) => {
+    return {
       [param]: Object.values(attribute)[0],
-    });
+    };
   });
 
   return objectArray;

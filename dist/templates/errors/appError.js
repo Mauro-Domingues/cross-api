@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateAppError = void 0;
 class CreateAppError {
   execute() {
-    return `class AppError {
+    return `export class AppError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -16,8 +16,6 @@ class CreateAppError {
     this.statusCode = statusCode;
   }
 }
-
-export default AppError;
 `;
   }
 }

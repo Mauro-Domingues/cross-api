@@ -6,10 +6,7 @@ export class CreateEnvNamespace {
     API_URL: string;
     WEB_URL: string;
     NODE_ENV: 'development' | 'production' | 'test';
-    JWT_TOKEN_SECRET: string;
-    REFRESH_TOKEN_SECRET: string;
     JWT_LIFETIME: string;
-    REFRESH_LIFETIME: string;
     CRYPTO_SECRET_KEY: string;
     HASH_SECRET_KEY: string;
     DB_HOST: string;
@@ -36,7 +33,9 @@ export class CreateEnvNamespace {
     MAIL_NAME: string;
     SENTRY_DSN: string;
     OS_APP_ID: string;
+    OS_API_URL: string;
     OS_TOKEN: string;
+    RD_API_URL: string;
     RD_CLIENT_ID: string;
     RD_CLIENT_SECRET: string;
     RD_CODE: string;

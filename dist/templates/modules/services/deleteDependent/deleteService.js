@@ -21,21 +21,21 @@ class DeleteDependentService {
     }
     return `import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import IObjectDTO from '@dtos/IObjectDTO';
-import IResponseDTO from '@dtos/IResponseDTO';
+import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { IObjectDTO } from '@dtos/IObjectDTO';
+import { IResponseDTO } from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Delete${this.names.upperModuleName}Service {
+export class Delete${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
+    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider,
+    private cacheProvider: ICacheProviderDTO,
   ) {}
 
   async execute(${this.names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<null>> {
@@ -45,9 +45,9 @@ export default class Delete${this.names.upperModuleName}Service {
       throw new AppError('${this.names.upperModuleName} not found', 404);
     }
 
+    await this.${this.names.pluralLowerModuleName}Repository.delete(${this.names.lowerModuleName});
+    
     await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
-
-    this.${this.names.pluralLowerModuleName}Repository.delete(${this.names.lowerModuleName});
 
     return {
       code: 204,

@@ -18,7 +18,7 @@ class CreateIndexDependentRoute {
       throw new Error();
     }
     return `import ${this.fatherNames.lowerModuleName}Router from './${this.fatherNames.lowerModuleName}Router';
-routes.use('/${this.fatherNames.routeModuleName}', ${this.fatherNames.lowerModuleName}Router);
+routes.use('/', ${this.fatherNames.lowerModuleName}Router);
 `;
   }
 }

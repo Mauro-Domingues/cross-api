@@ -8,10 +8,14 @@ class CreateHashIndex {
   execute() {
     return `import { container } from 'tsyringe';
 
-import BCryptHashProvider from './implementations/BCryptHashProvider';
-import IHashProvider from './models/IHashProvider';
+import { BCryptHashProvider } from './implementations/BCryptHashProvider';
+import { IHashProviderDTO } from './models/IHashProvider';
 
-container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);
+const providers = {
+  bcrypt: container.resolve(BCryptHashProvider),
+};
+
+container.registerInstance<IHashProviderDTO>('HashProvider', providers.bcrypt);
 `;
   }
 }

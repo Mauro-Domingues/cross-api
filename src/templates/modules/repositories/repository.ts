@@ -26,12 +26,12 @@ export class CreateRepository {
     return `import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult, Repository } from 'typeorm';
 
-import ${this.names.upperModuleName} from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { AppDataSource } from '@shared/typeorm/dataSource';
-import IObjectDTO from '@dtos/IObjectDTO';
+import { IObjectDTO } from '@dtos/IObjectDTO';
 
-export default class ${this.names.pluralUpperModuleName}Repository implements I${this.names.pluralUpperModuleName}Repository {
+export class ${this.names.pluralUpperModuleName}Repository implements I${this.names.pluralUpperModuleName}RepositoryDTO {
   private ormRepository: Repository<${this.names.upperModuleName}>;
 
   constructor() {

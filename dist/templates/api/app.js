@@ -7,15 +7,14 @@ exports.CreateApp = void 0;
 class CreateApp {
   execute() {
     return `import 'express-async-errors';
-// import uploadConfig from '@config/upload'; // uploadProvider
-// import cryptoConfig from '@config/crypto'; // cryptoProvider
+// import { uploadConfig } from '@config/upload'; // uploadProvider
+// import { cryptoConfig } from '@config/crypto'; // cryptoProvider
 import { errors } from 'celebrate';
 import cors from 'cors';
-import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
-import AppError from '@shared/errors/AppError';
-import corsconfig from '@config/cors';
-import routes from '../routes';
+import { AppError } from '@shared/errors/AppError';
+import { corsConfig } from '@config/cors';
+import { routes } from '../routes';
 import '@shared/container';
 
 const app = express();
@@ -31,6 +30,8 @@ app.use(routes);
 app.use(errors());
 app.use(
   (error: Error, _request: Request, response: Response, next: NextFunction) => {
+    if (process.env.NODE_ENV !== 'production') console.log(error);
+
     if (error instanceof AppError) {
       return (
         response.status(error.statusCode).send({
@@ -58,7 +59,7 @@ app.use(
   },
 );
 
-export default app;
+export { app };
 `;
   }
 }

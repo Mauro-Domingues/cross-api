@@ -17,13 +17,13 @@ class DeleteDependentController {
       console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
       throw new Error();
     }
-    return `import IObjectDTO from '@dtos/IObjectDTO';
+    return `import { IObjectDTO } from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Delete${this.names.upperModuleName}Service from './Delete${this.names.upperModuleName}Service';
+import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
-export default class Delete${this.names.upperModuleName}Controller {
+export class Delete${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const delete${this.names.upperModuleName} = container.resolve(Delete${this.names.upperModuleName}Service);
 

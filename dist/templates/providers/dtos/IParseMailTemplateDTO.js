@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateIMailTemplateDTO = void 0;
 class CreateIMailTemplateDTO {
   execute() {
-    return `interface ITemplateVariables {
+    return `interface ITemplateVariablesDTO {
   [key: string]: string | number;
 }
 
-export default interface IParseMailTemplateDTO {
+export interface IParseMailTemplateDTO {
   file: string;
-  variables: ITemplateVariables;
+  variables: ITemplateVariablesDTO;
 }
 `;
   }

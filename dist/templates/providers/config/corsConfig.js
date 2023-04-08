@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateCorsConfig = void 0;
 class CreateCorsConfig {
   execute() {
-    return `import DomainsManager from '@utils/domainsManager';
+    return `import { DomainsManager } from '@utils/domainsManager';
 import { CorsOptions } from 'cors';
 
-export default {
+export const corsConfig: CorsOptions = {
   origin(origin, callback) {
     if (origin && new DomainsManager().read().indexOf(origin) !== -1) {
       callback(null, true);
@@ -22,7 +22,7 @@ export default {
       callback(new Error(\`\${origin} not allowed by CORS\`));
     }
   },
-} as CorsOptions;
+};
 `;
   }
 }

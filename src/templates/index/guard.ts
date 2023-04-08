@@ -2,8 +2,8 @@ export class CreateGuard {
   public execute(): string {
     return `/* eslint-disable no-useless-escape */
 import { Router } from 'express';
-import ensureAuthenticated from '@middlewares/EnsureAuthenticated';
-import decodeJwt from '@middlewares/DecodeJwt';
+import { ensureAuthenticated } from '@middlewares/EnsureAuthenticated';
+import { decodeJwt } from '@middlewares/DecodeJwt';
 
 interface IExceptionDTO {
   path: {
@@ -72,7 +72,7 @@ const exceptions: IExceptionDTO = {
 guardRouter.use(ensureAuthenticated.unless(exceptions));
 guardRouter.use(decodeJwt);
 
-export default guardRouter;
+export { guardRouter };
 `;
   }
 }

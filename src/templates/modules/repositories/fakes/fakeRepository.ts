@@ -24,13 +24,13 @@ export class CreateFakeRepository {
     }
 
     return `/* eslint-disable @typescript-eslint/no-explicit-any */
-import IObjectDTO from '@dtos/IObjectDTO';
-import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import ${this.names.upperModuleName} from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { IObjectDTO } from '@dtos/IObjectDTO';
+import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { v4 as uuid } from 'uuid';
 
-export default class Fake${this.names.pluralUpperModuleName}Repository implements I${this.names.pluralUpperModuleName}Repository {
+export class Fake${this.names.pluralUpperModuleName}Repository implements I${this.names.pluralUpperModuleName}RepositoryDTO {
   private ${this.names.pluralLowerModuleName}: ${this.names.upperModuleName}[] = [];
 
   public async findBy(

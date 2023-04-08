@@ -12,18 +12,17 @@ export class CreateMapAndInsert {
  * ${this.messages.patchAndInsert}
  * @param oldAttributes Entity
  * @param newAttributes Object
- * @returns Promise: Entity
+ * @returns Entity
  */
-export default async function mapAndInsertAttribute<Entity, DTO>(
+export function mapAndInsertAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
-): Promise<Entity> {
+): Entity {
   for (const attribute in newAttributes) {
     if (newAttributes[attribute]) {
-      oldAttributes = {
-        ...oldAttributes,
+      Object.assign(oldAttributes, {
         [attribute]: newAttributes[attribute],
-      };
+      });
     }
   }
   return oldAttributes;

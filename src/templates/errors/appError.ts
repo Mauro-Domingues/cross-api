@@ -1,6 +1,6 @@
 export class CreateAppError {
   public execute(): string {
-    return `class AppError {
+    return `export class AppError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -10,8 +10,6 @@ export class CreateAppError {
     this.statusCode = statusCode;
   }
 }
-
-export default AppError;
 `;
   }
 }

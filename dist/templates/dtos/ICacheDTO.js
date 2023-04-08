@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateICacheDTO = void 0;
 class CreateICacheDTO {
   execute() {
-    return `export default interface ICacheDTO<T> {
+    return `export interface ICacheDTO<T> {
   data: T[];
   total: number;
 }

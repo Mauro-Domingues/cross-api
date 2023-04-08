@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateILead = void 0;
 class CreateILead {
   execute() {
-    return `import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
+    return `import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 
-export default interface ILeadProvider {
+export interface ILeadProviderDTO {
   createLead(email: string): Promise<ICreateLeadDTO | undefined>;
 }
 `;

@@ -30,22 +30,22 @@ export class ShowSpecDependentService {
       throw new Error();
     }
 
-    return `import AppError from '@shared/errors/AppError';
-import Fake${this.names.upperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import Show${this.names.upperModuleName}Service from './Show${this.names.upperModuleName}Service';
+    return `import { AppError } from '@shared/errors/AppError';
+import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { Show${this.names.upperModuleName}Service } from './Show${this.names.upperModuleName}Service';
 
-let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
 
 describe('Show${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
 
-    show${this.names.upperModuleName} = new Show${this.names.upperModuleName}Service(fake${this.names.upperModuleName}Repository);
+    show${this.names.upperModuleName} = new Show${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository);
   });
 
   it('should be able to show the ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

@@ -1,39 +1,45 @@
 export class CreateDomainsManager {
   public execute(): string {
-    return `import fs from 'fs';
-import path from 'path';
+    return `import {
+  readFileSync,
+  existsSync,
+  mkdirSync,
+  appendFileSync,
+  writeFileSync,
+} from 'fs';
+import { resolve } from 'path';
 
-class DomainsManager {
+export class DomainsManager {
   basePath: string;
 
   constructor() {
-    this.basePath = path.resolve(__dirname, '..', 'assets', 'domains.txt');
+    this.basePath = resolve(__dirname, '..', 'assets', 'domains.txt');
   }
 
   public read(path = this.basePath): string {
-    const domains = fs.readFileSync(path, 'utf-8');
+    const domains = readFileSync(path, 'utf-8');
 
     return domains;
   }
 
   public write(file: string, path = this.basePath): void {
-    if (!fs.existsSync(path)) {
-      fs.mkdirSync(path);
+    if (!existsSync(path)) {
+      mkdirSync(path);
     }
 
-    const domains = fs.readFileSync(path, 'utf-8');
+    const domains = readFileSync(path, 'utf-8');
     const ArrayOfDomain = domains.split('\\${'n'}');
     const checkIfDomainExists = ArrayOfDomain.find(x => x === file);
 
     if (!checkIfDomainExists) {
-      fs.appendFileSync(path, \`\\${'n'}\${file}\`);
+      appendFileSync(path, \`\\${'n'}\${file}\`);
     } else {
       console.log(\`\${checkIfDomainExists} already subscribed\`);
     }
   }
 
   public delete(file: string, path = this.basePath): void {
-    const domains = fs.readFileSync(path, 'utf-8');
+    const domains = readFileSync(path, 'utf-8');
     const ArrayOfDomain = domains.split('\\${'n'}');
 
     ArrayOfDomain.forEach((domain, i) => {
@@ -44,14 +50,9 @@ class DomainsManager {
 
     const updatedDomains = ArrayOfDomain.join('\\${'n'}');
 
-    fs.writeFile(path, updatedDomains, error => {
-      if (error) throw error;
-      console.log('Successfully deleted the domain');
-    });
+    writeFile(path, updatedDomains);
   }
 }
-
-export default DomainsManager;
 `;
   }
 }

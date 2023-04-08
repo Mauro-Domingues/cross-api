@@ -15,12 +15,12 @@ class CreateMapAndUpdate {
  * ${this.messages.mapAndUpdate}
  * @param oldAttributes Entity
  * @param newAttributes Object
- * @returns Promise: Entity
+ * @returns Entity
  */
-export default async function mapAndUpdateAttribute<Entity, DTO>(
+export function mapAndUpdateAttribute<Entity, DTO>(
   oldAttributes: Entity,
   newAttributes: DTO,
-): Promise<Entity> {
+): Entity {
   for (const attribute in newAttributes) {
     if (oldAttributes?.hasOwnProperty(attribute)) {
       Object.assign(oldAttributes, { [attribute]: newAttributes[attribute] });

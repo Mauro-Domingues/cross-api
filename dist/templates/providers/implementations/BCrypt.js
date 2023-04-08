@@ -7,11 +7,11 @@ exports.CreateHash = void 0;
 class CreateHash {
   execute() {
     return `import { hash, compare } from 'bcrypt';
-import hashConfig from '@config/hash';
+import { hashConfig } from '@config/hash';
 
-import IHashProvider from '../models/IHashProvider';
+import { IHashProviderDTO } from '../models/IHashProvider';
 
-class BCryptHashProvider implements IHashProvider {
+export class BCryptHashProvider implements IHashProviderDTO {
   public async generateHash(payload: string): Promise<string> {
     return hash(payload, hashConfig.secret);
   }
@@ -20,8 +20,6 @@ class BCryptHashProvider implements IHashProvider {
     return compare(payload, hashed);
   }
 }
-
-export default BCryptHashProvider;
 `;
   }
 }

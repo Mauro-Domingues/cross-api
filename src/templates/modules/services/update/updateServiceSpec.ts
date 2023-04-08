@@ -23,29 +23,29 @@ export class UpdateSpecService {
       throw new Error();
     }
 
-    return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import AppError from '@shared/errors/AppError';
+    return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { AppError } from '@shared/errors/AppError';
 
-import Fake${this.names.upperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import Update${this.names.upperModuleName}Service from './Update${this.names.upperModuleName}Service';
+import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { Update${this.names.upperModuleName}Service } from './Update${this.names.upperModuleName}Service';
 
-let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
 let update${this.names.upperModuleName}Service: Update${this.names.upperModuleName}Service;
 
 describe('Update${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
     update${this.names.upperModuleName}Service = new Update${this.names.upperModuleName}Service(
-      fake${this.names.upperModuleName}Repository,
+      fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
   it('should update the ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

@@ -1,19 +1,17 @@
 export class CreateFakeLead {
   public execute(): string {
-    return `import ILeadProvider from '../models/ILeadProvider';
-import ICreateLeadDTO from '../dtos/ICreateLeadDTO';
+    return `import { ILeadProviderDTO } from '../models/ILeadProvider';
+import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 
-class FakeLeadProvider implements ILeadProvider {
+export class FakeLeadProvider implements ILeadProviderDTO {
   private leads: string[] = [];
 
   public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {
     this.leads.push(email);
 
-    return { event_uuid: 'teste' };
+    return { event_uuid: 'test' };
   }
 }
-
-export default FakeLeadProvider;
 `;
   }
 }

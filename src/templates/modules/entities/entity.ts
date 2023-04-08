@@ -33,7 +33,7 @@ export class CreateEntity {
 } from 'typeorm';
 
 @Entity('${this.names.dbModuleName}')
-export default class ${this.names.upperModuleName} {
+export class ${this.names.upperModuleName} {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

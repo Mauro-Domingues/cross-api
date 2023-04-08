@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateIResponseDTO = void 0;
 class CreateIResponseDTO {
   execute() {
-    return `export default interface IResponseDTO<T> {
+    return `export interface IResponseDTO<T> {
   code: number;
   message_code: string;
   message: string;

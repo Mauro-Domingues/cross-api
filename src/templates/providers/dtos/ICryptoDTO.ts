@@ -1,6 +1,6 @@
 export class CreateICryptoDTO {
   public execute(): string {
-    return `export default interface ICryptoDTO {
+    return `export interface ICryptoDTO {
   iv: string;
   content: string;
 }

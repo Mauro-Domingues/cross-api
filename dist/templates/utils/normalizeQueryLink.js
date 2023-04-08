@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateNormalizeQueryLink = void 0;
 class CreateNormalizeQueryLink {
   execute() {
-    return `
-export function normalizeQueryLink<T extends object>(
+    return `export function normalizeQueryLink<T extends object>(
   baseUrl: string,
   data: T,
 ): string {

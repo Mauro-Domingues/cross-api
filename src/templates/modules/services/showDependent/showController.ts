@@ -23,13 +23,13 @@ export class ShowDependentController {
       throw new Error();
     }
 
-    return `import IObjectDTO from '@dtos/IObjectDTO';
+    return `import { IObjectDTO } from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import Show${this.names.upperModuleName}Service from './Show${this.names.upperModuleName}Service';
+import { Show${this.names.upperModuleName}Service } from './Show${this.names.upperModuleName}Service';
 
-export default class Show${this.names.upperModuleName}Controller {
+export class Show${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const show${this.names.upperModuleName} = container.resolve(Show${this.names.upperModuleName}Service);
 

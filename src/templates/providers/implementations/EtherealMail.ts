@@ -1,40 +1,42 @@
 export class CreateEtherealMail {
   public execute(): string {
-    return `import nodemailer, { Transporter } from 'nodemailer';
+    return `import {
+  Transporter,
+  createTestAccount,
+  createTransport,
+  getTestMessageUrl,
+} from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import { IMailTemplateProviderDTO } from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
-import ISendMailDTO from '../dtos/ISendMailDTO';
-import IMailProvider from '../models/IMailProvider';
+import { mailConfig } from '@config/mail';
+import { ISendMailDTO } from '../dtos/ISendMailDTO';
+import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
-class EtherealMailProvider implements IMailProvider {
+export class EtherealMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProvider,
+    private mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
     this.createClient();
   }
 
   private async createClient(): Promise<void> {
-    try {
-      const account = await nodemailer.createTestAccount();
+    const account = await createTestAccount();
 
-      this.client = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
-        auth: {
-          user: account.user,
-          pass: account.pass,
-        },
-      });
-    } catch (err) {
-      console.error(\`EtherealMailProvider - Error:\\${'n'}\${err}\`);
-    }
+    this.client = createTransport({
+      host: account.smtp.host,
+      port: account.smtp.port,
+      secure: account.smtp.secure,
+      auth: {
+        user: account.user,
+        pass: account.pass,
+      },
+    });
   }
 
   public async sendMail({
@@ -47,25 +49,25 @@ class EtherealMailProvider implements IMailProvider {
       await this.createClient();
     }
 
+    const { email, name } = mailConfig.defaults.from;
+
     const message = await this.client.sendMail({
       from: {
-        name: from?.name || 'Administrator',
-        address: from?.email || 'no-reply@admin.com.br',
+        name: from?.name || name,
+        address: from?.email || email,
       },
       to: {
         name: to.name,
-        address: to.email || 'no-reply@admin.com.br',
+        address: to.email,
       },
       subject,
       html: await this.mailTemplateProvider.parse(templateData),
     });
 
     console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+    console.log('Preview URL: %s', getTestMessageUrl(message));
   }
 }
-
-export default EtherealMailProvider;
 `;
   }
 }

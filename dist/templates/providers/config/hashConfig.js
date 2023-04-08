@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateHashConfig = void 0;
 class CreateHashConfig {
   execute() {
-    return `interface IHashConfig {
+    return `interface IHashConfigDTO {
   secret: number;
 }
 
-export default {
+export const hashConfig: IHashConfigDTO = {
   secret: Number(process.env.HASH_SECRET_KEY) || 10,
-} as IHashConfig;
+};
 `;
   }
 }

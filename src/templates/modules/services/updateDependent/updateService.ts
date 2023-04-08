@@ -32,20 +32,20 @@ export class UpdateDependentService {
 
     return `import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import I${this.names.pluralUpperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import I${this.names.upperModuleName}DTO from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import mapAndUpdateAttribute from '@utils/mappers/mapAndUpdateAttribute';
-import ${this.names.upperModuleName} from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { mapAndUpdateAttribute } from '@utils/mappers/mapAndUpdateAttribute';
+import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
-import IObjectDTO from '@dtos/IObjectDTO';
-import IResponseDTO from '@dtos/IResponseDTO';
+import { IObjectDTO } from '@dtos/IObjectDTO';
+import { IResponseDTO } from '@dtos/IResponseDTO';
 
 @injectable()
-export default class Update${this.names.upperModuleName}Service {
+export class Update${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
     private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
@@ -64,11 +64,9 @@ export default class Update${this.names.upperModuleName}Service {
       throw new AppError('${this.names.upperModuleName} not found', 404);
     }
 
+    await this.${this.names.pluralLowerModuleName}Repository.update(mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data));
+    
     await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
-
-    await this.${this.names.pluralLowerModuleName}Repository.update(
-      await mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data),
-    );
 
     return {
       code: 200,

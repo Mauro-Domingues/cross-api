@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateIMailTemplate = void 0;
 class CreateIMailTemplate {
   execute() {
-    return `import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
+    return `import { IParseMailTemplateDTO } from '../dtos/IParseMailTemplateDTO';
 
-export default interface IMailTemplateProvider {
+export interface IMailTemplateProviderDTO {
   parse(data: IParseMailTemplateDTO): Promise<string>;
 }
 `;

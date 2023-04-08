@@ -8,14 +8,14 @@ class CreateCacheConfig {
   execute() {
     return `import { RedisOptions } from 'ioredis';
 
-interface ICacheConfig {
+interface ICacheConfigDTO {
   driver: 'redis';
   config: {
     redis: RedisOptions;
   };
 }
 
-export default {
+export const cacheConfig: ICacheConfigDTO = {
   driver: 'redis',
   config: {
     redis: {
@@ -24,7 +24,7 @@ export default {
       password: process.env.REDIS_PASSWORD,
     },
   },
-} as ICacheConfig;
+};
 `;
   }
 }

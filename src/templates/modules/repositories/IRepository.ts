@@ -23,12 +23,12 @@ export class CreateIRepository {
       throw new Error();
     }
 
-    return `import ${this.names.upperModuleName} from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import I${this.names.upperModuleName}DTO from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+    return `import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
-import IObjectDTO from '@dtos/IObjectDTO';
+import { IObjectDTO } from '@dtos/IObjectDTO';
 
-export default interface I${this.names.pluralUpperModuleName}Repository {
+export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
   findAll(
     page: number,
     limit: number,

@@ -21,7 +21,7 @@ export class CreateModuleDTO {
       throw new Error();
     }
 
-    return `export default interface I${this.names.upperModuleName}DTO {
+    return `export interface I${this.names.upperModuleName}DTO {
   name: string;
   description: string;
 }

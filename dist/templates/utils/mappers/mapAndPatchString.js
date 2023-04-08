@@ -11,22 +11,21 @@ class CreateMapAndPatchString {
     this.messages = new _messages.Messages().execute();
   }
   execute() {
-    return `import mapAndPatchAttribute from './mapAndPatchAttribute';
+    return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
 
 /**
  * ${this.messages.patchAndInsert}
  * @param oldAttributes string
  * @param newAttributes Object
- * @returns Promise: string
+ * @returns string
  */
-export default async function mapAndPatchStringify<Type>(
+export function mapAndPatchStringify<Type>(
   oldAttributes: string,
   newAttributes: Type,
-): Promise<string> {
-  const patchedAttributes = await mapAndPatchAttribute(
-    JSON.parse(oldAttributes),
-    newAttributes,
-  );
+): string {
+  const patchedAttributes: ReturnType<typeof mapAndPatchAttribute> =
+    mapAndPatchAttribute(JSON.parse(oldAttributes), newAttributes);
+
   return JSON.stringify(patchedAttributes);
 }
 `;

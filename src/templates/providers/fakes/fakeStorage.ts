@@ -1,8 +1,8 @@
 export class CreateFakeStorage {
   public execute(): string {
-    return `import IStorageProvider from '../models/IStorageProvider';
+    return `import { IStorageProviderDTO } from '../models/IStorageProvider';
 
-class FakeStorageProvider implements IStorageProvider {
+export class FakeStorageProvider implements IStorageProviderDTO {
   private storage: string[] = [];
 
   public async saveFile(file: string): Promise<string> {
@@ -19,8 +19,6 @@ class FakeStorageProvider implements IStorageProvider {
     this.storage.splice(findIndex, 1);
   }
 }
-
-export default FakeStorageProvider;
 `;
   }
 }

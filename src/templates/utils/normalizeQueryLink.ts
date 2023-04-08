@@ -1,7 +1,6 @@
 export class CreateNormalizeQueryLink {
   public execute(): string {
-    return `
-export function normalizeQueryLink<T extends object>(
+    return `export function normalizeQueryLink<T extends object>(
   baseUrl: string,
   data: T,
 ): string {

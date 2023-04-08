@@ -4,7 +4,7 @@ export class CreateTypeorm {
 
 import { AppDataSource } from './dataSource';
 
-export default async (): Promise<DataSource> => {
+export const createConnection = async (): Promise<DataSource> => {
   return AppDataSource.initialize();
 };
 

@@ -11,7 +11,7 @@ class CreateDecimaAdjust {
     return NaN;
   }
 
-  if (Number.isNaN(v) || !(exp % 1 === 0)) {
+  if (Number.isNaN(v) || exp % 1 !== 0) {
     return NaN;
   }
 

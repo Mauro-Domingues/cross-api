@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateILeadDTO = void 0;
 class CreateILeadDTO {
   execute() {
-    return `export default interface ICreateLeadDTO {
+    return `export interface ICreateLeadDTO {
   event_uuid: string;
 }
 `;

@@ -13,16 +13,13 @@ WEB_URL=http://localhost:3000
 NODE_ENV=development
 
 # Auth
-JWT_TOKEN_SECRET=
-REFRESH_TOKEN_SECRET=
 JWT_LIFETIME=
-REFRESH_LIFETIME=
 
 # Crypto
 CRYPTO_SECRET_KEY=
 
 # Hash
-HASH_SECRET_KEY=
+HASH_SECRET_KEY=10
 
 # DataSource config
 DB_HOST=localhost
@@ -53,23 +50,25 @@ MAIL_DRIVER=ethereal
 #MAIL_DRIVER=ses
 MAIL_PORT=2525
 MAIL_HOST=smtp.mailtrap.io
+MAIL_ADRESS=no-reply@admin.com
+MAIL_NAME=Administrator
 MAIL_USER=
 MAIL_PASS=
-MAIL_ADRESS=
-MAIL_NAME=
 
 # Sentry
 SENTRY_DSN=
 
 # One Signal
 OS_APP_ID=
+OS_API_URL=
 OS_TOKEN=
 
 # RDStation
-RD_CLIENT_ID=
-RD_CLIENT_SECRET=
-RD_CODE=
+RD_API_URL=https://api.rd.services
 RD_PUBLIC_API_KEY=
+RD_CLIENT_SECRET=
+RD_CLIENT_ID=
+RD_CODE=
 
 # AWS
 AWS_BUCKET=

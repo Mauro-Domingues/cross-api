@@ -28,8 +28,8 @@ export class CreateSpecController {
 
     return `import request from 'supertest';
 import { DataSource } from 'typeorm';
-import createConnection from '@shared/typeorm';
-import app from '@shared/app';
+import { createConnection } from '@shared/typeorm';
+import { app } from '@shared/app';
 
 let connection: DataSource;
 

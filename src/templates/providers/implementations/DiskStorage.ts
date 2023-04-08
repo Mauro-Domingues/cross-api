@@ -1,43 +1,33 @@
 export class CreateDiskStorage {
   public execute(): string {
-    return `import uploadConfig from '@config/upload';
-import fs from 'fs';
-import path from 'path';
+    return `import { uploadConfig } from '@config/upload';
+import { existsSync, mkdirSync, unlinkSync, renameSync } from 'fs';
+import { resolve } from 'path';
 
-import IStorageProvider from '../models/IStorageProvider';
+import { IStorageProviderDTO } from '../models/IStorageProvider';
 
-class DiskStorageProvider implements IStorageProvider {
+export class DiskStorageProvider implements IStorageProviderDTO {
   public async saveFile(file: string): Promise<string> {
-    if (!fs.existsSync(uploadConfig.tmpFolder)) {
-      fs.mkdirSync(uploadConfig.tmpFolder);
+    if (!existsSync(uploadConfig.tmpFolder)) {
+      mkdirSync(uploadConfig.tmpFolder);
     }
 
-    if (!fs.existsSync(uploadConfig.uploadsFolder)) {
-      fs.mkdirSync(uploadConfig.uploadsFolder);
+    if (!existsSync(uploadConfig.uploadsFolder)) {
+      mkdirSync(uploadConfig.uploadsFolder);
     }
 
-    await fs.promises.rename(
-      path.resolve(uploadConfig.tmpFolder, file),
-      path.resolve(uploadConfig.uploadsFolder, file),
+    renameSync(
+      resolve(uploadConfig.tmpFolder, file),
+      resolve(uploadConfig.uploadsFolder, file),
     );
 
     return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
-    const filePath = path.resolve(uploadConfig.uploadsFolder, file);
-
-    try {
-      await fs.promises.stat(filePath);
-    } catch {
-      return;
-    }
-
-    await fs.promises.unlink(filePath);
+    unlinkSync(resolve(uploadConfig.uploadsFolder, file));
   }
 }
-
-export default DiskStorageProvider;
 `;
   }
 }

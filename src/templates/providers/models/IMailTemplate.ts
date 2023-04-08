@@ -1,8 +1,8 @@
 export class CreateIMailTemplate {
   public execute(): string {
-    return `import IParseMailTemplateDTO from '../dtos/IParseMailTemplateDTO';
+    return `import { IParseMailTemplateDTO } from '../dtos/IParseMailTemplateDTO';
 
-export default interface IMailTemplateProvider {
+export interface IMailTemplateProviderDTO {
   parse(data: IParseMailTemplateDTO): Promise<string>;
 }
 `;

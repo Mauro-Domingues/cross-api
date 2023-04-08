@@ -30,29 +30,29 @@ export class ListSpecDependentService {
       throw new Error();
     }
 
-    return `import Fake${this.names.upperModuleName}Repository from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import List${this.names.upperModuleName}Service from './List${this.names.upperModuleName}Service';
+    return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
-let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
 
 describe('List${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    list${this.names.upperModuleName} = new List${this.names.upperModuleName}Service(fake${this.names.upperModuleName}Repository, fakeCacheProvider);
+    list${this.names.upperModuleName} = new List${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository, fakeCacheProvider);
   });
 
   it('should be able to list all the ${this.names.pluralLowerModuleName}', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
@@ -63,12 +63,12 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to list all the ${this.names.pluralLowerModuleName} using cache', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
@@ -81,17 +81,17 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to list the ${this.names.pluralLowerModuleName} with the specified pagination', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await fake${this.names.upperModuleName}Repository.create({
+    await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName} 3',
       description: 'This is the third ${this.names.lowerModuleName}',
     });

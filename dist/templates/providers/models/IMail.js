@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateIMail = void 0;
 class CreateIMail {
   execute() {
-    return `import ISendMailDTO from '../dtos/ISendMailDTO';
+    return `import { ISendMailDTO } from '../dtos/ISendMailDTO';
 
-export default interface IMailProvider {
+export interface IMailProviderDTO {
   sendMail(data: ISendMailDTO): Promise<void>;
 }
 `;

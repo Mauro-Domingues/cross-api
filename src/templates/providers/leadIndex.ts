@@ -2,14 +2,17 @@ export class CreateLeadIndex {
   public execute(): string {
     return `import { container } from 'tsyringe';
 
-import ILeadProvider from './models/ILeadProvider';
-import RDStationProvider from './implementations/RDStationProvider';
+import { RDStationProvider } from './implementations/RDStationProvider';
+import { ILeadProviderDTO } from './models/ILeadProvider';
 
 const providers = {
   rdStation: container.resolve(RDStationProvider),
 };
 
-container.registerInstance<ILeadProvider>('LeadProvider', providers.rdStation);
+container.registerInstance<ILeadProviderDTO>(
+  'LeadProvider',
+  providers.rdStation,
+);
 `;
   }
 }

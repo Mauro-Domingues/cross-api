@@ -2,14 +2,14 @@ export class CreateMailTemplateIndex {
   public execute(): string {
     return `import { container } from 'tsyringe';
 
-import HandlebarsMailTemplateProvider from './implementations/HandlebarsMailTemplateProvider';
-import IMailTemplateProvider from './models/IMailTemplateProvider';
+import { HandlebarsMailTemplateProvider } from './implementations/HandlebarsMailTemplateProvider';
+import { IMailTemplateProviderDTO } from './models/IMailTemplateProvider';
 
 const providers = {
-  handlebars: HandlebarsMailTemplateProvider,
+  handlebars: container.resolve(HandlebarsMailTemplateProvider),
 };
 
-container.registerSingleton<IMailTemplateProvider>(
+container.registerInstance<IMailTemplateProviderDTO>(
   'MailTemplateProvider',
   providers.handlebars,
 );

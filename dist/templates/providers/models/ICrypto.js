@@ -8,9 +8,9 @@ class CreateICrypto {
   execute() {
     return `import { SignOptions } from 'jsonwebtoken';
 import { JWK } from 'pem-jwk';
-import ICryptoDTO from '../dtos/ICryptoDTO';
+import { ICryptoDTO } from '../dtos/ICryptoDTO';
 
-export default interface ICryptoProvider {
+export interface ICryptoProviderDTO {
   encrypt(text: string): Promise<ICryptoDTO>;
   decrypt(hash: ICryptoDTO): Promise<string>;
   generateKeys(): Promise<

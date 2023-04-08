@@ -1,26 +1,24 @@
 export class CreateMailConfig {
   public execute(): string {
-    return `interface IMailConfig {
+    return `interface IMailConfigDTO {
   driver: 'ethereal' | 'ses';
-
   defaults: {
     from: {
-      email: string;
       name: string;
+      email: string;
     };
   };
 }
 
-export default {
+export const mailConfig: IMailConfigDTO = {
   driver: process.env.MAIL_DRIVER,
-
   defaults: {
     from: {
-      email: process.env.MAIL_NAME,
       name: process.env.MAIL_ADRESS,
+      email: process.env.MAIL_NAME,
     },
   },
-} as IMailConfig;
+};
 `;
   }
 }

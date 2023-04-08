@@ -2,11 +2,13 @@ export class CreateRateLimiter {
   public execute(): string {
     return `import { Request, Response, NextFunction } from 'express';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
-import redis from 'redis';
+import { createClient } from 'redis';
 
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
-const redisClient = redis.createClient({
+const redisClient = createClient({
+  host: process.env.REDIS_HOST,
+  port: Number(process.env.REDIS_PORT),
   password: process.env.REDIS_PASSWORD,
 });
 
@@ -17,19 +19,19 @@ const limiter = new RateLimiterRedis({
   duration: 1,
 });
 
-export default async function rateLimiter(
+export const rateLimiter = async (
   request: Request,
   _response: Response,
   next: NextFunction,
-): Promise<void> {
+): Promise<void> => {
   try {
     await limiter.consume(request.ip);
 
     return next();
   } catch {
-    throw new AppError('Too many request', 429);
+    throw new AppError('Too many requests', 429);
   }
-}
+};
 `;
   }
 }

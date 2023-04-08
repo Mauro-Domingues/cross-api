@@ -6,18 +6,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateFakeNotification = void 0;
 class CreateFakeNotification {
   execute() {
-    return `import ISendNotificationDTO from '../dtos/ISendNotificationDTO';
-import INotificationProvider from '../models/INotificationProvider';
+    return `import { ISendNotificationDTO } from '../dtos/ISendNotificationDTO';
+import { INotificationProviderDTO } from '../models/INotificationProvider';
 
-class FakeNotificationProvider implements INotificationProvider {
+export class FakeNotificationProvider implements INotificationProviderDTO {
   private notification: ISendNotificationDTO[] = [];
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     this.notification.push(data);
   }
 }
-
-export default FakeNotificationProvider;
 `;
   }
 }

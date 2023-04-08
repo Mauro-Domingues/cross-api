@@ -22,11 +22,11 @@ class UpdateDependentController {
     return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import I${this.names.upperModuleName}DTO from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import IObjectDTO from '@dtos/IObjectDTO';
-import Update${this.names.upperModuleName}Service from './Update${this.names.upperModuleName}Service';
+import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { IObjectDTO } from '@dtos/IObjectDTO';
+import { Update${this.names.upperModuleName}Service } from './Update${this.names.upperModuleName}Service';
 
-export default class Update${this.names.upperModuleName}Controller {
+export class Update${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const update${this.names.upperModuleName} = container.resolve(Update${this.names.upperModuleName}Service);
 

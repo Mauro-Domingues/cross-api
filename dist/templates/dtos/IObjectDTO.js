@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateIObjectDTO = void 0;
 class CreateIObjectDTO {
   execute() {
-    return `export default interface IObjectDTO {
+    return `export interface IObjectDTO {
   [key: string]: unknown;
 }
 `;

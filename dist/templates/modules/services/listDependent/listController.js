@@ -20,9 +20,9 @@ class ListDependentController {
     return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import List${this.names.upperModuleName}Service from './List${this.names.upperModuleName}Service';
+import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
-export default class List${this.names.upperModuleName}Controller {
+export class List${this.names.upperModuleName}Controller {
   async handle(request: Request, response: Response) {
     const list${this.names.upperModuleName} = container.resolve(List${this.names.upperModuleName}Service);
 

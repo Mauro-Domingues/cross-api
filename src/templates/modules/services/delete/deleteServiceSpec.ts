@@ -23,36 +23,36 @@ export class DeleteSpecService {
       throw new Error();
     }
 
-    return `import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import AppError from '@shared/errors/AppError';
+    return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { AppError } from '@shared/errors/AppError';
 
-import Fake${this.names.upperModuleName}Repository from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import Delete${this.names.upperModuleName}Services from './Delete${this.names.upperModuleName}Service';
+import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
-let fake${this.names.upperModuleName}Repository: Fake${this.names.upperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let delete${this.names.upperModuleName}: Delete${this.names.upperModuleName}Services;
+let delete${this.names.upperModuleName}: Delete${this.names.upperModuleName}Service;
 
 describe('Delete${this.names.upperModuleName}Service', () => {
   beforeEach(() => {
-    fake${this.names.upperModuleName}Repository = new Fake${this.names.upperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    delete${this.names.upperModuleName} = new Delete${this.names.upperModuleName}Services(
-      fake${this.names.upperModuleName}Repository,
+    delete${this.names.upperModuleName} = new Delete${this.names.upperModuleName}Service(
+      fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
   it('should be able to delete a new ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.upperModuleName}Repository.create({
+    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
     await delete${this.names.upperModuleName}.execute({ id: ${this.names.lowerModuleName}.id });
 
-    const deleted${this.names.upperModuleName} = await fake${this.names.upperModuleName}Repository.findBy({ id: ${this.names.lowerModuleName}.id });
+    const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy({ id: ${this.names.lowerModuleName}.id });
 
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });

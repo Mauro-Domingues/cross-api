@@ -6,19 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateRedisCache = void 0;
 class CreateRedisCache {
   execute() {
-    return `import cacheConfig from '@config/cache';
-import Redis, { Redis as RedisClient } from 'ioredis';
+    return `import { cacheConfig } from '@config/cache';
+import { Redis } from 'ioredis';
 
-import ICacheProvider from '../models/ICacheProvider';
+import { ICacheProviderDTO } from '../models/ICacheProvider';
 
-class RedisCacheProvider implements ICacheProvider {
-  private client: RedisClient;
+export class RedisCacheProvider implements ICacheProviderDTO {
+  private client: Redis;
 
   constructor() {
     this.client = new Redis(cacheConfig.config.redis);
   }
 
-  public async save(key: string, value: string): Promise<void> {
+  public async save<T>(key: string, value: T): Promise<void> {
     await this.client.set(key, JSON.stringify(value));
   }
 
@@ -29,7 +29,7 @@ class RedisCacheProvider implements ICacheProvider {
       return null;
     }
 
-    const parsedData = JSON.parse(data) as T;
+    const parsedData: T = JSON.parse(data);
 
     return parsedData;
   }
@@ -43,15 +43,13 @@ class RedisCacheProvider implements ICacheProvider {
 
     const pipeline = this.client.pipeline();
 
-    keys.forEach((key: any) => {
+    keys.forEach(key => {
       pipeline.del(key);
     });
 
     await pipeline.exec();
   }
 }
-
-export default RedisCacheProvider;
 `;
   }
 }

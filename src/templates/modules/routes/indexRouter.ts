@@ -4,7 +4,7 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 export class CreateIndexRoute {
   private messages: IMessagesDTO;
   private names:
-    | Pick<IModuleNamesDTO, 'lowerModuleName' | 'routeModuleName'>
+    | Pick<IModuleNamesDTO, 'lowerModuleName'>
     | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
@@ -24,7 +24,7 @@ export class CreateIndexRoute {
     }
 
     return `import ${this.names.lowerModuleName}Router from './${this.names.lowerModuleName}Router';
-routes.use('/${this.names.routeModuleName}', ${this.names.lowerModuleName}Router);
+routes.use('/', ${this.names.lowerModuleName}Router);
 `;
   }
 }

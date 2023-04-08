@@ -8,22 +8,21 @@ export class CreateMapAndUpdateString {
   }
 
   public execute(): string {
-    return `import mapAndUpdateAttribute from './mapAndUpdateAttribute';
+    return `import { mapAndUpdateAttribute } from './mapAndUpdateAttribute';
 
 /**
  * ${this.messages.mapAndUpdateString}
  * @param oldAttributes string
  * @param newAttributes Object
- * @returns Promise: string
+ * @returns string
  */
-export default async function mapAndUpdateStringify<Type>(
+export function mapAndUpdateStringify<Type>(
   oldAttributes: string,
   newAttributes: Type,
-): Promise<string> {
-  const updatedAttributes = await mapAndUpdateAttribute(
-    JSON.parse(oldAttributes),
-    newAttributes,
-  );
+): string {
+  const updatedAttributes: ReturnType<typeof mapAndUpdateAttribute> =
+    mapAndUpdateAttribute(JSON.parse(oldAttributes), newAttributes);
+
   return JSON.stringify(updatedAttributes);
 }
 `;

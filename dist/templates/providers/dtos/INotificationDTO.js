@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateINotificationDTO = void 0;
 class CreateINotificationDTO {
   execute() {
-    return `export default interface ISendNotificationlDTO {
+    return `export interface ISendNotificationDTO {
   name: string;
   device_id: string;
   headings: string;

@@ -1,12 +1,12 @@
 export class CreateHashConfig {
   public execute(): string {
-    return `interface IHashConfig {
+    return `interface IHashConfigDTO {
   secret: number;
 }
 
-export default {
+export const hashConfig: IHashConfigDTO = {
   secret: Number(process.env.HASH_SECRET_KEY) || 10,
-} as IHashConfig;
+};
 `;
   }
 }

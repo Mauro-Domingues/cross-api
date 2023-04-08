@@ -1,6 +1,6 @@
 export class CreateILeadDTO {
   public execute(): string {
-    return `export default interface ICreateLeadDTO {
+    return `export interface ICreateLeadDTO {
   event_uuid: string;
 }
 `;

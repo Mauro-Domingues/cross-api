@@ -6,27 +6,31 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateSESMail = void 0;
 class CreateSESMail {
   execute() {
-    return `import mailConfig from '@config/mail';
-import aws from 'aws-sdk';
-import nodemailer, { Transporter } from 'nodemailer';
+    return `import { mailConfig } from '@config/mail';
+
+import { SESClient } from '@aws-sdk/client-ses';
+import { createTransport, Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
-import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import { IMailTemplateProviderDTO } from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
-import ISendMailDTO from '../dtos/ISendMailDTO';
-import IMailProvider from '../models/IMailProvider';
+import { ISendMailDTO } from '../dtos/ISendMailDTO';
+import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
-class SESMailProvider implements IMailProvider {
+export class SESMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProvider,
+    private mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
-    this.client = nodemailer.createTransport({
-      SES: new aws.SES({
-        apiVersion: '2020-12-01',
+    this.client = createTransport({
+      SES: new SESClient({
+        credentials: {
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        },
         region: process.env.AWS_REGION,
       }),
     });
@@ -54,8 +58,6 @@ class SESMailProvider implements IMailProvider {
     });
   }
 }
-
-export default SESMailProvider;
 `;
   }
 }

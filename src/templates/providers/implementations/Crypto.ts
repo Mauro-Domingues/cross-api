@@ -1,19 +1,31 @@
 export class CreateCrypto {
   public execute(): string {
-    return `import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
+    return `import {
+  randomBytes,
+  createCipheriv,
+  createDecipheriv,
+  createHash,
+  generateKeyPairSync,
+} from 'crypto';
+import {
+  readFileSync,
+  appendFileSync,
+  truncateSync,
+  existsSync,
+  mkdirSync,
+} from 'fs';
+import { resolve } from 'path';
 import { sign, SignOptions } from 'jsonwebtoken';
 import { JWK, pem2jwk } from 'pem-jwk';
-import cryptoConfig from '@config/crypto';
-import ICryptoDTO from '../dtos/ICryptoDTO';
-import ICryptoProvider from '../models/ICryptoProvider';
+import { cryptoConfig } from '@config/crypto';
+import { ICryptoDTO } from '../dtos/ICryptoDTO';
+import { ICryptoProviderDTO } from '../models/ICryptoProvider';
 
-class CryptoProvider implements ICryptoProvider {
+export class CryptoProvider implements ICryptoProviderDTO {
   public async encrypt(text: string): Promise<ICryptoDTO> {
-    const iv = crypto.randomBytes(16);
+    const iv = randomBytes(16);
 
-    const cipher = crypto.createCipheriv(
+    const cipher = createCipheriv(
       cryptoConfig.algorithm,
       cryptoConfig.secretKey,
       iv,
@@ -28,7 +40,7 @@ class CryptoProvider implements ICryptoProvider {
   }
 
   public async decrypt(data: ICryptoDTO): Promise<string> {
-    const decipher = crypto.createDecipheriv(
+    const decipher = createDecipheriv(
       cryptoConfig.algorithm,
       cryptoConfig.secretKey,
       Buffer.from(data.iv, cryptoConfig.encoding),
@@ -49,8 +61,8 @@ class CryptoProvider implements ICryptoProvider {
     jwt_token: string;
     refresh_token: string;
   }> {
-    const secret = fs.readFileSync(
-      path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
+    const secret = readFileSync(
+      resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
     );
 
     const jwtToken = sign(payload, secret, {
@@ -59,10 +71,7 @@ class CryptoProvider implements ICryptoProvider {
       algorithm: 'RS256',
     });
 
-    const refreshToken = crypto
-      .createHash('sha256')
-      .update(jwtToken)
-      .digest('hex');
+    const refreshToken = createHash('sha256').update(jwtToken).digest('hex');
 
     return {
       jwt_token: jwtToken,
@@ -71,7 +80,7 @@ class CryptoProvider implements ICryptoProvider {
   }
 
   public async generateKeys(): Promise<JWK<{ use: string }>> {
-    const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+    const { publicKey, privateKey } = generateKeyPairSync('rsa', {
       modulusLength: 3072,
     });
 
@@ -95,60 +104,46 @@ class CryptoProvider implements ICryptoProvider {
       keys: [parsedJwk],
     };
 
-    if (!fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys'))) {
-      fs.mkdirSync(path.resolve(cryptoConfig.basePath, 'keys'));
+    if (!existsSync(resolve(cryptoConfig.basePath, 'keys'))) {
+      mkdirSync(resolve(cryptoConfig.basePath, 'keys'));
     }
 
-    if (!fs.existsSync(path.resolve(cryptoConfig.basePath, '.well-known'))) {
-      fs.mkdirSync(path.resolve(cryptoConfig.basePath, '.well-known'));
+    if (!existsSync(resolve(cryptoConfig.basePath, '.well-known'))) {
+      mkdirSync(resolve(cryptoConfig.basePath, '.well-known'));
     }
 
-    if (
-      fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'))
-    ) {
-      fs.truncateSync(
-        path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
-      );
+    if (existsSync(resolve(cryptoConfig.basePath, 'keys', 'private.pem'))) {
+      truncateSync(resolve(cryptoConfig.basePath, 'keys', 'private.pem'));
     }
 
-    fs.appendFileSync(
-      path.resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
+    appendFileSync(
+      resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
       privateExported,
     );
 
-    if (
-      fs.existsSync(path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'))
-    ) {
-      fs.truncateSync(
-        path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
-      );
+    if (existsSync(resolve(cryptoConfig.basePath, 'keys', 'public.pem'))) {
+      truncateSync(resolve(cryptoConfig.basePath, 'keys', 'public.pem'));
     }
 
-    fs.appendFileSync(
-      path.resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
+    appendFileSync(
+      resolve(cryptoConfig.basePath, 'keys', 'public.pem'),
       publicExported,
     );
 
     if (
-      fs.existsSync(
-        path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
-      )
+      existsSync(resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'))
     ) {
-      fs.truncateSync(
-        path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
-      );
+      truncateSync(resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'));
     }
 
-    fs.appendFileSync(
-      path.resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
+    appendFileSync(
+      resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
       JSON.stringify(jwksJson),
     );
 
     return parsedJwk;
   }
 }
-
-export default CryptoProvider;
 `;
   }
 }

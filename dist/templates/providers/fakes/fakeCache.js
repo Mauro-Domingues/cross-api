@@ -6,16 +6,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.CreateFakeRedis = void 0;
 class CreateFakeRedis {
   execute() {
-    return `import ICacheProvider from '../models/ICacheProvider';
+    return `import { ICacheProviderDTO } from '../models/ICacheProvider';
 
-interface ICacheData {
+interface ICacheDataDTO {
   [key: string]: string;
 }
 
-class FakeCacheProvider implements ICacheProvider {
-  private cache: ICacheData = {};
+export class FakeCacheProvider implements ICacheProviderDTO {
+  private cache: ICacheDataDTO;
 
-  public async save(key: string, value: string): Promise<void> {
+  public async save<T>(key: string, value: T): Promise<void> {
     this.cache[key] = JSON.stringify(value);
   }
 
@@ -45,8 +45,6 @@ class FakeCacheProvider implements ICacheProvider {
     });
   }
 }
-
-export default FakeCacheProvider;
 `;
   }
 }
