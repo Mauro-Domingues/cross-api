@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.MakeDependentNotificationProvider = void 0;
 var _fs = require("fs");
 var _container = require("../../../../dist/templates/index/container");
-var _notificationConfig = require("../../../../dist/templates/providers/config/notificationConfig");
 var _INotificationDTO = require("../../../../dist/templates/providers/dtos/INotificationDTO");
 var _fakeNotification = require("../../../../dist/templates/providers/fakes/fakeNotification");
 var _OneSignalNotification = require("../../../../dist/templates/providers/implementations/OneSignalNotification");
@@ -22,7 +21,6 @@ class MakeDependentNotificationProvider {
     this.createINotificationDTO = void 0;
     this.createOneSignalNotification = void 0;
     this.createFakeNotification = void 0;
-    this.createNotificationConfig = void 0;
     this.createNotificationIndex = void 0;
     this.createContainer = void 0;
     this.fatherNames = fatherNames;
@@ -31,7 +29,6 @@ class MakeDependentNotificationProvider {
     this.createINotificationDTO = new _INotificationDTO.CreateINotificationDTO();
     this.createOneSignalNotification = new _OneSignalNotification.CreateOneSignalNotification();
     this.createFakeNotification = new _fakeNotification.CreateFakeNotification();
-    this.createNotificationConfig = new _notificationConfig.CreateNotificationConfig();
     this.createNotificationIndex = new _notificationIndex.CreateNotificationIndex();
     this.createContainer = new _container.CreateContainer();
   }
@@ -84,12 +81,6 @@ class MakeDependentNotificationProvider {
     }
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'shared', 'container', 'index.ts'), `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`);
     (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), `import './NotificationProvider';\n`);
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'config', 'notification.ts'))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'notification.ts'), this.createNotificationConfig.execute());
-    } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'config', 'notification.ts'));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'config', 'notification.ts'), this.createNotificationConfig.execute());
-    }
     if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'NotificationProvider', 'dtos', 'ISendNotificationDTO.ts'))) {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers', 'NotificationProvider', 'dtos', 'ISendNotificationDTO.ts'), this.createINotificationDTO.execute());
     } else {

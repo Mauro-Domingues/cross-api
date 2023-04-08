@@ -1,6 +1,5 @@
 import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
 import { CreateContainer } from '@templates/index/container';
-import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
@@ -19,7 +18,6 @@ export class MakeDependentNotificationProvider {
   private createINotificationDTO: CreateINotificationDTO;
   private createOneSignalNotification: CreateOneSignalNotification;
   private createFakeNotification: CreateFakeNotification;
-  private createNotificationConfig: CreateNotificationConfig;
   private createNotificationIndex: CreateNotificationIndex;
   private createContainer: CreateContainer;
 
@@ -30,7 +28,6 @@ export class MakeDependentNotificationProvider {
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();
     this.createFakeNotification = new CreateFakeNotification();
-    this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
     this.createContainer = new CreateContainer();
   }
@@ -244,18 +241,6 @@ export class MakeDependentNotificationProvider {
       ),
       `import './NotificationProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'notification.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'notification.ts'),
-        this.createNotificationConfig.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'config', 'notification.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'notification.ts'),
-        this.createNotificationConfig.execute(),
-      );
-    }
     if (
       !existsSync(
         resolve(
