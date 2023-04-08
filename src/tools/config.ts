@@ -20,7 +20,8 @@ export class ConfigJson {
     this.config = new Config();
     this.userJson = userJson;
     this.dependencies = [
-      'aws-sdk',
+      "@aws-sdk/client-s3",
+      "@aws-sdk/client-ses",
       'axios',
       'bcrypt',
       'celebrate',
@@ -60,7 +61,6 @@ export class ConfigJson {
       '@types/bcrypt',
       '@types/cors',
       '@types/express',
-      '@types/express-jwt',
       '@types/jest',
       '@types/jsonwebtoken',
       '@types/mime',

@@ -46,7 +46,7 @@ class CreateRegister {
 
 const ${this.fatherNames.lowerModuleName}Router = Router();
 
-export default ${this.fatherNames.lowerModuleName}Router;
+export { ${this.fatherNames.lowerModuleName}Router };
 `;
         (0, _fs.appendFileSync)((0, _path.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification', 'modules', 'routeInjection.log'), routeInjection);
       }

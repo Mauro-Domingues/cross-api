@@ -187,7 +187,7 @@ export class CreateRegister {
 
 const ${this.fatherNames.lowerModuleName}Router = Router();
 
-export default ${this.fatherNames.lowerModuleName}Router;
+export { ${this.fatherNames.lowerModuleName}Router };
 `;
         appendFileSync(
           resolve(
