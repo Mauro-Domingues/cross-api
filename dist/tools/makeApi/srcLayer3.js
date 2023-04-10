@@ -176,11 +176,11 @@ class MakeThirdLayer {
       (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'domainsManager.ts'), this.createDomainsManager.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- domainsManager.ts ${this.messages.created}`, '\x1b[0m');
-    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'))) {
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
+    if (!(0, _fs.existsSync)((0, _path.resolve)('src', 'utils', 'normalizeQueryLink.ts'))) {
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'normalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
     } else {
-      (0, _fs.truncateSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'));
-      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'createNormalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
+      (0, _fs.truncateSync)((0, _path.resolve)('src', 'utils', 'normalizeQueryLink.ts'));
+      (0, _fs.appendFileSync)((0, _path.resolve)('src', 'utils', 'normalizeQueryLink.ts'), this.createNormalizeQueryLink.execute());
     }
     console.log('\x1b[38;2;255;255;0m', `- createNormalizeQueryLink.ts ${this.messages.created}`, '\x1b[0m');
   }

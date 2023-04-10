@@ -232,7 +232,7 @@ const param: IObjectDTO = {
 };
 
 const example = await this.examplesRepository.findBy(
-  await mapAndCloneAttribute(param, [
+  mapAndCloneAttribute(param, [
     "id", "name", "description",
   ]),
 );
@@ -305,7 +305,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
-  await mapAndUpdateAttribute(example, inputData),
+  mapAndUpdateAttribute(example, inputData),
 );
 
 output = {
@@ -392,7 +392,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
-  await mapAndPatchAttribute(example, inputData),
+  mapAndPatchAttribute(example, inputData),
 );
 
 output = {
@@ -457,7 +457,7 @@ const inputData: IExampleDTO = {
 
 await this.examplesRepository.update({
   ...example,
-  data: await mapAndUpdateString(example.data, inputData),
+  data: mapAndUpdateString(example.data, inputData),
 });
 
 output => example.data = "{\"name\": \"\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"\", \"price\": 20}"
@@ -526,7 +526,7 @@ const inputData: IExampleDTO = {
 
 await this.examplesRepository.update({
   ...example,
-  data: await mapAndPatchString(example.data, inputData),
+  data: mapAndPatchString(example.data, inputData),
 });
 
 output => example.data = "{\"name\": \"example\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"123\", \"price\": 20}";
@@ -621,7 +621,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
-  await mapAndInsertAttribute(example, inputData),
+  mapAndInsertAttribute(example, inputData),
 );
 
 output = {

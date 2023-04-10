@@ -333,15 +333,15 @@ export class MakeThirdLayer {
       `- domainsManager.ts ${this.messages.created}`,
       '\x1b[0m',
     );
-    if (!existsSync(resolve('src', 'utils', 'createNormalizeQueryLink.ts'))) {
+    if (!existsSync(resolve('src', 'utils', 'normalizeQueryLink.ts'))) {
       appendFileSync(
-        resolve('src', 'utils', 'createNormalizeQueryLink.ts'),
+        resolve('src', 'utils', 'normalizeQueryLink.ts'),
         this.createNormalizeQueryLink.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'utils', 'createNormalizeQueryLink.ts'));
+      truncateSync(resolve('src', 'utils', 'normalizeQueryLink.ts'));
       appendFileSync(
-        resolve('src', 'utils', 'createNormalizeQueryLink.ts'),
+        resolve('src', 'utils', 'normalizeQueryLink.ts'),
         this.createNormalizeQueryLink.execute(),
       );
     }
