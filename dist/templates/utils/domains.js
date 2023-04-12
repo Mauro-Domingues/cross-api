@@ -22,10 +22,12 @@ export class DomainsManager {
     this.basePath = resolve(__dirname, '..', 'assets', 'domains.txt');
   }
 
-  public read(path = this.basePath): string {
+  public read(path = this.basePath): string[] {
     const domains = readFileSync(path, 'utf-8');
 
-    return domains;
+    const ArrayOfDomain = domains.split('\\${'n'}');
+
+    return ArrayOfDomain;
   }
 
   public write(file: string, path = this.basePath): void {
