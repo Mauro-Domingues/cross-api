@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDependentSESMail = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateDependentSESMail {
+import { Messages } from '../../../tools/messages';
+export class CreateDependentSESMail {
+    fatherNames;
+    messages;
     constructor(fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.fatherNames = fatherNames;
     }
     execute() {
@@ -67,4 +66,3 @@ export class SESMailProvider implements IMailProviderDTO {
 `;
     }
 }
-exports.CreateDependentSESMail = CreateDependentSESMail;

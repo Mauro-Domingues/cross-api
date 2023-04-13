@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateS3Storage = void 0;
-class CreateS3Storage {
+export class CreateS3Storage {
     execute() {
         return `import { uploadConfig } from '@config/upload';
 import {
@@ -68,4 +65,3 @@ export class S3StorageProvider implements IStorageProviderDTO {
 `;
     }
 }
-exports.CreateS3Storage = CreateS3Storage;

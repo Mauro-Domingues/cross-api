@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCryptoIndex = void 0;
-class CreateCryptoIndex {
+export class CreateCryptoIndex {
     execute() {
         return `import { container } from 'tsyringe';
 
@@ -19,4 +16,3 @@ container.registerInstance<ICryptoProviderDTO>(
 `;
     }
 }
-exports.CreateCryptoIndex = CreateCryptoIndex;

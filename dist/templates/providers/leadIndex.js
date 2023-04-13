@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateLeadIndex = void 0;
-class CreateLeadIndex {
+export class CreateLeadIndex {
     execute() {
         return `import { container } from 'tsyringe';
 
@@ -19,4 +16,3 @@ container.registerInstance<ILeadProviderDTO>(
 `;
     }
 }
-exports.CreateLeadIndex = CreateLeadIndex;

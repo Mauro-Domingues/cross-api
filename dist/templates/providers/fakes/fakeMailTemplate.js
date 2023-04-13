@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFakeMailTemplate = void 0;
-class CreateFakeMailTemplate {
+export class CreateFakeMailTemplate {
     execute() {
         return `import { IMailTemplateProviderDTO } from '../models/IMailTemplateProvider';
 
@@ -13,4 +10,3 @@ export class FakeMailTemplateProvider implements IMailTemplateProviderDTO {
 `;
     }
 }
-exports.CreateFakeMailTemplate = CreateFakeMailTemplate;

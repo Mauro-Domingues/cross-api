@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEnv = void 0;
-class CreateEnv {
+export class CreateEnv {
     execute() {
         return `# Api
 PORT=3333
@@ -74,4 +71,3 @@ AWS_SECRET_ACCESS_KEY=
 AWS_REGION=`;
     }
 }
-exports.CreateEnv = CreateEnv;

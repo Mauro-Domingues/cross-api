@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreatePrettierConfig = void 0;
-class CreatePrettierConfig {
+export class CreatePrettierConfig {
     execute() {
         return `module.exports = {
   singleQuote: true,
@@ -11,4 +8,3 @@ class CreatePrettierConfig {
 `;
     }
 }
-exports.CreatePrettierConfig = CreatePrettierConfig;

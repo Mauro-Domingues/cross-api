@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateJestConfig = void 0;
-class CreateJestConfig {
+export class CreateJestConfig {
     execute() {
         return `import { pathsToModuleNameMapper } from 'ts-jest';
 
@@ -26,4 +23,3 @@ export default {
 `;
     }
 }
-exports.CreateJestConfig = CreateJestConfig;

@@ -1,31 +1,22 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConfigJson = void 0;
-const fs_1 = require("fs");
-const config_1 = require("../templates/assets/config");
-const readline_1 = require("readline");
-const path_1 = require("path");
-const shell_1 = require("./shell");
-const languageConfig_1 = require("./languageConfig");
-const package_json_1 = __importDefault(require("../../../../package.json"));
-class ConfigJson {
+import { existsSync, unlinkSync, writeFileSync } from 'fs';
+import { Config } from '../templates/assets/config';
+import { createInterface } from 'readline';
+import { resolve } from 'path';
+import { Shell } from './shell';
+import { ConfigLanguage } from './languageConfig';
+import userJson from '../../../../package.json';
+export class ConfigJson {
+    config;
+    shell;
+    configLanguage;
+    userJson;
+    dependencies;
+    devDependencies;
     constructor() {
-        this.configLanguage = new languageConfig_1.ConfigLanguage();
-        this.shell = new shell_1.Shell();
-        this.config = new config_1.Config();
-        this.userJson = package_json_1.default;
+        this.configLanguage = new ConfigLanguage();
+        this.shell = new Shell();
+        this.config = new Config();
+        this.userJson = userJson;
         this.dependencies = [
             '@aws-sdk/client-s3',
             '@aws-sdk/client-ses',
@@ -97,8 +88,14 @@ class ConfigJson {
         ];
     }
     patchPackage() {
-        this.userJson.scripts = Object.assign(Object.assign({}, this.userJson.scripts), { dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts', test: 'set NODE_ENV=test&&jest --runInBand', build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files', start: 'node dist/shared/server.js' });
-        (0, fs_1.writeFileSync)((0, path_1.resolve)('package.json'), JSON.stringify(this.userJson), {
+        this.userJson.scripts = {
+            ...this.userJson.scripts,
+            dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
+            test: 'set NODE_ENV=test&&jest --runInBand',
+            build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
+            start: 'node dist/shared/server.js',
+        };
+        writeFileSync(resolve('package.json'), JSON.stringify(this.userJson), {
             encoding: 'utf8',
             flag: 'w',
         });
@@ -147,8 +144,8 @@ class ConfigJson {
         this.installDependencies();
         this.installDevDependencies();
         this.renderEnding();
-        if ((0, fs_1.existsSync)((0, path_1.resolve)('package-lock.json'))) {
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('package-lock.json'));
+        if (existsSync(resolve('package-lock.json'))) {
+            unlinkSync(resolve('package-lock.json'));
         }
         this.config.execute();
     }
@@ -158,7 +155,7 @@ class ConfigJson {
         console.log('\x1b[1m');
         console.table(Object.keys(this.configLanguage.Language));
         console.log('');
-        const rl = (0, readline_1.createInterface)({
+        const rl = createInterface({
             input: process.stdin,
             output: process.stdout,
         });
@@ -182,10 +179,7 @@ class ConfigJson {
             }
         });
     }
-    execute() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.showLanguageOptions();
-        });
+    async execute() {
+        return this.showLanguageOptions();
     }
 }
-exports.ConfigJson = ConfigJson;

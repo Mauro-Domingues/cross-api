@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIResponseDTO = void 0;
-class CreateIResponseDTO {
+export class CreateIResponseDTO {
     execute() {
         return `export interface IResponseDTO<T> {
   code: number;
@@ -12,4 +9,3 @@ class CreateIResponseDTO {
 `;
     }
 }
-exports.CreateIResponseDTO = CreateIResponseDTO;

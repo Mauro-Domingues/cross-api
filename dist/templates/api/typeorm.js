@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateTypeorm = void 0;
-class CreateTypeorm {
+export class CreateTypeorm {
     execute() {
         return `import { DataSource } from 'typeorm';
 
@@ -68,4 +65,3 @@ export const createConnection = async (): Promise<DataSource> => {
 `;
     }
 }
-exports.CreateTypeorm = CreateTypeorm;

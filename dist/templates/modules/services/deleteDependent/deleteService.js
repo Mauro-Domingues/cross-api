@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteDependentService = void 0;
-const messages_1 = require("../../../../tools/messages");
-class DeleteDependentService {
+import { Messages } from '../../../../tools/messages';
+export class DeleteDependentService {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -54,4 +54,3 @@ export class Delete${this.names.upperModuleName}Service {
 `;
     }
 }
-exports.DeleteDependentService = DeleteDependentService;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMailConfig = void 0;
-class CreateMailConfig {
+export class CreateMailConfig {
     execute() {
         return `interface IMailConfigDTO {
   driver: 'ethereal' | 'ses';
@@ -25,4 +22,3 @@ export const mailConfig: IMailConfigDTO = {
 `;
     }
 }
-exports.CreateMailConfig = CreateMailConfig;

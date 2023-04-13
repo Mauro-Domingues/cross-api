@@ -1,11 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDependentEtherealMail = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateDependentEtherealMail {
+import { Messages } from '../../../tools/messages';
+export class CreateDependentEtherealMail {
+    fatherNames;
+    messages;
     constructor(fatherNames) {
         this.fatherNames = fatherNames;
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
     }
     execute() {
         if (!this.fatherNames) {
@@ -83,4 +82,3 @@ export class EtherealMailProvider implements IMailProviderDTO {
 `;
     }
 }
-exports.CreateDependentEtherealMail = CreateDependentEtherealMail;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFakeNotification = void 0;
-class CreateFakeNotification {
+export class CreateFakeNotification {
     execute() {
         return `import { ISendNotificationDTO } from '../dtos/ISendNotificationDTO';
 import { INotificationProviderDTO } from '../models/INotificationProvider';
@@ -16,4 +13,3 @@ export class FakeNotificationProvider implements INotificationProviderDTO {
 `;
     }
 }
-exports.CreateFakeNotification = CreateFakeNotification;

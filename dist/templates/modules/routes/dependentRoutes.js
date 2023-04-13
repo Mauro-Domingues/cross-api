@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDependentRoute = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateDependentRoute {
+import { Messages } from '../../../tools/messages';
+export class CreateDependentRoute {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -33,4 +33,3 @@ ${this.fatherNames.lowerModuleName}Router.delete('/${this.names.routeModuleName}
 `;
     }
 }
-exports.CreateDependentRoute = CreateDependentRoute;

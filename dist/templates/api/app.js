@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateApp = void 0;
-class CreateApp {
+export class CreateApp {
     execute() {
         return `import 'express-async-errors';
 // import { uploadConfig } from '@config/upload'; // uploadProvider
@@ -60,4 +57,3 @@ export { app };
 `;
     }
 }
-exports.CreateApp = CreateApp;

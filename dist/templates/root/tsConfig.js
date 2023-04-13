@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateTsConfig = void 0;
-class CreateTsConfig {
+export class CreateTsConfig {
     execute() {
         return `{
   "compilerOptions": {
@@ -34,4 +31,3 @@ class CreateTsConfig {
 }`;
     }
 }
-exports.CreateTsConfig = CreateTsConfig;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIStorage = void 0;
-class CreateIStorage {
+export class CreateIStorage {
     execute() {
         return `export interface IStorageProviderDTO {
   saveFile(file: string): Promise<string>;
@@ -10,4 +7,3 @@ class CreateIStorage {
 `;
     }
 }
-exports.CreateIStorage = CreateIStorage;

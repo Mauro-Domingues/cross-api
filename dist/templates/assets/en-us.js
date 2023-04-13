@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnglishMessages = void 0;
-class EnglishMessages {
+export class EnglishMessages {
+    messages;
     constructor() {
         this.messages = {
             language: '➤  Which language do you prefer?',
@@ -49,4 +47,3 @@ class EnglishMessages {
         return this.messages;
     }
 }
-exports.EnglishMessages = EnglishMessages;

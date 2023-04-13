@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateService = void 0;
-const messages_1 = require("../../../../tools/messages");
-class UpdateService {
+import { Messages } from '../../../../tools/messages';
+export class UpdateService {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -61,4 +60,3 @@ export class Update${this.names.upperModuleName}Service {
 `;
     }
 }
-exports.UpdateService = UpdateService;

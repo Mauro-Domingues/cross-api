@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateNormalizeQueryLink = void 0;
-class CreateNormalizeQueryLink {
+export class CreateNormalizeQueryLink {
     execute() {
         return `export function normalizeQueryLink<T extends object>(
   baseUrl: string,
@@ -34,4 +31,3 @@ class CreateNormalizeQueryLink {
 `;
     }
 }
-exports.CreateNormalizeQueryLink = CreateNormalizeQueryLink;

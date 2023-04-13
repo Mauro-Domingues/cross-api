@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIMailTemplateDTO = void 0;
-class CreateIMailTemplateDTO {
+export class CreateIMailTemplateDTO {
     execute() {
         return `interface ITemplateVariablesDTO {
   [key: string]: string | number;
@@ -14,4 +11,3 @@ export interface IParseMailTemplateDTO {
 `;
     }
 }
-exports.CreateIMailTemplateDTO = CreateIMailTemplateDTO;

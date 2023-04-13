@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateSpecDependentController = void 0;
-const messages_1 = require("../../../../tools/messages");
-class UpdateSpecDependentController {
+import { Messages } from '../../../../tools/messages';
+export class UpdateSpecDependentController {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -47,4 +47,3 @@ describe('Update${this.names.upperModuleName}Controller', () => {
 `;
     }
 }
-exports.UpdateSpecDependentController = UpdateSpecDependentController;

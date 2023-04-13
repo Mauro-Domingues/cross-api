@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateServer = void 0;
-class CreateServer {
+export class CreateServer {
     execute() {
         return `import { createConnection } from '@shared/typeorm';
 import { serve, setup } from 'swagger-ui-express';
@@ -22,4 +19,3 @@ app.listen(process.env.PORT, () => {
 `;
     }
 }
-exports.CreateServer = CreateServer;

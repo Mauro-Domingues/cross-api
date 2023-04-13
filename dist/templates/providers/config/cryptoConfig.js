@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCryptoConfig = void 0;
-class CreateCryptoConfig {
+export class CreateCryptoConfig {
     execute() {
         return `import { resolve } from 'path';
 
@@ -25,4 +22,3 @@ export const cryptoConfig: ICryptoConfigDTO = {
 `;
     }
 }
-exports.CreateCryptoConfig = CreateCryptoConfig;

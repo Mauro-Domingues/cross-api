@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateModuleDTO = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateModuleDTO {
+import { Messages } from '../../../tools/messages';
+export class CreateModuleDTO {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -19,4 +18,3 @@ class CreateModuleDTO {
 `;
     }
 }
-exports.CreateModuleDTO = CreateModuleDTO;

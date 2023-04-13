@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEnvNamespace = void 0;
-class CreateEnvNamespace {
+export class CreateEnvNamespace {
     execute() {
         return `declare namespace NodeJS {
   export interface ProcessEnv {
@@ -52,4 +49,3 @@ class CreateEnvNamespace {
 `;
     }
 }
-exports.CreateEnvNamespace = CreateEnvNamespace;

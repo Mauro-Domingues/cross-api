@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDiskStorage = void 0;
-class CreateDiskStorage {
+export class CreateDiskStorage {
     execute() {
         return `import { uploadConfig } from '@config/upload';
 import { existsSync, mkdirSync, unlinkSync, renameSync } from 'fs';
@@ -34,4 +31,3 @@ export class DiskStorageProvider implements IStorageProviderDTO {
 `;
     }
 }
-exports.CreateDiskStorage = CreateDiskStorage;

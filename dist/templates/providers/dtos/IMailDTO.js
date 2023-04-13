@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIMailDTO = void 0;
-class CreateIMailDTO {
+export class CreateIMailDTO {
     execute() {
         return `import { IParseMailTemplateDTO } from '@shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO';
 
@@ -19,4 +16,3 @@ export interface ISendMailDTO {
 `;
     }
 }
-exports.CreateIMailDTO = CreateIMailDTO;

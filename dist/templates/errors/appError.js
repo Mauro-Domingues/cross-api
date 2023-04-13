@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateAppError = void 0;
-class CreateAppError {
+export class CreateAppError {
     execute() {
         return `export class AppError {
   public readonly message: string;
@@ -16,4 +13,3 @@ class CreateAppError {
 `;
     }
 }
-exports.CreateAppError = CreateAppError;

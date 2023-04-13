@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateHashIndex = void 0;
-class CreateHashIndex {
+export class CreateHashIndex {
     execute() {
         return `import { container } from 'tsyringe';
 
@@ -16,4 +13,3 @@ container.registerInstance<IHashProviderDTO>('HashProvider', providers.bcrypt);
 `;
     }
 }
-exports.CreateHashIndex = CreateHashIndex;

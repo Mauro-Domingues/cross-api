@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateICryptoDTO = void 0;
-class CreateICryptoDTO {
+export class CreateICryptoDTO {
     execute() {
         return `export interface ICryptoDTO {
   iv: string;
@@ -10,4 +7,3 @@ class CreateICryptoDTO {
 `;
     }
 }
-exports.CreateICryptoDTO = CreateICryptoDTO;

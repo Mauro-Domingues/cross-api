@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateController = void 0;
-const messages_1 = require("../../../../tools/messages");
-class CreateController {
+import { Messages } from '../../../../tools/messages';
+export class CreateController {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -32,4 +31,3 @@ export class Create${this.names.upperModuleName}Controller {
 `;
     }
 }
-exports.CreateController = CreateController;

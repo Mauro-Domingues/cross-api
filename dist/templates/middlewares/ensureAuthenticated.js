@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEnsureAuthenticated = void 0;
-class CreateEnsureAuthenticated {
+export class CreateEnsureAuthenticated {
     execute() {
         return `import { expressjwt } from 'express-jwt';
 import { expressJwtSecret, GetVerificationKey } from 'jwks-rsa';
@@ -17,4 +14,3 @@ export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
 `;
     }
 }
-exports.CreateEnsureAuthenticated = CreateEnsureAuthenticated;

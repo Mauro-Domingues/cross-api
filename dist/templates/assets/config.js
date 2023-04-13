@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Config = void 0;
-const fs_1 = require("fs");
-const path_1 = require("path");
-class Config {
+import { appendFileSync, truncateSync } from 'fs';
+import { resolve } from 'path';
+export class Config {
+    configBody;
     constructor() {
         this.configBody = `"use strict";
 
@@ -27,8 +25,7 @@ class ConfigJson {
 exports.ConfigJson = ConfigJson;`;
     }
     execute() {
-        (0, fs_1.truncateSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
-        (0, fs_1.appendFileSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
+        truncateSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
+        appendFileSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
     }
 }
-exports.Config = Config;

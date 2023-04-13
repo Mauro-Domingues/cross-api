@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateSESMail = void 0;
-class CreateSESMail {
+export class CreateSESMail {
     execute() {
         return `import { mailConfig } from '@config/mail';
 
@@ -58,4 +55,3 @@ export class SESMailProvider implements IMailProviderDTO {
 `;
     }
 }
-exports.CreateSESMail = CreateSESMail;

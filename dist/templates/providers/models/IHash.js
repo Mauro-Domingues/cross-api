@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIHash = void 0;
-class CreateIHash {
+export class CreateIHash {
     execute() {
         return `export interface IHashProviderDTO {
   generateHash(payload: string): Promise<string>;
@@ -10,4 +7,3 @@ class CreateIHash {
 `;
     }
 }
-exports.CreateIHash = CreateIHash;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFakeRedis = void 0;
-class CreateFakeRedis {
+export class CreateFakeRedis {
     execute() {
         return `import { ICacheProviderDTO } from '../models/ICacheProvider';
 
@@ -45,4 +42,3 @@ export class FakeCacheProvider implements ICacheProviderDTO {
 `;
     }
 }
-exports.CreateFakeRedis = CreateFakeRedis;

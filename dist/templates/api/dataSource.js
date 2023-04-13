@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDataSource = void 0;
-class CreateDataSource {
+export class CreateDataSource {
     execute() {
         return `import { DataSource } from 'typeorm';
 import 'dotenv/config';
@@ -24,4 +21,3 @@ export const AppDataSource = new DataSource({
 `;
     }
 }
-exports.CreateDataSource = CreateDataSource;

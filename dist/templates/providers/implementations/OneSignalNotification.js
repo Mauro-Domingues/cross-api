@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOneSignalNotification = void 0;
-class CreateOneSignalNotification {
+export class CreateOneSignalNotification {
     execute() {
         return `import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
@@ -55,4 +52,3 @@ export class OneSignalProvider implements INotificationProviderDTO {
 `;
     }
 }
-exports.CreateOneSignalNotification = CreateOneSignalNotification;

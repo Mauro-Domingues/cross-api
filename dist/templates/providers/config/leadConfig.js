@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateLeadConfig = void 0;
-class CreateLeadConfig {
+export class CreateLeadConfig {
     execute() {
         return `interface ILeadConfigDTO {
   clientId: string;
@@ -19,4 +16,3 @@ export const leadConfig: ILeadConfigDTO = {
 `;
     }
 }
-exports.CreateLeadConfig = CreateLeadConfig;

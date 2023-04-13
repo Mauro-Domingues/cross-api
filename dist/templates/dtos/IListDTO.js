@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIListDTO = void 0;
-class CreateIListDTO {
+export class CreateIListDTO {
     execute() {
         return `import { IResponseDTO } from './IResponseDTO';
 
@@ -17,4 +14,3 @@ export interface IListDTO<T> extends IResponseDTO<T[]> {
 `;
     }
 }
-exports.CreateIListDTO = CreateIListDTO;

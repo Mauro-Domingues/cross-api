@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEsLintrcJson = void 0;
-class CreateEsLintrcJson {
+export class CreateEsLintrcJson {
     execute() {
         return `{
   "env": {
@@ -75,4 +72,3 @@ class CreateEsLintrcJson {
 }`;
     }
 }
-exports.CreateEsLintrcJson = CreateEsLintrcJson;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateBabelConfig = void 0;
-class CreateBabelConfig {
+export class CreateBabelConfig {
     execute() {
         return `module.exports = {
   presets: [
@@ -27,4 +24,3 @@ class CreateBabelConfig {
 `;
     }
 }
-exports.CreateBabelConfig = CreateBabelConfig;

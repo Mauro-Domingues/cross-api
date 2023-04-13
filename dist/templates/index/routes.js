@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateRoutes = void 0;
-class CreateRoutes {
+export class CreateRoutes {
     execute() {
         return `import { Router } from 'express';
 import { guardRouter } from './guardRouter';
@@ -13,4 +10,3 @@ export { routes };
 `;
     }
 }
-exports.CreateRoutes = CreateRoutes;

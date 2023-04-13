@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMapAndClone = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateMapAndClone {
+import { Messages } from '../../../tools/messages';
+export class CreateMapAndClone {
+    messages;
     constructor() {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
     }
     execute() {
         return `import { IObjectDTO } from "@dtos/IObjectDTO";
@@ -30,4 +28,3 @@ export function mapAndCloneAttribute(
 `;
     }
 }
-exports.CreateMapAndClone = CreateMapAndClone;

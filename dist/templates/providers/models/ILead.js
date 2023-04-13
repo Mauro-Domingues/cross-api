@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateILead = void 0;
-class CreateILead {
+export class CreateILead {
     execute() {
         return `import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 
@@ -11,4 +8,3 @@ export interface ILeadProviderDTO {
 `;
     }
 }
-exports.CreateILead = CreateILead;

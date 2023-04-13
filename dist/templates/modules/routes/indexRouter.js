@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIndexRoute = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateIndexRoute {
+import { Messages } from '../../../tools/messages';
+export class CreateIndexRoute {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -17,4 +16,3 @@ routes.use('/', ${this.names.lowerModuleName}Router);
 `;
     }
 }
-exports.CreateIndexRoute = CreateIndexRoute;

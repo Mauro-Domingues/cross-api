@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDomainsManager = void 0;
-class CreateDomainsManager {
+export class CreateDomainsManager {
     execute() {
         return `import {
   readFileSync,
@@ -61,4 +58,3 @@ export class DomainsManager {
 `;
     }
 }
-exports.CreateDomainsManager = CreateDomainsManager;

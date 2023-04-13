@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateIRepository = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateIRepository {
+import { Messages } from '../../../tools/messages';
+export class CreateIRepository {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -36,4 +35,3 @@ export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
 `;
     }
 }
-exports.CreateIRepository = CreateIRepository;

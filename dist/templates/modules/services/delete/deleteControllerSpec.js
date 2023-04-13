@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteSpecController = void 0;
-const messages_1 = require("../../../../tools/messages");
-class DeleteSpecController {
+import { Messages } from '../../../../tools/messages';
+export class DeleteSpecController {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -43,4 +42,3 @@ describe('Delete${this.names.upperModuleName}Controller', () => {
 `;
     }
 }
-exports.DeleteSpecController = DeleteSpecController;

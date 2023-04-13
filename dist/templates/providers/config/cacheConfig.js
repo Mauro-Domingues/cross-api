@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCacheConfig = void 0;
-class CreateCacheConfig {
+export class CreateCacheConfig {
     execute() {
         return `import { RedisOptions } from 'ioredis';
 
@@ -25,4 +22,3 @@ export const cacheConfig: ICacheConfigDTO = {
 `;
     }
 }
-exports.CreateCacheConfig = CreateCacheConfig;

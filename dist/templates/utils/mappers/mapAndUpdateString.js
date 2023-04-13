@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMapAndUpdateString = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateMapAndUpdateString {
+import { Messages } from '../../../tools/messages';
+export class CreateMapAndUpdateString {
+    messages;
     constructor() {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
     }
     execute() {
         return `import { mapAndUpdateAttribute } from './mapAndUpdateAttribute';
@@ -27,4 +25,3 @@ export function mapAndUpdateStringify<Type>(
 `;
     }
 }
-exports.CreateMapAndUpdateString = CreateMapAndUpdateString;

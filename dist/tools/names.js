@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetNames = void 0;
-const pluralize_1 = require("./pluralize");
-class GetNames {
+import { Pluralize } from './pluralize';
+export class GetNames {
+    name;
+    pluralize;
     constructor(name) {
-        this.pluralize = new pluralize_1.Pluralize(name);
+        this.pluralize = new Pluralize(name);
         this.name = name;
     }
     getSingularAndPlural(word) {
@@ -50,4 +49,3 @@ class GetNames {
         };
     }
 }
-exports.GetNames = GetNames;

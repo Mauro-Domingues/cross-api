@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFakeStorage = void 0;
-class CreateFakeStorage {
+export class CreateFakeStorage {
     execute() {
         return `import { IStorageProviderDTO } from '../models/IStorageProvider';
 
@@ -25,4 +22,3 @@ export class FakeStorageProvider implements IStorageProviderDTO {
 `;
     }
 }
-exports.CreateFakeStorage = CreateFakeStorage;

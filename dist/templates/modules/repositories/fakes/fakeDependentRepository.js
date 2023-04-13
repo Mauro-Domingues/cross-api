@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDependentFakeRepository = void 0;
-const messages_1 = require("../../../../tools/messages");
-class CreateDependentFakeRepository {
+import { Messages } from '../../../../tools/messages';
+export class CreateDependentFakeRepository {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -153,4 +153,3 @@ export class Fake${this.names.pluralUpperModuleName}Repository implements I${thi
 `;
     }
 }
-exports.CreateDependentFakeRepository = CreateDependentFakeRepository;

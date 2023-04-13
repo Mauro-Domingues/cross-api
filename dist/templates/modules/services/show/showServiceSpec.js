@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowSpecService = void 0;
-const messages_1 = require("../../../../tools/messages");
-class ShowSpecService {
+import { Messages } from '../../../../tools/messages';
+export class ShowSpecService {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -51,4 +50,3 @@ describe('Show${this.names.upperModuleName}Service', () => {
 `;
     }
 }
-exports.ShowSpecService = ShowSpecService;

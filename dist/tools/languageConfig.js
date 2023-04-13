@@ -1,28 +1,22 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConfigLanguage = void 0;
-const fs_1 = require("fs");
-const readline_1 = require("readline");
-const en_us_1 = require("../templates/assets/en-us");
-const pt_br_1 = require("../templates/assets/pt-br");
-const messages_1 = require("./messages");
-const path_1 = require("path");
-const defaultLanguage_1 = require("../templates/assets/defaultLanguage");
-class ConfigLanguage {
+import { appendFileSync, truncateSync } from 'fs';
+import { createInterface } from 'readline';
+import { EnglishMessages } from '../templates/assets/en-us';
+import { PortugueseMessages } from '../templates/assets/pt-br';
+import { Messages } from './messages';
+import { resolve } from 'path';
+import { CreateDefaultLanguage } from '../templates/assets/defaultLanguage';
+export class ConfigLanguage {
+    messages;
+    Language;
+    languageConfig;
+    englishMessages;
+    portugueseMessages;
+    createDefaultLanguage;
     constructor() {
-        this.englishMessages = new en_us_1.EnglishMessages();
-        this.portugueseMessages = new pt_br_1.PortugueseMessages();
-        this.createDefaultLanguage = new defaultLanguage_1.CreateDefaultLanguage();
-        this.messages = new messages_1.Messages().execute();
+        this.englishMessages = new EnglishMessages();
+        this.portugueseMessages = new PortugueseMessages();
+        this.createDefaultLanguage = new CreateDefaultLanguage();
+        this.messages = new Messages().execute();
         this.Language = {
             'en-us': 'englishMessages',
             'pt-br': 'portugueseMessages',
@@ -38,7 +32,7 @@ class ConfigLanguage {
         console.log('\x1b[1m');
         console.table(Object.keys(this.Language));
         console.log('');
-        const rl = (0, readline_1.createInterface)({
+        const rl = createInterface({
             input: process.stdin,
             output: process.stdout,
         });
@@ -73,16 +67,13 @@ class ConfigLanguage {
         console.log('');
     }
     setLanguageOption() {
-        (0, fs_1.truncateSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'));
-        (0, fs_1.appendFileSync)((0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'), this.createDefaultLanguage.execute(JSON.stringify(this.messages)));
+        truncateSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'));
+        appendFileSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'), this.createDefaultLanguage.execute(JSON.stringify(this.messages)));
     }
     isLanguageOptionsKeyType(_option) {
         return true;
     }
-    execute() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.showLanguageOptions();
-        });
+    async execute() {
+        return this.showLanguageOptions();
     }
 }
-exports.ConfigLanguage = ConfigLanguage;

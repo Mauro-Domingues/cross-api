@@ -1,10 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateRepository = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateRepository {
+import { Messages } from '../../../tools/messages';
+export class CreateRepository {
+    messages;
+    names;
     constructor(names) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
     }
     execute() {
@@ -84,4 +83,3 @@ export class ${this.names.pluralUpperModuleName}Repository implements I${this.na
 `;
     }
 }
-exports.CreateRepository = CreateRepository;

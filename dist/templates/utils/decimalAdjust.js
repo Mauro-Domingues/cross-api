@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDecimaAdjust = void 0;
-class CreateDecimaAdjust {
+export class CreateDecimaAdjust {
     execute() {
         return `export function roundDecimal(v: number, exp?: number) {
   if (typeof exp === 'undefined') {
@@ -41,4 +38,3 @@ class CreateDecimaAdjust {
 `;
     }
 }
-exports.CreateDecimaAdjust = CreateDecimaAdjust;

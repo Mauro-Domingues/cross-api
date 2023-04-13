@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateICache = void 0;
-class CreateICache {
+export class CreateICache {
     execute() {
         return `export interface ICacheProviderDTO {
   save<T>(key: string, value: T): Promise<void>;
@@ -12,4 +9,3 @@ class CreateICache {
 `;
     }
 }
-exports.CreateICache = CreateICache;

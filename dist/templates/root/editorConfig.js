@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEditorConfig = void 0;
-class CreateEditorConfig {
+export class CreateEditorConfig {
     execute() {
         return `root = true
 
@@ -14,4 +11,3 @@ trim_trailing_whitespace = false
 insert_final_newline = false`;
     }
 }
-exports.CreateEditorConfig = CreateEditorConfig;

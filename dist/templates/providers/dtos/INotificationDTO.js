@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateINotificationDTO = void 0;
-class CreateINotificationDTO {
+export class CreateINotificationDTO {
     execute() {
         return `export interface ISendNotificationDTO {
   name: string;
@@ -12,4 +9,3 @@ class CreateINotificationDTO {
 `;
     }
 }
-exports.CreateINotificationDTO = CreateINotificationDTO;

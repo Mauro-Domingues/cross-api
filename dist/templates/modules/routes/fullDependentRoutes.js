@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFullDependentRoute = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateFullDependentRoute {
+import { Messages } from '../../../tools/messages';
+export class CreateFullDependentRoute {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -38,4 +38,3 @@ export { ${this.fatherNames.lowerModuleName}Router };
 `;
     }
 }
-exports.CreateFullDependentRoute = CreateFullDependentRoute;

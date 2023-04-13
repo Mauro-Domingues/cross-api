@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCrypto = void 0;
-class CreateCrypto {
+export class CreateCrypto {
     execute() {
         return `import {
   randomBytes,
@@ -150,4 +147,3 @@ export class CryptoProvider implements ICryptoProviderDTO {
 `;
     }
 }
-exports.CreateCrypto = CreateCrypto;

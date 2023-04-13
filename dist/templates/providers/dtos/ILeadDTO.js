@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateILeadDTO = void 0;
-class CreateILeadDTO {
+export class CreateILeadDTO {
     execute() {
         return `export interface ICreateLeadDTO {
   event_uuid: string;
@@ -9,4 +6,3 @@ class CreateILeadDTO {
 `;
     }
 }
-exports.CreateILeadDTO = CreateILeadDTO;

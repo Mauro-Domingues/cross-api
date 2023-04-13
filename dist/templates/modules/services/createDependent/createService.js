@@ -1,10 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDependentService = void 0;
-const messages_1 = require("../../../../tools/messages");
-class CreateDependentService {
+import { Messages } from '../../../../tools/messages';
+export class CreateDependentService {
+    messages;
+    names;
+    fatherNames;
     constructor(names, fatherNames) {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.names = names;
         this.fatherNames = fatherNames;
     }
@@ -49,4 +49,3 @@ export class Create${this.names.upperModuleName}Service {
 `;
     }
 }
-exports.CreateDependentService = CreateDependentService;

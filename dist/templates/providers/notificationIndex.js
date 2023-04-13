@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateNotificationIndex = void 0;
-class CreateNotificationIndex {
+export class CreateNotificationIndex {
     execute() {
         return `import { container } from 'tsyringe';
 
@@ -19,4 +16,3 @@ container.registerInstance<INotificationProviderDTO>(
 `;
     }
 }
-exports.CreateNotificationIndex = CreateNotificationIndex;

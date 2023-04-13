@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListProvider = void 0;
-class ListProvider {
+export class ListProvider {
+    providers;
     constructor() {
         this.providers = [
             { Name: 'cache       ', Provider: 'CacheProvider       ' },
@@ -39,4 +37,3 @@ class ListProvider {
         this.renderFooter();
     }
 }
-exports.ListProvider = ListProvider;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDecodeJwt = void 0;
-class CreateDecodeJwt {
+export class CreateDecodeJwt {
     execute() {
         return `import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
@@ -40,4 +37,3 @@ export const decodeJwt = (
 `;
     }
 }
-exports.CreateDecodeJwt = CreateDecodeJwt;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDefaultLanguage = void 0;
-class CreateDefaultLanguage {
+export class CreateDefaultLanguage {
     execute(languageData) {
         return `"use strict";
 
@@ -21,4 +18,3 @@ class Messages {
 exports.Messages = Messages;`;
     }
 }
-exports.CreateDefaultLanguage = CreateDefaultLanguage;

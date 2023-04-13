@@ -1,23 +1,14 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteRegister = void 0;
-const messages_1 = require("../messages");
-const path_1 = require("path");
-const fs_1 = require("fs");
-const names_1 = require("../names");
-class DeleteRegister {
+import { Messages } from '../messages';
+import { resolve } from 'path';
+import { appendFileSync, existsSync, readFileSync, mkdirSync, truncateSync, unlinkSync, rmSync, } from 'fs';
+import { GetNames } from '../names';
+export class DeleteRegister {
+    messages;
+    providers;
+    basePath;
     constructor() {
-        this.messages = new messages_1.Messages().execute();
-        this.basePath = (0, path_1.resolve)('node_modules', 'cross-api', 'dist', 'tools', 'lastModification');
+        this.messages = new Messages().execute();
+        this.basePath = resolve('node_modules', 'cross-api', 'dist', 'tools', 'lastModification');
         this.providers = {
             cache: 'CacheProvider',
             crypto: 'CryptoProvider',
@@ -28,47 +19,47 @@ class DeleteRegister {
             notification: 'NotificationProvider',
             upload: 'StorageProvider',
         };
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'comands'))) {
-            (0, fs_1.mkdirSync)((0, path_1.resolve)(this.basePath, 'comands'));
+        if (!existsSync(resolve(this.basePath, 'comands'))) {
+            mkdirSync(resolve(this.basePath, 'comands'));
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'modules'))) {
-            (0, fs_1.mkdirSync)((0, path_1.resolve)(this.basePath, 'modules'));
+        if (!existsSync(resolve(this.basePath, 'modules'))) {
+            mkdirSync(resolve(this.basePath, 'modules'));
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'providers'))) {
-            (0, fs_1.mkdirSync)((0, path_1.resolve)(this.basePath, 'providers'));
+        if (!existsSync(resolve(this.basePath, 'providers'))) {
+            mkdirSync(resolve(this.basePath, 'providers'));
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'comands', 'comands.log'))) {
-            (0, fs_1.appendFileSync)((0, path_1.resolve)(this.basePath, 'comands', 'comands.log'), '');
+        if (!existsSync(resolve(this.basePath, 'comands', 'comands.log'))) {
+            appendFileSync(resolve(this.basePath, 'comands', 'comands.log'), '');
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'modules', 'moduleInjection.log'))) {
-            (0, fs_1.appendFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'moduleInjection.log'), '');
+        if (!existsSync(resolve(this.basePath, 'modules', 'moduleInjection.log'))) {
+            appendFileSync(resolve(this.basePath, 'modules', 'moduleInjection.log'), '');
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'modules', 'routeInjection.log'))) {
-            (0, fs_1.appendFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'routeInjection.log'), '');
+        if (!existsSync(resolve(this.basePath, 'modules', 'routeInjection.log'))) {
+            appendFileSync(resolve(this.basePath, 'modules', 'routeInjection.log'), '');
         }
-        if (!(0, fs_1.existsSync)((0, path_1.resolve)(this.basePath, 'providers', 'providerInjection.log'))) {
-            (0, fs_1.appendFileSync)((0, path_1.resolve)(this.basePath, 'providers', 'providerInjection.log'), '');
+        if (!existsSync(resolve(this.basePath, 'providers', 'providerInjection.log'))) {
+            appendFileSync(resolve(this.basePath, 'providers', 'providerInjection.log'), '');
         }
     }
     makeProvider(comand, names, fatherNames) {
         if (names && fatherNames) {
-            const oldProviders = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'providers', 'providerInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), oldProviders);
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', this.providers[names.lowerModuleName]), { recursive: true, force: true });
-            if ((0, fs_1.existsSync)((0, path_1.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
-                (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
+            const oldProviders = readFileSync(resolve(this.basePath, 'providers', 'providerInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'));
+            appendFileSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', 'index.ts'), oldProviders);
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'providers', this.providers[names.lowerModuleName]), { recursive: true, force: true });
+            if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
+                unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
             }
             console.log('');
             console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
         }
         else if (names) {
-            const oldProviders = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'providers', 'providerInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'shared', 'container', 'providers', 'index.ts'));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'shared', 'container', 'providers', 'index.ts'), oldProviders);
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'shared', 'container', 'providers', this.providers[names.lowerModuleName]), { recursive: true, force: true });
-            if ((0, fs_1.existsSync)((0, path_1.resolve)('src', 'config', `${names.lowerModuleName}.ts`))) {
-                (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'config', `${names.lowerModuleName}.ts`));
+            const oldProviders = readFileSync(resolve(this.basePath, 'providers', 'providerInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'shared', 'container', 'providers', 'index.ts'));
+            appendFileSync(resolve('src', 'shared', 'container', 'providers', 'index.ts'), oldProviders);
+            rmSync(resolve('src', 'shared', 'container', 'providers', this.providers[names.lowerModuleName]), { recursive: true, force: true });
+            if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
+                unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
             }
             console.log('');
             console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
@@ -76,81 +67,78 @@ class DeleteRegister {
     }
     makeModule(comand, names, fatherNames) {
         if (names && fatherNames) {
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `create${names.upperModuleName}`), { recursive: true, force: true });
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `delete${names.upperModuleName}`), { recursive: true, force: true });
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `list${names.upperModuleName}`), { recursive: true, force: true });
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `show${names.upperModuleName}`), { recursive: true, force: true });
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `update${names.upperModuleName}`), { recursive: true, force: true });
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'dtos', `I${names.upperModuleName}DTO.ts`));
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'entities', `${names.upperModuleName}.ts`));
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `${names.pluralUpperModuleName}Repository.ts`));
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `I${names.pluralUpperModuleName}Repository.ts`));
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${names.pluralUpperModuleName}Repository.ts`));
-            const moduleInjection = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'moduleInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'), moduleInjection);
-            const routeInjection = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'routeInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`), routeInjection);
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `create${names.upperModuleName}`), { recursive: true, force: true });
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `delete${names.upperModuleName}`), { recursive: true, force: true });
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `list${names.upperModuleName}`), { recursive: true, force: true });
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `show${names.upperModuleName}`), { recursive: true, force: true });
+            rmSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'services', `update${names.upperModuleName}`), { recursive: true, force: true });
+            unlinkSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'dtos', `I${names.upperModuleName}DTO.ts`));
+            unlinkSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'entities', `${names.upperModuleName}.ts`));
+            unlinkSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `${names.pluralUpperModuleName}Repository.ts`));
+            unlinkSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', `I${names.pluralUpperModuleName}Repository.ts`));
+            unlinkSync(resolve('src', 'modules', fatherNames.pluralLowerModuleName, 'repositories', 'fakes', `Fake${names.pluralUpperModuleName}Repository.ts`));
+            const moduleInjection = readFileSync(resolve(this.basePath, 'modules', 'moduleInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
+            appendFileSync(resolve('src', 'shared', 'container', 'index.ts'), moduleInjection);
+            const routeInjection = readFileSync(resolve(this.basePath, 'modules', 'routeInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`));
+            appendFileSync(resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`), routeInjection);
             console.log('');
             console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`, '\x1b[0m');
         }
         else if (names) {
-            (0, fs_1.rmSync)((0, path_1.resolve)('src', 'modules', names.pluralLowerModuleName), {
+            rmSync(resolve('src', 'modules', names.pluralLowerModuleName), {
                 recursive: true,
                 force: true,
             });
-            (0, fs_1.unlinkSync)((0, path_1.resolve)('src', 'routes', `${names.lowerModuleName}Router.ts`));
-            const moduleInjection = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'moduleInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'shared', 'container', 'index.ts'), moduleInjection);
-            const routeInjection = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'modules', 'routeInjection.log'), 'ascii');
-            (0, fs_1.truncateSync)((0, path_1.resolve)('src', 'routes', 'index.ts'));
-            (0, fs_1.appendFileSync)((0, path_1.resolve)('src', 'routes', 'index.ts'), routeInjection);
+            unlinkSync(resolve('src', 'routes', `${names.lowerModuleName}Router.ts`));
+            const moduleInjection = readFileSync(resolve(this.basePath, 'modules', 'moduleInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
+            appendFileSync(resolve('src', 'shared', 'container', 'index.ts'), moduleInjection);
+            const routeInjection = readFileSync(resolve(this.basePath, 'modules', 'routeInjection.log'), 'ascii');
+            truncateSync(resolve('src', 'routes', 'index.ts'));
+            appendFileSync(resolve('src', 'routes', 'index.ts'), routeInjection);
             console.log('');
             console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`, '\x1b[0m');
         }
     }
     makeAPi(comand) {
-        (0, fs_1.rmSync)((0, path_1.resolve)('src'), { recursive: true, force: true });
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.editorconfig'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.env'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.env.template'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.eslintignore'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.eslintrc.json'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('.gitignore'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('babel.config.js'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('docker-compose.yml'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('jest.config.ts'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('nodemon.json'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('prettier.config.js'));
-        (0, fs_1.unlinkSync)((0, path_1.resolve)('tsconfig.json'));
+        rmSync(resolve('src'), { recursive: true, force: true });
+        unlinkSync(resolve('.editorconfig'));
+        unlinkSync(resolve('.env'));
+        unlinkSync(resolve('.env.template'));
+        unlinkSync(resolve('.eslintignore'));
+        unlinkSync(resolve('.eslintrc.json'));
+        unlinkSync(resolve('.gitignore'));
+        unlinkSync(resolve('babel.config.js'));
+        unlinkSync(resolve('docker-compose.yml'));
+        unlinkSync(resolve('jest.config.ts'));
+        unlinkSync(resolve('nodemon.json'));
+        unlinkSync(resolve('prettier.config.js'));
+        unlinkSync(resolve('tsconfig.json'));
         console.log('');
         console.log('\x1b[1m', '\x1b[38;2;255;255;0m', `- ${this.messages.reversed}: ${comand}`, '\x1b[0m');
     }
-    execute() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const register = (0, fs_1.readFileSync)((0, path_1.resolve)(this.basePath, 'comands', 'comands.log'), 'ascii');
-            const comand = register.split(',')[0];
-            const names = new names_1.GetNames(register.split(',')[1]).execute();
-            const fatherNames = new names_1.GetNames(register.split(',')[2]).execute();
-            switch (comand) {
-                case 'make:provider':
-                    this.makeProvider(comand, names, fatherNames);
-                    break;
-                case 'make:module':
-                    this.makeModule(comand, names, fatherNames);
-                    break;
-                case 'make:api':
-                    this.makeAPi(comand);
-                    break;
-                default:
-                    console.log('');
-                    console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `${this.messages.noReversed}`, '\x1b[0m');
-                    console.log('');
-                    break;
-            }
-        });
+    async execute() {
+        const register = readFileSync(resolve(this.basePath, 'comands', 'comands.log'), 'ascii');
+        const comand = register.split(',')[0];
+        const names = new GetNames(register.split(',')[1]).execute();
+        const fatherNames = new GetNames(register.split(',')[2]).execute();
+        switch (comand) {
+            case 'make:provider':
+                this.makeProvider(comand, names, fatherNames);
+                break;
+            case 'make:module':
+                this.makeModule(comand, names, fatherNames);
+                break;
+            case 'make:api':
+                this.makeAPi(comand);
+                break;
+            default:
+                console.log('');
+                console.log('\x1b[1m', '\x1b[38;2;255;0;0m', `${this.messages.noReversed}`, '\x1b[0m');
+                console.log('');
+                break;
+        }
     }
 }
-exports.DeleteRegister = DeleteRegister;

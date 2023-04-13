@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateGuard = void 0;
-class CreateGuard {
+export class CreateGuard {
     execute() {
         return `/* eslint-disable no-useless-escape */
 import { Router } from 'express';
@@ -79,4 +76,3 @@ export { guardRouter };
 `;
     }
 }
-exports.CreateGuard = CreateGuard;

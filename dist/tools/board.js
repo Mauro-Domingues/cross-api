@@ -1,10 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Board = void 0;
-const messages_1 = require("./messages");
-class Board {
+import { Messages } from './messages';
+export class Board {
+    messages;
+    toolOptions;
+    ormOptions;
+    structureOptions;
     constructor() {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
         this.toolOptions = [
             { title: 'comands             ', description: this.messages.comands },
             {
@@ -97,4 +98,3 @@ class Board {
         this.renderFooter();
     }
 }
-exports.Board = Board;

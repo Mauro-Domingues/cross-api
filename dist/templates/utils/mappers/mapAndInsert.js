@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMapAndInsert = void 0;
-const messages_1 = require("../../../tools/messages");
-class CreateMapAndInsert {
+import { Messages } from '../../../tools/messages';
+export class CreateMapAndInsert {
+    messages;
     constructor() {
-        this.messages = new messages_1.Messages().execute();
+        this.messages = new Messages().execute();
     }
     execute() {
         return `/**
@@ -30,4 +28,3 @@ export function mapAndInsertAttribute<Entity, DTO>(
 `;
     }
 }
-exports.CreateMapAndInsert = CreateMapAndInsert;

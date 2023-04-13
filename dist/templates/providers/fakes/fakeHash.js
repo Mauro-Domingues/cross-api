@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateFakeHash = void 0;
-class CreateFakeHash {
+export class CreateFakeHash {
     execute() {
         return `import { IHashProviderDTO } from '../models/IHashProvider';
 
@@ -17,4 +14,3 @@ export class FakeHashProvider implements IHashProviderDTO {
 `;
     }
 }
-exports.CreateFakeHash = CreateFakeHash;

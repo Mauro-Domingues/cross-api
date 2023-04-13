@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMailTemplate = void 0;
-class CreateMailTemplate {
+export class CreateMailTemplate {
     execute() {
         return `import { readFileSync } from 'fs';
 import { compile } from 'handlebars';
@@ -28,4 +25,3 @@ export class HandlebarsMailTemplateProvider
 `;
     }
 }
-exports.CreateMailTemplate = CreateMailTemplate;

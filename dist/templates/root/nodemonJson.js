@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateNodemonJson = void 0;
-class CreateNodemonJson {
+export class CreateNodemonJson {
     execute() {
         return `{
   "execMap":{
@@ -10,4 +7,3 @@ class CreateNodemonJson {
 }`;
     }
 }
-exports.CreateNodemonJson = CreateNodemonJson;

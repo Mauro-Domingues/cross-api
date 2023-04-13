@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEsLintIgnore = void 0;
-class CreateEsLintIgnore {
+export class CreateEsLintIgnore {
     execute() {
         return `/*.js
 node_modules
@@ -11,4 +8,3 @@ src/utils/mappers
 `;
     }
 }
-exports.CreateEsLintIgnore = CreateEsLintIgnore;

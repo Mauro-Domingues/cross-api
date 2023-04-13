@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMailTemplateIndex = void 0;
-class CreateMailTemplateIndex {
+export class CreateMailTemplateIndex {
     execute() {
         return `import { container } from 'tsyringe';
 
@@ -19,4 +16,3 @@ container.registerInstance<IMailTemplateProviderDTO>(
 `;
     }
 }
-exports.CreateMailTemplateIndex = CreateMailTemplateIndex;
