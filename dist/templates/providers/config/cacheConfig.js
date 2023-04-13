@@ -1,6 +1,6 @@
 export class CreateCacheConfig {
-    execute() {
-        return `import { RedisOptions } from 'ioredis';
+  execute() {
+    return `import { RedisOptions } from 'ioredis';
 
 interface ICacheConfigDTO {
   driver: 'redis';
@@ -20,5 +20,5 @@ export const cacheConfig: ICacheConfigDTO = {
   },
 };
 `;
-    }
+  }
 }

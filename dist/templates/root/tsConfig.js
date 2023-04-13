@@ -1,6 +1,6 @@
 export class CreateTsConfig {
-    execute() {
-        return `{
+  execute() {
+    return `{
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
@@ -29,5 +29,5 @@ export class CreateTsConfig {
   "exclude": ["node_modules", "dist"],
   "ts-node": {"files": true}
 }`;
-    }
+  }
 }

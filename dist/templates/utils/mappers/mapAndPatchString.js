@@ -1,11 +1,12 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateMapAndPatchString {
-    messages;
-    constructor() {
-        this.messages = new Messages().execute();
-    }
-    execute() {
-        return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
+  messages;
+  constructor() {
+    this.messages = new Messages().execute();
+  }
+  execute() {
+    return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
 
 /**
  * ${this.messages.patchAndInsert}
@@ -23,5 +24,5 @@ export function mapAndPatchStringify<Type>(
   return JSON.stringify(patchedAttributes);
 }
 `;
-    }
+  }
 }

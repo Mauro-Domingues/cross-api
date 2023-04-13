@@ -1,6 +1,6 @@
 export class CreateDefaultLanguage {
-    execute(languageData) {
-        return `"use strict";
+  execute(languageData) {
+    return `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -16,5 +16,5 @@ class Messages {
   }
 }
 exports.Messages = Messages;`;
-    }
+  }
 }

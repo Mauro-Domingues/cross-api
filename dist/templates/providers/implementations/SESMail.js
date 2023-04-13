@@ -1,6 +1,6 @@
 export class CreateSESMail {
-    execute() {
-        return `import { mailConfig } from '@config/mail';
+  execute() {
+    return `import { mailConfig } from '@config/mail';
 
 import { SESClient } from '@aws-sdk/client-ses';
 import { createTransport, Transporter } from 'nodemailer';
@@ -53,5 +53,5 @@ export class SESMailProvider implements IMailProviderDTO {
   }
 }
 `;
-    }
+  }
 }

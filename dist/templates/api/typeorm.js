@@ -1,6 +1,6 @@
 export class CreateTypeorm {
-    execute() {
-        return `import { DataSource } from 'typeorm';
+  execute() {
+    return `import { DataSource } from 'typeorm';
 
 import { AppDataSource } from './dataSource';
 
@@ -63,5 +63,5 @@ export const createConnection = async (): Promise<DataSource> => {
 // })
 // relationEntity: relationEntity[];
 `;
-    }
+  }
 }

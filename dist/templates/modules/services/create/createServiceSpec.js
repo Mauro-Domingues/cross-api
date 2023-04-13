@@ -1,17 +1,23 @@
-import { Messages } from '../../../../tools/messages';
+import { Messages } from '../../../../tools/messages.js';
+
 export class CreateSpecService {
-    messages;
-    names;
-    constructor(names) {
-        this.messages = new Messages().execute();
-        this.names = names;
+  messages;
+  names;
+  constructor(names) {
+    this.messages = new Messages().execute();
+    this.names = names;
+  }
+  execute() {
+    if (!this.names) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.names) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+    return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
@@ -41,5 +47,5 @@ describe('Create${this.names.upperModuleName}Service', () => {
   });
 });
 `;
-    }
+  }
 }

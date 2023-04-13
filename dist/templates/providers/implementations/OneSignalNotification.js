@@ -1,6 +1,6 @@
 export class CreateOneSignalNotification {
-    execute() {
-        return `import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+  execute() {
+    return `import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { AppError } from '@shared/errors/AppError';
 import { ISendNotificationDTO } from '../dtos/ISendNotificationDTO';
@@ -50,5 +50,5 @@ export class OneSignalProvider implements INotificationProviderDTO {
   }
 }
 `;
-    }
+  }
 }

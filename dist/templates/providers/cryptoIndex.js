@@ -1,6 +1,6 @@
 export class CreateCryptoIndex {
-    execute() {
-        return `import { container } from 'tsyringe';
+  execute() {
+    return `import { container } from 'tsyringe';
 
 import { CryptoProvider } from './implementations/CryptoProvider';
 import { ICryptoProviderDTO } from './models/ICryptoProvider';
@@ -14,5 +14,5 @@ container.registerInstance<ICryptoProviderDTO>(
   providers.crypto,
 );
 `;
-    }
+  }
 }

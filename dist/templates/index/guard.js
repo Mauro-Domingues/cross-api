@@ -1,6 +1,6 @@
 export class CreateGuard {
-    execute() {
-        return `/* eslint-disable no-useless-escape */
+  execute() {
+    return `/* eslint-disable no-useless-escape */
 import { Router } from 'express';
 import { ensureAuthenticated } from '@middlewares/EnsureAuthenticated';
 import { decodeJwt } from '@middlewares/DecodeJwt';
@@ -74,5 +74,5 @@ guardRouter.use(decodeJwt);
 
 export { guardRouter };
 `;
-    }
+  }
 }

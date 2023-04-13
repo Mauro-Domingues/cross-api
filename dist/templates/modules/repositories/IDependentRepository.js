@@ -1,19 +1,25 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateIDependentRepository {
-    messages;
-    names;
-    fatherNames;
-    constructor(names, fatherNames) {
-        this.messages = new Messages().execute();
-        this.names = names;
-        this.fatherNames = fatherNames;
+  messages;
+  names;
+  fatherNames;
+  constructor(names, fatherNames) {
+    this.messages = new Messages().execute();
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+  execute() {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.names || !this.fatherNames) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+    return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
 import { IObjectDTO } from '@dtos/IObjectDTO';
@@ -35,5 +41,5 @@ export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
   softDelete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
 }
 `;
-    }
+  }
 }

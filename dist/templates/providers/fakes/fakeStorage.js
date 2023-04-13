@@ -1,6 +1,6 @@
 export class CreateFakeStorage {
-    execute() {
-        return `import { IStorageProviderDTO } from '../models/IStorageProvider';
+  execute() {
+    return `import { IStorageProviderDTO } from '../models/IStorageProvider';
 
 export class FakeStorageProvider implements IStorageProviderDTO {
   private storage: string[] = [];
@@ -20,5 +20,5 @@ export class FakeStorageProvider implements IStorageProviderDTO {
   }
 }
 `;
-    }
+  }
 }

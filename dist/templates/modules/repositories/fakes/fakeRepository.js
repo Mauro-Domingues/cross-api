@@ -1,17 +1,23 @@
-import { Messages } from '../../../../tools/messages';
+import { Messages } from '../../../../tools/messages.js';
+
 export class CreateFakeRepository {
-    messages;
-    names;
-    constructor(names) {
-        this.messages = new Messages().execute();
-        this.names = names;
+  messages;
+  names;
+  constructor(names) {
+    this.messages = new Messages().execute();
+    this.names = names;
+  }
+  execute() {
+    if (!this.names) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.names) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `/* eslint-disable @typescript-eslint/no-explicit-any */
+    return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IObjectDTO } from '@dtos/IObjectDTO';
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
@@ -149,5 +155,5 @@ export class Fake${this.names.pluralUpperModuleName}Repository implements I${thi
   }
 }
 `;
-    }
+  }
 }

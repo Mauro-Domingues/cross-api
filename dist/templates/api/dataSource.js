@@ -1,6 +1,6 @@
 export class CreateDataSource {
-    execute() {
-        return `import { DataSource } from 'typeorm';
+  execute() {
+    return `import { DataSource } from 'typeorm';
 import 'dotenv/config';
 import 'reflect-metadata';
 
@@ -19,5 +19,5 @@ export const AppDataSource = new DataSource({
   migrations: [\`\${__dirname}/migrations/*.{js,ts}\`],
 });
 `;
-    }
+  }
 }

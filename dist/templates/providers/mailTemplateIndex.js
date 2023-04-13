@@ -1,6 +1,6 @@
 export class CreateMailTemplateIndex {
-    execute() {
-        return `import { container } from 'tsyringe';
+  execute() {
+    return `import { container } from 'tsyringe';
 
 import { HandlebarsMailTemplateProvider } from './implementations/HandlebarsMailTemplateProvider';
 import { IMailTemplateProviderDTO } from './models/IMailTemplateProvider';
@@ -14,5 +14,5 @@ container.registerInstance<IMailTemplateProviderDTO>(
   providers.handlebars,
 );
 `;
-    }
+  }
 }

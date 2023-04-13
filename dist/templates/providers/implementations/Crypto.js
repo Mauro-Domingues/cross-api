@@ -1,6 +1,6 @@
 export class CreateCrypto {
-    execute() {
-        return `import {
+  execute() {
+    return `import {
   randomBytes,
   createCipheriv,
   createDecipheriv,
@@ -145,5 +145,5 @@ export class CryptoProvider implements ICryptoProviderDTO {
   }
 }
 `;
-    }
+  }
 }

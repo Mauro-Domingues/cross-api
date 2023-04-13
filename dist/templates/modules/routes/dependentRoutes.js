@@ -1,19 +1,25 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateDependentRoute {
-    messages;
-    names;
-    fatherNames;
-    constructor(names, fatherNames) {
-        this.messages = new Messages().execute();
-        this.names = names;
-        this.fatherNames = fatherNames;
+  messages;
+  names;
+  fatherNames;
+  constructor(names, fatherNames) {
+    this.messages = new Messages().execute();
+    this.names = names;
+    this.fatherNames = fatherNames;
+  }
+  execute() {
+    if (!this.names || !this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.names || !this.fatherNames) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import { Create${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
+    return `import { Create${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
 import { Show${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
 import { List${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller';
 import { Update${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller';
@@ -31,5 +37,5 @@ ${this.fatherNames.lowerModuleName}Router.get('/${this.names.routeModuleName}/:i
 ${this.fatherNames.lowerModuleName}Router.put('/${this.names.routeModuleName}/:id', update${this.names.upperModuleName}Controller.handle);
 ${this.fatherNames.lowerModuleName}Router.delete('/${this.names.routeModuleName}/:id', delete${this.names.upperModuleName}Controller.handle);
 `;
-    }
+  }
 }

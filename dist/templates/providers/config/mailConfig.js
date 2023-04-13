@@ -1,6 +1,6 @@
 export class CreateMailConfig {
-    execute() {
-        return `interface IMailConfigDTO {
+  execute() {
+    return `interface IMailConfigDTO {
   driver: 'ethereal' | 'ses';
   defaults: {
     from: {
@@ -20,5 +20,5 @@ export const mailConfig: IMailConfigDTO = {
   },
 };
 `;
-    }
+  }
 }

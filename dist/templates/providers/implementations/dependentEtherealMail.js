@@ -1,17 +1,23 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateDependentEtherealMail {
-    fatherNames;
-    messages;
-    constructor(fatherNames) {
-        this.fatherNames = fatherNames;
-        this.messages = new Messages().execute();
+  fatherNames;
+  messages;
+  constructor(fatherNames) {
+    this.fatherNames = fatherNames;
+    this.messages = new Messages().execute();
+  }
+  execute() {
+    if (!this.fatherNames) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.providerNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.fatherNames) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.providerNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import {
+    return `import {
   Transporter,
   createTestAccount,
   createTransport,
@@ -80,5 +86,5 @@ export class EtherealMailProvider implements IMailProviderDTO {
   }
 }
 `;
-    }
+  }
 }

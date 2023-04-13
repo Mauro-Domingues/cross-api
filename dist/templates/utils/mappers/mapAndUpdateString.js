@@ -1,11 +1,12 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateMapAndUpdateString {
-    messages;
-    constructor() {
-        this.messages = new Messages().execute();
-    }
-    execute() {
-        return `import { mapAndUpdateAttribute } from './mapAndUpdateAttribute';
+  messages;
+  constructor() {
+    this.messages = new Messages().execute();
+  }
+  execute() {
+    return `import { mapAndUpdateAttribute } from './mapAndUpdateAttribute';
 
 /**
  * ${this.messages.mapAndUpdateString}
@@ -23,5 +24,5 @@ export function mapAndUpdateStringify<Type>(
   return JSON.stringify(updatedAttributes);
 }
 `;
-    }
+  }
 }

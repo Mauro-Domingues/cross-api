@@ -1,6 +1,6 @@
 export class CreateMailTemplate {
-    execute() {
-        return `import { readFileSync } from 'fs';
+  execute() {
+    return `import { readFileSync } from 'fs';
 import { compile } from 'handlebars';
 
 import { IParseMailTemplateDTO } from '../dtos/IParseMailTemplateDTO';
@@ -23,5 +23,5 @@ export class HandlebarsMailTemplateProvider
   }
 }
 `;
-    }
+  }
 }

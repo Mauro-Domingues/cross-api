@@ -1,17 +1,23 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateIndependentRoute {
-    messages;
-    names;
-    constructor(names) {
-        this.messages = new Messages().execute();
-        this.names = names;
+  messages;
+  names;
+  constructor(names) {
+    this.messages = new Messages().execute();
+    this.names = names;
+  }
+  execute() {
+    if (!this.names) {
+      console.log(
+        '\x1b[1m',
+        '\x1b[38;2;255;0;0m',
+        this.messages.moduleNotFound,
+        '\x1b[0m',
+      );
+      throw new Error();
     }
-    execute() {
-        if (!this.names) {
-            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-            throw new Error();
-        }
-        return `import { Router } from 'express';
+    return `import { Router } from 'express';
 
 import { Create${this.names.upperModuleName}Controller } from '@modules/${this.names.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
 import { Show${this.names.upperModuleName}Controller } from '@modules/${this.names.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
@@ -34,5 +40,5 @@ ${this.names.lowerModuleName}Router.delete('/${this.names.routeModuleName}/:id',
 
 export { ${this.names.lowerModuleName}Router };
 `;
-    }
+  }
 }

@@ -1,6 +1,6 @@
 export class CreateFakeRedis {
-    execute() {
-        return `import { ICacheProviderDTO } from '../models/ICacheProvider';
+  execute() {
+    return `import { ICacheProviderDTO } from '../models/ICacheProvider';
 
 interface ICacheDataDTO {
   [key: string]: string;
@@ -40,5 +40,5 @@ export class FakeCacheProvider implements ICacheProviderDTO {
   }
 }
 `;
-    }
+  }
 }

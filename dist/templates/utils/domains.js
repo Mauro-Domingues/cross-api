@@ -1,6 +1,6 @@
 export class CreateDomainsManager {
-    execute() {
-        return `import {
+  execute() {
+    return `import {
   readFileSync,
   existsSync,
   mkdirSync,
@@ -56,5 +56,5 @@ export class DomainsManager {
   }
 }
 `;
-    }
+  }
 }

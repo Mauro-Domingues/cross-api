@@ -1,6 +1,6 @@
 export class CreateLeadConfig {
-    execute() {
-        return `interface ILeadConfigDTO {
+  execute() {
+    return `interface ILeadConfigDTO {
   clientId: string;
   clientSecret: string;
   code: string;
@@ -14,5 +14,5 @@ export const leadConfig: ILeadConfigDTO = {
   publicApiKey: process.env.RD_PUBLIC_API_KEY,
 };
 `;
-    }
+  }
 }

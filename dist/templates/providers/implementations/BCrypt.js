@@ -1,6 +1,6 @@
 export class CreateHash {
-    execute() {
-        return `import { hash, compare } from 'bcrypt';
+  execute() {
+    return `import { hash, compare } from 'bcrypt';
 import { hashConfig } from '@config/hash';
 
 import { IHashProviderDTO } from '../models/IHashProvider';
@@ -15,5 +15,5 @@ export class BCryptHashProvider implements IHashProviderDTO {
   }
 }
 `;
-    }
+  }
 }

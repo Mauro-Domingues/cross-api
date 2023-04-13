@@ -1,6 +1,6 @@
 export class CreateStorageIndex {
-    execute() {
-        return `import { uploadConfig } from '@config/upload';
+  execute() {
+    return `import { uploadConfig } from '@config/upload';
 import { container } from 'tsyringe';
 
 import { DiskStorageProvider } from './implementations/DiskStorageProvider';
@@ -17,5 +17,5 @@ container.registerInstance<IStorageProviderDTO>(
   providers[uploadConfig.driver],
 );
 `;
-    }
+  }
 }

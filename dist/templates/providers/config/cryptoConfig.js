@@ -1,6 +1,6 @@
 export class CreateCryptoConfig {
-    execute() {
-        return `import { resolve } from 'path';
+  execute() {
+    return `import { resolve } from 'path';
 
 interface ICryptoConfigDTO {
   bytes: number;
@@ -20,5 +20,5 @@ export const cryptoConfig: ICryptoConfigDTO = {
   keysPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
 };
 `;
-    }
+  }
 }

@@ -1,31 +1,30 @@
 import { appendFileSync, truncateSync } from 'fs';
 import { resolve } from 'path';
-export class Config {
-    configBody;
-    constructor() {
-        this.configBody = `"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ConfigJson = void 0;
-var _messages = _interopRequireDefault(require("./messages"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class ConfigJson {
+export class Config {
+  configBody;
   constructor() {
-    this.messages = void 0;
-    this.messages = _messages.default;
-  }
-  execute() {
-    console.log('');
-    console.log('\\x1b[1m', '\\x1b[38;2;0;255;155m', \`➤  \${this.messages.configured}\`, '\\x1b[0m');
-    console.log('');
-  }
-}
-exports.ConfigJson = ConfigJson;`;
+    this.configBody = `import { Messages } from './messages';
+export class ConfigJson {
+    messages;
+    constructor() {
+        this.messages = new Messages().execute();
     }
     execute() {
-        truncateSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'));
-        appendFileSync(resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'), this.configBody);
+        console.log('');
+        console.log('\\x1b[1m', '\\x1b[38;2;0;255;155m', \`➤  \${this.messages.configured}\`, '\\x1b[0m');
+        console.log('');
     }
+}
+`;
+  }
+  execute() {
+    truncateSync(
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
+    );
+    appendFileSync(
+      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
+      this.configBody,
+    );
+  }
 }

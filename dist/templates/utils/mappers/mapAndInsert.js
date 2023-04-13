@@ -1,11 +1,12 @@
-import { Messages } from '../../../tools/messages';
+import { Messages } from '../../../tools/messages.js';
+
 export class CreateMapAndInsert {
-    messages;
-    constructor() {
-        this.messages = new Messages().execute();
-    }
-    execute() {
-        return `/**
+  messages;
+  constructor() {
+    this.messages = new Messages().execute();
+  }
+  execute() {
+    return `/**
  * ${this.messages.patchAndInsert}
  * @param oldAttributes Entity
  * @param newAttributes Object
@@ -26,5 +27,5 @@ export function mapAndInsertAttribute<Entity, DTO>(
   return oldAttributes;
 }
 `;
-    }
+  }
 }

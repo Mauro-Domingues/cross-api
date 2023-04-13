@@ -1,6 +1,6 @@
 export class CreateApp {
-    execute() {
-        return `import 'express-async-errors';
+  execute() {
+    return `import 'express-async-errors';
 // import { uploadConfig } from '@config/upload'; // uploadProvider
 // import { cryptoConfig } from '@config/crypto'; // cryptoProvider
 import { errors } from 'celebrate';
@@ -55,5 +55,5 @@ app.use(
 
 export { app };
 `;
-    }
+  }
 }

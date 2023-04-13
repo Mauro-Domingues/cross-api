@@ -1,6 +1,6 @@
 export class CreateEnsureAuthenticated {
-    execute() {
-        return `import { expressjwt } from 'express-jwt';
+  execute() {
+    return `import { expressjwt } from 'express-jwt';
 import { expressJwtSecret, GetVerificationKey } from 'jwks-rsa';
 
 export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
@@ -12,5 +12,5 @@ export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
   algorithms: ['RS256'],
 });
 `;
-    }
+  }
 }

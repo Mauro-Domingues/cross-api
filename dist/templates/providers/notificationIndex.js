@@ -1,6 +1,6 @@
 export class CreateNotificationIndex {
-    execute() {
-        return `import { container } from 'tsyringe';
+  execute() {
+    return `import { container } from 'tsyringe';
 
 import { OneSignalProvider } from './implementations/OneSignalProvider';
 import { INotificationProviderDTO } from './models/INotificationProvider';
@@ -14,5 +14,5 @@ container.registerInstance<INotificationProviderDTO>(
   providers.onesignal,
 );
 `;
-    }
+  }
 }

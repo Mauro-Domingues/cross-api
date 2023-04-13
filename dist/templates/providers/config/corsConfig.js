@@ -1,6 +1,6 @@
 export class CreateCorsConfig {
-    execute() {
-        return `import { DomainsManager } from '@utils/domainsManager';
+  execute() {
+    return `import { DomainsManager } from '@utils/domainsManager';
 import { CorsOptions } from 'cors';
 
 export const corsConfig: CorsOptions = {
@@ -18,5 +18,5 @@ export const corsConfig: CorsOptions = {
   },
 };
 `;
-    }
+  }
 }

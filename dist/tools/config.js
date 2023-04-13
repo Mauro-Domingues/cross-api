@@ -1,9 +1,9 @@
 import { existsSync, unlinkSync, writeFileSync } from 'fs';
-import { Config } from '../templates/assets/config';
+import { Config } from '../templates/assets/config.js';
 import { createInterface } from 'readline';
 import { resolve } from 'path';
-import { Shell } from './shell';
-import { ConfigLanguage } from './languageConfig';
+import { Shell } from './shell.js';
+import { ConfigLanguage } from './languageConfig.js';
 import userJson from '../../../../package.json';
 export class ConfigJson {
     config;
