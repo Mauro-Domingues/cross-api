@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDecodeJwt = void 0;
 class CreateDecodeJwt {
-  execute() {
-    return `import { Request, Response, NextFunction } from 'express';
+    execute() {
+        return `import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
@@ -41,6 +38,6 @@ export const decodeJwt = (
   return next();
 };
 `;
-  }
+    }
 }
 exports.CreateDecodeJwt = CreateDecodeJwt;

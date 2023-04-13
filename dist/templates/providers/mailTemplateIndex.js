@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMailTemplateIndex = void 0;
 class CreateMailTemplateIndex {
-  execute() {
-    return `import { container } from 'tsyringe';
+    execute() {
+        return `import { container } from 'tsyringe';
 
 import { HandlebarsMailTemplateProvider } from './implementations/HandlebarsMailTemplateProvider';
 import { IMailTemplateProviderDTO } from './models/IMailTemplateProvider';
@@ -20,6 +17,6 @@ container.registerInstance<IMailTemplateProviderDTO>(
   providers.handlebars,
 );
 `;
-  }
+    }
 }
 exports.CreateMailTemplateIndex = CreateMailTemplateIndex;

@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCryptoConfig = void 0;
 class CreateCryptoConfig {
-  execute() {
-    return `import { resolve } from 'path';
+    execute() {
+        return `import { resolve } from 'path';
 
 interface ICryptoConfigDTO {
   bytes: number;
@@ -26,6 +23,6 @@ export const cryptoConfig: ICryptoConfigDTO = {
   keysPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
 };
 `;
-  }
+    }
 }
 exports.CreateCryptoConfig = CreateCryptoConfig;

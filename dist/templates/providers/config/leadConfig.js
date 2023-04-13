@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateLeadConfig = void 0;
 class CreateLeadConfig {
-  execute() {
-    return `interface ILeadConfigDTO {
+    execute() {
+        return `interface ILeadConfigDTO {
   clientId: string;
   clientSecret: string;
   code: string;
@@ -20,6 +17,6 @@ export const leadConfig: ILeadConfigDTO = {
   publicApiKey: process.env.RD_PUBLIC_API_KEY,
 };
 `;
-  }
+    }
 }
 exports.CreateLeadConfig = CreateLeadConfig;

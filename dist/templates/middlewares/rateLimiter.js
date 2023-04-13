@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateRateLimiter = void 0;
 class CreateRateLimiter {
-  execute() {
-    return `import { Request, Response, NextFunction } from 'express';
+    execute() {
+        return `import { Request, Response, NextFunction } from 'express';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
 import { createClient } from 'redis';
 
@@ -39,6 +36,6 @@ export const rateLimiter = async (
   }
 };
 `;
-  }
+    }
 }
 exports.CreateRateLimiter = CreateRateLimiter;

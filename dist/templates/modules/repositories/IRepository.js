@@ -1,23 +1,18 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateIRepository = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("../../../tools/messages");
 class CreateIRepository {
-  constructor(names) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
     }
-    return `import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+    execute() {
+        if (!this.names) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult } from 'typeorm';
 import { IObjectDTO } from '@dtos/IObjectDTO';
@@ -39,6 +34,6 @@ export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
   softDelete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
 }
 `;
-  }
+    }
 }
 exports.CreateIRepository = CreateIRepository;

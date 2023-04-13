@@ -1,8 +1,15 @@
 import { IModuleNamesDTO } from '@tools/names';
-import { appendFileSync, existsSync, readFileSync, truncateSync } from 'fs';
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  truncateSync,
+} from 'fs';
 import { resolve } from 'path';
 
 export class CreateRegister {
+  private basePath: string;
   private comand: string[] | undefined;
   private providerName: string | undefined;
   private names: IModuleNamesDTO | undefined;
@@ -16,25 +23,54 @@ export class CreateRegister {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
+    this.basePath = resolve(
+      'node_modules',
+      'cross-api',
+      'dist',
+      'tools',
+      'lastModification',
+    );
     this.comand = comand;
     this.providerName = providerName;
     this.names = names;
     this.fatherNames = fatherNames;
+    if (!existsSync(resolve(this.basePath, 'comands'))) {
+      mkdirSync(resolve(this.basePath, 'comands'));
+    }
+    if (!existsSync(resolve(this.basePath, 'modules'))) {
+      mkdirSync(resolve(this.basePath, 'modules'));
+    }
+    if (!existsSync(resolve(this.basePath, 'providers'))) {
+      mkdirSync(resolve(this.basePath, 'providers'));
+    }
+    if (!existsSync(resolve(this.basePath, 'comands', 'comands.log'))) {
+      appendFileSync(resolve(this.basePath, 'comands', 'comands.log'), '');
+    }
+    if (!existsSync(resolve(this.basePath, 'modules', 'moduleInjection.log'))) {
+      appendFileSync(
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
+        '',
+      );
+    }
+    if (!existsSync(resolve(this.basePath, 'modules', 'routeInjection.log'))) {
+      appendFileSync(
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
+        '',
+      );
+    }
+    if (
+      !existsSync(resolve(this.basePath, 'providers', 'providerInjection.log'))
+    ) {
+      appendFileSync(
+        resolve(this.basePath, 'providers', 'providerInjection.log'),
+        '',
+      );
+    }
   }
 
   private makeProvider(): void {
     if (this.providerName && this.fatherNames) {
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
-      );
+      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
       if (
         existsSync(
           resolve(
@@ -57,28 +93,12 @@ export class CreateRegister {
           'ascii',
         );
         appendFileSync(
-          resolve(
-            'node_modules',
-            'cross-api',
-            'dist',
-            'tools',
-            'lastModification',
-            'modules',
-            'routeInjection.log',
-          ),
+          resolve(this.basePath, 'modules', 'routeInjection.log'),
           providerInjection,
         );
       } else {
         appendFileSync(
-          resolve(
-            'node_modules',
-            'cross-api',
-            'dist',
-            'tools',
-            'lastModification',
-            'modules',
-            'routeInjection.log',
-          ),
+          resolve(this.basePath, 'modules', 'routeInjection.log'),
           '',
         );
       }
@@ -87,27 +107,9 @@ export class CreateRegister {
         resolve('src', 'shared', 'container', 'providers', 'index.ts'),
         'ascii',
       );
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
-      );
+      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
       appendFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
         providerInjection,
       );
     }
@@ -119,40 +121,12 @@ export class CreateRegister {
         resolve('src', 'shared', 'container', 'index.ts'),
         'ascii',
       );
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
-      );
+      truncateSync(resolve(this.basePath, 'modules', 'moduleInjection.log'));
       appendFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
         moduleInjection,
       );
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
-      );
+      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
       if (
         existsSync(
           resolve(
@@ -171,15 +145,7 @@ export class CreateRegister {
           'ascii',
         );
         appendFileSync(
-          resolve(
-            'node_modules',
-            'cross-api',
-            'dist',
-            'tools',
-            'lastModification',
-            'modules',
-            'routeInjection.log',
-          ),
+          resolve(this.basePath, 'modules', 'routeInjection.log'),
           routeInjection,
         );
       } else {
@@ -190,15 +156,7 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
         appendFileSync(
-          resolve(
-            'node_modules',
-            'cross-api',
-            'dist',
-            'tools',
-            'lastModification',
-            'modules',
-            'routeInjection.log',
-          ),
+          resolve(this.basePath, 'modules', 'routeInjection.log'),
           routeInjection,
         );
       }
@@ -207,54 +165,19 @@ export { ${this.fatherNames.lowerModuleName}Router };
         resolve('src', 'shared', 'container', 'index.ts'),
         'ascii',
       );
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
-      );
+      truncateSync(resolve(this.basePath, 'modules', 'moduleInjection.log'));
       appendFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
         moduleInjection,
       );
       const routeInjection = readFileSync(
         resolve('src', 'routes', 'index.ts'),
         'ascii',
       );
-      truncateSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
-      );
+
+      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
       appendFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
         routeInjection,
       );
     }
@@ -267,27 +190,9 @@ export { ${this.fatherNames.lowerModuleName}Router };
       this.makeModule();
     }
 
-    truncateSync(
-      resolve(
-        'node_modules',
-        'cross-api',
-        'dist',
-        'tools',
-        'lastModification',
-        'comands',
-        'comands.log',
-      ),
-    );
+    truncateSync(resolve(this.basePath, 'comands', 'comands.log'));
     appendFileSync(
-      resolve(
-        'node_modules',
-        'cross-api',
-        'dist',
-        'tools',
-        'lastModification',
-        'comands',
-        'comands.log',
-      ),
+      resolve(this.basePath, 'comands', 'comands.log'),
       String(this.comand),
     );
   }

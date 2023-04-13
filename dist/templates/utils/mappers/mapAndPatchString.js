@@ -1,17 +1,13 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMapAndPatchString = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("../../../tools/messages");
 class CreateMapAndPatchString {
-  constructor() {
-    this.messages = void 0;
-    this.messages = new _messages.Messages().execute();
-  }
-  execute() {
-    return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
+    constructor() {
+        this.messages = new messages_1.Messages().execute();
+    }
+    execute() {
+        return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
 
 /**
  * ${this.messages.patchAndInsert}
@@ -29,6 +25,6 @@ export function mapAndPatchStringify<Type>(
   return JSON.stringify(patchedAttributes);
 }
 `;
-  }
+    }
 }
 exports.CreateMapAndPatchString = CreateMapAndPatchString;

@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEtherealMail = void 0;
 class CreateEtherealMail {
-  execute() {
-    return `import {
+    execute() {
+        return `import {
   Transporter,
   createTestAccount,
   createTransport,
@@ -75,6 +72,6 @@ export class EtherealMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateEtherealMail = CreateEtherealMail;

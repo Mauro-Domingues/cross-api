@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateSESMail = void 0;
 class CreateSESMail {
-  execute() {
-    return `import { mailConfig } from '@config/mail';
+    execute() {
+        return `import { mailConfig } from '@config/mail';
 
 import { SESClient } from '@aws-sdk/client-ses';
 import { createTransport, Transporter } from 'nodemailer';
@@ -59,6 +56,6 @@ export class SESMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateSESMail = CreateSESMail;

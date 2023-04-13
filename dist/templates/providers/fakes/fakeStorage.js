@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFakeStorage = void 0;
 class CreateFakeStorage {
-  execute() {
-    return `import { IStorageProviderDTO } from '../models/IStorageProvider';
+    execute() {
+        return `import { IStorageProviderDTO } from '../models/IStorageProvider';
 
 export class FakeStorageProvider implements IStorageProviderDTO {
   private storage: string[] = [];
@@ -26,6 +23,6 @@ export class FakeStorageProvider implements IStorageProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateFakeStorage = CreateFakeStorage;

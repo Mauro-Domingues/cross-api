@@ -4,14 +4,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@templates/*": ["src/templates/*"],
-      "@tools/*": ["src/tools/*"],
+      "@templates/*": ["templates/*"],
+      "@tools/*": ["tools/*"],
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +20,7 @@
     "strictPropertyInitialization": true,
     "skipLibCheck": true
   },
-  "include": ["src", "index"],
+  "include": ["src"],
   "exclude": ["node_modules"],
   "ts-node": {"files": true}
 }

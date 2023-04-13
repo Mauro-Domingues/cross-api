@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEsLintrcJson = void 0;
 class CreateEsLintrcJson {
-  execute() {
-    return `{
+    execute() {
+        return `{
   "env": {
       "es6": true,
       "node": true,
@@ -76,6 +73,6 @@ class CreateEsLintrcJson {
       }
   }
 }`;
-  }
+    }
 }
 exports.CreateEsLintrcJson = CreateEsLintrcJson;

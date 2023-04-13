@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFakeHash = void 0;
 class CreateFakeHash {
-  execute() {
-    return `import { IHashProviderDTO } from '../models/IHashProvider';
+    execute() {
+        return `import { IHashProviderDTO } from '../models/IHashProvider';
 
 export class FakeHashProvider implements IHashProviderDTO {
   public async generateHash(payload: string): Promise<string> {
@@ -18,6 +15,6 @@ export class FakeHashProvider implements IHashProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateFakeHash = CreateFakeHash;

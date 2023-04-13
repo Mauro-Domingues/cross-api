@@ -1,23 +1,18 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteController = void 0;
-var _messages = require("../../../../../dist/tools/messages");
+const messages_1 = require("../../../../tools/messages");
 class DeleteController {
-  constructor(names) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
     }
-    return `import { IObjectDTO } from '@dtos/IObjectDTO';
+    execute() {
+        if (!this.names) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import { IObjectDTO } from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -35,6 +30,6 @@ export class Delete${this.names.upperModuleName}Controller {
   }
 }
 `;
-  }
+    }
 }
 exports.DeleteController = DeleteController;

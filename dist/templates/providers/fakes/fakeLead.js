@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFakeLead = void 0;
 class CreateFakeLead {
-  execute() {
-    return `import { ILeadProviderDTO } from '../models/ILeadProvider';
+    execute() {
+        return `import { ILeadProviderDTO } from '../models/ILeadProvider';
 import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 
 export class FakeLeadProvider implements ILeadProviderDTO {
@@ -19,6 +16,6 @@ export class FakeLeadProvider implements ILeadProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateFakeLead = CreateFakeLead;

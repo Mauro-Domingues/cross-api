@@ -1,25 +1,19 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFullDependentRoute = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("../../../tools/messages");
 class CreateFullDependentRoute {
-  constructor(names, fatherNames) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.fatherNames = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names, fatherNames) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `import { Router } from 'express';
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import { Router } from 'express';
 
 import { Create${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
 import { Show${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
@@ -42,6 +36,6 @@ ${this.fatherNames.lowerModuleName}Router.delete('/${this.names.routeModuleName}
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
-  }
+    }
 }
 exports.CreateFullDependentRoute = CreateFullDependentRoute;

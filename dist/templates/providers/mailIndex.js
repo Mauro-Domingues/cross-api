@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMailIndex = void 0;
 class CreateMailIndex {
-  execute() {
-    return `import { mailConfig } from '@config/mail';
+    execute() {
+        return `import { mailConfig } from '@config/mail';
 import { container } from 'tsyringe';
 
 import { EtherealMailProvider } from './implementations/EtherealMailProvider';
@@ -23,6 +20,6 @@ container.registerInstance<IMailProviderDTO>(
   providers[mailConfig.driver],
 );
 `;
-  }
+    }
 }
 exports.CreateMailIndex = CreateMailIndex;

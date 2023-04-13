@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAuthConfig = void 0;
 class CreateAuthConfig {
-  execute() {
-    return `export interface IAuthConfigDTO {
+    execute() {
+        return `export interface IAuthConfigDTO {
   jwt: {
     expiresIn: string;
   };
@@ -18,6 +15,6 @@ export const authConfig: IAuthConfigDTO = {
   },
 };
 `;
-  }
+    }
 }
 exports.CreateAuthConfig = CreateAuthConfig;

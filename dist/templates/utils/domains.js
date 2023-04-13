@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDomainsManager = void 0;
 class CreateDomainsManager {
-  execute() {
-    return `import {
+    execute() {
+        return `import {
   readFileSync,
   existsSync,
   mkdirSync,
@@ -62,6 +59,6 @@ export class DomainsManager {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateDomainsManager = CreateDomainsManager;

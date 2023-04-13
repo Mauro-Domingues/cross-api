@@ -4,6 +4,7 @@ import {
   appendFileSync,
   existsSync,
   readFileSync,
+  mkdirSync,
   truncateSync,
   unlinkSync,
   rmSync,
@@ -13,9 +14,17 @@ import { GetNames, IModuleNamesDTO } from '@tools/names';
 export class DeleteRegister {
   private messages: IMessagesDTO;
   private providers: { [key: string]: string };
+  private basePath: string;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.basePath = resolve(
+      'node_modules',
+      'cross-api',
+      'dist',
+      'tools',
+      'lastModification',
+    );
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',
@@ -26,6 +35,38 @@ export class DeleteRegister {
       notification: 'NotificationProvider',
       upload: 'StorageProvider',
     };
+    if (!existsSync(resolve(this.basePath, 'comands'))) {
+      mkdirSync(resolve(this.basePath, 'comands'));
+    }
+    if (!existsSync(resolve(this.basePath, 'modules'))) {
+      mkdirSync(resolve(this.basePath, 'modules'));
+    }
+    if (!existsSync(resolve(this.basePath, 'providers'))) {
+      mkdirSync(resolve(this.basePath, 'providers'));
+    }
+    if (!existsSync(resolve(this.basePath, 'comands', 'comands.log'))) {
+      appendFileSync(resolve(this.basePath, 'comands', 'comands.log'), '');
+    }
+    if (!existsSync(resolve(this.basePath, 'modules', 'moduleInjection.log'))) {
+      appendFileSync(
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
+        '',
+      );
+    }
+    if (!existsSync(resolve(this.basePath, 'modules', 'routeInjection.log'))) {
+      appendFileSync(
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
+        '',
+      );
+    }
+    if (
+      !existsSync(resolve(this.basePath, 'providers', 'providerInjection.log'))
+    ) {
+      appendFileSync(
+        resolve(this.basePath, 'providers', 'providerInjection.log'),
+        '',
+      );
+    }
   }
 
   private makeProvider(
@@ -37,15 +78,7 @@ export class DeleteRegister {
   ) {
     if (names && fatherNames) {
       const oldProviders = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'providers',
-          'providerInjection.log',
-        ),
+        resolve(this.basePath, 'providers', 'providerInjection.log'),
         'ascii',
       );
 
@@ -90,15 +123,7 @@ export class DeleteRegister {
       );
     } else if (names) {
       const oldProviders = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'providers',
-          'providerInjection.log',
-        ),
+        resolve(this.basePath, 'providers', 'providerInjection.log'),
         'ascii',
       );
 
@@ -239,15 +264,7 @@ export class DeleteRegister {
         ),
       );
       const moduleInjection = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
         'ascii',
       );
       truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
@@ -256,15 +273,7 @@ export class DeleteRegister {
         moduleInjection,
       );
       const routeInjection = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
         'ascii',
       );
       truncateSync(
@@ -288,15 +297,7 @@ export class DeleteRegister {
       });
       unlinkSync(resolve('src', 'routes', `${names.lowerModuleName}Router.ts`));
       const moduleInjection = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'moduleInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'moduleInjection.log'),
         'ascii',
       );
       truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
@@ -305,15 +306,7 @@ export class DeleteRegister {
         moduleInjection,
       );
       const routeInjection = readFileSync(
-        resolve(
-          'node_modules',
-          'cross-api',
-          'dist',
-          'tools',
-          'lastModification',
-          'modules',
-          'routeInjection.log',
-        ),
+        resolve(this.basePath, 'modules', 'routeInjection.log'),
         'ascii',
       );
       truncateSync(resolve('src', 'routes', 'index.ts'));
@@ -353,15 +346,7 @@ export class DeleteRegister {
 
   public async execute(): Promise<void> {
     const register = readFileSync(
-      resolve(
-        'node_modules',
-        'cross-api',
-        'dist',
-        'tools',
-        'lastModification',
-        'comands',
-        'comands.log',
-      ),
+      resolve(this.basePath, 'comands', 'comands.log'),
       'ascii',
     );
 

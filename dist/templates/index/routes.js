@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateRoutes = void 0;
 class CreateRoutes {
-  execute() {
-    return `import { Router } from 'express';
+    execute() {
+        return `import { Router } from 'express';
 import { guardRouter } from './guardRouter';
 
 const routes = Router();
@@ -14,6 +11,6 @@ const routes = Router();
 
 export { routes };
 `;
-  }
+    }
 }
 exports.CreateRoutes = CreateRoutes;

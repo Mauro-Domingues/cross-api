@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateGuard = void 0;
 class CreateGuard {
-  execute() {
-    return `/* eslint-disable no-useless-escape */
+    execute() {
+        return `/* eslint-disable no-useless-escape */
 import { Router } from 'express';
 import { ensureAuthenticated } from '@middlewares/EnsureAuthenticated';
 import { decodeJwt } from '@middlewares/DecodeJwt';
@@ -80,6 +77,6 @@ guardRouter.use(decodeJwt);
 
 export { guardRouter };
 `;
-  }
+    }
 }
 exports.CreateGuard = CreateGuard;

@@ -27,7 +27,7 @@ export class MakeThirdLayer {
   private createNormalizeQueryLink: CreateNormalizeQueryLink;
   private createDecimaAdjust: CreateDecimaAdjust;
   private createRateLimiter: CreateRateLimiter;
-  private createDecodeJwt: CreateDecodeJwt
+  private createDecodeJwt: CreateDecodeJwt;
   private createGuard: CreateGuard;
   private createRoutes: CreateRoutes;
   private createIResponseDTO: CreateIResponseDTO;

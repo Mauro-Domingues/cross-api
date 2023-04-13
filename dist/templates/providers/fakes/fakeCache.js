@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFakeRedis = void 0;
 class CreateFakeRedis {
-  execute() {
-    return `import { ICacheProviderDTO } from '../models/ICacheProvider';
+    execute() {
+        return `import { ICacheProviderDTO } from '../models/ICacheProvider';
 
 interface ICacheDataDTO {
   [key: string]: string;
@@ -46,6 +43,6 @@ export class FakeCacheProvider implements ICacheProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateFakeRedis = CreateFakeRedis;

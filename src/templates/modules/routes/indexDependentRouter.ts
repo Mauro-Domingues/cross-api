@@ -3,9 +3,7 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateIndexDependentRoute {
   private messages: IMessagesDTO;
-  private fatherNames:
-    | Pick<IModuleNamesDTO, 'lowerModuleName'>
-    | undefined;
+  private fatherNames: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

@@ -1,23 +1,18 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateRepository = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("../../../tools/messages");
 class CreateRepository {
-  constructor(names) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
     }
-    return `import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+    execute() {
+        if (!this.names) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { DeleteResult, Repository } from 'typeorm';
 
 import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
@@ -87,6 +82,6 @@ export class ${this.names.pluralUpperModuleName}Repository implements I${this.na
   }
 }
 `;
-  }
+    }
 }
 exports.CreateRepository = CreateRepository;

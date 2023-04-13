@@ -1,23 +1,18 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteSpecController = void 0;
-var _messages = require("../../../../../dist/tools/messages");
+const messages_1 = require("../../../../tools/messages");
 class DeleteSpecController {
-  constructor(names) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
     }
-    return `import request from 'supertest';
+    execute() {
+        if (!this.names) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import { createConnection } from '@shared/typeorm';
 import { app } from '@shared/app';
@@ -46,6 +41,6 @@ describe('Delete${this.names.upperModuleName}Controller', () => {
   });
 });
 `;
-  }
+    }
 }
 exports.DeleteSpecController = DeleteSpecController;

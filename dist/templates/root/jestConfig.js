@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateJestConfig = void 0;
 class CreateJestConfig {
-  execute() {
-    return `import { pathsToModuleNameMapper } from 'ts-jest';
+    execute() {
+        return `import { pathsToModuleNameMapper } from 'ts-jest';
 
 import { compilerOptions } from './tsconfig.json';
 
@@ -27,6 +24,6 @@ export default {
   testMatch: ['**/*.spec.ts'],
 };
 `;
-  }
+    }
 }
 exports.CreateJestConfig = CreateJestConfig;

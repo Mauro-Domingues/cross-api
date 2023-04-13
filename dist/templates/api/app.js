@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateApp = void 0;
 class CreateApp {
-  execute() {
-    return `import 'express-async-errors';
+    execute() {
+        return `import 'express-async-errors';
 // import { uploadConfig } from '@config/upload'; // uploadProvider
 // import { cryptoConfig } from '@config/crypto'; // cryptoProvider
 import { errors } from 'celebrate';
@@ -61,6 +58,6 @@ app.use(
 
 export { app };
 `;
-  }
+    }
 }
 exports.CreateApp = CreateApp;

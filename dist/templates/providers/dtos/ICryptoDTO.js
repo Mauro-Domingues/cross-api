@@ -1,16 +1,13 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateICryptoDTO = void 0;
 class CreateICryptoDTO {
-  execute() {
-    return `export interface ICryptoDTO {
+    execute() {
+        return `export interface ICryptoDTO {
   iv: string;
   content: string;
 }
 `;
-  }
+    }
 }
 exports.CreateICryptoDTO = CreateICryptoDTO;

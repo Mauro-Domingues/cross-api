@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateStorageIndex = void 0;
 class CreateStorageIndex {
-  execute() {
-    return `import { uploadConfig } from '@config/upload';
+    execute() {
+        return `import { uploadConfig } from '@config/upload';
 import { container } from 'tsyringe';
 
 import { DiskStorageProvider } from './implementations/DiskStorageProvider';
@@ -23,6 +20,6 @@ container.registerInstance<IStorageProviderDTO>(
   providers[uploadConfig.driver],
 );
 `;
-  }
+    }
 }
 exports.CreateStorageIndex = CreateStorageIndex;

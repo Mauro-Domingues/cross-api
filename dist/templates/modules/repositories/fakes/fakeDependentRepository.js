@@ -1,25 +1,19 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDependentFakeRepository = void 0;
-var _messages = require("../../../../../dist/tools/messages");
+const messages_1 = require("../../../../tools/messages");
 class CreateDependentFakeRepository {
-  constructor(names, fatherNames) {
-    this.messages = void 0;
-    this.names = void 0;
-    this.fatherNames = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(names, fatherNames) {
+        this.messages = new messages_1.Messages().execute();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `/* eslint-disable @typescript-eslint/no-explicit-any */
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.moduleNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IObjectDTO } from '@dtos/IObjectDTO';
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
@@ -157,6 +151,6 @@ export class Fake${this.names.pluralUpperModuleName}Repository implements I${thi
   }
 }
 `;
-  }
+    }
 }
 exports.CreateDependentFakeRepository = CreateDependentFakeRepository;

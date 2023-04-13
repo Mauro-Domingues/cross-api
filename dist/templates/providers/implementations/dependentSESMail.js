@@ -1,23 +1,18 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateDependentSESMail = void 0;
-var _messages = require("../../../../dist/tools/messages");
+const messages_1 = require("../../../tools/messages");
 class CreateDependentSESMail {
-  constructor(fatherNames) {
-    this.fatherNames = void 0;
-    this.messages = void 0;
-    this.messages = new _messages.Messages().execute();
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.fatherNames) {
-      console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.providerNotFound, '\x1b[0m');
-      throw new Error();
+    constructor(fatherNames) {
+        this.messages = new messages_1.Messages().execute();
+        this.fatherNames = fatherNames;
     }
-    return `import { mailConfig } from '@config/mail';
+    execute() {
+        if (!this.fatherNames) {
+            console.log('\x1b[1m', '\x1b[38;2;255;0;0m', this.messages.providerNotFound, '\x1b[0m');
+            throw new Error();
+        }
+        return `import { mailConfig } from '@config/mail';
 
 import { SESClient } from '@aws-sdk/client-ses';
 import { createTransport, Transporter } from 'nodemailer';
@@ -70,6 +65,6 @@ export class SESMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateDependentSESMail = CreateDependentSESMail;

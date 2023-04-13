@@ -1,12 +1,9 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateS3Storage = void 0;
 class CreateS3Storage {
-  execute() {
-    return `import { uploadConfig } from '@config/upload';
+    execute() {
+        return `import { uploadConfig } from '@config/upload';
 import {
   S3Client,
   PutObjectCommand,
@@ -69,6 +66,6 @@ export class S3StorageProvider implements IStorageProviderDTO {
   }
 }
 `;
-  }
+    }
 }
 exports.CreateS3Storage = CreateS3Storage;
