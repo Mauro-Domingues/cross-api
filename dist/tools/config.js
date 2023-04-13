@@ -4,7 +4,7 @@ import { createInterface } from 'readline';
 import { resolve } from 'path';
 import { Shell } from './shell.js';
 import { ConfigLanguage } from './languageConfig.js';
-import userJson from '../../../../package.json';
+import userJson from '../../../../package.json' assert {type: 'json'};
 export class ConfigJson {
     config;
     shell;
