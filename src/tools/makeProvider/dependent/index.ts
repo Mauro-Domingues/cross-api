@@ -1,3 +1,4 @@
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { MakeDependentCacheProvider } from './cache';
@@ -11,6 +12,7 @@ import { MakeDependentStorageProvider } from './storage';
 
 export class MakeDependentProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private providerName: string | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private makeDependentStorageProvider: MakeDependentStorageProvider;
@@ -27,6 +29,7 @@ export class MakeDependentProvider {
     fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.providerName = providerName;
     this.fatherNames = fatherNames;
     this.makeDependentStorageProvider = new MakeDependentStorageProvider(
@@ -80,12 +83,13 @@ export class MakeDependentProvider {
         await this.makeDependentHashProvider.execute();
         break;
       default:
-        console.log(
-          '\x1b[1m',
-          '\x1b[38;2;255;0;0m',
+        this.console.one([
           this.messages.providerNotFound,
-          '\x1b[0m',
-        );
+          'red',
+          true,
+          false,
+          false,
+        ]);
         break;
     }
   }

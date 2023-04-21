@@ -13,9 +13,11 @@ import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentInfra {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private createIndexDependentRoute: CreateIndexDependentRoute;
@@ -35,6 +37,7 @@ export class MakeDependentInfra {
     fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
     this.fatherNames = fatherNames;
     this.createIndexDependentRoute = new CreateIndexDependentRoute(
@@ -72,12 +75,13 @@ export class MakeDependentInfra {
 
   public async execute(): Promise<void> {
     if (!this.names || !this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

@@ -8,12 +8,14 @@ import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentCryptoProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
   private messages: IMessagesDTO;
+  private console: Console;
   private createICrypto: CreateICrypto;
   private createICryptoDTO: CreateICryptoDTO;
   private createCrypto: CreateCrypto;
@@ -24,6 +26,7 @@ export class MakeDependentCryptoProvider {
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createICrypto = new CreateICrypto();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createCrypto = new CreateCrypto();
@@ -34,12 +37,13 @@ export class MakeDependentCryptoProvider {
 
   public async execute(): Promise<void> {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -426,10 +430,12 @@ export class MakeDependentCryptoProvider {
         this.createCryptoIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- CryptoProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

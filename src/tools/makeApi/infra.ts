@@ -1,12 +1,15 @@
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeInfra {
   private messages: IMessagesDTO;
+  private console: Console;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {
@@ -61,11 +64,6 @@ export class MakeInfra {
     if (!existsSync(resolve('src', 'shared', 'typeorm', 'seeds'))) {
       mkdirSync(resolve('src', 'shared', 'typeorm', 'seeds'));
     }
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      this.messages.apiCreated,
-      '\x1b[0m',
-    );
+    this.console.one([this.messages.apiCreated, 'blue', true, false, false]);
   }
 }

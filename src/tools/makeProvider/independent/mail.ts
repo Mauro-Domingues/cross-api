@@ -13,9 +13,11 @@ import { CreateIMail } from '@templates/providers/models/IMail';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeMailProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createIMail: CreateIMail;
   private createFakeMail: CreateFakeMail;
   private createIMailDTO: CreateIMailDTO;
@@ -31,6 +33,7 @@ export class MakeMailProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createIMail = new CreateIMail();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();
@@ -436,11 +439,13 @@ export class MakeMailProvider {
         this.createMailTemplateIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- MailTemplateProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(
         resolve('src', 'shared', 'container', 'providers', 'MailProvider'),
@@ -842,10 +847,12 @@ export class MakeMailProvider {
         this.createMailIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- MailProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

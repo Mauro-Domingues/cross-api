@@ -6,6 +6,7 @@ import { PortugueseMessages } from '@templates/assets/pt-br';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
+import { Console } from './console';
 
 interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';
@@ -19,6 +20,7 @@ interface ILanguageConfigDTO {
 
 export class ConfigLanguage {
   public messages: IMessagesDTO;
+  private console: Console;
   public Language: ILanguageOptionsDTO;
   public languageConfig: ILanguageConfigDTO;
   private englishMessages: EnglishMessages;
@@ -27,6 +29,7 @@ export class ConfigLanguage {
 
   constructor() {
     this.englishMessages = new EnglishMessages();
+    this.console = new Console();
     this.portugueseMessages = new PortugueseMessages();
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.messages = new Messages().execute();
@@ -41,16 +44,15 @@ export class ConfigLanguage {
   }
 
   private showLanguageOptions(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `${this.messages.language}`,
-      '\x1b[0m',
-    );
-    console.log('\x1b[1m');
+      'yellow',
+      true,
+      true,
+      false,
+    ]);
     console.table(Object.keys(this.Language));
-    console.log('');
+    this.console.one(['', 'white', false, false, false]);
 
     const rl = createInterface({
       input: process.stdin,
@@ -80,13 +82,13 @@ export class ConfigLanguage {
   }
 
   public validateOption(optionChosen: string): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;0;0m',
+    this.console.one([
       `"${optionChosen}"${this.messages.invalidLanguage}`,
-      '\x1b[0m',
-    );
+      'red',
+      true,
+      true,
+      false,
+    ]);
   }
 
   public showChosenOption({ option, index } = this.languageConfig): void {
@@ -94,14 +96,13 @@ export class ConfigLanguage {
 
     this.messages = languageChosen;
 
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;255;155m',
+    this.console.one([
       `${this.messages.choice}${Object.keys(this.Language)[index]}`,
-      '\x1b[0m',
-    );
-    console.log('');
+      'blue',
+      true,
+      true,
+      true,
+    ]);
   }
 
   public setLanguageOption(): void {

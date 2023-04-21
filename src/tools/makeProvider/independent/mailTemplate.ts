@@ -6,9 +6,11 @@ import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex'
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeMailTemplateProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createIMailTemplate: CreateIMailTemplate;
   private createIMailTemplateDTO: CreateIMailTemplateDTO;
   private createMailTemplate: CreateMailTemplate;
@@ -17,6 +19,7 @@ export class MakeMailTemplateProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createIMailTemplate = new CreateIMailTemplate();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createMailTemplate = new CreateMailTemplate();
@@ -403,10 +406,12 @@ export class MakeMailTemplateProvider {
         this.createMailTemplateIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- MailTemplateProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

@@ -1,6 +1,8 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from './console';
 
 export class Pluralize {
+  private console: Console;
   private uncontableData: (string | RegExp)[] = [
     'adulthood',
     'advice',
@@ -244,6 +246,7 @@ export class Pluralize {
   constructor(word: string | undefined) {
     this.word = word;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.pluralRules = [];
     this.singularRules = [];
     this.irregularPlurals = {};
@@ -314,12 +317,13 @@ export class Pluralize {
     rules: [RegExp, string][],
   ): string {
     if (!this.word) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         `this${this.messages.invalidLanguage}`,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -346,12 +350,13 @@ export class Pluralize {
     rules: [RegExp, string][],
   ): boolean {
     if (!this.word) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         `this${this.messages.invalidLanguage}`,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

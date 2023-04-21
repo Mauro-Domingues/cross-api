@@ -12,9 +12,11 @@ import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeInfra {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: IModuleNamesDTO | undefined;
   private createIndexRoute: CreateIndexRoute;
   private createIndependentRoute: CreateIndependentRoute;
@@ -30,6 +32,7 @@ export class MakeInfra {
   constructor(names: IModuleNamesDTO | undefined) {
     this.names = names;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createIndexRoute = new CreateIndexRoute(this.names);
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
     this.createIRepository = new CreateIRepository(this.names);
@@ -44,12 +47,13 @@ export class MakeInfra {
 
   public async execute(): Promise<void> {
     if (!this.names) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

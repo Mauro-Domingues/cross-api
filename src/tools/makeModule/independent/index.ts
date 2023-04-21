@@ -1,5 +1,6 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
 import { MakeInfra } from './infra';
 import { MakeFunctionalities } from './functionalities';
 import { MakeStructure } from './structure';
@@ -7,6 +8,7 @@ import { MakeUnitTests } from './unitTests';
 
 export class MakeModule {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: IModuleNamesDTO | undefined;
   private makeUnitTests: MakeUnitTests;
   private makeStructure: MakeStructure;
@@ -15,6 +17,7 @@ export class MakeModule {
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
     this.makeUnitTests = new MakeUnitTests(this.names);
     this.makeStructure = new MakeStructure(this.names);
@@ -24,12 +27,13 @@ export class MakeModule {
 
   public async execute(): Promise<void> {
     if (!this.names) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -38,10 +42,12 @@ export class MakeModule {
     await this.makeFunctionalities.execute();
     await this.makeUnitTests.execute();
 
-    return console.log(
-      '\x1b[38;2;255;255;0m',
+    return this.console.one([
       `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

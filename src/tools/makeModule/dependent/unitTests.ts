@@ -12,9 +12,11 @@ import { UpdateSpecDependentService } from '@templates/modules/services/updateDe
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentUnitTests {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private updateSpecDependentService: UpdateSpecDependentService;
@@ -33,6 +35,7 @@ export class MakeDependentUnitTests {
     fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
     this.fatherNames = fatherNames;
     this.updateSpecDependentService = new UpdateSpecDependentService(
@@ -79,12 +82,13 @@ export class MakeDependentUnitTests {
 
   public async execute(): Promise<void> {
     if (!this.names || !this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

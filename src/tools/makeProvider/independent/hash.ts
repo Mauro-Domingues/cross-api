@@ -6,9 +6,11 @@ import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeHashProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createIHash: CreateIHash;
   private createHash: CreateHash;
   private createFakeHash: CreateFakeHash;
@@ -17,6 +19,7 @@ export class MakeHashProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createIHash = new CreateIHash();
     this.createHash = new CreateHash();
     this.createFakeHash = new CreateFakeHash();
@@ -330,10 +333,12 @@ export class MakeHashProvider {
         this.createHashIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- HashProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

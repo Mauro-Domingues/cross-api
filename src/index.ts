@@ -12,6 +12,7 @@ import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
 import { Shell } from '@tools/shell';
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
 
 class Index {
   private fullComand: string[] = process.argv.slice(2);
@@ -19,6 +20,7 @@ class Index {
   private arg: string = process.argv[3];
   private father: string = process.argv[4];
   private messages: IMessagesDTO;
+  private console: Console;
   private getNames: GetNames;
   private shell: Shell;
   private getFatherNames: GetNames;
@@ -34,6 +36,7 @@ class Index {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.shell = new Shell();
     this.getNames = new GetNames(this.arg);
     this.getFatherNames = new GetNames(this.father);
@@ -101,46 +104,21 @@ class Index {
           this.createRegister.execute();
           break;
         default:
-          console.log('');
-          console.log(
-            '\x1b[1m',
-            '\x1b[38;2;255;0;0m',
-            this.messages.notFound,
-            '\x1b[0m',
-          );
-          console.log('');
-          console.log(
-            '\x1b[1m',
-            '\x1b[38;2;0;155;255m',
-            `${this.messages.try[0]}`,
-            '\x1b[38;2;255;255;0m',
-            `${this.messages.try[1]}`,
-            '\x1b[38;2;0;155;255m',
-            `${this.messages.try[2]}`,
-            '\x1b[0m',
-          );
-          console.log('');
+          this.console.many([
+            [this.messages.notFound, 'red', true, true, true],
+            [`${this.messages.try[0]}`, 'blue', true, false, false],
+            [`${this.messages.try[1]}`, 'yellow', true, false, false],
+            [`${this.messages.try[2]}`, 'blue', true, false, true],
+          ]);
           break;
       }
     } else {
-      console.log('');
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
-        this.messages.notFound,
-        '\x1b[0m',
-      );
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        `${this.messages.try[0]}`,
-        '\x1b[38;2;255;255;0m',
-        `${this.messages.try[1]}`,
-        '\x1b[38;2;0;155;255m',
-        `${this.messages.try[2]}`,
-        '\x1b[0m',
-      );
-      console.log('');
+      this.console.many([
+        [this.messages.notFound, 'red', true, true, true],
+        [`${this.messages.try[0]}`, 'blue', true, false, false],
+        [`${this.messages.try[1]}`, 'yellow', true, false, false],
+        [`${this.messages.try[2]}`, 'blue', true, false, true],
+      ]);
     }
   }
 }

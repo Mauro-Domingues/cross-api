@@ -10,14 +10,17 @@ import {
   rmSync,
 } from 'fs';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
 
 export class DeleteRegister {
   private messages: IMessagesDTO;
+  private console: Console;
   private providers: { [key: string]: string };
   private basePath: string;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.basePath = resolve(
       'node_modules',
       'cross-api',
@@ -114,13 +117,13 @@ export class DeleteRegister {
       if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
         unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
       }
-      console.log('');
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        true,
+        false,
+      ]);
     } else if (names) {
       const oldProviders = readFileSync(
         resolve(this.basePath, 'providers', 'providerInjection.log'),
@@ -147,13 +150,13 @@ export class DeleteRegister {
       if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
         unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
       }
-      console.log('');
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        true,
+        false,
+      ]);
     }
   }
 
@@ -283,13 +286,13 @@ export class DeleteRegister {
         resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`),
         routeInjection,
       );
-      console.log('');
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        true,
+        false,
+      ]);
     } else if (names) {
       rmSync(resolve('src', 'modules', names.pluralLowerModuleName), {
         recursive: true,
@@ -311,13 +314,13 @@ export class DeleteRegister {
       );
       truncateSync(resolve('src', 'routes', 'index.ts'));
       appendFileSync(resolve('src', 'routes', 'index.ts'), routeInjection);
-      console.log('');
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        true,
+        false,
+      ]);
     }
   }
 
@@ -335,13 +338,13 @@ export class DeleteRegister {
     unlinkSync(resolve('nodemon.json'));
     unlinkSync(resolve('prettier.config.js'));
     unlinkSync(resolve('tsconfig.json'));
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- ${this.messages.reversed}: ${comand}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      true,
+      false,
+    ]);
   }
 
   public async execute(): Promise<void> {
@@ -365,14 +368,13 @@ export class DeleteRegister {
         this.makeAPi(comand);
         break;
       default:
-        console.log('');
-        console.log(
-          '\x1b[1m',
-          '\x1b[38;2;255;0;0m',
+        this.console.one([
           `${this.messages.noReversed}`,
-          '\x1b[0m',
-        );
-        console.log('');
+          'red',
+          true,
+          true,
+          true,
+        ]);
         break;
     }
   }

@@ -5,9 +5,11 @@ import { resolve } from 'path';
 import { Shell } from '@tools/shell';
 import { ConfigLanguage } from '@tools/languageConfig';
 import userJson from '../../../../package.json';
+import { Console } from './console';
 
 export class ConfigJson {
   private config: Config;
+  private console: Console;
   private shell: Shell;
   private configLanguage: ConfigLanguage;
   private userJson: typeof userJson;
@@ -16,6 +18,7 @@ export class ConfigJson {
 
   constructor() {
     this.configLanguage = new ConfigLanguage();
+    this.console = new Console();
     this.shell = new Shell();
     this.config = new Config();
     this.userJson = userJson;
@@ -106,31 +109,27 @@ export class ConfigJson {
   }
 
   private installYarn(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.messages.yarn}`,
-      '\x1b[0m',
-    );
-    console.log('');
+    this.console.many([
+      [`${this.configLanguage.messages.yarn}`, 'blue', true, true, true],
+      [
+        `- yarn ${this.configLanguage.messages.installed}`,
+        'yellow',
+        true,
+        false,
+        true,
+      ],
+    ]);
     this.shell.execute('npm install yarn --location=global');
-    console.log(
-      '\x1b[38;2;255;255;0m',
-      `- yarn ${this.configLanguage.messages.installed}`,
-      '\x1b[0m',
-    );
-    console.log('');
   }
 
   private installDependencies(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       `${this.configLanguage.messages.dependencies}`,
-      '\x1b[0m',
-    );
-    console.log('');
+      'blue',
+      true,
+      false,
+      true,
+    ]);
     const dependenciesToInstall = this.dependencies.reduce(
       (acc, dependency) => {
         return `${acc} ${dependency}`;
@@ -138,23 +137,24 @@ export class ConfigJson {
     );
     this.shell.execute(`yarn add ${dependenciesToInstall}`);
     this.dependencies.forEach(dependency => {
-      console.log(
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${dependency} ${this.configLanguage.messages.installed}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        false,
+        false,
+      ]);
     });
-    console.log('');
   }
 
   private installDevDependencies(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       `${this.configLanguage.messages.devDependencies}`,
-      '\x1b[0m',
-    );
-    console.log('');
+      'yellow',
+      true,
+      true,
+      true,
+    ]);
     const devDependenciesToInstall = this.devDependencies.reduce(
       (acc, devDependency) => {
         return `${acc} ${devDependency}`;
@@ -162,49 +162,50 @@ export class ConfigJson {
     );
     this.shell.execute(`yarn add ${devDependenciesToInstall} -D`);
     this.devDependencies.forEach(devDependency => {
-      console.log(
-        '\x1b[38;2;255;255;0m',
+      this.console.one([
         `- ${devDependency} ${this.configLanguage.messages.installed}`,
-        '\x1b[0m',
-      );
+        'yellow',
+        true,
+        false,
+        false,
+      ]);
     });
-    console.log('');
   }
 
   private renderEnding(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.messages.marketplaceTool[0]}`,
-      '\x1b[38;2;255;0;255m',
-      'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
-      '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.messages.marketplaceTool[1]}`,
-      '\x1b[0m',
-    );
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.messages.try[0]}`,
-      '\x1b[38;2;255;255;0m',
-      `${this.configLanguage.messages.try[1]}`,
-      '\x1b[38;2;0;155;255m',
-      `${this.configLanguage.messages.try[2]}`,
-      '\x1b[0m',
-    );
-    console.log('');
+    this.console.many([
+      [
+        `${this.configLanguage.messages.marketplaceTool[0]}`,
+        'blue',
+        true,
+        true,
+        false,
+      ],
+      [
+        'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
+        'purple',
+        true,
+        false,
+        false,
+      ],
+      [
+        `${this.configLanguage.messages.marketplaceTool[1]}`,
+        'blue',
+        true,
+        false,
+        false,
+      ],
+      [`${this.configLanguage.messages.try[0]}`, 'blue', true, true, false],
+      [`${this.configLanguage.messages.try[1]}`, 'yellow', true, false, false],
+      [`${this.configLanguage.messages.try[2]}`, 'blue', true, false, true],
+    ]);
   }
 
   private setConfig(): void {
     this.patchPackage();
-
     this.installYarn();
-
     this.installDependencies();
-
     this.installDevDependencies();
-
     this.renderEnding();
 
     if (existsSync(resolve('package-lock.json'))) {
@@ -215,16 +216,15 @@ export class ConfigJson {
   }
 
   private showLanguageOptions(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `${this.configLanguage.messages.language}`,
-      '\x1b[0m',
-    );
-    console.log('\x1b[1m');
+      'yellow',
+      true,
+      true,
+      false,
+    ]);
     console.table(Object.keys(this.configLanguage.Language));
-    console.log('');
+    this.console.one(['', 'white', false, false, false]);
 
     const rl = createInterface({
       input: process.stdin,

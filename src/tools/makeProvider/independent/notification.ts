@@ -6,9 +6,11 @@ import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeNotificationProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createINotification: CreateINotification;
   private createINotificationDTO: CreateINotificationDTO;
   private createOneSignalNotification: CreateOneSignalNotification;
@@ -17,6 +19,7 @@ export class MakeNotificationProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createINotification = new CreateINotification();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();
@@ -403,10 +406,12 @@ export class MakeNotificationProvider {
         this.createNotificationIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- NotificationProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

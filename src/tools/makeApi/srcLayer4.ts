@@ -11,9 +11,11 @@ import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateS
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeFourthLayer {
   private messages: IMessagesDTO;
+  private console: Console;
   private createMapAndUpdateString: CreateMapAndUpdateString;
   private createMapAndUpdate: CreateMapAndUpdate;
   private createMapAndPatchString: CreateMapAndPatchString;
@@ -27,6 +29,7 @@ export class MakeFourthLayer {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndUpdate = new CreateMapAndUpdate();
     this.createMapAndPatchString = new CreateMapAndPatchString();
@@ -56,11 +59,13 @@ export class MakeFourthLayer {
         this.createMapAndClone.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndCloneAttribute.ts.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(
         resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
@@ -79,11 +84,13 @@ export class MakeFourthLayer {
         this.createMapAndInsert.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndInsertAttribute.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'))
     ) {
@@ -100,11 +107,13 @@ export class MakeFourthLayer {
         this.createMapAndPatch.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndPatchAttribute.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'))
     ) {
@@ -119,11 +128,13 @@ export class MakeFourthLayer {
         this.createMapAndPatchString.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndPatchString.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(
         resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
@@ -142,11 +153,13 @@ export class MakeFourthLayer {
         this.createMapAndUpdate.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndUpdateAttribute.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'))
     ) {
@@ -161,11 +174,13 @@ export class MakeFourthLayer {
         this.createMapAndUpdateString.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- mapAndUpdateString.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'container', 'index.ts'),
@@ -178,11 +193,13 @@ export class MakeFourthLayer {
         this.createContainer.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- container/index.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'errors', 'AppError.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'errors', 'AppError.ts'),
@@ -195,11 +212,13 @@ export class MakeFourthLayer {
         this.createAppError.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- AppError.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'typeorm', 'index.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'typeorm', 'index.ts'),
@@ -212,11 +231,13 @@ export class MakeFourthLayer {
         this.createTypeorm.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- typeorm/index.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'typeorm', 'dataSource.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'typeorm', 'dataSource.ts'),
@@ -229,10 +250,12 @@ export class MakeFourthLayer {
         this.createDataSource.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- dataSource.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

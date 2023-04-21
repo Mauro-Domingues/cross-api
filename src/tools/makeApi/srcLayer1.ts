@@ -9,12 +9,14 @@ import { CreateJestConfig } from '@templates/root/jestConfig';
 import { CreateNodemonJson } from '@templates/root/nodemonJson';
 import { CreatePrettierConfig } from '@templates/root/prettierConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeFirstLayer {
   private messages: IMessagesDTO;
+  private console: Console;
   private createTsConfig: CreateTsConfig;
   private createPrettierConfig: CreatePrettierConfig;
   private createNodemonJson: CreateNodemonJson;
@@ -29,6 +31,7 @@ export class MakeFirstLayer {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createTsConfig = new CreateTsConfig();
     this.createPrettierConfig = new CreatePrettierConfig();
     this.createNodemonJson = new CreateNodemonJson();
@@ -55,33 +58,39 @@ export class MakeFirstLayer {
         this.createEditorConfig.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .editorconfig ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('.env'))) {
       appendFileSync(resolve('.env'), this.createEnv.execute());
     } else {
       truncateSync(resolve('.env'));
       appendFileSync(resolve('.env'), this.createEnv.execute());
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .env ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('.env.template'))) {
       appendFileSync(resolve('.env.template'), this.createEnv.execute());
     } else {
       truncateSync(resolve('.env.template'));
       appendFileSync(resolve('.env.template'), this.createEnv.execute());
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .env.template ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('.eslintignore'))) {
       appendFileSync(
         resolve('.eslintignore'),
@@ -94,11 +103,13 @@ export class MakeFirstLayer {
         this.createEsLintIgnore.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .eslintignore ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('.eslintrc.json'))) {
       appendFileSync(
         resolve('.eslintrc.json'),
@@ -111,22 +122,26 @@ export class MakeFirstLayer {
         this.createEsLintrcJson.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .eslintrc.json ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('.gitignore'))) {
       appendFileSync(resolve('.gitignore'), this.createGitIgnore.execute());
     } else {
       truncateSync(resolve('.gitignore'));
       appendFileSync(resolve('.gitignore'), this.createGitIgnore.execute());
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- .gitignore ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('babel.config.js'))) {
       appendFileSync(
         resolve('babel.config.js'),
@@ -139,11 +154,13 @@ export class MakeFirstLayer {
         this.createBabelConfig.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- babel.config.js ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('docker-compose.yml'))) {
       appendFileSync(
         resolve('docker-compose.yml'),
@@ -156,11 +173,13 @@ export class MakeFirstLayer {
         this.createDockerCompose.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- docker-compose.yml ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('jest.config.ts'))) {
       appendFileSync(
         resolve('jest.config.ts'),
@@ -173,22 +192,26 @@ export class MakeFirstLayer {
         this.createJestConfig.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- jest.config.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('nodemon.json'))) {
       appendFileSync(resolve('nodemon.json'), this.createNodemonJson.execute());
     } else {
       truncateSync(resolve('nodemon.json'));
       appendFileSync(resolve('nodemon.json'), this.createNodemonJson.execute());
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- nodemon.json ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('prettier.config.js'))) {
       appendFileSync(
         resolve('prettier.config.js'),
@@ -201,21 +224,25 @@ export class MakeFirstLayer {
         this.createPrettierConfig.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- prettier.config.js ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('tsconfig.json'))) {
       appendFileSync(resolve('tsconfig.json'), this.createTsConfig.execute());
     } else {
       truncateSync(resolve('tsconfig.json'));
       appendFileSync(resolve('tsconfig.json'), this.createTsConfig.execute());
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- tsconfig.json ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

@@ -24,9 +24,13 @@ export class CreateDependentRoute {
 
   public execute(): string {
     if (!this.names || !this.fatherNames) {
-      this.console.one(
-        [this.messages.moduleNotFound, 'red', true, false, false],
-      );
+      this.console.one([
+        this.messages.moduleNotFound,
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

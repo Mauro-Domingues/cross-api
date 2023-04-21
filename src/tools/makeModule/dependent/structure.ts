@@ -2,9 +2,11 @@ import { existsSync, mkdirSync } from 'fs';
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentStructure {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
@@ -15,18 +17,20 @@ export class MakeDependentStructure {
     fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
     this.fatherNames = fatherNames;
   }
 
   public async execute(): Promise<void> {
     if (!this.names || !this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

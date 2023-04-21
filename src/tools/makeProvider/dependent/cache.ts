@@ -8,12 +8,14 @@ import { CreateICache } from '@templates/providers/models/ICache';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentCacheProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
   private messages: IMessagesDTO;
+  private console: Console;
   private createICache: CreateICache;
   private createRedisCache: CreateRedisCache;
   private createFakeRedis: CreateFakeRedis;
@@ -24,6 +26,7 @@ export class MakeDependentCacheProvider {
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createICache = new CreateICache();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeRedis = new CreateFakeRedis();
@@ -34,12 +37,13 @@ export class MakeDependentCacheProvider {
 
   public async execute(): Promise<void> {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -426,10 +430,12 @@ export class MakeDependentCacheProvider {
         this.createCacheIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- CacheProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

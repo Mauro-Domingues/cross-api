@@ -1,3 +1,4 @@
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { MakeCacheProvider } from './cache';
 import { MakeCryptoProvider } from './crypto';
@@ -10,6 +11,7 @@ import { MakeStorageProvider } from './storage';
 
 export class MakeProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private providerName: string | undefined;
   private makeStorageProvider: MakeStorageProvider;
   private makeNotificationProvider: MakeNotificationProvider;
@@ -23,6 +25,7 @@ export class MakeProvider {
   constructor(providerName: string | undefined) {
     this.providerName = providerName;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.makeStorageProvider = new MakeStorageProvider();
     this.makeNotificationProvider = new MakeNotificationProvider();
     this.makeMailTemplateProvider = new MakeMailTemplateProvider();
@@ -60,12 +63,13 @@ export class MakeProvider {
         await this.makeHashProvider.execute();
         break;
       default:
-        console.log(
-          '\x1b[1m',
-          '\x1b[38;2;255;0;0m',
+        this.console.one([
           this.messages.providerNotFound,
-          '\x1b[0m',
-        );
+          'red',
+          true,
+          false,
+          false,
+        ]);
         break;
     }
   }

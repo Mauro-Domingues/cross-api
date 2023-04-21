@@ -7,9 +7,11 @@ import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeLeadProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createILead: CreateILead;
   private createILeadDTO: CreateILeadDTO;
   private createRDStationLead: CreateRDStationLead;
@@ -19,6 +21,7 @@ export class MakeLeadProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
     this.createRDStationLead = new CreateRDStationLead();
@@ -406,10 +409,12 @@ export class MakeLeadProvider {
         this.createLeadIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- LeadProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

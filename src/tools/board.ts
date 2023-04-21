@@ -1,4 +1,5 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from './console';
 
 interface IOptionDTO {
   title: string;
@@ -7,12 +8,14 @@ interface IOptionDTO {
 
 export class Board {
   private messages: IMessagesDTO;
+  private console: Console;
   private toolOptions: IOptionDTO[];
   private ormOptions: IOptionDTO[];
   private structureOptions: IOptionDTO[];
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.toolOptions = [
       { title: 'comands             ', description: this.messages.comands },
       {
@@ -63,140 +66,117 @@ export class Board {
   }
 
   private renderEmptyLine(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       '|                                                                                                                        |',
-      '\x1b[0m',
-    );
+      'blue',
+      true,
+      false,
+      false,
+    ]);
   }
 
   private renderHeader(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       ` /================================================${this.messages.comandTitle}=================================================\\`,
-      '\x1b[0m',
-    );
+      'blue',
+      true,
+      true,
+      false,
+    ]);
   }
 
   private renderToolOptions(): void {
     this.renderEmptyLine();
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[38;2;0;255;155m',
-      ` 〇 ${this.messages.tools}`,
-      '\x1b[38;2;0;155;255m',
-      '                                                                                                     |',
-      '\x1b[0m',
-    );
+    this.console.many([
+      ['|', 'blue', true, false, false],
+      [` 〇 ${this.messages.tools}`, 'green', true, false, false],
+      [
+        '                                                                                                     |',
+        'blue',
+        true,
+        false,
+        false,
+      ],
+    ]);
     this.renderEmptyLine();
     this.toolOptions.forEach(tool => {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[38;2;255;255;0m',
-        `   ➤  ${tool.title}         `,
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-        `${tool.description}`,
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '                          |',
-        '\x1b[0m',
-      );
+      this.console.many([
+        ['|', 'blue', true, false, false],
+        [`   ➤  ${tool.title}         `, 'green', true, false, false],
+        ['|', 'blue', true, false, false],
+        [`${tool.description}`, 'white', false, false, false],
+        ['                          |', 'blue', true, false, false],
+      ]);
       this.renderEmptyLine();
     });
   }
 
   private renderOrmOptions(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[38;2;0;255;155m',
-      ` 〇 ORM`,
-      '\x1b[38;2;0;155;255m',
-      '                                                                                                             |',
-      '\x1b[0m',
-    );
+    this.console.many([
+      ['|', 'blue', true, false, false],
+      [` 〇 ORM`, 'green', true, false, false],
+      ['|', 'blue', true, false, false],
+      [
+        '                                                                                                             |',
+        'blue',
+        true,
+        false,
+        false,
+      ],
+    ]);
     this.renderEmptyLine();
     this.ormOptions.forEach(orm => {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[38;2;255;255;0m',
-        `   ➤  ${orm.title}`,
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-        `${orm.description}`,
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-      );
+      this.console.many([
+        ['|', 'blue', true, false, false],
+        [`   ➤  ${orm.title}`, 'yellow', true, false, false],
+        ['|', 'blue', true, false, false],
+        [`${orm.description}`, 'white', false, false, false],
+        ['|', 'blue', true, false, false],
+      ]);
       this.renderEmptyLine();
     });
   }
 
   private renderStructureOptions(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[38;2;0;255;155m',
-      ` 〇 ${this.messages.structure}`,
-      '\x1b[38;2;0;155;255m',
-      '                                                                                            |',
-      '\x1b[0m',
-    );
+    this.console.many([
+      ['|', 'blue', true, false, false],
+      [` 〇 ${this.messages.structure}`, 'green', true, false, false],
+      [
+        '                                                                                            |',
+        'blue',
+        true,
+        false,
+        false,
+      ],
+    ]);
     this.renderEmptyLine();
     this.structureOptions.forEach(structure => {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[38;2;255;255;0m',
-        `   ➤  ${structure.title}`,
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-        `${structure.description}`,
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-      );
+      this.console.many([
+        ['|', 'blue', true, false, false],
+        [`   ➤  ${structure.title}`, 'yellow', true, false, false],
+        ['|', 'blue', true, false, false],
+        [`${structure.description}`, 'white', false, false, false],
+        ['|', 'blue', true, false, false],
+      ]);
       this.renderEmptyLine();
     });
   }
 
   private renderFooter(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       ` \\======================================================================================================================/`,
-      '\x1b[0m',
-    );
-    console.log('');
+      'blue',
+      true,
+      false,
+      true,
+    ]);
   }
 
   public execute(): void {
     this.renderHeader();
-
     this.renderToolOptions();
-
     this.renderOrmOptions();
-
     this.renderStructureOptions();
-
     this.renderFooter();
   }
 }

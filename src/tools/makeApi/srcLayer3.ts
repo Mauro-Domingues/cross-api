@@ -19,9 +19,11 @@ import { resolve } from 'path';
 import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt';
 import { CreateGuard } from '@templates/index/guard';
 import { CreateErrorLog } from '@templates/utils/errorLog';
+import { Console } from '@tools/console';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
+  private console: Console;
   private createEnvNamespace: CreateEnvNamespace;
   private createEnsureAuthenticated: CreateEnsureAuthenticated;
   private createDomainsManager: CreateDomainsManager;
@@ -43,6 +45,7 @@ export class MakeThirdLayer {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createEnvNamespace = new CreateEnvNamespace();
     this.createDecodeJwt = new CreateDecodeJwt();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
@@ -50,7 +53,7 @@ export class MakeThirdLayer {
     this.createDomainsManager = new CreateDomainsManager();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createRateLimiter = new CreateRateLimiter();
-    this. createErrorLog = new CreateErrorLog();
+    this.createErrorLog = new CreateErrorLog();
     this.createRoutes = new CreateRoutes();
     this.createGuard = new CreateGuard();
     this.createIResponseDTO = new CreateIResponseDTO();
@@ -76,11 +79,13 @@ export class MakeThirdLayer {
         this.createExpressNamespace.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
-      `- express.d.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+    this.console.one([
+      `- express.d.ts $ {this.messages.created}`,
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', '@types', 'env.d.ts'))) {
       appendFileSync(
         resolve('src', '@types', 'env.d.ts'),
@@ -93,11 +98,13 @@ export class MakeThirdLayer {
         this.createEnvNamespace.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- env.d.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'assets', 'domains.txt'))) {
       appendFileSync(
         resolve('src', 'assets', 'domains.txt'),
@@ -110,11 +117,13 @@ export class MakeThirdLayer {
         this.createDomains.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- domains.txt ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'dtos', 'ICacheDTO.ts'))) {
       appendFileSync(
         resolve('src', 'dtos', 'ICacheDTO.ts'),
@@ -127,11 +136,13 @@ export class MakeThirdLayer {
         this.createICacheDTO.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- ICacheDTO.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'dtos', 'IListDTO.ts'))) {
       appendFileSync(
         resolve('src', 'dtos', 'IListDTO.ts'),
@@ -144,11 +155,13 @@ export class MakeThirdLayer {
         this.createIListDTO.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- IListDTO.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'dtos', 'IObjectDTO.ts'))) {
       appendFileSync(
         resolve('src', 'dtos', 'IObjectDTO.ts'),
@@ -161,11 +174,13 @@ export class MakeThirdLayer {
         this.createIObjectDTO.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- IObjectDTO.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'dtos', 'IResponseDTO.ts'))) {
       appendFileSync(
         resolve('src', 'dtos', 'IResponseDTO.ts'),
@@ -178,11 +193,13 @@ export class MakeThirdLayer {
         this.createIResponseDTO.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- IResponseDTO.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'middlewares', 'RateLimiter.ts'))) {
       appendFileSync(
         resolve('src', 'middlewares', 'RateLimiter.ts'),
@@ -195,11 +212,13 @@ export class MakeThirdLayer {
         this.createRateLimiter.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- RateLimiter.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'middlewares', 'EnsureAuthenticated.ts'))) {
       appendFileSync(
         resolve('src', 'middlewares', 'EnsureAuthenticated.ts'),
@@ -212,11 +231,13 @@ export class MakeThirdLayer {
         this.createEnsureAuthenticated.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- EnsureAuthenticated.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'middlewares', 'DecodeJwt.ts'))) {
       appendFileSync(
         resolve('src', 'middlewares', 'DecodeJwt.ts'),
@@ -229,11 +250,13 @@ export class MakeThirdLayer {
         this.createDecodeJwt.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- DecodeJwt.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'routes', 'guardRouter.ts'))) {
       appendFileSync(
         resolve('src', 'routes', 'guardRouter.ts'),
@@ -246,11 +269,13 @@ export class MakeThirdLayer {
         this.createGuard.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- guardRouter.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
       appendFileSync(
         resolve('src', 'routes', 'index.ts'),
@@ -263,11 +288,13 @@ export class MakeThirdLayer {
         this.createRoutes.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- routes.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'app.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'app.ts'),
@@ -280,11 +307,13 @@ export class MakeThirdLayer {
         this.createApp.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- app.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'shared', 'server.ts'))) {
       appendFileSync(
         resolve('src', 'shared', 'server.ts'),
@@ -297,11 +326,13 @@ export class MakeThirdLayer {
         this.createServer.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- server.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'utils', 'decimalAdjust.ts'))) {
       appendFileSync(
         resolve('src', 'utils', 'decimalAdjust.ts'),
@@ -314,11 +345,13 @@ export class MakeThirdLayer {
         this.createDecimaAdjust.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- decimalAdjust.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'utils', 'domainsManager.ts'))) {
       appendFileSync(
         resolve('src', 'utils', 'domainsManager.ts'),
@@ -331,11 +364,13 @@ export class MakeThirdLayer {
         this.createDomainsManager.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- domainsManager.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'utils', 'errorLog.ts'))) {
       appendFileSync(
         resolve('src', 'utils', 'errorLog.ts'),
@@ -348,11 +383,13 @@ export class MakeThirdLayer {
         this.createErrorLog.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- errorLog.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (!existsSync(resolve('src', 'utils', 'normalizeQueryLink.ts'))) {
       appendFileSync(
         resolve('src', 'utils', 'normalizeQueryLink.ts'),
@@ -365,10 +402,12 @@ export class MakeThirdLayer {
         this.createNormalizeQueryLink.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- createNormalizeQueryLink.ts ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

@@ -12,9 +12,11 @@ import { UpdateSpecService } from '@templates/modules/services/update/updateServ
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeUnitTests {
   private messages: IMessagesDTO;
+  private console: Console;
   private names: IModuleNamesDTO | undefined;
   private updateSpecService: UpdateSpecService;
   private updateSpecController: UpdateSpecController;
@@ -29,6 +31,7 @@ export class MakeUnitTests {
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
     this.updateSpecService = new UpdateSpecService(this.names);
     this.updateSpecController = new UpdateSpecController(this.names);
@@ -44,12 +47,13 @@ export class MakeUnitTests {
 
   public async execute(): Promise<void> {
     if (!this.names) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.moduleNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

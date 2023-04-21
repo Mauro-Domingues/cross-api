@@ -4,15 +4,10 @@ enum IColorsDTO {
   'yellow' = '\x1b[38;2;255;255;0m',
   'red' = '\x1b[38;2;255;0;0m',
   'purple' = '\x1b[38;2;255;0;255m',
+  'white' = '\x1b[38;2;0;0;0m',
 }
 
-type IInputDTO = [
-  string,
-  keyof typeof IColorsDTO,
-  boolean,
-  boolean,
-  boolean,
-];
+type IInputDTO = [string, keyof typeof IColorsDTO, boolean, boolean, boolean];
 
 export class Console {
   private getColor = (color: keyof typeof IColorsDTO) => IColorsDTO[color];

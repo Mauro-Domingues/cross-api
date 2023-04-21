@@ -1,3 +1,4 @@
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { MakeDependentProvider } from './dependent';
@@ -5,6 +6,7 @@ import { MakeProvider } from './independent';
 
 export class CreateProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private providerName: string | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
   private makeProvider: MakeProvider;
@@ -17,6 +19,7 @@ export class CreateProvider {
     this.providerName = providerName;
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.makeProvider = new MakeProvider(this.providerName);
     this.makeDependentProvider = new MakeDependentProvider(
       this.providerName,
@@ -30,12 +33,13 @@ export class CreateProvider {
     } else if (this.providerName) {
       await this.makeProvider.execute();
     } else {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
     }
   }
 }

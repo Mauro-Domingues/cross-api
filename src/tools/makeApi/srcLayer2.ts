@@ -1,12 +1,15 @@
+import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { appendFileSync, existsSync, truncateSync } from 'fs';
 import { resolve } from 'path';
 
 export class MakeSecondLayer {
   private messages: IMessagesDTO;
+  private console: Console;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {
@@ -16,10 +19,12 @@ export class MakeSecondLayer {
       truncateSync(resolve('src', 'swagger.json'));
       appendFileSync(resolve('src', 'swagger.json'), '{}');
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- swagger.json ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

@@ -15,9 +15,13 @@ export class CreateIndexRoute {
 
   public execute(): string {
     if (!this.names) {
-      this.console.one(
-        [this.messages.moduleNotFound, 'red', true, false, false],
-      );
+      this.console.one([
+        this.messages.moduleNotFound,
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

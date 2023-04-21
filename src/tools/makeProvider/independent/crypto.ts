@@ -6,9 +6,11 @@ import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeCryptoProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createICrypto: CreateICrypto;
   private createICryptoDTO: CreateICryptoDTO;
   private createCrypto: CreateCrypto;
@@ -17,6 +19,7 @@ export class MakeCryptoProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createICrypto = new CreateICrypto();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createCrypto = new CreateCrypto();
@@ -330,10 +333,12 @@ export class MakeCryptoProvider {
         this.createCryptoIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- CryptoProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

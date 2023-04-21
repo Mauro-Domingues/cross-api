@@ -1,3 +1,5 @@
+import { Console } from './console';
+
 interface IOptionDTO {
   Name: string;
   Provider: string;
@@ -5,8 +7,10 @@ interface IOptionDTO {
 
 export class ListProvider {
   private providers: IOptionDTO[];
+  private console: Console;
 
   constructor() {
+    this.console = new Console();
     this.providers = [
       { Name: 'cache       ', Provider: 'CacheProvider       ' },
       { Name: 'crypto      ', Provider: 'CryptoProvider      ' },
@@ -20,73 +24,60 @@ export class ListProvider {
   }
 
   private renderEmptyLine(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       '|                                                         |',
-      '\x1b[0m',
-    );
+      'blue',
+      true,
+      false,
+      false,
+    ]);
   }
 
   private renderHeader(): void {
-    console.log('');
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      ` /=======================================================\\`,
-      '\x1b[0m',
-    );
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '|',
-      '\x1b[38;2;0;255;155m',
-      `       NAME`,
-      '\x1b[38;2;0;155;255m',
-      '         |',
-      '\x1b[38;2;0;255;155m',
-      `        DESCRIPTION`,
-      '\x1b[38;2;0;155;255m',
-      '         |',
-      '\x1b[0m',
-    );
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
-      '| – – – – – – – – – – – – – – – – – – – – – – – – – – – – |',
-      '\x1b[0m',
-    );
+    this.console.many([
+      [
+        ` /=======================================================\\`,
+        'blue',
+        true,
+        true,
+        false,
+      ],
+      ['|', 'blue', true, false, false],
+      [`       NAME`, 'green', true, false, false],
+      ['         |', 'blue', true, false, false],
+      [`        DESCRIPTION`, 'green', true, false, false],
+      ['         |', 'blue', true, false, false],
+      [
+        '| – – – – – – – – – – – – – – – – – – – – – – – – – – – – |',
+        'blue',
+        true,
+        false,
+        false,
+      ],
+    ]);
   }
 
   private renderProviderOptions(): void {
     this.providers.forEach(provider => {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[38;2;255;255;0m',
-        `➤  ${provider.Name}     `,
-        '\x1b[38;2;0;155;255m',
-        '|',
-        '\x1b[0m',
-        `${provider.Provider}`,
-        '\x1b[1m',
-        '\x1b[38;2;0;155;255m',
-        '       |',
-        '\x1b[0m',
-      );
+      this.console.many([
+        ['|', 'blue', true, false, false],
+        [`➤  ${provider.Name}     `, 'yellow', true, false, false],
+        ['|', 'blue', true, false, false],
+        [`${provider.Provider}`, 'white', false, false, true],
+        ['       |', 'blue', true, false, false],
+      ]);
       this.renderEmptyLine();
     });
   }
 
   private renderFooter(): void {
-    console.log(
-      '\x1b[1m',
-      '\x1b[38;2;0;155;255m',
+    this.console.one([
       ` \\=======================================================/`,
-      '\x1b[0m',
-    );
-    console.log('');
+      'blue',
+      true,
+      false,
+      true,
+    ]);
   }
 
   public execute(): void {

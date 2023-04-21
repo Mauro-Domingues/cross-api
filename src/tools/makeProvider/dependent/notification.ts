@@ -8,12 +8,14 @@ import { CreateNotificationIndex } from '@templates/providers/notificationIndex'
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentNotificationProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
   private messages: IMessagesDTO;
+  private console: Console;
   private createINotification: CreateINotification;
   private createINotificationDTO: CreateINotificationDTO;
   private createOneSignalNotification: CreateOneSignalNotification;
@@ -24,6 +26,7 @@ export class MakeDependentNotificationProvider {
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createINotification = new CreateINotification();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();
@@ -34,12 +37,13 @@ export class MakeDependentNotificationProvider {
 
   public async execute(): Promise<void> {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -487,10 +491,12 @@ export class MakeDependentNotificationProvider {
         this.createNotificationIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- NotificationProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

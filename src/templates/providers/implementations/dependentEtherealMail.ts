@@ -1,27 +1,31 @@
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
 
 export class CreateDependentEtherealMail {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
   private messages: IMessagesDTO;
+  private console: Console;
 
   constructor(
     fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
   }
 
   public execute(): string {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 

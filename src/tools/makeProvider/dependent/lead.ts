@@ -9,9 +9,11 @@ import { CreateILead } from '@templates/providers/models/ILead';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentLeadProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -25,6 +27,7 @@ export class MakeDependentLeadProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.fatherNames = fatherNames;
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
@@ -37,12 +40,13 @@ export class MakeDependentLeadProvider {
 
   public async execute(): Promise<void> {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -502,10 +506,12 @@ export class MakeDependentLeadProvider {
         this.createLeadIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- LeadProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

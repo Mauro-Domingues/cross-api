@@ -15,12 +15,14 @@ import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeDependentMailProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
   private messages: IMessagesDTO;
+  private console: Console;
   private createIMail: CreateIMail;
   private createFakeMail: CreateFakeMail;
   private createIMailDTO: CreateIMailDTO;
@@ -38,6 +40,7 @@ export class MakeDependentMailProvider {
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createIMail = new CreateIMail();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();
@@ -57,12 +60,13 @@ export class MakeDependentMailProvider {
 
   public async execute(): Promise<void> {
     if (!this.fatherNames) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
+      this.console.one([
         this.messages.providerNotFound,
-        '\x1b[0m',
-      );
+        'red',
+        true,
+        false,
+        false,
+      ]);
       throw new Error();
     }
 
@@ -522,11 +526,13 @@ export class MakeDependentMailProvider {
         this.createMailTemplateIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- MailTemplateProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
     if (
       !existsSync(
         resolve(
@@ -946,10 +952,12 @@ export class MakeDependentMailProvider {
         this.createMailIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- MailProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }

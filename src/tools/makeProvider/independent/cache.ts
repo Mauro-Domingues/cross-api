@@ -6,9 +6,11 @@ import { CreateRedisCache } from '@templates/providers/implementations/RedisCach
 import { CreateICache } from '@templates/providers/models/ICache';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { resolve } from 'path';
+import { Console } from '@tools/console';
 
 export class MakeCacheProvider {
   private messages: IMessagesDTO;
+  private console: Console;
   private createICache: CreateICache;
   private createRedisCache: CreateRedisCache;
   private createFakeRedis: CreateFakeRedis;
@@ -17,6 +19,7 @@ export class MakeCacheProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.createICache = new CreateICache();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeRedis = new CreateFakeRedis();
@@ -342,10 +345,12 @@ export class MakeCacheProvider {
         this.createCacheIndex.execute(),
       );
     }
-    console.log(
-      '\x1b[38;2;255;255;0m',
+    this.console.one([
       `- CacheProvider ${this.messages.created}`,
-      '\x1b[0m',
-    );
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
   }
 }
