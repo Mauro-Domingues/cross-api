@@ -1,5 +1,5 @@
 import { CreateProvider } from '@tools/makeProvider/index';
-import { MakeInfra } from './infra.js';
+import { MakeInfra } from './infra';
 import { MakeFirstLayer } from './srcLayer1';
 import { MakeSecondLayer } from './srcLayer2';
 import { MakeThirdLayer } from './srcLayer3';

@@ -18,7 +18,7 @@ export class ListProvider {
   }
   renderEmptyLine() {
     this.console.one([
-      '|                                                         |',
+      '|                                                       |   ',
       'blue',
       true,
       false,
@@ -28,19 +28,19 @@ export class ListProvider {
   renderHeader() {
     this.console.many([
       [
-        ` /=======================================================\\`,
+        ` /=====================================================\\   `,
         'blue',
         true,
         true,
-        false,
+        true,
       ],
-      ['|', 'blue', true, false, false],
-      [`       NAME`, 'green', true, false, false],
-      ['         |', 'blue', true, false, false],
-      [`        DESCRIPTION`, 'green', true, false, false],
-      ['         |', 'blue', true, false, false],
+      ['|   ', 'blue', true, false, false],
+      [`       NAME   `, 'green', true, false, false],
+      ['         |   ', 'blue', true, false, false],
+      [`        DESCRIPTION   `, 'green', true, false, false],
+      ['           |   ', 'blue', true, false, true],
       [
-        '| – – – – – – – – – – – – – – – – – – – – – – – – – – – – |',
+        '| – – – – – – – – – – – – – – – – – – – – – – – – – – – |   ',
         'blue',
         true,
         false,
@@ -51,18 +51,18 @@ export class ListProvider {
   renderProviderOptions() {
     this.providers.forEach(provider => {
       this.console.many([
-        ['|', 'blue', true, false, false],
-        [`➤  ${provider.Name}     `, 'yellow', true, false, false],
-        ['|', 'blue', true, false, false],
-        [`${provider.Provider}`, 'white', false, false, true],
-        ['       |', 'blue', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [` ➤  ${provider.Name}       `, 'yellow', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [` ${provider.Provider}     `, 'white', false, false, false],
+        ['       |   ', 'blue', true, false, false],
       ]);
       this.renderEmptyLine();
     });
   }
   renderFooter() {
     this.console.one([
-      ` \\=======================================================/`,
+      ` \\=====================================================/   `,
       'blue',
       true,
       false,

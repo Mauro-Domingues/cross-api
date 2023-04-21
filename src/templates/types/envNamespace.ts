@@ -19,7 +19,7 @@ export class CreateEnvNamespace {
     MYSQL_USER: string;
     MYSQL_PASSWORD: string;
     MYSQL_ROOT_PASSWORD: string;
-    DB_DATABASE: string;
+    MYSQL_DATABASE: string;
     REDIS_HOST: string;
     REDIS_PORT: string;
     REDIS_PASSWORD: string;

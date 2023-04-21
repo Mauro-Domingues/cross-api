@@ -31,13 +31,7 @@ export class ConfigLanguage {
     };
   }
   showLanguageOptions() {
-    this.console.one([
-      `${this.messages.language}`,
-      'yellow',
-      true,
-      true,
-      false,
-    ]);
+    this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
     console.table(Object.keys(this.Language));
     this.console.one(['', 'white', false, false, false]);
     const rl = createInterface({
@@ -78,7 +72,7 @@ export class ConfigLanguage {
     this.messages = languageChosen;
     this.console.one([
       `${this.messages.choice}${Object.keys(this.Language)[index]}`,
-      'blue',
+      'green',
       true,
       true,
       true,

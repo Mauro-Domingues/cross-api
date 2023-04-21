@@ -60,7 +60,7 @@ export class Board {
   }
   renderEmptyLine() {
     this.console.one([
-      '|                                                                                                                        |',
+      '|                                                                                                                   |',
       'blue',
       true,
       false,
@@ -69,7 +69,7 @@ export class Board {
   }
   renderHeader() {
     this.console.one([
-      ` /================================================${this.messages.comandTitle}=================================================\\`,
+      ` /==============================================${this.messages.comandTitle}==============================================\\`,
       'blue',
       true,
       true,
@@ -79,10 +79,10 @@ export class Board {
   renderToolOptions() {
     this.renderEmptyLine();
     this.console.many([
-      ['|', 'blue', true, false, false],
-      [` 〇 ${this.messages.tools}`, 'green', true, false, false],
+      ['|   ', 'blue', true, false, false],
+      [` 〇 ${this.messages.tools}   `, 'green', true, false, false],
       [
-        '                                                                                                     |',
+        '                                                                                                  |',
         'blue',
         true,
         false,
@@ -92,22 +92,21 @@ export class Board {
     this.renderEmptyLine();
     this.toolOptions.forEach(tool => {
       this.console.many([
-        ['|', 'blue', true, false, false],
-        [`   ➤  ${tool.title}         `, 'green', true, false, false],
-        ['|', 'blue', true, false, false],
-        [`${tool.description}`, 'white', false, false, false],
-        ['                          |', 'blue', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`   ➤  ${tool.title}            `, 'yellow', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`${tool.description}   `, 'white', false, false, false],
+        ['                          |   ', 'blue', true, false, false],
       ]);
       this.renderEmptyLine();
     });
   }
   renderOrmOptions() {
     this.console.many([
-      ['|', 'blue', true, false, false],
-      [` 〇 ORM`, 'green', true, false, false],
-      ['|', 'blue', true, false, false],
+      ['|   ', 'blue', true, false, false],
+      [` 〇 ORM   `, 'green', true, false, false],
       [
-        '                                                                                                             |',
+        '                                                                                                          |   ',
         'blue',
         true,
         false,
@@ -117,21 +116,21 @@ export class Board {
     this.renderEmptyLine();
     this.ormOptions.forEach(orm => {
       this.console.many([
-        ['|', 'blue', true, false, false],
-        [`   ➤  ${orm.title}`, 'yellow', true, false, false],
-        ['|', 'blue', true, false, false],
-        [`${orm.description}`, 'white', false, false, false],
-        ['|', 'blue', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`   ➤  ${orm.title}   `, 'yellow', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`${orm.description}   `, 'white', false, false, false],
+        ['|   ', 'blue', true, false, false],
       ]);
       this.renderEmptyLine();
     });
   }
   renderStructureOptions() {
     this.console.many([
-      ['|', 'blue', true, false, false],
-      [` 〇 ${this.messages.structure}`, 'green', true, false, false],
+      ['|   ', 'blue', true, false, false],
+      [` 〇 ${this.messages.structure}   `, 'green', true, false, false],
       [
-        '                                                                                            |',
+        '                                                                                         |',
         'blue',
         true,
         false,
@@ -141,18 +140,18 @@ export class Board {
     this.renderEmptyLine();
     this.structureOptions.forEach(structure => {
       this.console.many([
-        ['|', 'blue', true, false, false],
-        [`   ➤  ${structure.title}`, 'yellow', true, false, false],
-        ['|', 'blue', true, false, false],
-        [`${structure.description}`, 'white', false, false, false],
-        ['|', 'blue', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`   ➤  ${structure.title}   `, 'yellow', true, false, false],
+        ['|   ', 'blue', true, false, false],
+        [`${structure.description}   `, 'white', false, false, false],
+        ['|   ', 'blue', true, false, false],
       ]);
       this.renderEmptyLine();
     });
   }
   renderFooter() {
     this.console.one([
-      ` \\======================================================================================================================/`,
+      ` \\=================================================================================================================/`,
       'blue',
       true,
       false,

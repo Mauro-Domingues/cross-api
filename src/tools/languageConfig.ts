@@ -44,13 +44,7 @@ export class ConfigLanguage {
   }
 
   private showLanguageOptions(): void {
-    this.console.one([
-      `${this.messages.language}`,
-      'yellow',
-      true,
-      true,
-      false,
-    ]);
+    this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
     console.table(Object.keys(this.Language));
     this.console.one(['', 'white', false, false, false]);
 
@@ -98,7 +92,7 @@ export class ConfigLanguage {
 
     this.console.one([
       `${this.messages.choice}${Object.keys(this.Language)[index]}`,
-      'blue',
+      'green',
       true,
       true,
       true,

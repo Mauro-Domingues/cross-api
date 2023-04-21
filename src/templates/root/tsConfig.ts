@@ -3,6 +3,7 @@ export class CreateTsConfig {
     return `{
   "compilerOptions": {
     "target": "es6",
+    "lib": ["ES2022"],
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": ".",

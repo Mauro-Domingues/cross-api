@@ -103,18 +103,18 @@ class Index {
         default:
           this.console.many([
             [this.messages.notFound, 'red', true, true, true],
-            [`${this.messages.try[0]}`, 'blue', true, false, false],
-            [`${this.messages.try[1]}`, 'yellow', true, false, false],
-            [`${this.messages.try[2]}`, 'blue', true, false, true],
+            [this.messages.try[0], 'blue', true, false, false],
+            [this.messages.try[1], 'yellow', true, false, false],
+            [this.messages.try[2], 'blue', true, false, true],
           ]);
           break;
       }
     } else {
       this.console.many([
         [this.messages.notFound, 'red', true, true, true],
-        [`${this.messages.try[0]}`, 'blue', true, false, false],
-        [`${this.messages.try[1]}`, 'yellow', true, false, false],
-        [`${this.messages.try[2]}`, 'blue', true, false, true],
+        [this.messages.try[0], 'blue', true, false, false],
+        [this.messages.try[1], 'yellow', true, false, false],
+        [this.messages.try[2], 'blue', true, false, true],
       ]);
     }
   }

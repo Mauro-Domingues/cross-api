@@ -106,12 +106,12 @@ export class ConfigJson {
   }
   installYarn() {
     this.console.many([
-      [`${this.configLanguage.messages.yarn}`, 'blue', true, true, true],
+      [this.configLanguage.messages.yarn, 'blue', true, true, true],
       [
         `- yarn ${this.configLanguage.messages.installed}`,
         'yellow',
-        true,
         false,
+        true,
         true,
       ],
     ]);
@@ -119,7 +119,7 @@ export class ConfigJson {
   }
   installDependencies() {
     this.console.one([
-      `${this.configLanguage.messages.dependencies}`,
+      this.configLanguage.messages.dependencies,
       'blue',
       true,
       false,
@@ -135,7 +135,7 @@ export class ConfigJson {
       this.console.one([
         `- ${dependency} ${this.configLanguage.messages.installed}`,
         'yellow',
-        true,
+        false,
         false,
         false,
       ]);
@@ -143,8 +143,8 @@ export class ConfigJson {
   }
   installDevDependencies() {
     this.console.one([
-      `${this.configLanguage.messages.devDependencies}`,
-      'yellow',
+      this.configLanguage.messages.devDependencies,
+      'blue',
       true,
       true,
       true,
@@ -159,7 +159,7 @@ export class ConfigJson {
       this.console.one([
         `- ${devDependency} ${this.configLanguage.messages.installed}`,
         'yellow',
-        true,
+        false,
         false,
         false,
       ]);
@@ -168,29 +168,29 @@ export class ConfigJson {
   renderEnding() {
     this.console.many([
       [
-        `${this.configLanguage.messages.marketplaceTool[0]}`,
+        this.configLanguage.messages.marketplaceTool[0],
         'blue',
         true,
         true,
         false,
       ],
       [
-        'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
+        'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig   ',
         'purple',
         true,
         false,
         false,
       ],
       [
-        `${this.configLanguage.messages.marketplaceTool[1]}`,
+        this.configLanguage.messages.marketplaceTool[1],
         'blue',
         true,
         false,
         false,
       ],
-      [`${this.configLanguage.messages.try[0]}`, 'blue', true, true, false],
-      [`${this.configLanguage.messages.try[1]}`, 'yellow', true, false, false],
-      [`${this.configLanguage.messages.try[2]}`, 'blue', true, false, true],
+      [this.configLanguage.messages.try[0], 'blue', true, true, false],
+      [this.configLanguage.messages.try[1], 'yellow', true, false, false],
+      [this.configLanguage.messages.try[2], 'blue', true, false, true],
     ]);
   }
   setConfig() {
@@ -206,11 +206,11 @@ export class ConfigJson {
   }
   showLanguageOptions() {
     this.console.one([
-      `${this.configLanguage.messages.language}`,
+      this.configLanguage.messages.language,
       'yellow',
       true,
       true,
-      false,
+      true,
     ]);
     console.table(Object.keys(this.configLanguage.Language));
     this.console.one(['', 'white', false, false, false]);
