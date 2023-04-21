@@ -1,8 +1,10 @@
 import { IModuleNamesDTO } from '@tools/names';
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
 
 export class UpdateController {
   private messages: IMessagesDTO;
+  private console: Console;
   private names:
     | Pick<
         IModuleNamesDTO,
@@ -12,16 +14,14 @@ export class UpdateController {
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.console = new Console();
     this.names = names;
   }
 
   public execute(): string {
     if (!this.names) {
-      console.log(
-        '\x1b[1m',
-        '\x1b[38;2;255;0;0m',
-        this.messages.moduleNotFound,
-        '\x1b[0m',
+      this.console.one(
+        [this.messages.moduleNotFound, 'red', true, false, false],
       );
       throw new Error();
     }

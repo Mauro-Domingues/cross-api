@@ -6,13 +6,16 @@ export class Config {
 
   constructor() {
     this.configBody = `import { Messages } from './messages.js';
+import { Console } from './console.js';
 export class ConfigJson {
   messages;
+  console;
   constructor() {
     this.messages = new Messages().execute();
+    this.console = new Console();
   }
   execute() {
-    console.log('\\x1b[1m', '\\x1b[38;2;0;255;155m', \`\\${'n'}➤  \${this.messages.configured}\\${'n'}\`, '\\x1b[0m');
+    this.console.one([this.messages.configured, 'green', true, true, true]);
   }
 }
 `;

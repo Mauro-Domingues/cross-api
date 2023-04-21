@@ -9,9 +9,9 @@ enum IColorsDTO {
 type IInputDTO = [
   string,
   keyof typeof IColorsDTO,
-  boolean | undefined,
-  boolean | undefined,
-  boolean | undefined,
+  boolean,
+  boolean,
+  boolean,
 ];
 
 export class Console {
