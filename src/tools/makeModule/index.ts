@@ -1,6 +1,6 @@
 import { IModuleNamesDTO } from '@tools/names';
-import { MakeDependentModule } from './dependent';
-import { MakeModule } from './independent';
+import { MakeDependentModule } from './dependent/index';
+import { MakeModule } from './independent/index';
 
 export class CreateModule {
   private names: IModuleNamesDTO | undefined;

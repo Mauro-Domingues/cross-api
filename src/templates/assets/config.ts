@@ -7,6 +7,7 @@ export class Config {
   constructor() {
     this.configBody = `import { Messages } from './messages.js';
 import { Console } from './console.js';
+
 export class ConfigJson {
   messages;
   console;

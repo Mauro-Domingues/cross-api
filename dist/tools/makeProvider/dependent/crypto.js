@@ -1,0 +1,435 @@
+import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
+import { resolve } from 'path';
+import { CreateContainer } from '../../../templates/index/container.js';
+import { CreateCryptoConfig } from '../../../templates/providers/config/cryptoConfig.js';
+import { CreateCryptoIndex } from '../../../templates/providers/cryptoIndex.js';
+import { CreateICryptoDTO } from '../../../templates/providers/dtos/ICryptoDTO.js';
+import { CreateCrypto } from '../../../templates/providers/implementations/Crypto.js';
+import { CreateICrypto } from '../../../templates/providers/models/ICrypto.js';
+import { Messages } from '../../messages.js';
+import { Console } from '../../console.js';
+
+export class MakeDependentCryptoProvider {
+  fatherNames;
+  messages;
+  console;
+  createICrypto;
+  createICryptoDTO;
+  createCrypto;
+  createCryptoConfig;
+  createCryptoIndex;
+  createContainer;
+  constructor(fatherNames) {
+    this.fatherNames = fatherNames;
+    this.messages = new Messages().execute();
+    this.console = new Console();
+    this.createICrypto = new CreateICrypto();
+    this.createICryptoDTO = new CreateICryptoDTO();
+    this.createCrypto = new CreateCrypto();
+    this.createCryptoConfig = new CreateCryptoConfig();
+    this.createCryptoIndex = new CreateCryptoIndex();
+    this.createContainer = new CreateContainer();
+  }
+  async execute() {
+    if (!this.fatherNames) {
+      this.console.one([
+        this.messages.providerNotFound,
+        'red',
+        true,
+        false,
+        false,
+      ]);
+      throw new Error();
+    }
+    if (!existsSync(resolve('src'))) {
+      mkdirSync(resolve('src'));
+    }
+    if (!existsSync(resolve('src', 'config'))) {
+      mkdirSync(resolve('src', 'config'));
+    }
+    if (!existsSync(resolve('src', 'modules'))) {
+      mkdirSync(resolve('src', 'modules'));
+    }
+    if (!existsSync(resolve('src', 'shared'))) {
+      mkdirSync(resolve('src', 'shared'));
+    }
+    if (!existsSync(resolve('src', 'shared', 'container'))) {
+      mkdirSync(resolve('src', 'shared', 'container'));
+    }
+    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
+      appendFileSync(
+        resolve('src', 'shared', 'container', 'index.ts'),
+        this.createContainer.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
+      )
+    ) {
+      mkdirSync(
+        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ),
+        '',
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+        ),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+        ),
+      )
+    ) {
+      mkdirSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+        ),
+      );
+    }
+    appendFileSync(
+      resolve('src', 'shared', 'container', 'index.ts'),
+      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
+    );
+    appendFileSync(
+      resolve(
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ),
+      `import './CryptoProvider';\n`,
+    );
+    if (!existsSync(resolve('src', 'config', 'crypto.ts'))) {
+      appendFileSync(
+        resolve('src', 'config', 'crypto.ts'),
+        this.createCryptoConfig.execute(),
+      );
+    } else {
+      truncateSync(resolve('src', 'config', 'crypto.ts'));
+      appendFileSync(
+        resolve('src', 'config', 'crypto.ts'),
+        this.createCryptoConfig.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
+        this.createICryptoDTO.execute(),
+      );
+    } else {
+      truncateSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
+      );
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ),
+        this.createICryptoDTO.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
+        this.createCrypto.execute(),
+      );
+    } else {
+      truncateSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
+      );
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ),
+        this.createCrypto.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
+        this.createICrypto.execute(),
+      );
+    } else {
+      truncateSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
+      );
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ),
+        this.createICrypto.execute(),
+      );
+    }
+    if (
+      !existsSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+      )
+    ) {
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+        this.createCryptoIndex.execute(),
+      );
+    } else {
+      truncateSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+      );
+      appendFileSync(
+        resolve(
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ),
+        this.createCryptoIndex.execute(),
+      );
+    }
+    this.console.one([
+      `- CryptoProvider ${this.messages.created}`,
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
+  }
+}

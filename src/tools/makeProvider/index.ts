@@ -1,8 +1,8 @@
 import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
-import { MakeDependentProvider } from './dependent';
-import { MakeProvider } from './independent';
+import { MakeDependentProvider } from './dependent/index';
+import { MakeProvider } from './independent/index';
 
 export class CreateProvider {
   private messages: IMessagesDTO;
