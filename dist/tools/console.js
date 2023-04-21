@@ -32,7 +32,7 @@ export class Console {
         String(this.isBold(asset[2])),
         String(this.getColor(asset[1])),
         String(
-          `${this.isbreakStart(asset[3])}${asset[0]}\t${this.isbreakend(
+          `${this.isbreakStart(asset[3])}${asset[0]}${this.isbreakend(
             asset[4],
           )}`,
         ),
