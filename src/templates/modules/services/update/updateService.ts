@@ -58,7 +58,7 @@ export class Update${this.names.upperModuleName}Service {
     }
 
     await this.${this.names.pluralLowerModuleName}Repository.update(mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data));
-    
+
     await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
 
     return {

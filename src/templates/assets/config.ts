@@ -5,17 +5,15 @@ export class Config {
   private configBody: string;
 
   constructor() {
-    this.configBody = `import { Messages } from './messages';
+    this.configBody = `import { Messages } from './messages.js';
 export class ConfigJson {
-    messages;
-    constructor() {
-        this.messages = new Messages().execute();
-    }
-    execute() {
-        console.log('');
-        console.log('\\x1b[1m', '\\x1b[38;2;0;255;155m', \`➤  \${this.messages.configured}\`, '\\x1b[0m');
-        console.log('');
-    }
+  messages;
+  constructor() {
+    this.messages = new Messages().execute();
+  }
+  execute() {
+    console.log('\\x1b[1m', '\\x1b[38;2;0;255;155m', \`\\${'n'}➤  \${this.messages.configured}\\${'n'}\`, '\\x1b[0m');
+  }
 }
 `;
   }

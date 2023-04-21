@@ -18,6 +18,7 @@ import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
 import { resolve } from 'path';
 import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt';
 import { CreateGuard } from '@templates/index/guard';
+import { CreateErrorLog } from '@templates/utils/errorLog';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
@@ -26,6 +27,7 @@ export class MakeThirdLayer {
   private createDomainsManager: CreateDomainsManager;
   private createNormalizeQueryLink: CreateNormalizeQueryLink;
   private createDecimaAdjust: CreateDecimaAdjust;
+  private createErrorLog: CreateErrorLog;
   private createRateLimiter: CreateRateLimiter;
   private createDecodeJwt: CreateDecodeJwt;
   private createGuard: CreateGuard;
@@ -48,6 +50,7 @@ export class MakeThirdLayer {
     this.createDomainsManager = new CreateDomainsManager();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createRateLimiter = new CreateRateLimiter();
+    this. createErrorLog = new CreateErrorLog();
     this.createRoutes = new CreateRoutes();
     this.createGuard = new CreateGuard();
     this.createIResponseDTO = new CreateIResponseDTO();
@@ -331,6 +334,23 @@ export class MakeThirdLayer {
     console.log(
       '\x1b[38;2;255;255;0m',
       `- domainsManager.ts ${this.messages.created}`,
+      '\x1b[0m',
+    );
+    if (!existsSync(resolve('src', 'utils', 'errorLog.ts'))) {
+      appendFileSync(
+        resolve('src', 'utils', 'errorLog.ts'),
+        this.createErrorLog.execute(),
+      );
+    } else {
+      truncateSync(resolve('src', 'utils', 'errorLog.ts'));
+      appendFileSync(
+        resolve('src', 'utils', 'errorLog.ts'),
+        this.createErrorLog.execute(),
+      );
+    }
+    console.log(
+      '\x1b[38;2;255;255;0m',
+      `- errorLog.ts ${this.messages.created}`,
       '\x1b[0m',
     );
     if (!existsSync(resolve('src', 'utils', 'normalizeQueryLink.ts'))) {

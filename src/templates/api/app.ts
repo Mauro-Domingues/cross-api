@@ -8,6 +8,7 @@ import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import { AppError } from '@shared/errors/AppError';
 import { corsConfig } from '@config/cors';
+import { returnErrorLog } from '@utils/errorLog';
 import { routes } from '../routes';
 import '@shared/container';
 
@@ -24,7 +25,7 @@ app.use(routes);
 app.use(errors());
 app.use(
   (error: Error, _request: Request, response: Response, next: NextFunction) => {
-    if (process.env.NODE_ENV !== 'production') console.log(error);
+    returnErrorLog(error);
 
     if (error instanceof AppError) {
       return (

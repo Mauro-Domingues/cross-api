@@ -1,20 +1,14 @@
 export class CreateDefaultLanguage {
   public execute(languageData: string): string {
-    return `"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Messages = void 0;
-class Messages {
+    return `export class Messages {
+  messages;
   constructor() {
-    this.messages = void 0;
-    this.messages = ${languageData};
+    this.messages = ${languageData}
   }
   execute() {
     return this.messages;
   }
 }
-exports.Messages = Messages;`;
+`;
   }
 }
