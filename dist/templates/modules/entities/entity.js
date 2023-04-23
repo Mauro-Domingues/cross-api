@@ -1,27 +1,26 @@
 import { Messages } from '../../../tools/messages.js';
 import { Console } from '../../../tools/console.js';
-
 export class CreateEntity {
-  messages;
-  console;
-  names;
-  constructor(names) {
-    this.console = new Console();
-    this.messages = new Messages().execute();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    constructor(names) {
+        this.console = new Console();
+        this.messages = new Messages().execute();
+        this.names = names;
     }
-    return `import {
+    execute() {
+        if (!this.names) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
@@ -51,5 +50,5 @@ export class ${this.names.upperModuleName} {
   deleted_at: Date;
 }
 `;
-  }
+    }
 }

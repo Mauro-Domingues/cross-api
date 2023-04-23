@@ -1,29 +1,28 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class ListSpecDependentController {
-  messages;
-  console;
-  names;
-  fatherNames;
-  constructor(names, fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    fatherNames;
+    constructor(names, fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `import request from 'supertest';
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import { createConnection } from '@shared/typeorm';
 import { app } from '@shared/app';
@@ -53,5 +52,5 @@ describe('List${this.names.upperModuleName}Controller', () => {
   });
 });
 `;
-  }
+    }
 }

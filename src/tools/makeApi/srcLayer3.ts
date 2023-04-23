@@ -1,28 +1,28 @@
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { CreateExpressNamespace } from '@templates/types/expressNamespace';
-import { CreateApp } from '@templates/api/app';
-import { CreateServer } from '@templates/api/server';
-import { CreateDomains } from '@templates/assets/domains';
-import { CreateICacheDTO } from '@templates/dtos/ICacheDTO';
-import { CreateIListDTO } from '@templates/dtos/IListDTO';
-import { CreateIObjectDTO } from '@templates/dtos/IObjectDTO';
-import { CreateIResponseDTO } from '@templates/dtos/IResponseDTO';
-import { CreateRoutes } from '@templates/index/routes';
-import { CreateRateLimiter } from '@templates/middlewares/rateLimiter';
-import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust';
-import { CreateDomainsManager } from '@templates/utils/domains';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
-import { CreateEnvNamespace } from '@templates/types/envNamespace';
-import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
-import { resolve } from 'path';
-import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt';
-import { CreateGuard } from '@templates/index/guard';
-import { CreateErrorLog } from '@templates/utils/errorLog';
-import { Console } from '@tools/console';
+import { CreateExpressNamespace } from '@templates/types/expressNamespace.js';
+import { CreateApp } from '@templates/api/app.js';
+import { CreateServer } from '@templates/api/server.js';
+import { CreateDomains } from '@templates/assets/domains.js';
+import { CreateICacheDTO } from '@templates/dtos/ICacheDTO.js';
+import { CreateIListDTO } from '@templates/dtos/IListDTO.js';
+import { CreateIObjectDTO } from '@templates/dtos/IObjectDTO.js';
+import { CreateIResponseDTO } from '@templates/dtos/IResponseDTO.js';
+import { CreateRoutes } from '@templates/index/routes.js';
+import { CreateRateLimiter } from '@templates/middlewares/rateLimiter.js';
+import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust.js';
+import { CreateDomainsManager } from '@templates/utils/domains.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated.js';
+import { CreateEnvNamespace } from '@templates/types/envNamespace.js';
+import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink.js';
+import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt.js';
+import { CreateGuard } from '@templates/index/guard.js';
+import { CreateErrorLog } from '@templates/utils/errorLog.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   private createEnvNamespace: CreateEnvNamespace;
   private createEnsureAuthenticated: CreateEnsureAuthenticated;
@@ -45,6 +45,7 @@ export class MakeThirdLayer {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createEnvNamespace = new CreateEnvNamespace();
     this.createDecodeJwt = new CreateDecodeJwt();
@@ -67,15 +68,15 @@ export class MakeThirdLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src', '@types', 'express.d.ts'))) {
-      appendFileSync(
-        resolve('src', '@types', 'express.d.ts'),
+    if (!this.fileManager.checkIfExists(['src', '@types', 'express.d.ts'])) {
+      await this.fileManager.createFile(
+        ['src', '@types', 'express.d.ts'],
         this.createExpressNamespace.execute(),
       );
     } else {
-      truncateSync(resolve('src', '@types', 'express.d.ts'));
-      appendFileSync(
-        resolve('src', '@types', 'express.d.ts'),
+      await this.fileManager.truncateFile(['src', '@types', 'express.d.ts']);
+      await this.fileManager.createFile(
+        ['src', '@types', 'express.d.ts'],
         this.createExpressNamespace.execute(),
       );
     }
@@ -86,15 +87,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', '@types', 'env.d.ts'))) {
-      appendFileSync(
-        resolve('src', '@types', 'env.d.ts'),
+    if (!this.fileManager.checkIfExists(['src', '@types', 'env.d.ts'])) {
+      await this.fileManager.createFile(
+        ['src', '@types', 'env.d.ts'],
         this.createEnvNamespace.execute(),
       );
     } else {
-      truncateSync(resolve('src', '@types', 'env.d.ts'));
-      appendFileSync(
-        resolve('src', '@types', 'env.d.ts'),
+      await this.fileManager.truncateFile(['src', '@types', 'env.d.ts']);
+      await this.fileManager.createFile(
+        ['src', '@types', 'env.d.ts'],
         this.createEnvNamespace.execute(),
       );
     }
@@ -105,15 +106,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'assets', 'domains.txt'))) {
-      appendFileSync(
-        resolve('src', 'assets', 'domains.txt'),
+    if (!this.fileManager.checkIfExists(['src', 'assets', 'domains.txt'])) {
+      await this.fileManager.createFile(
+        ['src', 'assets', 'domains.txt'],
         this.createDomains.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'assets', 'domains.txt'));
-      appendFileSync(
-        resolve('src', 'assets', 'domains.txt'),
+      await this.fileManager.truncateFile(['src', 'assets', 'domains.txt']);
+      await this.fileManager.createFile(
+        ['src', 'assets', 'domains.txt'],
         this.createDomains.execute(),
       );
     }
@@ -124,15 +125,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'dtos', 'ICacheDTO.ts'))) {
-      appendFileSync(
-        resolve('src', 'dtos', 'ICacheDTO.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'dtos', 'ICacheDTO.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'ICacheDTO.ts'],
         this.createICacheDTO.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'dtos', 'ICacheDTO.ts'));
-      appendFileSync(
-        resolve('src', 'dtos', 'ICacheDTO.ts'),
+      await this.fileManager.truncateFile(['src', 'dtos', 'ICacheDTO.ts']);
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'ICacheDTO.ts'],
         this.createICacheDTO.execute(),
       );
     }
@@ -143,15 +144,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'dtos', 'IListDTO.ts'))) {
-      appendFileSync(
-        resolve('src', 'dtos', 'IListDTO.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IListDTO.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IListDTO.ts'],
         this.createIListDTO.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'dtos', 'IListDTO.ts'));
-      appendFileSync(
-        resolve('src', 'dtos', 'IListDTO.ts'),
+      await this.fileManager.truncateFile(['src', 'dtos', 'IListDTO.ts']);
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IListDTO.ts'],
         this.createIListDTO.execute(),
       );
     }
@@ -162,15 +163,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'dtos', 'IObjectDTO.ts'))) {
-      appendFileSync(
-        resolve('src', 'dtos', 'IObjectDTO.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IObjectDTO.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IObjectDTO.ts'],
         this.createIObjectDTO.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'dtos', 'IObjectDTO.ts'));
-      appendFileSync(
-        resolve('src', 'dtos', 'IObjectDTO.ts'),
+      await this.fileManager.truncateFile(['src', 'dtos', 'IObjectDTO.ts']);
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IObjectDTO.ts'],
         this.createIObjectDTO.execute(),
       );
     }
@@ -181,15 +182,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'dtos', 'IResponseDTO.ts'))) {
-      appendFileSync(
-        resolve('src', 'dtos', 'IResponseDTO.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IResponseDTO.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IResponseDTO.ts'],
         this.createIResponseDTO.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'dtos', 'IResponseDTO.ts'));
-      appendFileSync(
-        resolve('src', 'dtos', 'IResponseDTO.ts'),
+      await this.fileManager.truncateFile(['src', 'dtos', 'IResponseDTO.ts']);
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IResponseDTO.ts'],
         this.createIResponseDTO.execute(),
       );
     }
@@ -200,15 +201,21 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'middlewares', 'RateLimiter.ts'))) {
-      appendFileSync(
-        resolve('src', 'middlewares', 'RateLimiter.ts'),
+    if (
+      !this.fileManager.checkIfExists(['src', 'middlewares', 'RateLimiter.ts'])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'RateLimiter.ts'],
         this.createRateLimiter.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'middlewares', 'RateLimiter.ts'));
-      appendFileSync(
-        resolve('src', 'middlewares', 'RateLimiter.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'middlewares',
+        'RateLimiter.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'RateLimiter.ts'],
         this.createRateLimiter.execute(),
       );
     }
@@ -219,15 +226,25 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'middlewares', 'EnsureAuthenticated.ts'))) {
-      appendFileSync(
-        resolve('src', 'middlewares', 'EnsureAuthenticated.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'middlewares',
+        'EnsureAuthenticated.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'EnsureAuthenticated.ts'],
         this.createEnsureAuthenticated.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'middlewares', 'EnsureAuthenticated.ts'));
-      appendFileSync(
-        resolve('src', 'middlewares', 'EnsureAuthenticated.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'middlewares',
+        'EnsureAuthenticated.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'EnsureAuthenticated.ts'],
         this.createEnsureAuthenticated.execute(),
       );
     }
@@ -238,15 +255,21 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'middlewares', 'DecodeJwt.ts'))) {
-      appendFileSync(
-        resolve('src', 'middlewares', 'DecodeJwt.ts'),
+    if (
+      !this.fileManager.checkIfExists(['src', 'middlewares', 'DecodeJwt.ts'])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'DecodeJwt.ts'],
         this.createDecodeJwt.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'middlewares', 'DecodeJwt.ts'));
-      appendFileSync(
-        resolve('src', 'middlewares', 'DecodeJwt.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'middlewares',
+        'DecodeJwt.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'middlewares', 'DecodeJwt.ts'],
         this.createDecodeJwt.execute(),
       );
     }
@@ -257,15 +280,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'routes', 'guardRouter.ts'))) {
-      appendFileSync(
-        resolve('src', 'routes', 'guardRouter.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'routes', 'guardRouter.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'routes', 'guardRouter.ts'],
         this.createGuard.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'routes', 'guardRouter.ts'));
-      appendFileSync(
-        resolve('src', 'routes', 'guardRouter.ts'),
+      await this.fileManager.truncateFile(['src', 'routes', 'guardRouter.ts']);
+      await this.fileManager.createFile(
+        ['src', 'routes', 'guardRouter.ts'],
         this.createGuard.execute(),
       );
     }
@@ -276,15 +299,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'routes', 'index.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'routes', 'index.ts'));
-      appendFileSync(
-        resolve('src', 'routes', 'index.ts'),
+      await this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
@@ -295,15 +318,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'shared', 'app.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'app.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'app.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'app.ts'],
         this.createApp.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'shared', 'app.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'app.ts'),
+      await this.fileManager.truncateFile(['src', 'shared', 'app.ts']);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'app.ts'],
         this.createApp.execute(),
       );
     }
@@ -314,15 +337,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'shared', 'server.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'server.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'server.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'server.ts'],
         this.createServer.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'shared', 'server.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'server.ts'),
+      await this.fileManager.truncateFile(['src', 'shared', 'server.ts']);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'server.ts'],
         this.createServer.execute(),
       );
     }
@@ -333,15 +356,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'utils', 'decimalAdjust.ts'))) {
-      appendFileSync(
-        resolve('src', 'utils', 'decimalAdjust.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'utils', 'decimalAdjust.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'utils', 'decimalAdjust.ts'],
         this.createDecimaAdjust.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'utils', 'decimalAdjust.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'decimalAdjust.ts'),
+      await this.fileManager.truncateFile(['src', 'utils', 'decimalAdjust.ts']);
+      await this.fileManager.createFile(
+        ['src', 'utils', 'decimalAdjust.ts'],
         this.createDecimaAdjust.execute(),
       );
     }
@@ -352,15 +375,21 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'utils', 'domainsManager.ts'))) {
-      appendFileSync(
-        resolve('src', 'utils', 'domainsManager.ts'),
+    if (
+      !this.fileManager.checkIfExists(['src', 'utils', 'domainsManager.ts'])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'utils', 'domainsManager.ts'],
         this.createDomainsManager.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'utils', 'domainsManager.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'domainsManager.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'utils',
+        'domainsManager.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'utils', 'domainsManager.ts'],
         this.createDomainsManager.execute(),
       );
     }
@@ -371,15 +400,15 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'utils', 'errorLog.ts'))) {
-      appendFileSync(
-        resolve('src', 'utils', 'errorLog.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'utils', 'errorLog.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'utils', 'errorLog.ts'],
         this.createErrorLog.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'utils', 'errorLog.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'errorLog.ts'),
+      await this.fileManager.truncateFile(['src', 'utils', 'errorLog.ts']);
+      await this.fileManager.createFile(
+        ['src', 'utils', 'errorLog.ts'],
         this.createErrorLog.execute(),
       );
     }
@@ -390,19 +419,25 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('src', 'utils', 'normalizeQueryLink.ts'))) {
-      appendFileSync(
-        resolve('src', 'utils', 'normalizeQueryLink.ts'),
+    if (
+      !this.fileManager.checkIfExists(['src', 'utils', 'normalizeQueryLink.ts'])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'utils', 'normalizeQueryLink.ts'],
         this.createNormalizeQueryLink.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'utils', 'normalizeQueryLink.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'normalizeQueryLink.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'utils',
+        'normalizeQueryLink.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'utils', 'normalizeQueryLink.ts'],
         this.createNormalizeQueryLink.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- createNormalizeQueryLink.ts ${this.messages.created}`,
       'yellow',
       true,

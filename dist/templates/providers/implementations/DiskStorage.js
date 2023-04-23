@@ -1,6 +1,6 @@
 export class CreateDiskStorage {
-  execute() {
-    return `import { uploadConfig } from '@config/upload';
+    execute() {
+        return `import { uploadConfig } from '@config/upload';
 import { existsSync, mkdirSync, unlinkSync, renameSync } from 'fs';
 import { resolve } from 'path';
 
@@ -29,5 +29,5 @@ export class DiskStorageProvider implements IStorageProviderDTO {
   }
 }
 `;
-  }
+    }
 }

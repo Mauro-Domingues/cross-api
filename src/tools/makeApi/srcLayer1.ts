@@ -1,21 +1,21 @@
-import { CreateBabelConfig } from '@templates/root/babelConfig';
-import { CreateDockerCompose } from '@templates/root/dockerCompose';
-import { CreateEditorConfig } from '@templates/root/editorConfig';
-import { CreateEnv } from '@templates/root/env';
-import { CreateEsLintIgnore } from '@templates/root/esLintIgnore';
-import { CreateEsLintrcJson } from '@templates/root/esLintrcJson';
-import { CreateGitIgnore } from '@templates/root/gitIgnore';
-import { CreateJestConfig } from '@templates/root/jestConfig';
-import { CreateNodemonJson } from '@templates/root/nodemonJson';
-import { CreatePrettierConfig } from '@templates/root/prettierConfig';
-import { CreateTsConfig } from '@templates/root/tsConfig';
-import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { resolve } from 'path';
+import { CreateBabelConfig } from '@templates/root/babelConfig.js';
+import { CreateDockerCompose } from '@templates/root/dockerCompose.js';
+import { CreateEditorConfig } from '@templates/root/editorConfig.js';
+import { CreateEnv } from '@templates/root/env.js';
+import { CreateEsLintIgnore } from '@templates/root/esLintIgnore.js';
+import { CreateEsLintrcJson } from '@templates/root/esLintrcJson.js';
+import { CreateGitIgnore } from '@templates/root/gitIgnore.js';
+import { CreateJestConfig } from '@templates/root/jestConfig.js';
+import { CreateNodemonJson } from '@templates/root/nodemonJson.js';
+import { CreatePrettierConfig } from '@templates/root/prettierConfig.js';
+import { CreateTsConfig } from '@templates/root/tsConfig.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class MakeFirstLayer {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   private createTsConfig: CreateTsConfig;
   private createPrettierConfig: CreatePrettierConfig;
@@ -31,6 +31,7 @@ export class MakeFirstLayer {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createTsConfig = new CreateTsConfig();
     this.createPrettierConfig = new CreatePrettierConfig();
@@ -46,15 +47,15 @@ export class MakeFirstLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('.editorconfig'))) {
-      appendFileSync(
-        resolve('.editorconfig'),
+    if (!this.fileManager.checkIfExists(['.editorconfig'])) {
+      await this.fileManager.createFile(
+        ['.editorconfig'],
         this.createEditorConfig.execute(),
       );
     } else {
-      truncateSync(resolve('.editorconfig'));
-      appendFileSync(
-        resolve('.editorconfig'),
+      await this.fileManager.truncateFile(['.editorconfig']);
+      await this.fileManager.createFile(
+        ['.editorconfig'],
         this.createEditorConfig.execute(),
       );
     }
@@ -65,11 +66,11 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('.env'))) {
-      appendFileSync(resolve('.env'), this.createEnv.execute());
+    if (!this.fileManager.checkIfExists(['.env'])) {
+      await this.fileManager.createFile(['.env'], this.createEnv.execute());
     } else {
-      truncateSync(resolve('.env'));
-      appendFileSync(resolve('.env'), this.createEnv.execute());
+      await this.fileManager.truncateFile(['.env']);
+      await this.fileManager.createFile(['.env'], this.createEnv.execute());
     }
     this.console.one([
       `- .env ${this.messages.created}`,
@@ -78,11 +79,17 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('.env.template'))) {
-      appendFileSync(resolve('.env.template'), this.createEnv.execute());
+    if (!this.fileManager.checkIfExists(['.env.template'])) {
+      await this.fileManager.createFile(
+        ['.env.template'],
+        this.createEnv.execute(),
+      );
     } else {
-      truncateSync(resolve('.env.template'));
-      appendFileSync(resolve('.env.template'), this.createEnv.execute());
+      await this.fileManager.truncateFile(['.env.template']);
+      await this.fileManager.createFile(
+        ['.env.template'],
+        this.createEnv.execute(),
+      );
     }
     this.console.one([
       `- .env.template ${this.messages.created}`,
@@ -91,15 +98,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('.eslintignore'))) {
-      appendFileSync(
-        resolve('.eslintignore'),
+    if (!this.fileManager.checkIfExists(['.eslintignore'])) {
+      await this.fileManager.createFile(
+        ['.eslintignore'],
         this.createEsLintIgnore.execute(),
       );
     } else {
-      truncateSync(resolve('.eslintignore'));
-      appendFileSync(
-        resolve('.eslintignore'),
+      await this.fileManager.truncateFile(['.eslintignore']);
+      await this.fileManager.createFile(
+        ['.eslintignore'],
         this.createEsLintIgnore.execute(),
       );
     }
@@ -110,15 +117,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('.eslintrc.json'))) {
-      appendFileSync(
-        resolve('.eslintrc.json'),
+    if (!this.fileManager.checkIfExists(['.eslintrc.json'])) {
+      await this.fileManager.createFile(
+        ['.eslintrc.json'],
         this.createEsLintrcJson.execute(),
       );
     } else {
-      truncateSync(resolve('.eslintrc.json'));
-      appendFileSync(
-        resolve('.eslintrc.json'),
+      await this.fileManager.truncateFile(['.eslintrc.json']);
+      await this.fileManager.createFile(
+        ['.eslintrc.json'],
         this.createEsLintrcJson.execute(),
       );
     }
@@ -129,11 +136,17 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('.gitignore'))) {
-      appendFileSync(resolve('.gitignore'), this.createGitIgnore.execute());
+    if (!this.fileManager.checkIfExists(['.gitignore'])) {
+      await this.fileManager.createFile(
+        ['.gitignore'],
+        this.createGitIgnore.execute(),
+      );
     } else {
-      truncateSync(resolve('.gitignore'));
-      appendFileSync(resolve('.gitignore'), this.createGitIgnore.execute());
+      await this.fileManager.truncateFile(['.gitignore']);
+      await this.fileManager.createFile(
+        ['.gitignore'],
+        this.createGitIgnore.execute(),
+      );
     }
     this.console.one([
       `- .gitignore ${this.messages.created}`,
@@ -142,15 +155,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('babel.config.js'))) {
-      appendFileSync(
-        resolve('babel.config.js'),
+    if (!this.fileManager.checkIfExists(['babel.config.js'])) {
+      await this.fileManager.createFile(
+        ['babel.config.js'],
         this.createBabelConfig.execute(),
       );
     } else {
-      truncateSync(resolve('babel.config.js'));
-      appendFileSync(
-        resolve('babel.config.js'),
+      await this.fileManager.truncateFile(['babel.config.js']);
+      await this.fileManager.createFile(
+        ['babel.config.js'],
         this.createBabelConfig.execute(),
       );
     }
@@ -161,15 +174,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('docker-compose.yml'))) {
-      appendFileSync(
-        resolve('docker-compose.yml'),
+    if (!this.fileManager.checkIfExists(['docker-compose.yml'])) {
+      await this.fileManager.createFile(
+        ['docker-compose.yml'],
         this.createDockerCompose.execute(),
       );
     } else {
-      truncateSync(resolve('docker-compose.yml'));
-      appendFileSync(
-        resolve('docker-compose.yml'),
+      await this.fileManager.truncateFile(['docker-compose.yml']);
+      await this.fileManager.createFile(
+        ['docker-compose.yml'],
         this.createDockerCompose.execute(),
       );
     }
@@ -180,15 +193,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('jest.config.ts'))) {
-      appendFileSync(
-        resolve('jest.config.ts'),
+    if (!this.fileManager.checkIfExists(['jest.config.ts'])) {
+      await this.fileManager.createFile(
+        ['jest.config.ts'],
         this.createJestConfig.execute(),
       );
     } else {
-      truncateSync(resolve('jest.config.ts'));
-      appendFileSync(
-        resolve('jest.config.ts'),
+      await this.fileManager.truncateFile(['jest.config.ts']);
+      await this.fileManager.createFile(
+        ['jest.config.ts'],
         this.createJestConfig.execute(),
       );
     }
@@ -199,11 +212,17 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('nodemon.json'))) {
-      appendFileSync(resolve('nodemon.json'), this.createNodemonJson.execute());
+    if (!this.fileManager.checkIfExists(['nodemon.json'])) {
+      await this.fileManager.createFile(
+        ['nodemon.json'],
+        this.createNodemonJson.execute(),
+      );
     } else {
-      truncateSync(resolve('nodemon.json'));
-      appendFileSync(resolve('nodemon.json'), this.createNodemonJson.execute());
+      await this.fileManager.truncateFile(['nodemon.json']);
+      await this.fileManager.createFile(
+        ['nodemon.json'],
+        this.createNodemonJson.execute(),
+      );
     }
     this.console.one([
       `- nodemon.json ${this.messages.created}`,
@@ -212,15 +231,15 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('prettier.config.js'))) {
-      appendFileSync(
-        resolve('prettier.config.js'),
+    if (!this.fileManager.checkIfExists(['prettier.config.js'])) {
+      await this.fileManager.createFile(
+        ['prettier.config.js'],
         this.createPrettierConfig.execute(),
       );
     } else {
-      truncateSync(resolve('prettier.config.js'));
-      appendFileSync(
-        resolve('prettier.config.js'),
+      await this.fileManager.truncateFile(['prettier.config.js']);
+      await this.fileManager.createFile(
+        ['prettier.config.js'],
         this.createPrettierConfig.execute(),
       );
     }
@@ -231,13 +250,19 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!existsSync(resolve('tsconfig.json'))) {
-      appendFileSync(resolve('tsconfig.json'), this.createTsConfig.execute());
+    if (!this.fileManager.checkIfExists(['tsconfig.json'])) {
+      await this.fileManager.createFile(
+        ['tsconfig.json'],
+        this.createTsConfig.execute(),
+      );
     } else {
-      truncateSync(resolve('tsconfig.json'));
-      appendFileSync(resolve('tsconfig.json'), this.createTsConfig.execute());
+      await this.fileManager.truncateFile(['tsconfig.json']);
+      await this.fileManager.createFile(
+        ['tsconfig.json'],
+        this.createTsConfig.execute(),
+      );
     }
-    this.console.one([
+    return this.console.one([
       `- tsconfig.json ${this.messages.created}`,
       'yellow',
       true,

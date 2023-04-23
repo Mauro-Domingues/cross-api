@@ -1,23 +1,24 @@
-import { existsSync, unlinkSync, writeFileSync } from 'fs';
-import { Config } from '@templates/assets/config';
+import { Config } from '@templates/assets/config.js';
 import { createInterface } from 'readline';
-import { resolve } from 'path';
-import { Shell } from '@tools/shell';
-import { ConfigLanguage } from '@tools/languageConfig';
-import userJson from '../../../../package.json';
-import { Console } from './console';
+import { Shell } from '@tools/shell.js';
+import { ConfigLanguage } from '@tools/languageConfig.js';
+import { FileManager } from '@tools/fileManager.js';
+import { Console } from '@tools/console.js';
+import userJson from '../../../../package.json' assert { type: 'json' };
 
 export class ConfigJson {
   private config: Config;
   private console: Console;
   private shell: Shell;
   private configLanguage: ConfigLanguage;
+  private fileManager: FileManager;
   private userJson: typeof userJson;
   private dependencies: string[];
   private devDependencies: string[];
 
   constructor() {
     this.configLanguage = new ConfigLanguage();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.shell = new Shell();
     this.config = new Config();
@@ -93,7 +94,7 @@ export class ConfigJson {
     ];
   }
 
-  private patchPackage(): void {
+  private async patchPackage(): Promise<void> {
     this.userJson.scripts = {
       ...this.userJson.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
@@ -102,10 +103,10 @@ export class ConfigJson {
       start: 'node dist/shared/server.js',
     };
 
-    writeFileSync(resolve('package.json'), JSON.stringify(this.userJson), {
-      encoding: 'utf8',
-      flag: 'w',
-    });
+    return this.fileManager.writeFile(
+      ['package.json'],
+      JSON.stringify(this.userJson),
+    );
   }
 
   private installYarn(): void {
@@ -201,18 +202,18 @@ export class ConfigJson {
     ]);
   }
 
-  private setConfig(): void {
-    this.patchPackage();
+  private async setConfig(): Promise<void> {
+    await this.patchPackage();
     this.installYarn();
     this.installDependencies();
     this.installDevDependencies();
     this.renderEnding();
 
-    if (existsSync(resolve('package-lock.json'))) {
-      unlinkSync(resolve('package-lock.json'));
+    if (this.fileManager.checkIfExists(['package-lock.json'])) {
+      await this.fileManager.removeFile(['package-lock.json']);
     }
 
-    this.config.execute();
+    return this.config.execute();
   }
 
   private showLanguageOptions(): void {

@@ -1,27 +1,26 @@
 import { Messages } from '../../../tools/messages.js';
 import { Console } from '../../../tools/console.js';
-
 export class CreateDependentSESMail {
-  fatherNames;
-  messages;
-  console;
-  constructor(fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.fatherNames) {
-      this.console.one([
-        this.messages.providerNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    fatherNames;
+    messages;
+    console;
+    constructor(fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.fatherNames = fatherNames;
     }
-    return `import { mailConfig } from '@config/mail';
+    execute() {
+        if (!this.fatherNames) {
+            this.console.one([
+                this.messages.providerNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { mailConfig } from '@config/mail';
 
 import { SESClient } from '@aws-sdk/client-ses';
 import { createTransport, Transporter } from 'nodemailer';
@@ -74,5 +73,5 @@ export class SESMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }

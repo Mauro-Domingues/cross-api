@@ -1,10 +1,11 @@
-import { appendFileSync, truncateSync } from 'fs';
-import { resolve } from 'path';
+import { FileManager } from '@tools/fileManager.js';
 
 export class Config {
   private configBody: string;
+  private fileManager: FileManager;
 
   constructor() {
+    this.fileManager = new FileManager();
     this.configBody = `import { Messages } from './messages.js';
 import { Console } from './console.js';
 
@@ -22,12 +23,16 @@ export class ConfigJson {
 `;
   }
 
-  public execute(): void {
-    truncateSync(
-      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
-    );
-    appendFileSync(
-      resolve('node_modules', 'cross-api', 'dist', 'tools', 'config.js'),
+  public async execute(): Promise<void> {
+    await this.fileManager.truncateFile([
+      'node_modules',
+      'cross-api',
+      'dist',
+      'tools',
+      'config.js',
+    ]);
+    return this.fileManager.createFile(
+      ['node_modules', 'cross-api', 'dist', 'tools', 'config.js'],
       this.configBody,
     );
   }

@@ -1,12 +1,11 @@
 import { Messages } from '../../../tools/messages.js';
-
 export class CreateMapAndPatch {
-  messages;
-  constructor() {
-    this.messages = new Messages().execute();
-  }
-  execute() {
-    return `/**
+    messages;
+    constructor() {
+        this.messages = new Messages().execute();
+    }
+    execute() {
+        return `/**
  * ${this.messages.mapAndPatch}
  * @param oldAttributes Entity
  * @param newAttributes Object
@@ -24,5 +23,5 @@ export function mapAndPatchAttribute<Entity, DTO>(
   return oldAttributes;
 }
 `;
-  }
+    }
 }

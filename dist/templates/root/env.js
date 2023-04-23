@@ -1,6 +1,6 @@
 export class CreateEnv {
-  execute() {
-    return `# Api
+    execute() {
+        return `# Api
 PORT=3333
 API_URL=http://localhost:3333
 WEB_URL=http://localhost:3000
@@ -69,5 +69,5 @@ AWS_BUCKET=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_REGION=`;
-  }
+    }
 }

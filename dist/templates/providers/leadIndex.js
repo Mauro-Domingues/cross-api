@@ -1,6 +1,6 @@
 export class CreateLeadIndex {
-  execute() {
-    return `import { container } from 'tsyringe';
+    execute() {
+        return `import { container } from 'tsyringe';
 
 import { RDStationProvider } from './implementations/RDStationProvider';
 import { ILeadProviderDTO } from './models/ILeadProvider';
@@ -14,5 +14,5 @@ container.registerInstance<ILeadProviderDTO>(
   providers.rdStation,
 );
 `;
-  }
+    }
 }

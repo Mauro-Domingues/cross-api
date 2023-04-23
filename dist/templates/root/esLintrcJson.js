@@ -1,6 +1,6 @@
 export class CreateEsLintrcJson {
-  execute() {
-    return `{
+    execute() {
+        return `{
   "env": {
       "es6": true,
       "node": true,
@@ -70,5 +70,5 @@ export class CreateEsLintrcJson {
       }
   }
 }`;
-  }
+    }
 }

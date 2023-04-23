@@ -1,29 +1,28 @@
 import { Messages } from '../../../tools/messages.js';
 import { Console } from '../../../tools/console.js';
-
 export class CreateFullDependentRoute {
-  messages;
-  console;
-  names;
-  fatherNames;
-  constructor(names, fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    fatherNames;
+    constructor(names, fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `import { Router } from 'express';
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { Router } from 'express';
 
 import { Create${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
 import { Show${this.names.upperModuleName}Controller } from '@modules/${this.fatherNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
@@ -46,5 +45,5 @@ ${this.fatherNames.lowerModuleName}Router.delete('/${this.names.routeModuleName}
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
-  }
+    }
 }

@@ -1,6 +1,6 @@
 export class CreateS3Storage {
-  execute() {
-    return `import { uploadConfig } from '@config/upload';
+    execute() {
+        return `import { uploadConfig } from '@config/upload';
 import {
   S3Client,
   PutObjectCommand,
@@ -63,5 +63,5 @@ export class S3StorageProvider implements IStorageProviderDTO {
   }
 }
 `;
-  }
+    }
 }

@@ -1,5 +1,3 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { resolve } from 'path';
 import { CreateLeadConfig } from '../../../templates/providers/config/leadConfig.js';
 import { CreateILeadDTO } from '../../../templates/providers/dtos/ILeadDTO.js';
 import { CreateFakeLead } from '../../../templates/providers/fakes/fakeLead.js';
@@ -8,411 +6,328 @@ import { CreateLeadIndex } from '../../../templates/providers/leadIndex.js';
 import { CreateILead } from '../../../templates/providers/models/ILead.js';
 import { Messages } from '../../messages.js';
 import { Console } from '../../console.js';
-
+import { FileManager } from '../../fileManager.js';
 export class MakeLeadProvider {
-  messages;
-  console;
-  createILead;
-  createILeadDTO;
-  createRDStationLead;
-  createFakeLead;
-  createLeadConfig;
-  createLeadIndex;
-  constructor() {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.createILead = new CreateILead();
-    this.createILeadDTO = new CreateILeadDTO();
-    this.createRDStationLead = new CreateRDStationLead();
-    this.createFakeLead = new CreateFakeLead();
-    this.createLeadConfig = new CreateLeadConfig();
-    this.createLeadIndex = new CreateLeadIndex();
-  }
-  async execute() {
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    messages;
+    console;
+    fileManager;
+    createILead;
+    createILeadDTO;
+    createRDStationLead;
+    createFakeLead;
+    createLeadConfig;
+    createLeadIndex;
+    constructor() {
+        this.messages = new Messages().execute();
+        this.fileManager = new FileManager();
+        this.console = new Console();
+        this.createILead = new CreateILead();
+        this.createILeadDTO = new CreateILeadDTO();
+        this.createRDStationLead = new CreateRDStationLead();
+        this.createFakeLead = new CreateFakeLead();
+        this.createLeadConfig = new CreateLeadConfig();
+        this.createLeadIndex = new CreateLeadIndex();
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    async execute() {
+        if (!this.fileManager.checkIfExists(['src'])) {
+            await this.fileManager.createDir(['src']);
+        }
+        if (!this.fileManager.checkIfExists(['src', 'config'])) {
+            await this.fileManager.createDir(['src', 'config']);
+        }
+        if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+            await this.fileManager.createDir(['src', 'shared']);
+        }
+        if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+            await this.fileManager.createDir(['src', 'shared', 'container']);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+            ]);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+            ]);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'dtos',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'dtos',
+            ]);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'fakes',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'fakes',
+            ]);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'implementations',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'implementations',
+            ]);
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'models',
+        ])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'models',
+            ]);
+        }
+        await this.fileManager.createFile(['src', 'shared', 'container', 'providers', 'index.ts'], `import './LeadProvider';\n`);
+        if (!this.fileManager.checkIfExists(['src', 'config', 'lead.ts'])) {
+            await this.fileManager.createFile(['src', 'config', 'lead.ts'], this.createLeadConfig.execute());
+        }
+        else {
+            await this.fileManager.truncateFile(['src', 'config', 'lead.ts']);
+            await this.fileManager.createFile(['src', 'config', 'lead.ts'], this.createLeadConfig.execute());
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'dtos',
+            'ICreateLeadDTO.ts',
+        ])) {
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'dtos',
+                'ICreateLeadDTO.ts',
+            ], this.createILeadDTO.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'dtos',
+                'ICreateLeadDTO.ts',
+            ]);
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'dtos',
+                'ICreateLeadDTO.ts',
+            ], this.createILeadDTO.execute());
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'fakes',
+            'FakeLeadProvider.ts',
+        ])) {
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'fakes',
+                'FakeLeadProvider.ts',
+            ], this.createFakeLead.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'fakes',
+                'FakeLeadProvider.ts',
+            ]);
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'fakes',
+                'FakeLeadProvider.ts',
+            ], this.createFakeLead.execute());
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'implementations',
+            'RDStationProvider.ts',
+        ])) {
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'implementations',
+                'RDStationProvider.ts',
+            ], this.createRDStationLead.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'implementations',
+                'RDStationProvider.ts',
+            ]);
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'implementations',
+                'RDStationProvider.ts',
+            ], this.createRDStationLead.execute());
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'models',
+            'ILeadProvider.ts',
+        ])) {
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'models',
+                'ILeadProvider.ts',
+            ], this.createILead.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'models',
+                'ILeadProvider.ts',
+            ]);
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'models',
+                'ILeadProvider.ts',
+            ], this.createILead.execute());
+        }
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'providers',
+            'LeadProvider',
+            'index.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'], this.createLeadIndex.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'providers',
+                'LeadProvider',
+                'index.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'], this.createLeadIndex.execute());
+        }
+        return this.console.one([
+            `- LeadProvider ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
-      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
-    }
-    if (
-      !existsSync(
-        resolve('src', 'shared', 'container', 'providers', 'LeadProvider'),
-      )
-    ) {
-      mkdirSync(
-        resolve('src', 'shared', 'container', 'providers', 'LeadProvider'),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-        ),
-      );
-    }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `import './LeadProvider';\n`,
-    );
-    if (!existsSync(resolve('src', 'config', 'lead.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'lead.ts'),
-        this.createLeadConfig.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'config', 'lead.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'lead.ts'),
-        this.createLeadConfig.execute(),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
-        this.createILeadDTO.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
-        this.createILeadDTO.execute(),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
-        this.createFakeLead.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
-        this.createFakeLead.execute(),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
-        this.createRDStationLead.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
-        this.createRDStationLead.execute(),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
-        this.createILead.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
-        this.createILead.execute(),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
-        this.createLeadIndex.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
-        this.createLeadIndex.execute(),
-      );
-    }
-    this.console.one([
-      `- LeadProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-  }
 }

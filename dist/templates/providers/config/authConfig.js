@@ -1,6 +1,6 @@
 export class CreateAuthConfig {
-  execute() {
-    return `export interface IAuthConfigDTO {
+    execute() {
+        return `export interface IAuthConfigDTO {
   jwt: {
     expiresIn: string;
   };
@@ -12,5 +12,5 @@ export const authConfig: IAuthConfigDTO = {
   },
 };
 `;
-  }
+    }
 }

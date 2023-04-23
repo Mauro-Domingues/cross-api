@@ -1,6 +1,6 @@
 export class CreateJestConfig {
-  execute() {
-    return `import { pathsToModuleNameMapper } from 'ts-jest';
+    execute() {
+        return `import { pathsToModuleNameMapper } from 'ts-jest';
 
 import { compilerOptions } from './tsconfig.json';
 
@@ -21,5 +21,5 @@ export default {
   testMatch: ['**/*.spec.ts'],
 };
 `;
-  }
+    }
 }

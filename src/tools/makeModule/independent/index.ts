@@ -1,10 +1,10 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
-import { Console } from '@tools/console';
-import { MakeInfra } from './infra';
-import { MakeFunctionalities } from './functionalities';
-import { MakeStructure } from './structure';
-import { MakeUnitTests } from './unitTests';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { Console } from '@tools/console.js';
+import { MakeInfra } from './infra.js';
+import { MakeFunctionalities } from './functionalities.js';
+import { MakeStructure } from './structure.js';
+import { MakeUnitTests } from './unitTests.js';
 
 export class MakeModule {
   private messages: IMessagesDTO;

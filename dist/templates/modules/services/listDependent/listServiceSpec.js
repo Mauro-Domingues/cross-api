@@ -1,29 +1,28 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class ListSpecDependentService {
-  messages;
-  console;
-  names;
-  fatherNames;
-  constructor(names, fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    fatherNames;
+    constructor(names, fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
@@ -98,5 +97,5 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 });
 `;
-  }
+    }
 }

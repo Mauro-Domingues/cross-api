@@ -1,29 +1,28 @@
 import { Messages } from '../../../tools/messages.js';
 import { Console } from '../../../tools/console.js';
-
 export class CreateDependentInjection {
-  messages;
-  console;
-  names;
-  fatherNames;
-  constructor(names, fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    fatherNames;
+    constructor(names, fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { ${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository';
 
 container.registerSingleton<I${this.names.pluralUpperModuleName}RepositoryDTO>(
@@ -31,5 +30,5 @@ container.registerSingleton<I${this.names.pluralUpperModuleName}RepositoryDTO>(
   ${this.names.pluralUpperModuleName}Repository,
 );
 `;
-  }
+    }
 }

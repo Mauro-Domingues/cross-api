@@ -1,27 +1,26 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class DeleteSpecService {
-  messages;
-  console;
-  names;
-  constructor(names) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    constructor(names) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
     }
-    return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+    execute() {
+        if (!this.names) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { AppError } from '@shared/errors/AppError';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
@@ -60,5 +59,5 @@ describe('Delete${this.names.upperModuleName}Service', () => {
   });
 });
 `;
-  }
+    }
 }

@@ -1,27 +1,26 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class DeleteSpecController {
-  messages;
-  console;
-  names;
-  constructor(names) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    constructor(names) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
     }
-    return `import request from 'supertest';
+    execute() {
+        if (!this.names) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import request from 'supertest';
 import { DataSource } from 'typeorm';
 import { createConnection } from '@shared/typeorm';
 import { app } from '@shared/app';
@@ -50,5 +49,5 @@ describe('Delete${this.names.upperModuleName}Controller', () => {
   });
 });
 `;
-  }
+    }
 }

@@ -1,21 +1,21 @@
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { CreateSpecController } from '@templates/modules/services/create/createControllerSpec';
-import { CreateSpecService } from '@templates/modules/services/create/createServiceSpec';
-import { DeleteSpecController } from '@templates/modules/services/delete/deleteControllerSpec';
-import { DeleteSpecService } from '@templates/modules/services/delete/deleteServiceSpec';
-import { ListSpecController } from '@templates/modules/services/list/listControllerSpec';
-import { ListSpecService } from '@templates/modules/services/list/listServiceSpec';
-import { ShowSpecController } from '@templates/modules/services/show/showControllerSpec';
-import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec';
-import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
-import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateSpecController } from '@templates/modules/services/create/createControllerSpec.js';
+import { CreateSpecService } from '@templates/modules/services/create/createServiceSpec.js';
+import { DeleteSpecController } from '@templates/modules/services/delete/deleteControllerSpec.js';
+import { DeleteSpecService } from '@templates/modules/services/delete/deleteServiceSpec.js';
+import { ListSpecController } from '@templates/modules/services/list/listControllerSpec.js';
+import { ListSpecService } from '@templates/modules/services/list/listServiceSpec.js';
+import { ShowSpecController } from '@templates/modules/services/show/showControllerSpec.js';
+import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec.js';
+import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec.js';
+import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeUnitTests {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   private names: IModuleNamesDTO | undefined;
   private updateSpecService: UpdateSpecService;
@@ -31,6 +31,7 @@ export class MakeUnitTests {
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.names = names;
     this.updateSpecService = new UpdateSpecService(this.names);
@@ -58,462 +59,422 @@ export class MakeUnitTests {
     }
 
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+        `Create${this.names.upperModuleName}Controller.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `create${this.names.upperModuleName}`,
           `Create${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.createSpecController.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+        `Create${this.names.upperModuleName}Controller.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `create${this.names.upperModuleName}`,
           `Create${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.createSpecController.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+        `Create${this.names.upperModuleName}Service.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `create${this.names.upperModuleName}`,
           `Create${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.createSpecService.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+        `Create${this.names.upperModuleName}Service.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `create${this.names.upperModuleName}`,
           `Create${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.createSpecService.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+        `Delete${this.names.upperModuleName}Controller.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `delete${this.names.upperModuleName}`,
           `Delete${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.deleteSpecController.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+        `Delete${this.names.upperModuleName}Controller.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `delete${this.names.upperModuleName}`,
           `Delete${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.deleteSpecController.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+        `Delete${this.names.upperModuleName}Service.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `delete${this.names.upperModuleName}`,
           `Delete${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.deleteSpecService.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+        `Delete${this.names.upperModuleName}Service.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `delete${this.names.upperModuleName}`,
           `Delete${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.deleteSpecService.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+        `List${this.names.upperModuleName}Controller.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `list${this.names.upperModuleName}`,
           `List${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.listSpecController.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+        `List${this.names.upperModuleName}Controller.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `list${this.names.upperModuleName}`,
           `List${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.listSpecController.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+        `List${this.names.upperModuleName}Service.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `list${this.names.upperModuleName}`,
           `List${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.listSpecService.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+        `List${this.names.upperModuleName}Service.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `list${this.names.upperModuleName}`,
           `List${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.listSpecService.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+        `Show${this.names.upperModuleName}Controller.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `show${this.names.upperModuleName}`,
           `Show${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.showSpecController.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+        `Show${this.names.upperModuleName}Controller.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `show${this.names.upperModuleName}`,
           `Show${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.showSpecController.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+        `Show${this.names.upperModuleName}Service.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `show${this.names.upperModuleName}`,
           `Show${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.showSpecService.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+        `Show${this.names.upperModuleName}Service.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `show${this.names.upperModuleName}`,
           `Show${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.showSpecService.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+        `Update${this.names.upperModuleName}Controller.spec.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `update${this.names.upperModuleName}`,
           `Update${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.updateSpecController.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+        `Update${this.names.upperModuleName}Controller.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `update${this.names.upperModuleName}`,
           `Update${this.names.upperModuleName}Controller.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Controller.spec.ts`,
-        ),
+        ],
         this.updateSpecController.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+        `Update${this.names.upperModuleName}Service.spec.ts`,
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `update${this.names.upperModuleName}`,
           `Update${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.updateSpecService.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+        `Update${this.names.upperModuleName}Service.spec.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.names.pluralLowerModuleName,
           'services',
           `update${this.names.upperModuleName}`,
           `Update${this.names.upperModuleName}Service.spec.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Service.spec.ts`,
-        ),
+        ],
         this.updateSpecService.execute(),
       );
     }

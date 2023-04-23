@@ -1,14 +1,14 @@
-import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
-import { MakeDependentCacheProvider } from './cache';
-import { MakeDependentCryptoProvider } from './crypto';
-import { MakeDependentHashProvider } from './hash';
-import { MakeDependentLeadProvider } from './lead';
-import { MakeDependentMailProvider } from './mail';
-import { MakeDependentMailTemplateProvider } from './mailTemplate';
-import { MakeDependentNotificationProvider } from './notification';
-import { MakeDependentStorageProvider } from './storage';
+import { Console } from '@tools/console.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { MakeDependentCacheProvider } from './cache.js';
+import { MakeDependentCryptoProvider } from './crypto.js';
+import { MakeDependentHashProvider } from './hash.js';
+import { MakeDependentLeadProvider } from './lead.js';
+import { MakeDependentMailProvider } from './mail.js';
+import { MakeDependentMailTemplateProvider } from './mailTemplate.js';
+import { MakeDependentNotificationProvider } from './notification.js';
+import { MakeDependentStorageProvider } from './storage.js';
 
 export class MakeDependentProvider {
   private messages: IMessagesDTO;
@@ -68,6 +68,7 @@ export class MakeDependentProvider {
         await this.makeDependentMailTemplateProvider.execute();
         break;
       case 'mail':
+        await this.makeDependentMailTemplateProvider.execute();
         await this.makeDependentMailProvider.execute();
         break;
       case 'notification':

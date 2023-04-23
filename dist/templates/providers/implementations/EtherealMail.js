@@ -1,6 +1,6 @@
 export class CreateEtherealMail {
-  execute() {
-    return `import {
+    execute() {
+        return `import {
   Transporter,
   createTestAccount,
   createTransport,
@@ -69,5 +69,5 @@ export class EtherealMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }

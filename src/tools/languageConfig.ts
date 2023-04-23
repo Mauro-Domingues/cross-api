@@ -1,12 +1,11 @@
-import { appendFileSync, truncateSync } from 'fs';
 import { createInterface } from 'readline';
 
-import { EnglishMessages } from '@templates/assets/en-us';
-import { PortugueseMessages } from '@templates/assets/pt-br';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
-import { Console } from './console';
+import { EnglishMessages } from '@templates/assets/en-us.js';
+import { PortugueseMessages } from '@templates/assets/pt-br.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';
@@ -20,6 +19,7 @@ interface ILanguageConfigDTO {
 
 export class ConfigLanguage {
   public messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   public Language: ILanguageOptionsDTO;
   public languageConfig: ILanguageConfigDTO;
@@ -29,6 +29,7 @@ export class ConfigLanguage {
 
   constructor() {
     this.englishMessages = new EnglishMessages();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.portugueseMessages = new PortugueseMessages();
     this.createDefaultLanguage = new CreateDefaultLanguage();
@@ -66,12 +67,11 @@ export class ConfigLanguage {
 
         rl.close();
         this.showChosenOption();
-        this.setLanguageOption();
-      } else {
-        rl.close();
-        this.validateOption(optionChosen);
-        this.execute();
+        return this.setLanguageOption();
       }
+      rl.close();
+      this.validateOption(optionChosen);
+      return this.execute();
     });
   }
 
@@ -99,12 +99,16 @@ export class ConfigLanguage {
     ]);
   }
 
-  public setLanguageOption(): void {
-    truncateSync(
-      resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'),
-    );
-    appendFileSync(
-      resolve('node_modules', 'cross-api', 'dist', 'tools', 'messages.js'),
+  public async setLanguageOption(): Promise<void> {
+    await this.fileManager.truncateFile([
+      'node_modules',
+      'cross-api',
+      'dist',
+      'tools',
+      'messages.js',
+    ]);
+    return this.fileManager.createFile(
+      ['node_modules', 'cross-api', 'dist', 'tools', 'messages.js'],
       this.createDefaultLanguage.execute(JSON.stringify(this.messages)),
     );
   }

@@ -1,8 +1,8 @@
 export class CreateContainer {
-  execute() {
-    return `import './providers';
+    execute() {
+        return `import './providers';
 
 import { container } from 'tsyringe';
 `;
-  }
+    }
 }

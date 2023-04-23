@@ -1,25 +1,26 @@
-import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { resolve } from 'path';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class MakeSecondLayer {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src', 'swagger.json'))) {
-      appendFileSync(resolve('src', 'swagger.json'), '{}');
+    if (!this.fileManager.checkIfExists(['src', 'swagger.json'])) {
+      await this.fileManager.createFile(['src', 'swagger.json'], '{}');
     } else {
-      truncateSync(resolve('src', 'swagger.json'));
-      appendFileSync(resolve('src', 'swagger.json'), '{}');
+      await this.fileManager.truncateFile(['src', 'swagger.json']);
+      await this.fileManager.createFile(['src', 'swagger.json'], '{}');
     }
-    this.console.one([
+    return this.console.one([
       `- swagger.json ${this.messages.created}`,
       'yellow',
       true,

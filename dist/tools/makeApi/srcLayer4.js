@@ -1,5 +1,3 @@
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { resolve } from 'path';
 import { CreateTypeorm } from '../../templates/api/typeorm.js';
 import { CreateAppError } from '../../templates/errors/appError.js';
 import { CreateContainer } from '../../templates/index/container.js';
@@ -12,248 +10,271 @@ import { CreateMapAndUpdate } from '../../templates/utils/mappers/mapAndUpdate.j
 import { CreateMapAndUpdateString } from '../../templates/utils/mappers/mapAndUpdateString.js';
 import { Messages } from '../messages.js';
 import { Console } from '../console.js';
-
+import { FileManager } from '../fileManager.js';
 export class MakeFourthLayer {
-  messages;
-  console;
-  createMapAndUpdateString;
-  createMapAndUpdate;
-  createMapAndPatchString;
-  createMapAndPatch;
-  createMapAndInsert;
-  createMapAndClone;
-  createDataSource;
-  createContainer;
-  createAppError;
-  createTypeorm;
-  constructor() {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.createMapAndUpdateString = new CreateMapAndUpdateString();
-    this.createMapAndUpdate = new CreateMapAndUpdate();
-    this.createMapAndPatchString = new CreateMapAndPatchString();
-    this.createMapAndPatch = new CreateMapAndPatch();
-    this.createMapAndInsert = new CreateMapAndInsert();
-    this.createMapAndClone = new CreateMapAndClone();
-    this.createDataSource = new CreateDataSource();
-    this.createContainer = new CreateContainer();
-    this.createAppError = new CreateAppError();
-    this.createTypeorm = new CreateTypeorm();
-  }
-  async execute() {
-    if (
-      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'))
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
-        this.createMapAndClone.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
-      );
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'),
-        this.createMapAndClone.execute(),
-      );
+    messages;
+    fileManager;
+    console;
+    createMapAndUpdateString;
+    createMapAndUpdate;
+    createMapAndPatchString;
+    createMapAndPatch;
+    createMapAndInsert;
+    createMapAndClone;
+    createDataSource;
+    createContainer;
+    createAppError;
+    createTypeorm;
+    constructor() {
+        this.messages = new Messages().execute();
+        this.fileManager = new FileManager();
+        this.console = new Console();
+        this.createMapAndUpdateString = new CreateMapAndUpdateString();
+        this.createMapAndUpdate = new CreateMapAndUpdate();
+        this.createMapAndPatchString = new CreateMapAndPatchString();
+        this.createMapAndPatch = new CreateMapAndPatch();
+        this.createMapAndInsert = new CreateMapAndInsert();
+        this.createMapAndClone = new CreateMapAndClone();
+        this.createDataSource = new CreateDataSource();
+        this.createContainer = new CreateContainer();
+        this.createAppError = new CreateAppError();
+        this.createTypeorm = new CreateTypeorm();
     }
-    this.console.one([
-      `- mapAndCloneAttribute.ts.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(
-        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
-      )
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
-        this.createMapAndInsert.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
-      );
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'),
-        this.createMapAndInsert.execute(),
-      );
+    async execute() {
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndCloneAttribute.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'], this.createMapAndClone.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndCloneAttribute.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'], this.createMapAndClone.execute());
+        }
+        this.console.one([
+            `- mapAndCloneAttribute.ts.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndInsertAttribute.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'], this.createMapAndInsert.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndInsertAttribute.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'], this.createMapAndInsert.execute());
+        }
+        this.console.one([
+            `- mapAndInsertAttribute.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndPatchAttribute.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'], this.createMapAndPatch.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndPatchAttribute.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'], this.createMapAndPatch.execute());
+        }
+        this.console.one([
+            `- mapAndPatchAttribute.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndPatchString.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndPatchString.ts'], this.createMapAndPatchString.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndPatchString.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndPatchString.ts'], this.createMapAndPatchString.execute());
+        }
+        this.console.one([
+            `- mapAndPatchString.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndUpdateAttribute.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'], this.createMapAndUpdate.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndUpdateAttribute.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'], this.createMapAndUpdate.execute());
+        }
+        this.console.one([
+            `- mapAndUpdateAttribute.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'utils',
+            'mappers',
+            'mapAndUpdateString.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndUpdateString.ts'], this.createMapAndUpdateString.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'utils',
+                'mappers',
+                'mapAndUpdateString.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'utils', 'mappers', 'mapAndUpdateString.ts'], this.createMapAndUpdateString.execute());
+        }
+        this.console.one([
+            `- mapAndUpdateString.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'index.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'shared', 'container', 'index.ts'], this.createContainer.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'container',
+                'index.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'shared', 'container', 'index.ts'], this.createContainer.execute());
+        }
+        this.console.one([
+            `- container/index.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'errors',
+            'AppError.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'shared', 'errors', 'AppError.ts'], this.createAppError.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'errors',
+                'AppError.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'shared', 'errors', 'AppError.ts'], this.createAppError.execute());
+        }
+        this.console.one([
+            `- AppError.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists(['src', 'shared', 'typeorm', 'index.ts'])) {
+            await this.fileManager.createFile(['src', 'shared', 'typeorm', 'index.ts'], this.createTypeorm.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'typeorm',
+                'index.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'shared', 'typeorm', 'index.ts'], this.createTypeorm.execute());
+        }
+        this.console.one([
+            `- typeorm/index.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'typeorm',
+            'dataSource.ts',
+        ])) {
+            await this.fileManager.createFile(['src', 'shared', 'typeorm', 'dataSource.ts'], this.createDataSource.execute());
+        }
+        else {
+            await this.fileManager.truncateFile([
+                'src',
+                'shared',
+                'typeorm',
+                'dataSource.ts',
+            ]);
+            await this.fileManager.createFile(['src', 'shared', 'typeorm', 'dataSource.ts'], this.createDataSource.execute());
+        }
+        this.console.one([
+            `- dataSource.ts ${this.messages.created}`,
+            'yellow',
+            true,
+            false,
+            false,
+        ]);
     }
-    this.console.one([
-      `- mapAndInsertAttribute.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'))
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
-        this.createMapAndPatch.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
-      );
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'),
-        this.createMapAndPatch.execute(),
-      );
-    }
-    this.console.one([
-      `- mapAndPatchAttribute.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'))
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'),
-        this.createMapAndPatchString.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndPatchString.ts'),
-        this.createMapAndPatchString.execute(),
-      );
-    }
-    this.console.one([
-      `- mapAndPatchString.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
-      )
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
-        this.createMapAndUpdate.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
-      );
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'),
-        this.createMapAndUpdate.execute(),
-      );
-    }
-    this.console.one([
-      `- mapAndUpdateAttribute.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'))
-    ) {
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'),
-        this.createMapAndUpdateString.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'));
-      appendFileSync(
-        resolve('src', 'utils', 'mappers', 'mapAndUpdateString.ts'),
-        this.createMapAndUpdateString.execute(),
-      );
-    }
-    this.console.one([
-      `- mapAndUpdateString.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
-        this.createContainer.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
-        this.createContainer.execute(),
-      );
-    }
-    this.console.one([
-      `- container/index.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (!existsSync(resolve('src', 'shared', 'errors', 'AppError.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'errors', 'AppError.ts'),
-        this.createAppError.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'shared', 'errors', 'AppError.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'errors', 'AppError.ts'),
-        this.createAppError.execute(),
-      );
-    }
-    this.console.one([
-      `- AppError.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (!existsSync(resolve('src', 'shared', 'typeorm', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'typeorm', 'index.ts'),
-        this.createTypeorm.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'shared', 'typeorm', 'index.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'typeorm', 'index.ts'),
-        this.createTypeorm.execute(),
-      );
-    }
-    this.console.one([
-      `- typeorm/index.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (!existsSync(resolve('src', 'shared', 'typeorm', 'dataSource.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'typeorm', 'dataSource.ts'),
-        this.createDataSource.execute(),
-      );
-    } else {
-      truncateSync(resolve('src', 'shared', 'typeorm', 'dataSource.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'typeorm', 'dataSource.ts'),
-        this.createDataSource.execute(),
-      );
-    }
-    this.console.one([
-      `- dataSource.ts ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-  }
 }

@@ -1,6 +1,6 @@
 export class CreateRoutes {
-  execute() {
-    return `import { Router } from 'express';
+    execute() {
+        return `import { Router } from 'express';
 import { guardRouter } from './guardRouter';
 
 const routes = Router();
@@ -8,5 +8,5 @@ const routes = Router();
 
 export { routes };
 `;
-  }
+    }
 }

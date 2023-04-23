@@ -1,6 +1,6 @@
 export class CreateFakeMail {
-  execute() {
-    return `import { ISendMailDTO } from '../dtos/ISendMailDTO';
+    execute() {
+        return `import { ISendMailDTO } from '../dtos/ISendMailDTO';
 import { IMailProviderDTO } from '../models/IMailProvider';
 
 export class FakeMailProvider implements IMailProviderDTO {
@@ -11,5 +11,5 @@ export class FakeMailProvider implements IMailProviderDTO {
   }
 }
 `;
-  }
+    }
 }

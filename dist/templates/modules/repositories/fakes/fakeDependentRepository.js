@@ -1,29 +1,28 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class CreateDependentFakeRepository {
-  messages;
-  console;
-  names;
-  fatherNames;
-  constructor(names, fatherNames) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
-  }
-  execute() {
-    if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    fatherNames;
+    constructor(names, fatherNames) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
+        this.fatherNames = fatherNames;
     }
-    return `/* eslint-disable @typescript-eslint/no-explicit-any */
+    execute() {
+        if (!this.names || !this.fatherNames) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IObjectDTO } from '@dtos/IObjectDTO';
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
@@ -161,5 +160,5 @@ export class Fake${this.names.pluralUpperModuleName}Repository implements I${thi
   }
 }
 `;
-  }
+    }
 }

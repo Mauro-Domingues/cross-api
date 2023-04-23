@@ -1,15 +1,9 @@
-import { IModuleNamesDTO } from '@tools/names';
-import {
-  appendFileSync,
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  truncateSync,
-} from 'fs';
-import { resolve } from 'path';
+import { FileManager } from '@tools/fileManager.js';
+import { IModuleNamesDTO } from '@tools/names.js';
 
 export class CreateRegister {
   private basePath: string;
+  private fileManager: FileManager;
   private comand: string[] | undefined;
   private providerName: string | undefined;
   private names: IModuleNamesDTO | undefined;
@@ -23,129 +17,165 @@ export class CreateRegister {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.basePath = resolve(
+    this.fileManager = new FileManager();
+    this.comand = comand;
+    this.providerName = providerName;
+    this.names = names;
+    this.fatherNames = fatherNames;
+    this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',
       'dist',
       'tools',
       'lastModification',
-    );
-    this.comand = comand;
-    this.providerName = providerName;
-    this.names = names;
-    this.fatherNames = fatherNames;
-    if (!existsSync(resolve(this.basePath, 'comands'))) {
-      mkdirSync(resolve(this.basePath, 'comands'));
+    ]);
+  }
+
+  private async constructBase(): Promise<void> {
+    if (!this.fileManager.checkIfExists([this.basePath, 'comands'])) {
+      await this.fileManager.createDir([this.basePath, 'comands']);
     }
-    if (!existsSync(resolve(this.basePath, 'modules'))) {
-      mkdirSync(resolve(this.basePath, 'modules'));
+    if (!this.fileManager.checkIfExists([this.basePath, 'modules'])) {
+      await this.fileManager.createDir([this.basePath, 'modules']);
     }
-    if (!existsSync(resolve(this.basePath, 'providers'))) {
-      mkdirSync(resolve(this.basePath, 'providers'));
+    if (!this.fileManager.checkIfExists([this.basePath, 'providers'])) {
+      await this.fileManager.createDir([this.basePath, 'providers']);
     }
-    if (!existsSync(resolve(this.basePath, 'comands', 'comands.log'))) {
-      appendFileSync(resolve(this.basePath, 'comands', 'comands.log'), '');
-    }
-    if (!existsSync(resolve(this.basePath, 'modules', 'moduleInjection.log'))) {
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
-        '',
-      );
-    }
-    if (!existsSync(resolve(this.basePath, 'modules', 'routeInjection.log'))) {
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
+    if (
+      !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'comands', 'comands.log'],
         '',
       );
     }
     if (
-      !existsSync(resolve(this.basePath, 'providers', 'providerInjection.log'))
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ])
     ) {
-      appendFileSync(
-        resolve(this.basePath, 'providers', 'providerInjection.log'),
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'moduleInjection.log'],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'routeInjection.log'],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'providers',
+        'providerInjection.log',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'providers', 'providerInjection.log'],
         '',
       );
     }
   }
 
-  private makeProvider(): void {
+  private async makeProvider(): Promise<void> {
     if (this.providerName && this.fatherNames) {
-      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
       if (
-        existsSync(
-          resolve(
-            'src',
-            'modules',
-            this.fatherNames.pluralLowerModuleName,
-            'providers',
-            'index.ts',
-          ),
-        )
+        this.fileManager.checkIfExists([
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ])
       ) {
-        const providerInjection = readFileSync(
-          resolve(
-            'src',
-            'modules',
-            this.fatherNames.pluralLowerModuleName,
-            'providers',
-            'index.ts',
-          ),
-          'ascii',
-        );
-        appendFileSync(
-          resolve(this.basePath, 'modules', 'routeInjection.log'),
+        const providerInjection = await this.fileManager.readFile([
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ]);
+        await this.fileManager.createFile(
+          [this.basePath, 'modules', 'routeInjection.log'],
           providerInjection,
         );
       } else {
-        appendFileSync(
-          resolve(this.basePath, 'modules', 'routeInjection.log'),
+        await this.fileManager.createFile(
+          [this.basePath, 'modules', 'routeInjection.log'],
           '',
         );
       }
     } else if (this.providerName) {
-      const providerInjection = readFileSync(
-        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-        'ascii',
-      );
-      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
+      const providerInjection = await this.fileManager.readFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'index.ts',
+      ]);
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'routeInjection.log'],
         providerInjection,
       );
     }
   }
 
-  private makeModule(): void {
+  private async makeModule(): Promise<void> {
     if (this.names && this.fatherNames) {
-      const moduleInjection = readFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
-        'ascii',
-      );
-      truncateSync(resolve(this.basePath, 'modules', 'moduleInjection.log'));
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
+      const moduleInjection = await this.fileManager.readFile([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ]);
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
       if (
-        existsSync(
-          resolve(
-            'src',
-            'routes',
-            `${this.fatherNames.lowerModuleName}Router.ts`,
-          ),
-        )
+        this.fileManager.checkIfExists([
+          'src',
+          'routes',
+          `${this.fatherNames.lowerModuleName}Router.ts`,
+        ])
       ) {
-        const routeInjection = readFileSync(
-          resolve(
-            'src',
-            'routes',
-            `${this.fatherNames.lowerModuleName}Router.ts`,
-          ),
-          'ascii',
-        );
-        appendFileSync(
-          resolve(this.basePath, 'modules', 'routeInjection.log'),
+        const routeInjection = await this.fileManager.readFile([
+          'src',
+          'routes',
+          `${this.fatherNames.lowerModuleName}Router.ts`,
+        ]);
+        await this.fileManager.createFile(
+          [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
       } else {
@@ -155,44 +185,60 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
-        appendFileSync(
-          resolve(this.basePath, 'modules', 'routeInjection.log'),
+        await this.fileManager.createFile(
+          [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
       }
     } else if (this.names) {
-      const moduleInjection = readFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
-        'ascii',
-      );
-      truncateSync(resolve(this.basePath, 'modules', 'moduleInjection.log'));
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
+      const moduleInjection = await this.fileManager.readFile([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ]);
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      const routeInjection = readFileSync(
-        resolve('src', 'routes', 'index.ts'),
-        'ascii',
-      );
+      const routeInjection = await this.fileManager.readFile([
+        'src',
+        'routes',
+        'index.ts',
+      ]);
 
-      truncateSync(resolve(this.basePath, 'modules', 'routeInjection.log'));
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
+      await this.fileManager.truncateFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'routeInjection.log'],
         routeInjection,
       );
     }
   }
 
   public async execute(): Promise<void> {
+    await this.constructBase();
     if (this.comand && this.comand[0] === 'make:provider') {
-      this.makeProvider();
+      await this.makeProvider();
     } else if (this.comand && this.comand[0] === 'make:module') {
-      this.makeModule();
+      await this.makeModule();
     }
 
-    truncateSync(resolve(this.basePath, 'comands', 'comands.log'));
-    appendFileSync(
-      resolve(this.basePath, 'comands', 'comands.log'),
+    await this.fileManager.truncateFile([
+      this.basePath,
+      'comands',
+      'comands.log',
+    ]);
+    return this.fileManager.createFile(
+      [this.basePath, 'comands', 'comands.log'],
       String(this.comand),
     );
   }

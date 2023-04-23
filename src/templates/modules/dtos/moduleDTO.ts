@@ -1,6 +1,6 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
 
 export class CreateModuleDTO {
   private messages: IMessagesDTO;

@@ -1,4 +1,4 @@
-import { IMessagesDTO } from '@tools/messages';
+import { IMessagesDTO } from '@tools/messages.js';
 
 export class PortugueseMessages {
   public messages: IMessagesDTO;

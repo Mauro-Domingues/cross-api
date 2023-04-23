@@ -1,571 +1,189 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateMailConfig } from '@templates/providers/config/mailConfig';
-import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
-import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
-import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
-import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
-import { CreateEtherealMail } from '@templates/providers/implementations/EtherealMail';
-import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate';
-import { CreateSESMail } from '@templates/providers/implementations/SESMail';
-import { CreateMailIndex } from '@templates/providers/mailIndex';
-import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
-import { CreateIMail } from '@templates/providers/models/IMail';
-import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateMailConfig } from '@templates/providers/config/mailConfig.js';
+import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO.js';
+import { CreateFakeMail } from '@templates/providers/fakes/fakeMail.js';
+import { CreateEtherealMail } from '@templates/providers/implementations/EtherealMail.js';
+import { CreateSESMail } from '@templates/providers/implementations/SESMail.js';
+import { CreateMailIndex } from '@templates/providers/mailIndex.js';
+import { CreateIMail } from '@templates/providers/models/IMail.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeMailProvider {
   private messages: IMessagesDTO;
   private console: Console;
+  private fileManager: FileManager;
   private createIMail: CreateIMail;
   private createFakeMail: CreateFakeMail;
   private createIMailDTO: CreateIMailDTO;
   private createMailConfig: CreateMailConfig;
   private createMailIndex: CreateMailIndex;
-  private createMailTemplate: CreateMailTemplate;
   private createSESMail: CreateSESMail;
   private createEtherealMail: CreateEtherealMail;
-  private createIMailTemplate: CreateIMailTemplate;
-  private createFakeMailTemplate: CreateFakeMailTemplate;
-  private createIMailTemplateDTO: CreateIMailTemplateDTO;
-  private createMailTemplateIndex: CreateMailTemplateIndex;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createIMail = new CreateIMail();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
-    this.createIMailTemplate = new CreateIMailTemplate();
-    this.createFakeMailTemplate = new CreateFakeMailTemplate();
-    this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
-    this.createMailTemplateIndex = new CreateMailTemplateIndex();
-    this.createMailTemplate = new CreateMailTemplate();
     this.createSESMail = new CreateSESMail();
     this.createEtherealMail = new CreateEtherealMail();
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
-      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ]);
     }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-        ),
-      );
-    }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      `import './MailTemplateProvider';\n`,
-    );
-    if (!existsSync(resolve('src', 'config', 'mail.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'mail.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'mail.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'mail.ts'],
         this.createMailConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'mail.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'mail.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'mail.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'mail.ts'],
         this.createMailConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-          'IParseMailTemplateDTO.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-          'IParseMailTemplateDTO.ts',
-        ),
-        this.createIMailTemplateDTO.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-          'IParseMailTemplateDTO.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'dtos',
-          'IParseMailTemplateDTO.ts',
-        ),
-        this.createIMailTemplateDTO.execute(),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-          'FakeMailTemplateProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'dtos',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-          'FakeMailTemplateProvider.ts',
-        ),
-        this.createFakeMailTemplate.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-          'FakeMailTemplateProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'fakes',
-          'FakeMailTemplateProvider.ts',
-        ),
-        this.createFakeMailTemplate.execute(),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'dtos',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-          'HandlebarsMailTemplateProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'fakes',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-          'HandlebarsMailTemplateProvider.ts',
-        ),
-        this.createMailTemplate.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-          'HandlebarsMailTemplateProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'implementations',
-          'HandlebarsMailTemplateProvider.ts',
-        ),
-        this.createMailTemplate.execute(),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'fakes',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-          'IMailTemplateProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-          'IMailTemplateProvider.ts',
-        ),
-        this.createIMailTemplate.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-          'IMailTemplateProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'models',
-          'IMailTemplateProvider.ts',
-        ),
-        this.createIMailTemplate.execute(),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'models',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'index.ts',
-        ),
-        this.createMailTemplateIndex.execute(),
-      );
-    } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailTemplateProvider',
-          'index.ts',
-        ),
-        this.createMailTemplateIndex.execute(),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'models',
+      ]);
     }
-    this.console.one([
-      `- MailTemplateProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
-    if (
-      !existsSync(
-        resolve('src', 'shared', 'container', 'providers', 'MailProvider'),
-      )
-    ) {
-      mkdirSync(
-        resolve('src', 'shared', 'container', 'providers', 'MailProvider'),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'dtos',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'dtos',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'fakes',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'fakes',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'models',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'models',
-        ),
-      );
-    }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './MailProvider';\n`,
     );
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'dtos',
-          'ISendMailDTO.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'dtos',
+        'ISendMailDTO.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -573,12 +191,21 @@ export class MakeMailProvider {
           'MailProvider',
           'dtos',
           'ISendMailDTO.ts',
-        ),
+        ],
         this.createIMailDTO.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'dtos',
+        'ISendMailDTO.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -586,36 +213,23 @@ export class MakeMailProvider {
           'MailProvider',
           'dtos',
           'ISendMailDTO.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'dtos',
-          'ISendMailDTO.ts',
-        ),
+        ],
         this.createIMailDTO.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'fakes',
-          'FakeMailProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'fakes',
+        'FakeMailProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -623,12 +237,21 @@ export class MakeMailProvider {
           'MailProvider',
           'fakes',
           'FakeMailProvider.ts',
-        ),
+        ],
         this.createFakeMail.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'fakes',
+        'FakeMailProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -636,36 +259,23 @@ export class MakeMailProvider {
           'MailProvider',
           'fakes',
           'FakeMailProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'fakes',
-          'FakeMailProvider.ts',
-        ),
+        ],
         this.createFakeMail.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-          'EtherealMailProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+        'EtherealMailProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -673,12 +283,21 @@ export class MakeMailProvider {
           'MailProvider',
           'implementations',
           'EtherealMailProvider.ts',
-        ),
+        ],
         this.createEtherealMail.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+        'EtherealMailProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -686,36 +305,23 @@ export class MakeMailProvider {
           'MailProvider',
           'implementations',
           'EtherealMailProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-          'EtherealMailProvider.ts',
-        ),
+        ],
         this.createEtherealMail.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-          'SESMailProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+        'SESMailProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -723,12 +329,21 @@ export class MakeMailProvider {
           'MailProvider',
           'implementations',
           'SESMailProvider.ts',
-        ),
+        ],
         this.createSESMail.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+        'SESMailProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -736,36 +351,23 @@ export class MakeMailProvider {
           'MailProvider',
           'implementations',
           'SESMailProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'implementations',
-          'SESMailProvider.ts',
-        ),
+        ],
         this.createSESMail.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'models',
-          'IMailProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'models',
+        'IMailProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -773,12 +375,21 @@ export class MakeMailProvider {
           'MailProvider',
           'models',
           'IMailProvider.ts',
-        ),
+        ],
         this.createIMail.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'models',
+        'IMailProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -786,68 +397,39 @@ export class MakeMailProvider {
           'MailProvider',
           'models',
           'IMailProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'models',
-          'IMailProvider.ts',
-        ),
+        ],
         this.createIMail.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'index.ts',
-        ),
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
         this.createMailIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'index.ts',
-        ),
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
         this.createMailIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- MailProvider ${this.messages.created}`,
       'yellow',
       true,

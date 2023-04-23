@@ -1,19 +1,19 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateContainer } from '@templates/index/container';
-import { CreateHashConfig } from '@templates/providers/config/hashConfig';
-import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
-import { CreateHashIndex } from '@templates/providers/hashIndex';
-import { CreateHash } from '@templates/providers/implementations/BCrypt';
-import { CreateIHash } from '@templates/providers/models/IHash';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateContainer } from '@templates/index/container.js';
+import { CreateHashConfig } from '@templates/providers/config/hashConfig.js';
+import { CreateFakeHash } from '@templates/providers/fakes/fakeHash.js';
+import { CreateHashIndex } from '@templates/providers/hashIndex.js';
+import { CreateHash } from '@templates/providers/implementations/BCrypt.js';
+import { CreateIHash } from '@templates/providers/models/IHash.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentHashProvider {
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
+  private fileManager: FileManager;
   private messages: IMessagesDTO;
   private console: Console;
   private createIHash: CreateIHash;
@@ -26,6 +26,7 @@ export class MakeDependentHashProvider {
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createIHash = new CreateIHash();
     this.createHash = new CreateHash();
@@ -47,208 +48,195 @@ export class MakeDependentHashProvider {
       throw new Error();
     }
 
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'modules'))) {
-      mkdirSync(resolve('src', 'modules'));
+    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
+      await this.fileManager.createDir(['src', 'modules']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+      ])
     ) {
-      mkdirSync(
-        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ),
-        '',
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-        ),
-      );
-    }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'index.ts'),
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-    );
-    appendFileSync(
-      resolve(
+      !this.fileManager.checkIfExists([
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'index.ts',
-      ),
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'fakes',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'fakes',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'implementations',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'implementations',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'models',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'models',
+      ]);
+    }
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'index.ts'],
+      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
+    );
+    await this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
       `import './HashProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'hash.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'hash.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'hash.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'hash.ts'],
         this.createHashConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'hash.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'hash.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'hash.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'hash.ts'],
         this.createHashConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'fakes',
+        'FakeHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -256,12 +244,21 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'fakes',
           'FakeHashProvider.ts',
-        ),
+        ],
         this.createFakeHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'fakes',
+        'FakeHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -269,36 +266,23 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'fakes',
           'FakeHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ),
+        ],
         this.createFakeHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'implementations',
+        'BCryptHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -306,12 +290,21 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'implementations',
           'BCryptHashProvider.ts',
-        ),
+        ],
         this.createHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'implementations',
+        'BCryptHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -319,36 +312,23 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'implementations',
           'BCryptHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ),
+        ],
         this.createHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'models',
+        'IHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -356,12 +336,21 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'models',
           'IHashProvider.ts',
-        ),
+        ],
         this.createIHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'models',
+        'IHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -369,68 +358,53 @@ export class MakeDependentHashProvider {
           'HashProvider',
           'models',
           'IHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ),
+        ],
         this.createIHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'HashProvider',
           'index.ts',
-        ),
+        ],
         this.createHashIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'HashProvider',
           'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
+        ],
         this.createHashIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- HashProvider ${this.messages.created}`,
       'yellow',
       true,

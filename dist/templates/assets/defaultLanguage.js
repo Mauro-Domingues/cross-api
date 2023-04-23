@@ -1,6 +1,6 @@
 export class CreateDefaultLanguage {
-  execute(languageData) {
-    return `export class Messages {
+    execute(languageData) {
+        return `export class Messages {
   messages;
   constructor() {
     this.messages = ${languageData}
@@ -10,5 +10,5 @@ export class CreateDefaultLanguage {
   }
 }
 `;
-  }
+    }
 }

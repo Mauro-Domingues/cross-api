@@ -1,6 +1,6 @@
 export class CreateRDStationLead {
-  execute() {
-    return `import { leadConfig } from '@config/lead';
+    execute() {
+        return `import { leadConfig } from '@config/lead';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { AppError } from '@shared/errors/AppError';
@@ -81,5 +81,5 @@ export class RDStationProvider implements ILeadProviderDTO {
   }
 }
 `;
-  }
+    }
 }

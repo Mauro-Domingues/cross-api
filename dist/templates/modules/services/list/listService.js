@@ -1,27 +1,26 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class ListService {
-  messages;
-  console;
-  names;
-  constructor(names) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    constructor(names) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
     }
-    return `import { injectable, inject } from 'tsyringe';
+    execute() {
+        if (!this.names) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { injectable, inject } from 'tsyringe';
 
 import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
@@ -66,5 +65,5 @@ export class List${this.names.upperModuleName}Service {
   }
 }
 `;
-  }
+    }
 }

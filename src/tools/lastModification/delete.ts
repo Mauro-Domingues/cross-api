@@ -1,33 +1,26 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import {
-  appendFileSync,
-  existsSync,
-  readFileSync,
-  mkdirSync,
-  truncateSync,
-  unlinkSync,
-  rmSync,
-} from 'fs';
-import { GetNames, IModuleNamesDTO } from '@tools/names';
-import { Console } from '@tools/console';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { GetNames, IModuleNamesDTO } from '@tools/names.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class DeleteRegister {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   private providers: { [key: string]: string };
   private basePath: string;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
-    this.basePath = resolve(
+    this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',
       'dist',
       'tools',
       'lastModification',
-    );
+    ]);
     this.providers = {
       cache: 'CacheProvider',
       crypto: 'CryptoProvider',
@@ -38,84 +31,114 @@ export class DeleteRegister {
       notification: 'NotificationProvider',
       upload: 'StorageProvider',
     };
-    if (!existsSync(resolve(this.basePath, 'comands'))) {
-      mkdirSync(resolve(this.basePath, 'comands'));
+  }
+
+  private async constructBase(): Promise<void> {
+    if (!this.fileManager.checkIfExists([this.basePath, 'comands'])) {
+      await this.fileManager.createDir([this.basePath, 'comands']);
     }
-    if (!existsSync(resolve(this.basePath, 'modules'))) {
-      mkdirSync(resolve(this.basePath, 'modules'));
+    if (!this.fileManager.checkIfExists([this.basePath, 'modules'])) {
+      await this.fileManager.createDir([this.basePath, 'modules']);
     }
-    if (!existsSync(resolve(this.basePath, 'providers'))) {
-      mkdirSync(resolve(this.basePath, 'providers'));
+    if (!this.fileManager.checkIfExists([this.basePath, 'providers'])) {
+      await this.fileManager.createDir([this.basePath, 'providers']);
     }
-    if (!existsSync(resolve(this.basePath, 'comands', 'comands.log'))) {
-      appendFileSync(resolve(this.basePath, 'comands', 'comands.log'), '');
-    }
-    if (!existsSync(resolve(this.basePath, 'modules', 'moduleInjection.log'))) {
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
-        '',
-      );
-    }
-    if (!existsSync(resolve(this.basePath, 'modules', 'routeInjection.log'))) {
-      appendFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
+    if (
+      !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'comands', 'comands.log'],
         '',
       );
     }
     if (
-      !existsSync(resolve(this.basePath, 'providers', 'providerInjection.log'))
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ])
     ) {
-      appendFileSync(
-        resolve(this.basePath, 'providers', 'providerInjection.log'),
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'moduleInjection.log'],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'modules', 'routeInjection.log'],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        this.basePath,
+        'providers',
+        'providerInjection.log',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [this.basePath, 'providers', 'providerInjection.log'],
         '',
       );
     }
   }
 
-  private makeProvider(
+  private async makeProvider(
     comand: string,
     names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
     fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
-  ) {
+  ): Promise<void> {
     if (names && fatherNames) {
-      const oldProviders = readFileSync(
-        resolve(this.basePath, 'providers', 'providerInjection.log'),
-        'ascii',
-      );
+      const oldProviders = await this.fileManager.readFile([
+        this.basePath,
+        'providers',
+        'providerInjection.log',
+      ]);
 
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'providers',
           'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ),
+        ],
         oldProviders,
       );
-      rmSync(
-        resolve(
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        this.providers[names.lowerModuleName],
+      ]);
+      if (
+        this.fileManager.checkIfExists([
           'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
-          this.providers[names.lowerModuleName],
-        ),
-        { recursive: true, force: true },
-      );
-      if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
-        unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
+          'config',
+          `${names.lowerModuleName}.ts`,
+        ])
+      ) {
+        await this.fileManager.removeFile([
+          'src',
+          'config',
+          `${names.lowerModuleName}.ts`,
+        ]);
       }
       this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
@@ -125,30 +148,42 @@ export class DeleteRegister {
         false,
       ]);
     } else if (names) {
-      const oldProviders = readFileSync(
-        resolve(this.basePath, 'providers', 'providerInjection.log'),
-        'ascii',
-      );
+      const oldProviders = await this.fileManager.readFile([
+        this.basePath,
+        'providers',
+        'providerInjection.log',
+      ]);
 
-      truncateSync(
-        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
-      );
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'index.ts'],
         oldProviders,
       );
-      rmSync(
-        resolve(
+      await this.fileManager.removeDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        this.providers[names.lowerModuleName],
+      ]);
+      if (
+        this.fileManager.checkIfExists([
           'src',
-          'shared',
-          'container',
-          'providers',
-          this.providers[names.lowerModuleName],
-        ),
-        { recursive: true, force: true },
-      );
-      if (existsSync(resolve('src', 'config', `${names.lowerModuleName}.ts`))) {
-        unlinkSync(resolve('src', 'config', `${names.lowerModuleName}.ts`));
+          'config',
+          `${names.lowerModuleName}.ts`,
+        ])
+      ) {
+        await this.fileManager.removeFile([
+          'src',
+          'config',
+          `${names.lowerModuleName}.ts`,
+        ]);
       }
       this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
@@ -160,7 +195,7 @@ export class DeleteRegister {
     }
   }
 
-  private makeModule(
+  private async makeModule(
     comand: string,
     names:
       | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
@@ -168,122 +203,106 @@ export class DeleteRegister {
     fatherNames:
       | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
-  ) {
+  ): Promise<void> {
     if (names && fatherNames) {
-      rmSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'services',
-          `create${names.upperModuleName}`,
-        ),
-        { recursive: true, force: true },
-      );
-      rmSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'services',
-          `delete${names.upperModuleName}`,
-        ),
-        { recursive: true, force: true },
-      );
-      rmSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'services',
-          `list${names.upperModuleName}`,
-        ),
-        { recursive: true, force: true },
-      );
-      rmSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'services',
-          `show${names.upperModuleName}`,
-        ),
-        { recursive: true, force: true },
-      );
-      rmSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'services',
-          `update${names.upperModuleName}`,
-        ),
-        { recursive: true, force: true },
-      );
-      unlinkSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'dtos',
-          `I${names.upperModuleName}DTO.ts`,
-        ),
-      );
-      unlinkSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'entities',
-          `${names.upperModuleName}.ts`,
-        ),
-      );
-      unlinkSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'repositories',
-          `${names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      unlinkSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'repositories',
-          `I${names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      unlinkSync(
-        resolve(
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'repositories',
-          'fakes',
-          `Fake${names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      const moduleInjection = readFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
-        'ascii',
-      );
-      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'services',
+        `create${names.upperModuleName}`,
+      ]);
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'services',
+        `delete${names.upperModuleName}`,
+      ]);
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'services',
+        `list${names.upperModuleName}`,
+      ]);
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'services',
+        `show${names.upperModuleName}`,
+      ]);
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'services',
+        `update${names.upperModuleName}`,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'dtos',
+        `I${names.upperModuleName}DTO.ts`,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'entities',
+        `${names.upperModuleName}.ts`,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'repositories',
+        `${names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'repositories',
+        `I${names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+        `Fake${names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      const moduleInjection = await this.fileManager.readFile([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ]);
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = readFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
-        'ascii',
-      );
-      truncateSync(
-        resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`),
-      );
-      appendFileSync(
-        resolve('src', 'routes', `${fatherNames.lowerModuleName}Router.ts`),
+      const routeInjection = await this.fileManager.readFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
+      await this.fileManager.truncateFile([
+        'src',
+        'routes',
+        `${fatherNames.lowerModuleName}Router.ts`,
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
       this.console.one([
@@ -294,26 +313,41 @@ export class DeleteRegister {
         false,
       ]);
     } else if (names) {
-      rmSync(resolve('src', 'modules', names.pluralLowerModuleName), {
-        recursive: true,
-        force: true,
-      });
-      unlinkSync(resolve('src', 'routes', `${names.lowerModuleName}Router.ts`));
-      const moduleInjection = readFileSync(
-        resolve(this.basePath, 'modules', 'moduleInjection.log'),
-        'ascii',
-      );
-      truncateSync(resolve('src', 'shared', 'container', 'index.ts'));
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
+      await this.fileManager.removeDir([
+        'src',
+        'modules',
+        names.pluralLowerModuleName,
+      ]);
+      await this.fileManager.removeFile([
+        'src',
+        'routes',
+        `${names.lowerModuleName}Router.ts`,
+      ]);
+      const moduleInjection = await this.fileManager.readFile([
+        this.basePath,
+        'modules',
+        'moduleInjection.log',
+      ]);
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = readFileSync(
-        resolve(this.basePath, 'modules', 'routeInjection.log'),
-        'ascii',
+      const routeInjection = await this.fileManager.readFile([
+        this.basePath,
+        'modules',
+        'routeInjection.log',
+      ]);
+      await this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
+        routeInjection,
       );
-      truncateSync(resolve('src', 'routes', 'index.ts'));
-      appendFileSync(resolve('src', 'routes', 'index.ts'), routeInjection);
       this.console.one([
         `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         'yellow',
@@ -324,21 +358,21 @@ export class DeleteRegister {
     }
   }
 
-  private makeAPi(comand: string) {
-    rmSync(resolve('src'), { recursive: true, force: true });
-    unlinkSync(resolve('.editorconfig'));
-    unlinkSync(resolve('.env'));
-    unlinkSync(resolve('.env.template'));
-    unlinkSync(resolve('.eslintignore'));
-    unlinkSync(resolve('.eslintrc.json'));
-    unlinkSync(resolve('.gitignore'));
-    unlinkSync(resolve('babel.config.js'));
-    unlinkSync(resolve('docker-compose.yml'));
-    unlinkSync(resolve('jest.config.ts'));
-    unlinkSync(resolve('nodemon.json'));
-    unlinkSync(resolve('prettier.config.js'));
-    unlinkSync(resolve('tsconfig.json'));
-    this.console.one([
+  private async makeAPi(comand: string) {
+    await this.fileManager.removeDir(['src']);
+    await this.fileManager.removeFile(['.editorconfig']);
+    await this.fileManager.removeFile(['.env']);
+    await this.fileManager.removeFile(['.env.template']);
+    await this.fileManager.removeFile(['.eslintignore']);
+    await this.fileManager.removeFile(['.eslintrc.json']);
+    await this.fileManager.removeFile(['.gitignore']);
+    await this.fileManager.removeFile(['babel.config.js']);
+    await this.fileManager.removeFile(['docker-compose.yml']);
+    await this.fileManager.removeFile(['jest.config.ts']);
+    await this.fileManager.removeFile(['nodemon.json']);
+    await this.fileManager.removeFile(['prettier.config.js']);
+    await this.fileManager.removeFile(['tsconfig.json']);
+    return this.console.one([
       `- ${this.messages.reversed}: ${comand}`,
       'yellow',
       true,
@@ -348,10 +382,12 @@ export class DeleteRegister {
   }
 
   public async execute(): Promise<void> {
-    const register = readFileSync(
-      resolve(this.basePath, 'comands', 'comands.log'),
-      'ascii',
-    );
+    await this.constructBase();
+    const register = await this.fileManager.readFile([
+      this.basePath,
+      'comands',
+      'comands.log',
+    ]);
 
     const comand = register.split(',')[0];
     const names = new GetNames(register.split(',')[1]).execute();
@@ -359,23 +395,19 @@ export class DeleteRegister {
 
     switch (comand) {
       case 'make:provider':
-        this.makeProvider(comand, names, fatherNames);
-        break;
+        return this.makeProvider(comand, names, fatherNames);
       case 'make:module':
-        this.makeModule(comand, names, fatherNames);
-        break;
+        return this.makeModule(comand, names, fatherNames);
       case 'make:api':
-        this.makeAPi(comand);
-        break;
+        return this.makeAPi(comand);
       default:
-        this.console.one([
-          `${this.messages.noReversed}`,
+        return this.console.one([
+          this.messages.noReversed,
           'red',
           true,
           true,
           true,
         ]);
-        break;
     }
   }
 }

@@ -1,22 +1,22 @@
-import { CreateContainer } from '@templates/index/container';
-import { CreateRoutes } from '@templates/index/routes';
-import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
-import { CreateEntity } from '@templates/modules/entities/entity';
-import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection';
-import { CreateDependentRepository } from '@templates/modules/repositories/dependentRepository';
-import { CreateDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository';
-import { CreateIDependentRepository } from '@templates/modules/repositories/IDependentRepository';
-import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
-import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
-import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
-import { appendFileSync, existsSync, truncateSync } from 'fs';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateContainer } from '@templates/index/container.js';
+import { CreateRoutes } from '@templates/index/routes.js';
+import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO.js';
+import { CreateEntity } from '@templates/modules/entities/entity.js';
+import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection.js';
+import { CreateDependentRepository } from '@templates/modules/repositories/dependentRepository.js';
+import { CreateDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository.js';
+import { CreateIDependentRepository } from '@templates/modules/repositories/IDependentRepository.js';
+import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes.js';
+import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes.js';
+import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentInfra {
   private messages: IMessagesDTO;
+  private fileManager: FileManager;
   private console: Console;
   private names: IModuleNamesDTO | undefined;
   private fatherNames: IModuleNamesDTO | undefined;
@@ -37,6 +37,7 @@ export class MakeDependentInfra {
     fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.names = names;
     this.fatherNames = fatherNames;
@@ -85,268 +86,245 @@ export class MakeDependentInfra {
       throw new Error();
     }
 
-    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
     }
 
-    if (!existsSync(resolve('src', 'routes', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'routes', 'index.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
 
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'dtos',
-          `I${this.names.upperModuleName}DTO.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'dtos',
+        `I${this.names.upperModuleName}DTO.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'dtos',
           `I${this.names.upperModuleName}DTO.ts`,
-        ),
+        ],
         this.createModuleDTO.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'dtos',
+        `I${this.names.upperModuleName}DTO.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'dtos',
           `I${this.names.upperModuleName}DTO.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'dtos',
-          `I${this.names.upperModuleName}DTO.ts`,
-        ),
+        ],
         this.createModuleDTO.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'entities',
-          `${this.names.upperModuleName}.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'entities',
+        `${this.names.upperModuleName}.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'entities',
           `${this.names.upperModuleName}.ts`,
-        ),
+        ],
         this.createEntity.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'entities',
+        `${this.names.upperModuleName}.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'entities',
           `${this.names.upperModuleName}.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'entities',
-          `${this.names.upperModuleName}.ts`,
-        ),
+        ],
         this.createEntity.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `${this.names.pluralUpperModuleName}Repository.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           `${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createDependentRepository.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `${this.names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           `${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createDependentRepository.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `I${this.names.pluralUpperModuleName}Repository.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createIDependentRepository.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `I${this.names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createIDependentRepository.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
           `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          'fakes',
-          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createDependentFakeRepository.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
           `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          'fakes',
-          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ),
+        ],
         this.createDependentFakeRepository.execute(),
       );
     }
 
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'routes',
-          `${this.fatherNames.lowerModuleName}Router.ts`,
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'routes',
+        `${this.fatherNames.lowerModuleName}Router.ts`,
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'routes',
-          `${this.fatherNames.lowerModuleName}Router.ts`,
-        ),
+      await this.fileManager.createFile(
+        ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createFullDependentRoute.execute(),
       );
-      appendFileSync(
-        resolve('src', 'routes', 'index.ts'),
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
         this.createIndexDependentRoute.execute(),
       );
     } else {
-      appendFileSync(
-        resolve(
-          'src',
-          'routes',
-          `${this.fatherNames.lowerModuleName}Router.ts`,
-        ),
+      await this.fileManager.createFile(
+        ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createDependentRoute.execute(),
       );
     }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'index.ts'),
+    return this.fileManager.createFile(
+      ['src', 'shared', 'container', 'index.ts'],
       this.createDependentInjection.execute(),
     );
   }

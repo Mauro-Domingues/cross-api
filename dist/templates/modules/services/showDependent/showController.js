@@ -1,27 +1,26 @@
 import { Messages } from '../../../../tools/messages.js';
 import { Console } from '../../../../tools/console.js';
-
 export class ShowDependentController {
-  messages;
-  console;
-  names;
-  constructor(names) {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.names = names;
-  }
-  execute() {
-    if (!this.names) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+    messages;
+    console;
+    names;
+    constructor(names) {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+        this.names = names;
     }
-    return `import { IObjectDTO } from '@dtos/IObjectDTO';
+    execute() {
+        if (!this.names) {
+            this.console.one([
+                this.messages.moduleNotFound,
+                'red',
+                true,
+                false,
+                false,
+            ]);
+            throw new Error();
+        }
+        return `import { IObjectDTO } from '@dtos/IObjectDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -39,5 +38,5 @@ export class Show${this.names.upperModuleName}Controller {
   }
 }
 `;
-  }
+    }
 }

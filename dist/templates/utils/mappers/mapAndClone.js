@@ -1,12 +1,11 @@
 import { Messages } from '../../../tools/messages.js';
-
 export class CreateMapAndClone {
-  messages;
-  constructor() {
-    this.messages = new Messages().execute();
-  }
-  execute() {
-    return `import { IObjectDTO } from "@dtos/IObjectDTO";
+    messages;
+    constructor() {
+        this.messages = new Messages().execute();
+    }
+    execute() {
+        return `import { IObjectDTO } from "@dtos/IObjectDTO";
 
 /**
  * ${this.messages.mapAndClone}
@@ -27,5 +26,5 @@ export function mapAndCloneAttribute(
   return objectArray;
 }
 `;
-  }
+    }
 }

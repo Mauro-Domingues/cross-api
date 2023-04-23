@@ -1,6 +1,6 @@
 export class CreateErrorLog {
-  execute() {
-    return `export function returnErrorLog(error: Error): void {
+    execute() {
+        return `export function returnErrorLog(error: Error): void {
   const currentTime = new Date();
   const offset = currentTime.getTimezoneOffset();
   const offsetHours = -offset / 60;
@@ -31,5 +31,5 @@ export class CreateErrorLog {
   );
 }
 `;
-  }
+    }
 }

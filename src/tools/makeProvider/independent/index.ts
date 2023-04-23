@@ -1,13 +1,13 @@
-import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { MakeCacheProvider } from './cache';
-import { MakeCryptoProvider } from './crypto';
-import { MakeHashProvider } from './hash';
-import { MakeLeadProvider } from './lead';
-import { MakeMailProvider } from './mail';
-import { MakeMailTemplateProvider } from './mailTemplate';
-import { MakeNotificationProvider } from './notification';
-import { MakeStorageProvider } from './storage';
+import { Console } from '@tools/console.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { MakeCacheProvider } from './cache.js';
+import { MakeCryptoProvider } from './crypto.js';
+import { MakeHashProvider } from './hash.js';
+import { MakeLeadProvider } from './lead.js';
+import { MakeMailProvider } from './mail.js';
+import { MakeMailTemplateProvider } from './mailTemplate.js';
+import { MakeNotificationProvider } from './notification.js';
+import { MakeStorageProvider } from './storage.js';
 
 export class MakeProvider {
   private messages: IMessagesDTO;
@@ -48,6 +48,7 @@ export class MakeProvider {
         await this.makeMailTemplateProvider.execute();
         break;
       case 'mail':
+        await this.makeMailTemplateProvider.execute();
         await this.makeMailProvider.execute();
         break;
       case 'notification':

@@ -1,17 +1,17 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateUploadConfig } from '@templates/providers/config/uploadConfig';
-import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
-import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
-import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
-import { CreateIStorage } from '@templates/providers/models/IStorage';
-import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateUploadConfig } from '@templates/providers/config/uploadConfig.js';
+import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage.js';
+import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage.js';
+import { CreateS3Storage } from '@templates/providers/implementations/S3Storage.js';
+import { CreateIStorage } from '@templates/providers/models/IStorage.js';
+import { CreateStorageIndex } from '@templates/providers/storageIndex.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeStorageProvider {
   private messages: IMessagesDTO;
   private console: Console;
+  private fileManager: FileManager;
   private createIStorage: CreateIStorage;
   private createDiskStorage: CreateDiskStorage;
   private createS3Storage: CreateS3Storage;
@@ -21,6 +21,7 @@ export class MakeStorageProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createDiskStorage = new CreateDiskStorage();
     this.createS3Storage = new CreateS3Storage();
@@ -31,130 +32,136 @@ export class MakeStorageProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
-      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
     if (
-      !existsSync(
-        resolve('src', 'shared', 'container', 'providers', 'StorageProvider'),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve('src', 'shared', 'container', 'providers', 'StorageProvider'),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'fakes',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'fakes',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+      ]);
     }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'models',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'models',
+      ]);
+    }
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './StorageProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'upload.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'upload.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'upload.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'upload.ts'],
         this.createUploadConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'upload.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'upload.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'upload.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'upload.ts'],
         this.createUploadConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'fakes',
+        'FakeStorageProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -162,12 +169,21 @@ export class MakeStorageProvider {
           'StorageProvider',
           'fakes',
           'FakeStorageProvider.ts',
-        ),
+        ],
         this.createFakeStorage.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'fakes',
+        'FakeStorageProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -175,36 +191,23 @@ export class MakeStorageProvider {
           'StorageProvider',
           'fakes',
           'FakeStorageProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ),
+        ],
         this.createFakeStorage.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'DiskStorageProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+        'DiskStorageProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -212,12 +215,21 @@ export class MakeStorageProvider {
           'StorageProvider',
           'implementations',
           'DiskStorageProvider.ts',
-        ),
+        ],
         this.createDiskStorage.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+        'DiskStorageProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -225,36 +237,23 @@ export class MakeStorageProvider {
           'StorageProvider',
           'implementations',
           'DiskStorageProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'DiskStorageProvider.ts',
-        ),
+        ],
         this.createDiskStorage.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'S3StorageProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+        'S3StorageProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -262,12 +261,21 @@ export class MakeStorageProvider {
           'StorageProvider',
           'implementations',
           'S3StorageProvider.ts',
-        ),
+        ],
         this.createS3Storage.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+        'S3StorageProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -275,36 +283,23 @@ export class MakeStorageProvider {
           'StorageProvider',
           'implementations',
           'S3StorageProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'S3StorageProvider.ts',
-        ),
+        ],
         this.createS3Storage.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'models',
+        'IStorageProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -312,12 +307,21 @@ export class MakeStorageProvider {
           'StorageProvider',
           'models',
           'IStorageProvider.ts',
-        ),
+        ],
         this.createIStorage.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'models',
+        'IStorageProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -325,68 +329,53 @@ export class MakeStorageProvider {
           'StorageProvider',
           'models',
           'IStorageProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ),
+        ],
         this.createIStorage.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
           'providers',
           'StorageProvider',
           'index.ts',
-        ),
+        ],
         this.createStorageIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
           'providers',
           'StorageProvider',
           'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ),
+        ],
         this.createStorageIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- StorageProvider ${this.messages.created}`,
       'yellow',
       true,

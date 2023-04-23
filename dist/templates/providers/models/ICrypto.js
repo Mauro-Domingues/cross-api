@@ -1,6 +1,6 @@
 export class CreateICrypto {
-  execute() {
-    return `import { SignOptions } from 'jsonwebtoken';
+    execute() {
+        return `import { SignOptions } from 'jsonwebtoken';
 import { JWK } from 'pem-jwk';
 import { ICryptoDTO } from '../dtos/ICryptoDTO';
 
@@ -21,5 +21,5 @@ export interface ICryptoProviderDTO {
   }>;
 }
 `;
-  }
+    }
 }

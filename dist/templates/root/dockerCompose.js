@@ -1,6 +1,6 @@
 export class CreateDockerCompose {
-  execute() {
-    return `version: '3'
+    execute() {
+        return `version: '3'
 
 services:
   database:
@@ -29,5 +29,5 @@ services:
 networks:
   rs-network:
     driver: bridge`;
-  }
+    }
 }

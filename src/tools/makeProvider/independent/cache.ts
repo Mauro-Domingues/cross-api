@@ -1,17 +1,17 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateCacheIndex } from '@templates/providers/cacheIndex';
-import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
-import { CreateFakeRedis } from '@templates/providers/fakes/fakeCache';
-import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
-import { CreateICache } from '@templates/providers/models/ICache';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateCacheIndex } from '@templates/providers/cacheIndex.js';
+import { CreateCacheConfig } from '@templates/providers/config/cacheConfig.js';
+import { CreateFakeRedis } from '@templates/providers/fakes/fakeCache.js';
+import { CreateRedisCache } from '@templates/providers/implementations/RedisCache.js';
+import { CreateICache } from '@templates/providers/models/ICache.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeCacheProvider {
   private messages: IMessagesDTO;
   private console: Console;
   private createICache: CreateICache;
+  private fileManager: FileManager;
   private createRedisCache: CreateRedisCache;
   private createFakeRedis: CreateFakeRedis;
   private createCacheConfig: CreateCacheConfig;
@@ -19,6 +19,7 @@ export class MakeCacheProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createICache = new CreateICache();
     this.createRedisCache = new CreateRedisCache();
@@ -28,130 +29,136 @@ export class MakeCacheProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
-      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
     if (
-      !existsSync(
-        resolve('src', 'shared', 'container', 'providers', 'CacheProvider'),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve('src', 'shared', 'container', 'providers', 'CacheProvider'),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'fakes',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'fakes',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'implementations',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'fakes',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'implementations',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'fakes',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'models',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'implementations',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'models',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'implementations',
+      ]);
     }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'models',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'models',
+      ]);
+    }
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './CacheProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'cache.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'cache.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'cache.ts'],
         this.createCacheConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'cache.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'cache.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'cache.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'cache.ts'],
         this.createCacheConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'fakes',
-          'FakeCacheProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'fakes',
+        'FakeCacheProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -159,12 +166,21 @@ export class MakeCacheProvider {
           'CacheProvider',
           'fakes',
           'FakeCacheProvider.ts',
-        ),
+        ],
         this.createFakeRedis.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'fakes',
+        'FakeCacheProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -172,36 +188,35 @@ export class MakeCacheProvider {
           'CacheProvider',
           'fakes',
           'FakeCacheProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'fakes',
-          'FakeCacheProvider.ts',
-        ),
+        ],
         this.createFakeRedis.execute(),
       );
     }
-    if (!existsSync(resolve('src', 'config', 'cache.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'cache.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'cache.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'cache.ts'],
         this.createCacheConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'cache.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'cache.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'cache.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'cache.ts'],
         this.createCacheConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'implementations',
+        'RedisCacheProvider.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -209,24 +224,21 @@ export class MakeCacheProvider {
           'CacheProvider',
           'implementations',
           'RedisCacheProvider.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'implementations',
-          'RedisCacheProvider.ts',
-        ),
+        ],
         this.createRedisCache.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'implementations',
+        'RedisCacheProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -234,36 +246,23 @@ export class MakeCacheProvider {
           'CacheProvider',
           'implementations',
           'RedisCacheProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'implementations',
-          'RedisCacheProvider.ts',
-        ),
+        ],
         this.createRedisCache.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'models',
-          'ICacheProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'models',
+        'ICacheProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -271,12 +270,21 @@ export class MakeCacheProvider {
           'CacheProvider',
           'models',
           'ICacheProvider.ts',
-        ),
+        ],
         this.createICache.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'models',
+        'ICacheProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -284,68 +292,53 @@ export class MakeCacheProvider {
           'CacheProvider',
           'models',
           'ICacheProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'models',
-          'ICacheProvider.ts',
-        ),
+        ],
         this.createICache.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
           'providers',
           'CacheProvider',
           'index.ts',
-        ),
+        ],
         this.createCacheIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CacheProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
           'providers',
           'CacheProvider',
           'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CacheProvider',
-          'index.ts',
-        ),
+        ],
         this.createCacheIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- CacheProvider ${this.messages.created}`,
       'yellow',
       true,

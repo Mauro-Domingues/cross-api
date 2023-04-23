@@ -1,19 +1,19 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateContainer } from '@templates/index/container';
-import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
-import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
-import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
-import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
-import { CreateLeadIndex } from '@templates/providers/leadIndex';
-import { CreateILead } from '@templates/providers/models/ILead';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateContainer } from '@templates/index/container.js';
+import { CreateLeadConfig } from '@templates/providers/config/leadConfig.js';
+import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO.js';
+import { CreateFakeLead } from '@templates/providers/fakes/fakeLead.js';
+import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead.js';
+import { CreateLeadIndex } from '@templates/providers/leadIndex.js';
+import { CreateILead } from '@templates/providers/models/ILead.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentLeadProvider {
   private messages: IMessagesDTO;
   private console: Console;
+  private fileManager: FileManager;
   private fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -27,6 +27,7 @@ export class MakeDependentLeadProvider {
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.fatherNames = fatherNames;
     this.createILead = new CreateILead();
@@ -50,231 +51,214 @@ export class MakeDependentLeadProvider {
       throw new Error();
     }
 
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'modules'))) {
-      mkdirSync(resolve('src', 'modules'));
+    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
+      await this.fileManager.createDir(['src', 'modules']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container', 'index.ts'))) {
-      appendFileSync(
-        resolve('src', 'shared', 'container', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+      ])
     ) {
-      mkdirSync(
-        resolve('src', 'modules', this.fatherNames.pluralLowerModuleName),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ),
-      )
-    ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ),
-        '',
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-        ),
-      );
-    }
-    if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-        ),
-      )
-    ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-        ),
-      );
-    }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'index.ts'),
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-    );
-    appendFileSync(
-      resolve(
+      !this.fileManager.checkIfExists([
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'index.ts',
-      ),
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ],
+        '',
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'implementations',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'implementations',
+      ]);
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+      ]);
+    }
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'index.ts'],
+      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
+    );
+    await this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
       `import './LeadProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'lead.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'lead.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'lead.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'lead.ts'],
         this.createLeadConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'lead.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'lead.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'lead.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'lead.ts'],
         this.createLeadConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'ICreateLeadDTO.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -282,12 +266,21 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'dtos',
           'ICreateLeadDTO.ts',
-        ),
+        ],
         this.createILeadDTO.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'ICreateLeadDTO.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -295,36 +288,23 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'dtos',
           'ICreateLeadDTO.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ),
+        ],
         this.createILeadDTO.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+        'FakeLeadProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -332,12 +312,21 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'fakes',
           'FakeLeadProvider.ts',
-        ),
+        ],
         this.createFakeLead.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+        'FakeLeadProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -345,36 +334,23 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'fakes',
           'FakeLeadProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ),
+        ],
         this.createFakeLead.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'implementations',
+        'RDStationProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -382,12 +358,21 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'implementations',
           'RDStationProvider.ts',
-        ),
+        ],
         this.createRDStationLead.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'implementations',
+        'RDStationProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -395,36 +380,23 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'implementations',
           'RDStationProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ),
+        ],
         this.createRDStationLead.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+        'ILeadProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -432,12 +404,21 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'models',
           'ILeadProvider.ts',
-        ),
+        ],
         this.createILead.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+        'ILeadProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -445,68 +426,53 @@ export class MakeDependentLeadProvider {
           'LeadProvider',
           'models',
           'ILeadProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ),
+        ],
         this.createILead.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'LeadProvider',
           'index.ts',
-        ),
+        ],
         this.createLeadIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'LeadProvider',
           'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ),
+        ],
         this.createLeadIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- LeadProvider ${this.messages.created}`,
       'yellow',
       true,

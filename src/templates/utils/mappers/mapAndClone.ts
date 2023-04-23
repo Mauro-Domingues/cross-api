@@ -1,4 +1,4 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class CreateMapAndClone {
   private messages: IMessagesDTO;

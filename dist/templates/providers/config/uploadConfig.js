@@ -1,6 +1,6 @@
 export class CreateUploadConfig {
-  execute() {
-    return `import { randomBytes } from 'crypto';
+    execute() {
+        return `import { randomBytes } from 'crypto';
 import { StorageEngine, diskStorage } from 'multer';
 import { resolve } from 'path';
 
@@ -39,5 +39,5 @@ export const uploadConfig: IUploadConfigDTO = {
   },
 };
 `;
-  }
+    }
 }

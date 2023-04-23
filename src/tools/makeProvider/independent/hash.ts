@@ -1,16 +1,16 @@
-import { appendFileSync, existsSync, mkdirSync, truncateSync } from 'fs';
-import { CreateHashConfig } from '@templates/providers/config/hashConfig';
-import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
-import { CreateHashIndex } from '@templates/providers/hashIndex';
-import { CreateHash } from '@templates/providers/implementations/BCrypt';
-import { CreateIHash } from '@templates/providers/models/IHash';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { resolve } from 'path';
-import { Console } from '@tools/console';
+import { CreateHashConfig } from '@templates/providers/config/hashConfig.js';
+import { CreateFakeHash } from '@templates/providers/fakes/fakeHash.js';
+import { CreateHashIndex } from '@templates/providers/hashIndex.js';
+import { CreateHash } from '@templates/providers/implementations/BCrypt.js';
+import { CreateIHash } from '@templates/providers/models/IHash.js';
+import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console.js';
+import { FileManager } from '@tools/fileManager.js';
 
 export class MakeHashProvider {
   private messages: IMessagesDTO;
   private console: Console;
+  private fileManager: FileManager;
   private createIHash: CreateIHash;
   private createHash: CreateHash;
   private createFakeHash: CreateFakeHash;
@@ -19,6 +19,7 @@ export class MakeHashProvider {
 
   constructor() {
     this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
     this.console = new Console();
     this.createIHash = new CreateIHash();
     this.createHash = new CreateHash();
@@ -28,130 +29,136 @@ export class MakeHashProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!existsSync(resolve('src'))) {
-      mkdirSync(resolve('src'));
+    if (!this.fileManager.checkIfExists(['src'])) {
+      await this.fileManager.createDir(['src']);
     }
-    if (!existsSync(resolve('src', 'config'))) {
-      mkdirSync(resolve('src', 'config'));
+    if (!this.fileManager.checkIfExists(['src', 'config'])) {
+      await this.fileManager.createDir(['src', 'config']);
     }
-    if (!existsSync(resolve('src', 'shared'))) {
-      mkdirSync(resolve('src', 'shared'));
+    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
+      await this.fileManager.createDir(['src', 'shared']);
     }
-    if (!existsSync(resolve('src', 'shared', 'container'))) {
-      mkdirSync(resolve('src', 'shared', 'container'));
-    }
-    if (!existsSync(resolve('src', 'shared', 'container', 'providers'))) {
-      mkdirSync(resolve('src', 'shared', 'container', 'providers'));
+    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
+      await this.fileManager.createDir(['src', 'shared', 'container']);
     }
     if (
-      !existsSync(
-        resolve('src', 'shared', 'container', 'providers', 'HashProvider'),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ])
     ) {
-      mkdirSync(
-        resolve('src', 'shared', 'container', 'providers', 'HashProvider'),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'fakes',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'fakes',
+      ]);
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'implementations',
+      ])
     ) {
-      mkdirSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-        ),
-      );
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'implementations',
+      ]);
     }
-    appendFileSync(
-      resolve('src', 'shared', 'container', 'providers', 'index.ts'),
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'models',
+      ])
+    ) {
+      await this.fileManager.createDir([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'models',
+      ]);
+    }
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './HashProvider';\n`,
     );
-    if (!existsSync(resolve('src', 'config', 'hash.ts'))) {
-      appendFileSync(
-        resolve('src', 'config', 'hash.ts'),
+    if (!this.fileManager.checkIfExists(['src', 'config', 'hash.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'config', 'hash.ts'],
         this.createHashConfig.execute(),
       );
     } else {
-      truncateSync(resolve('src', 'config', 'hash.ts'));
-      appendFileSync(
-        resolve('src', 'config', 'hash.ts'),
+      await this.fileManager.truncateFile(['src', 'config', 'hash.ts']);
+      await this.fileManager.createFile(
+        ['src', 'config', 'hash.ts'],
         this.createHashConfig.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'fakes',
+        'FakeHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -159,12 +166,21 @@ export class MakeHashProvider {
           'HashProvider',
           'fakes',
           'FakeHashProvider.ts',
-        ),
+        ],
         this.createFakeHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'fakes',
+        'FakeHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -172,36 +188,23 @@ export class MakeHashProvider {
           'HashProvider',
           'fakes',
           'FakeHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ),
+        ],
         this.createFakeHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'implementations',
+        'BCryptHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -209,12 +212,21 @@ export class MakeHashProvider {
           'HashProvider',
           'implementations',
           'BCryptHashProvider.ts',
-        ),
+        ],
         this.createHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'implementations',
+        'BCryptHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -222,36 +234,23 @@ export class MakeHashProvider {
           'HashProvider',
           'implementations',
           'BCryptHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ),
+        ],
         this.createHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'models',
+        'IHashProvider.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -259,12 +258,21 @@ export class MakeHashProvider {
           'HashProvider',
           'models',
           'IHashProvider.ts',
-        ),
+        ],
         this.createIHash.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'models',
+        'IHashProvider.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
           'src',
           'shared',
           'container',
@@ -272,68 +280,39 @@ export class MakeHashProvider {
           'HashProvider',
           'models',
           'IHashProvider.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ),
+        ],
         this.createIHash.execute(),
       );
     }
     if (
-      !existsSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
-      )
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'index.ts',
+      ])
     ) {
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
         this.createHashIndex.execute(),
       );
     } else {
-      truncateSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
-      );
-      appendFileSync(
-        resolve(
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ),
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'index.ts',
+      ]);
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
         this.createHashIndex.execute(),
       );
     }
-    this.console.one([
+    return this.console.one([
       `- HashProvider ${this.messages.created}`,
       'yellow',
       true,

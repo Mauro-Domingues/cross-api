@@ -1,6 +1,6 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { MakeDependentModule } from './dependent/index';
-import { MakeModule } from './independent/index';
+import { IModuleNamesDTO } from '@tools/names.js';
+import { MakeDependentModule } from './dependent/index.js';
+import { MakeModule } from './independent/index.js';
 
 export class CreateModule {
   private names: IModuleNamesDTO | undefined;
