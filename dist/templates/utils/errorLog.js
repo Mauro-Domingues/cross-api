@@ -1,6 +1,9 @@
 export class CreateErrorLog {
     execute() {
-        return `export function returnErrorLog(error: Error): void {
+        return `import { appendFileSync } from 'fs';
+import { resolve } from 'path';
+
+export function returnErrorLog(error: Error): void {
   const currentTime = new Date();
   const offset = currentTime.getTimezoneOffset();
   const offsetHours = -offset / 60;
@@ -10,6 +13,19 @@ export class CreateErrorLog {
     return ' ';
   };
   const timeZoneString = \`UTC\${sign(offsetHours)}\${Math.abs(offsetHours)}\`;
+
+  appendFileSync(
+    resolve(__dirname, '..', 'assets', 'errors.log'),
+    \`{
+  "Time of occurrence": "\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}",
+  "\${error.name || 'AppError'}": "\${error.message}",
+  "Path":
+\${
+  error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ||
+  '    "not set."'
+},
+}\\${'n'}\`,
+  );
 
   console.log(
     '{',
