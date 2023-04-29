@@ -56,7 +56,7 @@ export class Delete${this.names.upperModuleName}Service {
       throw new AppError('${this.names.upperModuleName} not found', 404);
     }
 
-    await this.${this.names.pluralLowerModuleName}Repository.delete(${this.names.lowerModuleName});
+    await this.${this.names.pluralLowerModuleName}Repository.delete({ id: ${this.names.lowerModuleName}.id });
 
     await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
 

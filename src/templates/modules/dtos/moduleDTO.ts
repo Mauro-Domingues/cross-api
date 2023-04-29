@@ -29,7 +29,7 @@ export class CreateModuleDTO {
 
 export interface I${this.names.upperModuleName}DTO extends Partial<${this.names.upperModuleName}> {
   name: string;
-  description: number;
+  description: string;
 }
 `;
   }

@@ -49,7 +49,7 @@ export class ConfigJson {
             'swagger-ui-express',
             'ts-jest',
             'tsyringe',
-            'typeorm@^0.3.11',
+            'typeorm@^0.3.15',
             'uuid',
         ];
         this.devDependencies = [

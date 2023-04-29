@@ -103,7 +103,8 @@ export class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       id: uuid(),
       created_at: new Date(),
       updated_at: new Date(),
-    } as Entity;
+      deleted_at: null,
+    };
 
     this.fakeOrmRepository.push(base);
 
