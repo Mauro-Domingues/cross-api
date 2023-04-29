@@ -42,7 +42,7 @@ export class Create${this.names.upperModuleName}Service {
     private cacheProvider: ICacheProviderDTO,
   ) {}
 
-  async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+  public async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(${this.names.lowerModuleName}Data);
 
     await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');

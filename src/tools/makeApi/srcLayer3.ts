@@ -19,6 +19,7 @@ import { CreateGuard } from '@templates/index/guard.js';
 import { CreateErrorLog } from '@templates/utils/errorLog.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
+import { CreateKeys } from '@templates/types/keys.js';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
@@ -33,6 +34,7 @@ export class MakeThirdLayer {
   private createRateLimiter: CreateRateLimiter;
   private createDecodeJwt: CreateDecodeJwt;
   private createGuard: CreateGuard;
+  private createKeys: CreateKeys;
   private createRoutes: CreateRoutes;
   private createIResponseDTO: CreateIResponseDTO;
   private createIObjectDTO: CreateIObjectDTO;
@@ -49,6 +51,7 @@ export class MakeThirdLayer {
     this.console = new Console();
     this.createEnvNamespace = new CreateEnvNamespace();
     this.createDecodeJwt = new CreateDecodeJwt();
+    this.createKeys = new CreateKeys();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createDomainsManager = new CreateDomainsManager();
@@ -101,6 +104,25 @@ export class MakeThirdLayer {
     }
     this.console.one([
       `- env.d.ts ${this.messages.created}`,
+      'yellow',
+      true,
+      false,
+      false,
+    ]);
+    if (!this.fileManager.checkIfExists(['src', '@types', 'keys.d.ts'])) {
+      await this.fileManager.createFile(
+        ['src', '@types', 'keys.d.ts'],
+        this.createKeys.execute(),
+      );
+    } else {
+      await this.fileManager.truncateFile(['src', '@types', 'keys.d.ts']);
+      await this.fileManager.createFile(
+        ['src', '@types', 'keys.d.ts'],
+        this.createKeys.execute(),
+      );
+    }
+    this.console.one([
+      `- keys.d.ts ${this.messages.created}`,
       'yellow',
       true,
       false,

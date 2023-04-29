@@ -29,8 +29,8 @@ import { AppError } from '@shared/errors/AppError';
 import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
-import { IObjectDTO } from '@dtos/IObjectDTO';
 import { IResponseDTO } from '@dtos/IResponseDTO';
+import { FindOptionsWhere } from 'typeorm';
 
 @injectable()
 export class Show${this.names.upperModuleName}Service {
@@ -39,7 +39,9 @@ export class Show${this.names.upperModuleName}Service {
     private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
   ) {}
 
-  async execute(${this.names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+  public async execute(
+    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
+  ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(${this.names.lowerModuleName}Param, []);
 
     if (!${this.names.lowerModuleName}) {

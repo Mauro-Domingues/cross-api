@@ -31,34 +31,10 @@ yarn cross make:module [name]
 <hr>
 <br>
 <h2>Understanding the project and code examples</h2>
-
-<h3>IObjectDTO</h3><h4> First of all you need to understand what IObjectDTO is, because you will see a lot within the code. IObjectDTO is a generic interface that accepts any object with a number between 1 and infinite key and value pairs</h4>
-
-```typescript
-interface IObjectDTO {
-  [key: string]: unknown;
-};
-
-const simpleKey: IObjectDTO = {
-  name: "simple key",
-}; // This matches with IObjectDTO
-
-const multiKey: IObjectDTO = {
-  name: "multiple keys",
-  description: "this also matches with IObjectDTO",
-};
-
-const multiKeyAndNumber: IObjectDTO = {
-  name: "multiple keys and numbers",
-  description: "this also matches with IObjectDTO",
-  index: 123,
-};
-
-```
-<h4>Understanding IObjectDTO interface there are 6 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
+<h4>There are 8 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
 <hr>
 <br>
-<h3>findBy</h3><h4> Receives any parameter as an argument as long as it is an IObjectDTO or array of IObjectDTO</h4>
+<h3>findBy</h3><h4> Receives any parameter as an argument as long as it is a { key: value } or array of { key: value }</h4>
 
 <h4>For simple queries: </h4>
 
@@ -106,7 +82,46 @@ const example = await this.examplesRepository.findBy(
 ```
 <hr>
 <br>
-<h3>findAll</h3><h4> Exactly the same functionality as findBy, but also receiving paging and limiting. The return is an array of the entity and the amount of items returned, filtering options follow the same rule as findBy receiving an IObjectDTO or array of IObjectDTO. Full Example:</h4>
+<h3>findIn</h3><h4> Exactly the same functionality as findBy, but search for entities in an interval of values. The return is an array of the entity. Full Example:</h4>
+
+```typescript
+const propertyName = 'id';
+const baseData = [3, 4, 6, 7, 8, 9];
+
+const exampleArray = await this.examplesRepository.findIn(
+  propertyName,
+  baseData,
+  ["relation-1", "relation-2", "relation-2"]
+);
+
+// Find all where id in = "3, 4, 6, 7, 8, 9"
+
+output: [exampleArray]
+```
+<hr>
+<br>
+<h3>findLike</h3><h4> Exactly the same functionality as findBy, but search for entities using Like clause. The return is an array of the entity. Full Example:</h4>
+
+```typescript
+const baseData = { name: '%example%' };
+const select = { name: true, id: true };
+const order = { name: 'ASC' } // options = "ASC" | "DESC" | "asc" | "desc"
+const limit = 10
+
+const exampleArray = await this.examplesRepository.findLike(
+  baseData,
+  select,
+  order,
+  limit,
+);
+
+// Find all where name has 'example'
+
+output: [exampleArray]
+```
+<hr>
+<br>
+<h3>findAll</h3><h4> Exactly the same functionality as findBy, but also receiving paging and limiting. The return is an array of the entity and the amount of items returned, filtering options follow the same rule as findBy receiving a { key: value } or array of { key: value }. Full Example:</h4>
 
 ```typescript
 const page = 3;
@@ -116,12 +131,12 @@ const exampleArray = await this.examplesRepository.findAll(
   page,
   limit,
   { name: "example" },
-  ["relation-1", "relation-2"]
+  ["relation-1", "relation-2", "relation-2.nested-relation"]
 );
 
 /** Find all where name = "example"
  * Filter where index is between 1000 and 1500
- * Load their relations
+ * Load their relations (use . to load nested relations)
  * Count the amount of items
  */
 
@@ -154,7 +169,7 @@ await this.examplesRepository.update(example);
 ```
 <hr>
 <br>
-<h3>delete</h3><h4> Classic delete, receives as parameter the type of the entity to delete it or an IObjectDTO to delete all related data</h4>
+<h3>delete</h3><h4> Classic delete, receives as parameter the type of the entity to delete it or a { key: value } to delete all related data</h4>
 
 ```typescript
 const example = await this.examplesRepository.findBy(
@@ -177,7 +192,7 @@ await this.examplesRepository.delete({ name: "example" });
 ```
 <hr>
 <br>
-<h3>softDelete</h3><h4> Security delete, receives as parameter the type of the entity to invalidate it or an IObjectDTO type and invalidates all related data (does not delete them)</h4>
+<h3>softDelete</h3><h4> Security delete, receives as parameter the type of the entity to invalidate it or a { key: value } type and invalidates all related data (does not delete them)</h4>
 
 ```typescript
 const example = await this.examplesRepository.findBy(
@@ -209,7 +224,7 @@ await this.examplesRepository.softDelete({ name: "example" });
 ```typescript
 // no mapper
 
-const param: IObjectDTO = {
+const param: FindOptionsWhere<Example> = {
   key: "example",
 };
 
@@ -227,7 +242,7 @@ const example = await this.examplesRepository.findBy([
 
 import { mapAndCloneAttribute } from "@utils/mappers/mapAndCloneAttribute";
 
-const param: IObjectDTO = {
+const param: FindOptionsWhere<Example> = {
   key: "example",
 };
 

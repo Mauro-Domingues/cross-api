@@ -1,7 +1,6 @@
 export class CreateGuard {
   public execute(): string {
-    return `/* eslint-disable no-useless-escape */
-import { Router } from 'express';
+    return `import { Router } from 'express';
 import { ensureAuthenticated } from '@middlewares/EnsureAuthenticated';
 import { decodeJwt } from '@middlewares/DecodeJwt';
 
@@ -26,7 +25,7 @@ interface IExceptionDTO {
      * Matches: '/example/anything' and '/example/literally-anything'
      * @example
      * '.+' to match all after something except the prefix.
-     * Example: /example\\/.+
+     * Example: /example\\/.+/
      * Matches: '/example/anything' but not '/example/' by itself
      * @example
      * '([\\/?].*)' matches all after '/' or '?' in a route.

@@ -33,8 +33,8 @@ import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.p
 import { mapAndUpdateAttribute } from '@utils/mappers/mapAndUpdateAttribute';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
-import { IObjectDTO } from '@dtos/IObjectDTO';
 import { IResponseDTO } from '@dtos/IResponseDTO';
+import { FindOptionsWhere } from 'typeorm';
 
 @injectable()
 export class Update${this.names.upperModuleName}Service {
@@ -46,8 +46,8 @@ export class Update${this.names.upperModuleName}Service {
     private cacheProvider: ICacheProviderDTO,
   ) {}
 
-  async execute(
-    ${this.names.lowerModuleName}Param: IObjectDTO,
+  public async execute(
+    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
     ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(${this.names.lowerModuleName}Param);

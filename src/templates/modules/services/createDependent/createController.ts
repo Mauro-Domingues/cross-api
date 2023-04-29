@@ -41,7 +41,7 @@ import { container } from 'tsyringe';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
 
 export class Create${this.names.upperModuleName}Controller {
-  async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response) {
     const ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO = request.body;
 
     const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);

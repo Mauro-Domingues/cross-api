@@ -8,15 +8,23 @@ export class DeleteDependentController {
   private names:
     | Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>
     | undefined;
+  private fatherNames:
+    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+    | undefined;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    names: IModuleNamesDTO | undefined,
+    fatherNames: IModuleNamesDTO | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.names = names;
+    this.names = names;
+    this.fatherNames = fatherNames;
   }
 
   public execute(): string {
-    if (!this.names) {
+    if (!this.names || !this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
         'red',
@@ -27,17 +35,18 @@ export class DeleteDependentController {
       throw new Error();
     }
 
-    return `import { IObjectDTO } from '@dtos/IObjectDTO';
+    return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { FindOptionsWhere } from 'typeorm';
 
 import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
 export class Delete${this.names.upperModuleName}Controller {
-  async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response) {
     const delete${this.names.upperModuleName} = container.resolve(Delete${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName}Param: IObjectDTO = request.params;
+    const ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}> = request.params;
 
     const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param);
 

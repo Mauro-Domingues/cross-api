@@ -26,8 +26,9 @@ import { AppError } from '@shared/errors/AppError';
 
 import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { IObjectDTO } from '@dtos/IObjectDTO';
 import { IResponseDTO } from '@dtos/IResponseDTO';
+import { FindOptionsWhere } from 'typeorm';
+import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 
 @injectable()
 export class Delete${this.names.upperModuleName}Service {
@@ -39,7 +40,9 @@ export class Delete${this.names.upperModuleName}Service {
     private cacheProvider: ICacheProviderDTO,
   ) {}
 
-  async execute(${this.names.lowerModuleName}Param: IObjectDTO): Promise<IResponseDTO<null>> {
+  public async execute(
+    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
+  ): Promise<IResponseDTO<null>> {
     const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(${this.names.lowerModuleName}Param);
 
     if (!${this.names.lowerModuleName}) {

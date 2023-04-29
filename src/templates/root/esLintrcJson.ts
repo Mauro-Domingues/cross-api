@@ -23,7 +23,9 @@ export class CreateEsLintrcJson {
       "prettier"
   ],
   "rules": {
+    "@typescript-eslint/no-empty-interface": "off",
     "camelcase": "off",
+    "no-param-reassign": "off",
     "prettier/prettier": "error",
     "import/no-unresolved": "error",
     "@typescript-eslint/naming-convention": [
@@ -37,6 +39,7 @@ export class CreateEsLintrcJson {
         }
       }
     ],
+    "no-useless-escape": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
     "no-shadow": "off",

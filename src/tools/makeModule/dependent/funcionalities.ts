@@ -51,7 +51,10 @@ export class MakeDependentFunctionalities {
       this.names,
       this.fatherNames,
     );
-    this.showDependentController = new ShowDependentController(this.names);
+    this.showDependentController = new ShowDependentController(
+      this.names,
+      this.fatherNames,
+    );
     this.listDependentService = new ListDependentService(
       this.names,
       this.fatherNames,
@@ -61,7 +64,10 @@ export class MakeDependentFunctionalities {
       this.names,
       this.fatherNames,
     );
-    this.deleteDependentController = new DeleteDependentController(this.names);
+    this.deleteDependentController = new DeleteDependentController(
+      this.names,
+      this.fatherNames,
+    );
     this.createDependentService = new CreateDependentService(
       this.names,
       this.fatherNames,

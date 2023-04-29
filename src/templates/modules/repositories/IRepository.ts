@@ -6,7 +6,10 @@ export class CreateIRepository {
   private messages: IMessagesDTO;
   private console: Console;
   private names:
-    | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
+    | Pick<
+        IModuleNamesDTO,
+        'pluralLowerModuleName' | 'pluralUpperModuleName' | 'upperModuleName'
+      >
     | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
@@ -28,25 +31,10 @@ export class CreateIRepository {
     }
 
     return `import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import { DeleteResult } from 'typeorm';
-import { IObjectDTO } from '@dtos/IObjectDTO';
+import { IBaseRepositoryDTO } from '@shared/modules/repositories/IBaseRepository';
 
-export interface I${this.names.pluralUpperModuleName}RepositoryDTO {
-  findAll(
-    page: number,
-    limit: number,
-    conditions?: IObjectDTO | IObjectDTO[],
-    relations?: string[],
-  ): Promise<{ ${this.names.pluralLowerModuleName}: ${this.names.upperModuleName}[]; amount: number }>;
-  findBy(
-    ${this.names.lowerModuleName}Data: IObjectDTO | IObjectDTO[],
-    relations?: string[],
-  ): Promise<${this.names.upperModuleName} | null>;
-  create(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<${this.names.upperModuleName}>;
-  update(${this.names.lowerModuleName}Data: ${this.names.upperModuleName}): Promise<${this.names.upperModuleName}>;
-  delete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
-  softDelete(${this.names.lowerModuleName}Data: ${this.names.upperModuleName} | IObjectDTO): Promise<DeleteResult | void>;
+export interface I${this.names.pluralUpperModuleName}RepositoryDTO extends IBaseRepositoryDTO<${this.names.upperModuleName}> {
+  // non-generic methods here
 }
 `;
   }

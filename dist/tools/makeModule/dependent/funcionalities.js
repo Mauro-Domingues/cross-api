@@ -36,11 +36,11 @@ export class MakeDependentFunctionalities {
         this.updateDependentService = new UpdateDependentService(this.names, this.fatherNames);
         this.updateDependentController = new UpdateDependentController(this.names, this.fatherNames);
         this.showDependentService = new ShowDependentService(this.names, this.fatherNames);
-        this.showDependentController = new ShowDependentController(this.names);
+        this.showDependentController = new ShowDependentController(this.names, this.fatherNames);
         this.listDependentService = new ListDependentService(this.names, this.fatherNames);
         this.listDependentController = new ListDependentController(this.names);
         this.deleteDependentService = new DeleteDependentService(this.names, this.fatherNames);
-        this.deleteDependentController = new DeleteDependentController(this.names);
+        this.deleteDependentController = new DeleteDependentController(this.names, this.fatherNames);
         this.createDependentService = new CreateDependentService(this.names, this.fatherNames);
         this.createDependentController = new CreateDependentController(this.names, this.fatherNames);
     }

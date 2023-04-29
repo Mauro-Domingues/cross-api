@@ -4,13 +4,15 @@ export class ShowDependentController {
     messages;
     console;
     names;
-    constructor(names) {
+    fatherNames;
+    constructor(names, fatherNames) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
+        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names) {
+        if (!this.names || !this.fatherNames) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -20,17 +22,18 @@ export class ShowDependentController {
             ]);
             throw new Error();
         }
-        return `import { IObjectDTO } from '@dtos/IObjectDTO';
+        return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { FindOptionsWhere } from 'typeorm';
 
 import { Show${this.names.upperModuleName}Service } from './Show${this.names.upperModuleName}Service';
 
 export class Show${this.names.upperModuleName}Controller {
-  async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response) {
     const show${this.names.upperModuleName} = container.resolve(Show${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName}Param: IObjectDTO = request.params;
+    const ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}> = request.params;
 
     const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param);
 

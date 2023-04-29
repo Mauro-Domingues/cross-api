@@ -49,14 +49,14 @@ export class List${this.names.upperModuleName}Service {
     private cacheProvider: ICacheProviderDTO,
   ) {}
 
-  async execute(page: number, limit: number): Promise<IListDTO<${this.names.upperModuleName}>> {
+  public async execute(page: number, limit: number): Promise<IListDTO<${this.names.upperModuleName}>> {
     const cacheKey = \`${this.names.pluralLowerModuleName}:\${page}:\${limit}\`;
 
     let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
 
     if (!cache) {
-      const { ${this.names.pluralLowerModuleName}, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(page, limit);
-      cache = { data: instanceToInstance(${this.names.pluralLowerModuleName}), total: amount };
+      const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(page, limit);
+      cache = { data: instanceToInstance(list), total: amount };
       await this.cacheProvider.save(cacheKey, cache);
     }
 

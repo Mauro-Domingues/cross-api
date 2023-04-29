@@ -4,11 +4,11 @@ import { MakeFirstLayer } from './srcLayer1.js';
 import { MakeSecondLayer } from './srcLayer2.js';
 import { MakeThirdLayer } from './srcLayer3.js';
 import { MakeFourthLayer } from './srcLayer4.js';
-import { MakeTemporary } from './temporary.js';
+import { MakeLastLayer } from './srcLastLayer.js';
 
 export class CreateApi {
   private createProvider: CreateProvider;
-  private makeTemporary: MakeTemporary;
+  private makeLastLayer: MakeLastLayer;
   private makeFourthLayer: MakeFourthLayer;
   private makeThirdLayer: MakeThirdLayer;
   private makeSecondLayer: MakeSecondLayer;
@@ -17,7 +17,7 @@ export class CreateApi {
 
   constructor() {
     this.createProvider = new CreateProvider('cache', undefined);
-    this.makeTemporary = new MakeTemporary();
+    this.makeLastLayer = new MakeLastLayer();
     this.makeFourthLayer = new MakeFourthLayer();
     this.makeThirdLayer = new MakeThirdLayer();
     this.makeSecondLayer = new MakeSecondLayer();
@@ -31,7 +31,7 @@ export class CreateApi {
     await this.makeSecondLayer.execute();
     await this.makeThirdLayer.execute();
     await this.makeFourthLayer.execute();
-    await this.makeTemporary.execute();
+    await this.makeLastLayer.execute();
     return this.createProvider.execute();
   }
 }

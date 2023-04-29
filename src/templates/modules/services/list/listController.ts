@@ -33,7 +33,7 @@ import { container } from 'tsyringe';
 import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
 export class List${this.names.upperModuleName}Controller {
-  async handle(request: Request, response: Response) {
+  public async handle(request: Request, response: Response) {
     const list${this.names.upperModuleName} = container.resolve(List${this.names.upperModuleName}Service);
 
     const { page = 1, limit = 20 } = request.query;
