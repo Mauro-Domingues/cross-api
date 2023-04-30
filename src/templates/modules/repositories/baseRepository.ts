@@ -18,7 +18,8 @@ import {
 import { IBaseRepositoryDTO } from './IBaseRepository';
 
 interface IFindOptionsRelationsDTO<T> {
-  [key: string]: boolean | IFindOptionsRelationsDTO<T>;
+  [key: string]: boolean | IFindOptionsRelationsDTO<T> | undefined;
+  persist?: boolean;
 }
 
 export class BaseRepository<Entity extends ObjectLiteral>
@@ -31,25 +32,46 @@ export class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public arrayToObject(
-    pathToRelations?: keysOfEntity<Entity>,
+    pathToRelations?: keysOfEntity<Entity> | string[],
   ): FindOptionsRelations<Entity> | string[] {
     if (!pathToRelations) return [];
     const result: IFindOptionsRelationsDTO<Entity> = {};
     pathToRelations.forEach(path => {
       const parts = path.split('.');
       let current: IFindOptionsRelationsDTO<Entity> = result;
-      for (let i = 0; i < parts.length; i + 1) {
+      for (let i = 0; i < parts.length; i += 1) {
         const part = parts[i];
         if (i === parts.length - 1) {
-          current[part] = true;
+          if (typeof current[part] === 'object') {
+            (current[part] as IFindOptionsRelationsDTO<Entity>).persist = true;
+          } else {
+            current[part] = true;
+          }
         } else {
-          current[part] = current[part] || {};
+          if (current[part] === true) {
+            current[part] = { persist: true };
+          } else {
+            current[part] = current[part] || {};
+          }
           current = current[part] as IFindOptionsRelationsDTO<Entity>;
         }
       }
     });
 
+    this.removeValueProperty(result);
+
     return result as FindOptionsRelations<Entity>;
+  }
+
+  private removeValueProperty(options: IFindOptionsRelationsDTO<Entity>) {
+    if (options.persist) {
+      delete options.persist;
+    }
+    Object.values(options).forEach(value => {
+      if (typeof value === 'object' && value !== null) {
+        this.removeValueProperty(value as IFindOptionsRelationsDTO<Entity>);
+      }
+    });
   }
 
   public async findBy(
