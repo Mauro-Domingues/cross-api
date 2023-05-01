@@ -1,6 +1,6 @@
 ﻿﻿<h1>cross-api</h1>
 
-<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-api-using-cross-api">social-media-api-using-cross-api</a>
+<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-api-using-cross-api</a>
 
 <hr>
 

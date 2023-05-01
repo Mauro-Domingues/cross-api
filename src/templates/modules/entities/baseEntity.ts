@@ -7,7 +7,7 @@ export class CreateBaseEntity {
   DeleteDateColumn,
 } from 'typeorm';
 
-export class Base {
+export abstract class Base {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

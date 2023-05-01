@@ -10,7 +10,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import { IBaseRepositoryDTO } from '../IBaseRepository';
 
-export class FakeBaseRepository<Entity extends ObjectLiteral & Base>
+export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepositoryDTO<Entity>
 {
   public fakeOrmRepository: Entity[] = [];

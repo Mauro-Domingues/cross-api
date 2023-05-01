@@ -22,7 +22,7 @@ interface IFindOptionsRelationsDTO<T> {
   persist?: boolean;
 }
 
-export class BaseRepository<Entity extends ObjectLiteral>
+export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepositoryDTO<Entity>
 {
   public ormRepository: Repository<Entity>;
