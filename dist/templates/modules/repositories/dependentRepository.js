@@ -23,7 +23,7 @@ export class CreateDependentRepository {
             throw new Error();
         }
         return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}RepositoryDTO';
+import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { BaseRepository } from '@shared/modules/repositories/BaseRepository';
 
 export class ${this.names.pluralUpperModuleName}Repository
