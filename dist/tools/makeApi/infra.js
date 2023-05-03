@@ -47,10 +47,21 @@ export class MakeInfra {
         if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
             await this.fileManager.createDir(['src', 'shared', 'container']);
         }
-        if (!this.fileManager.checkIfExists(['src', 'shared', 'modules'])) {
-            await this.fileManager.createDir(['src', 'shared', 'modules']);
+        if (!this.fileManager.checkIfExists(['src', 'shared', 'container', 'modules'])) {
+            await this.fileManager.createDir([
+                'src',
+                'shared',
+                'container',
+                'modules',
+            ]);
         }
-        if (!this.fileManager.checkIfExists(['src', 'shared', 'modules', 'entities'])) {
+        if (!this.fileManager.checkIfExists([
+            'src',
+            'shared',
+            'container',
+            'modules',
+            'entities',
+        ])) {
             await this.fileManager.createDir([
                 'src',
                 'shared',
