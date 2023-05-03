@@ -23,7 +23,7 @@ export class CreateIDependentRepository {
             throw new Error();
         }
         return `import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { IBaseRepositoryDTO } from '@shared/modules/repositories/IBaseRepository';
+import { IBaseRepositoryDTO } from '@shared/container/modules/repositories/IBaseRepository';
 
 export interface I${this.names.pluralUpperModuleName}RepositoryDTO extends IBaseRepositoryDTO<${this.names.upperModuleName}> {
   // non-generic methods here

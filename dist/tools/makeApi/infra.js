@@ -54,6 +54,7 @@ export class MakeInfra {
             await this.fileManager.createDir([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'entities',
             ]);
@@ -61,12 +62,14 @@ export class MakeInfra {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'repositories',
         ])) {
             await this.fileManager.createDir([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
             ]);
@@ -74,6 +77,7 @@ export class MakeInfra {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'repositories',
             'fakes',
@@ -81,6 +85,7 @@ export class MakeInfra {
             await this.fileManager.createDir([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'fakes',

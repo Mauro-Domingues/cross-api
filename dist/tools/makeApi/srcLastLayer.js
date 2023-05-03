@@ -60,21 +60,23 @@ export class MakeLastLayer {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'entities',
             'Base.ts',
         ])) {
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'entities', 'Base.ts'], this.createBaseEntity.execute());
+            await this.fileManager.createFile(['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'], this.createBaseEntity.execute());
         }
         else {
             await this.fileManager.truncateFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'entities',
                 'Base.ts',
             ]);
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'entities', 'Base.ts'], this.createBaseEntity.execute());
+            await this.fileManager.createFile(['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'], this.createBaseEntity.execute());
         }
         this.console.one([
             `- baseEntity.ts ${this.messages.created}`,
@@ -86,21 +88,37 @@ export class MakeLastLayer {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'repositories',
             'BaseRepository.ts',
         ])) {
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'repositories', 'BaseRepository.ts'], this.createBaseRepository.execute());
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'modules',
+                'repositories',
+                'BaseRepository.ts',
+            ], this.createBaseRepository.execute());
         }
         else {
             await this.fileManager.truncateFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'BaseRepository.ts',
             ]);
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'repositories', 'BaseRepository.ts'], this.createBaseRepository.execute());
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'modules',
+                'repositories',
+                'BaseRepository.ts',
+            ], this.createBaseRepository.execute());
         }
         this.console.one([
             `- baseRepository.ts ${this.messages.created}`,
@@ -112,21 +130,37 @@ export class MakeLastLayer {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'repositories',
             'IBaseRepository.ts',
         ])) {
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'repositories', 'IBaseRepository.ts'], this.createIBaseRepository.execute());
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'modules',
+                'repositories',
+                'IBaseRepository.ts',
+            ], this.createIBaseRepository.execute());
         }
         else {
             await this.fileManager.truncateFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'IBaseRepository.ts',
             ]);
-            await this.fileManager.createFile(['src', 'shared', 'modules', 'repositories', 'IBaseRepository.ts'], this.createIBaseRepository.execute());
+            await this.fileManager.createFile([
+                'src',
+                'shared',
+                'container',
+                'modules',
+                'repositories',
+                'IBaseRepository.ts',
+            ], this.createIBaseRepository.execute());
         }
         this.console.one([
             `- IBaseRepository.ts ${this.messages.created}`,
@@ -138,6 +172,7 @@ export class MakeLastLayer {
         if (!this.fileManager.checkIfExists([
             'src',
             'shared',
+            'container',
             'modules',
             'repositories',
             'fakes',
@@ -146,6 +181,7 @@ export class MakeLastLayer {
             await this.fileManager.createFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'fakes',
@@ -156,6 +192,7 @@ export class MakeLastLayer {
             await this.fileManager.truncateFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'fakes',
@@ -164,6 +201,7 @@ export class MakeLastLayer {
             await this.fileManager.createFile([
                 'src',
                 'shared',
+                'container',
                 'modules',
                 'repositories',
                 'fakes',

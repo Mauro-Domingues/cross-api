@@ -1,6 +1,6 @@
 export class CreateBaseFakeRepository {
     execute() {
-        return `import { Base } from '@shared/modules/entities/Base';
+        return `import { Base } from '@shared/container/modules/entities/Base';
 import {
   DeepPartial,
   DeleteResult,

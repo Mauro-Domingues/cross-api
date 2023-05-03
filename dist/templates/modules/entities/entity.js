@@ -21,7 +21,7 @@ export class CreateEntity {
             throw new Error();
         }
         return `import { Entity, Column } from 'typeorm';
-import { Base } from '@shared/modules/entities/Base';
+import { Base } from '@shared/container/modules/entities/Base';
 
 @Entity('${this.names.dbModuleName}')
 export class ${this.names.upperModuleName} extends Base {
