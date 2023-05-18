@@ -62,7 +62,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .editorconfig ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -75,7 +75,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .env ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -94,7 +94,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .env.template ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -113,7 +113,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .eslintignore ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -132,7 +132,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .eslintrc.json ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -151,7 +151,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- .gitignore ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -170,7 +170,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- babel.config.js ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -189,7 +189,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- docker-compose.yml ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -208,7 +208,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- jest.config.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -227,7 +227,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- nodemon.json ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -246,7 +246,7 @@ export class MakeFirstLayer {
     this.console.one([
       `- prettier.config.js ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -265,7 +265,7 @@ export class MakeFirstLayer {
     return this.console.one([
       `- tsconfig.json ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);

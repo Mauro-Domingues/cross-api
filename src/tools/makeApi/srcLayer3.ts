@@ -89,7 +89,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- express.d.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -108,7 +108,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- env.d.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -127,7 +127,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- keys.d.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -146,7 +146,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- domains.txt ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -165,7 +165,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IExceptionDTO.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -184,7 +184,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- ICacheDTO.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -203,7 +203,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IListDTO.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -222,7 +222,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IObjectDTO.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -241,7 +241,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IResponseDTO.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -266,7 +266,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- RateLimiter.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -295,7 +295,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- EnsureAuthenticated.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -320,7 +320,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- DecodeJwt.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -339,7 +339,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- guardRouter.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -358,7 +358,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- routes.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -377,7 +377,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- app.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -396,7 +396,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- server.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -415,7 +415,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- decimalAdjust.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -440,7 +440,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- domainsManager.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -459,7 +459,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- errorLog.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -484,7 +484,7 @@ export class MakeThirdLayer {
     return this.console.one([
       `- createNormalizeQueryLink.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);

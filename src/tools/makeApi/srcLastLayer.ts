@@ -47,7 +47,7 @@ export class MakeLastLayer {
     this.console.one([
       `- auth.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -66,7 +66,7 @@ export class MakeLastLayer {
     this.console.one([
       `- cors.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -101,7 +101,7 @@ export class MakeLastLayer {
     this.console.one([
       `- baseEntity.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -150,7 +150,7 @@ export class MakeLastLayer {
     this.console.one([
       `- baseRepository.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -199,7 +199,7 @@ export class MakeLastLayer {
     this.console.one([
       `- IBaseRepository.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
@@ -252,7 +252,7 @@ export class MakeLastLayer {
     return this.console.one([
       `- fakeBaseRepository.ts ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);

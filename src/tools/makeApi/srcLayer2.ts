@@ -23,7 +23,7 @@ export class MakeSecondLayer {
     return this.console.one([
       `- swagger.json ${this.messages.created}`,
       'yellow',
-      false,
+      true,
       false,
       false,
     ]);
