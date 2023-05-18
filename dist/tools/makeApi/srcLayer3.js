@@ -20,7 +20,7 @@ import { CreateErrorLog } from '../../templates/utils/errorLog.js';
 import { Console } from '../console.js';
 import { FileManager } from '../fileManager.js';
 import { CreateKeys } from '../../templates/types/keys.js';
-import { CreateIExceptionDTO } from '../../templates/dtos/IExceptionDTO';
+import { CreateIExceptionDTO } from '../../templates/dtos/IExceptionDTO.js';
 export class MakeThirdLayer {
     messages;
     fileManager;
