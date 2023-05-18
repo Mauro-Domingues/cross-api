@@ -20,6 +20,7 @@ import { CreateErrorLog } from '@templates/utils/errorLog.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 import { CreateKeys } from '@templates/types/keys.js';
+import { CreateIExceptionDTO } from '@templates/dtos/IExceptionDTO';
 
 export class MakeThirdLayer {
   private messages: IMessagesDTO;
@@ -40,6 +41,7 @@ export class MakeThirdLayer {
   private createIObjectDTO: CreateIObjectDTO;
   private createIListDTO: CreateIListDTO;
   private createICacheDTO: CreateICacheDTO;
+  private createIExceptionDTO: CreateIExceptionDTO;
   private createDomains: CreateDomains;
   private createServer: CreateServer;
   private createApp: CreateApp;
@@ -63,6 +65,7 @@ export class MakeThirdLayer {
     this.createIResponseDTO = new CreateIResponseDTO();
     this.createIObjectDTO = new CreateIObjectDTO();
     this.createIListDTO = new CreateIListDTO();
+    this.createIExceptionDTO = new CreateIExceptionDTO();
     this.createICacheDTO = new CreateICacheDTO();
     this.createDomains = new CreateDomains();
     this.createServer = new CreateServer();
@@ -84,9 +87,9 @@ export class MakeThirdLayer {
       );
     }
     this.console.one([
-      `- express.d.ts $ {this.messages.created}`,
+      `- express.d.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -105,7 +108,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- env.d.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -124,7 +127,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- keys.d.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -143,7 +146,26 @@ export class MakeThirdLayer {
     this.console.one([
       `- domains.txt ${this.messages.created}`,
       'yellow',
-      true,
+      false,
+      false,
+      false,
+    ]);
+    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IExceptionDTO.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IExceptionDTO.ts'],
+        this.createIExceptionDTO.execute(),
+      );
+    } else {
+      await this.fileManager.truncateFile(['src', 'dtos', 'IExceptionDTO.ts']);
+      await this.fileManager.createFile(
+        ['src', 'dtos', 'IExceptionDTO.ts'],
+        this.createIExceptionDTO.execute(),
+      );
+    }
+    this.console.one([
+      `- IExceptionDTO.ts ${this.messages.created}`,
+      'yellow',
+      false,
       false,
       false,
     ]);
@@ -162,7 +184,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- ICacheDTO.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -181,7 +203,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IListDTO.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -200,7 +222,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IObjectDTO.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -219,7 +241,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- IResponseDTO.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -244,7 +266,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- RateLimiter.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -273,7 +295,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- EnsureAuthenticated.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -298,7 +320,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- DecodeJwt.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -317,7 +339,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- guardRouter.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -336,7 +358,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- routes.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -355,7 +377,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- app.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -374,7 +396,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- server.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -393,7 +415,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- decimalAdjust.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -418,7 +440,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- domainsManager.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -437,7 +459,7 @@ export class MakeThirdLayer {
     this.console.one([
       `- errorLog.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
@@ -462,7 +484,7 @@ export class MakeThirdLayer {
     return this.console.one([
       `- createNormalizeQueryLink.ts ${this.messages.created}`,
       'yellow',
-      true,
+      false,
       false,
       false,
     ]);
