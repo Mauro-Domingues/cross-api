@@ -68,7 +68,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     }
     Object.values(options).forEach(value => {
       if (typeof value === 'object' && value !== null) {
-        this.removeValueProperty(value as IFindOptionsRelationsDTO<Entity>);
+        this.removeValueProperty(value);
       }
     });
   }
