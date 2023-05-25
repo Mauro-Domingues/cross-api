@@ -67,7 +67,11 @@ export class List${this.names.upperModuleName}Service {
       let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
 
       if (!cache) {
-        const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(trx, page, limit);
+        const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(
+          trx,
+          page,
+          limit,
+        );
         cache = { data: instanceToInstance(list), total: amount };
         await this.cacheProvider.save(cacheKey, cache);
       }

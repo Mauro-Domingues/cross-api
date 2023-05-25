@@ -59,7 +59,10 @@ export class Update${this.names.upperModuleName}Service {
         throw new AppError('${this.names.upperModuleName} not found', 404);
       }
 
-      await this.${this.names.pluralLowerModuleName}Repository.update(trx, mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data));
+      await this.${this.names.pluralLowerModuleName}Repository.update(
+        trx,
+        mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data),
+      );
 
       await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
       await trx.commitTransaction();

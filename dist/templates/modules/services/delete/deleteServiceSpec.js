@@ -24,6 +24,7 @@ export class DeleteSpecService {
 import { AppError } from '@shared/errors/AppError';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { QueryRunner } from 'typeorm';
 import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
@@ -42,14 +43,14 @@ describe('Delete${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to delete a new ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
     await delete${this.names.upperModuleName}.execute({ id: ${this.names.lowerModuleName}.id });
 
-    const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy({ id: ${this.names.lowerModuleName}.id });
+    const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy({} as QueryRunner, { id: ${this.names.lowerModuleName}.id });
 
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });

@@ -29,6 +29,7 @@ export class ListSpecService {
 
     return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { QueryRunner } from 'typeorm';
 import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
@@ -44,12 +45,12 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to list all the ${this.names.pluralLowerModuleName}', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
@@ -60,12 +61,12 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to list all the ${this.names.pluralLowerModuleName} using cache', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
@@ -78,17 +79,17 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to list the ${this.names.pluralLowerModuleName} with the specified pagination', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await fake${this.names.pluralUpperModuleName}Repository.create({
+    await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 3',
       description: 'This is the third ${this.names.lowerModuleName}',
     });

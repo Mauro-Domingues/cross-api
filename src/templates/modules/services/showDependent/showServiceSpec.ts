@@ -36,6 +36,7 @@ export class ShowSpecDependentService {
 
     return `import { AppError } from '@shared/errors/AppError';
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { QueryRunner } from 'typeorm';
 import { Show${this.names.upperModuleName}Service } from './Show${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
@@ -49,7 +50,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
   });
 
   it('should be able to show the ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({
+    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

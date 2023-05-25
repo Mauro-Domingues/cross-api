@@ -31,6 +31,34 @@ yarn cross make:module [name]
 <hr>
 <br>
 <h2>Understanding the project and code examples</h2>
+<h3>Transactions</h3><h4> By introducing the transactions, they revert all changes made to the database in the event that the method fails to execute. This helps prevent traces of data considered junk.</h4>
+
+```typescript
+import { AppDataSource } from '@shared/typeorm/dataSource';
+
+class Example {
+  public async handle() {
+    const trx = AppDataSource.createQueryRunner(); // Creates a single connection to the database
+
+    await trx.startTransaction();
+    try {
+      
+      const result = await this.examplesRepository.create(trx, { name: 'example' });
+
+      await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
+
+      return result;
+    } catch (error: unknown) {
+      await trx.rollbackTransaction(); // In case of execution failure rolls back all changes made to the database
+      throw error;
+    } finally {
+      await trx.release(); // Releases the connection so it can be used in other cases
+    }
+  }
+}
+
+```
+
 <h4>There are 8 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
 <hr>
 <br>
@@ -40,6 +68,7 @@ yarn cross make:module [name]
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123 },
 );
 
@@ -50,6 +79,7 @@ const example = await this.examplesRepository.findBy(
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123, name: "example" },
 );
 
@@ -59,7 +89,7 @@ const example = await this.examplesRepository.findBy(
 <h4>For queries composed of one condition or another: </h4>
 
 ```typescript
-const example = await this.examplesRepository.findBy([
+const example = await this.examplesRepository.findBy(trx, [
   { id: 123 },
   { name: "example" },
 ]);
@@ -74,6 +104,7 @@ const example = await this.examplesRepository.findBy([
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123 },
   ["relation-1", "relation-2"],
 );
@@ -89,6 +120,7 @@ const propertyName = 'id';
 const baseData = [3, 4, 6, 7, 8, 9];
 
 const exampleArray = await this.examplesRepository.findIn(
+  trx,
   propertyName,
   baseData,
   ["relation-1", "relation-2", "relation-2"]
@@ -109,6 +141,7 @@ const order = { name: 'ASC' } // options = "ASC" | "DESC" | "asc" | "desc"
 const limit = 10
 
 const exampleArray = await this.examplesRepository.findLike(
+  trx,
   baseData,
   select,
   order,
@@ -128,6 +161,7 @@ const page = 3;
 const limit = 500;
 
 const exampleArray = await this.examplesRepository.findAll(
+  trx,
   page,
   limit,
   { name: "example" },
@@ -149,7 +183,7 @@ output: { examples: [exampleArray], amount: 500 }
 ```typescript
 data: IExampleDTO;
 
-const example = await this.examplesRepository.create(data);
+const example = await this.examplesRepository.create(trx, data);
 ```
 <hr>
 <br>
@@ -159,13 +193,14 @@ const example = await this.examplesRepository.create(data);
 data: IExampleDTO;
 
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123 },
 );
 
 example.name = data.name;
 example.description = data.description;
 
-await this.examplesRepository.update(example);
+await this.examplesRepository.update(trx, example);
 ```
 <hr>
 <br>
@@ -173,6 +208,7 @@ await this.examplesRepository.update(example);
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123 },
 );
 
@@ -180,13 +216,13 @@ if (!example) {
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.delete(example);
+await this.examplesRepository.delete(trx, { id: example.id });
 
 // delete example
 ```
 
 ```typescript
-await this.examplesRepository.delete({ name: "example" });
+await this.examplesRepository.delete(trx, { name: "example" });
 
 // delete all where name = example
 ```
@@ -196,6 +232,7 @@ await this.examplesRepository.delete({ name: "example" });
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  trx,
   { id: 123 },
 );
 
@@ -203,13 +240,13 @@ if (!example) {
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.softDelete(example);
+await this.examplesRepository.softDelete(trx, { id: example.id });
 
 // invalidate example
 ```
 
 ```typescript
-await this.examplesRepository.softDelete({ name: "example" });
+await this.examplesRepository.softDelete(trx, { name: "example" });
 
 // invalidate all where name = example
 ```
@@ -228,7 +265,7 @@ const param: FindOptionsWhere<Example> = {
   key: "example",
 };
 
-const example = await this.examplesRepository.findBy([
+const example = await this.examplesRepository.findBy(trx, [
   { id: key },
   { name: key },
   {description: key},
@@ -247,6 +284,7 @@ const param: FindOptionsWhere<Example> = {
 };
 
 const example = await this.examplesRepository.findBy(
+  trx,
   mapAndCloneAttribute(param, [
     "id", "name", "description",
   ]),
@@ -277,7 +315,7 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   name: inputData.name,
   description: inputData.name, // Possible human error
   extra: inputData.extra,
@@ -320,6 +358,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  trx,
   mapAndUpdateAttribute(example, inputData),
 );
 
@@ -370,7 +409,7 @@ if (inputData.price) {
   example.price = inputData.price;
 }
 
-await this.examplesRepository.update(example);
+await this.examplesRepository.update(trx, example);
 
 output = {
   name: "example",
@@ -407,6 +446,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  trx,
   mapAndPatchAttribute(example, inputData),
 );
 
@@ -445,7 +485,7 @@ updatedData.extra = inputData.extra,
 updatedData.size = inputData.size,
 updatedData.price = inputData.price,
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   ...example,
   data: JSON.stringify(updatedData),
 });
@@ -470,7 +510,7 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   ...example,
   data: mapAndUpdateString(example.data, inputData),
 });
@@ -514,7 +554,7 @@ if (inputData.price) {
   updatedData.price = inputData.price;
 }
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   ...example,
   data: JSON.stringify(updatedData),
 });
@@ -539,7 +579,7 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   ...example,
   data: mapAndPatchString(example.data, inputData),
 });
@@ -589,7 +629,7 @@ if (inputData.price) {
   example.price = inputData.price;
 }
 
-await this.examplesRepository.update({
+await this.examplesRepository.update(trx, {
   ...example,
   nonEntityFieldSent_1: inputData.nonEntityFieldSent_1,
   nonEntityFieldSent_2: inputData.nonEntityFieldSent_2,
@@ -636,6 +676,7 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  trx,
   mapAndInsertAttribute(example, inputData),
 );
 
@@ -676,7 +717,7 @@ output = {
 <h3>routes</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
 <h3>shared</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where public providers/error handlers/connection configuration/app and server are located</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where public modules/providers/error handlers/connection configuration/app and server are located</h4>
 <h3>utils</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where useful tools for various use cases are stored</h4>
 <hr>
