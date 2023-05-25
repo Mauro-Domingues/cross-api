@@ -31,7 +31,7 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
   ): Promise<Entity[]>;
   findLike(
     trx: QueryRunner,
-    baseData: { [key in keyof Entity]: string },
+    baseData: Partial<{ [key in keyof Entity]: string }>,
     select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
     limit?: number,

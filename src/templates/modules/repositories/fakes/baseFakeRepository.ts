@@ -87,7 +87,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async findLike(
     _trx: QueryRunner,
-    baseData: { [key in keyof Entity]: string },
+    baseData: Partial<{ [key in keyof Entity]: string }>,
   ): Promise<Entity[]> {
     const entities = this.fakeOrmRepository.filter(entity =>
       entity[Object.keys(baseData)[0]]

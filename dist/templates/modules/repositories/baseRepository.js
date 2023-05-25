@@ -119,7 +119,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
 
   public async findLike(
     trx: QueryRunner,
-    baseData: { [key in keyof Entity]: string },
+    baseData: Partial<{ [key in keyof Entity]: string }>,
     select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
     limit?: number,
