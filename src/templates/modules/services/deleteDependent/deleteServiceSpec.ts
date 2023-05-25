@@ -67,7 +67,10 @@ describe('Delete${this.names.upperModuleName}Service', () => {
 
     await delete${this.names.upperModuleName}.execute({ id: ${this.names.lowerModuleName}.id });
 
-    const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy({} as QueryRunner, { id: ${this.names.lowerModuleName}.id });
+    const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy(
+      {} as QueryRunner,
+      { id: ${this.names.lowerModuleName}.id },
+    );
 
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });
