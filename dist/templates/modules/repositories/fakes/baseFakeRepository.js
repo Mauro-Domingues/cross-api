@@ -6,6 +6,7 @@ import {
   DeleteResult,
   FindOptionsWhere,
   ObjectLiteral,
+  QueryRunner,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { IBaseRepositoryDTO } from '../IBaseRepository';
@@ -15,11 +16,8 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 {
   public fakeOrmRepository: Entity[] = [];
 
-  public patchRepository(): Entity[] {
-    return this.fakeOrmRepository;
-  }
-
   public async findBy(
+    _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
   ): Promise<Entity | null> {
     let findEntity: Entity | undefined;
@@ -46,6 +44,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async findAll(
+    _trx: QueryRunner,
     page: number,
     limit: number,
     conditions?: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
@@ -75,6 +74,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async findIn(
+    _trx: QueryRunner,
     propertyName: keyof Entity,
     baseData: Entity[keyof Entity][],
   ): Promise<Entity[]> {
@@ -85,9 +85,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     return entities;
   }
 
-  public async findLike(baseData: { [key in keyof Entity]: string }): Promise<
-    Entity[]
-  > {
+  public async findLike(
+    _trx: QueryRunner,
+    baseData: { [key in keyof Entity]: string },
+  ): Promise<Entity[]> {
     const entities = this.fakeOrmRepository.filter(entity =>
       entity[Object.keys(baseData)[0]]
         .toString()
@@ -97,7 +98,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     return entities;
   }
 
-  public async create(baseData: DeepPartial<Entity>): Promise<Entity> {
+  public async create(
+    _trx: QueryRunner,
+    baseData: DeepPartial<Entity>,
+  ): Promise<Entity> {
     const base = {
       ...baseData,
       id: uuid(),
@@ -111,7 +115,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     return base;
   }
 
-  public async update(baseData: Entity): Promise<Entity> {
+  public async update(_trx: QueryRunner, baseData: Entity): Promise<Entity> {
     const findEntity: number = this.fakeOrmRepository.findIndex(
       entity => entity.id === baseData.id,
     );
@@ -123,6 +127,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async delete(
+    _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
     const deleteEntities: Entity[] = this.fakeOrmRepository.filter(entity =>
@@ -142,6 +147,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async softDelete(
+    _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
     const deleteEntities: Entity[] = this.fakeOrmRepository.filter(entity =>

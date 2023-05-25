@@ -1,7 +1,6 @@
 export class CreateBaseRepository {
     execute() {
-        return `import { AppDataSource } from '@shared/typeorm/dataSource';
-import {
+        return `import {
   DeepPartial,
   DeleteResult,
   EntityTarget,
@@ -12,7 +11,7 @@ import {
   In,
   Like,
   ObjectLiteral,
-  Repository,
+  QueryRunner,
 } from 'typeorm';
 
 import { IBaseRepositoryDTO } from './IBaseRepository';
@@ -25,16 +24,16 @@ interface IFindOptionsRelationsDTO<T> {
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepositoryDTO<Entity>
 {
-  public ormRepository: Repository<Entity>;
+  public target: EntityTarget<Entity>;
 
   constructor(target: EntityTarget<Entity>) {
-    this.ormRepository = AppDataSource.getRepository(target);
+    this.target = target;
   }
 
   public arrayToObject(
     pathToRelations?: keysOfEntity<Entity> | string[],
-  ): FindOptionsRelations<Entity> | string[] {
-    if (!pathToRelations) return [];
+  ): FindOptionsRelations<Entity> {
+    if (!pathToRelations) return {};
     const result: IFindOptionsRelationsDTO<Entity> = {};
     pathToRelations.forEach(path => {
       const parts = path.split('.');
@@ -75,10 +74,11 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async findBy(
+    trx: QueryRunner,
     baseData: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity>,
+    relations?: keysOfEntity<Entity> | string[],
   ): Promise<Entity | null> {
-    const entity = await this.ormRepository.findOne({
+    const entity = await trx.manager.findOne(this.target, {
       where: baseData,
       relations: this.arrayToObject(relations),
     });
@@ -87,12 +87,13 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async findAll(
+    trx: QueryRunner,
     page: number,
     limit: number,
     conditions?: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity>,
+    relations?: keysOfEntity<Entity> | string[],
   ): Promise<{ list: Entity[]; amount: number }> {
-    const [list, amount] = await this.ormRepository.findAndCount({
+    const [list, amount] = await trx.manager.findAndCount(this.target, {
       where: conditions,
       take: limit,
       skip: (page - 1) * limit,
@@ -103,11 +104,12 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async findIn(
+    trx: QueryRunner,
     propertyName: keyof Entity,
     baseData: Entity[keyof Entity][],
-    relations?: keysOfEntity<Entity>,
+    relations?: keysOfEntity<Entity> | string[],
   ): Promise<Entity[]> {
-    const entities = await this.ormRepository.find({
+    const entities = await trx.manager.find(this.target, {
       where: { [propertyName]: In(baseData) } as FindOptionsWhere<Entity>,
       relations: this.arrayToObject(relations),
     });
@@ -116,12 +118,13 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async findLike(
+    trx: QueryRunner,
     baseData: { [key in keyof Entity]: string },
     select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
     limit?: number,
   ): Promise<Entity[]> {
-    const entities = await this.ormRepository.find({
+    const entities = await trx.manager.find(this.target, {
       select,
       where: {
         [Object.keys(baseData)[0]]: Like(Object.values(baseData)[0]),
@@ -133,28 +136,33 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     return entities;
   }
 
-  public async create(baseData: DeepPartial<Entity>): Promise<Entity> {
-    const entity = this.ormRepository.create(baseData);
+  public async create(
+    trx: QueryRunner,
+    baseData: DeepPartial<Entity>,
+  ): Promise<Entity> {
+    const entity = trx.manager.create(this.target, baseData);
 
-    await this.ormRepository.save(entity);
+    await trx.manager.save(this.target, entity);
 
     return entity;
   }
 
-  public async update(baseData: Entity): Promise<Entity> {
-    return this.ormRepository.save(baseData);
+  public async update(trx: QueryRunner, baseData: Entity): Promise<Entity> {
+    return trx.manager.save(this.target, baseData);
   }
 
   public async delete(
+    trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
-    return this.ormRepository.delete(baseData);
+    return trx.manager.delete(this.target, baseData);
   }
 
   public async softDelete(
+    trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
-    return this.ormRepository.softDelete(baseData);
+    return trx.manager.softDelete(this.target, baseData);
   }
 }
 `;

@@ -8,20 +8,15 @@ export class DeleteSpecDependentController {
   private names:
     | Omit<IModuleNamesDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
     | undefined;
-  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'> | undefined;
 
-  constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
-  ) {
+  constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.names = names;
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
+    if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
         'red',
@@ -55,7 +50,7 @@ describe('Delete${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to delete a ${this.names.lowerModuleName}', async () => {
-    const response = await request(app).delete('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345');
+    const response = await request(app).delete('/${this.names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);
   });

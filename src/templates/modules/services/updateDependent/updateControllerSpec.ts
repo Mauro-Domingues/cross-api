@@ -6,20 +6,15 @@ export class UpdateSpecDependentController {
   private messages: IMessagesDTO;
   private console: Console;
   private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'> | undefined;
-  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'> | undefined;
 
-  constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
-  ) {
+  constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.names = names;
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
+    if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
         'red',
@@ -53,7 +48,7 @@ describe('Update${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to update ${this.names.pluralLowerModuleName}', async () => {
-    const response = await request(app).put('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345').send({
+    const response = await request(app).put('/${this.names.routeModuleName}/12345').send({
       name: 'updated${this.names.upperModuleName}',
     });
 

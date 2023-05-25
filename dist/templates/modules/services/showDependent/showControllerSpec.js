@@ -4,15 +4,13 @@ export class ShowSpecDependentController {
     messages;
     console;
     names;
-    fatherNames;
-    constructor(names, fatherNames) {
+    constructor(names) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
-        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names || !this.fatherNames) {
+        if (!this.names) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -45,7 +43,7 @@ describe('Show${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to show ${this.names.pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345');
+    const response = await request(app).get('/${this.names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);
     expect(response.body.data).toHaveProperty('id');

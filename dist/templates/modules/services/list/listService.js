@@ -28,6 +28,7 @@ import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLower
 import { instanceToInstance } from 'class-transformer';
 import { ICacheDTO } from '@dtos/ICacheDTO';
 import { IListDTO } from '@dtos/IListDTO';
+import { AppDataSource } from '@shared/typeorm/dataSource';
 
 @injectable()
 export class List${this.names.upperModuleName}Service {
@@ -40,28 +41,40 @@ export class List${this.names.upperModuleName}Service {
   ) {}
 
   public async execute(page: number, limit: number): Promise<IListDTO<${this.names.upperModuleName}>> {
-    const cacheKey = \`${this.names.pluralLowerModuleName}:\${page}:\${limit}\`;
+    const trx = AppDataSource.createQueryRunner();
 
-    let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
+    await trx.startTransaction();
+    try { 
+      const cacheKey = \`${this.names.pluralLowerModuleName}:\${page}:\${limit}\`;
 
-    if (!cache) {
-      const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(page, limit);
-      cache = { data: instanceToInstance(list), total: amount };
-      await this.cacheProvider.save(cacheKey, cache);
+      let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
+
+      if (!cache) {
+        const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(trx, page, limit);
+        cache = { data: instanceToInstance(list), total: amount };
+        await this.cacheProvider.save(cacheKey, cache);
+      }
+
+      await trx.commitTransaction();
+
+      return {
+        code: 200,
+        message_code: 'OK',
+        message: '${this.names.pluralUpperModuleName} found successfully',
+        pagination: {
+          total: cache.total,
+          page,
+          perPage: limit,
+          lastPage: cache.total % limit,
+        },
+        data: cache.data,
+      };
+    } catch (error: unknown) {
+      await trx.rollbackTransaction();
+      throw error;
+    } finally {
+      await trx.release();
     }
-
-    return {
-      code: 200,
-      message_code: 'OK',
-      message: '${this.names.pluralUpperModuleName} found successfully',
-      pagination: {
-        total: cache.total,
-        page,
-        perPage: limit,
-        lastPage: cache.total % limit,
-      },
-      data: cache.data,
-    };
   }
 }
 `;

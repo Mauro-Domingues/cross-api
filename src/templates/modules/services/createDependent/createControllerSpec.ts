@@ -11,20 +11,15 @@ export class CreateSpecDependentController {
         'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
       >
     | undefined;
-  private fatherNames: Pick<IModuleNamesDTO, 'routeModuleName'> | undefined;
 
-  constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
-  ) {
+  constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.names = names;
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
+    if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
         'red',
@@ -54,7 +49,7 @@ describe('Create${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to create a new ${this.names.lowerModuleName}', async () => {
-    const response = await request(app).post('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}').send({
+    const response = await request(app).post('/${this.names.routeModuleName}').send({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

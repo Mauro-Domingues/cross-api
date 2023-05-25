@@ -4,15 +4,13 @@ export class ListSpecDependentController {
     messages;
     console;
     names;
-    fatherNames;
-    constructor(names, fatherNames) {
+    constructor(names) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
-        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names || !this.fatherNames) {
+        if (!this.names) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -45,7 +43,7 @@ describe('List${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to list ${this.names.pluralLowerModuleName}', async () => {
-    const response = await request(app).get('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}');
+    const response = await request(app).get('/${this.names.routeModuleName}');
 
     expect(response.status).toBe(200);
     expect(response.body.data[0]).toHaveProperty('id');

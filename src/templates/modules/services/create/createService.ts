@@ -36,6 +36,7 @@ import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralL
 import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
+import { AppDataSource } from '@shared/typeorm/dataSource';
 
 @injectable()
 export class Create${this.names.upperModuleName}Service {
@@ -48,16 +49,27 @@ export class Create${this.names.upperModuleName}Service {
   ) {}
 
   public async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
-    const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(${this.names.lowerModuleName}Data);
+    const trx = AppDataSource.createQueryRunner();
 
-    await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+    await trx.startTransaction();
+    try {
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(trx, ${this.names.lowerModuleName}Data);
 
-    return {
-      code: 201,
-      message_code: 'CREATED',
-      message: '${this.names.upperModuleName} successfully created',
-      data: instanceToInstance(${this.names.lowerModuleName}),
-    };
+      await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+      await trx.commitTransaction();
+
+      return {
+        code: 201,
+        message_code: 'CREATED',
+        message: '${this.names.upperModuleName} successfully created',
+        data: instanceToInstance(${this.names.lowerModuleName}),
+      };
+    } catch (error: unknown) {
+      await trx.rollbackTransaction();
+      throw error;
+    } finally {
+      await trx.release();
+    }
   }
 }
 `;

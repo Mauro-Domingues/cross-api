@@ -34,15 +34,15 @@ export class MakeDependentUnitTests {
         this.names = names;
         this.fatherNames = fatherNames;
         this.updateSpecDependentService = new UpdateSpecDependentService(this.names, this.fatherNames);
-        this.updateSpecDependentController = new UpdateSpecDependentController(this.names, this.fatherNames);
+        this.updateSpecDependentController = new UpdateSpecDependentController(this.names);
         this.showSpecDependentService = new ShowSpecDependentService(this.names, this.fatherNames);
-        this.showSpecDependentController = new ShowSpecDependentController(this.names, this.fatherNames);
+        this.showSpecDependentController = new ShowSpecDependentController(this.names);
         this.listSpecDependentService = new ListSpecDependentService(this.names, this.fatherNames);
-        this.listSpecDependentController = new ListSpecDependentController(this.names, this.fatherNames);
+        this.listSpecDependentController = new ListSpecDependentController(this.names);
         this.deleteSpecDependentService = new DeleteSpecDependentService(this.names, this.fatherNames);
-        this.deleteSpecDependentController = new DeleteSpecDependentController(this.names, this.fatherNames);
+        this.deleteSpecDependentController = new DeleteSpecDependentController(this.names);
         this.createSpecDependentService = new CreateSpecDependentService(this.names, this.fatherNames);
-        this.createSpecDependentController = new CreateSpecDependentController(this.names, this.fatherNames);
+        this.createSpecDependentController = new CreateSpecDependentController(this.names);
     }
     async execute() {
         if (!this.names || !this.fatherNames) {

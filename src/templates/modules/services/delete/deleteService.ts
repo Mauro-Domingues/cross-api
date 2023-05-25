@@ -36,6 +36,7 @@ import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${th
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { FindOptionsWhere } from 'typeorm';
 import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { AppDataSource } from '@shared/typeorm/dataSource';
 
 @injectable()
 export class Delete${this.names.upperModuleName}Service {
@@ -50,22 +51,33 @@ export class Delete${this.names.upperModuleName}Service {
   public async execute(
     ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
   ): Promise<IResponseDTO<null>> {
-    const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(${this.names.lowerModuleName}Param);
+    const trx = AppDataSource.createQueryRunner();
 
-    if (!${this.names.lowerModuleName}) {
-      throw new AppError('${this.names.upperModuleName} not found', 404);
+    await trx.startTransaction();
+    try {
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, ${this.names.lowerModuleName}Param);
+
+      if (!${this.names.lowerModuleName}) {
+        throw new AppError('${this.names.upperModuleName} not found', 404);
+      }
+
+      await this.${this.names.pluralLowerModuleName}Repository.delete(trx, { id: ${this.names.lowerModuleName}.id });
+
+      await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+      await trx.commitTransaction();
+
+      return {
+        code: 204,
+        message_code: 'NO_CONTENT',
+        message: 'successfully deleted ${this.names.lowerModuleName}',
+        data: null,
+      };
+    } catch (error: unknown) {
+      await trx.rollbackTransaction();
+      throw error;
+    } finally {
+      await trx.release();
     }
-
-    await this.${this.names.pluralLowerModuleName}Repository.delete({ id: ${this.names.lowerModuleName}.id });
-
-    await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
-
-    return {
-      code: 204,
-      message_code: 'NO_CONTENT',
-      message: 'successfully deleted ${this.names.lowerModuleName}',
-      data: null,
-    };
   }
 }
 `;

@@ -45,7 +45,6 @@ export class MakeDependentUnitTests {
     );
     this.updateSpecDependentController = new UpdateSpecDependentController(
       this.names,
-      this.fatherNames,
     );
     this.showSpecDependentService = new ShowSpecDependentService(
       this.names,
@@ -53,7 +52,6 @@ export class MakeDependentUnitTests {
     );
     this.showSpecDependentController = new ShowSpecDependentController(
       this.names,
-      this.fatherNames,
     );
     this.listSpecDependentService = new ListSpecDependentService(
       this.names,
@@ -61,7 +59,6 @@ export class MakeDependentUnitTests {
     );
     this.listSpecDependentController = new ListSpecDependentController(
       this.names,
-      this.fatherNames,
     );
     this.deleteSpecDependentService = new DeleteSpecDependentService(
       this.names,
@@ -69,7 +66,6 @@ export class MakeDependentUnitTests {
     );
     this.deleteSpecDependentController = new DeleteSpecDependentController(
       this.names,
-      this.fatherNames,
     );
     this.createSpecDependentService = new CreateSpecDependentService(
       this.names,
@@ -77,7 +73,6 @@ export class MakeDependentUnitTests {
     );
     this.createSpecDependentController = new CreateSpecDependentController(
       this.names,
-      this.fatherNames,
     );
   }
 

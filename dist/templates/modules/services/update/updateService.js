@@ -33,6 +33,7 @@ import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLower
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { FindOptionsWhere } from 'typeorm';
+import { AppDataSource } from '@shared/typeorm/dataSource';
 
 @injectable()
 export class Update${this.names.upperModuleName}Service {
@@ -48,22 +49,33 @@ export class Update${this.names.upperModuleName}Service {
     ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
     ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
-    const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(${this.names.lowerModuleName}Param);
+    const trx = AppDataSource.createQueryRunner();
 
-    if (!${this.names.lowerModuleName}) {
-      throw new AppError('${this.names.upperModuleName} not found', 404);
+    await trx.startTransaction();
+    try {
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, ${this.names.lowerModuleName}Param);
+
+      if (!${this.names.lowerModuleName}) {
+        throw new AppError('${this.names.upperModuleName} not found', 404);
+      }
+
+      await this.${this.names.pluralLowerModuleName}Repository.update(trx, mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data));
+
+      await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+      await trx.commitTransaction();
+
+      return {
+        code: 200,
+        message_code: 'OK',
+        message: 'successfully updated ${this.names.lowerModuleName}',
+        data: instanceToInstance(${this.names.lowerModuleName}),
+      };
+    } catch (error: unknown) {
+      await trx.rollbackTransaction();
+      throw error;
+    } finally {
+      await trx.release();
     }
-
-    await this.${this.names.pluralLowerModuleName}Repository.update(mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data));
-
-    await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
-
-    return {
-      code: 200,
-      message_code: 'OK',
-      message: 'successfully updated ${this.names.lowerModuleName}',
-      data: instanceToInstance(${this.names.lowerModuleName}),
-    };
   }
 }
 `;

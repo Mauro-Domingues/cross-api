@@ -4,15 +4,13 @@ export class DeleteSpecDependentController {
     messages;
     console;
     names;
-    fatherNames;
-    constructor(names, fatherNames) {
+    constructor(names) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
-        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names || !this.fatherNames) {
+        if (!this.names) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -45,7 +43,7 @@ describe('Delete${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to delete a ${this.names.lowerModuleName}', async () => {
-    const response = await request(app).delete('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345');
+    const response = await request(app).delete('/${this.names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);
   });

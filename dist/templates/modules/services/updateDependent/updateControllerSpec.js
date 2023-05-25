@@ -4,15 +4,13 @@ export class UpdateSpecDependentController {
     messages;
     console;
     names;
-    fatherNames;
-    constructor(names, fatherNames) {
+    constructor(names) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
-        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names || !this.fatherNames) {
+        if (!this.names) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -45,7 +43,7 @@ describe('Update${this.names.upperModuleName}Controller', () => {
   });
 
   it('Should be able to update ${this.names.pluralLowerModuleName}', async () => {
-    const response = await request(app).put('/${this.fatherNames.routeModuleName}/track/${this.names.routeModuleName}/12345').send({
+    const response = await request(app).put('/${this.names.routeModuleName}/12345').send({
       name: 'updated${this.names.upperModuleName}',
     });
 
