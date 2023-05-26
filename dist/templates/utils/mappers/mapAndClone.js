@@ -10,14 +10,14 @@ export class CreateMapAndClone {
 /**
  * ${this.messages.mapAndClone}
  * @param attribute IObjectDTO
- * @returns Promise: IObjectDTO[]
- * @param params string[]
+ * @returns Promise: Array<IObjectDTO>
+ * @param params Array<string>
  */
 export function mapAndCloneAttribute(
   attribute: IObjectDTO,
-  params: string[],
-): IObjectDTO[] {
-  const objectArray: IObjectDTO[] = params.map((param: string) => {
+  params: Array<string>,
+): Array<IObjectDTO> {
+  const objectArray: Array<IObjectDTO> = params.map((param: string) => {
     return {
       [param]: Object.values(attribute)[0],
     };

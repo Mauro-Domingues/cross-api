@@ -9,9 +9,9 @@ interface IOptionDTO {
 export class Board {
   private messages: IMessagesDTO;
   private console: Console;
-  private toolOptions: IOptionDTO[];
-  private ormOptions: IOptionDTO[];
-  private structureOptions: IOptionDTO[];
+  private toolOptions: Array<IOptionDTO>;
+  private ormOptions: Array<IOptionDTO>;
+  private structureOptions: Array<IOptionDTO>;
 
   constructor() {
     this.messages = new Messages().execute();

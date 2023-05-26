@@ -23,7 +23,7 @@ type Union<
   : L | R;
 
 type ValidObject<T> = T extends object
-  ? T extends { new (...parms: unknown[]): unknown } | Date | Array<unknown>
+  ? T extends { new (...parms: Array<unknown>): unknown } | Date | Array<unknown>
     ? false & 1
     : T
   : false & 1;
@@ -61,7 +61,7 @@ type DotPath<
           : Union<Union<Prev, Path>, Join<Path, K>>;
       }[keyof T];
 
-declare type keysOfEntity<Entity extends object> = DotPath<Entity>[];
+declare type keysOfEntity<Entity extends object> = Array<DotPath<Entity>>;
 `;
     }
 }

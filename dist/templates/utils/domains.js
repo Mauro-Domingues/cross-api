@@ -16,7 +16,7 @@ export class DomainsManager {
     this.basePath = resolve(__dirname, '..', 'assets', 'domains.txt');
   }
 
-  public read(path = this.basePath): string[] {
+  public read(path = this.basePath): Array<string> {
     const domains = readFileSync(path, 'utf-8');
 
     const ArrayOfDomain = domains.split('\\${'n'}');

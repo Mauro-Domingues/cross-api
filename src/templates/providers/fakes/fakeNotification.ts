@@ -4,7 +4,7 @@ export class CreateFakeNotification {
 import { INotificationProviderDTO } from '../models/INotificationProvider';
 
 export class FakeNotificationProvider implements INotificationProviderDTO {
-  private notification: ISendNotificationDTO[] = [];
+  private notification: Array<ISendNotificationDTO> = [];
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     this.notification.push(data);

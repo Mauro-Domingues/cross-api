@@ -6,7 +6,7 @@ interface IOptionDTO {
 }
 
 export class ListProvider {
-  private providers: IOptionDTO[];
+  private providers: Array<IOptionDTO>;
   private console: Console;
 
   constructor() {

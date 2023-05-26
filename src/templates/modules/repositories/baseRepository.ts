@@ -31,7 +31,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public arrayToObject(
-    pathToRelations?: keysOfEntity<Entity> | string[],
+    pathToRelations?: keysOfEntity<Entity> | Array<string>,
   ): FindOptionsRelations<Entity> {
     if (!pathToRelations) return {};
     const result: IFindOptionsRelationsDTO<Entity> = {};
@@ -50,7 +50,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
           if (current[part] === true) {
             current[part] = { persist: true };
           } else {
-            current[part] = current[part] || {};
+            current[part] = current[part] ?? {};
           }
           current = current[part] as IFindOptionsRelationsDTO<Entity>;
         }
@@ -75,8 +75,8 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
 
   public async findBy(
     trx: QueryRunner,
-    baseData: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity> | string[],
+    baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+    relations?: keysOfEntity<Entity> | Array<string>,
   ): Promise<Entity | null> {
     const entity = await trx.manager.findOne(this.target, {
       where: baseData,
@@ -90,9 +90,9 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     trx: QueryRunner,
     page: number,
     limit: number,
-    conditions?: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity> | string[],
-  ): Promise<{ list: Entity[]; amount: number }> {
+    conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+    relations?: keysOfEntity<Entity> | Array<string>,
+  ): Promise<{ list: Array<Entity>; amount: number }> {
     const [list, amount] = await trx.manager.findAndCount(this.target, {
       where: conditions,
       take: limit,
@@ -106,9 +106,9 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   public async findIn(
     trx: QueryRunner,
     propertyName: keyof Entity,
-    baseData: Entity[keyof Entity][],
-    relations?: keysOfEntity<Entity> | string[],
-  ): Promise<Entity[]> {
+    baseData: Array<Entity[keyof Entity]>,
+    relations?: keysOfEntity<Entity> | Array<string>,
+  ): Promise<Array<Entity>> {
     const entities = await trx.manager.find(this.target, {
       where: { [propertyName]: In(baseData) } as FindOptionsWhere<Entity>,
       relations: this.arrayToObject(relations),
@@ -123,7 +123,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
     limit?: number,
-  ): Promise<Entity[]> {
+  ): Promise<Array<Entity>> {
     const entities = await trx.manager.find(this.target, {
       select,
       where: {

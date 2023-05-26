@@ -54,7 +54,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
   }
 
   public async deleteFile(file: string): Promise<void> {
-    this.client.send(
+    await this.client.send(
       new DeleteObjectCommand({
         Bucket: uploadConfig.config.aws.bucket,
         Key: file,

@@ -3,7 +3,7 @@ import { Console } from '@tools/console.js';
 
 export class Pluralize {
   private console: Console;
-  private uncontableData: (string | RegExp)[] = [
+  private uncontableData: Array<string | RegExp> = [
     'adulthood',
     'advice',
     'agenda',
@@ -107,7 +107,7 @@ export class Pluralize {
     /pox$/i,
     /sheep$/i,
   ];
-  private irregularData: string[][] = [
+  private irregularData: Array<Array<string>> = [
     ['I', 'we'],
     ['me', 'us'],
     ['he', 'they'],
@@ -156,7 +156,7 @@ export class Pluralize {
     ['pickaxe', 'pickaxes'],
     ['passerby', 'passersby'],
   ];
-  private singularData: (string | RegExp)[][] = [
+  private singularData: Array<Array<string | RegExp>> = [
     [/s$/i, ''],
     [/(ss)$/i, '$1'],
     [/(wi|kni|(?:after|half|high|low|mid|non|night|[^\w]|^)li)ves$/i, '$1fe'],
@@ -199,7 +199,7 @@ export class Pluralize {
     [/(eau)x?$/i, '$1'],
     [/men$/i, 'man'],
   ];
-  private pluralData: (string | RegExp)[][] = [
+  private pluralData: Array<Array<string | RegExp>> = [
     [/s?$/i, 's'],
     [/[^\u0000-\u007F]$/i, '$0'],
     [/([^aeiou]ese)$/i, '$1'],
@@ -237,8 +237,8 @@ export class Pluralize {
   ];
   private messages: IMessagesDTO;
   private word: string | undefined;
-  private pluralRules: [RegExp, string][];
-  private singularRules: [RegExp, string][];
+  private pluralRules: Array<[RegExp, string]>;
+  private singularRules: Array<[RegExp, string]>;
   private uncountables: { [key: string]: boolean };
   private irregularPlurals: { [key: string]: string };
   private irregularSingles: { [key: string]: string };
@@ -287,7 +287,11 @@ export class Pluralize {
     return token.toLowerCase();
   }
 
-  private sanitizeWord(token: string, word: string, rules: [RegExp, string][]) {
+  private sanitizeWord(
+    token: string,
+    word: string,
+    rules: Array<[RegExp, string]>,
+  ) {
     if (!token.length || this.uncountables[token]) {
       return word;
     }
@@ -314,7 +318,7 @@ export class Pluralize {
     keepMap: {
       [key: string]: string;
     },
-    rules: [RegExp, string][],
+    rules: Array<[RegExp, string]>,
   ): string {
     if (!this.word) {
       this.console.one([
@@ -347,7 +351,7 @@ export class Pluralize {
     keepMap: {
       [key: string]: string;
     },
-    rules: [RegExp, string][],
+    rules: Array<[RegExp, string]>,
   ): boolean {
     if (!this.word) {
       this.console.one([
@@ -376,7 +380,7 @@ export class Pluralize {
     return rule;
   }
 
-  private interpolate(str: string, args: string[]): string {
+  private interpolate(str: string, args: Array<string>): string {
     return str.replace(/\$(\d{1,2})/g, (_match, index) => {
       return args[index];
     });

@@ -4,7 +4,7 @@ export class CreateFakeLead {
 import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 
 export class FakeLeadProvider implements ILeadProviderDTO {
-  private leads: string[] = [];
+  private leads: Array<string> = [];
 
   public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {
     this.leads.push(email);

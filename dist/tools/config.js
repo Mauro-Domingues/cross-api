@@ -4,14 +4,12 @@ import { Shell } from './shell.js';
 import { ConfigLanguage } from './languageConfig.js';
 import { FileManager } from './fileManager.js';
 import { Console } from './console.js';
-import userJson from '../../../../package.json' assert { type: 'json' };
 export class ConfigJson {
     config;
     console;
     shell;
     configLanguage;
     fileManager;
-    userJson;
     dependencies;
     devDependencies;
     constructor() {
@@ -20,7 +18,6 @@ export class ConfigJson {
         this.console = new Console();
         this.shell = new Shell();
         this.config = new Config();
-        this.userJson = userJson;
         this.dependencies = [
             '@aws-sdk/client-s3',
             '@aws-sdk/client-ses',
@@ -92,14 +89,19 @@ export class ConfigJson {
         ];
     }
     async patchPackage() {
-        this.userJson.scripts = {
-            ...this.userJson.scripts,
+        const stringifiedPackage = await this.fileManager.readFile([
+            'package.json',
+        ]);
+        const jsonPackage = JSON.parse(stringifiedPackage);
+        jsonPackage.scripts = {
+            ...jsonPackage.scripts,
             dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
             test: 'set NODE_ENV=test&&jest --runInBand',
             build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
             start: 'node dist/shared/server.js',
         };
-        return this.fileManager.writeFile(['package.json'], JSON.stringify(this.userJson));
+        await this.fileManager.truncateFile(['package.json']);
+        return this.fileManager.writeFile(['package.json'], JSON.stringify(jsonPackage));
     }
     installYarn() {
         this.console.many([

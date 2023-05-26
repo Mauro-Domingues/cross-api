@@ -15,27 +15,27 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
     trx: QueryRunner,
     page: number,
     limit: number,
-    conditions?: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity> | string[],
-  ): Promise<{ list: Entity[]; amount: number }>;
+    conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+    relations?: keysOfEntity<Entity> | Array<string>,
+  ): Promise<{ list: Array<Entity>; amount: number }>;
   findBy(
     trx: QueryRunner,
-    entityData: FindOptionsWhere<Entity> | FindOptionsWhere<Entity>[],
-    relations?: keysOfEntity<Entity> | string[],
+    entityData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+    relations?: keysOfEntity<Entity> | Array<string>,
   ): Promise<Entity | null>;
   findIn(
     trx: QueryRunner,
     propertyName: string,
-    baseData: Entity[keyof Entity][],
-    relations?: keysOfEntity<Entity> | string[],
-  ): Promise<Entity[]>;
+    baseData: Array<Entity[keyof Entity]>,
+    relations?: keysOfEntity<Entity> | Array<string>,
+  ): Promise<Array<Entity>>;
   findLike(
     trx: QueryRunner,
     baseData: Partial<{ [key in keyof Entity]: string }>,
     select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
     limit?: number,
-  ): Promise<Entity[]>;
+  ): Promise<Array<Entity>>;
   create(trx: QueryRunner, entityData: DeepPartial<Entity>): Promise<Entity>;
   update(trx: QueryRunner, entityData: Entity): Promise<Entity>;
   delete(

@@ -4,7 +4,6 @@ import { Shell } from '@tools/shell.js';
 import { ConfigLanguage } from '@tools/languageConfig.js';
 import { FileManager } from '@tools/fileManager.js';
 import { Console } from '@tools/console.js';
-import userJson from '../../../../package.json' assert { type: 'json' };
 
 export class ConfigJson {
   private config: Config;
@@ -12,9 +11,8 @@ export class ConfigJson {
   private shell: Shell;
   private configLanguage: ConfigLanguage;
   private fileManager: FileManager;
-  private userJson: typeof userJson;
-  private dependencies: string[];
-  private devDependencies: string[];
+  private dependencies: Array<string>;
+  private devDependencies: Array<string>;
 
   constructor() {
     this.configLanguage = new ConfigLanguage();
@@ -22,7 +20,6 @@ export class ConfigJson {
     this.console = new Console();
     this.shell = new Shell();
     this.config = new Config();
-    this.userJson = userJson;
     this.dependencies = [
       '@aws-sdk/client-s3',
       '@aws-sdk/client-ses',
@@ -95,17 +92,23 @@ export class ConfigJson {
   }
 
   private async patchPackage(): Promise<void> {
-    this.userJson.scripts = {
-      ...this.userJson.scripts,
+    const stringifiedPackage = await this.fileManager.readFile([
+      'package.json',
+    ]);
+    const jsonPackage = JSON.parse(stringifiedPackage);
+
+    jsonPackage.scripts = {
+      ...jsonPackage.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
       test: 'set NODE_ENV=test&&jest --runInBand',
       build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
       start: 'node dist/shared/server.js',
     };
 
+    await this.fileManager.truncateFile(['package.json']);
     return this.fileManager.writeFile(
       ['package.json'],
-      JSON.stringify(this.userJson),
+      JSON.stringify(jsonPackage),
     );
   }
 

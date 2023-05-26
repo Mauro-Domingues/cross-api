@@ -16,7 +16,7 @@ export class Console {
   private isbreakend = (breakEnd?: boolean) => (breakEnd ? '\n' : '\b');
 
   public one(assets: IInputDTO): void {
-    const payload: string[] = [
+    const payload: Array<string> = [
       String(this.isBold(assets[2])),
       String(this.getColor(assets[1])),
       String(
@@ -31,8 +31,8 @@ export class Console {
     return console.log(output);
   }
 
-  public many(assets: IInputDTO[]): void {
-    const payload: string[] = [];
+  public many(assets: Array<IInputDTO>): void {
+    const payload: Array<string> = [];
     assets.map(asset => {
       return payload.push(
         String(this.isBold(asset[2])),

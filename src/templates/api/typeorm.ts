@@ -41,7 +41,7 @@ export const createConnection = async (): Promise<DataSource> => {
 
 // @OneToMany(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
-// relationEntity: relationEntity[];
+// relationEntity: Array<relationEntity>;
 
 // @ManyToOne(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
@@ -61,7 +61,7 @@ export const createConnection = async (): Promise<DataSource> => {
 //       referencedColumnName: 'id',
 //   },
 // })
-// relationEntity: relationEntity[];
+// relationEntity: Array<relationEntity>;
 `;
   }
 }

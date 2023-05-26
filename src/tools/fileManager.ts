@@ -11,42 +11,42 @@ import {
 import { resolve } from 'path';
 
 export class FileManager {
-  public resolvePath(path: string[]): string {
+  public resolvePath(path: Array<string>): string {
     return resolve(...path);
   }
 
-  public checkIfExists(path: string[]): boolean {
+  public checkIfExists(path: Array<string>): boolean {
     return existsSync(resolve(...path));
   }
 
-  public async createDir(path: string[]): Promise<void> {
+  public async createDir(path: Array<string>): Promise<void> {
     return mkdirSync(resolve(...path));
   }
 
-  public async createFile(path: string[], data: string): Promise<void> {
+  public async createFile(path: Array<string>, data: string): Promise<void> {
     return appendFileSync(resolve(...path), data);
   }
 
-  public async removeDir(path: string[]): Promise<void> {
+  public async removeDir(path: Array<string>): Promise<void> {
     return rmSync(resolve(...path), { recursive: true, force: true });
   }
 
-  public async removeFile(path: string[]): Promise<void> {
+  public async removeFile(path: Array<string>): Promise<void> {
     return unlinkSync(resolve(...path));
   }
 
-  public async readFile(path: string[]): Promise<string> {
+  public async readFile(path: Array<string>): Promise<string> {
     return readFileSync(resolve(...path), 'ascii');
   }
 
-  public async writeFile(path: string[], data: string): Promise<void> {
+  public async writeFile(path: Array<string>, data: string): Promise<void> {
     return writeFileSync(resolve(...path), data, {
       encoding: 'utf8',
       flag: 'w',
     });
   }
 
-  public async truncateFile(path: string[]): Promise<void> {
+  public async truncateFile(path: Array<string>): Promise<void> {
     return truncateSync(resolve(...path));
   }
 }

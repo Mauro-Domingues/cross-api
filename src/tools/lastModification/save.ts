@@ -4,7 +4,7 @@ import { IModuleNamesDTO } from '@tools/names.js';
 export class CreateRegister {
   private basePath: string;
   private fileManager: FileManager;
-  private comand: string[] | undefined;
+  private comand: Array<string> | undefined;
   private providerName: string | undefined;
   private names: IModuleNamesDTO | undefined;
   private fatherNames:
@@ -12,7 +12,7 @@ export class CreateRegister {
     | undefined;
 
   constructor(
-    comand: string[] | undefined,
+    comand: Array<string> | undefined,
     providerName: string | undefined,
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,

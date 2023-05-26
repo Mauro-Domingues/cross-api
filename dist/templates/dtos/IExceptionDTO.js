@@ -1,7 +1,7 @@
 export class CreateIExceptionDTO {
     execute() {
         return `export interface IExceptionDTO {
-  path: {
+  path: Array<{
     /**
      * 
      * @example
@@ -35,8 +35,8 @@ export class CreateIExceptionDTO {
      * 
      */
     url: RegExp;
-    methods: ('GET' | 'PATCH' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS')[];
-  }[];
+    methods: Array<'GET' | 'PATCH' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS'>;
+  }>;
 }`;
     }
 }

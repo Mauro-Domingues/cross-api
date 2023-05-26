@@ -15,7 +15,7 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 class Index {
-  private fullComand: string[] = process.argv.slice(2);
+  private fullComand: Array<string> = process.argv.slice(2);
   private comand: string = process.argv[2];
   private arg: string = process.argv[3];
   private father: string = process.argv[4];
