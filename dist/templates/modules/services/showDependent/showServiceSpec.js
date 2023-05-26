@@ -37,7 +37,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
     show${this.names.upperModuleName} = new Show${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository);
   });
 
-  it('should be able to show the ${this.names.lowerModuleName}', async () => {
+  it('should be able to show a ${this.names.lowerModuleName}', async () => {
     const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',

@@ -42,7 +42,7 @@ describe('Update${this.names.upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to update ${this.names.pluralLowerModuleName}', async () => {
+  it('Should be able to update a ${this.names.lowerModuleName}', async () => {
     const response = await request(app).put('/${this.names.routeModuleName}/12345').send({
       name: 'updated${this.names.upperModuleName}',
     });

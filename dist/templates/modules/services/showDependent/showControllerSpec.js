@@ -42,7 +42,7 @@ describe('Show${this.names.upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to show ${this.names.pluralLowerModuleName}', async () => {
+  it('Should be able to show a ${this.names.lowerModuleName}', async () => {
     const response = await request(app).get('/${this.names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);

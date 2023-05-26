@@ -44,7 +44,7 @@ describe('Update${this.names.upperModuleName}Service', () => {
     );
   });
 
-  it('should update the ${this.names.lowerModuleName}', async () => {
+  it('Should be able to update a ${this.names.lowerModuleName}', async () => {
     const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',

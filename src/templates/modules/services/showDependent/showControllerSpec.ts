@@ -5,7 +5,9 @@ import { Console } from '@tools/console.js';
 export class ShowSpecDependentController {
   private messages: IMessagesDTO;
   private console: Console;
-  private names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'> | undefined;
+  private names:
+    | Omit<IModuleNamesDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
+    | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
@@ -47,7 +49,7 @@ describe('Show${this.names.upperModuleName}Controller', () => {
     return connection.destroy();
   });
 
-  it('Should be able to show ${this.names.pluralLowerModuleName}', async () => {
+  it('Should be able to show a ${this.names.lowerModuleName}', async () => {
     const response = await request(app).get('/${this.names.routeModuleName}/12345');
 
     expect(response.status).toBe(200);
