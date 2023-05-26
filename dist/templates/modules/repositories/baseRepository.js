@@ -147,7 +147,25 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     return entity;
   }
 
+  public async createMany(
+    trx: QueryRunner,
+    baseData: Array<DeepPartial<Entity>>,
+  ): Promise<Array<Entity>> {
+    const entities = trx.manager.create(this.target, baseData);
+
+    await trx.manager.save(this.target, entities);
+
+    return entities;
+  }
+
   public async update(trx: QueryRunner, baseData: Entity): Promise<Entity> {
+    return trx.manager.save(this.target, baseData);
+  }
+
+  public async updateMany(
+    trx: QueryRunner,
+    baseData: Array<Entity>,
+  ): Promise<Array<Entity>> {
     return trx.manager.save(this.target, baseData);
   }
 
@@ -158,9 +176,23 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     return trx.manager.delete(this.target, baseData);
   }
 
+  public async deleteMany(
+    trx: QueryRunner,
+    baseData: Array<FindOptionsWhere<Entity>>,
+  ): Promise<DeleteResult> {
+    return trx.manager.delete(this.target, baseData);
+  }
+
   public async softDelete(
     trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
+  ): Promise<DeleteResult> {
+    return trx.manager.softDelete(this.target, baseData);
+  }
+
+  public async softDeleteMany(
+    trx: QueryRunner,
+    baseData: Array<FindOptionsWhere<Entity>>,
   ): Promise<DeleteResult> {
     return trx.manager.softDelete(this.target, baseData);
   }

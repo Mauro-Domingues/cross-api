@@ -3,7 +3,7 @@ export class CreateIExceptionDTO {
         return `export interface IExceptionDTO {
   path: Array<{
     /**
-     * 
+     *
      * @example
      * All urls starts with '/^\\/' to match.
      * Example: /^\\//
@@ -32,11 +32,12 @@ export class CreateIExceptionDTO {
      * '([\\/?].*)' + '?' matches all after '/' or '?' in a route and the route by itself
      * Example: /example([\\/?].*)?/
      * Matches: '/example/123' and 'example?page=1' and '/example' but not '/example-other-path'
-     * 
+     *
      */
     url: RegExp;
     methods: Array<'GET' | 'PATCH' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS'>;
   }>;
-}`;
+}
+`;
     }
 }

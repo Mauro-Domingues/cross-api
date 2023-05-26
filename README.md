@@ -1,6 +1,6 @@
 ﻿﻿<h1>cross-api</h1>
 
-<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-api-using-cross-api</a>
+<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-example-using-cross-api</a>
 
 <hr>
 
@@ -59,7 +59,7 @@ class Example {
 
 ```
 
-<h4>There are 8 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
+<h4>There are 12 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
 <hr>
 <br>
 <h3>findBy</h3><h4> Receives any parameter as an argument as long as it is a { key: value } or array of { key: value }</h4>
@@ -187,6 +187,15 @@ const example = await this.examplesRepository.create(trx, data);
 ```
 <hr>
 <br>
+<h3>createMany</h3><h4> Classic create, receives as parameter the type of Array<IEntityDTO> and execute multiple queries at once</h4>
+
+```typescript
+data: Array<IExampleDTO>;
+
+const examples = await this.examplesRepository.createMany(trx, data);
+```
+<hr>
+<br>
 <h3>update</h3><h4> Classic update, receives as parameter the type of entity to be updated and can be used with a mapper</h4>
 
 ```typescript
@@ -201,6 +210,28 @@ example.name = data.name;
 example.description = data.description;
 
 await this.examplesRepository.update(trx, example);
+```
+<hr>
+<br>
+<h3>updateMany</h3><h4> Classic update, receives as parameter the type of Array<IEntityDTO> and execute multiple queries at once</h4>
+
+```typescript
+data: Array<IExampleDTO>;
+
+const examples = await this.examplesRepository.findBy(
+  trx,
+  { name: 'example' },
+);
+
+const examplesToUpdate = examples.map(example => {
+  return {
+    ...example,
+    name: data.name,
+    description: data.description;
+  }
+})
+
+await this.examplesRepository.update(trx, examplesToUpdate);
 ```
 <hr>
 <br>
@@ -228,6 +259,21 @@ await this.examplesRepository.delete(trx, { name: "example" });
 ```
 <hr>
 <br>
+<h3>deleteMany</h3><h4> Classic delete, receives as parameter the type of the Array<entity> to delete it or a Array<{ key: value }> and execute multiple queries at once</h4>
+
+```typescript
+await this.examplesRepository.deleteMany(trx, [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]);
+
+// delete example
+```
+<hr>
+<br>
 <h3>softDelete</h3><h4> Security delete, receives as parameter the type of the entity to invalidate it or a { key: value } type and invalidates all related data (does not delete them)</h4>
 
 ```typescript
@@ -249,6 +295,21 @@ await this.examplesRepository.softDelete(trx, { id: example.id });
 await this.examplesRepository.softDelete(trx, { name: "example" });
 
 // invalidate all where name = example
+```
+<hr>
+<br>
+<h3>softDeleteMany</h3><h4> Security delete, receives as parameter the type of the Array<entity> to delete it or a Array<{ key: value }> and execute multiple queries at once</h4>
+
+```typescript
+await this.examplesRepository.softDeleteMany(trx, [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+]);
+
+// delete example
 ```
 <hr>
 <br>

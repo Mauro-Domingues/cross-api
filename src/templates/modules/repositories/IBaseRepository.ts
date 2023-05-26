@@ -37,14 +37,30 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
     limit?: number,
   ): Promise<Array<Entity>>;
   create(trx: QueryRunner, entityData: DeepPartial<Entity>): Promise<Entity>;
+  createMany(
+    trx: QueryRunner,
+    entityData: Array<DeepPartial<Entity>>,
+  ): Promise<Array<Entity>>;
   update(trx: QueryRunner, entityData: Entity): Promise<Entity>;
+  updateMany(
+    trx: QueryRunner,
+    entityData: Array<Entity>,
+  ): Promise<Array<Entity>>;
   delete(
     trx: QueryRunner,
     entityData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult>;
+  deleteMany(
+    trx: QueryRunner,
+    entityData: Array<FindOptionsWhere<Entity>>,
+  ): Promise<DeleteResult>;
   softDelete(
     trx: QueryRunner,
     entityData: FindOptionsWhere<Entity>,
+  ): Promise<DeleteResult>;
+  softDeleteMany(
+    trx: QueryRunner,
+    entityData: Array<FindOptionsWhere<Entity>>,
   ): Promise<DeleteResult>;
 }
 `;
