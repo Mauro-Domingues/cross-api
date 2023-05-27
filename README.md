@@ -13,7 +13,7 @@ npm install cross-api --save-dev
 <h3>Enter the following code in the terminal to make the initial configuration:</h3>
 
 ```
-npm cross config
+npx cross config
 ```
 
 <h3>It will install yarn globally so to see the available commands type:</h3>

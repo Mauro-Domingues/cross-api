@@ -117,7 +117,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async createMany(
     _trx: QueryRunner,
-    baseData: DeepPartial<Entity>[],
+    baseData: Array<DeepPartial<Entity>>,
   ): Promise<Array<Entity>> {
     return baseData.map(data => {
       const base = {
