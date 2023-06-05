@@ -86,7 +86,7 @@ export class List${this.names.upperModuleName}Service {
           total: cache.total,
           page,
           perPage: limit,
-          lastPage: cache.total % limit,
+          lastPage: Math.ceil(cache.total / limit),
         },
         data: cache.data,
       };
