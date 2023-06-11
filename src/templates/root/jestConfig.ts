@@ -17,7 +17,7 @@ export default {
     prefix: '<rootDir>/src/',
   }),
   preset: 'ts-jest',
-  setupFiles: ['dotenv/config'],
+  setupFiles: ['dotenv/config', 'reflect-metadata'],
   testEnvironment: 'node',
   testMatch: ['**/*.spec.ts'],
 };

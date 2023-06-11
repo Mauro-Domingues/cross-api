@@ -25,13 +25,25 @@ export class CreateSpecDependentService {
         return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { DataSource } from 'typeorm';
+import { createConnection } from '@shared/typeorm';
+import { AppError } from '@shared/errors/AppError';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
 let create${this.names.upperModuleName}: Create${this.names.upperModuleName}Service;
+let connection: DataSource;
 
 describe('Create${this.names.upperModuleName}Service', () => {
+  beforeAll(async () => {
+    connection = await createConnection();
+  });
+
+  afterAll(async () => {
+    return connection.destroy();
+  });
+  
   beforeEach(() => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
@@ -49,6 +61,19 @@ describe('Create${this.names.upperModuleName}Service', () => {
     });
 
     expect(${this.names.lowerModuleName}.data).toHaveProperty('id');
+  });
+
+  it('should return AppError', async () => {
+    jest.spyOn(fake${this.names.pluralUpperModuleName}Repository, 'create').mockImplementationOnce(() => {
+      throw new AppError('Failed to create a ${this.names.lowerModuleName}');
+    });
+
+    await expect(
+      create${this.names.upperModuleName}.execute({
+        name: '${this.names.lowerModuleName}',
+        description: 'This is a ${this.names.lowerModuleName}',
+      });
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

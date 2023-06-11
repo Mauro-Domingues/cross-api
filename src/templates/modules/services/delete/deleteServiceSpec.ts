@@ -31,14 +31,24 @@ export class DeleteSpecService {
 import { AppError } from '@shared/errors/AppError';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { QueryRunner } from 'typeorm';
+import { DataSource, QueryRunner } from 'typeorm';
+import { createConnection } from '@shared/typeorm';
 import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
 let delete${this.names.upperModuleName}: Delete${this.names.upperModuleName}Service;
+let connection: DataSource;
 
 describe('Delete${this.names.upperModuleName}Service', () => {
+  beforeAll(async () => {
+    connection = await createConnection();
+  });
+
+  afterAll(async () => {
+    return connection.destroy();
+  });
+
   beforeEach(() => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
@@ -65,7 +75,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });
 
-  it('should return App error', async () => {
+  it('should return AppError', async () => {
     await expect(delete${this.names.upperModuleName}.execute({})).rejects.toBeInstanceOf(AppError);
   });
 });

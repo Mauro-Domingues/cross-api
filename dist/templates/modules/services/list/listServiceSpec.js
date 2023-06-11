@@ -22,14 +22,25 @@ export class ListSpecService {
         }
         return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { QueryRunner } from 'typeorm';
+import { DataSource, QueryRunner } from 'typeorm';
+import { createConnection } from '@shared/typeorm';
+import { AppError } from '@shared/errors/AppError';
 import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
+let connection: DataSource;
 
 describe('List${this.names.upperModuleName}Service', () => {
+  beforeAll(async () => {
+    connection = await createConnection();
+  });
+
+  afterAll(async () => {
+    return connection.destroy();
+  });
+
   beforeEach(() => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
@@ -68,7 +79,18 @@ describe('List${this.names.upperModuleName}Service', () => {
 
     const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2);
 
-    expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
+    expect(${this.names.lowerModuleName}List.data).toEqual([
+      {
+        ...${this.names.lowerModuleName}01,
+        created_at: ${this.names.lowerModuleName}01.created_at.toISOString(),
+        updated_at: ${this.names.lowerModuleName}01.updated_at.toISOString(),
+      },
+      {
+        ...${this.names.lowerModuleName}02,
+        created_at: ${this.names.lowerModuleName}02.created_at.toISOString(),
+        updated_at: ${this.names.lowerModuleName}02.updated_at.toISOString(),
+      },
+    ]);
   });
 
   it('should be able to list the ${this.names.pluralLowerModuleName} with the specified pagination', async () => {
@@ -93,6 +115,14 @@ describe('List${this.names.upperModuleName}Service', () => {
 
     const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}.execute(1, 2);
     expect(${this.names.lowerModuleName}List02.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
+  });
+
+  it('should return AppError', async () => {
+    jest.spyOn(fake${this.names.pluralUpperModuleName}Repository, 'findAll').mockImplementationOnce(() => {
+      throw new AppError('Failed to list ${this.names.pluralLowerModuleName}');
+    });
+
+    await expect(list${this.names.upperModuleName}.execute(1, 2)).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

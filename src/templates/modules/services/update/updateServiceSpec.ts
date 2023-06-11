@@ -31,14 +31,24 @@ export class UpdateSpecService {
 import { AppError } from '@shared/errors/AppError';
 
 import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { QueryRunner } from 'typeorm';
+import { DataSource, QueryRunner } from 'typeorm';
+import { createConnection } from '@shared/typeorm';
 import { Update${this.names.upperModuleName}Service } from './Update${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: FakeCacheProvider;
 let update${this.names.upperModuleName}Service: Update${this.names.upperModuleName}Service;
+let connection: DataSource;
 
 describe('Update${this.names.upperModuleName}Service', () => {
+  beforeAll(async () => {
+    connection = await createConnection();
+  });
+
+  afterAll(async () => {
+    return connection.destroy();
+  });
+
   beforeEach(() => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     fakeCacheProvider = new FakeCacheProvider();
@@ -63,7 +73,7 @@ describe('Update${this.names.upperModuleName}Service', () => {
     expect(updated${this.names.upperModuleName}.data.name).toEqual('updated${this.names.upperModuleName}');
   });
 
-  it('should return App Error', async () => {
+  it('should return AppError', async () => {
     await expect(
       update${this.names.upperModuleName}Service.execute({}, { name: '', description: '' }),
     ).rejects.toBeInstanceOf(AppError);
