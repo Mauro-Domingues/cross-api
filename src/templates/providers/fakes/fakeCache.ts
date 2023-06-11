@@ -7,7 +7,7 @@ interface ICacheDataDTO {
 }
 
 export class FakeCacheProvider implements ICacheProviderDTO {
-  private cache: ICacheDataDTO;
+  private cache: ICacheDataDTO = {};
 
   public async save<T>(key: string, value: T): Promise<void> {
     this.cache[key] = JSON.stringify(value);

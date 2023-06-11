@@ -70,7 +70,7 @@ describe('Create${this.names.upperModuleName}Service', () => {
       create${this.names.upperModuleName}.execute({
         name: '${this.names.lowerModuleName}',
         description: 'This is a ${this.names.lowerModuleName}',
-      });
+      }),
     ).rejects.toBeInstanceOf(AppError);
   });
 });
