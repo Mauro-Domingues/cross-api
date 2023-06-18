@@ -23,6 +23,7 @@ export class CreateEnvNamespace {
     REDIS_HOST: string;
     REDIS_PORT: string;
     REDIS_PASSWORD: string;
+    REDIS_PREFIX: string;
     STORAGE_DRIVER: 'disk' | 's3';
     MAIL_DRIVER: 'ethereal' | 'ses';
     MAIL_PORT: string;

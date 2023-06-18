@@ -13,11 +13,14 @@ export class RedisCacheProvider implements ICacheProviderDTO {
   }
 
   public async save<T>(key: string, value: T): Promise<void> {
-    await this.client.set(key, JSON.stringify(value));
+    await this.client.set(
+      \`\${process.env.REDIS_PREFIX}_\${key}\`,
+      JSON.stringify(value),
+    );
   }
 
   public async recovery<T>(key: string): Promise<T | null> {
-    const data = await this.client.get(key);
+    const data = await this.client.get(\`\${process.env.REDIS_PREFIX}_\${key}\`);
 
     if (!data) {
       return null;
@@ -29,11 +32,13 @@ export class RedisCacheProvider implements ICacheProviderDTO {
   }
 
   public async invalidate(key: string): Promise<void> {
-    await this.client.del(key);
+    await this.client.del(\`\${process.env.REDIS_PREFIX}_\${key}\`);
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const keys = await this.client.keys(\`\${prefix}:*\`);
+    const keys = await this.client.keys(
+      \`\${process.env.REDIS_PREFIX}_\${prefix}:*\`,
+    );
 
     const pipeline = this.client.pipeline();
 
