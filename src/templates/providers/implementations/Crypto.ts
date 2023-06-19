@@ -56,6 +56,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
 
   public async generateJwt(
     payload: object,
+    ip: string,
     options?: SignOptions,
   ): Promise<{
     jwt_token: string;
@@ -71,7 +72,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
       algorithm: 'RS256',
     });
 
-    const refreshToken = createHash('sha256').update(jwtToken).digest('hex');
+    const refreshToken = createHash('sha256').update(ip).digest('hex');
 
     return {
       jwt_token: jwtToken,

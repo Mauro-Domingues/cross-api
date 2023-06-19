@@ -14,6 +14,7 @@ export interface ICryptoProviderDTO {
   >;
   generateJwt(
     payload: object,
+    ip: string,
     options?: SignOptions,
   ): Promise<{
     jwt_token: string;
