@@ -5,7 +5,9 @@ export class CreateHashConfig {
 }
 
 export const hashConfig: IHashConfigDTO = {
-  secret: Number(process.env.HASH_SECRET_KEY) ?? 10,
+  secret: process.env.HASH_SECRET_KEY
+    ? Number(process.env.HASH_SECRET_KEY)
+    : 10,
 };
 `;
     }
