@@ -8,7 +8,7 @@ export class CreateAuthConfig {
 
 export const authConfig: IAuthConfigDTO = {
   jwt: {
-    expiresIn: process.env.JWT_LIFETIME || '1d',
+    expiresIn: process.env.JWT_LIFETIME ?? '1d',
   },
 };
 `;

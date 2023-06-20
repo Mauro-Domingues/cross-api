@@ -60,8 +60,8 @@ export class SESMailProvider implements IMailProviderDTO {
 
     await this.client.sendMail({
       from: {
-        name: from?.name || name,
-        address: from?.email || email,
+        name: from?.name ?? name,
+        address: from?.email ?? email,
       },
       to: {
         name: to.name,

@@ -15,7 +15,7 @@ export const cryptoConfig: ICryptoConfigDTO = {
   bytes: 16,
   algorithm: 'aes-256-ctr',
   encoding: 'hex',
-  secretKey: process.env.CRYPTO_SECRET_KEY || '',
+  secretKey: process.env.CRYPTO_SECRET_KEY ?? '',
   basePath: resolve(__dirname, '..', 'assets'),
   keysPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
 };

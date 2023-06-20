@@ -18,10 +18,10 @@ export function returnErrorLog(error: Error): void {
     resolve(__dirname, '..', 'assets', 'errors.log'),
     \`{
   "Time of occurrence": "\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}",
-  "\${error.name || 'AppError'}": "\${error.message}",
+  "\${error.name ?? 'AppError'}": "\${error.message}",
   "Path":
 \${
-  error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ||
+  error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
   '    "not set."'
 },
 }\\${'n'}\`,
@@ -36,11 +36,11 @@ export function returnErrorLog(error: Error): void {
     ',',
     '\\x1b[1m',
     '\\x1b[38;2;255;0;0m',
-    \`\\${'n'}  "\${error.name || 'AppError'}": \${error.message}\`,
+    \`\\${'n'}  "\${error.name ?? 'AppError'}": \${error.message}\`,
     '\\x1b[0m',
     error.stack
       ? \`,\\${'n'}  "Path": \\${'n'}\${
-          error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ||
+          error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
           '    "not set."'
         }\\${'n'}}\\${'n'}\`
       : '\\${'n'}}\\${'n'}',

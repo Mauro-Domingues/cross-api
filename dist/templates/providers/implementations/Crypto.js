@@ -67,7 +67,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
     );
 
     const jwtToken = sign(payload, secret, {
-      expiresIn: process.env.JWT_LIFETIME || '1h',
+      expiresIn: process.env.JWT_LIFETIME ?? '1h',
       ...options,
       algorithm: 'RS256',
     });
