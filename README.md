@@ -82,7 +82,7 @@ yarn cross make:module [name]
 ```
 
 <h3>assets</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, images...</h4>
+<h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, keys...</h4>
 
 ```bash
 .
