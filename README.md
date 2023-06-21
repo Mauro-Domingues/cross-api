@@ -160,10 +160,10 @@ yarn cross make:module [name]
         │   └── IRepository.ts
         └── services
             └── [service]
-                ├── Controller.ts
                 ├── Controller.spec.ts
-                ├── Service.ts
-                └── Service.spec.ts
+                ├── Controller.ts
+                ├── Service.spec.ts
+                └── Service.ts
 ```
 
 <h3>routes</h3>
