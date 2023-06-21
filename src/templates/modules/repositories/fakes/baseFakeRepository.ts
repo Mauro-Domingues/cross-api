@@ -14,7 +14,7 @@ import { IBaseRepositoryDTO } from '../IBaseRepository';
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepositoryDTO<Entity>
 {
-  public fakeOrmRepository: Array<Entity> = [];
+  public fakeRepository: Array<Entity> = [];
 
   public async findBy(
     _trx: QueryRunner,
@@ -22,7 +22,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   ): Promise<Entity | null> {
     let findEntity: Entity | undefined;
     if (baseData instanceof Array) {
-      findEntity = this.fakeOrmRepository.find(entity =>
+      findEntity = this.fakeRepository.find(entity =>
         baseData.some(property =>
           Object.entries(property).every(
             ([key, value]) => entity[key] === value && !entity.deleted_at,
@@ -30,7 +30,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         ),
       );
     } else {
-      findEntity = this.fakeOrmRepository.find(entity =>
+      findEntity = this.fakeRepository.find(entity =>
         Object.entries(baseData).every(
           ([key, value]) => entity[key] === value && !entity.deleted_at,
         ),
@@ -51,9 +51,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   ): Promise<{ list: Array<Entity>; amount: number }> {
     let filtered: Array<Entity>;
     if (!conditions) {
-      filtered = this.fakeOrmRepository;
+      filtered = this.fakeRepository;
     } else if (conditions instanceof Array) {
-      filtered = this.fakeOrmRepository.filter(entity =>
+      filtered = this.fakeRepository.filter(entity =>
         conditions.some(property =>
           Object.entries(property).every(
             ([key, value]) => entity[key] === value && !entity.deleted_at,
@@ -61,7 +61,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         ),
       );
     } else {
-      filtered = this.fakeOrmRepository.filter(entity =>
+      filtered = this.fakeRepository.filter(entity =>
         Object.entries(conditions).every(
           ([key, value]) => entity[key] === value && !entity.deleted_at,
         ),
@@ -78,7 +78,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     propertyName: keyof Entity,
     baseData: Array<Entity[keyof Entity]>,
   ): Promise<Array<Entity>> {
-    const entities = this.fakeOrmRepository.filter(entity =>
+    const entities = this.fakeRepository.filter(entity =>
       baseData.includes(entity[propertyName]),
     );
 
@@ -89,7 +89,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     _trx: QueryRunner,
     baseData: Partial<{ [key in keyof Entity]: string }>,
   ): Promise<Array<Entity>> {
-    const entities = this.fakeOrmRepository.filter(entity =>
+    const entities = this.fakeRepository.filter(entity =>
       entity[Object.keys(baseData)[0]]
         .toString()
         .includes(Object.values(baseData)[0]),
@@ -110,7 +110,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       deleted_at: null,
     };
 
-    this.fakeOrmRepository.push(base);
+    this.fakeRepository.push(base);
 
     return base;
   }
@@ -128,19 +128,19 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         deleted_at: null,
       };
 
-      this.fakeOrmRepository.push(base);
+      this.fakeRepository.push(base);
 
       return base;
     });
   }
 
   public async update(_trx: QueryRunner, baseData: Entity): Promise<Entity> {
-    const findEntity: number = this.fakeOrmRepository.findIndex(
+    const findEntity: number = this.fakeRepository.findIndex(
       entity => entity.id === baseData.id,
     );
 
-    this.fakeOrmRepository[findEntity] = baseData;
-    this.fakeOrmRepository[findEntity].updated_at = new Date();
+    this.fakeRepository[findEntity] = baseData;
+    this.fakeRepository[findEntity].updated_at = new Date();
 
     return baseData;
   }
@@ -150,12 +150,12 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     baseData: Array<Entity>,
   ): Promise<Array<Entity>> {
     return baseData.map(data => {
-      const findEntity: number = this.fakeOrmRepository.findIndex(
+      const findEntity: number = this.fakeRepository.findIndex(
         entity => entity.id === data.id,
       );
 
-      this.fakeOrmRepository[findEntity] = data;
-      this.fakeOrmRepository[findEntity].updated_at = new Date();
+      this.fakeRepository[findEntity] = data;
+      this.fakeRepository[findEntity].updated_at = new Date();
 
       return data;
     });
@@ -165,14 +165,13 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
-    const deleteEntities: Array<Entity> = this.fakeOrmRepository.filter(
-      entity =>
-        Object.entries(baseData).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
+    const deleteEntities: Array<Entity> = this.fakeRepository.filter(entity =>
+      Object.entries(baseData).every(
+        ([key, value]) => entity[key] === value && !entity.deleted_at,
+      ),
     );
 
-    this.fakeOrmRepository = this.fakeOrmRepository.filter(
+    this.fakeRepository = this.fakeRepository.filter(
       entity => !deleteEntities.includes(entity),
     );
 
@@ -188,7 +187,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   ): Promise<DeleteResult> {
     let deleteEntities: Array<Entity> = [];
     baseData.forEach(data => {
-      const entitiesToDelete = this.fakeOrmRepository.filter(entity =>
+      const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
           ([key, value]) => entity[key] === value && !entity.deleted_at,
         ),
@@ -196,7 +195,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       deleteEntities = [...deleteEntities, ...entitiesToDelete];
     });
 
-    this.fakeOrmRepository = this.fakeOrmRepository.filter(
+    this.fakeRepository = this.fakeRepository.filter(
       entity => !deleteEntities.includes(entity),
     );
 
@@ -210,11 +209,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity>,
   ): Promise<DeleteResult> {
-    const deleteEntities: Array<Entity> = this.fakeOrmRepository.filter(
-      entity =>
-        Object.entries(baseData).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
+    const deleteEntities: Array<Entity> = this.fakeRepository.filter(entity =>
+      Object.entries(baseData).every(
+        ([key, value]) => entity[key] === value && !entity.deleted_at,
+      ),
     );
 
     deleteEntities.forEach(entity => {
@@ -233,7 +231,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   ): Promise<DeleteResult> {
     let deleteEntities: Array<Entity> = [];
     baseData.forEach(data => {
-      const entitiesToDelete = this.fakeOrmRepository.filter(entity =>
+      const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
           ([key, value]) => entity[key] === value && !entity.deleted_at,
         ),

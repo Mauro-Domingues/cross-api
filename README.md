@@ -1,4 +1,4 @@
-﻿﻿<h1>cross-api</h1>
+﻿﻿﻿﻿<h1>cross-api</h1>
 
 <h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-example-using-cross-api</a>
 
@@ -26,6 +26,216 @@ yarn cross comands
 
 ```
 yarn cross make:module [name]
+```
+
+<hr>
+<br>
+
+<h2>Api Structure</h2>
+
+```bash
+.
+├── src
+├── .editorconfig
+├── .env
+├── .env.template
+├── .eslintignore
+├── .eslintrc.json
+├── .gitignore
+├── babel.config.js
+├── docker-compose.yml
+├── jest.config.ts
+├── nodemon.json
+├── package.json
+├── prettier.config.js
+├── tsconfig.json
+└── yarn.lock
+```
+
+<h3>src</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the entire structure of the api is located</h4>
+
+```bash
+.
+└── src
+    ├── @types
+    ├── assets
+    ├── config
+    ├── dtos
+    ├── middlewares
+    ├── modules
+    ├── routes
+    ├── shared
+    └── utils   
+```
+
+<h3>@types</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the global project typings are declared</h4>
+
+```bash
+.
+└── @types
+    ├── env.d.ts
+    ├── express.d.ts
+    ├── keys.d.ts
+    └── [name].ts 
+```
+
+<h3>assets</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, images...</h4>
+
+```bash
+.
+└── assets
+    ├── .well-known
+    │   └── jwks.json
+    ├── keys
+    │   ├── private.pem
+    │   └── public.pem
+    ├── domains.txt
+    └── errors.log   
+```
+
+<h3>config</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where public settings are located in which providers consume</h4>
+
+```bash
+.
+└── config
+    ├── auth.ts
+    ├── cache.ts
+    ├── cors.ts
+    └── [name].ts
+```
+
+<h3>dtos</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the public interfaces of the project are declared</h4>
+
+```bash
+.
+└── dtos
+    ├── ICacheDTO.ts
+    ├── IExceptionDTO.ts
+    ├── IListDTO.ts
+    ├── IObjectDTO.ts
+    ├── IResponseDTO.ts
+    └── [name].ts
+```
+
+<h3>middlewares</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the public project middlewares are declared</h4>
+
+```bash
+.
+└── middlewares
+    ├── ensureAuthenticated.ts
+    ├── GuardRoute.ts
+    ├── RateLimiter.ts
+    └── [name].ts
+```
+
+<h3>modules</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where private dtos/entities/repositories/private providers/controllers/services and unit tests of each module are located</h4>
+
+```bash
+.
+└── modules
+    └── [name]
+        ├── dtos
+        │   └── IEntityDTO.ts
+        ├── entities
+        │   └── Entity.ts
+        ├── providers
+        │   ├── [name]
+        │   │   ├── dtos
+        │   │   ├── fakes
+        │   │   ├── implementations
+        │   │   ├── models
+        │   │   └── index.ts
+        │   └── index.ts
+        ├── repositories
+        │   ├── fakes
+        │   │   └── FakeRepository.ts
+        │   ├── Repository.ts
+        │   └── IRepository.ts
+        └── services
+            └── [service]
+                ├── Controller.ts
+                ├── Controller.spec.ts
+                ├── Service.ts
+                └── Service.spec.ts
+```
+
+<h3>routes</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
+
+```bash
+.
+└── routes
+    ├── guardRouter.ts
+    ├── index.ts
+    └── [name].ts 
+```
+
+<h3>shared</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where public modules/providers/error handlers/connection configuration/app and server are located</h4>
+
+```bash
+.
+└── shared
+    ├── container
+    │   ├── modules
+    │   │   ├── entities
+    │   │   │    └── Entity.ts
+    │   │   └── repositories
+    │   │       ├── fakes
+    │   │       │   └── FakeBaseRepository.ts
+    │   │       ├── BaseRepository.ts
+    │   │       └── IBaseRepository.ts
+    │   ├── providers
+    │   │   ├── [name]
+    │   │   │   ├── dtos
+    │   │   │   │   └── IProviderDTO.ts
+    │   │   │   ├── fakes
+    │   │   │   │   └── FakeImplementation.ts
+    │   │   │   ├── implementations
+    │   │   │   │   └── Implementation.ts
+    │   │   │   ├── models
+    │   │   │   │   └── IProvider.ts
+    │   │   │   └── index.ts
+    │   │   └── index.ts
+    │   └── index.ts
+    ├── errors
+    │   └── AppError.ts
+    ├── typeorm
+    │   ├── migrations
+    │   │   └── hash.default.ts
+    │   ├── seeds
+    │   │   └── [name].ts
+    │   ├── dataSource.ts
+    │   └── index.ts
+    ├── app.ts
+    └── server.ts
+```
+
+<h3>utils</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where useful tools for various use cases are stored</h4>
+
+```bash
+.
+└── utils
+    ├── mappers
+    │   ├── mapAndCloneAttribute.ts
+    │   ├── mapAndInsertAttribute.ts
+    │   ├── mapAndPatchAttribute.ts
+    │   ├── mapAndPatchAttribute.ts
+    │   ├── mapAndPatchString.ts
+    │   ├── mapAndUpdateAttribute.ts
+    │   └── mapAndUpdateString.ts
+    ├── decimalAdjust.ts
+    ├── domainsManager.ts
+    ├── errorLog.ts
+    └── normalizeQueryLink.ts   
 ```
 
 <hr>
@@ -758,27 +968,4 @@ output = {
 <h2>Providers</h2>
 <h4>Providers are implementations of services that assist in the business rules of your project, such as storage providers, sending messages, leads... By default, they are created within the "src/shared/containers" directory, where they act as public and independent services, but can also be generated within the modules in "src/modules/[name]/providers". They can contain one or more implementations, you decide which one to use, to switch between them just change the key in .env</h4>
 <h3>Payment providers coming soon!</h3>
-<hr>
-<br>
-<h2>Api Structure</h2>
-<h3>src</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the entire structure of the api is located</h4>
-<h3>@types</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the global project typings are declared</h4>
-<h3>assets</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, images...</h4>
-<h3>config</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where public settings are located in which providers consume</h4>
-<h3>dtos</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the public interfaces of the project are declared</h4>
-<h3>middlewares</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the public project middlewares are declared</h4>
-<h3>modules</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where private dtos/entities/repositories/private providers/private middlewares/controllers/services and unit tests of each module are located</h4>
-<h3>routes</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
-<h3>shared</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where public modules/providers/error handlers/connection configuration/app and server are located</h4>
-<h3>utils</h3>
-<h4>&nbsp;&nbsp;&nbsp;- It is where useful tools for various use cases are stored</h4>
 <hr>
