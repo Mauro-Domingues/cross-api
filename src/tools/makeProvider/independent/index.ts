@@ -10,17 +10,17 @@ import { MakeNotificationProvider } from './notification.js';
 import { MakeStorageProvider } from './storage.js';
 
 export class MakeProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private providerName: string | undefined;
-  private makeStorageProvider: MakeStorageProvider;
-  private makeNotificationProvider: MakeNotificationProvider;
-  private makeMailTemplateProvider: MakeMailTemplateProvider;
-  private makeMailProvider: MakeMailProvider;
-  private makeLeadProvider: MakeLeadProvider;
-  private makeHashProvider: MakeHashProvider;
-  private makeCryptoProvider: MakeCryptoProvider;
-  private makeCacheProvider: MakeCacheProvider;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly providerName: string | undefined;
+  private readonly makeStorageProvider: MakeStorageProvider;
+  private readonly makeNotificationProvider: MakeNotificationProvider;
+  private readonly makeMailTemplateProvider: MakeMailTemplateProvider;
+  private readonly makeMailProvider: MakeMailProvider;
+  private readonly makeLeadProvider: MakeLeadProvider;
+  private readonly makeHashProvider: MakeHashProvider;
+  private readonly makeCryptoProvider: MakeCryptoProvider;
+  private readonly makeCacheProvider: MakeCacheProvider;
 
   constructor(providerName: string | undefined) {
     this.providerName = providerName;

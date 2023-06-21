@@ -10,18 +10,18 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentNotificationProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createINotification: CreateINotification;
-  private createINotificationDTO: CreateINotificationDTO;
-  private createOneSignalNotification: CreateOneSignalNotification;
-  private createFakeNotification: CreateFakeNotification;
-  private createNotificationIndex: CreateNotificationIndex;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createINotification: CreateINotification;
+  private readonly createINotificationDTO: CreateINotificationDTO;
+  private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createFakeNotification: CreateFakeNotification;
+  private readonly createNotificationIndex: CreateNotificationIndex;
+  private readonly createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

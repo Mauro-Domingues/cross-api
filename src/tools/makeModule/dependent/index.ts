@@ -7,14 +7,14 @@ import { MakeDependentStructure } from './structure.js';
 import { MakeDependentUnitTests } from './unitTests.js';
 
 export class MakeDependentModule {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private makeDependentUnitTests: MakeDependentUnitTests;
-  private makeDependentStructure: MakeDependentStructure;
-  private makeDependentInfra: MakeDependentInfra;
-  private makeDependentFunctionalities: MakeDependentFunctionalities;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly makeDependentUnitTests: MakeDependentUnitTests;
+  private readonly makeDependentStructure: MakeDependentStructure;
+  private readonly makeDependentInfra: MakeDependentInfra;
+  private readonly makeDependentFunctionalities: MakeDependentFunctionalities;
 
   constructor(
     names: IModuleNamesDTO | undefined,

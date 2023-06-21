@@ -3,9 +3,9 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateIndexRoute {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

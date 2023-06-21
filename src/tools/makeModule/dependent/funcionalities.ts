@@ -14,21 +14,21 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentFunctionalities {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private updateDependentService: UpdateDependentService;
-  private updateDependentController: UpdateDependentController;
-  private showDependentService: ShowDependentService;
-  private showDependentController: ShowDependentController;
-  private listDependentService: ListDependentService;
-  private listDependentController: ListDependentController;
-  private deleteDependentService: DeleteDependentService;
-  private deleteDependentController: DeleteDependentController;
-  private createDependentService: CreateDependentService;
-  private createDependentController: CreateDependentController;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly updateDependentService: UpdateDependentService;
+  private readonly updateDependentController: UpdateDependentController;
+  private readonly showDependentService: ShowDependentService;
+  private readonly showDependentController: ShowDependentController;
+  private readonly listDependentService: ListDependentService;
+  private readonly listDependentController: ListDependentController;
+  private readonly deleteDependentService: DeleteDependentService;
+  private readonly deleteDependentController: DeleteDependentController;
+  private readonly createDependentService: CreateDependentService;
+  private readonly createDependentController: CreateDependentController;
 
   constructor(
     names: IModuleNamesDTO | undefined,

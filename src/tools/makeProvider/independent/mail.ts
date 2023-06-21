@@ -10,16 +10,16 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeMailProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createIMail: CreateIMail;
-  private createFakeMail: CreateFakeMail;
-  private createIMailDTO: CreateIMailDTO;
-  private createMailConfig: CreateMailConfig;
-  private createMailIndex: CreateMailIndex;
-  private createSESMail: CreateSESMail;
-  private createEtherealMail: CreateEtherealMail;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createIMail: CreateIMail;
+  private readonly createFakeMail: CreateFakeMail;
+  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createMailConfig: CreateMailConfig;
+  private readonly createMailIndex: CreateMailIndex;
+  private readonly createSESMail: CreateSESMail;
+  private readonly createEtherealMail: CreateEtherealMail;
 
   constructor() {
     this.messages = new Messages().execute();

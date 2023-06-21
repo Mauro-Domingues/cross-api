@@ -7,13 +7,13 @@ import { MakeStructure } from './structure.js';
 import { MakeUnitTests } from './unitTests.js';
 
 export class MakeModule {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private makeUnitTests: MakeUnitTests;
-  private makeStructure: MakeStructure;
-  private makeInfra: MakeInfra;
-  private makeFunctionalities: MakeFunctionalities;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly makeUnitTests: MakeUnitTests;
+  private readonly makeStructure: MakeStructure;
+  private readonly makeInfra: MakeInfra;
+  private readonly makeFunctionalities: MakeFunctionalities;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

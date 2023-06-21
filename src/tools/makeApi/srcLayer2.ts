@@ -3,9 +3,9 @@ import { FileManager } from '@tools/fileManager.js';
 import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class MakeSecondLayer {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
 
   constructor() {
     this.messages = new Messages().execute();

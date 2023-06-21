@@ -13,19 +13,19 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeFourthLayer {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createMapAndUpdateString: CreateMapAndUpdateString;
-  private createMapAndUpdate: CreateMapAndUpdate;
-  private createMapAndPatchString: CreateMapAndPatchString;
-  private createMapAndPatch: CreateMapAndPatch;
-  private createMapAndInsert: CreateMapAndInsert;
-  private createMapAndClone: CreateMapAndClone;
-  private createDataSource: CreateDataSource;
-  private createContainer: CreateContainer;
-  private createAppError: CreateAppError;
-  private createTypeorm: CreateTypeorm;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createMapAndUpdateString: CreateMapAndUpdateString;
+  private readonly createMapAndUpdate: CreateMapAndUpdate;
+  private readonly createMapAndPatchString: CreateMapAndPatchString;
+  private readonly createMapAndPatch: CreateMapAndPatch;
+  private readonly createMapAndInsert: CreateMapAndInsert;
+  private readonly createMapAndClone: CreateMapAndClone;
+  private readonly createDataSource: CreateDataSource;
+  private readonly createContainer: CreateContainer;
+  private readonly createAppError: CreateAppError;
+  private readonly createTypeorm: CreateTypeorm;
 
   constructor() {
     this.messages = new Messages().execute();

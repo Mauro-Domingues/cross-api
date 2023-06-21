@@ -10,18 +10,18 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentCacheProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createICache: CreateICache;
-  private createRedisCache: CreateRedisCache;
-  private createFakeRedis: CreateFakeRedis;
-  private createCacheConfig: CreateCacheConfig;
-  private createCacheIndex: CreateCacheIndex;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createICache: CreateICache;
+  private readonly createRedisCache: CreateRedisCache;
+  private readonly createFakeRedis: CreateFakeRedis;
+  private readonly createCacheConfig: CreateCacheConfig;
+  private readonly createCacheIndex: CreateCacheIndex;
+  private readonly createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

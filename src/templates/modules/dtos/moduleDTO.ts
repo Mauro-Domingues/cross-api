@@ -3,9 +3,9 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateModuleDTO {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

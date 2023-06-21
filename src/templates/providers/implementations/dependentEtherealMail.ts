@@ -3,11 +3,11 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateDependentEtherealMail {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private console: Console;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
@@ -49,7 +49,7 @@ export class EtherealMailProvider implements IMailProviderDTO {
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
     this.createClient();
   }

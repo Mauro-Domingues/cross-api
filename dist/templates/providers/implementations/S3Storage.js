@@ -15,7 +15,7 @@ import { AppError } from '@shared/errors/AppError';
 import { IStorageProviderDTO } from '../models/IStorageProvider';
 
 export class S3StorageProvider implements IStorageProviderDTO {
-  private client: S3Client;
+  private readonly client: S3Client;
 
   constructor() {
     this.client = new S3Client({

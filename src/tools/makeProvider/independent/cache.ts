@@ -8,14 +8,14 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeCacheProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private createICache: CreateICache;
-  private fileManager: FileManager;
-  private createRedisCache: CreateRedisCache;
-  private createFakeRedis: CreateFakeRedis;
-  private createCacheConfig: CreateCacheConfig;
-  private createCacheIndex: CreateCacheIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly createICache: CreateICache;
+  private readonly fileManager: FileManager;
+  private readonly createRedisCache: CreateRedisCache;
+  private readonly createFakeRedis: CreateFakeRedis;
+  private readonly createCacheConfig: CreateCacheConfig;
+  private readonly createCacheIndex: CreateCacheIndex;
 
   constructor() {
     this.messages = new Messages().execute();

@@ -7,25 +7,25 @@ import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
-interface ILanguageOptionsDTO {
-  'en-us': 'englishMessages';
-  'pt-br': 'portugueseMessages';
-}
-
 interface ILanguageConfigDTO {
   option: keyof ILanguageOptionsDTO;
   index: number;
 }
 
+export interface ILanguageOptionsDTO {
+  'en-us': 'englishMessages';
+  'pt-br': 'portugueseMessages';
+}
+
 export class ConfigLanguage {
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly englishMessages: EnglishMessages;
+  private readonly portugueseMessages: PortugueseMessages;
+  private readonly createDefaultLanguage: CreateDefaultLanguage;
+  public readonly Language: ILanguageOptionsDTO;
   public messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  public Language: ILanguageOptionsDTO;
   public languageConfig: ILanguageConfigDTO;
-  private englishMessages: EnglishMessages;
-  private portugueseMessages: PortugueseMessages;
-  private createDefaultLanguage: CreateDefaultLanguage;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
@@ -55,7 +55,10 @@ export class ConfigLanguage {
     });
 
     rl.question(this.messages.answer, optionChosen => {
-      const choice = Object.keys(this.Language)[Number(optionChosen)];
+      const choice = Object.keys(this.Language)[
+        Number(optionChosen)
+      ] as keyof ILanguageOptionsDTO;
+
       if (
         this.isLanguageOptionsKeyType(choice) &&
         Object.keys(this.Language)[Number(optionChosen)]
@@ -114,7 +117,7 @@ export class ConfigLanguage {
   }
 
   public isLanguageOptionsKeyType(
-    _option: keyof ILanguageOptionsDTO | string,
+    _option: keyof ILanguageOptionsDTO,
   ): _option is keyof ILanguageOptionsDTO {
     return true;
   }

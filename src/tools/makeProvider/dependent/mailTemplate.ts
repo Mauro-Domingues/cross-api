@@ -10,18 +10,18 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentMailTemplateProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createIMailTemplate: CreateIMailTemplate;
-  private createIMailTemplateDTO: CreateIMailTemplateDTO;
-  private createMailTemplate: CreateMailTemplate;
-  private createFakeMailTemplate: CreateFakeMailTemplate;
-  private createMailTemplateIndex: CreateMailTemplateIndex;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createIMailTemplate: CreateIMailTemplate;
+  private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
+  private readonly createMailTemplate: CreateMailTemplate;
+  private readonly createFakeMailTemplate: CreateFakeMailTemplate;
+  private readonly createMailTemplateIndex: CreateMailTemplateIndex;
+  private readonly createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

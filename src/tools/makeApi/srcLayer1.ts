@@ -14,20 +14,20 @@ import { FileManager } from '@tools/fileManager.js';
 import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class MakeFirstLayer {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createTsConfig: CreateTsConfig;
-  private createPrettierConfig: CreatePrettierConfig;
-  private createNodemonJson: CreateNodemonJson;
-  private createJestConfig: CreateJestConfig;
-  private createGitIgnore: CreateGitIgnore;
-  private createEsLintrcJson: CreateEsLintrcJson;
-  private createEsLintIgnore: CreateEsLintIgnore;
-  private createEnv: CreateEnv;
-  private createEditorConfig: CreateEditorConfig;
-  private createDockerCompose: CreateDockerCompose;
-  private createBabelConfig: CreateBabelConfig;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createTsConfig: CreateTsConfig;
+  private readonly createPrettierConfig: CreatePrettierConfig;
+  private readonly createNodemonJson: CreateNodemonJson;
+  private readonly createJestConfig: CreateJestConfig;
+  private readonly createGitIgnore: CreateGitIgnore;
+  private readonly createEsLintrcJson: CreateEsLintrcJson;
+  private readonly createEsLintIgnore: CreateEsLintIgnore;
+  private readonly createEnv: CreateEnv;
+  private readonly createEditorConfig: CreateEditorConfig;
+  private readonly createDockerCompose: CreateDockerCompose;
+  private readonly createBabelConfig: CreateBabelConfig;
 
   constructor() {
     this.messages = new Messages().execute();

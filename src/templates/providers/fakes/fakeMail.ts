@@ -4,7 +4,7 @@ export class CreateFakeMail {
 import { IMailProviderDTO } from '../models/IMailProvider';
 
 export class FakeMailProvider implements IMailProviderDTO {
-  private messages: Array<ISendMailDTO> = [];
+  private readonly messages: Array<ISendMailDTO> = [];
 
   public async sendMail(message: ISendMailDTO): Promise<void> {
     this.messages.push(message);

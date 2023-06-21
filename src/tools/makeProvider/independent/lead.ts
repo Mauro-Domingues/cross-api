@@ -9,15 +9,15 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeLeadProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createILead: CreateILead;
-  private createILeadDTO: CreateILeadDTO;
-  private createRDStationLead: CreateRDStationLead;
-  private createFakeLead: CreateFakeLead;
-  private createLeadConfig: CreateLeadConfig;
-  private createLeadIndex: CreateLeadIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createILead: CreateILead;
+  private readonly createILeadDTO: CreateILeadDTO;
+  private readonly createRDStationLead: CreateRDStationLead;
+  private readonly createFakeLead: CreateFakeLead;
+  private readonly createLeadConfig: CreateLeadConfig;
+  private readonly createLeadIndex: CreateLeadIndex;
 
   constructor() {
     this.messages = new Messages().execute();

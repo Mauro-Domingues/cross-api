@@ -3,11 +3,11 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateDependentSESMail {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private console: Console;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
@@ -42,11 +42,11 @@ import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
 export class SESMailProvider implements IMailProviderDTO {
-  private client: Transporter;
+  private readonly client: Transporter;
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
     this.client = createTransport({
       SES: new SESClient({

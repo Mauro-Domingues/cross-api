@@ -8,14 +8,14 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeCryptoProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createICrypto: CreateICrypto;
-  private createICryptoDTO: CreateICryptoDTO;
-  private createCrypto: CreateCrypto;
-  private createCryptoConfig: CreateCryptoConfig;
-  private createCryptoIndex: CreateCryptoIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createICrypto: CreateICrypto;
+  private readonly createICryptoDTO: CreateICryptoDTO;
+  private readonly createCrypto: CreateCrypto;
+  private readonly createCryptoConfig: CreateCryptoConfig;
+  private readonly createCryptoIndex: CreateCryptoIndex;
 
   constructor() {
     this.messages = new Messages().execute();

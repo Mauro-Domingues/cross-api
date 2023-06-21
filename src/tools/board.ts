@@ -7,11 +7,11 @@ interface IOptionDTO {
 }
 
 export class Board {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private toolOptions: Array<IOptionDTO>;
-  private ormOptions: Array<IOptionDTO>;
-  private structureOptions: Array<IOptionDTO>;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly toolOptions: Array<IOptionDTO>;
+  private readonly ormOptions: Array<IOptionDTO>;
+  private readonly structureOptions: Array<IOptionDTO>;
 
   constructor() {
     this.messages = new Messages().execute();

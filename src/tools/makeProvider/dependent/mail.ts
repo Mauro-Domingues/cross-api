@@ -12,20 +12,20 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentMailProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private fileManager: FileManager;
-  private messages: IMessagesDTO;
-  private console: Console;
-  private createIMail: CreateIMail;
-  private createFakeMail: CreateFakeMail;
-  private createIMailDTO: CreateIMailDTO;
-  private createMailConfig: CreateMailConfig;
-  private createMailIndex: CreateMailIndex;
-  private createContainer: CreateContainer;
-  private createDependentSESMail: CreateDependentSESMail;
-  private createDependentEtherealMail: CreateDependentEtherealMail;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly createIMail: CreateIMail;
+  private readonly createFakeMail: CreateFakeMail;
+  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createMailConfig: CreateMailConfig;
+  private readonly createMailIndex: CreateMailIndex;
+  private readonly createContainer: CreateContainer;
+  private readonly createDependentSESMail: CreateDependentSESMail;
+  private readonly createDependentEtherealMail: CreateDependentEtherealMail;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

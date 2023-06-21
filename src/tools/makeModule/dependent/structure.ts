@@ -4,11 +4,11 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentStructure {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
-  private fatherNames:
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
 

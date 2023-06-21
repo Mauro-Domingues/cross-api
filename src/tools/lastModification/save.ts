@@ -2,12 +2,12 @@ import { FileManager } from '@tools/fileManager.js';
 import { IModuleNamesDTO } from '@tools/names.js';
 
 export class CreateRegister {
-  private basePath: string;
-  private fileManager: FileManager;
-  private comand: Array<string> | undefined;
-  private providerName: string | undefined;
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames:
+  private readonly basePath: string;
+  private readonly fileManager: FileManager;
+  private readonly comand: Array<string> | undefined;
+  private readonly providerName: string | undefined;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
     | undefined;
 

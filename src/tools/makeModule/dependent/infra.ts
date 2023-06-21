@@ -15,22 +15,22 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentInfra {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private createIndexDependentRoute: CreateIndexDependentRoute;
-  private createFullDependentRoute: CreateFullDependentRoute;
-  private createDependentRoute: CreateDependentRoute;
-  private createIDependentRepository: CreateIDependentRepository;
-  private createDependentFakeRepository: CreateDependentFakeRepository;
-  private createDependentRepository: CreateDependentRepository;
-  private createDependentInjection: CreateDependentInjection;
-  private createEntity: CreateEntity;
-  private createModuleDTO: CreateModuleDTO;
-  private createRoutes: CreateRoutes;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly createIndexDependentRoute: CreateIndexDependentRoute;
+  private readonly createFullDependentRoute: CreateFullDependentRoute;
+  private readonly createDependentRoute: CreateDependentRoute;
+  private readonly createIDependentRepository: CreateIDependentRepository;
+  private readonly createDependentFakeRepository: CreateDependentFakeRepository;
+  private readonly createDependentRepository: CreateDependentRepository;
+  private readonly createDependentInjection: CreateDependentInjection;
+  private readonly createEntity: CreateEntity;
+  private readonly createModuleDTO: CreateModuleDTO;
+  private readonly createRoutes: CreateRoutes;
+  private readonly createContainer: CreateContainer;
 
   constructor(
     names: IModuleNamesDTO | undefined,

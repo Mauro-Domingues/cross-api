@@ -6,14 +6,14 @@ import { CreateDefaultLanguage } from '../templates/assets/defaultLanguage.js';
 import { Console } from './console.js';
 import { FileManager } from './fileManager.js';
 export class ConfigLanguage {
-    messages;
     fileManager;
     console;
-    Language;
-    languageConfig;
     englishMessages;
     portugueseMessages;
     createDefaultLanguage;
+    Language;
+    messages;
+    languageConfig;
     constructor() {
         this.englishMessages = new EnglishMessages();
         this.fileManager = new FileManager();

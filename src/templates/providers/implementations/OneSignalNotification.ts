@@ -7,7 +7,7 @@ import { ISendNotificationDTO } from '../dtos/ISendNotificationDTO';
 import { INotificationProviderDTO } from '../models/INotificationProvider';
 
 export class OneSignalProvider implements INotificationProviderDTO {
-  private options: AxiosRequestConfig;
+  private readonly options: AxiosRequestConfig;
 
   constructor() {
     this.options = {

@@ -37,7 +37,7 @@ import { AppDataSource } from '@shared/typeorm/dataSource';
 export class Show${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
   ) {}
 
   public async execute(

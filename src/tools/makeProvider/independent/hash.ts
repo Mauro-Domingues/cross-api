@@ -8,14 +8,14 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeHashProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createIHash: CreateIHash;
-  private createHash: CreateHash;
-  private createFakeHash: CreateFakeHash;
-  private createHashConfig: CreateHashConfig;
-  private createHashIndex: CreateHashIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createIHash: CreateIHash;
+  private readonly createHash: CreateHash;
+  private readonly createFakeHash: CreateFakeHash;
+  private readonly createHashConfig: CreateHashConfig;
+  private readonly createHashIndex: CreateHashIndex;
 
   constructor() {
     this.messages = new Messages().execute();

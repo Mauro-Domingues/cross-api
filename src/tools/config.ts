@@ -1,18 +1,18 @@
 import { Config } from '@templates/assets/config.js';
 import { createInterface } from 'readline';
 import { Shell } from '@tools/shell.js';
-import { ConfigLanguage } from '@tools/languageConfig.js';
+import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig.js';
 import { FileManager } from '@tools/fileManager.js';
 import { Console } from '@tools/console.js';
 
 export class ConfigJson {
-  private config: Config;
-  private console: Console;
-  private shell: Shell;
-  private configLanguage: ConfigLanguage;
-  private fileManager: FileManager;
-  private dependencies: Array<string>;
-  private devDependencies: Array<string>;
+  private readonly config: Config;
+  private readonly console: Console;
+  private readonly shell: Shell;
+  private readonly configLanguage: ConfigLanguage;
+  private readonly fileManager: FileManager;
+  private readonly dependencies: Array<string>;
+  private readonly devDependencies: Array<string>;
 
   constructor() {
     this.configLanguage = new ConfigLanguage();
@@ -238,7 +238,8 @@ export class ConfigJson {
     rl.question(this.configLanguage.messages.answer, optionChosen => {
       const choice = Object.keys(this.configLanguage.Language)[
         Number(optionChosen)
-      ];
+      ] as keyof ILanguageOptionsDTO;
+
       if (
         this.configLanguage.isLanguageOptionsKeyType(choice) &&
         Object.keys(this.configLanguage.Language)[Number(optionChosen)]

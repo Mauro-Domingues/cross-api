@@ -9,15 +9,15 @@ import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository.js';
 
 export class MakeLastLayer {
-  private messages: IMessagesDTO;
-  private createBaseEntity: CreateBaseEntity;
-  private createBaseRepository: CreateBaseRepository;
-  private createIBaseRepository: CreateIBaseRepository;
-  private createBaseFakeRepository: CreateBaseFakeRepository;
-  private fileManager: FileManager;
-  private console: Console;
-  private createCorsConfig: CreateCorsConfig;
-  private createAuthConfig: CreateAuthConfig;
+  private readonly messages: IMessagesDTO;
+  private readonly createBaseEntity: CreateBaseEntity;
+  private readonly createBaseRepository: CreateBaseRepository;
+  private readonly createIBaseRepository: CreateIBaseRepository;
+  private readonly createBaseFakeRepository: CreateBaseFakeRepository;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createCorsConfig: CreateCorsConfig;
+  private readonly createAuthConfig: CreateAuthConfig;
 
   constructor() {
     this.messages = new Messages().execute();

@@ -11,19 +11,19 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentStorageProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createIStorage: CreateIStorage;
-  private createDiskStorage: CreateDiskStorage;
-  private createS3Storage: CreateS3Storage;
-  private createFakeStorage: CreateFakeStorage;
-  private createUploadConfig: CreateUploadConfig;
-  private createStorageIndex: CreateStorageIndex;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createIStorage: CreateIStorage;
+  private readonly createDiskStorage: CreateDiskStorage;
+  private readonly createS3Storage: CreateS3Storage;
+  private readonly createFakeStorage: CreateFakeStorage;
+  private readonly createUploadConfig: CreateUploadConfig;
+  private readonly createStorageIndex: CreateStorageIndex;
+  private readonly createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

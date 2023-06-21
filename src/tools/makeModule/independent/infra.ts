@@ -14,20 +14,20 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeInfra {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private createIndexRoute: CreateIndexRoute;
-  private createIndependentRoute: CreateIndependentRoute;
-  private createIRepository: CreateIRepository;
-  private createFakeRepository: CreateFakeRepository;
-  private createRepository: CreateRepository;
-  private createInjection: CreateInjection;
-  private createEntity: CreateEntity;
-  private createModuleDTO: CreateModuleDTO;
-  private createRoutes: CreateRoutes;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly createIndexRoute: CreateIndexRoute;
+  private readonly createIndependentRoute: CreateIndependentRoute;
+  private readonly createIRepository: CreateIRepository;
+  private readonly createFakeRepository: CreateFakeRepository;
+  private readonly createRepository: CreateRepository;
+  private readonly createInjection: CreateInjection;
+  private readonly createEntity: CreateEntity;
+  private readonly createModuleDTO: CreateModuleDTO;
+  private readonly createRoutes: CreateRoutes;
+  private readonly createContainer: CreateContainer;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.names = names;

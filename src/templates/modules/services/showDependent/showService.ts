@@ -3,12 +3,12 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class ShowDependentService {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names:
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names:
     | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
     | undefined;
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
 
@@ -49,7 +49,7 @@ import { AppDataSource } from '@shared/typeorm/dataSource';
 export class Show${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
   ) {}
 
   public async execute(

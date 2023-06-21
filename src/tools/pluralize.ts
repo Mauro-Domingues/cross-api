@@ -2,8 +2,8 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class Pluralize {
-  private console: Console;
-  private uncontableData: Array<string | RegExp> = [
+  private readonly console: Console;
+  private readonly uncontableData: Array<string | RegExp> = [
     'adulthood',
     'advice',
     'agenda',
@@ -107,7 +107,7 @@ export class Pluralize {
     /pox$/i,
     /sheep$/i,
   ];
-  private irregularData: Array<Array<string>> = [
+  private readonly irregularData: Array<Array<string>> = [
     ['I', 'we'],
     ['me', 'us'],
     ['he', 'they'],
@@ -156,7 +156,7 @@ export class Pluralize {
     ['pickaxe', 'pickaxes'],
     ['passerby', 'passersby'],
   ];
-  private singularData: Array<Array<string | RegExp>> = [
+  private readonly singularData: Array<Array<string | RegExp>> = [
     [/s$/i, ''],
     [/(ss)$/i, '$1'],
     [/(wi|kni|(?:after|half|high|low|mid|non|night|[^\w]|^)li)ves$/i, '$1fe'],
@@ -199,7 +199,7 @@ export class Pluralize {
     [/(eau)x?$/i, '$1'],
     [/men$/i, 'man'],
   ];
-  private pluralData: Array<Array<string | RegExp>> = [
+  private readonly pluralData: Array<Array<string | RegExp>> = [
     [/s?$/i, 's'],
     [/[^\u0000-\u007F]$/i, '$0'],
     [/([^aeiou]ese)$/i, '$1'],
@@ -235,13 +235,13 @@ export class Pluralize {
     [/m[ae]n$/i, 'men'],
     ['thou', 'you'],
   ];
-  private messages: IMessagesDTO;
-  private word: string | undefined;
-  private pluralRules: Array<[RegExp, string]>;
-  private singularRules: Array<[RegExp, string]>;
-  private uncountables: { [key: string]: boolean };
-  private irregularPlurals: { [key: string]: string };
-  private irregularSingles: { [key: string]: string };
+  private readonly messages: IMessagesDTO;
+  private readonly word: string | undefined;
+  private readonly pluralRules: Array<[RegExp, string]>;
+  private readonly singularRules: Array<[RegExp, string]>;
+  private readonly uncountables: { [key: string]: boolean };
+  private readonly irregularPlurals: { [key: string]: string };
+  private readonly irregularSingles: { [key: string]: string };
 
   constructor(word: string | undefined) {
     this.word = word;

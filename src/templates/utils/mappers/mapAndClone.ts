@@ -1,7 +1,7 @@
 import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class CreateMapAndClone {
-  private messages: IMessagesDTO;
+  private readonly messages: IMessagesDTO;
 
   constructor() {
     this.messages = new Messages().execute();

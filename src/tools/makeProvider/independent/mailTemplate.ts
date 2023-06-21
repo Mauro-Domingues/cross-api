@@ -8,14 +8,14 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeMailTemplateProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createIMailTemplate: CreateIMailTemplate;
-  private createIMailTemplateDTO: CreateIMailTemplateDTO;
-  private createMailTemplate: CreateMailTemplate;
-  private createFakeMailTemplate: CreateFakeMailTemplate;
-  private createMailTemplateIndex: CreateMailTemplateIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createIMailTemplate: CreateIMailTemplate;
+  private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
+  private readonly createMailTemplate: CreateMailTemplate;
+  private readonly createFakeMailTemplate: CreateFakeMailTemplate;
+  private readonly createMailTemplateIndex: CreateMailTemplateIndex;
 
   constructor() {
     this.messages = new Messages().execute();

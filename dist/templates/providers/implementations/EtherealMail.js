@@ -20,7 +20,7 @@ export class EtherealMailProvider implements IMailProviderDTO {
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
     this.createClient();
   }

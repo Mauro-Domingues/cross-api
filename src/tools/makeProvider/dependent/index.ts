@@ -11,18 +11,18 @@ import { MakeDependentNotificationProvider } from './notification.js';
 import { MakeDependentStorageProvider } from './storage.js';
 
 export class MakeDependentProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private providerName: string | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private makeDependentStorageProvider: MakeDependentStorageProvider;
-  private makeDependentNotificationProvider: MakeDependentNotificationProvider;
-  private makeDependentMailTemplateProvider: MakeDependentMailTemplateProvider;
-  private makeDependentMailProvider: MakeDependentMailProvider;
-  private makeDependentLeadProvider: MakeDependentLeadProvider;
-  private makeDependentHashProvider: MakeDependentHashProvider;
-  private makeDependentCryptoProvider: MakeDependentCryptoProvider;
-  private makeDependentCacheProvider: MakeDependentCacheProvider;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly providerName: string | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly makeDependentStorageProvider: MakeDependentStorageProvider;
+  private readonly makeDependentNotificationProvider: MakeDependentNotificationProvider;
+  private readonly makeDependentMailTemplateProvider: MakeDependentMailTemplateProvider;
+  private readonly makeDependentMailProvider: MakeDependentMailProvider;
+  private readonly makeDependentLeadProvider: MakeDependentLeadProvider;
+  private readonly makeDependentHashProvider: MakeDependentHashProvider;
+  private readonly makeDependentCryptoProvider: MakeDependentCryptoProvider;
+  private readonly makeDependentCacheProvider: MakeDependentCacheProvider;
 
   constructor(
     providerName: string | undefined,

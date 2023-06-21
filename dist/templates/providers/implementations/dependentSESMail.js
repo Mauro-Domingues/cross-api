@@ -33,11 +33,11 @@ import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
 export class SESMailProvider implements IMailProviderDTO {
-  private client: Transporter;
+  private readonly client: Transporter;
 
   constructor(
     @inject('MailTemplateProvider')
-    private mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
     this.client = createTransport({
       SES: new SESClient({

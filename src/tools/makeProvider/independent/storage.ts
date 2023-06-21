@@ -9,15 +9,15 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeStorageProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createIStorage: CreateIStorage;
-  private createDiskStorage: CreateDiskStorage;
-  private createS3Storage: CreateS3Storage;
-  private createFakeStorage: CreateFakeStorage;
-  private createUploadConfig: CreateUploadConfig;
-  private createStorageIndex: CreateStorageIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createIStorage: CreateIStorage;
+  private readonly createDiskStorage: CreateDiskStorage;
+  private readonly createS3Storage: CreateS3Storage;
+  private readonly createFakeStorage: CreateFakeStorage;
+  private readonly createUploadConfig: CreateUploadConfig;
+  private readonly createStorageIndex: CreateStorageIndex;
 
   constructor() {
     this.messages = new Messages().execute();

@@ -4,10 +4,10 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeStructure {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

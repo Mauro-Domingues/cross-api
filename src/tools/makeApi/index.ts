@@ -7,13 +7,13 @@ import { MakeFourthLayer } from './srcLayer4.js';
 import { MakeLastLayer } from './srcLastLayer.js';
 
 export class CreateApi {
-  private createProvider: CreateProvider;
-  private makeLastLayer: MakeLastLayer;
-  private makeFourthLayer: MakeFourthLayer;
-  private makeThirdLayer: MakeThirdLayer;
-  private makeSecondLayer: MakeSecondLayer;
-  private makeFirstLayer: MakeFirstLayer;
-  private makeInfra: MakeInfra;
+  private readonly createProvider: CreateProvider;
+  private readonly makeLastLayer: MakeLastLayer;
+  private readonly makeFourthLayer: MakeFourthLayer;
+  private readonly makeThirdLayer: MakeThirdLayer;
+  private readonly makeSecondLayer: MakeSecondLayer;
+  private readonly makeFirstLayer: MakeFirstLayer;
+  private readonly makeInfra: MakeInfra;
 
   constructor() {
     this.createProvider = new CreateProvider('cache', undefined);

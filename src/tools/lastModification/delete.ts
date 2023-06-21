@@ -4,11 +4,11 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class DeleteRegister {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private providers: { [key: string]: string };
-  private basePath: string;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly providers: { [key: string]: string };
+  private readonly basePath: string;
 
   constructor() {
     this.messages = new Messages().execute();

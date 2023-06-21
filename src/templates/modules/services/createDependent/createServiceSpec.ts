@@ -3,15 +3,15 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateSpecDependentService {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names:
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names:
     | Pick<
         IModuleNamesDTO,
         'lowerModuleName' | 'upperModuleName' | 'pluralUpperModuleName'
       >
     | undefined;
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
 

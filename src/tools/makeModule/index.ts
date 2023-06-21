@@ -3,10 +3,10 @@ import { MakeDependentModule } from './dependent/index.js';
 import { MakeModule } from './independent/index.js';
 
 export class CreateModule {
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private makeModule: MakeModule;
-  private makeDependentModule: MakeDependentModule;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly makeModule: MakeModule;
+  private readonly makeDependentModule: MakeDependentModule;
 
   constructor(
     names: IModuleNamesDTO | undefined,

@@ -10,18 +10,18 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentCryptoProvider {
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private createICrypto: CreateICrypto;
-  private createICryptoDTO: CreateICryptoDTO;
-  private createCrypto: CreateCrypto;
-  private createCryptoConfig: CreateCryptoConfig;
-  private createCryptoIndex: CreateCryptoIndex;
-  private createContainer: CreateContainer;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly createICrypto: CreateICrypto;
+  private readonly createICryptoDTO: CreateICryptoDTO;
+  private readonly createCrypto: CreateCrypto;
+  private readonly createCryptoConfig: CreateCryptoConfig;
+  private readonly createCryptoIndex: CreateCryptoIndex;
+  private readonly createContainer: CreateContainer;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;

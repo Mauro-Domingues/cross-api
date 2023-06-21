@@ -3,12 +3,12 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class CreateDependentService {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names:
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names:
     | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
     | undefined;
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
 
@@ -49,10 +49,10 @@ import { AppDataSource } from '@shared/typeorm/dataSource';
 export class Create${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
 
     @inject('CacheProvider')
-    private cacheProvider: ICacheProviderDTO,
+    private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
   public async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {

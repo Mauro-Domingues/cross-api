@@ -3,12 +3,12 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class ListSpecDependentService {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names:
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names:
     | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
     | undefined;
-  private fatherNames:
+  private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
 

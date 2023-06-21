@@ -8,14 +8,14 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeNotificationProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private fileManager: FileManager;
-  private createINotification: CreateINotification;
-  private createINotificationDTO: CreateINotificationDTO;
-  private createOneSignalNotification: CreateOneSignalNotification;
-  private createFakeNotification: CreateFakeNotification;
-  private createNotificationIndex: CreateNotificationIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly fileManager: FileManager;
+  private readonly createINotification: CreateINotification;
+  private readonly createINotificationDTO: CreateINotificationDTO;
+  private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createFakeNotification: CreateFakeNotification;
+  private readonly createNotificationIndex: CreateNotificationIndex;
 
   constructor() {
     this.messages = new Messages().execute();

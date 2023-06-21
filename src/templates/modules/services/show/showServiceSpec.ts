@@ -3,9 +3,9 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 export class ShowSpecService {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private names:
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly names:
     | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
     | undefined;
 

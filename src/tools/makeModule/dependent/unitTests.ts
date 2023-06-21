@@ -14,21 +14,21 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeDependentUnitTests {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private updateSpecDependentService: UpdateSpecDependentService;
-  private updateSpecDependentController: UpdateSpecDependentController;
-  private showSpecDependentService: ShowSpecDependentService;
-  private showSpecDependentController: ShowSpecDependentController;
-  private listSpecDependentService: ListSpecDependentService;
-  private listSpecDependentController: ListSpecDependentController;
-  private deleteSpecDependentService: DeleteSpecDependentService;
-  private deleteSpecDependentController: DeleteSpecDependentController;
-  private createSpecDependentService: CreateSpecDependentService;
-  private createSpecDependentController: CreateSpecDependentController;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly updateSpecDependentService: UpdateSpecDependentService;
+  private readonly updateSpecDependentController: UpdateSpecDependentController;
+  private readonly showSpecDependentService: ShowSpecDependentService;
+  private readonly showSpecDependentController: ShowSpecDependentController;
+  private readonly listSpecDependentService: ListSpecDependentService;
+  private readonly listSpecDependentController: ListSpecDependentController;
+  private readonly deleteSpecDependentService: DeleteSpecDependentService;
+  private readonly deleteSpecDependentController: DeleteSpecDependentController;
+  private readonly createSpecDependentService: CreateSpecDependentService;
+  private readonly createSpecDependentController: CreateSpecDependentController;
 
   constructor(
     names: IModuleNamesDTO | undefined,

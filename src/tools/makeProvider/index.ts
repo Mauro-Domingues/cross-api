@@ -5,12 +5,12 @@ import { MakeDependentProvider } from './dependent/index.js';
 import { MakeProvider } from './independent/index.js';
 
 export class CreateProvider {
-  private messages: IMessagesDTO;
-  private console: Console;
-  private providerName: string | undefined;
-  private fatherNames: IModuleNamesDTO | undefined;
-  private makeProvider: MakeProvider;
-  private makeDependentProvider: MakeDependentProvider;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly providerName: string | undefined;
+  private readonly fatherNames: IModuleNamesDTO | undefined;
+  private readonly makeProvider: MakeProvider;
+  private readonly makeDependentProvider: MakeDependentProvider;
 
   constructor(
     providerName: string | undefined,

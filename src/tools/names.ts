@@ -10,8 +10,8 @@ export interface IModuleNamesDTO {
 }
 
 export class GetNames {
-  private name: string | undefined;
-  private pluralize: Pluralize;
+  private readonly name: string | undefined;
+  private readonly pluralize: Pluralize;
 
   constructor(name: string | undefined) {
     this.pluralize = new Pluralize(name);

@@ -6,8 +6,8 @@ interface IOptionDTO {
 }
 
 export class ListProvider {
-  private providers: Array<IOptionDTO>;
-  private console: Console;
+  private readonly providers: Array<IOptionDTO>;
+  private readonly console: Console;
 
   constructor() {
     this.console = new Console();

@@ -15,24 +15,24 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
 class Index {
-  private fullComand: Array<string> = process.argv.slice(2);
-  private comand: string = process.argv[2];
-  private arg: string = process.argv[3];
-  private father: string = process.argv[4];
-  private messages: IMessagesDTO;
-  private console: Console;
-  private getNames: GetNames;
-  private shell: Shell;
-  private getFatherNames: GetNames;
-  private deleteRegister: DeleteRegister;
-  private createRegister: CreateRegister;
-  private createProvider: CreateProvider;
-  private createModule: CreateModule;
-  private createApi: CreateApi;
-  private listProvider: ListProvider;
-  private configLanguage: ConfigLanguage;
-  private configJson: ConfigJson;
-  private board: Board;
+  private readonly fullComand: Array<string> = process.argv.slice(2);
+  private readonly comand: string = process.argv[2];
+  private readonly arg: string = process.argv[3];
+  private readonly father: string = process.argv[4];
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
+  private readonly getNames: GetNames;
+  private readonly shell: Shell;
+  private readonly getFatherNames: GetNames;
+  private readonly deleteRegister: DeleteRegister;
+  private readonly createRegister: CreateRegister;
+  private readonly createProvider: CreateProvider;
+  private readonly createModule: CreateModule;
+  private readonly createApi: CreateApi;
+  private readonly listProvider: ListProvider;
+  private readonly configLanguage: ConfigLanguage;
+  private readonly configJson: ConfigJson;
+  private readonly board: Board;
 
   constructor() {
     this.messages = new Messages().execute();

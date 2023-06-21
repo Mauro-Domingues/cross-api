@@ -3,7 +3,7 @@ export class CreateFakeStorage {
     return `import { IStorageProviderDTO } from '../models/IStorageProvider';
 
 export class FakeStorageProvider implements IStorageProviderDTO {
-  private storage: Array<string> = [];
+  private readonly storage: Array<string> = [];
 
   public async saveFile(file: string): Promise<string> {
     this.storage.push(file);

@@ -14,20 +14,20 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeFunctionalities {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private updateService: UpdateService;
-  private updateController: UpdateController;
-  private showService: ShowService;
-  private showController: ShowController;
-  private listService: ListService;
-  private listController: ListController;
-  private deleteService: DeleteService;
-  private deleteController: DeleteController;
-  private createService: CreateService;
-  private createController: CreateController;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly updateService: UpdateService;
+  private readonly updateController: UpdateController;
+  private readonly showService: ShowService;
+  private readonly showController: ShowController;
+  private readonly listService: ListService;
+  private readonly listController: ListController;
+  private readonly deleteService: DeleteService;
+  private readonly deleteController: DeleteController;
+  private readonly createService: CreateService;
+  private readonly createController: CreateController;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

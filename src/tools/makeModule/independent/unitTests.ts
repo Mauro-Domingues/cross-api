@@ -14,20 +14,20 @@ import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
 export class MakeUnitTests {
-  private messages: IMessagesDTO;
-  private fileManager: FileManager;
-  private console: Console;
-  private names: IModuleNamesDTO | undefined;
-  private updateSpecService: UpdateSpecService;
-  private updateSpecController: UpdateSpecController;
-  private showSpecService: ShowSpecService;
-  private showSpecController: ShowSpecController;
-  private listSpecService: ListSpecService;
-  private listSpecController: ListSpecController;
-  private deleteSpecService: DeleteSpecService;
-  private deleteSpecController: DeleteSpecController;
-  private createSpecService: CreateSpecService;
-  private createSpecController: CreateSpecController;
+  private readonly messages: IMessagesDTO;
+  private readonly fileManager: FileManager;
+  private readonly console: Console;
+  private readonly names: IModuleNamesDTO | undefined;
+  private readonly updateSpecService: UpdateSpecService;
+  private readonly updateSpecController: UpdateSpecController;
+  private readonly showSpecService: ShowSpecService;
+  private readonly showSpecController: ShowSpecController;
+  private readonly listSpecService: ListSpecService;
+  private readonly listSpecController: ListSpecController;
+  private readonly deleteSpecService: DeleteSpecService;
+  private readonly deleteSpecController: DeleteSpecController;
+  private readonly createSpecService: CreateSpecService;
+  private readonly createSpecController: CreateSpecController;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
