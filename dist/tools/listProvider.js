@@ -53,7 +53,7 @@ export class ListProvider {
                 ['|   ', 'blue', true, false, false],
                 [` ➤  ${provider.Name}       `, 'yellow', true, false, false],
                 ['|   ', 'blue', true, false, false],
-                [` ${provider.Provider}     `, 'white', false, false, false],
+                [` ${provider.Provider}     `, 'blue', false, false, false],
                 ['       |   ', 'blue', true, false, false],
             ]);
             this.renderEmptyLine();

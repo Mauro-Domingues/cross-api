@@ -5,7 +5,9 @@ import { Console } from '@tools/console.js';
 export class CreateIndexDependentRoute {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly fatherNames: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined;
+  private readonly fatherNames:
+    | Pick<IModuleNamesDTO, 'lowerModuleName'>
+    | undefined;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

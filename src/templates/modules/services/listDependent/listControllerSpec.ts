@@ -5,7 +5,9 @@ import { Console } from '@tools/console.js';
 export class ListSpecDependentController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names: Omit<IModuleNamesDTO, 'pluralUpperModuleName'> | undefined;
+  private readonly names:
+    | Omit<IModuleNamesDTO, 'pluralUpperModuleName'>
+    | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();

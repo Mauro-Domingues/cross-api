@@ -7,14 +7,14 @@ import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
 
-interface ILanguageConfigDTO {
-  option: keyof ILanguageOptionsDTO;
-  index: number;
-}
-
 export interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';
   'pt-br': 'portugueseMessages';
+}
+
+interface ILanguageConfigDTO {
+  option: keyof ILanguageOptionsDTO;
+  index: number;
 }
 
 export class ConfigLanguage {

@@ -9,8 +9,8 @@ const colorOptions = {
 export class Console {
     getColor = (color) => colorOptions[color];
     isBold = (bold) => (bold ? '\x1b[1m' : '\x1b[0m');
-    isbreakStart = (breakStart) => (breakStart ? '\n' : '\b');
-    isbreakend = (breakEnd) => (breakEnd ? '\n' : '\b');
+    isbreakStart = (breakStart) => breakStart ? '\n' : '\b';
+    isbreakend = (breakEnd) => breakEnd ? '\n' : '\b';
     one(assets) {
         const payload = [
             String(this.isBold(assets[2])),
