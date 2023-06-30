@@ -59,7 +59,10 @@ export class MakeDependentFunctionalities {
       this.names,
       this.fatherNames,
     );
-    this.listDependentController = new ListDependentController(this.names);
+    this.listDependentController = new ListDependentController(
+      this.names,
+      this.fatherNames,
+    );
     this.deleteDependentService = new DeleteDependentService(
       this.names,
       this.fatherNames,

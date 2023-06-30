@@ -31,6 +31,7 @@ import { instanceToInstance } from 'class-transformer';
 import { ICacheDTO } from '@dtos/ICacheDTO';
 import { IListDTO } from '@dtos/IListDTO';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { FindOptionsWhere } from 'typeorm';
 
 @injectable()
 export class List${this.names.upperModuleName}Service {
@@ -42,12 +43,16 @@ export class List${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
-  public async execute(page: number, limit: number): Promise<IListDTO<${this.names.upperModuleName}>> {
+  public async execute(
+    page: number,
+    limit: number,
+    filters: FindOptionsWhere<${this.names.upperModuleName}>,
+  ): Promise<IListDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const cacheKey = \`${this.names.pluralLowerModuleName}:\${page}:\${limit}\`;
+      const cacheKey = \`${this.names.pluralLowerModuleName}:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
 
       let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
 
@@ -56,6 +61,7 @@ export class List${this.names.upperModuleName}Service {
           trx,
           page,
           limit,
+          filters,
         );
         cache = { data: instanceToInstance(list), total: amount };
         await this.cacheProvider.save(cacheKey, cache);

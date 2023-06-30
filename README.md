@@ -376,12 +376,14 @@ const exampleArray = await this.examplesRepository.findAll(
   limit,
   { name: "example" },
   ["relation-1", "relation-2", "relation-2.nested-relation"]
+  { name: 'ASC' }
 );
 
 /** Find all where name = "example"
  * Filter where index is between 1000 and 1500
  * Load their relations (use . to load nested relations)
  * Count the amount of items
+ * sorts the result from the lowest value to the highest value
  */
 
 output: { examples: [exampleArray], amount: 500 }

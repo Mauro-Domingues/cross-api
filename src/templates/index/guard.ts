@@ -14,15 +14,23 @@ const exceptions: IExceptionDTO = {
       methods: ['GET'],
     },
     {
-      url: /^\\/second-example\\/.+/,
+      url: /^\\/uploads\\/.+/, // expose public folder feature, let this route opened
+      methods: ['GET'],
+    },
+    {
+      url: /^\\/api-docs([\\/?].*)?/, // expose public doc feature, let this route opened
+      methods: ['GET'],
+    },
+    {
+      url: /^\\/first-example\\/.+/,
       methods: ['GET', 'POST'],
     },
     {
-      url: /^\\/third-example\\/.*/,
+      url: /^\\/second-example\\/.*/,
       methods: ['GET', 'POST', 'PUT'],
     },
     {
-      url: /^\\/fourth-example([\\/?].*)/,
+      url: /^\\/third-example([\\/?].*)/,
       methods: ['GET', 'POST', 'PUT', 'PATCH'],
     },
     {

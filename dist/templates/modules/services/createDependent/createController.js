@@ -29,8 +29,11 @@ import { container } from 'tsyringe';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
 
 export class Create${this.names.upperModuleName}Controller {
-  public async handle(request: Request, response: Response) {
-    const ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO = request.body;
+  public async handle(
+    request: Request<never, never, I${this.names.upperModuleName}DTO>,
+    response: Response<IResponseDTO<${this.names.upperModuleName}>>,
+  ) {
+    const ${this.names.lowerModuleName}Data = request.body;
 
     const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);
 

@@ -92,12 +92,14 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     limit: number,
     conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    order?: FindOptionsOrder<Entity>,
   ): Promise<{ list: Array<Entity>; amount: number }> {
     const [list, amount] = await trx.manager.findAndCount(this.target, {
       where: conditions,
       take: limit,
       skip: (page - 1) * limit,
       relations: this.arrayToObject(relations),
+      order,
     });
 
     return { list, amount };
@@ -108,10 +110,12 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     propertyName: keyof Entity,
     baseData: Array<Entity[keyof Entity]>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    order?: FindOptionsOrder<Entity>,
   ): Promise<Array<Entity>> {
     const entities = await trx.manager.find(this.target, {
       where: { [propertyName]: In(baseData) } as FindOptionsWhere<Entity>,
       relations: this.arrayToObject(relations),
+      order,
     });
 
     return entities;

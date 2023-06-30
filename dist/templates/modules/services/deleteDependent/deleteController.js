@@ -28,13 +28,17 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { FindOptionsWhere } from 'typeorm';
 
+import { IResponseDTO } from '@dtos/IResponseDTO';
 import { Delete${this.names.upperModuleName}Service } from './Delete${this.names.upperModuleName}Service';
 
 export class Delete${this.names.upperModuleName}Controller {
-  public async handle(request: Request, response: Response) {
+  public async handle(
+    request: Request<FindOptionsWhere<${this.names.upperModuleName}>>,
+    response: Response<IResponseDTO<null>>,
+  ) {
     const delete${this.names.upperModuleName} = container.resolve(Delete${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}> = request.params;
+    const ${this.names.lowerModuleName}Param = request.params;
 
     const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param);
 

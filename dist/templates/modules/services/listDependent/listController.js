@@ -4,13 +4,15 @@ export class ListDependentController {
     messages;
     console;
     names;
-    constructor(names) {
+    fatherNames;
+    constructor(names, fatherNames) {
         this.messages = new Messages().execute();
         this.console = new Console();
         this.names = names;
+        this.fatherNames = fatherNames;
     }
     execute() {
-        if (!this.names) {
+        if (!this.names || !this.fatherNames) {
             this.console.one([
                 this.messages.moduleNotFound,
                 'red',
@@ -23,15 +25,26 @@ export class ListDependentController {
         return `import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import { FindOptionsWhere } from 'typeorm';
+import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { IListDTO } from '@dtos/IListDTO';
 import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
 
 export class List${this.names.upperModuleName}Controller {
-  public async handle(request: Request, response: Response) {
+  public async handle(
+    request: Request<
+      never,
+      never,
+      never,
+      { page: number; limit: number } & FindOptionsWhere<${this.names.upperModuleName}>
+    >,
+    response: Response<IListDTO<${this.names.upperModuleName}>>,
+  ) {
     const list${this.names.upperModuleName} = container.resolve(List${this.names.upperModuleName}Service);
 
-    const { page = 1, limit = 20 } = request.query;
+    const { page = 1, limit = 20, ...filters } = request.query;
 
-    const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(Number(page), Number(limit));
+    const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(page, limit, filters);
 
     return response.send(${this.names.pluralLowerModuleName});
   }

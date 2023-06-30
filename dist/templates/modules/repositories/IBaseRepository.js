@@ -17,6 +17,7 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
     limit: number,
     conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    order?: FindOptionsOrder<Entity>,
   ): Promise<{ list: Array<Entity>; amount: number }>;
   findBy(
     trx: QueryRunner,

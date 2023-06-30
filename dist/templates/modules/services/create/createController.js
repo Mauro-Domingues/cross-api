@@ -24,11 +24,16 @@ export class CreateController {
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import { IResponseDTO } from '@dtos/IResponseDTO';
+import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
 
 export class Create${this.names.upperModuleName}Controller {
-  public async handle(request: Request, response: Response) {
-    const ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO = request.body;
+  public async handle(
+    request: Request<never, never, I${this.names.upperModuleName}DTO>,
+    response: Response<IResponseDTO<${this.names.upperModuleName}>>,
+  ) {
+    const ${this.names.lowerModuleName}Data = request.body;
 
     const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);
 
