@@ -26,6 +26,8 @@ export class CreateDependentController {
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import { IResponseDTO } from '@dtos/IResponseDTO';
+import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
 
 export class Create${this.names.upperModuleName}Controller {

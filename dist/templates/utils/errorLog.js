@@ -1,9 +1,10 @@
 export class CreateErrorLog {
     execute() {
-        return `import { appendFileSync } from 'fs';
+        return `import { NextFunction } from 'express';
+import { appendFileSync } from 'fs';
 import { resolve } from 'path';
 
-export function returnErrorLog(error: Error): void {
+export function createErrorLog(error: Error, next: NextFunction): void {
   const currentTime = new Date();
   const offset = currentTime.getTimezoneOffset();
   const offsetHours = -offset / 60;
@@ -45,6 +46,8 @@ export function returnErrorLog(error: Error): void {
         }\\${'n'}}\\${'n'}\`
       : '\\${'n'}}\\${'n'}',
   );
+
+  return next();
 }
 `;
     }
