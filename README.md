@@ -376,7 +376,7 @@ const exampleArray = await this.examplesRepository.findAll(
   limit,
   { name: "example" },
   ["relation-1", "relation-2", "relation-2.nested-relation"]
-  { name: 'ASC' }
+  { id: 'ASC' }
 );
 
 /** Find all where name = "example"
