@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "tsc & tsc-alias",
-    "postinstall": "npm install tsc-alias@^1.8.5 -D && tsc & tsc-alias && cross config"
+    "install": "npm install tsc-alias@^1.8.5 -D ",
+    "postinstall": "tsc & tsc-alias && cross config"
   },
   "license": "Apache-2.0",
   "devDependencies": {
