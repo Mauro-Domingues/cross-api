@@ -1,0 +1,13 @@
+language: node_js
+cache: npm
+install:
+ - npm install tsc-alias@^1.8.5 -D
+script:
+ - npm run build
+ - npx cross config
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: maurinho.villa@hotmail.com
+  tag: latest
+  api_key: $cross-api
