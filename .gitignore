@@ -3,3 +3,5 @@
 # /prettier.config.js
 # /.editorconfig
 /node_modules
+/dist
+.travis.yml
