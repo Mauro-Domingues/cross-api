@@ -26,10 +26,9 @@
   "scripts": {
     "build": "tsc & tsc-alias",
     "install": "npm install tsc-alias@^1.8.5 -D ",
-    "postinstall": "npm run build && npm prune"
+    "postinstall": "npm run build && npm prune --production"
   },
   "license": "Apache-2.0",
-  "dependencies": {},
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
