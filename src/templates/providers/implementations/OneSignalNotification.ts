@@ -1,6 +1,6 @@
 export class CreateOneSignalNotification {
   public execute(): string {
-    return `import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+    return `import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { AppError } from '@shared/errors/AppError';
 import { ISendNotificationDTO } from '../dtos/ISendNotificationDTO';
@@ -29,17 +29,7 @@ export class OneSignalProvider implements INotificationProviderDTO {
     try {
       const url: AxiosRequestConfig['url'] = \`\${process.env.OS_API_URL}/api/v1/notifications\`;
 
-      const axiosResult: AxiosResponse<unknown> = await axios.post(
-        url,
-        body,
-        this.options,
-      );
-
-      if (axiosResult.status.toString().at(0) !== '2') {
-        throw new AppError('Failed send notification');
-      }
-
-      console.log(axiosResult);
+      return axios.post(url, body, this.options);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(error.response.statusText, error.response.status);

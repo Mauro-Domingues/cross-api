@@ -7,12 +7,7 @@ import { AppError } from '@shared/errors/AppError';
 
 import { ICreateLeadDTO } from '../dtos/ICreateLeadDTO';
 import { ILeadProviderDTO } from '../models/ILeadProvider';
-
-interface IAuthDTO {
-  access_token: string;
-  expires_in: string;
-  refresh_token: string;
-}
+import { IAuthDTO } from '../dtos/IAuthDTO';
 
 export class RDStationProvider implements ILeadProviderDTO {
   private async getSession(): Promise<IAuthDTO> {
@@ -26,10 +21,6 @@ export class RDStationProvider implements ILeadProviderDTO {
       };
 
       const axiosResult = await axios.post<IAuthDTO>(url, body);
-
-      if (axiosResult.status.toString().at(0) !== '2') {
-        throw new AppError('Failed get session');
-      }
 
       return axiosResult.data;
     } catch (error: unknown) {

@@ -9,6 +9,7 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { IModuleNamesDTO } from '@tools/names.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 
 export class MakeDependentLeadProvider {
   private readonly messages: IMessagesDTO;
@@ -19,6 +20,7 @@ export class MakeDependentLeadProvider {
     | undefined;
   private readonly createILead: CreateILead;
   private readonly createILeadDTO: CreateILeadDTO;
+  private readonly createIAuthDTO: CreateIAuthDTO;
   private readonly createRDStationLead: CreateRDStationLead;
   private readonly createFakeLead: CreateFakeLead;
   private readonly createLeadConfig: CreateLeadConfig;
@@ -32,6 +34,7 @@ export class MakeDependentLeadProvider {
     this.fatherNames = fatherNames;
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
+    this.createIAuthDTO = new CreateIAuthDTO();
     this.createRDStationLead = new CreateRDStationLead();
     this.createFakeLead = new CreateFakeLead();
     this.createLeadConfig = new CreateLeadConfig();
@@ -290,6 +293,52 @@ export class MakeDependentLeadProvider {
           'ICreateLeadDTO.ts',
         ],
         this.createILeadDTO.execute(),
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'IAuthDTO.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO.execute(),
+      );
+    } else {
+      await this.fileManager.truncateFile([
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'IAuthDTO.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO.execute(),
       );
     }
     if (
