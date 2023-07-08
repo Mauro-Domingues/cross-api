@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-// Hello from cross!
+// This file is here to enable CLI comands

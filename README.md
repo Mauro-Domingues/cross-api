@@ -1,6 +1,6 @@
 ﻿﻿<h1>cross-api</h1>
 
-<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">example-using cross-api@^3.2.4</a>
+<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-using cross-api@^3.2.4</a>
 
 <hr>
 
@@ -78,7 +78,7 @@ yarn cross make:module [name]
     ├── env.d.ts
     ├── express.d.ts
     ├── keys.d.ts
-    └── [name].ts 
+    └── [name].d.ts 
 ```
 
 <h3>assets</h3>
@@ -375,7 +375,7 @@ const exampleArray = await this.examplesRepository.findAll(
   page,
   limit,
   { name: "example" },
-  ["relation-1", "relation-2", "relation-2.nested-relation"]
+  ["relation-1", "relation-2.nested-relation"]
   { id: 'ASC' }
 );
 
@@ -969,5 +969,4 @@ output = {
 <br>
 <h2>Providers</h2>
 <h4>Providers are implementations of services that assist in the business rules of your project, such as storage providers, sending messages, leads... By default, they are created within the "src/shared/containers" directory, where they act as public and independent services, but can also be generated within the modules in "src/modules/[name]/providers". They can contain one or more implementations, you decide which one to use, to switch between them just change the key in .env</h4>
-<h3>Payment providers coming soon!</h3>
 <hr>
