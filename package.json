@@ -22,7 +22,7 @@
   "scripts": {
     "build": "tsc & tsc-alias",
     "install": "npm install tsc-alias@^1.8.5 -D ",
-    "postinstall": "npm run build && npm prune --production && cp dist/index.js ./node_modules/.bin/cross.cmd"
+    "postinstall": "npm run build && npm prune --production &&  && cp dist/index.js ./node_modules/.bin/cross.cmd"
   },
   "license": "Apache-2.0",
   "devDependencies": {
