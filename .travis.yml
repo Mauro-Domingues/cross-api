@@ -13,4 +13,4 @@ deploy:
   skip_cleanup: true
   email: maurinho.villa@hotmail.com
   tag: latest
-  api_key: CROSS_API
+  api_key: $CROSS_API
