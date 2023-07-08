@@ -7,6 +7,7 @@ import { CreateILead } from '@templates/providers/models/ILead.js';
 import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO.js';
 
 export class MakeLeadProvider {
   private readonly messages: IMessagesDTO;
@@ -14,6 +15,7 @@ export class MakeLeadProvider {
   private readonly fileManager: FileManager;
   private readonly createILead: CreateILead;
   private readonly createILeadDTO: CreateILeadDTO;
+  private readonly createIAuthDTO: CreateIAuthDTO;
   private readonly createRDStationLead: CreateRDStationLead;
   private readonly createFakeLead: CreateFakeLead;
   private readonly createLeadConfig: CreateLeadConfig;
@@ -25,6 +27,7 @@ export class MakeLeadProvider {
     this.console = new Console();
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
+    this.createIAuthDTO = new CreateIAuthDTO();
     this.createRDStationLead = new CreateRDStationLead();
     this.createFakeLead = new CreateFakeLead();
     this.createLeadConfig = new CreateLeadConfig();
@@ -212,6 +215,53 @@ export class MakeLeadProvider {
           'ICreateLeadDTO.ts',
         ],
         this.createILeadDTO.execute(),
+      );
+    }
+
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'IAuthDTO.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO.execute(),
+      );
+    } else {
+      await this.fileManager.truncateFile([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'LeadProvider',
+        'dtos',
+        'IAuthDTO.ts',
+      ]);
+      await this.fileManager.createFile(
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO.execute(),
       );
     }
     if (

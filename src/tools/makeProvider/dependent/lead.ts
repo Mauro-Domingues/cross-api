@@ -9,7 +9,7 @@ import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { IModuleNamesDTO } from '@tools/names.js';
 import { Console } from '@tools/console.js';
 import { FileManager } from '@tools/fileManager.js';
-import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO.js';
 
 export class MakeDependentLeadProvider {
   private readonly messages: IMessagesDTO;
