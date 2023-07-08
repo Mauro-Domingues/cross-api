@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsc & tsc-alias",
     "install": "npm install tsc-alias@^1.8.5 -D ",
-    "postinstall": "npm run build && npx cross config"
+    "postinstall": "npm run build && npm uninstall tsc-alias"
   },
   "license": "Apache-2.0",
   "devDependencies": {
