@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Board } from '@tools/board.js';
 import { ConfigJson } from '@tools/config.js';
 import { ConfigLanguage } from '@tools/languageConfig.js';
