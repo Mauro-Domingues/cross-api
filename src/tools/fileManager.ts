@@ -49,4 +49,24 @@ export class FileManager {
   public async truncateFile(path: Array<string>): Promise<void> {
     return truncateSync(resolve(...path));
   }
+
+  public async checkAndCreateFile(
+    path: Array<string>,
+    instance: {
+      execute(): string;
+    },
+  ): Promise<void> {
+    if (!this.checkIfExists(path)) {
+      return this.createFile(path, instance.execute());
+    }
+    await this.truncateFile(path);
+    return this.createFile(path, instance.execute());
+  }
+
+  public async checkAndCreateDir(path: Array<string>): Promise<void> {
+    if (!this.checkIfExists(path)) {
+      return this.createDir(path);
+    }
+    return Promise.resolve();
+  }
 }
