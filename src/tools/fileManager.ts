@@ -57,16 +57,15 @@ export class FileManager {
     },
   ): Promise<void> {
     if (!this.checkIfExists(path)) {
-      return this.createFile(path, instance.execute());
+      await this.createFile(path, instance.execute());
     }
     await this.truncateFile(path);
-    return this.createFile(path, instance.execute());
+    await this.createFile(path, instance.execute());
   }
 
   public async checkAndCreateDir(path: Array<string>): Promise<void> {
     if (!this.checkIfExists(path)) {
-      return this.createDir(path);
+      await this.createDir(path);
     }
-    return Promise.resolve();
   }
 }

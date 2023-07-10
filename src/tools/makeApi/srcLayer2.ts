@@ -14,12 +14,11 @@ export class MakeSecondLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src', 'swagger.json'])) {
-      await this.fileManager.createFile(['src', 'swagger.json'], '{}');
-    } else {
-      await this.fileManager.truncateFile(['src', 'swagger.json']);
-      await this.fileManager.createFile(['src', 'swagger.json'], '{}');
-    }
+    await this.fileManager.checkAndCreateFile(['src', 'swagger.json'], {
+      execute() {
+        return '{}';
+      },
+    });
     return this.console.one([
       `- swagger.json ${this.messages.created}`,
       'yellow',

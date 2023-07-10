@@ -74,18 +74,10 @@ export class MakeThirdLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src', '@types', 'express.d.ts'])) {
-      await this.fileManager.createFile(
-        ['src', '@types', 'express.d.ts'],
-        this.createExpressNamespace.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', '@types', 'express.d.ts']);
-      await this.fileManager.createFile(
-        ['src', '@types', 'express.d.ts'],
-        this.createExpressNamespace.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', '@types', 'express.d.ts'],
+      this.createExpressNamespace,
+    );
     this.console.one([
       `- express.d.ts ${this.messages.created}`,
       'yellow',
@@ -93,18 +85,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', '@types', 'env.d.ts'])) {
-      await this.fileManager.createFile(
-        ['src', '@types', 'env.d.ts'],
-        this.createEnvNamespace.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', '@types', 'env.d.ts']);
-      await this.fileManager.createFile(
-        ['src', '@types', 'env.d.ts'],
-        this.createEnvNamespace.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', '@types', 'env.d.ts'],
+      this.createEnvNamespace,
+    );
     this.console.one([
       `- env.d.ts ${this.messages.created}`,
       'yellow',
@@ -112,18 +96,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', '@types', 'keys.d.ts'])) {
-      await this.fileManager.createFile(
-        ['src', '@types', 'keys.d.ts'],
-        this.createKeys.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', '@types', 'keys.d.ts']);
-      await this.fileManager.createFile(
-        ['src', '@types', 'keys.d.ts'],
-        this.createKeys.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', '@types', 'keys.d.ts'],
+      this.createKeys,
+    );
     this.console.one([
       `- keys.d.ts ${this.messages.created}`,
       'yellow',
@@ -131,18 +107,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'assets', 'domains.txt'])) {
-      await this.fileManager.createFile(
-        ['src', 'assets', 'domains.txt'],
-        this.createDomains.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'assets', 'domains.txt']);
-      await this.fileManager.createFile(
-        ['src', 'assets', 'domains.txt'],
-        this.createDomains.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'assets', 'domains.txt'],
+      this.createDomains,
+    );
     this.console.one([
       `- domains.txt ${this.messages.created}`,
       'yellow',
@@ -150,18 +118,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IExceptionDTO.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IExceptionDTO.ts'],
-        this.createIExceptionDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'dtos', 'IExceptionDTO.ts']);
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IExceptionDTO.ts'],
-        this.createIExceptionDTO.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'IExceptionDTO.ts'],
+      this.createIExceptionDTO,
+    );
     this.console.one([
       `- IExceptionDTO.ts ${this.messages.created}`,
       'yellow',
@@ -169,18 +129,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'dtos', 'ICacheDTO.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'ICacheDTO.ts'],
-        this.createICacheDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'dtos', 'ICacheDTO.ts']);
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'ICacheDTO.ts'],
-        this.createICacheDTO.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'ICacheDTO.ts'],
+      this.createICacheDTO,
+    );
     this.console.one([
       `- ICacheDTO.ts ${this.messages.created}`,
       'yellow',
@@ -188,18 +140,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IListDTO.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IListDTO.ts'],
-        this.createIListDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'dtos', 'IListDTO.ts']);
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IListDTO.ts'],
-        this.createIListDTO.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'IListDTO.ts'],
+      this.createIListDTO,
+    );
     this.console.one([
       `- IListDTO.ts ${this.messages.created}`,
       'yellow',
@@ -207,18 +151,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IObjectDTO.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IObjectDTO.ts'],
-        this.createIObjectDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'dtos', 'IObjectDTO.ts']);
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IObjectDTO.ts'],
-        this.createIObjectDTO.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'IObjectDTO.ts'],
+      this.createIObjectDTO,
+    );
     this.console.one([
       `- IObjectDTO.ts ${this.messages.created}`,
       'yellow',
@@ -226,18 +162,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'dtos', 'IResponseDTO.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IResponseDTO.ts'],
-        this.createIResponseDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'dtos', 'IResponseDTO.ts']);
-      await this.fileManager.createFile(
-        ['src', 'dtos', 'IResponseDTO.ts'],
-        this.createIResponseDTO.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'IResponseDTO.ts'],
+      this.createIResponseDTO,
+    );
     this.console.one([
       `- IResponseDTO.ts ${this.messages.created}`,
       'yellow',
@@ -245,24 +173,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists(['src', 'middlewares', 'RateLimiter.ts'])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'RateLimiter.ts'],
-        this.createRateLimiter.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'middlewares',
-        'RateLimiter.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'RateLimiter.ts'],
-        this.createRateLimiter.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'middlewares', 'RateLimiter.ts'],
+      this.createRateLimiter,
+    );
     this.console.one([
       `- RateLimiter.ts ${this.messages.created}`,
       'yellow',
@@ -270,28 +184,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'middlewares',
-        'EnsureAuthenticated.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'EnsureAuthenticated.ts'],
-        this.createEnsureAuthenticated.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'middlewares',
-        'EnsureAuthenticated.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'EnsureAuthenticated.ts'],
-        this.createEnsureAuthenticated.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'middlewares', 'EnsureAuthenticated.ts'],
+      this.createEnsureAuthenticated,
+    );
     this.console.one([
       `- EnsureAuthenticated.ts ${this.messages.created}`,
       'yellow',
@@ -299,24 +195,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists(['src', 'middlewares', 'DecodeJwt.ts'])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'DecodeJwt.ts'],
-        this.createDecodeJwt.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'middlewares',
-        'DecodeJwt.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'middlewares', 'DecodeJwt.ts'],
-        this.createDecodeJwt.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'middlewares', 'DecodeJwt.ts'],
+      this.createDecodeJwt,
+    );
     this.console.one([
       `- DecodeJwt.ts ${this.messages.created}`,
       'yellow',
@@ -324,18 +206,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'routes', 'guardRouter.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'routes', 'guardRouter.ts'],
-        this.createGuard.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'routes', 'guardRouter.ts']);
-      await this.fileManager.createFile(
-        ['src', 'routes', 'guardRouter.ts'],
-        this.createGuard.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'routes', 'guardRouter.ts'],
+      this.createGuard,
+    );
     this.console.one([
       `- guardRouter.ts ${this.messages.created}`,
       'yellow',
@@ -343,18 +217,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'routes', 'index.ts'],
-        this.createRoutes.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
-      await this.fileManager.createFile(
-        ['src', 'routes', 'index.ts'],
-        this.createRoutes.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'routes', 'index.ts'],
+      this.createRoutes,
+    );
     this.console.one([
       `- routes.ts ${this.messages.created}`,
       'yellow',
@@ -362,18 +228,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'app.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'app.ts'],
-        this.createApp.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'shared', 'app.ts']);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'app.ts'],
-        this.createApp.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'app.ts'],
+      this.createApp,
+    );
     this.console.one([
       `- app.ts ${this.messages.created}`,
       'yellow',
@@ -381,18 +239,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'server.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'server.ts'],
-        this.createServer.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'shared', 'server.ts']);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'server.ts'],
-        this.createServer.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'server.ts'],
+      this.createServer,
+    );
     this.console.one([
       `- server.ts ${this.messages.created}`,
       'yellow',
@@ -400,18 +250,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'utils', 'decimalAdjust.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'decimalAdjust.ts'],
-        this.createDecimaAdjust.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'utils', 'decimalAdjust.ts']);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'decimalAdjust.ts'],
-        this.createDecimaAdjust.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'decimalAdjust.ts'],
+      this.createDecimaAdjust,
+    );
     this.console.one([
       `- decimalAdjust.ts ${this.messages.created}`,
       'yellow',
@@ -419,24 +261,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists(['src', 'utils', 'domainsManager.ts'])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'domainsManager.ts'],
-        this.createDomainsManager.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'domainsManager.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'domainsManager.ts'],
-        this.createDomainsManager.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'domainsManager.ts'],
+      this.createDomainsManager,
+    );
     this.console.one([
       `- domainsManager.ts ${this.messages.created}`,
       'yellow',
@@ -444,18 +272,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'utils', 'errorLog.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'errorLog.ts'],
-        this.createErrorLog.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'utils', 'errorLog.ts']);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'errorLog.ts'],
-        this.createErrorLog.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'errorLog.ts'],
+      this.createErrorLog,
+    );
     this.console.one([
       `- errorLog.ts ${this.messages.created}`,
       'yellow',
@@ -463,24 +283,10 @@ export class MakeThirdLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists(['src', 'utils', 'normalizeQueryLink.ts'])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'normalizeQueryLink.ts'],
-        this.createNormalizeQueryLink.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'normalizeQueryLink.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'normalizeQueryLink.ts'],
-        this.createNormalizeQueryLink.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'normalizeQueryLink.ts'],
+      this.createNormalizeQueryLink,
+    );
     return this.console.one([
       `- createNormalizeQueryLink.ts ${this.messages.created}`,
       'yellow',

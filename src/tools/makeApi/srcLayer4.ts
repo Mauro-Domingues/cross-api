@@ -44,30 +44,10 @@ export class MakeFourthLayer {
   }
 
   public async execute(): Promise<void> {
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndCloneAttribute.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
-        this.createMapAndClone.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndCloneAttribute.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
-        this.createMapAndClone.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
+      this.createMapAndClone,
+    );
     this.console.one([
       `- mapAndCloneAttribute.ts.ts ${this.messages.created}`,
       'yellow',
@@ -75,30 +55,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndInsertAttribute.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
-        this.createMapAndInsert.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndInsertAttribute.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
-        this.createMapAndInsert.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
+      this.createMapAndInsert,
+    );
     this.console.one([
       `- mapAndInsertAttribute.ts ${this.messages.created}`,
       'yellow',
@@ -106,30 +66,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndPatchAttribute.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
-        this.createMapAndPatch.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndPatchAttribute.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
-        this.createMapAndPatch.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
+      this.createMapAndPatch,
+    );
     this.console.one([
       `- mapAndPatchAttribute.ts ${this.messages.created}`,
       'yellow',
@@ -137,30 +77,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndPatchString.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
-        this.createMapAndPatchString.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndPatchString.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
-        this.createMapAndPatchString.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
+      this.createMapAndPatchString,
+    );
     this.console.one([
       `- mapAndPatchString.ts ${this.messages.created}`,
       'yellow',
@@ -168,30 +88,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndUpdateAttribute.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
-        this.createMapAndUpdate.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndUpdateAttribute.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
-        this.createMapAndUpdate.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
+      this.createMapAndUpdate,
+    );
     this.console.one([
       `- mapAndUpdateAttribute.ts ${this.messages.created}`,
       'yellow',
@@ -199,30 +99,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndUpdateString.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
-        this.createMapAndUpdateString.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'utils',
-        'mappers',
-        'mapAndUpdateString.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
-        this.createMapAndUpdateString.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
+      this.createMapAndUpdateString,
+    );
     this.console.one([
       `- mapAndUpdateString.ts ${this.messages.created}`,
       'yellow',
@@ -230,30 +110,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'container', 'index.ts'],
+      this.createContainer,
+    );
     this.console.one([
       `- container/index.ts ${this.messages.created}`,
       'yellow',
@@ -261,30 +121,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'errors',
-        'AppError.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'errors', 'AppError.ts'],
-        this.createAppError.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'errors',
-        'AppError.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'errors', 'AppError.ts'],
-        this.createAppError.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'errors', 'AppError.ts'],
+      this.createAppError,
+    );
     this.console.one([
       `- AppError.ts ${this.messages.created}`,
       'yellow',
@@ -292,25 +132,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists(['src', 'shared', 'typeorm', 'index.ts'])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'typeorm', 'index.ts'],
-        this.createTypeorm.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'typeorm',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'typeorm', 'index.ts'],
-        this.createTypeorm.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'typeorm', 'index.ts'],
+      this.createTypeorm,
+    );
     this.console.one([
       `- typeorm/index.ts ${this.messages.created}`,
       'yellow',
@@ -318,30 +143,10 @@ export class MakeFourthLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'typeorm',
-        'dataSource.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'typeorm', 'dataSource.ts'],
-        this.createDataSource.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'typeorm',
-        'dataSource.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'typeorm', 'dataSource.ts'],
-        this.createDataSource.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'typeorm', 'dataSource.ts'],
+      this.createDataSource,
+    );
     this.console.one([
       `- dataSource.ts ${this.messages.created}`,
       'yellow',

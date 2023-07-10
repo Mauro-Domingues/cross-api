@@ -47,18 +47,10 @@ export class MakeFirstLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['.editorconfig'])) {
-      await this.fileManager.createFile(
-        ['.editorconfig'],
-        this.createEditorConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['.editorconfig']);
-      await this.fileManager.createFile(
-        ['.editorconfig'],
-        this.createEditorConfig.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['.editorconfig'],
+      this.createEditorConfig,
+    );
     this.console.one([
       `- .editorconfig ${this.messages.created}`,
       'yellow',
@@ -66,12 +58,7 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['.env'])) {
-      await this.fileManager.createFile(['.env'], this.createEnv.execute());
-    } else {
-      await this.fileManager.truncateFile(['.env']);
-      await this.fileManager.createFile(['.env'], this.createEnv.execute());
-    }
+    await this.fileManager.checkAndCreateFile(['.env'], this.createEnv);
     this.console.one([
       `- .env ${this.messages.created}`,
       'yellow',
@@ -79,18 +66,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['.env.template'])) {
-      await this.fileManager.createFile(
-        ['.env.template'],
-        this.createEnv.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['.env.template']);
-      await this.fileManager.createFile(
-        ['.env.template'],
-        this.createEnv.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['.env.template'],
+      this.createEnv,
+    );
     this.console.one([
       `- .env.template ${this.messages.created}`,
       'yellow',
@@ -98,18 +77,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['.eslintignore'])) {
-      await this.fileManager.createFile(
-        ['.eslintignore'],
-        this.createEsLintIgnore.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['.eslintignore']);
-      await this.fileManager.createFile(
-        ['.eslintignore'],
-        this.createEsLintIgnore.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['.eslintignore'],
+      this.createEsLintIgnore,
+    );
     this.console.one([
       `- .eslintignore ${this.messages.created}`,
       'yellow',
@@ -117,18 +88,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['.eslintrc.json'])) {
-      await this.fileManager.createFile(
-        ['.eslintrc.json'],
-        this.createEsLintrcJson.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['.eslintrc.json']);
-      await this.fileManager.createFile(
-        ['.eslintrc.json'],
-        this.createEsLintrcJson.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['.eslintrc.json'],
+      this.createEsLintrcJson,
+    );
     this.console.one([
       `- .eslintrc.json ${this.messages.created}`,
       'yellow',
@@ -136,18 +99,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['.gitignore'])) {
-      await this.fileManager.createFile(
-        ['.gitignore'],
-        this.createGitIgnore.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['.gitignore']);
-      await this.fileManager.createFile(
-        ['.gitignore'],
-        this.createGitIgnore.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['.gitignore'],
+      this.createGitIgnore,
+    );
     this.console.one([
       `- .gitignore ${this.messages.created}`,
       'yellow',
@@ -155,18 +110,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['babel.config.js'])) {
-      await this.fileManager.createFile(
-        ['babel.config.js'],
-        this.createBabelConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['babel.config.js']);
-      await this.fileManager.createFile(
-        ['babel.config.js'],
-        this.createBabelConfig.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['babel.config.js'],
+      this.createBabelConfig,
+    );
     this.console.one([
       `- babel.config.js ${this.messages.created}`,
       'yellow',
@@ -174,18 +121,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['docker-compose.yml'])) {
-      await this.fileManager.createFile(
-        ['docker-compose.yml'],
-        this.createDockerCompose.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['docker-compose.yml']);
-      await this.fileManager.createFile(
-        ['docker-compose.yml'],
-        this.createDockerCompose.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['docker-compose.yml'],
+      this.createDockerCompose,
+    );
     this.console.one([
       `- docker-compose.yml ${this.messages.created}`,
       'yellow',
@@ -193,18 +132,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['jest.config.ts'])) {
-      await this.fileManager.createFile(
-        ['jest.config.ts'],
-        this.createJestConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['jest.config.ts']);
-      await this.fileManager.createFile(
-        ['jest.config.ts'],
-        this.createJestConfig.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['jest.config.ts'],
+      this.createJestConfig,
+    );
     this.console.one([
       `- jest.config.ts ${this.messages.created}`,
       'yellow',
@@ -212,18 +143,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['nodemon.json'])) {
-      await this.fileManager.createFile(
-        ['nodemon.json'],
-        this.createNodemonJson.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['nodemon.json']);
-      await this.fileManager.createFile(
-        ['nodemon.json'],
-        this.createNodemonJson.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['nodemon.json'],
+      this.createNodemonJson,
+    );
     this.console.one([
       `- nodemon.json ${this.messages.created}`,
       'yellow',
@@ -231,18 +154,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['prettier.config.js'])) {
-      await this.fileManager.createFile(
-        ['prettier.config.js'],
-        this.createPrettierConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['prettier.config.js']);
-      await this.fileManager.createFile(
-        ['prettier.config.js'],
-        this.createPrettierConfig.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['prettier.config.js'],
+      this.createPrettierConfig,
+    );
     this.console.one([
       `- prettier.config.js ${this.messages.created}`,
       'yellow',
@@ -250,18 +165,10 @@ export class MakeFirstLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['tsconfig.json'])) {
-      await this.fileManager.createFile(
-        ['tsconfig.json'],
-        this.createTsConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['tsconfig.json']);
-      await this.fileManager.createFile(
-        ['tsconfig.json'],
-        this.createTsConfig.execute(),
-      );
-    }
+    await this.fileManager.checkAndCreateFile(
+      ['tsconfig.json'],
+      this.createTsConfig,
+    );
     return this.console.one([
       `- tsconfig.json ${this.messages.created}`,
       'yellow',

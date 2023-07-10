@@ -32,18 +32,10 @@ export class MakeLastLayer {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src', 'config', 'auth.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'auth.ts'],
-        this.createAuthConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'auth.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'auth.ts'],
-        this.createAuthConfig.execute(),
-      );
-    }
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'auth.ts'],
+      this.createAuthConfig,
+    );
     this.console.one([
       `- auth.ts ${this.messages.created}`,
       'yellow',
@@ -51,18 +43,10 @@ export class MakeLastLayer {
       false,
       false,
     ]);
-    if (!this.fileManager.checkIfExists(['src', 'config', 'cors.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'cors.ts'],
-        this.createCorsConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'cors.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'cors.ts'],
-        this.createCorsConfig.execute(),
-      );
-    }
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'cors.ts'],
+      this.createCorsConfig,
+    );
     this.console.one([
       `- cors.ts ${this.messages.created}`,
       'yellow',
@@ -70,34 +54,10 @@ export class MakeLastLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'entities',
-        'Base.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
-        this.createBaseEntity.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'entities',
-        'Base.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
-        this.createBaseEntity.execute(),
-      );
-    }
+    this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
+      this.createBaseEntity,
+    );
     this.console.one([
       `- baseEntity.ts ${this.messages.created}`,
       'yellow',
@@ -105,48 +65,17 @@ export class MakeLastLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
+    this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
         'modules',
         'repositories',
         'BaseRepository.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'BaseRepository.ts',
-        ],
-        this.createBaseRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'BaseRepository.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'BaseRepository.ts',
-        ],
-        this.createBaseRepository.execute(),
-      );
-    }
+      ],
+      this.createBaseRepository,
+    );
     this.console.one([
       `- baseRepository.ts ${this.messages.created}`,
       'yellow',
@@ -154,48 +83,17 @@ export class MakeLastLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
+    this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
         'modules',
         'repositories',
         'IBaseRepository.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'IBaseRepository.ts',
-        ],
-        this.createIBaseRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'IBaseRepository.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'IBaseRepository.ts',
-        ],
-        this.createIBaseRepository.execute(),
-      );
-    }
+      ],
+      this.createIBaseRepository,
+    );
     this.console.one([
       `- IBaseRepository.ts ${this.messages.created}`,
       'yellow',
@@ -203,8 +101,8 @@ export class MakeLastLayer {
       false,
       false,
     ]);
-    if (
-      !this.fileManager.checkIfExists([
+    this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -212,43 +110,9 @@ export class MakeLastLayer {
         'repositories',
         'fakes',
         'FakeBaseRepository.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'fakes',
-          'FakeBaseRepository.ts',
-        ],
-        this.createBaseFakeRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'fakes',
-        'FakeBaseRepository.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'fakes',
-          'FakeBaseRepository.ts',
-        ],
-        this.createBaseFakeRepository.execute(),
-      );
-    }
+      ],
+      this.createBaseFakeRepository,
+    );
     return this.console.one([
       `- fakeBaseRepository.ts ${this.messages.created}`,
       'yellow',
