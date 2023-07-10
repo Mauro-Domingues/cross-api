@@ -34,8 +34,8 @@ export class MakeDependentFunctionalities {
     names: IModuleNamesDTO | undefined,
     fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
+    this.messages = new Messages().execute();
     this.console = new Console();
     this.names = names;
     this.fatherNames = fatherNames;
@@ -93,425 +93,115 @@ export class MakeDependentFunctionalities {
       throw new Error();
     }
 
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `create${this.names.upperModuleName}`,
         `Create${this.names.upperModuleName}Controller.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.createDependentController.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Controller.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.createDependentController.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createDependentController,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `create${this.names.upperModuleName}`,
         `Create${this.names.upperModuleName}Service.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Service.ts`,
-        ],
-        this.createDependentService.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Service.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `create${this.names.upperModuleName}`,
-          `Create${this.names.upperModuleName}Service.ts`,
-        ],
-        this.createDependentService.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createDependentService,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `delete${this.names.upperModuleName}`,
         `Delete${this.names.upperModuleName}Controller.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.deleteDependentController.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Controller.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.deleteDependentController.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.deleteDependentController,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `delete${this.names.upperModuleName}`,
         `Delete${this.names.upperModuleName}Service.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Service.ts`,
-        ],
-        this.deleteDependentService.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Service.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `delete${this.names.upperModuleName}`,
-          `Delete${this.names.upperModuleName}Service.ts`,
-        ],
-        this.deleteDependentService.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.deleteDependentService,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `list${this.names.upperModuleName}`,
         `List${this.names.upperModuleName}Controller.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.listDependentController.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Controller.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.listDependentController.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.listDependentController,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `list${this.names.upperModuleName}`,
         `List${this.names.upperModuleName}Service.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Service.ts`,
-        ],
-        this.listDependentService.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Service.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `list${this.names.upperModuleName}`,
-          `List${this.names.upperModuleName}Service.ts`,
-        ],
-        this.listDependentService.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.listDependentService,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `show${this.names.upperModuleName}`,
         `Show${this.names.upperModuleName}Controller.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.showDependentController.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Controller.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.showDependentController.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.showDependentController,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `show${this.names.upperModuleName}`,
         `Show${this.names.upperModuleName}Service.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Service.ts`,
-        ],
-        this.showDependentService.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Service.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `show${this.names.upperModuleName}`,
-          `Show${this.names.upperModuleName}Service.ts`,
-        ],
-        this.showDependentService.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.showDependentService,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `update${this.names.upperModuleName}`,
         `Update${this.names.upperModuleName}Controller.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.updateDependentController.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Controller.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Controller.ts`,
-        ],
-        this.updateDependentController.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.updateDependentController,
+    );
+    return this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
         `update${this.names.upperModuleName}`,
         `Update${this.names.upperModuleName}Service.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Service.ts`,
-        ],
-        this.updateDependentService.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Service.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'services',
-          `update${this.names.upperModuleName}`,
-          `Update${this.names.upperModuleName}Service.ts`,
-        ],
-        this.updateDependentService.execute(),
-      );
-    }
+      ],
+      this.updateDependentService,
+    );
   }
 }

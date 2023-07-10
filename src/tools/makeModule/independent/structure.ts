@@ -28,195 +28,80 @@ export class MakeStructure {
       throw new Error();
     }
 
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
-      await this.fileManager.createDir(['src', 'modules']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'routes'])) {
-      await this.fileManager.createDir(['src', 'routes']);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'dtos',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'dtos',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'entities',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'entities',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-      ]);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'modules']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir(['src', 'routes']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'dtos',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'entities',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'repositories',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'repositories',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+      `create${this.names.upperModuleName}`,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+      `delete${this.names.upperModuleName}`,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+      `list${this.names.upperModuleName}`,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+      `show${this.names.upperModuleName}`,
+    ]);
+    return this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.names.pluralLowerModuleName,
+      'services',
+      `update${this.names.upperModuleName}`,
+    ]);
   }
 }

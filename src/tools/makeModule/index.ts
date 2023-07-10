@@ -23,9 +23,9 @@ export class CreateModule {
 
   public async execute(): Promise<void> {
     if (this.names && this.fatherNames) {
-      this.makeDependentModule.execute();
+      await this.makeDependentModule.execute();
     } else if (this.names) {
-      this.makeModule.execute();
+      await this.makeModule.execute();
     }
   }
 }

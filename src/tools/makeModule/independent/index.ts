@@ -41,7 +41,6 @@ export class MakeModule {
     await this.makeInfra.execute();
     await this.makeFunctionalities.execute();
     await this.makeUnitTests.execute();
-
     return this.console.one([
       `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
       'yellow',

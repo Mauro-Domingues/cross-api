@@ -58,7 +58,6 @@ export class MakeDependentModule {
     await this.makeDependentInfra.execute();
     await this.makeDependentFunctionalities.execute();
     await this.makeDependentUnitTests.execute();
-
     return this.console.one([
       `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
       'yellow',

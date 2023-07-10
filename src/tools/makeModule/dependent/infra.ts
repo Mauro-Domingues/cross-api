@@ -99,209 +99,20 @@ export class MakeDependentInfra {
         this.createContainer.execute(),
       );
     }
-
     if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
       await this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
-
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'dtos',
-        `I${this.names.upperModuleName}DTO.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'dtos',
-          `I${this.names.upperModuleName}DTO.ts`,
-        ],
-        this.createModuleDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'dtos',
-        `I${this.names.upperModuleName}DTO.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'dtos',
-          `I${this.names.upperModuleName}DTO.ts`,
-        ],
-        this.createModuleDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'entities',
-        `${this.names.upperModuleName}.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'entities',
-          `${this.names.upperModuleName}.ts`,
-        ],
-        this.createEntity.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'entities',
-        `${this.names.upperModuleName}.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'entities',
-          `${this.names.upperModuleName}.ts`,
-        ],
-        this.createEntity.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `${this.names.pluralUpperModuleName}Repository.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createDependentRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `${this.names.pluralUpperModuleName}Repository.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createDependentRepository.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `I${this.names.pluralUpperModuleName}Repository.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createIDependentRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `I${this.names.pluralUpperModuleName}Repository.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          `I${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createIDependentRepository.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          'fakes',
-          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createDependentFakeRepository.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'repositories',
-          'fakes',
-          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
-        ],
-        this.createDependentFakeRepository.execute(),
-      );
-    }
-
+    await this.fileManager.createFile(
+      ['src', 'shared', 'container', 'index.ts'],
+      this.createDependentInjection.execute(),
+    );
+    await this.fileManager.createFile(
+      ['src', 'routes', 'index.ts'],
+      this.createIndexDependentRoute.execute(),
+    );
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -313,19 +124,62 @@ export class MakeDependentInfra {
         ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createFullDependentRoute.execute(),
       );
-      await this.fileManager.createFile(
-        ['src', 'routes', 'index.ts'],
-        this.createIndexDependentRoute.execute(),
-      );
     } else {
       await this.fileManager.createFile(
         ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createDependentRoute.execute(),
       );
     }
-    return this.fileManager.createFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      this.createDependentInjection.execute(),
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'dtos',
+        `I${this.names.upperModuleName}DTO.ts`,
+      ],
+      this.createModuleDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'entities',
+        `${this.names.upperModuleName}.ts`,
+      ],
+      this.createEntity,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `${this.names.pluralUpperModuleName}Repository.ts`,
+      ],
+      this.createDependentRepository,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        `I${this.names.pluralUpperModuleName}Repository.ts`,
+      ],
+      this.createIDependentRepository,
+    );
+    return this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+      ],
+      this.createDependentFakeRepository,
     );
   }
 }
