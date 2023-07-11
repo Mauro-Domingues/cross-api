@@ -29,33 +29,16 @@ export class MakeNotificationProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ]);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -65,7 +48,7 @@ export class MakeNotificationProvider {
         'NotificationProvider',
       ])
     ) {
-      await this.fileManager.createDir([
+      await this.fileManager.checkAndCreateDir([
         'src',
         'shared',
         'container',
@@ -73,88 +56,44 @@ export class MakeNotificationProvider {
         'NotificationProvider',
       ]);
     }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'dtos',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'dtos',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'models',
-      ]);
-    }
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'NotificationProvider',
+      'dtos',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'NotificationProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'NotificationProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'NotificationProvider',
+      'models',
+    ]);
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './NotificationProvider';\n`,
     );
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -162,45 +101,11 @@ export class MakeNotificationProvider {
         'NotificationProvider',
         'dtos',
         'ISendNotificationDTO.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'dtos',
-          'ISendNotificationDTO.ts',
-        ],
-        this.createINotificationDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'dtos',
-        'ISendNotificationDTO.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'dtos',
-          'ISendNotificationDTO.ts',
-        ],
-        this.createINotificationDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createINotificationDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -208,45 +113,11 @@ export class MakeNotificationProvider {
         'NotificationProvider',
         'fakes',
         'FakeNotificationProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'fakes',
-          'FakeNotificationProvider.ts',
-        ],
-        this.createFakeNotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'fakes',
-        'FakeNotificationProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'fakes',
-          'FakeNotificationProvider.ts',
-        ],
-        this.createFakeNotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeNotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -254,45 +125,11 @@ export class MakeNotificationProvider {
         'NotificationProvider',
         'implementations',
         'OneSignalProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'implementations',
-          'OneSignalProvider.ts',
-        ],
-        this.createOneSignalNotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'implementations',
-        'OneSignalProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'implementations',
-          'OneSignalProvider.ts',
-        ],
-        this.createOneSignalNotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createOneSignalNotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -300,85 +137,20 @@ export class MakeNotificationProvider {
         'NotificationProvider',
         'models',
         'INotificationProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'models',
-          'INotificationProvider.ts',
-        ],
-        this.createINotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'models',
-        'INotificationProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'models',
-          'INotificationProvider.ts',
-        ],
-        this.createINotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createINotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
         'providers',
         'NotificationProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'index.ts',
-        ],
-        this.createNotificationIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'NotificationProvider',
-          'index.ts',
-        ],
-        this.createNotificationIndex.execute(),
-      );
-    }
+      ],
+      this.createNotificationIndex,
+    );
     return this.console.one([
       `- NotificationProvider ${this.messages.created}`,
       'yellow',

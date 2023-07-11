@@ -54,21 +54,61 @@ export class MakeDependentLeadProvider {
       throw new Error();
     }
 
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
-      await this.fileManager.createDir(['src', 'modules']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'modules']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'LeadProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'LeadProvider',
+      'dtos',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'LeadProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'LeadProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'LeadProvider',
+      'models',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -81,34 +121,6 @@ export class MakeDependentLeadProvider {
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ]);
     }
     if (
       !this.fileManager.checkIfExists([
@@ -130,99 +142,6 @@ export class MakeDependentLeadProvider {
         '',
       );
     }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'models',
-      ]);
-    }
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
@@ -237,20 +156,12 @@ export class MakeDependentLeadProvider {
       ],
       `import './LeadProvider';\n`,
     );
-    if (!this.fileManager.checkIfExists(['src', 'config', 'lead.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'lead.ts'],
-        this.createLeadConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'lead.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'lead.ts'],
-        this.createLeadConfig.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'lead.ts'],
+      this.createLeadConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -258,45 +169,11 @@ export class MakeDependentLeadProvider {
         'LeadProvider',
         'dtos',
         'ICreateLeadDTO.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ],
-        this.createILeadDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'ICreateLeadDTO.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'ICreateLeadDTO.ts',
-        ],
-        this.createILeadDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createILeadDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -304,45 +181,11 @@ export class MakeDependentLeadProvider {
         'LeadProvider',
         'dtos',
         'IAuthDTO.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'IAuthDTO.ts',
-        ],
-        this.createIAuthDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'IAuthDTO.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'dtos',
-          'IAuthDTO.ts',
-        ],
-        this.createIAuthDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createIAuthDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -350,45 +193,11 @@ export class MakeDependentLeadProvider {
         'LeadProvider',
         'fakes',
         'FakeLeadProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ],
-        this.createFakeLead.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'fakes',
-        'FakeLeadProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ],
-        this.createFakeLead.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeLead,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -396,45 +205,11 @@ export class MakeDependentLeadProvider {
         'LeadProvider',
         'implementations',
         'RDStationProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ],
-        this.createRDStationLead.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'implementations',
-        'RDStationProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'implementations',
-          'RDStationProvider.ts',
-        ],
-        this.createRDStationLead.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createRDStationLead,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -442,85 +217,20 @@ export class MakeDependentLeadProvider {
         'LeadProvider',
         'models',
         'ILeadProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ],
-        this.createILead.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'models',
-        'ILeadProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ],
-        this.createILead.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createILead,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'LeadProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ],
-        this.createLeadIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ],
-        this.createLeadIndex.execute(),
-      );
-    }
+      ],
+      this.createLeadIndex,
+    );
     return this.console.one([
       `- LeadProvider ${this.messages.created}`,
       'yellow',

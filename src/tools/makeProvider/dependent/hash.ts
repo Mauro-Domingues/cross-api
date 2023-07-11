@@ -48,21 +48,53 @@ export class MakeDependentHashProvider {
       throw new Error();
     }
 
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
-      await this.fileManager.createDir(['src', 'modules']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'modules']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'HashProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'HashProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'HashProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'HashProvider',
+      'models',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -75,34 +107,6 @@ export class MakeDependentHashProvider {
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ]);
     }
     if (
       !this.fileManager.checkIfExists([
@@ -124,80 +128,6 @@ export class MakeDependentHashProvider {
         '',
       );
     }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'models',
-      ]);
-    }
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
@@ -212,20 +142,12 @@ export class MakeDependentHashProvider {
       ],
       `import './HashProvider';\n`,
     );
-    if (!this.fileManager.checkIfExists(['src', 'config', 'hash.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'hash.ts'],
-        this.createHashConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'hash.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'hash.ts'],
-        this.createHashConfig.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'hash.ts'],
+      this.createHashConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -233,45 +155,11 @@ export class MakeDependentHashProvider {
         'HashProvider',
         'fakes',
         'FakeHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ],
-        this.createFakeHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'fakes',
-        'FakeHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ],
-        this.createFakeHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -279,45 +167,11 @@ export class MakeDependentHashProvider {
         'HashProvider',
         'implementations',
         'BCryptHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ],
-        this.createHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'implementations',
-        'BCryptHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ],
-        this.createHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -325,85 +179,20 @@ export class MakeDependentHashProvider {
         'HashProvider',
         'models',
         'IHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ],
-        this.createIHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'models',
-        'IHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ],
-        this.createIHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createIHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'HashProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ],
-        this.createHashIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'HashProvider',
-          'index.ts',
-        ],
-        this.createHashIndex.execute(),
-      );
-    }
+      ],
+      this.createHashIndex,
+    );
     return this.console.one([
       `- HashProvider ${this.messages.created}`,
       'yellow',

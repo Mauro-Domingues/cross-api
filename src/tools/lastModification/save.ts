@@ -32,15 +32,9 @@ export class CreateRegister {
   }
 
   private async constructBase(): Promise<void> {
-    if (!this.fileManager.checkIfExists([this.basePath, 'comands'])) {
-      await this.fileManager.createDir([this.basePath, 'comands']);
-    }
-    if (!this.fileManager.checkIfExists([this.basePath, 'modules'])) {
-      await this.fileManager.createDir([this.basePath, 'modules']);
-    }
-    if (!this.fileManager.checkIfExists([this.basePath, 'providers'])) {
-      await this.fileManager.createDir([this.basePath, 'providers']);
-    }
+    await this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
+    await this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
+    await this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
     if (
       !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
     ) {

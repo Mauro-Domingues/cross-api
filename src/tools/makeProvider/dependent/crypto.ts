@@ -48,21 +48,53 @@ export class MakeDependentCryptoProvider {
       throw new Error();
     }
 
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
-      await this.fileManager.createDir(['src', 'modules']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'modules']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'CryptoProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'CryptoProvider',
+      'dtos',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'CryptoProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'CryptoProvider',
+      'models',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -75,34 +107,6 @@ export class MakeDependentCryptoProvider {
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ]);
     }
     if (
       !this.fileManager.checkIfExists([
@@ -124,80 +128,6 @@ export class MakeDependentCryptoProvider {
         '',
       );
     }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'dtos',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'dtos',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'models',
-      ]);
-    }
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
@@ -212,20 +142,12 @@ export class MakeDependentCryptoProvider {
       ],
       `import './CryptoProvider';\n`,
     );
-    if (!this.fileManager.checkIfExists(['src', 'config', 'crypto.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'crypto.ts'],
-        this.createCryptoConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'crypto.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'crypto.ts'],
-        this.createCryptoConfig.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'crypto.ts'],
+      this.createCryptoConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -233,45 +155,11 @@ export class MakeDependentCryptoProvider {
         'CryptoProvider',
         'dtos',
         'ICryptoDTO.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'dtos',
-          'ICryptoDTO.ts',
-        ],
-        this.createICryptoDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'dtos',
-        'ICryptoDTO.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'dtos',
-          'ICryptoDTO.ts',
-        ],
-        this.createICryptoDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createICryptoDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -279,45 +167,11 @@ export class MakeDependentCryptoProvider {
         'CryptoProvider',
         'implementations',
         'CryptoProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'implementations',
-          'CryptoProvider.ts',
-        ],
-        this.createCrypto.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'implementations',
-        'CryptoProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'implementations',
-          'CryptoProvider.ts',
-        ],
-        this.createCrypto.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createCrypto,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -325,85 +179,20 @@ export class MakeDependentCryptoProvider {
         'CryptoProvider',
         'models',
         'ICryptoProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'models',
-          'ICryptoProvider.ts',
-        ],
-        this.createICrypto.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'models',
-        'ICryptoProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'models',
-          'ICryptoProvider.ts',
-        ],
-        this.createICrypto.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createICrypto,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'index.ts',
-        ],
-        this.createCryptoIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'index.ts',
-        ],
-        this.createCryptoIndex.execute(),
-      );
-    }
+      ],
+      this.createCryptoIndex,
+    );
     return this.console.one([
       `- CryptoProvider ${this.messages.created}`,
       'yellow',

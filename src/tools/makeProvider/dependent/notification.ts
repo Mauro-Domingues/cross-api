@@ -48,21 +48,61 @@ export class MakeDependentNotificationProvider {
       throw new Error();
     }
 
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'modules'])) {
-      await this.fileManager.createDir(['src', 'modules']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'modules']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'NotificationProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'NotificationProvider',
+      'dtos',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'NotificationProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'NotificationProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'NotificationProvider',
+      'models',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -75,34 +115,6 @@ export class MakeDependentNotificationProvider {
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-      ]);
     }
     if (
       !this.fileManager.checkIfExists([
@@ -124,99 +136,6 @@ export class MakeDependentNotificationProvider {
         '',
       );
     }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'dtos',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'dtos',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'models',
-      ]);
-    }
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
@@ -231,8 +150,8 @@ export class MakeDependentNotificationProvider {
       ],
       `import './NotificationProvider';\n`,
     );
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -240,45 +159,11 @@ export class MakeDependentNotificationProvider {
         'NotificationProvider',
         'dtos',
         'ISendNotificationDTO.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'dtos',
-          'ISendNotificationDTO.ts',
-        ],
-        this.createINotificationDTO.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'dtos',
-        'ISendNotificationDTO.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'dtos',
-          'ISendNotificationDTO.ts',
-        ],
-        this.createINotificationDTO.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createINotificationDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -286,45 +171,11 @@ export class MakeDependentNotificationProvider {
         'NotificationProvider',
         'fakes',
         'FakeNotificationProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'fakes',
-          'FakeNotificationProvider.ts',
-        ],
-        this.createFakeNotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'fakes',
-        'FakeNotificationProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'fakes',
-          'FakeNotificationProvider.ts',
-        ],
-        this.createFakeNotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeNotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -332,45 +183,11 @@ export class MakeDependentNotificationProvider {
         'NotificationProvider',
         'implementations',
         'OneSignalProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'implementations',
-          'OneSignalProvider.ts',
-        ],
-        this.createOneSignalNotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'implementations',
-        'OneSignalProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'implementations',
-          'OneSignalProvider.ts',
-        ],
-        this.createOneSignalNotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createOneSignalNotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
@@ -378,85 +195,20 @@ export class MakeDependentNotificationProvider {
         'NotificationProvider',
         'models',
         'INotificationProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'models',
-          'INotificationProvider.ts',
-        ],
-        this.createINotification.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'models',
-        'INotificationProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'models',
-          'INotificationProvider.ts',
-        ],
-        this.createINotification.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createINotification,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'NotificationProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'index.ts',
-        ],
-        this.createNotificationIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'NotificationProvider',
-          'index.ts',
-        ],
-        this.createNotificationIndex.execute(),
-      );
-    }
+      ],
+      this.createNotificationIndex,
+    );
     return this.console.one([
       `- NotificationProvider ${this.messages.created}`,
       'yellow',

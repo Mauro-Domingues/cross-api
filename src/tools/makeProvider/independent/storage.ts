@@ -32,125 +32,57 @@ export class MakeStorageProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'models',
-      ]);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'StorageProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'StorageProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'StorageProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'StorageProvider',
+      'models',
+    ]);
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './StorageProvider';\n`,
     );
-    if (!this.fileManager.checkIfExists(['src', 'config', 'upload.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'upload.ts'],
-        this.createUploadConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'upload.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'upload.ts'],
-        this.createUploadConfig.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'upload.ts'],
+      this.createUploadConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -158,45 +90,11 @@ export class MakeStorageProvider {
         'StorageProvider',
         'fakes',
         'FakeStorageProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ],
-        this.createFakeStorage.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'fakes',
-        'FakeStorageProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ],
-        this.createFakeStorage.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeStorage,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -204,45 +102,11 @@ export class MakeStorageProvider {
         'StorageProvider',
         'implementations',
         'DiskStorageProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'DiskStorageProvider.ts',
-        ],
-        this.createDiskStorage.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'DiskStorageProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'DiskStorageProvider.ts',
-        ],
-        this.createDiskStorage.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createDiskStorage,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -250,45 +114,11 @@ export class MakeStorageProvider {
         'StorageProvider',
         'implementations',
         'S3StorageProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'S3StorageProvider.ts',
-        ],
-        this.createS3Storage.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'S3StorageProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'implementations',
-          'S3StorageProvider.ts',
-        ],
-        this.createS3Storage.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createS3Storage,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -296,85 +126,20 @@ export class MakeStorageProvider {
         'StorageProvider',
         'models',
         'IStorageProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ],
-        this.createIStorage.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'models',
-        'IStorageProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ],
-        this.createIStorage.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createIStorage,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
         'providers',
         'StorageProvider',
         'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ],
-        this.createStorageIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ],
-        this.createStorageIndex.execute(),
-      );
-    }
+      ],
+      this.createStorageIndex,
+    );
     return this.console.one([
       `- StorageProvider ${this.messages.created}`,
       'yellow',

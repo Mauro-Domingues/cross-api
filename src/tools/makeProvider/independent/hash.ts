@@ -29,125 +29,58 @@ export class MakeHashProvider {
   }
 
   public async execute(): Promise<void> {
-    if (!this.fileManager.checkIfExists(['src'])) {
-      await this.fileManager.createDir(['src']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'config'])) {
-      await this.fileManager.createDir(['src', 'config']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared'])) {
-      await this.fileManager.createDir(['src', 'shared']);
-    }
-    if (!this.fileManager.checkIfExists(['src', 'shared', 'container'])) {
-      await this.fileManager.createDir(['src', 'shared', 'container']);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'fakes',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'fakes',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'implementations',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'implementations',
-      ]);
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'models',
-      ])
-    ) {
-      await this.fileManager.createDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'models',
-      ]);
-    }
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir(['src', 'config']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared']);
+    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+    ]);
+    await this.fileManager.checkAndCreateDir(['src']);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'HashProvider',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'HashProvider',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'HashProvider',
+      'implementations',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'HashProvider',
+      'models',
+    ]);
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './HashProvider';\n`,
     );
-    if (!this.fileManager.checkIfExists(['src', 'config', 'hash.ts'])) {
-      await this.fileManager.createFile(
-        ['src', 'config', 'hash.ts'],
-        this.createHashConfig.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile(['src', 'config', 'hash.ts']);
-      await this.fileManager.createFile(
-        ['src', 'config', 'hash.ts'],
-        this.createHashConfig.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'hash.ts'],
+      this.createHashConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -155,45 +88,11 @@ export class MakeHashProvider {
         'HashProvider',
         'fakes',
         'FakeHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ],
-        this.createFakeHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'fakes',
-        'FakeHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ],
-        this.createFakeHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createFakeHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -201,45 +100,11 @@ export class MakeHashProvider {
         'HashProvider',
         'implementations',
         'BCryptHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ],
-        this.createHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'implementations',
-        'BCryptHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'implementations',
-          'BCryptHashProvider.ts',
-        ],
-        this.createHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
+      ],
+      this.createHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
         'src',
         'shared',
         'container',
@@ -247,71 +112,13 @@ export class MakeHashProvider {
         'HashProvider',
         'models',
         'IHashProvider.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ],
-        this.createIHash.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'models',
-        'IHashProvider.ts',
-      ]);
-      await this.fileManager.createFile(
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ],
-        this.createIHash.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'index.ts',
-      ])
-    ) {
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
-        this.createHashIndex.execute(),
-      );
-    } else {
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'HashProvider',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
-        ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
-        this.createHashIndex.execute(),
-      );
-    }
+      ],
+      this.createIHash,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
+      this.createHashIndex,
+    );
     return this.console.one([
       `- HashProvider ${this.messages.created}`,
       'yellow',

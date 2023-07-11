@@ -9,18 +9,8 @@ import {
   truncateSync,
 } from 'fs';
 import { resolve } from 'path';
-import { Console } from '@tools/console.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
 
 export class FileManager {
-  private readonly console: Console;
-  private readonly messages: IMessagesDTO;
-
-  constructor() {
-    this.console = new Console();
-    this.messages = new Messages().execute();
-  }
-
   public resolvePath(path: Array<string>): string {
     return resolve(...path);
   }
@@ -67,17 +57,10 @@ export class FileManager {
     },
   ): Promise<void> {
     if (!this.checkIfExists(path)) {
-      await this.createFile(path, instance.execute());
+      return this.createFile(path, instance.execute());
     }
     await this.truncateFile(path);
-    await this.createFile(path, instance.execute());
-    return this.console.one([
-      `- .editorconfig ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
+    return this.createFile(path, instance.execute());
   }
 
   public async checkAndCreateDir(path: Array<string>): Promise<void> {
