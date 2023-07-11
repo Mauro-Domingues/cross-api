@@ -73,7 +73,7 @@ describe('List${this.names.upperModuleName}Service', () => {
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2);
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
@@ -89,9 +89,9 @@ describe('List${this.names.upperModuleName}Service', () => {
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await list${this.names.upperModuleName}.execute(1, 2);
+    await list${this.names.upperModuleName}.execute(1, 2, {});
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2);
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual([
       {
@@ -123,11 +123,11 @@ describe('List${this.names.upperModuleName}Service', () => {
       description: 'This is the third ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}.execute(1, 1);
+    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}.execute(1, 1, {});
 
     expect(${this.names.lowerModuleName}List01.data).toEqual([${this.names.lowerModuleName}01]);
 
-    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}.execute(1, 2);
+    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}.execute(1, 2, {});
     expect(${this.names.lowerModuleName}List02.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
 
@@ -136,7 +136,7 @@ describe('List${this.names.upperModuleName}Service', () => {
       throw new AppError('Failed to list ${this.names.pluralLowerModuleName}');
     });
 
-    await expect(list${this.names.upperModuleName}.execute(1, 2)).rejects.toBeInstanceOf(AppError);
+    await expect(list${this.names.upperModuleName}.execute(1, 2, {})).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

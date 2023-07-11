@@ -57,10 +57,6 @@ export class RDStationProvider implements ILeadProviderDTO {
 
       const axiosResult = await axios.post<ICreateLeadDTO>(url, body, options);
 
-      if (axiosResult.status.toString().at(0) !== '2') {
-        throw new AppError('Failed create lead');
-      }
-
       return axiosResult.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {

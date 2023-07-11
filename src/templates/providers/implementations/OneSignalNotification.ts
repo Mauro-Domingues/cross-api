@@ -29,7 +29,9 @@ export class OneSignalProvider implements INotificationProviderDTO {
     try {
       const url: AxiosRequestConfig['url'] = \`\${process.env.OS_API_URL}/api/v1/notifications\`;
 
-      return axios.post(url, body, this.options);
+      const axiosResult = await axios.post(url, body, this.options);
+
+      return console.log(axiosResult.data)
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(error.response.statusText, error.response.status);

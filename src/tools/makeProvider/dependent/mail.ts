@@ -77,14 +77,14 @@ export class MakeDependentMailProvider {
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
-      'LeadProvider',
+      'MailProvider',
     ]);
     await this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
-      'LeadProvider',
+      'MailProvider',
       'dtos',
     ]);
     await this.fileManager.checkAndCreateDir([
@@ -92,7 +92,7 @@ export class MakeDependentMailProvider {
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
-      'LeadProvider',
+      'MailProvider',
       'fakes',
     ]);
     await this.fileManager.checkAndCreateDir([
@@ -100,7 +100,7 @@ export class MakeDependentMailProvider {
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
-      'LeadProvider',
+      'MailProvider',
       'implementations',
     ]);
     await this.fileManager.checkAndCreateDir([
@@ -108,7 +108,7 @@ export class MakeDependentMailProvider {
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
-      'LeadProvider',
+      'MailProvider',
       'models',
     ]);
     if (

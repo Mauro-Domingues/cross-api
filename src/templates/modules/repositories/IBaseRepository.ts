@@ -26,7 +26,7 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
   ): Promise<Entity | null>;
   findIn(
     trx: QueryRunner,
-    propertyName: string,
+    propertyName: keyof Entity,
     baseData: Array<Entity[keyof Entity]>,
     relations?: keysOfEntity<Entity> | Array<string>,
   ): Promise<Array<Entity>>;
