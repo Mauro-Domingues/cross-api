@@ -310,7 +310,7 @@ const example = await this.examplesRepository.findBy(trx, [
  */
 ```
 
-<h4>In addition, it can be passed as array of string keys of relations that you want to load: </h4>
+<h4>In addition, it can be passed as array of string keys of relations that you want to load and the fields you want to select: </h4>
 
 ```typescript
 const select = { name: true }
