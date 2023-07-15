@@ -109,10 +109,6 @@ export class MakeDependentInfra {
       ['src', 'shared', 'container', 'index.ts'],
       this.createDependentInjection.execute(),
     );
-    await this.fileManager.createFile(
-      ['src', 'routes', 'index.ts'],
-      this.createIndexDependentRoute.execute(),
-    );
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -123,6 +119,10 @@ export class MakeDependentInfra {
       await this.fileManager.createFile(
         ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createFullDependentRoute.execute(),
+      );
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
+        this.createIndexDependentRoute.execute(),
       );
     } else {
       await this.fileManager.createFile(
