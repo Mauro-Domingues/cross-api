@@ -354,6 +354,8 @@ export class DeleteRegister {
 
   private async makeAPi(comand: string) {
     await this.fileManager.removeDir(['src']);
+    await this.fileManager.removeDir(['dist']);
+    await this.fileManager.removeDir(['coverage']);
     await this.fileManager.removeFile(['.editorconfig']);
     await this.fileManager.removeFile(['.env']);
     await this.fileManager.removeFile(['.env.template']);
@@ -362,6 +364,7 @@ export class DeleteRegister {
     await this.fileManager.removeFile(['.gitignore']);
     await this.fileManager.removeFile(['babel.config.js']);
     await this.fileManager.removeFile(['docker-compose.yml']);
+    await this.fileManager.removeFile(['doc.config.ts']);
     await this.fileManager.removeFile(['jest.config.ts']);
     await this.fileManager.removeFile(['nodemon.json']);
     await this.fileManager.removeFile(['prettier.config.js']);
