@@ -5,9 +5,7 @@ import { Console } from '@tools/console.js';
 export class DeleteDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
-    | undefined;
+  private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined;
   private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -41,10 +39,10 @@ import { AppError } from '@shared/errors/AppError';
 import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { IResponseDTO } from '@dtos/IResponseDTO';
-import { FindOptionsWhere } from 'typeorm';
-import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Route, Tags, Delete, Path } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class Delete${this.names.upperModuleName}Service {
   constructor(
@@ -55,14 +53,14 @@ export class Delete${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
-  public async execute(
-    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
-  ): Promise<IResponseDTO<null>> {
+  @Delete('{id}')
+  @Tags('${this.names.upperModuleName}')
+  public async execute(@Path() id?: string): Promise<IResponseDTO<null>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, ${this.names.lowerModuleName}Param);
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, { id });
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);

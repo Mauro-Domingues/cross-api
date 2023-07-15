@@ -76,8 +76,8 @@ describe('Update${this.names.upperModuleName}Service', () => {
     });
 
     const updated${this.names.upperModuleName} = await update${this.names.upperModuleName}Service.execute(
-      { id: ${this.names.lowerModuleName}.id },
       { name: 'updated${this.names.upperModuleName}', description: 'This is a updated${this.names.lowerModuleName}' },
+      ${this.names.lowerModuleName}.id,
     );
 
     expect(updated${this.names.upperModuleName}.data.name).toEqual('updated${this.names.upperModuleName}');
@@ -85,7 +85,7 @@ describe('Update${this.names.upperModuleName}Service', () => {
 
   it('should return AppError', async () => {
     await expect(
-      update${this.names.upperModuleName}Service.execute({}, { name: '', description: '' }),
+      update${this.names.upperModuleName}Service.execute({ name: '', description: '' }),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

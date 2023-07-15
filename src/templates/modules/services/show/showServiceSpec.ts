@@ -58,9 +58,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}.execute({
-      id: ${this.names.lowerModuleName}.id,
-    });
+    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}.execute(${this.names.lowerModuleName}.id);
 
     expect(get${this.names.upperModuleName}.data).toHaveProperty('id');
     expect(get${this.names.upperModuleName}.data).toEqual(${this.names.lowerModuleName});
@@ -68,9 +66,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
 
   it('should not be able to show ${this.names.pluralLowerModuleName} with a non-existing id', async () => {
     await expect(
-      show${this.names.upperModuleName}.execute({
-        id: 'non-existing-${this.names.lowerModuleName}-id',
-      }),
+      show${this.names.upperModuleName}.execute('non-existing-${this.names.lowerModuleName}-id'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

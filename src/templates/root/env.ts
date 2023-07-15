@@ -54,8 +54,8 @@ MAIL_PASS=
 SENTRY_DSN=
 
 # One Signal
+OS_API_URL=https://onesignal.com
 OS_APP_ID=
-OS_API_URL=
 OS_TOKEN=
 
 # RDStation

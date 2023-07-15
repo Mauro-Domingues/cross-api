@@ -5,9 +5,7 @@ import { Console } from '@tools/console.js';
 export class UpdateService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
-    | undefined;
+  private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
@@ -39,9 +37,10 @@ import { mapAndUpdateAttribute } from '@utils/mappers/mapAndUpdateAttribute';
 import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
-import { FindOptionsWhere } from 'typeorm';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Route, Tags, Put, Body, Path } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class Update${this.names.upperModuleName}Service {
   constructor(
@@ -52,15 +51,17 @@ export class Update${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
+  @Put('{id}')
+  @Tags('${this.names.upperModuleName}')
   public async execute(
-    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
-    ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+    @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+    @Path() id?: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, ${this.names.lowerModuleName}Param);
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, { id });
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);

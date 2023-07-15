@@ -45,17 +45,17 @@ import { Update${this.names.upperModuleName}Service } from './Update${this.names
 
 export class Update${this.names.upperModuleName}Controller {
   public async handle(
-    request: Request<FindOptionsWhere<${this.names.upperModuleName}>, never, I${this.names.upperModuleName}DTO>,
+    request: Request<IResponseDTO<${this.names.upperModuleName}, never, I${this.names.upperModuleName}DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ) {
     const update${this.names.upperModuleName} = container.resolve(Update${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName}Param = request.params;
+    const { id } = request.params;
     const ${this.names.lowerModuleName}Data = request.body;
 
-    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Param, ${this.names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Data, id);
 
-    return response.send(${this.names.lowerModuleName});
+    return response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }
 }
 `;

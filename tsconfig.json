@@ -13,7 +13,6 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "rootDir": "./src",
-    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

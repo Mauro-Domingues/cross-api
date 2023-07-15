@@ -47,6 +47,7 @@ export class ConfigJson {
       'supertest',
       'swagger-ui-express',
       'ts-jest',
+      'tsoa',
       'tsyringe',
       'typeorm@^0.3.15',
       'uuid',
@@ -100,8 +101,9 @@ export class ConfigJson {
     jsonPackage.scripts = {
       ...jsonPackage.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
-      test: 'set NODE_ENV=test&&jest --runInBand',
+      doc: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only doc.config.ts',
       build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
+      test: 'set NODE_ENV=test&&jest --runInBand',
       start: 'node dist/shared/server.js',
     };
 

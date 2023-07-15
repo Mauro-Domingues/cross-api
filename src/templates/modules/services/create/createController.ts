@@ -49,7 +49,7 @@ export class Create${this.names.upperModuleName}Controller {
 
     const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Data);
 
-    return response.send(${this.names.lowerModuleName});
+    return response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }
 }
 `;

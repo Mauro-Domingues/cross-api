@@ -1,8 +1,9 @@
 export class CreateIListDTO {
   public execute(): string {
-    return `import { IResponseDTO } from './IResponseDTO';
-
-export interface IListDTO<T> extends IResponseDTO<Array<T>> {
+    return `export interface IListDTO<T> {
+  code: number;
+  message_code: string;
+  message: string;
   pagination: {
     total: number;
     page: number;

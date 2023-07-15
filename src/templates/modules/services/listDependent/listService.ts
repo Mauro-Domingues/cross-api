@@ -6,10 +6,7 @@ export class ListDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly names:
-    | Pick<
-        IModuleNamesDTO,
-        'upperModuleName' | 'pluralLowerModuleName' | 'pluralUpperModuleName'
-      >
+    | Omit<IModuleNamesDTO, 'lowerModuleName' | 'dbModuleName'>
     | undefined;
   private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
@@ -47,7 +44,9 @@ import { ICacheDTO } from '@dtos/ICacheDTO';
 import { IListDTO } from '@dtos/IListDTO';
 import { AppDataSource } from '@shared/typeorm/dataSource';
 import { FindOptionsWhere } from 'typeorm';
+import { Get, Route, Tags, Query, Inject } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class List${this.names.upperModuleName}Service {
   constructor(
@@ -59,9 +58,9 @@ export class List${this.names.upperModuleName}Service {
   ) {}
 
   public async execute(
-    page: number,
-    limit: number,
-    filters: FindOptionsWhere<${this.names.upperModuleName}>,
+    @Query() page: number,
+    @Query() limit: number,
+    @Inject() filters: FindOptionsWhere<${this.names.upperModuleName}>,
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 

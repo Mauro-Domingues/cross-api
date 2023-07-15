@@ -5,9 +5,7 @@ import { Console } from '@tools/console.js';
 export class CreateService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
-    | undefined;
+  private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined;
 
   constructor(names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
@@ -37,7 +35,9 @@ import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLower
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Route, Tags, Post, Body } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class Create${this.names.upperModuleName}Service {
   constructor(
@@ -48,7 +48,9 @@ export class Create${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
-  public async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+  @Post()
+  @Tags('${this.names.upperModuleName}')
+  public async execute(@Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();

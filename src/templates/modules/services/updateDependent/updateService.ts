@@ -5,9 +5,7 @@ import { Console } from '@tools/console.js';
 export class UpdateDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
-    | undefined;
+  private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined;
   private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -46,9 +44,10 @@ import { mapAndUpdateAttribute } from '@utils/mappers/mapAndUpdateAttribute';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
-import { FindOptionsWhere } from 'typeorm';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Route, Tags, Put, Body, Path } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class Update${this.names.upperModuleName}Service {
   constructor(
@@ -59,9 +58,11 @@ export class Update${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
+  @Put('{id}')
+  @Tags('${this.names.upperModuleName}')
   public async execute(
-    ${this.names.lowerModuleName}Param: FindOptionsWhere<${this.names.upperModuleName}>,
-    ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+    @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+    @Path() id?: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 

@@ -75,7 +75,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    await delete${this.names.upperModuleName}.execute({ id: ${this.names.lowerModuleName}.id });
+    await delete${this.names.upperModuleName}.execute(${this.names.lowerModuleName}.id);
 
     const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy(
       {} as QueryRunner,
@@ -86,7 +86,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
   });
 
   it('should return AppError', async () => {
-    await expect(delete${this.names.upperModuleName}.execute({})).rejects.toBeInstanceOf(AppError);
+    await expect(delete${this.names.upperModuleName}.execute()).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

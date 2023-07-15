@@ -13,7 +13,7 @@ export class OneSignalProvider implements INotificationProviderDTO {
     this.options = {
       headers: {
         'Content-Type': 'application/json',
-        token: process.env.OS_TOKEN,
+        token: \`Basic \${process.env.OS_TOKEN}\`,
       },
     };
   }

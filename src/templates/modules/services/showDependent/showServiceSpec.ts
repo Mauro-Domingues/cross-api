@@ -65,9 +65,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}.execute({
-      id: ${this.names.lowerModuleName}.id,
-    });
+    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}.execute(${this.names.lowerModuleName}.id);
 
     expect(get${this.names.upperModuleName}.data).toHaveProperty('id');
     expect(get${this.names.upperModuleName}.data).toEqual(${this.names.lowerModuleName});

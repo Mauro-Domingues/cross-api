@@ -5,9 +5,7 @@ import { Console } from '@tools/console.js';
 export class CreateDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
-    | undefined;
+  private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined;
   private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -44,7 +42,9 @@ import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.plura
 import { instanceToInstance } from 'class-transformer';
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Route, Tags, Post, Body } from 'tsoa';
 
+@Route('/${this.names.routeModuleName}')
 @injectable()
 export class Create${this.names.upperModuleName}Service {
   constructor(
@@ -55,6 +55,8 @@ export class Create${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
+  @Post()
+  @Tags('${this.names.upperModuleName}')
   public async execute(${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 

@@ -58,7 +58,7 @@ export class List${this.names.upperModuleName}Controller {
 
     const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(page, limit, filters);
 
-    return response.send(${this.names.pluralLowerModuleName});
+    return response.status(${this.names.pluralLowerModuleName}.code).send(${this.names.pluralLowerModuleName});
   }
 }
 `;
