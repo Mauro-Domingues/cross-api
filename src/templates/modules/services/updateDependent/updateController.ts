@@ -39,13 +39,12 @@ import { container } from 'tsyringe';
 
 import { I${this.names.upperModuleName}DTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { ${this.names.upperModuleName} } from '@modules/${this.fatherNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { FindOptionsWhere } from 'typeorm';
 import { IResponseDTO } from '@dtos/IResponseDTO';
 import { Update${this.names.upperModuleName}Service } from './Update${this.names.upperModuleName}Service';
 
 export class Update${this.names.upperModuleName}Controller {
   public async handle(
-    request: Request<IResponseDTO<${this.names.upperModuleName}, never, I${this.names.upperModuleName}DTO>,
+    request: Request<I${this.names.upperModuleName}DTO, never, I${this.names.upperModuleName}DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ) {
     const update${this.names.upperModuleName} = container.resolve(Update${this.names.upperModuleName}Service);
