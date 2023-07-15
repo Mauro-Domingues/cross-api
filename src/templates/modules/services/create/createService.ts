@@ -50,7 +50,9 @@ export class Create${this.names.upperModuleName}Service {
 
   @Post()
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+  public async execute(
+    @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+  ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();

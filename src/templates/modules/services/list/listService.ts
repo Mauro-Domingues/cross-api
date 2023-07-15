@@ -49,6 +49,8 @@ export class List${this.names.upperModuleName}Service {
     private readonly cacheProvider: ICacheProviderDTO,
   ) {}
 
+  @Get()
+  @Tags('${this.names.upperModuleName}')
   public async execute(
     @Query() page: number,
     @Query() limit: number,
