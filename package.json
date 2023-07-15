@@ -17,7 +17,7 @@
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
   },
   "bin": {
-    "cross": "./dist/index.js"
+    "cross": "./src/index.js"
   },
   "scripts": {
     "build": "tsc & tsc-alias",
