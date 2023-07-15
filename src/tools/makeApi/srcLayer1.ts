@@ -1,4 +1,5 @@
 import { CreateBabelConfig } from '@templates/root/babelConfig.js';
+import { CreateDocConfig } from '@templates/root/docConfig.js';
 import { CreateDockerCompose } from '@templates/root/dockerCompose.js';
 import { CreateEditorConfig } from '@templates/root/editorConfig.js';
 import { CreateEnv } from '@templates/root/env.js';
@@ -19,6 +20,7 @@ export class MakeFirstLayer {
   private readonly createPrettierConfig: CreatePrettierConfig;
   private readonly createNodemonJson: CreateNodemonJson;
   private readonly createJestConfig: CreateJestConfig;
+  private readonly createDocConfig: CreateDocConfig;
   private readonly createGitIgnore: CreateGitIgnore;
   private readonly createEsLintrcJson: CreateEsLintrcJson;
   private readonly createEsLintIgnore: CreateEsLintIgnore;
@@ -34,6 +36,7 @@ export class MakeFirstLayer {
     this.createPrettierConfig = new CreatePrettierConfig();
     this.createNodemonJson = new CreateNodemonJson();
     this.createJestConfig = new CreateJestConfig();
+    this.createDocConfig = new CreateDocConfig();
     this.createGitIgnore = new CreateGitIgnore();
     this.createEsLintrcJson = new CreateEsLintrcJson();
     this.createEsLintIgnore = new CreateEsLintIgnore();
@@ -68,6 +71,10 @@ export class MakeFirstLayer {
     await this.fileManager.checkAndCreateFile(
       ['babel.config.js'],
       this.createBabelConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['doc.config.ts'],
+      this.createDocConfig,
     );
     await this.fileManager.checkAndCreateFile(
       ['docker-compose.yml'],
