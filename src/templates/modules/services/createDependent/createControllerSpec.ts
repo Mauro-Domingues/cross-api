@@ -54,7 +54,7 @@ describe('Create${this.names.upperModuleName}Controller', () => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.body.data).toHaveProperty('id');
   });
 });

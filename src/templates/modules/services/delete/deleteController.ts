@@ -48,7 +48,7 @@ export class Delete${this.names.upperModuleName}Controller {
 
     const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(id);
 
-    return response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
+    return response.send(${this.names.lowerModuleName});
   }
 }
 `;
