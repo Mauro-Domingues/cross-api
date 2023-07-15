@@ -18,23 +18,27 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
     conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
     order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<{ list: Array<Entity>; amount: number }>;
   findBy(
     trx: QueryRunner,
     entityData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<Entity | null>;
   findIn(
     trx: QueryRunner,
     propertyName: keyof Entity,
     baseData: Array<Entity[keyof Entity]>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<Array<Entity>>;
   findLike(
     trx: QueryRunner,
     baseData: Partial<{ [key in keyof Entity]: string }>,
-    select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
     limit?: number,
   ): Promise<Array<Entity>>;
   create(trx: QueryRunner, entityData: DeepPartial<Entity>): Promise<Entity>;

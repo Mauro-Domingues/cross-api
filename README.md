@@ -313,10 +313,13 @@ const example = await this.examplesRepository.findBy(trx, [
 <h4>In addition, it can be passed as array of string keys of relations that you want to load: </h4>
 
 ```typescript
+const select = { name: true }
+
 const example = await this.examplesRepository.findBy(
   trx,
   { id: 123 },
   ["relation-1", "relation-2"],
+  select
 );
 
 // Find one where id = 123 and load related relation-1 and relation-2 entities
@@ -326,14 +329,17 @@ const example = await this.examplesRepository.findBy(
 <h3>findIn</h3><h4> Exactly the same functionality as findBy, but search for entities in an interval of values. The return is an array of the entity. Full Example:</h4>
 
 ```typescript
-const propertyName = 'id';
+const propertyName = { id : 'id' };
 const baseData = [3, 4, 6, 7, 8, 9];
+const select = { name: true }
 
 const exampleArray = await this.examplesRepository.findIn(
   trx,
   propertyName,
   baseData,
-  ["relation-1", "relation-2", "relation-2"]
+  ["relation-1", "relation-2", "relation-2"],
+  { id: 'ASC' },
+  select
 );
 
 // Find all where id in = "3, 4, 6, 7, 8, 9"
@@ -353,8 +359,8 @@ const limit = 10
 const exampleArray = await this.examplesRepository.findLike(
   trx,
   baseData,
-  select,
   order,
+  select,
   limit,
 );
 
@@ -369,6 +375,7 @@ output: [exampleArray]
 ```typescript
 const page = 3;
 const limit = 500;
+const select = { name: true }
 
 const exampleArray = await this.examplesRepository.findAll(
   trx,
@@ -376,10 +383,12 @@ const exampleArray = await this.examplesRepository.findAll(
   limit,
   { name: "example" },
   ["relation-1", "relation-2.nested-relation"]
-  { id: 'ASC' }
+  { id: 'ASC' },
+  select
 );
 
 /** Find all where name = "example"
+ * Select name only
  * Filter where index is between 1000 and 1500
  * Load their relations (use . to load nested relations)
  * Count the amount of items

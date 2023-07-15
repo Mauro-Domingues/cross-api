@@ -93,12 +93,14 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
     order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<{ list: Array<Entity>; amount: number }> {
     const [list, amount] = await trx.manager.findAndCount(this.target, {
+      relations: this.arrayToObject(relations),
+      skip: (page - 1) * limit,
       where: conditions,
       take: limit,
-      skip: (page - 1) * limit,
-      relations: this.arrayToObject(relations),
+      select,
       order,
     });
 
@@ -111,10 +113,12 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     baseData: Array<Entity[keyof Entity]>,
     relations?: keysOfEntity<Entity> | Array<string>,
     order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<Array<Entity>> {
     const entities = await trx.manager.find(this.target, {
       where: { [propertyName]: In(baseData) } as FindOptionsWhere<Entity>,
       relations: this.arrayToObject(relations),
+      select,
       order,
     });
 
@@ -124,17 +128,17 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   public async findLike(
     trx: QueryRunner,
     baseData: Partial<{ [key in keyof Entity]: string }>,
-    select?: FindOptionsSelect<Entity>,
     order?: FindOptionsOrder<Entity>,
+    select?: FindOptionsSelect<Entity>,
     limit?: number,
   ): Promise<Array<Entity>> {
     const entities = await trx.manager.find(this.target, {
-      select,
       where: {
         [Object.keys(baseData)[0]]: Like(Object.values(baseData)[0]),
       } as FindOptionsWhere<Entity>,
-      order,
       take: limit,
+      select,
+      order,
     });
 
     return entities;
