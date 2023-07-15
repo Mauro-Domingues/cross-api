@@ -17,7 +17,7 @@ export class DeleteRegister {
     this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',
-      'dist',
+      'src',
       'tools',
       'lastModification',
     ]);

@@ -25,7 +25,7 @@ export class CreateRegister {
     this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',
-      'dist',
+      'src',
       'tools',
       'lastModification',
     ]);

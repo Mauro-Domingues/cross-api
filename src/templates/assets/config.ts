@@ -27,12 +27,12 @@ export class ConfigJson {
     await this.fileManager.truncateFile([
       'node_modules',
       'cross-api',
-      'dist',
+      'src',
       'tools',
       'config.js',
     ]);
     return this.fileManager.createFile(
-      ['node_modules', 'cross-api', 'dist', 'tools', 'config.js'],
+      ['node_modules', 'cross-api', 'src', 'tools', 'config.js'],
       this.configBody,
     );
   }
