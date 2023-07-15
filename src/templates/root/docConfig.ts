@@ -1,7 +1,6 @@
 export class CreateDocConfig {
   public execute(): string {
-    return `import 'dotenv/config';
-import { generateSpec } from 'tsoa';
+    return `import { generateSpec } from 'tsoa';
 import { resolve } from 'path';
 
 generateSpec(
@@ -13,7 +12,7 @@ generateSpec(
     name: 'Awesome API',
     description: 'An awesome API created using cross-api',
     schemes: ['http', 'https'],
-    host: process.env.API_URL,
+    host: 'localhost:3333',
     basePath: '/',
     rootSecurity: [{ guardRouter: [] }],
     useTitleTagsForInlineObjects: true,
