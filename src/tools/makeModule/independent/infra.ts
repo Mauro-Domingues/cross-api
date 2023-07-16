@@ -58,14 +58,25 @@ export class MakeInfra {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      this.createContainer,
-    );
-    await this.fileManager.checkAndCreateFile(
-      ['src', 'routes', 'index.ts'],
-      this.createRoutes,
-    );
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      await this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
+        this.createContainer.execute(),
+      );
+    }
+    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+      await this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
+        this.createRoutes.execute(),
+      );
+    }
     await this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       this.createInjection.execute(),
