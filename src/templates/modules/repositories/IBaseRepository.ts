@@ -11,6 +11,10 @@ export class CreateIBaseRepository {
 } from 'typeorm';
 
 export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
+  exists(
+    trx: QueryRunner,
+    baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+  ): Promise<boolean>;
   findAll(
     trx: QueryRunner,
     page: number,
