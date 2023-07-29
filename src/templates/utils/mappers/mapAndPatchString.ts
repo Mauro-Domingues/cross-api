@@ -8,7 +8,7 @@ export class CreateMapAndPatchString {
   }
 
   public execute(): string {
-    return `import { mapAndPatchAttribute } from './mapAndPatchAttribute';
+    return `import { mapAndInsertAttribute } from './mapAndInsertAttribute';
 
 /**
  * ${this.messages.patchAndInsert}
@@ -20,8 +20,8 @@ export function mapAndPatchStringify<Type>(
   oldAttributes: string,
   newAttributes: Type,
 ): string {
-  const patchedAttributes: ReturnType<typeof mapAndPatchAttribute> =
-    mapAndPatchAttribute(JSON.parse(oldAttributes), newAttributes);
+  const patchedAttributes: ReturnType<typeof mapAndInsertAttribute> =
+    mapAndInsertAttribute(JSON.parse(oldAttributes), newAttributes);
 
   return JSON.stringify(patchedAttributes);
 }

@@ -60,13 +60,13 @@ export class Delete${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, { id });
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists(trx, { id });
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);
       }
 
-      await this.${this.names.pluralLowerModuleName}Repository.delete(trx, { id: ${this.names.lowerModuleName}.id });
+      await this.${this.names.pluralLowerModuleName}Repository.delete(trx, { id });
 
       await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
       await trx.commitTransaction();

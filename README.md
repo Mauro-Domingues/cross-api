@@ -248,9 +248,9 @@ import { AppDataSource } from '@shared/typeorm/dataSource';
 
 class Example {
   public async handle() {
-    const trx = AppDataSource.createQueryRunner(); // Creates a single connection to the database
+    const trx = AppDataSource.createQueryRunner(); // Creates a queryRunner
 
-    await trx.startTransaction();
+    await trx.startTransaction(); // Creates a single connection to the database
     try {
       
       const result = await this.examplesRepository.create(trx, { name: 'example' });
@@ -269,7 +269,19 @@ class Example {
 
 ```
 
-<h4>There are 12 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
+<h4>There are 13 types of standard queries for all modules, they are fully dynamic so they will respond to 90% of your needs. They are:</h4>
+<hr>
+<br>
+<h3>exists</h3><h4> Receives any parameter as an argument as long as it is a { key: value } or array of { key: value }, check if an entity exists in the database</h4>
+
+```typescript
+const example = await this.examplesRepository.exists(
+  trx,
+  { id: 123 },
+);
+
+// Find one where id = 123 and return a boolean
+```
 <hr>
 <br>
 <h3>findBy</h3><h4> Receives any parameter as an argument as long as it is a { key: value } or array of { key: value }</h4>
@@ -342,7 +354,7 @@ const exampleArray = await this.examplesRepository.findIn(
   select
 );
 
-// Find all where id in = "3, 4, 6, 7, 8, 9"
+// Find all and select name where id in = "3, 4, 6, 7, 8, 9"
 
 output: [exampleArray]
 ```
@@ -364,7 +376,7 @@ const exampleArray = await this.examplesRepository.findLike(
   limit,
 );
 
-// Find all where name has 'example'
+// Find all and select name where name has 'example'
 
 output: [exampleArray]
 ```

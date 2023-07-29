@@ -73,17 +73,26 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     });
   }
 
+  public async exists(
+    trx: QueryRunner,
+    baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+  ): Promise<boolean> {
+    return trx.manager.exists(this.target, {
+      where: baseData,
+    });
+  }
+
   public async findBy(
     trx: QueryRunner,
     baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
     relations?: keysOfEntity<Entity> | Array<string>,
+    select?: FindOptionsSelect<Entity>,
   ): Promise<Entity | null> {
-    const entity = await trx.manager.findOne(this.target, {
-      where: baseData,
+    return trx.manager.findOne(this.target, {
       relations: this.arrayToObject(relations),
+      where: baseData,
+      select,
     });
-
-    return entity;
   }
 
   public async findAll(
@@ -115,14 +124,12 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     order?: FindOptionsOrder<Entity>,
     select?: FindOptionsSelect<Entity>,
   ): Promise<Array<Entity>> {
-    const entities = await trx.manager.find(this.target, {
+    return trx.manager.find(this.target, {
       where: { [propertyName]: In(baseData) } as FindOptionsWhere<Entity>,
       relations: this.arrayToObject(relations),
       select,
       order,
     });
-
-    return entities;
   }
 
   public async findLike(
@@ -132,7 +139,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     select?: FindOptionsSelect<Entity>,
     limit?: number,
   ): Promise<Array<Entity>> {
-    const entities = await trx.manager.find(this.target, {
+    return trx.manager.find(this.target, {
       where: {
         [Object.keys(baseData)[0]]: Like(Object.values(baseData)[0]),
       } as FindOptionsWhere<Entity>,
@@ -140,8 +147,6 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
       select,
       order,
     });
-
-    return entities;
   }
 
   public async create(
@@ -150,9 +155,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   ): Promise<Entity> {
     const entity = trx.manager.create(this.target, baseData);
 
-    await trx.manager.save(this.target, entity);
-
-    return entity;
+    return trx.manager.save(this.target, entity);
   }
 
   public async createMany(
@@ -161,9 +164,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   ): Promise<Array<Entity>> {
     const entities = trx.manager.create(this.target, baseData);
 
-    await trx.manager.save(this.target, entities);
-
-    return entities;
+    return trx.manager.save(this.target, entities);
   }
 
   public async update(trx: QueryRunner, baseData: Entity): Promise<Entity> {

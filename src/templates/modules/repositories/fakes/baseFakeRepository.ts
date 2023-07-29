@@ -16,6 +16,26 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 {
   public fakeRepository: Array<Entity> = [];
 
+  public async exists(
+    _trx: QueryRunner,
+    baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+  ): Promise<boolean> {
+    if (baseData instanceof Array) {
+      return this.fakeRepository.some(entity =>
+        baseData.some(property =>
+          Object.entries(property).every(
+            ([key, value]) => entity[key] === value && !entity.deleted_at,
+          ),
+        ),
+      );
+    }
+    return this.fakeRepository.some(entity =>
+      Object.entries(baseData).every(
+        ([key, value]) => entity[key] === value && !entity.deleted_at,
+      ),
+    );
+  }
+
   public async findBy(
     _trx: QueryRunner,
     baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
@@ -40,6 +60,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     if (!findEntity) {
       return null;
     }
+
     return findEntity;
   }
 
@@ -78,24 +99,20 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     propertyName: keyof Entity,
     baseData: Array<Entity[keyof Entity]>,
   ): Promise<Array<Entity>> {
-    const entities = this.fakeRepository.filter(entity =>
+    return this.fakeRepository.filter(entity =>
       baseData.includes(entity[propertyName]),
     );
-
-    return entities;
   }
 
   public async findLike(
     _trx: QueryRunner,
     baseData: Partial<{ [key in keyof Entity]: string }>,
   ): Promise<Array<Entity>> {
-    const entities = this.fakeRepository.filter(entity =>
+    return this.fakeRepository.filter(entity =>
       entity[Object.keys(baseData)[0]]
         .toString()
         .includes(Object.values(baseData)[0]),
     );
-
-    return entities;
   }
 
   public async create(
