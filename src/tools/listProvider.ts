@@ -18,7 +18,7 @@ export class ListProvider {
       { Name: 'lead        ', Provider: 'leadProvider        ' },
       { Name: 'mail        ', Provider: 'MailProvider        ' },
       { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
-      { Name: 'queue        ', Provider: 'QueueProvider      ' },
+      { Name: 'queue       ', Provider: 'QueueProvider       ' },
       { Name: 'notification', Provider: 'NotificationProvider' },
       { Name: 'upload      ', Provider: 'StorageProvider     ' },
     ];
