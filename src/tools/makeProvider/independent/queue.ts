@@ -9,6 +9,7 @@ import { CreateKueQueue } from '@templates/providers/implementations/KueQueue.js
 import { CreateIQueue } from '@templates/providers/models/IQueue.js';
 import { CreateJobs } from '@templates/providers/public/jobs.js';
 import { CreateQueueIndex } from '@templates/providers/queueIndex.js';
+import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO.js';
 
 export class MakeQueueProvider {
   private readonly messages: IMessagesDTO;
@@ -18,6 +19,7 @@ export class MakeQueueProvider {
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
   private readonly createBullQueue: CreateBullQueue;
+  private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
@@ -32,6 +34,7 @@ export class MakeQueueProvider {
     this.createBullQueue = new CreateBullQueue();
     this.createQueueConfig = new CreateQueueConfig();
     this.createIQueue = new CreateIQueue();
+    this.createIQueueDTO = new CreateIQueueDTO();
     this.createQueueIndex = new CreateQueueIndex();
     this.createExampleJob = new CreateExampleJob();
     this.createJobs = new CreateJobs();
@@ -63,6 +66,14 @@ export class MakeQueueProvider {
       'providers',
       'QueueProvider',
       'public',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'QueueProvider',
+      'dtos',
     ]);
     await this.fileManager.checkAndCreateDir([
       'src',
@@ -103,6 +114,18 @@ export class MakeQueueProvider {
         'jobs.ts',
       ],
       this.createJobs,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'QueueProvider',
+        'dtos',
+        'IQueueDTO.ts',
+      ],
+      this.createIQueueDTO,
     );
     await this.fileManager.checkAndCreateFile(
       [

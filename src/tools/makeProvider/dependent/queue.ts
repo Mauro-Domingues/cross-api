@@ -11,6 +11,7 @@ import { CreateQueueConfig } from '@templates/providers/config/queueConfig.js';
 import { CreateQueueIndex } from '@templates/providers/queueIndex.js';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob.js';
 import { CreateJobs } from '@templates/providers/public/jobs.js';
+import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO.js';
 
 export class MakeDependentQueueProvider {
   private readonly fatherNames:
@@ -23,6 +24,7 @@ export class MakeDependentQueueProvider {
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
   private readonly createBullQueue: CreateBullQueue;
+  private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
@@ -39,6 +41,7 @@ export class MakeDependentQueueProvider {
     this.createBullQueue = new CreateBullQueue();
     this.createQueueConfig = new CreateQueueConfig();
     this.createIQueue = new CreateIQueue();
+    this.createIQueueDTO = new CreateIQueueDTO();
     this.createQueueIndex = new CreateQueueIndex();
     this.createExampleJob = new CreateExampleJob();
     this.createJobs = new CreateJobs();
@@ -88,6 +91,14 @@ export class MakeDependentQueueProvider {
       'providers',
       'QueueProvider',
       'public',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'QueueProvider',
+      'dtos',
     ]);
     await this.fileManager.checkAndCreateDir([
       'src',
@@ -171,6 +182,18 @@ export class MakeDependentQueueProvider {
         'jobs.ts',
       ],
       this.createJobs,
+    );
+    await this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'dtos',
+        'IQueueDTO.ts',
+      ],
+      this.createIQueueDTO,
     );
     await this.fileManager.checkAndCreateFile(
       [
