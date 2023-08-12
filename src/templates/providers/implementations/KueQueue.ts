@@ -16,27 +16,32 @@ export class KueProvider implements IQueueProviderDTO {
   }
 
   private convertToMilliseconds(
-    delay: \`\${number}d\` | \`\${number}h\` | \`\${number}min\` | \`\${number}s\`,
+    delay:
+      | \`\${number}d\`
+      | \`\${number}h\`
+      | \`\${number}min\`
+      | \`\${number}s\`
+      | \`\${number}ms\`,
   ): number {
     const match = delay.match(/\\d+/);
     if (match === null) {
       throw new AppError('Invalid delay format');
     }
 
-    const milliseconds = parseInt(match[0], 10);
-    const timeUnit = delay.slice(-1);
+    const miliseconds = parseInt(match[0], 10);
+    const timeUnit = delay.replace(/\\d/g, '');
 
     switch (timeUnit) {
       case 'd':
-        return milliseconds * 24 * 60 * 60 * 1000;
+        return miliseconds * 24 * 60 * 60 * 1000;
       case 'h':
-        return milliseconds * 60 * 60 * 1000;
+        return miliseconds * 60 * 60 * 1000;
       case 'min':
-        return milliseconds * 60 * 1000;
+        return miliseconds * 60 * 1000;
       case 's':
-        return milliseconds * 1000;
+        return miliseconds * 1000;
       default:
-        return milliseconds;
+        return miliseconds;
     }
   }
 
@@ -66,7 +71,12 @@ export class KueProvider implements IQueueProviderDTO {
   public async schedule<T extends object>(
     key: string,
     data: T,
-    delay: \`\${number}d\` | \`\${number}h\` | \`\${number}min\` | \`\${number}s\`,
+    delay:
+      | \`\${number}d\`
+      | \`\${number}h\`
+      | \`\${number}min\`
+      | \`\${number}s\`
+      | \`\${number}ms\`,
     attempts = 1,
   ): Promise<Job> {
     const parsedDelay = this.convertToMilliseconds(delay);

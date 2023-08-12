@@ -9,7 +9,12 @@ export class CreateIQueue {
   schedule<T extends object>(
     key: string,
     data: T,
-    delay: \`\${number}d\` | \`\${number}h\` | \`\${number}min\` | \`\${number}s\`,
+    delay:
+      | \`\${number}d\`
+      | \`\${number}h\`
+      | \`\${number}min\`
+      | \`\${number}s\`
+      | \`\${number}ms\`,
     attempts?: number,
   ): Promise<unknown>;
 }
