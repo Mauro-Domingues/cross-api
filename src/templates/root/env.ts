@@ -50,6 +50,9 @@ MAIL_NAME=Administrator
 MAIL_USER=
 MAIL_PASS=
 
+# Queue
+QUEUE_DRIVER=bull
+
 # Sentry
 SENTRY_DSN=
 

@@ -12,11 +12,12 @@ export class CreateTsConfig {
     "baseUrl": "./src",
     "allowJs": true,
     "paths": {
-      "@modules/*": ["modules/*"],
-      "@middlewares/*": ["middlewares/*"],
       "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"],
       "@dtos/*": ["dtos/*"],
+      "@jobs/*": ["jobs/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@modules/*": ["modules/*"],
+      "@shared/*": ["shared/*"],
       "@utils/*": ["utils/*"]
     },
     "esModuleInterop": true,

@@ -8,10 +8,11 @@ export class CreateBabelConfig {
   plugins: [
     ['module-resolver', {
       alias: {
-        "@dtos": "./src/dtos",
         "@config": "./src/config",
-        "@modules": "./src/modules",
+        "@dtos": "./src/dtos",
+        "@jobs": "./src/jobs",
         "@middlewares": "./src/middlewares",
+        "@modules": "./src/modules",
         "@shared": "./src/shared",
         "@utils": "./src/utils"
       }

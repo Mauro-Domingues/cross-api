@@ -32,6 +32,7 @@ export class CreateEnvNamespace {
     MAIL_PASS: string;
     MAIL_ADRESS: string;
     MAIL_NAME: string;
+    QUEUE_DRIVER: 'kue' | 'bull' | 'bee';
     SENTRY_DSN: string;
     OS_APP_ID: string;
     OS_API_URL: string;
