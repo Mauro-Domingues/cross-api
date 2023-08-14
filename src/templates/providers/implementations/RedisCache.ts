@@ -40,7 +40,7 @@ export class RedisCacheProvider implements ICacheProviderDTO {
     const pipeline = this.client.pipeline();
 
     keys.forEach(key => {
-      pipeline.del(key);
+      pipeline.del(key.replace(process.env.REDIS_PREFIX, ''));
     });
 
     await pipeline.exec();
