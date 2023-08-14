@@ -33,7 +33,9 @@ export class RedisCacheProvider implements ICacheProviderDTO {
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const keys = await this.client.keys(\`\${prefix}:*\`);
+    const keys = await this.client.keys(
+      \`\${process.env.REDIS_PREFIX}\${prefix}:*\`,
+    );
 
     const pipeline = this.client.pipeline();
 
