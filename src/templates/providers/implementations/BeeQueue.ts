@@ -49,6 +49,7 @@ export class BeeProvider implements IQueueProviderDTO {
     return jobs.forEach(Job => {
       this.queues[Job.key] = {
         queue: new Queue(Job.key, {
+          activateDelayedJobs: true,
           redis: queueConfig.config,
         }),
         handle: new Job().handle as ({
@@ -83,7 +84,7 @@ export class BeeProvider implements IQueueProviderDTO {
     return this.queues[key].queue
       .createJob(data)
       .retries(attempts)
-      .delayUntil(parsedDelay)
+      .delayUntil(Date.now() + parsedDelay)
       .save();
   }
 
