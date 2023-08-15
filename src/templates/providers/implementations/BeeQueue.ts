@@ -1,6 +1,6 @@
 export class CreateBeeQueue {
   public execute(): string {
-    return `import Queue, { Job } from 'bee-queue';
+    return `import Bee, { Job } from 'bee-queue';
 import { queueConfig } from '@config/queue';
 import { AppError } from '@shared/errors/AppError';
 import { IQueueProviderDTO } from '../models/IQueueProvider';
@@ -8,7 +8,7 @@ import { jobs } from '../public/jobs';
 import { IQueueDTO } from '../dtos/IQueueDTO';
 
 export class BeeProvider implements IQueueProviderDTO {
-  private queues: IQueueDTO<Queue> = {};
+  private queues: IQueueDTO<Bee> = {};
 
   constructor() {
     this.init();
@@ -48,7 +48,7 @@ export class BeeProvider implements IQueueProviderDTO {
   private init(): void {
     return jobs.forEach(Job => {
       this.queues[Job.key] = {
-        queue: new Queue(Job.key, {
+        queue: new Bee(Job.key, {
           activateDelayedJobs: true,
           redis: queueConfig.config,
         }),
@@ -65,7 +65,7 @@ export class BeeProvider implements IQueueProviderDTO {
     key: string,
     data: T,
     attempts = 1,
-  ): Promise<Queue.Job<T>> {
+  ): Promise<Job<T>> {
     return this.queues[key].queue.createJob(data).retries(attempts).save();
   }
 
