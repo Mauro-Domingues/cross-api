@@ -15,7 +15,7 @@ import { ISendMailDTO } from '../dtos/ISendMailDTO';
 import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
-export class NodeMailerMailProvider implements IMailProviderDTO {
+export class NodemailerMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
   constructor(
