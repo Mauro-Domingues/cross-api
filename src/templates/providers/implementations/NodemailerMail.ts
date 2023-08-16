@@ -47,6 +47,10 @@ export class NodemailerMailProvider implements IMailProviderDTO {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
+    if (!this.client) {
+      await this.createClient();
+    }
+
     const { email, name } = mailConfig.defaults.from;
 
     const message = await this.client.sendMail({
