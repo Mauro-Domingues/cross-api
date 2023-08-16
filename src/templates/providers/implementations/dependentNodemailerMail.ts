@@ -2,7 +2,7 @@ import { IModuleNamesDTO } from '@tools/names.js';
 import { IMessagesDTO, Messages } from '@tools/messages.js';
 import { Console } from '@tools/console.js';
 
-export class CreateDependentEtherealMail {
+export class CreateDependentNodemailerMail {
   private readonly fatherNames:
     | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
     | undefined;
@@ -44,7 +44,7 @@ import { ISendMailDTO } from '../dtos/ISendMailDTO';
 import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
-export class EtherealMailProvider implements IMailProviderDTO {
+export class NodeMailerMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
   constructor(
@@ -58,12 +58,14 @@ export class EtherealMailProvider implements IMailProviderDTO {
     const account = await createTestAccount();
 
     this.client = createTransport({
-      host: account.smtp.host,
-      port: account.smtp.port,
-      secure: account.smtp.secure,
+      host: mailConfig.config.host || account.smtp.host,
+      port: mailConfig.config.port || account.smtp.port,
+      secure: process.env.MAIL_SECURE
+        ? mailConfig.config.secure
+        : account.smtp.secure,
       auth: {
-        user: account.user,
-        pass: account.pass,
+        user: mailConfig.config.user || account.user,
+        pass: mailConfig.config.password || account.pass,
       },
     });
   }
@@ -74,10 +76,6 @@ export class EtherealMailProvider implements IMailProviderDTO {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    if (!this.client) {
-      await this.createClient();
-    }
-
     const { email, name } = mailConfig.defaults.from;
 
     const message = await this.client.sendMail({

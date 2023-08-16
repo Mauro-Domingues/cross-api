@@ -25,13 +25,19 @@ export class CreateEnvNamespace {
     REDIS_PASSWORD: string;
     REDIS_PREFIX: string;
     STORAGE_DRIVER: 'disk' | 's3';
-    MAIL_DRIVER: 'ethereal' | 'ses';
+    STORAGE_BUCKET: string;
+    STORAGE_USER: string;
+    STORAGE_PASS: string;
+    STORAGE_REGION: string;
+    MAIL_DRIVER: 'nodemailer' | 'ses';
     MAIL_PORT: string;
     MAIL_HOST: string;
+    MAIL_SECURE: 'true' | 'false';
     MAIL_USER: string;
     MAIL_PASS: string;
     MAIL_ADRESS: string;
     MAIL_NAME: string;
+    MAIL_REGION: string;
     QUEUE_DRIVER: 'kue' | 'bull' | 'bee';
     SENTRY_DSN: string;
     OS_APP_ID: string;
@@ -42,10 +48,6 @@ export class CreateEnvNamespace {
     RD_CLIENT_SECRET: string;
     RD_CODE: string;
     RD_PUBLIC_API_KEY: string;
-    AWS_BUCKET: string;
-    AWS_ACCESS_KEY_ID: string;
-    AWS_SECRET_ACCESS_KEY: string;
-    AWS_REGION: string;
   }
 }
 `;

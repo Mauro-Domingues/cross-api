@@ -13,7 +13,10 @@ interface IUploadConfigDTO {
   multer: {
     storage: StorageEngine;
   };
-  config: { disk: object; aws: { bucket: string } };
+  config: {
+    disk: object;
+    aws: { bucket: string; user: string; password: string; region: string };
+  };
 }
 
 export const uploadConfig: IUploadConfigDTO = {
@@ -34,7 +37,10 @@ export const uploadConfig: IUploadConfigDTO = {
   config: {
     disk: {},
     aws: {
-      bucket: process.env.AWS_BUCKET,
+      bucket: process.env.STORAGE_BUCKET,
+      user: process.env.STORAGE_USER,
+      password: process.env.STORAGE_PASS,
+      region: process.env.STORAGE_REGION,
     },
   },
 };

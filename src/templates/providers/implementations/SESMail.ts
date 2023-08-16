@@ -2,8 +2,7 @@ export class CreateSESMail {
   public execute(): string {
     return `import { mailConfig } from '@config/mail';
 
-import { SESClient } from '@aws-sdk/client-ses';
-import { createTransport, Transporter } from 'nodemailer';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { injectable, inject } from 'tsyringe';
 
 import { IMailTemplateProviderDTO } from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
@@ -13,20 +12,18 @@ import { IMailProviderDTO } from '../models/IMailProvider';
 
 @injectable()
 export class SESMailProvider implements IMailProviderDTO {
-  private readonly client: Transporter;
+  private readonly client: SESClient;
 
   constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {
-    this.client = createTransport({
-      SES: new SESClient({
-        credentials: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        },
-        region: process.env.AWS_REGION,
-      }),
+    this.client = new SESClient({
+      credentials: {
+        accessKeyId: mailConfig.config.user,
+        secretAccessKey: mailConfig.config.password,
+      },
+      region: mailConfig.config.region,
     });
   }
 
@@ -36,20 +33,28 @@ export class SESMailProvider implements IMailProviderDTO {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    const { email, name } = mailConfig.defaults.from;
+    const { email } = mailConfig.defaults.from;
 
-    await this.client.sendMail({
-      from: {
-        name: from?.name ?? name,
-        address: from?.email ?? email,
-      },
-      to: {
-        name: to.name,
-        address: to.email,
-      },
-      subject,
-      html: await this.mailTemplateProvider.parse(templateData),
-    });
+    const content = await this.mailTemplateProvider.parse(templateData);
+
+    await this.client.send(
+      new SendEmailCommand({
+        Destination: {
+          ToAddresses: [to.email],
+        },
+        Message: {
+          Body: {
+            Html: {
+              Charset: 'UTF-8',
+              Data: content,
+            },
+          },
+          Subject: { Charset: 'UTF-8', Data: subject },
+        },
+        Source: from?.email ?? email,
+        ReturnPath: email,
+      }),
+    );
   }
 }
 `;

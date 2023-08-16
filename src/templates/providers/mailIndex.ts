@@ -3,12 +3,12 @@ export class CreateMailIndex {
     return `import { mailConfig } from '@config/mail';
 import { container } from 'tsyringe';
 
-import { EtherealMailProvider } from './implementations/EtherealMailProvider';
+import { NodemailerMailProvider } from './implementations/NodemailerMailProvider';
 import { SESMailProvider } from './implementations/SESMailProvider';
 import { IMailProviderDTO } from './models/IMailProvider';
 
 const providers = {
-  ethereal: container.resolve(EtherealMailProvider),
+  nodemailer: container.resolve(NodemailerMailProvider),
   ses: container.resolve(SESMailProvider),
 };
 

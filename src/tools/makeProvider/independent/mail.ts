@@ -1,7 +1,7 @@
 import { CreateMailConfig } from '@templates/providers/config/mailConfig.js';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO.js';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail.js';
-import { CreateEtherealMail } from '@templates/providers/implementations/EtherealMail.js';
+import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail.js';
 import { CreateSESMail } from '@templates/providers/implementations/SESMail.js';
 import { CreateMailIndex } from '@templates/providers/mailIndex.js';
 import { CreateIMail } from '@templates/providers/models/IMail.js';
@@ -19,7 +19,7 @@ export class MakeMailProvider {
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
   private readonly createSESMail: CreateSESMail;
-  private readonly createEtherealMail: CreateEtherealMail;
+  private readonly createNodemailerMail: CreateNodemailerMail;
 
   constructor() {
     this.messages = new Messages().execute();
@@ -31,7 +31,7 @@ export class MakeMailProvider {
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
     this.createSESMail = new CreateSESMail();
-    this.createEtherealMail = new CreateEtherealMail();
+    this.createNodemailerMail = new CreateNodemailerMail();
   }
 
   public async execute(): Promise<void> {
@@ -124,9 +124,9 @@ export class MakeMailProvider {
         'providers',
         'MailProvider',
         'implementations',
-        'EtherealMailProvider.ts',
+        'NodemailerMailProvider.ts',
       ],
-      this.createEtherealMail,
+      this.createNodemailerMail,
     );
     await this.fileManager.checkAndCreateFile(
       [

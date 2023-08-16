@@ -2,7 +2,7 @@ import { CreateContainer } from '@templates/index/container.js';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig.js';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO.js';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail.js';
-import { CreateDependentEtherealMail } from '@templates/providers/implementations/dependentEtherealMail.js';
+import { CreateDependentNodemailerMail } from '@templates/providers/implementations/dependentNodemailerMail.js';
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail.js';
 import { CreateMailIndex } from '@templates/providers/mailIndex.js';
 import { CreateIMail } from '@templates/providers/models/IMail.js';
@@ -25,7 +25,7 @@ export class MakeDependentMailProvider {
   private readonly createMailIndex: CreateMailIndex;
   private readonly createContainer: CreateContainer;
   private readonly createDependentSESMail: CreateDependentSESMail;
-  private readonly createDependentEtherealMail: CreateDependentEtherealMail;
+  private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
 
   constructor(fatherNames: IModuleNamesDTO | undefined) {
     this.fatherNames = fatherNames;
@@ -39,7 +39,7 @@ export class MakeDependentMailProvider {
     this.createMailIndex = new CreateMailIndex();
     this.createContainer = new CreateContainer();
     this.createDependentSESMail = new CreateDependentSESMail(this.fatherNames);
-    this.createDependentEtherealMail = new CreateDependentEtherealMail(
+    this.createDependentNodemailerMail = new CreateDependentNodemailerMail(
       this.fatherNames,
     );
   }
@@ -194,9 +194,9 @@ export class MakeDependentMailProvider {
         'providers',
         'MailProvider',
         'implementations',
-        'EtherealMailProvider.ts',
+        'NodemailerMailProvider.ts',
       ],
-      this.createDependentEtherealMail,
+      this.createDependentNodemailerMail,
     );
     await this.fileManager.checkAndCreateFile(
       [
