@@ -1,5 +1,5 @@
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
 
 interface IOptionDTO {
   title: string;

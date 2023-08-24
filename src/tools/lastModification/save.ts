@@ -1,5 +1,5 @@
-import { FileManager } from '@tools/fileManager.js';
-import { IModuleNamesDTO } from '@tools/names.js';
+import { FileManager } from '@tools/fileManager';
+import { IModuleNamesDTO } from '@tools/names';
 
 export class CreateRegister {
   private readonly basePath: string;

@@ -1,11 +1,11 @@
 import { createInterface } from 'readline';
 
-import { EnglishMessages } from '@templates/assets/en-us.js';
-import { PortugueseMessages } from '@templates/assets/pt-br.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { EnglishMessages } from '@templates/assets/en-us';
+import { PortugueseMessages } from '@templates/assets/pt-br';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export interface ILanguageOptionsDTO {
   'en-us': 'englishMessages';

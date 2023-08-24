@@ -1,17 +1,17 @@
-import { CreateController } from '@templates/modules/services/create/createController.js';
-import { CreateService } from '@templates/modules/services/create/createService.js';
-import { DeleteController } from '@templates/modules/services/delete/deleteController.js';
-import { DeleteService } from '@templates/modules/services/delete/deleteService.js';
-import { ListController } from '@templates/modules/services/list/listController.js';
-import { ListService } from '@templates/modules/services/list/listService.js';
-import { ShowController } from '@templates/modules/services/show/showController.js';
-import { ShowService } from '@templates/modules/services/show/showService.js';
-import { UpdateController } from '@templates/modules/services/update/updateController.js';
-import { UpdateService } from '@templates/modules/services/update/updateService.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateController } from '@templates/modules/services/create/createController';
+import { CreateService } from '@templates/modules/services/create/createService';
+import { DeleteController } from '@templates/modules/services/delete/deleteController';
+import { DeleteService } from '@templates/modules/services/delete/deleteService';
+import { ListController } from '@templates/modules/services/list/listController';
+import { ListService } from '@templates/modules/services/list/listService';
+import { ShowController } from '@templates/modules/services/show/showController';
+import { ShowService } from '@templates/modules/services/show/showService';
+import { UpdateController } from '@templates/modules/services/update/updateController';
+import { UpdateService } from '@templates/modules/services/update/updateService';
+import { IModuleNamesDTO } from '@tools/names';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeFunctionalities {
   private readonly messages: IMessagesDTO;

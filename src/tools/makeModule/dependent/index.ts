@@ -1,10 +1,10 @@
-import { Console } from '@tools/console.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { MakeDependentFunctionalities } from './funcionalities.js';
-import { MakeDependentInfra } from './infra.js';
-import { MakeDependentStructure } from './structure.js';
-import { MakeDependentUnitTests } from './unitTests.js';
+import { Console } from '@tools/console';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { MakeDependentFunctionalities } from './funcionalities';
+import { MakeDependentInfra } from './infra';
+import { MakeDependentStructure } from './structure';
+import { MakeDependentUnitTests } from './unitTests';
 
 export class MakeDependentModule {
   private readonly messages: IMessagesDTO;

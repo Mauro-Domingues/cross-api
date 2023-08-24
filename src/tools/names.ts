@@ -1,4 +1,4 @@
-import { Pluralize } from '@tools/pluralize.js';
+import { Pluralize } from '@tools/pluralize';
 
 export interface IModuleNamesDTO {
   lowerModuleName: string;

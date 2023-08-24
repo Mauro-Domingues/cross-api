@@ -1,15 +1,15 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateMailConfig } from '@templates/providers/config/mailConfig.js';
-import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO.js';
-import { CreateFakeMail } from '@templates/providers/fakes/fakeMail.js';
-import { CreateDependentNodemailerMail } from '@templates/providers/implementations/dependentNodemailerMail.js';
-import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail.js';
-import { CreateMailIndex } from '@templates/providers/mailIndex.js';
-import { CreateIMail } from '@templates/providers/models/IMail.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateMailConfig } from '@templates/providers/config/mailConfig';
+import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
+import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
+import { CreateDependentNodemailerMail } from '@templates/providers/implementations/dependentNodemailerMail';
+import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
+import { CreateMailIndex } from '@templates/providers/mailIndex';
+import { CreateIMail } from '@templates/providers/models/IMail';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailProvider {
   private readonly fatherNames:

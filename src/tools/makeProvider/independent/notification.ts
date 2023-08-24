@@ -1,11 +1,11 @@
-import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO.js';
-import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification.js';
-import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification.js';
-import { CreateINotification } from '@templates/providers/models/INotification.js';
-import { CreateNotificationIndex } from '@templates/providers/notificationIndex.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
+import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
+import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
+import { CreateINotification } from '@templates/providers/models/INotification';
+import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeNotificationProvider {
   private readonly messages: IMessagesDTO;

@@ -1,13 +1,13 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig.js';
-import { CreateCryptoIndex } from '@templates/providers/cryptoIndex.js';
-import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO.js';
-import { CreateCrypto } from '@templates/providers/implementations/Crypto.js';
-import { CreateICrypto } from '@templates/providers/models/ICrypto.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
+import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
+import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { CreateCrypto } from '@templates/providers/implementations/Crypto';
+import { CreateICrypto } from '@templates/providers/models/ICrypto';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentCryptoProvider {
   private readonly fatherNames:

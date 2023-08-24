@@ -1,13 +1,13 @@
-import { CreateMailConfig } from '@templates/providers/config/mailConfig.js';
-import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO.js';
-import { CreateFakeMail } from '@templates/providers/fakes/fakeMail.js';
-import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail.js';
-import { CreateSESMail } from '@templates/providers/implementations/SESMail.js';
-import { CreateMailIndex } from '@templates/providers/mailIndex.js';
-import { CreateIMail } from '@templates/providers/models/IMail.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateMailConfig } from '@templates/providers/config/mailConfig';
+import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
+import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
+import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail';
+import { CreateSESMail } from '@templates/providers/implementations/SESMail';
+import { CreateMailIndex } from '@templates/providers/mailIndex';
+import { CreateIMail } from '@templates/providers/models/IMail';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeMailProvider {
   private readonly messages: IMessagesDTO;

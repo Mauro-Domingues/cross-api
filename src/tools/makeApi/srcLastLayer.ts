@@ -1,11 +1,11 @@
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { CreateAuthConfig } from '@templates/providers/config/authConfig.js';
-import { CreateCorsConfig } from '@templates/providers/config/corsConfig.js';
-import { FileManager } from '@tools/fileManager.js';
-import { CreateBaseEntity } from '@templates/modules/entities/baseEntity.js';
-import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository.js';
-import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/baseFakeRepository.js';
-import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository.js';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { CreateAuthConfig } from '@templates/providers/config/authConfig';
+import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
+import { FileManager } from '@tools/fileManager';
+import { CreateBaseEntity } from '@templates/modules/entities/baseEntity';
+import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository';
+import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/baseFakeRepository';
+import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
 
 export class MakeLastLayer {
   private readonly messages: IMessagesDTO;

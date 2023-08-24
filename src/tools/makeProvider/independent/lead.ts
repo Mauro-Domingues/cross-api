@@ -1,13 +1,13 @@
-import { CreateLeadConfig } from '@templates/providers/config/leadConfig.js';
-import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO.js';
-import { CreateFakeLead } from '@templates/providers/fakes/fakeLead.js';
-import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead.js';
-import { CreateLeadIndex } from '@templates/providers/leadIndex.js';
-import { CreateILead } from '@templates/providers/models/ILead.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
-import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO.js';
+import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
+import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
+import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
+import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
+import { CreateLeadIndex } from '@templates/providers/leadIndex';
+import { CreateILead } from '@templates/providers/models/ILead';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 
 export class MakeLeadProvider {
   private readonly messages: IMessagesDTO;

@@ -1,15 +1,15 @@
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
-import { CreateExampleJob } from '@templates/jobs/ExampleJob.js';
-import { CreateQueueConfig } from '@templates/providers/config/queueConfig.js';
-import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue.js';
-import { CreateBullQueue } from '@templates/providers/implementations/BullQueue.js';
-import { CreateKueQueue } from '@templates/providers/implementations/KueQueue.js';
-import { CreateIQueue } from '@templates/providers/models/IQueue.js';
-import { CreateJobs } from '@templates/providers/public/jobs.js';
-import { CreateQueueIndex } from '@templates/providers/queueIndex.js';
-import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO.js';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
+import { CreateExampleJob } from '@templates/jobs/ExampleJob';
+import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
+import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
+import { CreateBullQueue } from '@templates/providers/implementations/BullQueue';
+import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
+import { CreateIQueue } from '@templates/providers/models/IQueue';
+import { CreateJobs } from '@templates/providers/public/jobs';
+import { CreateQueueIndex } from '@templates/providers/queueIndex';
+import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 
 export class MakeQueueProvider {
   private readonly messages: IMessagesDTO;

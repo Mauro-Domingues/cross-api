@@ -23,5 +23,12 @@
   },
   "include": ["src"],
   "exclude": ["node_modules"],
-  "ts-node": {"files": true}
+  "ts-node": {"files": true},
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "fileExtensions": {
+      "inputGlob": "js",
+      "outputCheck": ["js"]
+    }
+  }
 }

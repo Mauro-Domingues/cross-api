@@ -1,14 +1,14 @@
-import { CreateTypeorm } from '@templates/api/typeorm.js';
-import { CreateAppError } from '@templates/errors/appError.js';
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateDataSource } from '@templates/api/dataSource.js';
-import { CreateMapAndClone } from '@templates/utils/mappers/mapAndClone.js';
-import { CreateMapAndInsert } from '@templates/utils/mappers/mapAndInsert.js';
-import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch.js';
-import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchString.js';
-import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate.js';
-import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateTypeorm } from '@templates/api/typeorm';
+import { CreateAppError } from '@templates/errors/appError';
+import { CreateContainer } from '@templates/index/container';
+import { CreateDataSource } from '@templates/api/dataSource';
+import { CreateMapAndClone } from '@templates/utils/mappers/mapAndClone';
+import { CreateMapAndInsert } from '@templates/utils/mappers/mapAndInsert';
+import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
+import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchString';
+import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
+import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeFourthLayer {
   private readonly fileManager: FileManager;

@@ -1,7 +1,7 @@
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { GetNames, IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { GetNames, IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class DeleteRegister {
   private readonly messages: IMessagesDTO;

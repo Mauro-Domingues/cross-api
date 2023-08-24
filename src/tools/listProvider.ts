@@ -1,4 +1,4 @@
-import { Console } from '@tools/console.js';
+import { Console } from '@tools/console';
 
 interface IOptionDTO {
   Name: string;

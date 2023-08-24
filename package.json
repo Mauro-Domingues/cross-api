@@ -22,9 +22,8 @@
     "cross": "./src/index.js"
   },
   "scripts": {
-    "build": "tsc & tsc-alias",
-    "install": "npm install tsc-alias@^1.8.5 -D ",
-    "postinstall": "npm run build && npm prune --production"
+    "build": "tsc && tsc-alias",
+    "postinstall": "npm run build"
   },
   "license": "Apache-2.0",
   "devDependencies": {

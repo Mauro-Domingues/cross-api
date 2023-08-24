@@ -1,14 +1,14 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateUploadConfig } from '@templates/providers/config/uploadConfig.js';
-import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage.js';
-import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage.js';
-import { CreateS3Storage } from '@templates/providers/implementations/S3Storage.js';
-import { CreateIStorage } from '@templates/providers/models/IStorage.js';
-import { CreateStorageIndex } from '@templates/providers/storageIndex.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateUploadConfig } from '@templates/providers/config/uploadConfig';
+import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
+import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
+import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
+import { CreateIStorage } from '@templates/providers/models/IStorage';
+import { CreateStorageIndex } from '@templates/providers/storageIndex';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentStorageProvider {
   private readonly fatherNames:

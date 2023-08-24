@@ -1,9 +1,9 @@
-import { Config } from '@templates/assets/config.js';
+import { Config } from '@templates/assets/config';
 import { createInterface } from 'readline';
-import { Shell } from '@tools/shell.js';
-import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig.js';
-import { FileManager } from '@tools/fileManager.js';
-import { Console } from '@tools/console.js';
+import { Shell } from '@tools/shell';
+import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
+import { FileManager } from '@tools/fileManager';
+import { Console } from '@tools/console';
 
 export class ConfigJson {
   private readonly config: Config;

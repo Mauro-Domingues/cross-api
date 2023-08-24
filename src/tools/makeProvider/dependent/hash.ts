@@ -1,13 +1,13 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateHashConfig } from '@templates/providers/config/hashConfig.js';
-import { CreateFakeHash } from '@templates/providers/fakes/fakeHash.js';
-import { CreateHashIndex } from '@templates/providers/hashIndex.js';
-import { CreateHash } from '@templates/providers/implementations/BCrypt.js';
-import { CreateIHash } from '@templates/providers/models/IHash.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateHashConfig } from '@templates/providers/config/hashConfig';
+import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
+import { CreateHashIndex } from '@templates/providers/hashIndex';
+import { CreateHash } from '@templates/providers/implementations/BCrypt';
+import { CreateIHash } from '@templates/providers/models/IHash';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentHashProvider {
   private readonly fatherNames:

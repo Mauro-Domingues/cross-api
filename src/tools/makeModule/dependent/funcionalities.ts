@@ -1,17 +1,17 @@
-import { CreateDependentController } from '@templates/modules/services/createDependent/createController.js';
-import { CreateDependentService } from '@templates/modules/services/createDependent/createService.js';
-import { DeleteDependentController } from '@templates/modules/services/deleteDependent/deleteController.js';
-import { DeleteDependentService } from '@templates/modules/services/deleteDependent/deleteService.js';
-import { ListDependentController } from '@templates/modules/services/listDependent/listController.js';
-import { ListDependentService } from '@templates/modules/services/listDependent/listService.js';
-import { ShowDependentController } from '@templates/modules/services/showDependent/showController.js';
-import { ShowDependentService } from '@templates/modules/services/showDependent/showService.js';
-import { UpdateDependentController } from '@templates/modules/services/updateDependent/updateController.js';
-import { UpdateDependentService } from '@templates/modules/services/updateDependent/updateService.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateDependentController } from '@templates/modules/services/createDependent/createController';
+import { CreateDependentService } from '@templates/modules/services/createDependent/createService';
+import { DeleteDependentController } from '@templates/modules/services/deleteDependent/deleteController';
+import { DeleteDependentService } from '@templates/modules/services/deleteDependent/deleteService';
+import { ListDependentController } from '@templates/modules/services/listDependent/listController';
+import { ListDependentService } from '@templates/modules/services/listDependent/listService';
+import { ShowDependentController } from '@templates/modules/services/showDependent/showController';
+import { ShowDependentService } from '@templates/modules/services/showDependent/showService';
+import { UpdateDependentController } from '@templates/modules/services/updateDependent/updateController';
+import { UpdateDependentService } from '@templates/modules/services/updateDependent/updateService';
+import { IModuleNamesDTO } from '@tools/names';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentFunctionalities {
   private readonly messages: IMessagesDTO;

@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import { Board } from '@tools/board.js';
-import { ConfigJson } from '@tools/config.js';
-import { ConfigLanguage } from '@tools/languageConfig.js';
-import { ListProvider } from '@tools/listProvider.js';
-import { CreateApi } from '@tools/makeApi/index.js';
-import { CreateModule } from '@tools/makeModule/index.js';
-import { CreateProvider } from '@tools/makeProvider/index.js';
-import { CreateRegister } from '@tools/lastModification/save.js';
-import { DeleteRegister } from '@tools/lastModification/delete.js';
-import { GetNames } from '@tools/names.js';
-import { Shell } from '@tools/shell.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
+import { Board } from '@tools/board';
+import { ConfigJson } from '@tools/config';
+import { ConfigLanguage } from '@tools/languageConfig';
+import { ListProvider } from '@tools/listProvider';
+import { CreateApi } from '@tools/makeApi/index';
+import { CreateModule } from '@tools/makeModule/index';
+import { CreateProvider } from '@tools/makeProvider/index';
+import { CreateRegister } from '@tools/lastModification/save';
+import { DeleteRegister } from '@tools/lastModification/delete';
+import { GetNames } from '@tools/names';
+import { Shell } from '@tools/shell';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
 
 class Index {
   private readonly fullComand: Array<string> = process.argv.slice(2);

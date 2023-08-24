@@ -1,17 +1,17 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateRoutes } from '@templates/index/routes.js';
-import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO.js';
-import { CreateEntity } from '@templates/modules/entities/entity.js';
-import { CreateInjection } from '@templates/modules/inject/injection.js';
-import { CreateFakeRepository } from '@templates/modules/repositories/fakes/fakeRepository.js';
-import { CreateIRepository } from '@templates/modules/repositories/IRepository.js';
-import { CreateRepository } from '@templates/modules/repositories/repository.js';
-import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes.js';
-import { CreateIndexRoute } from '@templates/modules/routes/indexRouter.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateRoutes } from '@templates/index/routes';
+import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
+import { CreateEntity } from '@templates/modules/entities/entity';
+import { CreateInjection } from '@templates/modules/inject/injection';
+import { CreateFakeRepository } from '@templates/modules/repositories/fakes/fakeRepository';
+import { CreateIRepository } from '@templates/modules/repositories/IRepository';
+import { CreateRepository } from '@templates/modules/repositories/repository';
+import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
+import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
+import { IModuleNamesDTO } from '@tools/names';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeInfra {
   private readonly messages: IMessagesDTO;

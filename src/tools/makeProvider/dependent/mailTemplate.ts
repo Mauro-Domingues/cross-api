@@ -1,13 +1,13 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO.js';
-import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate.js';
-import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate.js';
-import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex.js';
-import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
+import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
+import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate';
+import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
+import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailTemplateProvider {
   private readonly fatherNames:

@@ -1,10 +1,10 @@
-import { CreateProvider } from '@tools/makeProvider/index.js';
-import { MakeInfra } from './infra.js';
-import { MakeFirstLayer } from './srcLayer1.js';
-import { MakeSecondLayer } from './srcLayer2.js';
-import { MakeThirdLayer } from './srcLayer3.js';
-import { MakeFourthLayer } from './srcLayer4.js';
-import { MakeLastLayer } from './srcLastLayer.js';
+import { CreateProvider } from '@tools/makeProvider/index';
+import { MakeInfra } from './infra';
+import { MakeFirstLayer } from './srcLayer1';
+import { MakeSecondLayer } from './srcLayer2';
+import { MakeThirdLayer } from './srcLayer3';
+import { MakeFourthLayer } from './srcLayer4';
+import { MakeLastLayer } from './srcLastLayer';
 
 export class CreateApi {
   private readonly createProvider: CreateProvider;

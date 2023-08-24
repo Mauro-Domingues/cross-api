@@ -1,8 +1,8 @@
-import { Console } from '@tools/console.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { MakeDependentProvider } from './dependent/index.js';
-import { MakeProvider } from './independent/index.js';
+import { Console } from '@tools/console';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNamesDTO } from '@tools/names';
+import { MakeDependentProvider } from './dependent/index';
+import { MakeProvider } from './independent/index';
 
 export class CreateProvider {
   private readonly messages: IMessagesDTO;

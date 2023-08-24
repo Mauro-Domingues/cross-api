@@ -1,6 +1,6 @@
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class MakeInfra {
   private readonly messages: IMessagesDTO;

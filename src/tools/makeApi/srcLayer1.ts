@@ -1,17 +1,17 @@
-import { CreateBabelConfig } from '@templates/root/babelConfig.js';
-import { CreateDocConfig } from '@templates/root/docConfig.js';
-import { CreateDockerCompose } from '@templates/root/dockerCompose.js';
-import { CreateEditorConfig } from '@templates/root/editorConfig.js';
-import { CreateEnv } from '@templates/root/env.js';
-import { CreateEsLintIgnore } from '@templates/root/esLintIgnore.js';
-import { CreateEsLintrcJson } from '@templates/root/esLintrcJson.js';
-import { CreateGitIgnore } from '@templates/root/gitIgnore.js';
-import { CreateJestConfig } from '@templates/root/jestConfig.js';
-import { CreateNodemonJson } from '@templates/root/nodemonJson.js';
-import { CreatePrettierConfig } from '@templates/root/prettierConfig.js';
-import { CreateTsConfig } from '@templates/root/tsConfig.js';
-import { FileManager } from '@tools/fileManager.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { CreateBabelConfig } from '@templates/root/babelConfig';
+import { CreateDocConfig } from '@templates/root/docConfig';
+import { CreateDockerCompose } from '@templates/root/dockerCompose';
+import { CreateEditorConfig } from '@templates/root/editorConfig';
+import { CreateEnv } from '@templates/root/env';
+import { CreateEsLintIgnore } from '@templates/root/esLintIgnore';
+import { CreateEsLintrcJson } from '@templates/root/esLintrcJson';
+import { CreateGitIgnore } from '@templates/root/gitIgnore';
+import { CreateJestConfig } from '@templates/root/jestConfig';
+import { CreateNodemonJson } from '@templates/root/nodemonJson';
+import { CreatePrettierConfig } from '@templates/root/prettierConfig';
+import { CreateTsConfig } from '@templates/root/tsConfig';
+import { FileManager } from '@tools/fileManager';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class MakeFirstLayer {
   private readonly messages: IMessagesDTO;

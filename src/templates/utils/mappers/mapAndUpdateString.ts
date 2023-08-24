@@ -1,4 +1,4 @@
-import { IMessagesDTO, Messages } from '@tools/messages.js';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class CreateMapAndUpdateString {
   private readonly messages: IMessagesDTO;

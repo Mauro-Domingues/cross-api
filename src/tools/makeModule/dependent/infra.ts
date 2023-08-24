@@ -1,18 +1,18 @@
-import { CreateContainer } from '@templates/index/container.js';
-import { CreateRoutes } from '@templates/index/routes.js';
-import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO.js';
-import { CreateEntity } from '@templates/modules/entities/entity.js';
-import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection.js';
-import { CreateDependentRepository } from '@templates/modules/repositories/dependentRepository.js';
-import { CreateDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository.js';
-import { CreateIDependentRepository } from '@templates/modules/repositories/IDependentRepository.js';
-import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes.js';
-import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes.js';
-import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateContainer } from '@templates/index/container';
+import { CreateRoutes } from '@templates/index/routes';
+import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
+import { CreateEntity } from '@templates/modules/entities/entity';
+import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection';
+import { CreateDependentRepository } from '@templates/modules/repositories/dependentRepository';
+import { CreateDependentFakeRepository } from '@templates/modules/repositories/fakes/fakeDependentRepository';
+import { CreateIDependentRepository } from '@templates/modules/repositories/IDependentRepository';
+import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
+import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
+import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
+import { IModuleNamesDTO } from '@tools/names';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentInfra {
   private readonly messages: IMessagesDTO;

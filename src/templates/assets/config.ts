@@ -1,4 +1,4 @@
-import { FileManager } from '@tools/fileManager.js';
+import { FileManager } from '@tools/fileManager';
 
 export class Config {
   private readonly configBody: string;
@@ -6,8 +6,8 @@ export class Config {
 
   constructor() {
     this.fileManager = new FileManager();
-    this.configBody = `import { Messages } from './messages.js';
-import { Console } from './console.js';
+    this.configBody = `import { Messages } from './messages';
+import { Console } from './console';
 
 export class ConfigJson {
   messages;

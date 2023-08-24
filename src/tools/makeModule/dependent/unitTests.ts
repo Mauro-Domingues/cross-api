@@ -1,17 +1,17 @@
-import { CreateSpecDependentController } from '@templates/modules/services/createDependent/createControllerSpec.js';
-import { CreateSpecDependentService } from '@templates/modules/services/createDependent/createServiceSpec.js';
-import { DeleteSpecDependentController } from '@templates/modules/services/deleteDependent/deleteControllerSpec.js';
-import { DeleteSpecDependentService } from '@templates/modules/services/deleteDependent/deleteServiceSpec.js';
-import { ListSpecDependentController } from '@templates/modules/services/listDependent/listControllerSpec.js';
-import { ListSpecDependentService } from '@templates/modules/services/listDependent/listServiceSpec.js';
-import { ShowSpecDependentController } from '@templates/modules/services/showDependent/showControllerSpec.js';
-import { ShowSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec.js';
-import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec.js';
-import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec.js';
-import { IModuleNamesDTO } from '@tools/names.js';
-import { IMessagesDTO, Messages } from '@tools/messages.js';
-import { Console } from '@tools/console.js';
-import { FileManager } from '@tools/fileManager.js';
+import { CreateSpecDependentController } from '@templates/modules/services/createDependent/createControllerSpec';
+import { CreateSpecDependentService } from '@templates/modules/services/createDependent/createServiceSpec';
+import { DeleteSpecDependentController } from '@templates/modules/services/deleteDependent/deleteControllerSpec';
+import { DeleteSpecDependentService } from '@templates/modules/services/deleteDependent/deleteServiceSpec';
+import { ListSpecDependentController } from '@templates/modules/services/listDependent/listControllerSpec';
+import { ListSpecDependentService } from '@templates/modules/services/listDependent/listServiceSpec';
+import { ShowSpecDependentController } from '@templates/modules/services/showDependent/showControllerSpec';
+import { ShowSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec';
+import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
+import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
+import { IModuleNamesDTO } from '@tools/names';
+import { IMessagesDTO, Messages } from '@tools/messages';
+import { Console } from '@tools/console';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentUnitTests {
   private readonly messages: IMessagesDTO;

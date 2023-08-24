@@ -1,4 +1,4 @@
-import { FileManager } from '@tools/fileManager.js';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeSecondLayer {
   private readonly fileManager: FileManager;
