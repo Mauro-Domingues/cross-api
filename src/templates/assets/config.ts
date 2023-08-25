@@ -6,8 +6,8 @@ export class Config {
 
   constructor() {
     this.fileManager = new FileManager();
-    this.configBody = `import { Messages } from './messages';
-import { Console } from './console';
+    this.configBody = `import { Messages } from './messages.js';
+import { Console } from './console.js';
 
 export class ConfigJson {
   messages;
