@@ -27,13 +27,21 @@ export class ShowSpecService {
       throw new Error();
     }
 
-    return `import { AppError } from '@shared/errors/AppError';
-import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.names.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource, QueryRunner } from 'typeorm';
-import { createConnection } from '@shared/typeorm';
-import { Show${this.names.upperModuleName}Service } from './Show${this.names.upperModuleName}Service';
+    return `import { AppError } ${'from'} '@shared/errors/AppError';
+import { Fake${
+      this.names.pluralUpperModuleName
+    }Repository } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { DataSource, QueryRunner } ${'from'} 'typeorm';
+import { createConnection } ${'from'} '@shared/typeorm';
+import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
+      this.names.upperModuleName
+    }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${
+      this.names.pluralUpperModuleName
+    }Repository;
 let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
 let connection: DataSource;
 
@@ -47,26 +55,40 @@ describe('Show${this.names.upperModuleName}Service', () => {
   });
 
   beforeEach(() => {
-    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${
+      this.names.pluralUpperModuleName
+    }Repository();
 
-    show${this.names.upperModuleName} = new Show${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository);
+    show${this.names.upperModuleName} = new Show${
+      this.names.upperModuleName
+    }Service(fake${this.names.pluralUpperModuleName}Repository);
   });
 
   it('should be able to show a ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+    const ${this.names.lowerModuleName} = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}.execute(${this.names.lowerModuleName}.id);
+    const get${this.names.upperModuleName} = await show${
+      this.names.upperModuleName
+    }.execute(${this.names.lowerModuleName}.id);
 
     expect(get${this.names.upperModuleName}.data).toHaveProperty('id');
-    expect(get${this.names.upperModuleName}.data).toEqual(${this.names.lowerModuleName});
+    expect(get${this.names.upperModuleName}.data).toEqual(${
+      this.names.lowerModuleName
+    });
   });
 
-  it('should not be able to show ${this.names.pluralLowerModuleName} with a non-existing id', async () => {
+  it('should not be able to show ${
+    this.names.pluralLowerModuleName
+  } with a non-existing id', async () => {
     await expect(
-      show${this.names.upperModuleName}.execute('non-existing-${this.names.lowerModuleName}-id'),
+      show${this.names.upperModuleName}.execute('non-existing-${
+      this.names.lowerModuleName
+    }-id'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

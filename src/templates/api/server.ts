@@ -1,11 +1,11 @@
 export class CreateServer {
   public execute(): string {
-    return `import { createConnection } from '@shared/typeorm';
-import { serve, setup } from 'swagger-ui-express';
-import { rateLimiter } from '@middlewares/RateLimiter';
-import { app } from './app';
+    return `import { createConnection } ${'from'} '@shared/typeorm';
+import { serve, setup } ${'from'} 'swagger-ui-express';
+import { rateLimiter } ${'from'} '@middlewares/RateLimiter';
+import { app } ${'from'} './app';
 
-import swaggerDocs from '../swagger.json';
+import swaggerDocs ${'from'} '../swagger.json';
 
 createConnection();
 

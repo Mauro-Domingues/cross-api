@@ -1,8 +1,8 @@
 export class CreateUploadConfig {
   public execute(): string {
-    return `import { randomBytes } from 'crypto';
-import { StorageEngine, diskStorage } from 'multer';
-import { resolve } from 'path';
+    return `import { randomBytes } ${'from'} 'crypto';
+import { StorageEngine, diskStorage } ${'from'} 'multer';
+import { resolve } ${'from'} 'path';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 

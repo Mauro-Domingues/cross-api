@@ -1,9 +1,9 @@
 export class CreateLeadIndex {
   public execute(): string {
-    return `import { container } from 'tsyringe';
+    return `import { container } ${'from'} 'tsyringe';
 
-import { RDStationProvider } from './implementations/RDStationProvider';
-import { ILeadProviderDTO } from './models/ILeadProvider';
+import { RDStationProvider } ${'from'} './implementations/RDStationProvider';
+import { ILeadProviderDTO } ${'from'} './models/ILeadProvider';
 
 const providers = {
   rdStation: container.resolve(RDStationProvider),

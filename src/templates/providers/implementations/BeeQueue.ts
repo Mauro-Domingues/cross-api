@@ -1,11 +1,11 @@
 export class CreateBeeQueue {
   public execute(): string {
-    return `import Bee, { Job } from 'bee-queue';
-import { queueConfig } from '@config/queue';
-import { AppError } from '@shared/errors/AppError';
-import { IQueueProviderDTO } from '../models/IQueueProvider';
-import { jobs } from '../public/jobs';
-import { IQueueDTO } from '../dtos/IQueueDTO';
+    return `import Bee, { Job } ${'from'} 'bee-queue';
+import { queueConfig } ${'from'} '@config/queue';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { jobs } ${'from'} '../public/jobs';
+import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
 export class BeeProvider implements IQueueProviderDTO {
   private queues: IQueueDTO<Bee> = {};

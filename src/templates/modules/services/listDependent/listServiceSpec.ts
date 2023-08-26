@@ -34,14 +34,22 @@ export class ListSpecDependentService {
       throw new Error();
     }
 
-    return `import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { DataSource, QueryRunner } from 'typeorm';
-import { createConnection } from '@shared/typeorm';
-import { AppError } from '@shared/errors/AppError';
-import { List${this.names.upperModuleName}Service } from './List${this.names.upperModuleName}Service';
+    return `import { Fake${
+      this.names.pluralUpperModuleName
+    }Repository } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { DataSource, QueryRunner } ${'from'} 'typeorm';
+import { createConnection } ${'from'} '@shared/typeorm';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { List${this.names.upperModuleName}Service } ${'from'} './List${
+      this.names.upperModuleName
+    }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${
+      this.names.pluralUpperModuleName
+    }Repository;
 let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
 let connection: DataSource;
@@ -56,42 +64,66 @@ describe('List${this.names.upperModuleName}Service', () => {
   });
 
   beforeEach(() => {
-    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${
+      this.names.pluralUpperModuleName
+    }Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    list${this.names.upperModuleName} = new List${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository, fakeCacheProvider);
+    list${this.names.upperModuleName} = new List${
+      this.names.upperModuleName
+    }Service(fake${
+      this.names.pluralUpperModuleName
+    }Repository, fakeCacheProvider);
   });
 
-  it('should be able to list all the ${this.names.pluralLowerModuleName}', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+  it('should be able to list all the ${
+    this.names.pluralLowerModuleName
+  }', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+    const ${this.names.lowerModuleName}02 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2, {});
+    const ${this.names.lowerModuleName}List = await list${
+      this.names.upperModuleName
+    }.execute(1, 2, {});
 
-    expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
+    expect(${this.names.lowerModuleName}List.data).toEqual([${
+      this.names.lowerModuleName
+    }01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should be able to list all the ${this.names.pluralLowerModuleName} using cache', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+  it('should be able to list all the ${
+    this.names.pluralLowerModuleName
+  } using cache', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+    const ${this.names.lowerModuleName}02 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
     await list${this.names.upperModuleName}.execute(1, 2, {});
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}.execute(1, 2, {});
+    const ${this.names.lowerModuleName}List = await list${
+      this.names.upperModuleName
+    }.execute(1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual([
       {
@@ -107,36 +139,56 @@ describe('List${this.names.upperModuleName}Service', () => {
     ]);
   });
 
-  it('should be able to list the ${this.names.pluralLowerModuleName} with the specified pagination', async () => {
-    const ${this.names.lowerModuleName}01 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+  it('should be able to list the ${
+    this.names.pluralLowerModuleName
+  } with the specified pagination', async () => {
+    const ${this.names.lowerModuleName}01 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 1',
       description: 'This is the first ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}02 = await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+    const ${this.names.lowerModuleName}02 = await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 2',
       description: 'This is the second ${this.names.lowerModuleName}',
     });
 
-    await fake${this.names.pluralUpperModuleName}Repository.create({} as QueryRunner, {
+    await fake${
+      this.names.pluralUpperModuleName
+    }Repository.create({} as QueryRunner, {
       name: '${this.names.lowerModuleName} 3',
       description: 'This is the third ${this.names.lowerModuleName}',
     });
 
-    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}.execute(1, 1, {});
+    const ${this.names.lowerModuleName}List01 = await list${
+      this.names.upperModuleName
+    }.execute(1, 1, {});
 
-    expect(${this.names.lowerModuleName}List01.data).toEqual([${this.names.lowerModuleName}01]);
+    expect(${this.names.lowerModuleName}List01.data).toEqual([${
+      this.names.lowerModuleName
+    }01]);
 
-    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}.execute(1, 2, {});
-    expect(${this.names.lowerModuleName}List02.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
+    const ${this.names.lowerModuleName}List02 = await list${
+      this.names.upperModuleName
+    }.execute(1, 2, {});
+    expect(${this.names.lowerModuleName}List02.data).toEqual([${
+      this.names.lowerModuleName
+    }01, ${this.names.lowerModuleName}02]);
   });
 
   it('should return AppError', async () => {
-    jest.spyOn(fake${this.names.pluralUpperModuleName}Repository, 'findAll').mockImplementationOnce(() => {
+    jest.spyOn(fake${
+      this.names.pluralUpperModuleName
+    }Repository, 'findAll').mockImplementationOnce(() => {
       throw new AppError('Failed to list ${this.names.pluralLowerModuleName}');
     });
 
-    await expect(list${this.names.upperModuleName}.execute(1, 2, {})).rejects.toBeInstanceOf(AppError);
+    await expect(list${
+      this.names.upperModuleName
+    }.execute(1, 2, {})).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

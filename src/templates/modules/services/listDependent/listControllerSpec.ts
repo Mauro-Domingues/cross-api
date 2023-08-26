@@ -27,10 +27,10 @@ export class ListSpecDependentController {
       throw new Error();
     }
 
-    return `import request from 'supertest';
-import { DataSource } from 'typeorm';
-import { createConnection } from '@shared/typeorm';
-import { app } from '@shared/app';
+    return `import request ${'from'} 'supertest';
+import { DataSource } ${'from'} 'typeorm';
+import { createConnection } ${'from'} '@shared/typeorm';
+import { app } ${'from'} '@shared/app';
 
 let connection: DataSource;
 
@@ -40,7 +40,11 @@ describe('List${this.names.upperModuleName}Controller', () => {
     await connection.runMigrations();
 
     return connection.query(
-      \`INSERT INTO ${this.names.dbModuleName}(id, name, description) values('12345', '${this.names.lowerModuleName}', 'This is a ${this.names.lowerModuleName}')\`,
+      \`INSERT INTO ${
+        this.names.dbModuleName
+      }(id, name, description) values('12345', '${
+      this.names.lowerModuleName
+    }', 'This is a ${this.names.lowerModuleName}')\`,
     );
   });
 

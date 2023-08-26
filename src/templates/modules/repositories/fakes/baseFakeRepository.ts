@@ -1,15 +1,15 @@
 export class CreateBaseFakeRepository {
   public execute(): string {
-    return `import { Base } from '@shared/container/modules/entities/Base';
+    return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
 import {
   DeepPartial,
   DeleteResult,
   FindOptionsWhere,
   ObjectLiteral,
   QueryRunner,
-} from 'typeorm';
-import { v4 as uuid } from 'uuid';
-import { IBaseRepositoryDTO } from '../IBaseRepository';
+} ${'from'} 'typeorm';
+import { v4 as uuid } ${'from'} 'uuid';
+import { IBaseRepositoryDTO } ${'from'} '../IBaseRepository';
 
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepositoryDTO<Entity>

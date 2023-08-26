@@ -1,9 +1,9 @@
 export class CreateGuard {
   public execute(): string {
-    return `import { Router } from 'express';
-import { ensureAuthenticated } from '@middlewares/EnsureAuthenticated';
-import { decodeJwt } from '@middlewares/DecodeJwt';
-import { IExceptionDTO } from '@dtos/IExceptionDTO';
+    return `import { Router } ${'from'} 'express';
+import { ensureAuthenticated } ${'from'} '@middlewares/EnsureAuthenticated';
+import { decodeJwt } ${'from'} '@middlewares/DecodeJwt';
+import { IExceptionDTO } ${'from'} '@dtos/IExceptionDTO';
 
 const guardRouter = Router();
 

@@ -1,8 +1,8 @@
 export class CreateErrorLog {
   public execute(): string {
-    return `import { NextFunction } from 'express';
-import { appendFileSync } from 'fs';
-import { resolve } from 'path';
+    return `import { NextFunction } ${'from'} 'express';
+import { appendFileSync } ${'from'} 'fs';
+import { resolve } ${'from'} 'path';
 
 export function createErrorLog(error: Error, next: NextFunction): void {
   const currentTime = new Date();

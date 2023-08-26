@@ -1,10 +1,10 @@
 export class CreateMailTemplate {
   public execute(): string {
-    return `import { readFileSync } from 'fs';
-import { compile } from 'handlebars';
+    return `import { readFileSync } ${'from'} 'fs';
+import { compile } ${'from'} 'handlebars';
 
-import { IParseMailTemplateDTO } from '../dtos/IParseMailTemplateDTO';
-import { IMailTemplateProviderDTO } from '../models/IMailTemplateProvider';
+import { IParseMailTemplateDTO } ${'from'} '../dtos/IParseMailTemplateDTO';
+import { IMailTemplateProviderDTO } ${'from'} '../models/IMailTemplateProvider';
 
 export class HandlebarsMailTemplateProvider
   implements IMailTemplateProviderDTO

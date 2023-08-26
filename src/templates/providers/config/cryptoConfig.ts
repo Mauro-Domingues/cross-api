@@ -1,6 +1,6 @@
 export class CreateCryptoConfig {
   public execute(): string {
-    return `import { resolve } from 'path';
+    return `import { resolve } ${'from'} 'path';
 
 interface ICryptoConfigDTO {
   bytes: number;

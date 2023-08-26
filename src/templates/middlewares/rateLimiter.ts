@@ -1,10 +1,10 @@
 export class CreateRateLimiter {
   public execute(): string {
-    return `import { Request, Response, NextFunction } from 'express';
-import { RateLimiterRedis } from 'rate-limiter-flexible';
-import { createClient } from 'redis';
+    return `import { Request, Response, NextFunction } ${'from'} 'express';
+import { RateLimiterRedis } ${'from'} 'rate-limiter-flexible';
+import { createClient } ${'from'} 'redis';
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
 const redisClient = createClient({
   host: process.env.REDIS_HOST,

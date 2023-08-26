@@ -6,20 +6,20 @@ export class CreateCrypto {
   createDecipheriv,
   createHash,
   generateKeyPairSync,
-} from 'crypto';
+} ${'from'} 'crypto';
 import {
   readFileSync,
   appendFileSync,
   truncateSync,
   existsSync,
   mkdirSync,
-} from 'fs';
-import { resolve } from 'path';
-import { sign, SignOptions } from 'jsonwebtoken';
-import { JWK, pem2jwk } from 'pem-jwk';
-import { cryptoConfig } from '@config/crypto';
-import { ICryptoDTO } from '../dtos/ICryptoDTO';
-import { ICryptoProviderDTO } from '../models/ICryptoProvider';
+} ${'from'} 'fs';
+import { resolve } ${'from'} 'path';
+import { sign, SignOptions } ${'from'} 'jsonwebtoken';
+import { JWK, pem2jwk } ${'from'} 'pem-jwk';
+import { cryptoConfig } ${'from'} '@config/crypto';
+import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
+import { ICryptoProviderDTO } ${'from'} '../models/ICryptoProvider';
 
 export class CryptoProvider implements ICryptoProviderDTO {
   public async encrypt(text: string): Promise<ICryptoDTO> {

@@ -32,22 +32,28 @@ export class DeleteDependentService {
       throw new Error();
     }
 
-    return `import { injectable, inject } from 'tsyringe';
+    return `import { injectable, inject } ${'from'} 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
-import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { IResponseDTO } from '@dtos/IResponseDTO';
-import { AppDataSource } from '@shared/typeorm/dataSource';
-import { Route, Tags, Delete, Path } from 'tsoa';
+import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
+import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Route, Tags, Delete, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Delete${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO,
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProviderDTO,
@@ -60,15 +66,21 @@ export class Delete${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists(trx, { id });
+      const ${this.names.lowerModuleName} = await this.${
+      this.names.pluralLowerModuleName
+    }Repository.exists(trx, { id });
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);
       }
 
-      await this.${this.names.pluralLowerModuleName}Repository.delete(trx, { id });
+      await this.${
+        this.names.pluralLowerModuleName
+      }Repository.delete(trx, { id });
 
-      await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+      await this.cacheProvider.invalidatePrefix('${
+        this.names.pluralLowerModuleName
+      }');
       await trx.commitTransaction();
 
       return {

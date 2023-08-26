@@ -1,11 +1,11 @@
 export class CreateKueQueue {
   public execute(): string {
-    return `import { Job, Queue, createQueue } from 'kue';
-import { queueConfig } from '@config/queue';
-import { AppError } from '@shared/errors/AppError';
-import { IQueueProviderDTO } from '../models/IQueueProvider';
-import { jobs } from '../public/jobs';
-import { IQueueDTO } from '../dtos/IQueueDTO';
+    return `import { Job, Queue, createQueue } ${'from'} 'kue';
+import { queueConfig } ${'from'} '@config/queue';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { jobs } ${'from'} '../public/jobs';
+import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
 export class KueProvider implements IQueueProviderDTO {
   private queues: IQueueDTO<Queue> = {};

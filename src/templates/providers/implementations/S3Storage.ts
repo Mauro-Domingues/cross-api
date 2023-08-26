@@ -1,18 +1,18 @@
 export class CreateS3Storage {
   public execute(): string {
-    return `import { uploadConfig } from '@config/upload';
+    return `import { uploadConfig } ${'from'} '@config/upload';
 import {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
-} from '@aws-sdk/client-s3';
-import { readFileSync, unlinkSync } from 'fs';
-import { getType } from 'mime';
-import { resolve } from 'path';
+} ${'from'} '@aws-sdk/client-s3';
+import { readFileSync, unlinkSync } ${'from'} 'fs';
+import { getType } ${'from'} 'mime';
+import { resolve } ${'from'} 'path';
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
-import { IStorageProviderDTO } from '../models/IStorageProvider';
+import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class S3StorageProvider implements IStorageProviderDTO {
   private readonly client: S3Client;

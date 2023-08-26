@@ -12,9 +12,9 @@ export class CreateBaseRepository {
   Like,
   ObjectLiteral,
   QueryRunner,
-} from 'typeorm';
+} ${'from'} 'typeorm';
 
-import { IBaseRepositoryDTO } from './IBaseRepository';
+import { IBaseRepositoryDTO } ${'from'} './IBaseRepository';
 
 interface IFindOptionsRelationsDTO<T> {
   [key: string]: boolean | IFindOptionsRelationsDTO<T> | undefined;

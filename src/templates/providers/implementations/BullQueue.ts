@@ -1,11 +1,11 @@
 export class CreateBullQueue {
   public execute(): string {
-    return `import Bull, { Job, Queue } from 'bull';
-import { queueConfig } from '@config/queue';
-import { AppError } from '@shared/errors/AppError';
-import { IQueueProviderDTO } from '../models/IQueueProvider';
-import { jobs } from '../public/jobs';
-import { IQueueDTO } from '../dtos/IQueueDTO';
+    return `import Bull, { Job, Queue } ${'from'} 'bull';
+import { queueConfig } ${'from'} '@config/queue';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { jobs } ${'from'} '../public/jobs';
+import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
 export class BullProvider implements IQueueProviderDTO {
   private queues: IQueueDTO<Queue> = {};

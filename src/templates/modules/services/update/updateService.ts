@@ -25,27 +25,37 @@ export class UpdateService {
       throw new Error();
     }
 
-    return `import { injectable, inject } from 'tsyringe';
+    return `import { injectable, inject } ${'from'} 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
-import { ICacheProviderDTO } from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { I${this.names.upperModuleName}DTO } from '@modules/${this.names.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import { mapAndUpdateAttribute } from '@utils/mappers/mapAndUpdateAttribute';
-import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { instanceToInstance } from 'class-transformer';
-import { IResponseDTO } from '@dtos/IResponseDTO';
-import { AppDataSource } from '@shared/typeorm/dataSource';
-import { Route, Tags, Put, Body, Path } from 'tsoa';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/dtos/I${this.names.upperModuleName}DTO';
+import { mapAndUpdateAttribute } ${'from'} '@utils/mappers/mapAndUpdateAttribute';
+import { ${this.names.upperModuleName} } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/entities/${this.names.upperModuleName}';
+import { instanceToInstance } ${'from'} 'class-transformer';
+import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
+import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Route, Tags, Put, Body, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Update${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO,
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProviderDTO,
@@ -54,14 +64,18 @@ export class Update${this.names.upperModuleName}Service {
   @Put('{id}')
   @Tags('${this.names.upperModuleName}')
   public async execute(
-    @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
+    @Body() ${this.names.lowerModuleName}Data: I${
+      this.names.upperModuleName
+    }DTO,
     @Path() id?: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, { id });
+      const ${this.names.lowerModuleName} = await this.${
+      this.names.pluralLowerModuleName
+    }Repository.findBy(trx, { id });
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);
@@ -69,10 +83,14 @@ export class Update${this.names.upperModuleName}Service {
 
       await this.${this.names.pluralLowerModuleName}Repository.update(
         trx,
-        mapAndUpdateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data),
+        mapAndUpdateAttribute(${this.names.lowerModuleName}, ${
+      this.names.lowerModuleName
+    }Data),
       );
 
-      await this.cacheProvider.invalidatePrefix('${this.names.pluralLowerModuleName}');
+      await this.cacheProvider.invalidatePrefix('${
+        this.names.pluralLowerModuleName
+      }');
       await trx.commitTransaction();
 
       return {

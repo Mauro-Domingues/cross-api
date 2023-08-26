@@ -1,7 +1,7 @@
 export class CreateDocConfig {
   public execute(): string {
-    return `import { generateSpec } from 'tsoa';
-import { resolve } from 'path';
+    return `import { generateSpec } ${'from'} 'tsoa';
+import { resolve } ${'from'} 'path';
 
 generateSpec(
   {

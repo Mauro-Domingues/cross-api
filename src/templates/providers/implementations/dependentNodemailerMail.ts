@@ -34,14 +34,16 @@ export class CreateDependentNodemailerMail {
   createTestAccount,
   createTransport,
   getTestMessageUrl,
-} from 'nodemailer';
-import { injectable, inject } from 'tsyringe';
+} ${'from'} 'nodemailer';
+import { injectable, inject } ${'from'} 'tsyringe';
 
-import { IMailTemplateProviderDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import { IMailTemplateProviderDTO } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/providers/MailTemplateProvider/models/IMailTemplateProvider';
 
-import { mailConfig } from '@config/mail';
-import { ISendMailDTO } from '../dtos/ISendMailDTO';
-import { IMailProviderDTO } from '../models/IMailProvider';
+import { mailConfig } ${'from'} '@config/mail';
+import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
+import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
 
 @injectable()
 export class NodemailerMailProvider implements IMailProviderDTO {

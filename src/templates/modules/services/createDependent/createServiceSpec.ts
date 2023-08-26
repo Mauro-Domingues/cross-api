@@ -37,17 +37,27 @@ export class CreateSpecDependentService {
       throw new Error();
     }
 
-    return `import { FakeCacheProvider } from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+    return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 
-import { Fake${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource } from 'typeorm';
-import { createConnection } from '@shared/typeorm';
-import { AppError } from '@shared/errors/AppError';
-import { Create${this.names.upperModuleName}Service } from './Create${this.names.upperModuleName}Service';
+import { Fake${
+      this.names.pluralUpperModuleName
+    }Repository } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { DataSource } ${'from'} 'typeorm';
+import { createConnection } ${'from'} '@shared/typeorm';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
+      this.names.upperModuleName
+    }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${this.names.pluralUpperModuleName}Repository;
+let fake${this.names.pluralUpperModuleName}Repository: Fake${
+      this.names.pluralUpperModuleName
+    }Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let create${this.names.upperModuleName}: Create${this.names.upperModuleName}Service;
+let create${this.names.upperModuleName}: Create${
+      this.names.upperModuleName
+    }Service;
 let connection: DataSource;
 
 describe('Create${this.names.upperModuleName}Service', () => {
@@ -60,17 +70,25 @@ describe('Create${this.names.upperModuleName}Service', () => {
   });
 
   beforeEach(() => {
-    fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
+    fake${this.names.pluralUpperModuleName}Repository = new Fake${
+      this.names.pluralUpperModuleName
+    }Repository();
     fakeCacheProvider = new FakeCacheProvider();
 
-    create${this.names.upperModuleName} = new Create${this.names.upperModuleName}Service(
+    create${this.names.upperModuleName} = new Create${
+      this.names.upperModuleName
+    }Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
     );
   });
 
-  it('should be able to create a new ${this.names.lowerModuleName}', async () => {
-    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute({
+  it('should be able to create a new ${
+    this.names.lowerModuleName
+  }', async () => {
+    const ${this.names.lowerModuleName} = await create${
+      this.names.upperModuleName
+    }.execute({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
@@ -79,7 +97,9 @@ describe('Create${this.names.upperModuleName}Service', () => {
   });
 
   it('should return AppError', async () => {
-    jest.spyOn(fake${this.names.pluralUpperModuleName}Repository, 'create').mockImplementationOnce(() => {
+    jest.spyOn(fake${
+      this.names.pluralUpperModuleName
+    }Repository, 'create').mockImplementationOnce(() => {
       throw new AppError('Failed to create a ${this.names.lowerModuleName}');
     });
 

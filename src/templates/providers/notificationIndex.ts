@@ -1,9 +1,9 @@
 export class CreateNotificationIndex {
   public execute(): string {
-    return `import { container } from 'tsyringe';
+    return `import { container } ${'from'} 'tsyringe';
 
-import { OneSignalProvider } from './implementations/OneSignalProvider';
-import { INotificationProviderDTO } from './models/INotificationProvider';
+import { OneSignalProvider } ${'from'} './implementations/OneSignalProvider';
+import { INotificationProviderDTO } ${'from'} './models/INotificationProvider';
 
 const providers = {
   onesignal: container.resolve(OneSignalProvider),

@@ -25,33 +25,45 @@ export class ShowService {
       throw new Error();
     }
 
-    return `import { injectable, inject } from 'tsyringe';
+    return `import { injectable, inject } ${'from'} 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
-import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.names.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { instanceToInstance } from 'class-transformer';
-import { IResponseDTO } from '@dtos/IResponseDTO';
-import { AppDataSource } from '@shared/typeorm/dataSource';
-import { Get, Route, Tags, Path } from 'tsoa';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { ${this.names.upperModuleName} } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/entities/${this.names.upperModuleName}';
+import { instanceToInstance } ${'from'} 'class-transformer';
+import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
+import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Get, Route, Tags, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Show${this.names.upperModuleName}Service {
   constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}RepositoryDTO,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO,
   ) {}
 
   @Get('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id?: string): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+  public async execute(@Path() id?: string): Promise<IResponseDTO<${
+    this.names.upperModuleName
+  }>> {
     const trx = AppDataSource.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(trx, { id }, []);
+      const ${this.names.lowerModuleName} = await this.${
+      this.names.pluralLowerModuleName
+    }Repository.findBy(trx, { id }, []);
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);

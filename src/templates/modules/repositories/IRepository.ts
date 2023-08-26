@@ -30,10 +30,14 @@ export class CreateIRepository {
       throw new Error();
     }
 
-    return `import { ${this.names.upperModuleName} } from '@modules/${this.names.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { IBaseRepositoryDTO } from '@shared/container/modules/repositories/IBaseRepository';
+    return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/entities/${this.names.upperModuleName}';
+import { IBaseRepositoryDTO } ${'from'} '@shared/container/modules/repositories/IBaseRepository';
 
-export interface I${this.names.pluralUpperModuleName}RepositoryDTO extends IBaseRepositoryDTO<${this.names.upperModuleName}> {
+export interface I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO extends IBaseRepositoryDTO<${this.names.upperModuleName}> {
   // non-generic methods here
 }
 `;

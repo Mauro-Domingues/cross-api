@@ -6,8 +6,8 @@ export class CreateDomainsManager {
   mkdirSync,
   appendFileSync,
   writeFileSync,
-} from 'fs';
-import { resolve } from 'path';
+} ${'from'} 'fs';
+import { resolve } ${'from'} 'path';
 
 export class DomainsManager {
   basePath: string;

@@ -8,7 +8,7 @@ export class CreateMapAndPatchString {
   }
 
   public execute(): string {
-    return `import { mapAndInsertAttribute } from './mapAndInsertAttribute';
+    return `import { mapAndInsertAttribute } ${'from'} './mapAndInsertAttribute';
 
 /**
  * ${this.messages.patchAndInsert}

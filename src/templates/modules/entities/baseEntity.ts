@@ -5,7 +5,7 @@ export class CreateBaseEntity {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-} from 'typeorm';
+} ${'from'} 'typeorm';
 
 export abstract class Base {
   @PrimaryGeneratedColumn('uuid')

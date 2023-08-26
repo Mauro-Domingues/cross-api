@@ -1,15 +1,15 @@
 export class CreateApp {
   public execute(): string {
     return `import 'express-async-errors';
-// import { uploadConfig } from '@config/upload'; // uploadProvider
-// import { cryptoConfig } from '@config/crypto'; // cryptoProvider
-import { CelebrateError } from 'celebrate';
-import cors from 'cors';
-import express, { Request, Response, NextFunction } from 'express';
-import { AppError } from '@shared/errors/AppError';
-import { corsConfig } from '@config/cors';
-import { createErrorLog } from '@utils/errorLog';
-import { routes } from '../routes';
+// import { uploadConfig } ${'from'} '@config/upload'; // uploadProvider
+// import { cryptoConfig } ${'from'} '@config/crypto'; // cryptoProvider
+import { CelebrateError } ${'from'} 'celebrate';
+import cors ${'from'} 'cors';
+import express, { Request, Response, NextFunction } ${'from'} 'express';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { corsConfig } ${'from'} '@config/cors';
+import { createErrorLog } ${'from'} '@utils/errorLog';
+import { routes } ${'from'} '../routes';
 import '@shared/container';
 
 const app = express();

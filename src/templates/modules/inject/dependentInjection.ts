@@ -34,8 +34,14 @@ export class CreateDependentInjection {
       throw new Error();
     }
 
-    return `import { I${this.names.pluralUpperModuleName}RepositoryDTO } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ${this.names.pluralUpperModuleName}Repository } from '@modules/${this.fatherNames.pluralLowerModuleName}/repositories/${this.names.pluralUpperModuleName}Repository';
+    return `import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { ${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/${this.names.pluralUpperModuleName}Repository';
 
 container.registerSingleton<I${this.names.pluralUpperModuleName}RepositoryDTO>(
   '${this.names.pluralUpperModuleName}Repository',

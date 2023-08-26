@@ -8,7 +8,7 @@ export class CreateIBaseRepository {
   FindOptionsWhere,
   ObjectLiteral,
   QueryRunner,
-} from 'typeorm';
+} ${'from'} 'typeorm';
 
 export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
   exists(

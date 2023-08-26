@@ -8,7 +8,7 @@ export class CreateMapAndClone {
   }
 
   public execute(): string {
-    return `import { IObjectDTO } from "@dtos/IObjectDTO";
+    return `import { IObjectDTO } ${'from'} "@dtos/IObjectDTO";
 
 /**
  * ${this.messages.mapAndClone}

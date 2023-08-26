@@ -25,9 +25,13 @@ export class CreateModuleDTO {
       throw new Error();
     }
 
-    return `import { ${this.names.upperModuleName} } from '../entities/${this.names.upperModuleName}';
+    return `import { ${this.names.upperModuleName} } ${'from'} '../entities/${
+      this.names.upperModuleName
+    }';
 
-export interface I${this.names.upperModuleName}DTO extends Partial<${this.names.upperModuleName}> {}
+export interface I${this.names.upperModuleName}DTO extends Partial<${
+      this.names.upperModuleName
+    }> {}
 `;
   }
 }

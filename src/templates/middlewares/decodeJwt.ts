@@ -1,9 +1,9 @@
 export class CreateDecodeJwt {
   public execute(): string {
-    return `import { Request, Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
-import { resolve } from 'path';
-import { readFileSync } from 'fs';
+    return `import { Request, Response, NextFunction } ${'from'} 'express';
+import { verify } ${'from'} 'jsonwebtoken';
+import { resolve } ${'from'} 'path';
+import { readFileSync } ${'from'} 'fs';
 
 interface ITokenPayloadDTO {
   iat: number;

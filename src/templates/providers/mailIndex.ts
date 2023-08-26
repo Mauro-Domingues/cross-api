@@ -1,11 +1,11 @@
 export class CreateMailIndex {
   public execute(): string {
-    return `import { mailConfig } from '@config/mail';
-import { container } from 'tsyringe';
+    return `import { mailConfig } ${'from'} '@config/mail';
+import { container } ${'from'} 'tsyringe';
 
-import { NodemailerMailProvider } from './implementations/NodemailerMailProvider';
-import { SESMailProvider } from './implementations/SESMailProvider';
-import { IMailProviderDTO } from './models/IMailProvider';
+import { NodemailerMailProvider } ${'from'} './implementations/NodemailerMailProvider';
+import { SESMailProvider } ${'from'} './implementations/SESMailProvider';
+import { IMailProviderDTO } ${'from'} './models/IMailProvider';
 
 const providers = {
   nodemailer: container.resolve(NodemailerMailProvider),

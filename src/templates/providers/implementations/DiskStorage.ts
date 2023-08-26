@@ -1,10 +1,10 @@
 export class CreateDiskStorage {
   public execute(): string {
-    return `import { uploadConfig } from '@config/upload';
-import { existsSync, mkdirSync, unlinkSync, renameSync } from 'fs';
-import { resolve } from 'path';
+    return `import { uploadConfig } ${'from'} '@config/upload';
+import { existsSync, mkdirSync, unlinkSync, renameSync } ${'from'} 'fs';
+import { resolve } ${'from'} 'path';
 
-import { IStorageProviderDTO } from '../models/IStorageProvider';
+import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class DiskStorageProvider implements IStorageProviderDTO {
   public async saveFile(file: string): Promise<string> {
