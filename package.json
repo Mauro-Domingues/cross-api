@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "3.9.8",
+  "version": "3.9.9",
   "type": "module",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers, unit tests and documentation generation.",
   "keywords": [
@@ -22,7 +22,7 @@
     "cross": "./src/index.js"
   },
   "scripts": {
-    "postinstall": "tsc && tsc-alias"
+    "postinstall": "npx tsc && npx tsc-alias"
   },
   "license": "Apache-2.0",
   "devDependencies": {
