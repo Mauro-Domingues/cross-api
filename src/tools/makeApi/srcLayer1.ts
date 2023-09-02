@@ -11,10 +11,8 @@ import { CreateNodemonJson } from '@templates/root/nodemonJson';
 import { CreatePrettierConfig } from '@templates/root/prettierConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
 import { FileManager } from '@tools/fileManager';
-import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class MakeFirstLayer {
-  private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly createTsConfig: CreateTsConfig;
   private readonly createPrettierConfig: CreatePrettierConfig;
@@ -30,7 +28,6 @@ export class MakeFirstLayer {
   private readonly createBabelConfig: CreateBabelConfig;
 
   constructor() {
-    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.createTsConfig = new CreateTsConfig();
     this.createPrettierConfig = new CreatePrettierConfig();

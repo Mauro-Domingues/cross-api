@@ -1,4 +1,3 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
 import { CreateAuthConfig } from '@templates/providers/config/authConfig';
 import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
 import { FileManager } from '@tools/fileManager';
@@ -8,7 +7,6 @@ import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
 
 export class MakeLastLayer {
-  private readonly messages: IMessagesDTO;
   private readonly createBaseEntity: CreateBaseEntity;
   private readonly createBaseRepository: CreateBaseRepository;
   private readonly createIBaseRepository: CreateIBaseRepository;
@@ -18,7 +16,6 @@ export class MakeLastLayer {
   private readonly createAuthConfig: CreateAuthConfig;
 
   constructor() {
-    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.createBaseEntity = new CreateBaseEntity();
     this.createBaseRepository = new CreateBaseRepository();

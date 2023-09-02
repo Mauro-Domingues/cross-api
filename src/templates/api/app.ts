@@ -9,6 +9,7 @@ import express, { Request, Response, NextFunction } ${'from'} 'express';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { corsConfig } ${'from'} '@config/cors';
 import { createErrorLog } ${'from'} '@utils/errorLog';
+import { parseBoolean } ${'from'} '@middlewares/ParseBoolean';
 import { routes } ${'from'} '../routes';
 import '@shared/container';
 
@@ -19,6 +20,7 @@ app.use(cors(corsConfig));
 // app.use('/keys', express.static(cryptoConfig.keysPath)); // expose public key feature
 
 app.use(express.json());
+app.use(parseBoolean);
 app.use(routes);
 
 app.use(
