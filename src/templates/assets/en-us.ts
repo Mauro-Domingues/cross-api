@@ -15,7 +15,7 @@ export class EnglishMessages {
       configured: 'Already configured',
       providerNotFound: 'provider not found',
       moduleNotFound: 'module not found',
-      apiCreated: 'api structure created',
+      apiCreated: '➤  Api structure created',
       available: 'not available yet',
       notFound: '➤  No commands detected',
       try: [

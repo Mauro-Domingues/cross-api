@@ -15,7 +15,7 @@ export class PortugueseMessages {
       configured: 'Já configurado',
       providerNotFound: 'provedor não encontrado',
       moduleNotFound: 'módulo não encontrado',
-      apiCreated: 'estrutura da api criada',
+      apiCreated: '➤  Estrutura da api criada',
       available: 'Ainda não disponível',
       notFound: '➤  Nenhum comando detectado',
       try: [
