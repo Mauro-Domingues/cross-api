@@ -93,12 +93,11 @@ new (class Main {
     };
   }
 
-  public execute(): unknown {
+  public execute(): Promise<void | string> | void {
     try {
       if (this.comand !== 'revert') {
         this.createRegister.execute();
       }
-
       return this.actions[this.comand as keyof typeof this.actions].execute();
     } catch {
       return this.console.many([
