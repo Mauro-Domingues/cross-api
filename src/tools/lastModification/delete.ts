@@ -2,16 +2,18 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Provider } from '@tools/Provider';
 
 export class DeleteRegister {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly providers: { [key: string]: string };
+  private readonly provider: Provider;
   private readonly basePath: string;
 
   constructor() {
     this.messages = new Messages().execute();
+    this.provider = new Provider();
     this.fileManager = new FileManager();
     this.console = new Console();
     this.basePath = this.fileManager.resolvePath([
@@ -21,16 +23,6 @@ export class DeleteRegister {
       'tools',
       'lastModification',
     ]);
-    this.providers = {
-      cache: 'CacheProvider',
-      crypto: 'CryptoProvider',
-      hash: 'HashProvider',
-      lead: 'leadProvider',
-      mail: 'MailProvider',
-      mailTemplate: 'MailTemplateProvider',
-      notification: 'NotificationProvider',
-      upload: 'StorageProvider',
-    };
   }
 
   private async constructBase(): Promise<void> {
@@ -119,7 +111,7 @@ export class DeleteRegister {
         'modules',
         fatherNames.pluralLowerModuleName,
         'providers',
-        this.providers[names.lowerModuleName],
+        this.provider.list[names.lowerModuleName].description,
       ]);
       if (
         this.fileManager.checkIfExists([
@@ -164,7 +156,7 @@ export class DeleteRegister {
         'shared',
         'container',
         'providers',
-        this.providers[names.lowerModuleName],
+        this.provider.list[names.lowerModuleName].description,
       ]);
       if (
         this.fileManager.checkIfExists([
