@@ -111,10 +111,7 @@ export class DeleteRegister {
         'modules',
         fatherNames.pluralLowerModuleName,
         'providers',
-        this.provider.list[names.lowerModuleName].description.replace(
-          /s+/g,
-          '',
-        ),
+        this.provider.list[names.lowerModuleName].description.trim(),
       ]);
       if (
         this.fileManager.checkIfExists([
@@ -159,10 +156,7 @@ export class DeleteRegister {
         'shared',
         'container',
         'providers',
-        this.provider.list[names.lowerModuleName].description.replace(
-          /s+/g,
-          '',
-        ),
+        this.provider.list[names.lowerModuleName].description.trim(),
       ]);
       if (
         this.fileManager.checkIfExists([
