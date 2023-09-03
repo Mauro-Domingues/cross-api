@@ -14,7 +14,7 @@ import { Shell } from '@tools/shell';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
-class Index {
+new (class Main {
   private readonly fullComand: Array<string> = process.argv.slice(2);
   private readonly comand: string = process.argv[2];
   private readonly arg: string = process.argv[3];
@@ -26,13 +26,24 @@ class Index {
   private readonly getFatherNames: GetNames;
   private readonly deleteRegister: DeleteRegister;
   private readonly createRegister: CreateRegister;
-  private readonly createProvider: CreateProvider;
-  private readonly createModule: CreateModule;
-  private readonly createApi: CreateApi;
-  private readonly listProvider: ListProvider;
-  private readonly configLanguage: ConfigLanguage;
-  private readonly configJson: ConfigJson;
-  private readonly board: Board;
+  private readonly actions: {
+    config: ConfigJson;
+    comands: Board;
+    language: ConfigLanguage;
+    'list:provider': ListProvider;
+    'make:api': CreateApi;
+    'make:module': CreateModule;
+    'make:provider': CreateProvider;
+    'migration:generate': {
+      execute: () => Promise<string>;
+    };
+    'migration:run': {
+      execute: () => Promise<string>;
+    };
+    revert: {
+      execute: () => Promise<void>;
+    };
+  };
 
   constructor() {
     this.messages = new Messages().execute();
@@ -47,73 +58,50 @@ class Index {
       this.getNames.execute(),
       this.getFatherNames.execute(),
     );
-    this.createProvider = new CreateProvider(
-      this.arg,
-      this.getFatherNames.execute(),
-    );
-    this.createModule = new CreateModule(
-      this.getNames.execute(),
-      this.getFatherNames.execute(),
-    );
-    this.createApi = new CreateApi();
-    this.listProvider = new ListProvider();
-    this.configLanguage = new ConfigLanguage();
-    this.configJson = new ConfigJson();
-    this.board = new Board();
+    this.actions = {
+      config: new ConfigJson(),
+      comands: new Board(),
+      language: new ConfigLanguage(),
+      'list:provider': new ListProvider(),
+      'make:api': new CreateApi(),
+      'make:module': new CreateModule(
+        this.getNames.execute(),
+        this.getFatherNames.execute(),
+      ),
+      'make:provider': new CreateProvider(
+        this.arg,
+        this.getFatherNames.execute(),
+      ),
+      'migration:generate': {
+        execute: (): Promise<string> =>
+          this.shell.execute(
+            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
+          ),
+      },
+      'migration:run': {
+        execute: (): Promise<string> =>
+          this.shell.execute(
+            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
+          ),
+      },
+      revert: {
+        execute: (): Promise<void> =>
+          this.deleteRegister
+            .execute()
+            .then(() => this.createRegister.execute()),
+      },
+    };
   }
 
-  public execute(): void {
-    if (this.comand) {
+  public execute(): unknown {
+    try {
       if (this.comand !== 'revert') {
         this.createRegister.execute();
       }
-      switch (this.comand) {
-        case 'config':
-          this.configJson.execute();
-          break;
-        case 'comands':
-          this.board.execute();
-          break;
-        case 'language':
-          this.configLanguage.execute();
-          break;
-        case 'list:provider':
-          this.listProvider.execute();
-          break;
-        case 'make:api':
-          this.createApi.execute();
-          break;
-        case 'make:module':
-          this.createModule.execute();
-          break;
-        case 'make:provider':
-          this.createProvider.execute();
-          break;
-        case 'migration:generate':
-          this.shell.execute(
-            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
-          );
-          break;
-        case 'migration:run':
-          this.shell.execute(
-            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
-          );
-          break;
-        case 'revert':
-          this.deleteRegister.execute();
-          this.createRegister.execute();
-          break;
-        default:
-          this.console.many([
-            [this.messages.notFound, 'red', true, true, true],
-            [this.messages.try[0], 'blue', true, false, false],
-            [this.messages.try[1], 'yellow', true, false, false],
-            [this.messages.try[2], 'blue', true, false, true],
-          ]);
-          break;
-      }
-    } else {
-      this.console.many([
+
+      return this.actions[this.comand as keyof typeof this.actions].execute();
+    } catch {
+      return this.console.many([
         [this.messages.notFound, 'red', true, true, true],
         [this.messages.try[0], 'blue', true, false, false],
         [this.messages.try[1], 'yellow', true, false, false],
@@ -121,6 +109,4 @@ class Index {
       ]);
     }
   }
-}
-
-new Index().execute();
+})().execute();

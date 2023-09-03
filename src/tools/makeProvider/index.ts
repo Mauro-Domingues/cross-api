@@ -1,16 +1,14 @@
 import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
-import { MakeDependentProvider } from './dependent/index';
-import { MakeProvider } from './independent/index';
+import { Provider } from '@tools/Provider';
 
 export class CreateProvider {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly providerName: string | undefined;
   private readonly fatherNames: IModuleNamesDTO | undefined;
-  private readonly makeProvider: MakeProvider;
-  private readonly makeDependentProvider: MakeDependentProvider;
+  private readonly provider: Provider;
 
   constructor(
     providerName: string | undefined,
@@ -20,20 +18,16 @@ export class CreateProvider {
     this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.makeProvider = new MakeProvider(this.providerName);
-    this.makeDependentProvider = new MakeDependentProvider(
-      this.providerName,
-      this.fatherNames,
-    );
+    this.provider = new Provider(this.fatherNames);
   }
 
   public async execute(): Promise<void> {
-    if (this.providerName && this.fatherNames) {
-      await this.makeDependentProvider.execute();
-    } else if (this.providerName) {
-      await this.makeProvider.execute();
-    } else {
-      this.console.one([
+    try {
+      return this.provider.list[this.providerName as string][
+        this.provider.key
+      ].execute();
+    } catch {
+      return this.console.one([
         this.messages.providerNotFound,
         'red',
         true,
