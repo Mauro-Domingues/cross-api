@@ -1,27 +1,13 @@
 import { Console } from '@tools/console';
-
-interface IOptionDTO {
-  Name: string;
-  Provider: string;
-}
+import { Provider } from '@tools/Provider';
 
 export class ListProvider {
-  private readonly providers: Array<IOptionDTO>;
+  private readonly provider: Provider;
   private readonly console: Console;
 
   constructor() {
     this.console = new Console();
-    this.providers = [
-      { Name: 'cache       ', Provider: 'CacheProvider       ' },
-      { Name: 'crypto      ', Provider: 'CryptoProvider      ' },
-      { Name: 'hash        ', Provider: 'HashProvider        ' },
-      { Name: 'lead        ', Provider: 'leadProvider        ' },
-      { Name: 'mail        ', Provider: 'MailProvider        ' },
-      { Name: 'mailTemplate', Provider: 'MailTemplateProvider' },
-      { Name: 'queue       ', Provider: 'QueueProvider       ' },
-      { Name: 'notification', Provider: 'NotificationProvider' },
-      { Name: 'upload      ', Provider: 'StorageProvider     ' },
-    ];
+    this.provider = new Provider();
   }
 
   private renderEmptyLine(): void {
@@ -59,15 +45,15 @@ export class ListProvider {
   }
 
   private renderProviderOptions(): void {
-    this.providers.forEach(provider => {
+    Object.values(this.provider.list).flatMap(provider => {
       this.console.many([
         ['|   ', 'blue', true, false, false],
-        [` ➤  ${provider.Name}       `, 'yellow', true, false, false],
+        [` ➤  ${provider.name}       `, 'yellow', true, false, false],
         ['|   ', 'blue', true, false, false],
-        [` ${provider.Provider}     `, 'white', false, false, false],
+        [` ${provider.description}     `, 'white', false, false, false],
         ['       |   ', 'blue', true, false, false],
       ]);
-      this.renderEmptyLine();
+      return this.renderEmptyLine();
     });
   }
 

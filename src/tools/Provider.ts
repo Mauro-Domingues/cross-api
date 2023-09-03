@@ -19,6 +19,7 @@ import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class Provider {
+  private readonly fatherNames: IModuleNamesDTO | undefined;
   public readonly key: 'dependent' | 'independent';
   public readonly list: {
     [key: string]: {
@@ -30,6 +31,7 @@ export class Provider {
   };
 
   constructor(fatherNames?: IModuleNamesDTO) {
+    this.fatherNames = fatherNames;
     if (fatherNames) {
       this.key = 'dependent';
     } else {
@@ -41,25 +43,25 @@ export class Provider {
         name: 'cache       ',
         description: 'CacheProvider       ',
         independent: new MakeCacheProvider(),
-        dependent: new MakeDependentCacheProvider(fatherNames),
+        dependent: new MakeDependentCacheProvider(this.fatherNames),
       },
       crypto: {
         name: 'crypto      ',
         description: 'CryptoProvider      ',
         independent: new MakeCryptoProvider(),
-        dependent: new MakeDependentCryptoProvider(fatherNames),
+        dependent: new MakeDependentCryptoProvider(this.fatherNames),
       },
       hash: {
         name: 'hash        ',
         description: 'HashProvider        ',
         independent: new MakeHashProvider(),
-        dependent: new MakeDependentHashProvider(fatherNames),
+        dependent: new MakeDependentHashProvider(this.fatherNames),
       },
       lead: {
         name: 'lead        ',
         description: 'leadProvider        ',
         independent: new MakeLeadProvider(),
-        dependent: new MakeDependentLeadProvider(fatherNames),
+        dependent: new MakeDependentLeadProvider(this.fatherNames),
       },
       mail: {
         name: 'mail        ',
@@ -72,34 +74,36 @@ export class Provider {
         },
         dependent: {
           execute: (): Promise<void> =>
-            new MakeDependentMailTemplateProvider(fatherNames)
+            new MakeDependentMailTemplateProvider(this.fatherNames)
               .execute()
-              .then(() => new MakeDependentMailProvider(fatherNames).execute()),
+              .then(() =>
+                new MakeDependentMailProvider(this.fatherNames).execute(),
+              ),
         },
       },
       mailTemplate: {
         name: 'mailTemplate',
         description: 'MailTemplateProvider',
         independent: new MakeMailTemplateProvider(),
-        dependent: new MakeDependentMailTemplateProvider(fatherNames),
+        dependent: new MakeDependentMailTemplateProvider(this.fatherNames),
       },
       queue: {
         name: 'queue       ',
         description: 'QueueProvider       ',
         independent: new MakeQueueProvider(),
-        dependent: new MakeDependentQueueProvider(fatherNames),
+        dependent: new MakeDependentQueueProvider(this.fatherNames),
       },
       notification: {
         name: 'notification',
         description: 'NotificationProvider',
         independent: new MakeNotificationProvider(),
-        dependent: new MakeDependentNotificationProvider(fatherNames),
+        dependent: new MakeDependentNotificationProvider(this.fatherNames),
       },
       upload: {
         name: 'upload      ',
         description: 'StorageProvider     ',
         independent: new MakeStorageProvider(),
-        dependent: new MakeDependentStorageProvider(fatherNames),
+        dependent: new MakeDependentStorageProvider(this.fatherNames),
       },
     };
   }
