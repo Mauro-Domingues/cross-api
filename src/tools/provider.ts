@@ -67,18 +67,18 @@ export class Provider {
         name: 'mail        ',
         description: 'MailProvider        ',
         independent: {
-          execute: (): Promise<void> =>
-            new MakeMailTemplateProvider()
-              .execute()
-              .then(() => new MakeMailProvider().execute()),
+          execute: async (): Promise<void> => {
+            await new MakeMailTemplateProvider().execute();
+            return new MakeMailProvider().execute();
+          },
         },
         dependent: {
-          execute: (): Promise<void> =>
-            new MakeDependentMailTemplateProvider(this.fatherNames)
-              .execute()
-              .then(() =>
-                new MakeDependentMailProvider(this.fatherNames).execute(),
-              ),
+          execute: async (): Promise<void> => {
+            await new MakeDependentMailTemplateProvider(
+              this.fatherNames,
+            ).execute();
+            return new MakeDependentMailProvider(this.fatherNames).execute();
+          },
         },
       },
       mailTemplate: {
