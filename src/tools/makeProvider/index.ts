@@ -1,7 +1,7 @@
 import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
-import { Provider } from '@tools/Provider';
+import { Provider } from '@tools/provider';
 
 export class CreateProvider {
   private readonly messages: IMessagesDTO;

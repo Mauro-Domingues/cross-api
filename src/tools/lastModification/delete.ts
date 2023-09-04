@@ -2,7 +2,7 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
-import { Provider } from '@tools/Provider';
+import { Provider } from '@tools/provider';
 
 export class DeleteRegister {
   private readonly messages: IMessagesDTO;

@@ -1,5 +1,5 @@
 import { IModuleNamesDTO } from '@tools/names';
-import { Module } from '@tools/Module';
+import { Module } from '@tools/module';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 

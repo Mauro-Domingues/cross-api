@@ -1,5 +1,5 @@
 import { Console } from '@tools/console';
-import { Provider } from '@tools/Provider';
+import { Provider } from '@tools/provider';
 
 export class ListProvider {
   private readonly provider: Provider;
