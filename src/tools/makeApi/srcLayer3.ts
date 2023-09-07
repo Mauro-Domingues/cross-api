@@ -20,6 +20,7 @@ import { FileManager } from '@tools/fileManager';
 import { CreateKeys } from '@templates/types/keys';
 import { CreateIExceptionDTO } from '@templates/dtos/IExceptionDTO';
 import { CreateparseParam } from '@templates/middlewares/parseParam';
+import { CreateCombinations } from '@templates/utils/combinations';
 
 export class MakeThirdLayer {
   private readonly fileManager: FileManager;
@@ -41,6 +42,7 @@ export class MakeThirdLayer {
   private readonly createICacheDTO: CreateICacheDTO;
   private readonly createIExceptionDTO: CreateIExceptionDTO;
   private readonly createDomains: CreateDomains;
+  private readonly createCombinations: CreateCombinations;
   private readonly createServer: CreateServer;
   private readonly createApp: CreateApp;
   private readonly createExpressNamespace: CreateExpressNamespace;
@@ -65,6 +67,7 @@ export class MakeThirdLayer {
     this.createIExceptionDTO = new CreateIExceptionDTO();
     this.createICacheDTO = new CreateICacheDTO();
     this.createDomains = new CreateDomains();
+    this.createCombinations = new CreateCombinations();
     this.createServer = new CreateServer();
     this.createApp = new CreateApp();
     this.createExpressNamespace = new CreateExpressNamespace();
@@ -145,6 +148,10 @@ export class MakeThirdLayer {
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'domainsManager.ts'],
+      this.createDomainsManager,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'combinations.ts'],
       this.createDomainsManager,
     );
     await this.fileManager.checkAndCreateFile(

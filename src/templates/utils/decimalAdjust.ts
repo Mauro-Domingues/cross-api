@@ -1,37 +1,21 @@
 export class CreateDecimaAdjust {
   public execute(): string {
     return `export function roundDecimal(v: number, exp?: number) {
-  if (typeof exp === 'undefined') {
+  if (typeof exp === 'undefined' || Number.isNaN(v) || exp % 1 !== 0) {
     return NaN;
   }
 
-  if (Number.isNaN(v) || exp % 1 !== 0) {
-    return NaN;
-  }
-
-  let value = v;
-
-  let negative = false;
-
-  let result;
-
-  if (Math.sign(value) === -1) {
-    value = v * -1;
-    negative = true;
-  }
+  const negative = Math.sign(v) === -1;
+  const value = negative ? v * -1 : v;
 
   if (!\`\${value}\`.includes('e')) {
-    result = +\`\${Math.round(+\`\${value}e+\${exp}\`)}e-\${exp}\`;
-
+    const result = +\`\${Math.round(+\`\${value}e+\${exp}\`)}e-\${exp}\`;
     return negative ? result * -1 : result;
   }
-  const arr = \`\${value}\`.split('e');
-  let sig = '';
-  if (+arr[1] + exp > 0) {
-    sig = '+';
-  }
 
-  result = +\`\${Math.round(+\`\${+arr[0]}e\${sig}\${+arr[1] + exp}\`)}e-\${exp}\`;
+  const arr = \`\${value}\`.split('e');
+  const sig = +arr[1] + exp > 0 ? '+' : '';
+  const result = +\`\${Math.round(+\`\${+arr[0]}e\${sig}\${+arr[1] + exp}\`)}e-\${exp}\`;
 
   return negative ? result * -1 : result;
 }
