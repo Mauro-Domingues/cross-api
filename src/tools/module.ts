@@ -62,14 +62,14 @@ export class Module {
     );
   }
 
-  public async makeIndependentModule() {
+  public async makeIndependentModule(): Promise<void> {
     await this.makeStructure.execute();
     await this.makeInfra.execute();
     await this.makeFunctionalities.execute();
     return this.makeUnitTests.execute();
   }
 
-  public async makeDependentModule() {
+  public async makeDependentModule(): Promise<void> {
     if (!this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,

@@ -29,6 +29,7 @@ export class CreateRegister {
       'tools',
       'lastModification',
     ]);
+    this.constructBase();
   }
 
   private async constructBase(): Promise<void> {
@@ -219,7 +220,6 @@ export { ${this.fatherNames.lowerModuleName}Router };
   }
 
   public async execute(): Promise<void> {
-    await this.constructBase();
     if (this.comand && this.comand[0] === 'make:provider') {
       await this.makeProvider();
     } else if (this.comand && this.comand[0] === 'make:module') {

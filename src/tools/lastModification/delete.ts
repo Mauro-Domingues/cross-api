@@ -23,6 +23,7 @@ export class DeleteRegister {
       'tools',
       'lastModification',
     ]);
+    this.constructBase();
   }
 
   private async constructBase(): Promise<void> {
@@ -371,7 +372,6 @@ export class DeleteRegister {
   }
 
   public async execute(): Promise<void> {
-    await this.constructBase();
     const register = await this.fileManager.readFile([
       this.basePath,
       'comands',

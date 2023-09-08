@@ -10,7 +10,7 @@ export class CreateDomainsManager {
 import { resolve } ${'from'} 'path';
 
 export class DomainsManager {
-  basePath: string;
+  private readonly basePath: string;
 
   constructor() {
     this.basePath = resolve(__dirname, '..', 'assets', 'domains.txt');

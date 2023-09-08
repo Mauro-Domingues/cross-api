@@ -21,6 +21,7 @@ import { CreateKeys } from '@templates/types/keys';
 import { CreateIExceptionDTO } from '@templates/dtos/IExceptionDTO';
 import { CreateparseParam } from '@templates/middlewares/parseParam';
 import { CreateCombinations } from '@templates/utils/combinations';
+import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 
 export class MakeThirdLayer {
   private readonly fileManager: FileManager;
@@ -33,6 +34,7 @@ export class MakeThirdLayer {
   private readonly createRateLimiter: CreateRateLimiter;
   private readonly createDecodeJwt: CreateDecodeJwt;
   private readonly createGuard: CreateGuard;
+  private readonly createJsonToXml: CreateJsonToXml;
   private readonly createparseParam: CreateparseParam;
   private readonly createKeys: CreateKeys;
   private readonly createRoutes: CreateRoutes;
@@ -61,6 +63,7 @@ export class MakeThirdLayer {
     this.createRoutes = new CreateRoutes();
     this.createGuard = new CreateGuard();
     this.createparseParam = new CreateparseParam();
+    this.createJsonToXml = new CreateJsonToXml();
     this.createIResponseDTO = new CreateIResponseDTO();
     this.createIObjectDTO = new CreateIObjectDTO();
     this.createIListDTO = new CreateIListDTO();
@@ -157,6 +160,10 @@ export class MakeThirdLayer {
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'errorLog.ts'],
       this.createErrorLog,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'jsonToXml.ts'],
+      this.createJsonToXml,
     );
     return this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'normalizeQueryLink.ts'],
