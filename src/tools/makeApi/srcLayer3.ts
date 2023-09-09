@@ -155,7 +155,7 @@ export class MakeThirdLayer {
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'combinations.ts'],
-      this.createDomainsManager,
+      this.createCombinations,
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'errorLog.ts'],
