@@ -186,8 +186,8 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   public async execute(): Promise<void> {
-    this.showLanguageOptions();
-    this.setConfig();
+    await this.showLanguageOptions();
+    await this.setConfig();
     return this.config.execute();
   }
 }

@@ -44,7 +44,7 @@ export class ConfigLanguage {
     };
   }
 
-  protected showLanguageOptions(): void {
+  protected async showLanguageOptions(): Promise<void> {
     this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
     console.table(Object.keys(this.languageOptions));
     this.console.one(['', 'white', false, false, false]);
