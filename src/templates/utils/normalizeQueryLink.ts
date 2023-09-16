@@ -4,7 +4,7 @@ export class CreateNormalizeQueryLink {
   baseUrl: string,
   data: T,
 ): string {
-  const isType = (key: string | keyof T): key is keyof T => true;
+  const isType = (_key: string | keyof T): _key is keyof T => true;
 
   if (!data || Object.keys(data).length === 0) return baseUrl;
 

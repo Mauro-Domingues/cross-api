@@ -18,14 +18,14 @@ interface ILanguageConfigDTO {
 }
 
 export class ConfigLanguage {
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
+  protected readonly fileManager: FileManager;
+  protected readonly console: Console;
+  protected messages: IMessagesDTO;
   private readonly englishMessages: EnglishMessages;
   private readonly portugueseMessages: PortugueseMessages;
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  public readonly Language: ILanguageOptionsDTO;
-  public messages: IMessagesDTO;
-  public languageConfig: ILanguageConfigDTO;
+  private readonly languageOptions: ILanguageOptionsDTO;
+  private languageConfig: ILanguageConfigDTO;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
@@ -34,7 +34,7 @@ export class ConfigLanguage {
     this.portugueseMessages = new PortugueseMessages();
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.messages = new Messages().execute();
-    this.Language = {
+    this.languageOptions = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',
     };
@@ -44,9 +44,9 @@ export class ConfigLanguage {
     };
   }
 
-  private showLanguageOptions(): void {
+  protected showLanguageOptions(): void {
     this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
-    console.table(Object.keys(this.Language));
+    console.table(Object.keys(this.languageOptions));
     this.console.one(['', 'white', false, false, false]);
 
     const rl = createInterface({
@@ -55,13 +55,13 @@ export class ConfigLanguage {
     });
 
     rl.question(this.messages.answer, optionChosen => {
-      const choice = Object.keys(this.Language)[
+      const choice = Object.keys(this.languageOptions)[
         Number(optionChosen)
       ] as keyof ILanguageOptionsDTO;
 
       if (
         this.isLanguageOptionsKeyType(choice) &&
-        Object.keys(this.Language)[Number(optionChosen)]
+        Object.keys(this.languageOptions)[Number(optionChosen)]
       ) {
         this.languageConfig = {
           option: choice,
@@ -78,7 +78,7 @@ export class ConfigLanguage {
     });
   }
 
-  public validateOption(optionChosen: string): void {
+  private validateOption(optionChosen: string): void {
     this.console.one([
       `"${optionChosen}"${this.messages.invalidLanguage}`,
       'red',
@@ -88,13 +88,13 @@ export class ConfigLanguage {
     ]);
   }
 
-  public showChosenOption({ option, index } = this.languageConfig): void {
-    const languageChosen = this[this.Language[option]].execute();
+  private showChosenOption({ option, index } = this.languageConfig): void {
+    const languageChosen = this[this.languageOptions[option]].execute();
 
     this.messages = languageChosen;
 
     this.console.one([
-      `${this.messages.choice}${Object.keys(this.Language)[index]}`,
+      `${this.messages.choice}${Object.keys(this.languageOptions)[index]}`,
       'green',
       true,
       true,
@@ -102,7 +102,7 @@ export class ConfigLanguage {
     ]);
   }
 
-  public async setLanguageOption(): Promise<void> {
+  private async setLanguageOption(): Promise<void> {
     await this.fileManager.truncateFile([
       'node_modules',
       'cross-api',
@@ -116,7 +116,7 @@ export class ConfigLanguage {
     );
   }
 
-  public isLanguageOptionsKeyType(
+  private isLanguageOptionsKeyType(
     _option: keyof ILanguageOptionsDTO,
   ): _option is keyof ILanguageOptionsDTO {
     return true;
