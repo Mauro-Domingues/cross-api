@@ -88,7 +88,7 @@ export class ConfigLanguage {
     ]);
   }
 
-  private showChosenOption({ option, index } = this.languageConfig): void {
+  protected showChosenOption({ option, index } = this.languageConfig): void {
     const languageChosen = this[this.languageOptions[option]].execute();
 
     this.messages = languageChosen;

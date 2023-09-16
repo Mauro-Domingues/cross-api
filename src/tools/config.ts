@@ -1,5 +1,5 @@
-import { createInterface } from 'readline';
 import { Config } from '@templates/assets/config';
+import { createInterface } from 'readline';
 import { Shell } from '@tools/shell';
 import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
 
@@ -188,7 +188,7 @@ export class ConfigJson extends ConfigLanguage {
     return this.config.execute();
   }
 
-  public async execute(): Promise<void> {
+  private configLanguage(): void {
     this.console.one([this.messages.language, 'yellow', true, true, true]);
     console.table(Object.keys(this.languageOptions));
     this.console.one(['', 'white', false, false, false]);
@@ -213,7 +213,7 @@ export class ConfigJson extends ConfigLanguage {
         };
 
         rl.close();
-        this.execute();
+        this.showChosenOption();
         this.setConfig();
         this.setLanguageOption();
       } else {
@@ -222,5 +222,9 @@ export class ConfigJson extends ConfigLanguage {
         this.execute();
       }
     });
+  }
+
+  public async execute(): Promise<void> {
+    return this.configLanguage();
   }
 }
