@@ -527,7 +527,7 @@ await this.examplesRepository.deleteMany(
 
 ```typescript
 const example = await this.examplesRepository.findBy(
-  { id: 123 },
+  { where: { id: 123 } },
   trx,
 );
 
