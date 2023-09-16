@@ -46,7 +46,7 @@ import { I${
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';
-import { mapAndUpdateAttribute } ${'from'} '@utils/mappers/mapAndUpdateAttribute';
+import { updateAttribute } ${'from'} '@utils/mappers';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
@@ -89,7 +89,7 @@ export class Update${this.names.upperModuleName}Service {
       }
 
       await this.${this.names.pluralLowerModuleName}Repository.update(
-        mapAndUpdateAttribute(${this.names.lowerModuleName}, ${
+        updateAttribute(${this.names.lowerModuleName}, ${
       this.names.lowerModuleName
     }Data),
         trx,

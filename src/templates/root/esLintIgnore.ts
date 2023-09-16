@@ -4,7 +4,6 @@ export class CreateEsLintIgnore {
 node_modules
 dist
 src/@types
-src/utils/mappers
 `;
   }
 }

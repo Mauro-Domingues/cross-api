@@ -9,9 +9,11 @@ import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchStr
 import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import { FileManager } from '@tools/fileManager';
+import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
 
 export class MakeFourthLayer {
   private readonly fileManager: FileManager;
+  private readonly createIndexMapper: CreateIndexMapper;
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
   private readonly createMapAndUpdate: CreateMapAndUpdate;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
@@ -25,6 +27,7 @@ export class MakeFourthLayer {
 
   constructor() {
     this.fileManager = new FileManager();
+    this.createIndexMapper = new CreateIndexMapper();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndUpdate = new CreateMapAndUpdate();
     this.createMapAndPatchString = new CreateMapAndPatchString();
@@ -38,6 +41,10 @@ export class MakeFourthLayer {
   }
 
   public async execute(): Promise<void> {
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'mappers', 'index.ts'],
+      this.createIndexMapper,
+    );
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
       this.createMapAndClone,

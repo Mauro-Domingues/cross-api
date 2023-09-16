@@ -1,11 +1,11 @@
 export class CreateCorsConfig {
   public execute(): string {
-    return `import { DomainsManager } ${'from'} '@utils/domainsManager';
+    return `import { readDomain } ${'from'} '@utils/domainsManager';
 import { CorsOptions } ${'from'} 'cors';
 
 export const corsConfig: CorsOptions = {
   origin(origin, callback) {
-    if (origin && new DomainsManager().read().indexOf(origin) !== -1) {
+    if (origin && readDomain().indexOf(origin) !== -1) {
       callback(null, true);
     } else if (
       process.env.NODE_ENV === 'test' ||

@@ -8,7 +8,8 @@ export class CreateMapAndUpdateString {
   }
 
   public execute(): string {
-    return `import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
+    return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
+import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
 
 /**
  * ${this.messages.mapAndUpdateString}
@@ -16,9 +17,9 @@ export class CreateMapAndUpdateString {
  * @param newAttributes Object
  * @returns string
  */
-export function mapAndUpdateStringify<Type>(
+export function mapAndUpdateStringify<DTO extends IObjectDTO>(
   oldAttributes: string,
-  newAttributes: Type,
+  newAttributes: DTO,
 ): string {
   const updatedAttributes: ReturnType<typeof mapAndUpdateAttribute> =
     mapAndUpdateAttribute(JSON.parse(oldAttributes), newAttributes);

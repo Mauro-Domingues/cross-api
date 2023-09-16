@@ -2,7 +2,7 @@ export class CreateBullQueue {
   public execute(): string {
     return `import Bull, { Job, Queue } ${'from'} 'bull';
 import { queueConfig } ${'from'} '@config/queue';
-import { AppError } ${'from'} '@shared/errors/AppError';
+import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
 import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
@@ -13,36 +13,6 @@ export class BullProvider implements IQueueProviderDTO {
   constructor() {
     this.init();
     this.processQueue();
-  }
-
-  private convertToMilliseconds(
-    delay:
-      | \`\${number}d\`
-      | \`\${number}h\`
-      | \`\${number}min\`
-      | \`\${number}s\`
-      | \`\${number}ms\`,
-  ): number {
-    const match = delay.match(/\\d+/);
-    if (match === null) {
-      throw new AppError('Invalid delay format');
-    }
-
-    const miliseconds = parseInt(match[0], 10);
-    const timeUnit = delay.replace(/\\d/g, '');
-
-    switch (timeUnit) {
-      case 'd':
-        return miliseconds * 24 * 60 * 60 * 1000;
-      case 'h':
-        return miliseconds * 60 * 60 * 1000;
-      case 'min':
-        return miliseconds * 60 * 1000;
-      case 's':
-        return miliseconds * 1000;
-      default:
-        return miliseconds;
-    }
   }
 
   private init(): void {
@@ -79,7 +49,7 @@ export class BullProvider implements IQueueProviderDTO {
       | \`\${number}ms\`,
     attempts = 1,
   ): Promise<Job<T>> {
-    const parsedDelay = this.convertToMilliseconds(delay);
+    const parsedDelay = convertToMilliseconds(delay);
     return this.queues[key].queue.add(data, { delay: parsedDelay, attempts });
   }
 

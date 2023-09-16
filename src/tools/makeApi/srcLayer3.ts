@@ -22,6 +22,7 @@ import { CreateIExceptionDTO } from '@templates/dtos/IExceptionDTO';
 import { CreateparseParam } from '@templates/middlewares/parseParam';
 import { CreateCombinations } from '@templates/utils/combinations';
 import { CreateJsonToXml } from '@templates/utils/jsonToXml';
+import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
 
 export class MakeThirdLayer {
   private readonly fileManager: FileManager;
@@ -35,7 +36,8 @@ export class MakeThirdLayer {
   private readonly createDecodeJwt: CreateDecodeJwt;
   private readonly createGuard: CreateGuard;
   private readonly createJsonToXml: CreateJsonToXml;
-  private readonly createparseParam: CreateparseParam;
+  private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
+  private readonly createParseParam: CreateparseParam;
   private readonly createKeys: CreateKeys;
   private readonly createRoutes: CreateRoutes;
   private readonly createIResponseDTO: CreateIResponseDTO;
@@ -62,7 +64,8 @@ export class MakeThirdLayer {
     this.createErrorLog = new CreateErrorLog();
     this.createRoutes = new CreateRoutes();
     this.createGuard = new CreateGuard();
-    this.createparseParam = new CreateparseParam();
+    this.createConvertToMilliseconds = new CreateConvertToMilliseconds();
+    this.createParseParam = new CreateparseParam();
     this.createJsonToXml = new CreateJsonToXml();
     this.createIResponseDTO = new CreateIResponseDTO();
     this.createIObjectDTO = new CreateIObjectDTO();
@@ -123,7 +126,7 @@ export class MakeThirdLayer {
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'middlewares', 'parseParam.ts'],
-      this.createparseParam,
+      this.createParseParam,
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'middlewares', 'DecodeJwt.ts'],
@@ -152,6 +155,10 @@ export class MakeThirdLayer {
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'domainsManager.ts'],
       this.createDomainsManager,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'utils', 'convertToMilliseconds.ts'],
+      this.createConvertToMilliseconds,
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'combinations.ts'],

@@ -58,7 +58,6 @@ describe('Show${this.names.upperModuleName}Service', () => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${
       this.names.pluralUpperModuleName
     }Repository();
-
     show${this.names.upperModuleName} = new Show${
       this.names.upperModuleName
     }Service(fake${this.names.pluralUpperModuleName}Repository);
