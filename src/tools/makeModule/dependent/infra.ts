@@ -18,8 +18,6 @@ export class MakeDependentInfra {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly createIndexDependentRoute: CreateIndexDependentRoute;
   private readonly createFullDependentRoute: CreateFullDependentRoute;
   private readonly createDependentRoute: CreateDependentRoute;
@@ -33,14 +31,12 @@ export class MakeDependentInfra {
   private readonly createContainer: CreateContainer;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
     this.createIndexDependentRoute = new CreateIndexDependentRoute(
       this.fatherNames,
     );

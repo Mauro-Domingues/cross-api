@@ -5,17 +5,17 @@ import { Console } from '@tools/console';
 export class CreateRepository {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Pick<
-        IModuleNamesDTO,
-        'pluralLowerModuleName' | 'pluralUpperModuleName' | 'upperModuleName'
-      >
-    | undefined;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly names:
+      | Pick<
+          IModuleNamesDTO,
+          'pluralLowerModuleName' | 'pluralUpperModuleName' | 'upperModuleName'
+        >
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.names = names;
   }
 
   public execute(): string {

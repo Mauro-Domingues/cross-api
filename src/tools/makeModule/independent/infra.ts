@@ -17,7 +17,6 @@ export class MakeInfra {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
   private readonly createIndexRoute: CreateIndexRoute;
   private readonly createIndependentRoute: CreateIndependentRoute;
   private readonly createIRepository: CreateIRepository;
@@ -29,8 +28,7 @@ export class MakeInfra {
   private readonly createRoutes: CreateRoutes;
   private readonly createContainer: CreateContainer;
 
-  constructor(names: IModuleNamesDTO | undefined) {
-    this.names = names;
+  constructor(private readonly names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

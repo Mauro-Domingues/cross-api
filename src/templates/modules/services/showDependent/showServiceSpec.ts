@@ -5,21 +5,17 @@ import { Console } from '@tools/console';
 export class ShowSpecDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
-    | undefined;
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names:
+      | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
+      | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {

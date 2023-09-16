@@ -14,9 +14,6 @@ import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 
 export class MakeDependentQueueProvider {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
@@ -31,8 +28,11 @@ export class MakeDependentQueueProvider {
   private readonly createJobs: CreateJobs;
   private readonly createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
-    this.fatherNames = fatherNames;
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

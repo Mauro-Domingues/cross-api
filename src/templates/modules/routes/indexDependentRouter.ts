@@ -5,14 +5,14 @@ import { Console } from '@tools/console';
 export class CreateIndexDependentRoute {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'lowerModuleName'>
-    | undefined;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'lowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {

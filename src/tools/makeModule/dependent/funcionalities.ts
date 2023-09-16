@@ -17,8 +17,6 @@ export class MakeDependentFunctionalities {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly updateDependentService: UpdateDependentService;
   private readonly updateDependentController: UpdateDependentController;
   private readonly showDependentService: ShowDependentService;
@@ -31,14 +29,12 @@ export class MakeDependentFunctionalities {
   private readonly createDependentController: CreateDependentController;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.fileManager = new FileManager();
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
     this.updateDependentService = new UpdateDependentService(
       this.names,
       this.fatherNames,

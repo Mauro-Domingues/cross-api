@@ -11,9 +11,6 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentStorageProvider {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
@@ -25,8 +22,11 @@ export class MakeDependentStorageProvider {
   private readonly createStorageIndex: CreateStorageIndex;
   private readonly createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
-    this.fatherNames = fatherNames;
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

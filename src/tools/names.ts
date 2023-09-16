@@ -10,12 +10,10 @@ export interface IModuleNamesDTO {
 }
 
 export class GetNames {
-  private readonly name: string | undefined;
   private readonly pluralize: Pluralize;
 
-  constructor(name: string | undefined) {
-    this.pluralize = new Pluralize(name);
-    this.name = name;
+  constructor(private readonly name: string | undefined) {
+    this.pluralize = new Pluralize(this.name);
   }
 
   private getSingularAndPlural(word: string): {

@@ -3,16 +3,14 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 export class CreateDependentNodemailerMail {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
   constructor(
-    fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
-    this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
     this.console = new Console();
   }

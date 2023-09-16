@@ -236,15 +236,13 @@ export class Pluralize {
     ['thou', 'you'],
   ];
   private readonly messages: IMessagesDTO;
-  private readonly word: string | undefined;
   private readonly pluralRules: Array<[RegExp, string]>;
   private readonly singularRules: Array<[RegExp, string]>;
   private readonly uncountables: { [key: string]: boolean };
   private readonly irregularPlurals: { [key: string]: string };
   private readonly irregularSingles: { [key: string]: string };
 
-  constructor(word: string | undefined) {
-    this.word = word;
+  constructor(private readonly word: string | undefined) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.pluralRules = [];

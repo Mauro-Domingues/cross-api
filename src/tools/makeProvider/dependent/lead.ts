@@ -15,9 +15,6 @@ export class MakeDependentLeadProvider {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly fileManager: FileManager;
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly createILead: CreateILead;
   private readonly createILeadDTO: CreateILeadDTO;
   private readonly createIAuthDTO: CreateIAuthDTO;
@@ -27,11 +24,14 @@ export class MakeDependentLeadProvider {
   private readonly createLeadIndex: CreateLeadIndex;
   private readonly createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.fatherNames = fatherNames;
     this.createILead = new CreateILead();
     this.createILeadDTO = new CreateILeadDTO();
     this.createIAuthDTO = new CreateIAuthDTO();

@@ -7,13 +7,15 @@ export class MakeStructure {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly names:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'upperModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.names = names;
   }
 
   public async execute(): Promise<void> {

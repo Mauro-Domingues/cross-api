@@ -5,14 +5,14 @@ import { Console } from '@tools/console';
 export class ListController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Pick<IModuleNamesDTO, 'upperModuleName' | 'pluralLowerModuleName'>
-    | undefined;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly names:
+      | Pick<IModuleNamesDTO, 'upperModuleName' | 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.names = names;
   }
 
   public execute(): string {

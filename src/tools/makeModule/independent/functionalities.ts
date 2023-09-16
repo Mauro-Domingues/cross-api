@@ -17,7 +17,6 @@ export class MakeFunctionalities {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
   private readonly updateService: UpdateService;
   private readonly updateController: UpdateController;
   private readonly showService: ShowService;
@@ -29,11 +28,10 @@ export class MakeFunctionalities {
   private readonly createService: CreateService;
   private readonly createController: CreateController;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(private readonly names: IModuleNamesDTO | undefined) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.names = names;
     this.updateService = new UpdateService(this.names);
     this.updateController = new UpdateController(this.names);
     this.showService = new ShowService(this.names);

@@ -17,8 +17,6 @@ export class MakeDependentUnitTests {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly updateSpecDependentService: UpdateSpecDependentService;
   private readonly updateSpecDependentController: UpdateSpecDependentController;
   private readonly showSpecDependentService: ShowSpecDependentService;
@@ -31,14 +29,12 @@ export class MakeDependentUnitTests {
   private readonly createSpecDependentController: CreateSpecDependentController;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
     this.updateSpecDependentService = new UpdateSpecDependentService(
       this.names,
       this.fatherNames,

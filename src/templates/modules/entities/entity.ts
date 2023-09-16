@@ -5,14 +5,14 @@ import { Console } from '@tools/console';
 export class CreateEntity {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>
-    | undefined;
 
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly names:
+      | Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>
+      | undefined,
+  ) {
     this.console = new Console();
     this.messages = new Messages().execute();
-    this.names = names;
   }
 
   public execute(): string {

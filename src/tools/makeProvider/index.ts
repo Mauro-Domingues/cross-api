@@ -6,16 +6,14 @@ import { Provider } from '@tools/provider';
 export class CreateProvider {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly providerName: string | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly provider: Provider;
 
   constructor(
-    providerName: string | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly providerName: string | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
-    this.providerName = providerName;
-    this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
     this.console = new Console();
     this.provider = new Provider(this.fatherNames);

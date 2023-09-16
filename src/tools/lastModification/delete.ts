@@ -13,7 +13,7 @@ export class DeleteRegister {
 
   constructor() {
     this.messages = new Messages().execute();
-    this.provider = new Provider();
+    this.provider = new Provider(undefined);
     this.fileManager = new FileManager();
     this.console = new Console();
     this.basePath = this.fileManager.resolvePath([

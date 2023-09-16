@@ -12,9 +12,6 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailProvider {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly fileManager: FileManager;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
@@ -27,8 +24,11 @@ export class MakeDependentMailProvider {
   private readonly createDependentSESMail: CreateDependentSESMail;
   private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
-    this.fatherNames = fatherNames;
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

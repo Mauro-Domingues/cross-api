@@ -19,7 +19,6 @@ import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class Provider {
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   public readonly key: 'dependent' | 'independent';
   public readonly list: {
     [key: string]: {
@@ -30,8 +29,11 @@ export class Provider {
     };
   };
 
-  constructor(fatherNames?: IModuleNamesDTO) {
-    this.fatherNames = fatherNames;
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     if (fatherNames) {
       this.key = 'dependent';
     } else {

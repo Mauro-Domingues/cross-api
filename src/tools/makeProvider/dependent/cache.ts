@@ -10,9 +10,6 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentCacheProvider {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly fileManager: FileManager;
@@ -23,8 +20,11 @@ export class MakeDependentCacheProvider {
   private readonly createCacheIndex: CreateCacheIndex;
   private readonly createContainer: CreateContainer;
 
-  constructor(fatherNames: IModuleNamesDTO | undefined) {
-    this.fatherNames = fatherNames;
+  constructor(
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

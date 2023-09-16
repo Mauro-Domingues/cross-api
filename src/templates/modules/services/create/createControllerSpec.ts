@@ -5,17 +5,16 @@ import { Console } from '@tools/console';
 export class CreateSpecController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly names:
-    | Pick<
-        IModuleNamesDTO,
-        'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
-      >
-    | undefined;
-
-  constructor(names: IModuleNamesDTO | undefined) {
+  constructor(
+    private readonly names:
+      | Pick<
+          IModuleNamesDTO,
+          'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
+        >
+      | undefined,
+  ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.names = names;
   }
 
   public execute(): string {

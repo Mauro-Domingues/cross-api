@@ -4,18 +4,14 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 export class CreateModule {
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly module: Module;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.names = names;
-    this.fatherNames = fatherNames;
     this.messages = new Messages().execute();
     this.console = new Console();
     this.module = new Module(this.names, this.fatherNames);

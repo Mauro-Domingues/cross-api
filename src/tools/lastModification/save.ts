@@ -4,24 +4,16 @@ import { IModuleNamesDTO } from '@tools/names';
 export class CreateRegister {
   private readonly basePath: string;
   private readonly fileManager: FileManager;
-  private readonly comand: Array<string> | undefined;
-  private readonly providerName: string | undefined;
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
-    | undefined;
 
   constructor(
-    comand: Array<string> | undefined,
-    providerName: string | undefined,
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly comand: Array<string> | undefined,
+    private readonly providerName: string | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
+      | undefined,
   ) {
     this.fileManager = new FileManager();
-    this.comand = comand;
-    this.providerName = providerName;
-    this.names = names;
-    this.fatherNames = fatherNames;
     this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',

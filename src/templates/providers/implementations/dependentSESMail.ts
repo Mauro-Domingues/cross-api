@@ -3,18 +3,16 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 export class CreateDependentSESMail {
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
   constructor(
-    fatherNames: Pick<IModuleNamesDTO, 'pluralLowerModuleName'> | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.fatherNames = fatherNames;
   }
 
   public execute(): string {

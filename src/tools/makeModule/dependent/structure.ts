@@ -7,20 +7,18 @@ export class MakeDependentStructure {
   private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
   private readonly console: Console;
-  private readonly names: Pick<IModuleNamesDTO, 'upperModuleName'> | undefined;
-  private readonly fatherNames:
-    | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
-    | undefined;
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames: IModuleNamesDTO | undefined,
+    private readonly names:
+      | Pick<IModuleNamesDTO, 'upperModuleName'>
+      | undefined,
+    private readonly fatherNames:
+      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.names = names;
-    this.fatherNames = fatherNames;
   }
 
   public async execute(): Promise<void> {

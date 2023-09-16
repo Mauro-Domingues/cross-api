@@ -11,8 +11,6 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 export class Module {
-  private readonly names: IModuleNamesDTO | undefined;
-  private readonly fatherNames: IModuleNamesDTO | undefined;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
   private readonly makeUnitTests: MakeUnitTests;
@@ -26,11 +24,9 @@ export class Module {
   public readonly key: 'makeDependentModule' | 'makeIndependentModule';
 
   constructor(
-    names: IModuleNamesDTO | undefined,
-    fatherNames?: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNamesDTO | undefined,
+    private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.names = names;
-    this.fatherNames = fatherNames;
     if (this.fatherNames) {
       this.key = 'makeDependentModule';
     } else {
