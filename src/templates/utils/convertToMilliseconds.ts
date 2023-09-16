@@ -30,6 +30,7 @@ export function convertToMilliseconds(
     default:
       return miliseconds;
   }
-}`;
+}
+`;
   }
 }

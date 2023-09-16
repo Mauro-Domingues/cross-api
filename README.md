@@ -254,7 +254,7 @@ class Example {
     await trx.startTransaction(); // Creates a single connection to the database
     try {
       
-      const result = await this.examplesRepository.create({ name: 'example' }, trx);
+      const result = await this.examplesRepository.create({ name: 'example' }, trx); // The trx object is mandatory if there is a connection to a database but optional if you are using "in memory repositories"
 
       await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
 
