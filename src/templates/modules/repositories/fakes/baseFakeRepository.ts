@@ -114,9 +114,16 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where: Partial<Entity> | Array<Partial<Entity>>;
   }): Promise<Array<Entity>> {
     return this.fakeRepository.filter(entity =>
-      Object.entries(where).every(([key, value]) =>
-        entity[key as keyof Entity].toString().includes(value),
-      ),
+      Object.entries(where).every(([key, value]) => {
+        let strValue = value.toString();
+        if (strValue.startsWith('%')) {
+          strValue = strValue.substring(1);
+        }
+        if (strValue.endsWith('%')) {
+          strValue = strValue.slice(0, -1);
+        }
+        return entity[key as keyof Entity].toString().includes(strValue);
+      }),
     );
   }
 

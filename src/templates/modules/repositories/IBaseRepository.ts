@@ -27,13 +27,13 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
   findIn(
     baseData: Omit<FindManyOptions<Entity>, 'where'> & {
       where: Partial<{ [key in keyof Entity]: Array<Entity[keyof Entity]> }>;
-    },
+    } & Partial<{ page: number; limit: number }>,
     trx?: QueryRunner,
   ): Promise<Array<Entity>>;
   findLike(
     baseData: Omit<FindManyOptions<Entity>, 'where'> & {
       where: NonNullable<FindManyOptions<Entity>['where']>;
-    },
+    } & Partial<{ page: number; limit: number }>,
     trx?: QueryRunner,
   ): Promise<Array<Entity>>;
   create(

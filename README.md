@@ -231,7 +231,8 @@ yarn cross make:module [name]
     │   ├── mapAndPatchAttribute.ts
     │   ├── mapAndPatchString.ts
     │   ├── mapAndUpdateAttribute.ts
-    │   └── mapAndUpdateString.ts
+    │   ├── mapAndUpdateString.ts
+    │   └── index.ts
     ├── decimalAdjust.ts
     ├── domainsManager.ts
     ├── errorLog.ts
@@ -253,7 +254,7 @@ class Example {
     await trx.startTransaction(); // Creates a single connection to the database
     try {
       
-      const result = await this.examplesRepository.create(trx, { name: 'example' });
+      const result = await this.examplesRepository.create({ name: 'example' }, trx);
 
       await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
 
@@ -276,8 +277,8 @@ class Example {
 
 ```typescript
 const example = await this.examplesRepository.exists(
+  { where: { id: 123 } },
   trx,
-  { id: 123 },
 );
 
 // Find one where id = 123 and return a boolean
@@ -290,8 +291,8 @@ const example = await this.examplesRepository.exists(
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  { where: { id: 123 } },
   trx,
-  { id: 123 },
 );
 
 // Find one where id = 123
@@ -301,8 +302,8 @@ const example = await this.examplesRepository.findBy(
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  { where: { id: 123, name: "example" } },
   trx,
-  { id: 123, name: "example" },
 );
 
 // Find one where id = 123 AND name = "example"
@@ -311,10 +312,15 @@ const example = await this.examplesRepository.findBy(
 <h4>For queries composed of one condition or another: </h4>
 
 ```typescript
-const example = await this.examplesRepository.findBy(trx, [
-  { id: 123 },
-  { name: "example" },
-]);
+const example = await this.examplesRepository.findBy(
+  {
+    where: [
+      { id: 123 },
+      { name: "example" },
+    ],
+  },
+  trx,
+);
 
 /** Find one where id = 123 OR name = "example"
  * You also can use a mapper to make your work easier and cleaner
@@ -328,10 +334,12 @@ const example = await this.examplesRepository.findBy(trx, [
 const select = { name: true }
 
 const example = await this.examplesRepository.findBy(
+  {
+    where: { id: 123 },
+    relations: ["relation-1", "relation-2"], // or { "relation-1": true, "relation-2": true }
+    select
+  },
   trx,
-  { id: 123 },
-  ["relation-1", "relation-2"],
-  select
 );
 
 // Find one where id = 123 and load related relation-1 and relation-2 entities
@@ -346,12 +354,13 @@ const baseData = [3, 4, 6, 7, 8, 9];
 const select = { name: true }
 
 const exampleArray = await this.examplesRepository.findIn(
+  {
+    where: { id: [3, 4, 6, 7, 8, 9] },
+    relations: ["relation-1", "relation-2"], // or { "relation-1": true, "relation-2": true }
+    order: { id: 'ASC' },
+    select,
+  },
   trx,
-  propertyName,
-  baseData,
-  ["relation-1", "relation-2", "relation-2"],
-  { id: 'ASC' },
-  select
 );
 
 // Find all and select name where id in = "3, 4, 6, 7, 8, 9"
@@ -363,17 +372,19 @@ output: [exampleArray]
 <h3>findLike</h3><h4> Exactly the same functionality as findBy, but search for entities using Like clause. The return is an array of the entity. Full Example:</h4>
 
 ```typescript
-const baseData = { name: '%example%' };
+const where = { name: '%example%' };
 const select = { name: true, id: true };
 const order = { name: 'ASC' } // options = "ASC" | "DESC" | "asc" | "desc"
 const limit = 10
 
 const exampleArray = await this.examplesRepository.findLike(
+  {
+    where,
+    order,
+    select,
+    limit
+  }
   trx,
-  baseData,
-  order,
-  select,
-  limit,
 );
 
 // Find all and select name where name has 'example'
@@ -390,13 +401,15 @@ const limit = 500;
 const select = { name: true }
 
 const exampleArray = await this.examplesRepository.findAll(
+  {
+    page,
+    limit,
+    where: { name: "example" },
+    ["relation-1", "relation-2.nested-relation"] // or { "relation-1": true, "relation-2": { nested-relation: true } }
+    order: { id: 'ASC' },
+    select
+  },
   trx,
-  page,
-  limit,
-  { name: "example" },
-  ["relation-1", "relation-2.nested-relation"]
-  { id: 'ASC' },
-  select
 );
 
 /** Find all where name = "example"
@@ -416,7 +429,7 @@ output: { examples: [exampleArray], amount: 500 }
 ```typescript
 data: IExampleDTO;
 
-const example = await this.examplesRepository.create(trx, data);
+const example = await this.examplesRepository.create(data, trx);
 ```
 <hr>
 <br>
@@ -425,7 +438,7 @@ const example = await this.examplesRepository.create(trx, data);
 ```typescript
 data: Array<IExampleDTO>;
 
-const examples = await this.examplesRepository.createMany(trx, data);
+const examples = await this.examplesRepository.createMany(data, trx);
 ```
 <hr>
 <br>
@@ -435,14 +448,14 @@ const examples = await this.examplesRepository.createMany(trx, data);
 data: IExampleDTO;
 
 const example = await this.examplesRepository.findBy(
+  { where: { id: 123 } },
   trx,
-  { id: 123 },
 );
 
 example.name = data.name;
 example.description = data.description;
 
-await this.examplesRepository.update(trx, example);
+await this.examplesRepository.update(example, trx);
 ```
 <hr>
 <br>
@@ -452,8 +465,8 @@ await this.examplesRepository.update(trx, example);
 data: Array<IExampleDTO>;
 
 const examples = await this.examplesRepository.findBy(
+  { where: { name: 'example' } },
   trx,
-  { name: 'example' },
 );
 
 const examplesToUpdate = examples.map(example => {
@@ -464,7 +477,7 @@ const examplesToUpdate = examples.map(example => {
   }
 })
 
-await this.examplesRepository.update(trx, examplesToUpdate);
+await this.examplesRepository.update(examplesToUpdate, trx);
 ```
 <hr>
 <br>
@@ -472,21 +485,21 @@ await this.examplesRepository.update(trx, examplesToUpdate);
 
 ```typescript
 const example = await this.examplesRepository.findBy(
+  { where: { id: 123 } },
   trx,
-  { id: 123 },
 );
 
 if (!example) {
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.delete(trx, { id: example.id });
+await this.examplesRepository.delete({ id: example.id }, trx);
 
 // delete example
 ```
 
 ```typescript
-await this.examplesRepository.delete(trx, { name: "example" });
+await this.examplesRepository.delete({ name: "example" }, trx);
 
 // delete all where name = example
 ```
@@ -495,13 +508,16 @@ await this.examplesRepository.delete(trx, { name: "example" });
 <h3>deleteMany</h3><h4> Classic delete, receives as parameter the type of the Array<entity> to delete it or a Array<{ key: value }> and execute multiple queries at once</h4>
 
 ```typescript
-await this.examplesRepository.deleteMany(trx, [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]);
+await this.examplesRepository.deleteMany(
+  [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+  ],
+  trx,
+);
 
 // delete example
 ```
@@ -511,21 +527,21 @@ await this.examplesRepository.deleteMany(trx, [
 
 ```typescript
 const example = await this.examplesRepository.findBy(
-  trx,
   { id: 123 },
+  trx,
 );
 
 if (!example) {
   throw new AppError("Example not found");
 };
 
-await this.examplesRepository.softDelete(trx, { id: example.id });
+await this.examplesRepository.softDelete({ id: example.id }, trx);
 
 // invalidate example
 ```
 
 ```typescript
-await this.examplesRepository.softDelete(trx, { name: "example" });
+await this.examplesRepository.softDelete({ name: "example" }, trx);
 
 // invalidate all where name = example
 ```
@@ -534,13 +550,16 @@ await this.examplesRepository.softDelete(trx, { name: "example" });
 <h3>softDeleteMany</h3><h4> Security delete, receives as parameter the type of the Array<entity> to delete it or a Array<{ key: value }> and execute multiple queries at once</h4>
 
 ```typescript
-await this.examplesRepository.softDeleteMany(trx, [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-]);
+await this.examplesRepository.softDeleteMany(
+  [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+  ],
+  trx,
+);
 
 // delete example
 ```
@@ -571,17 +590,17 @@ const example = await this.examplesRepository.findBy(trx, [
 ```typescript
 // using mapper
 
-import { mapAndCloneAttribute } from "@utils/mappers/mapAndCloneAttribute";
+import { cloneAttribute } from "@utils/mappers";
 
 const param: FindOptionsWhere<Example> = {
   key: "example",
 };
 
 const example = await this.examplesRepository.findBy(
+  {
+    where: cloneAttribute(param, ['id', 'name', 'description']),
+  },
   trx,
-  mapAndCloneAttribute(param, [
-    "id", "name", "description",
-  ]),
 );
 
 // Find where id = key OR name = key OR description = key
@@ -609,13 +628,16 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update(trx, {
-  name: inputData.name,
-  description: inputData.name, // Possible human error
-  extra: inputData.extra,
-  size: inputData.size,
-  price: inputData.price,
-});
+await this.examplesRepository.update(
+  {
+    name: inputData.name,
+    description: inputData.name, // Possible human error
+    extra: inputData.extra,
+    size: inputData.size,
+    price: inputData.price,
+  },
+  trx,
+);
 
 output = {
   name: "",
@@ -629,7 +651,7 @@ output = {
 ```typescript
 // with mapper
 
-import { mapAndUpdateAttribute } from "@utils/mappers/mapAndUpdateAttribute";
+import { updateAttribute } from "@utils/mappers";
 
 const example: Example = {
   name: "example",
@@ -652,8 +674,8 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  updateAttribute(example, inputData),
   trx,
-  mapAndUpdateAttribute(example, inputData),
 );
 
 output = {
@@ -703,7 +725,7 @@ if (inputData.price) {
   example.price = inputData.price;
 }
 
-await this.examplesRepository.update(trx, example);
+await this.examplesRepository.update(example, trx);
 
 output = {
   name: "example",
@@ -717,7 +739,7 @@ output = {
 ```typescript
 // with mapper
 
-import { mapAndPatchAttribute } from "@utils/mappers/mapAndPatchAttribute";
+import { patchAttribute } from "@utils/mappers";
 
 const example: Example = {
   name: "example",
@@ -740,8 +762,8 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  patchAttribute(example, inputData),
   trx,
-  mapAndPatchAttribute(example, inputData),
 );
 
 output = {
@@ -779,10 +801,13 @@ updatedData.extra = inputData.extra,
 updatedData.size = inputData.size,
 updatedData.price = inputData.price,
 
-await this.examplesRepository.update(trx, {
-  ...example,
-  data: JSON.stringify(updatedData),
-});
+await this.examplesRepository.update(
+  {
+    ...example,
+    data: JSON.stringify(updatedData),
+  },
+  trx,
+);
 
 output => example.data = "{\"name\": \"\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"\", \"price\": 20}";
 ```
@@ -790,7 +815,7 @@ output => example.data = "{\"name\": \"\",\"description\": \"this is a new descr
 ```typescript
 // with mapper
 
-import { mapAndUpdateString } from "@utils/mappers/mapAndUpdateString";
+import { updateString } from "@utils/mappers";
 
 const example: Example = {
   data: "{\"name\": \"example\",\"description\": \"this is an example\",\"extra\": \"\",\"size\": \"123\", \"price\": 100}",
@@ -804,10 +829,13 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update(trx, {
-  ...example,
-  data: mapAndUpdateString(example.data, inputData),
-});
+await this.examplesRepository.update(
+  {
+    ...example,
+    data: updateString(example.data, inputData),
+  },
+  trx,
+);
 
 output => example.data = "{\"name\": \"\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"\", \"price\": 20}"
 ```
@@ -848,10 +876,13 @@ if (inputData.price) {
   updatedData.price = inputData.price;
 }
 
-await this.examplesRepository.update(trx, {
-  ...example,
-  data: JSON.stringify(updatedData),
-});
+await this.examplesRepository.update(
+  {
+    ...example,
+    data: JSON.stringify(updatedData),
+  },
+  trx,
+);
 
 output => example.data = "{\"name\": \"example\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"123\", \"price\": 20}";
 ```
@@ -859,7 +890,7 @@ output => example.data = "{\"name\": \"example\",\"description\": \"this is a ne
 ```typescript
 // with mapper
 
-import { mapAndPatchString } from "@utils/mappers/mapAndPatchString";
+import { patchString } from "@utils/mappers";
 
 const example: Example = {
   data: "{\"name\": \"example\",\"description\": \"this is an example\",\"extra\": \"\",\"size\": \"123\", \"price\": 100}",
@@ -873,10 +904,13 @@ const inputData: IExampleDTO = {
   price: 20,
 };
 
-await this.examplesRepository.update(trx, {
-  ...example,
-  data: mapAndPatchString(example.data, inputData),
-});
+await this.examplesRepository.update(
+  {
+    ...example,
+    data: patchString(example.data, inputData),
+  },
+  trx,
+);
 
 output => example.data = "{\"name\": \"example\",\"description\": \"this is a new description\",\"extra\": \"this is an extra\",\"size\": \"123\", \"price\": 20}";
 ```
@@ -923,13 +957,16 @@ if (inputData.price) {
   example.price = inputData.price;
 }
 
-await this.examplesRepository.update(trx, {
-  ...example,
-  nonEntityFieldSent_1: inputData.nonEntityFieldSent_1,
-  nonEntityFieldSent_2: inputData.nonEntityFieldSent_2,
-  nonEntityFieldSent_3: inputData.nonEntityFieldSent_3,
-  nonEntityFieldSent_4: inputData.nonEntityFieldSent_4,
-});
+await this.examplesRepository.update(
+  {
+    ...example,
+    nonEntityFieldSent_1: inputData.nonEntityFieldSent_1,
+    nonEntityFieldSent_2: inputData.nonEntityFieldSent_2,
+    nonEntityFieldSent_3: inputData.nonEntityFieldSent_3,
+    nonEntityFieldSent_4: inputData.nonEntityFieldSent_4,
+  },
+  trx,
+);
 
 output = {
   name: "example",
@@ -947,7 +984,7 @@ output = {
 ```typescript
 // with mapper
 
-import { mapAndInsertAttribute } from '@utils/mappers/mapAndInsertAttribute';
+import { insertAttribute } from '@utils/mappers';
 
 const example: Example = {
   name: "example",
@@ -970,8 +1007,8 @@ const inputData: IExampleDTO = {
 };
 
 await this.examplesRepository.update(
+  insertAttribute(example, inputData),
   trx,
-  mapAndInsertAttribute(example, inputData),
 );
 
 output = {

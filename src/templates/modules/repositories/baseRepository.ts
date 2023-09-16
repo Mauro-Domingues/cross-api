@@ -13,7 +13,7 @@ export class CreateBaseRepository {
   QueryRunner,
 } ${'from'} 'typeorm';
 
-import { IBaseRepositoryDTO } from './IBaseRepository';
+import { IBaseRepositoryDTO } ${'from'} './IBaseRepository.js';
 
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepositoryDTO<Entity>
@@ -54,37 +54,45 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   public async findIn(
     {
       where,
+      page,
+      limit,
       ...baseData
     }: Omit<FindManyOptions<Entity>, 'where'> & {
       where: Partial<{ [key in keyof Entity]: Array<Entity[keyof Entity]> }>;
-    },
+    } & Partial<{ page: number; limit: number }>,
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.find(this.target, {
+      skip: page && limit && (page - 1) * limit,
+      take: limit,
+      ...baseData,
       where: Object.fromEntries(
         Object.entries(where).map(([key, values]) => [
           key,
           In(values as Array<Entity[keyof Entity]>),
         ]),
       ) as FindManyOptions<Entity>['where'],
-      ...baseData,
     });
   }
 
   public async findLike(
     {
       where,
+      page,
+      limit,
       ...baseData
     }: Omit<FindManyOptions<Entity>, 'where'> & {
       where: NonNullable<FindManyOptions<Entity>['where']>;
-    },
+    } & Partial<{ page: number; limit: number }>,
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.find(this.target, {
+      skip: page && limit && (page - 1) * limit,
+      take: limit,
+      ...baseData,
       where: Object.fromEntries(
         Object.entries(where).map(([key, values]) => [key, Like(values)]),
       ) as FindManyOptions<Entity>['where'],
-      ...baseData,
     });
   }
 
