@@ -7,7 +7,7 @@ export class ListProvider {
 
   constructor() {
     this.console = new Console();
-    this.provider = new Provider();
+    this.provider = new Provider(undefined);
   }
 
   private renderEmptyLine(): void {
