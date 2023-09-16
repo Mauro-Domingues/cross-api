@@ -40,7 +40,7 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource, QueryRunner } ${'from'} 'typeorm';
+import { DataSource } ${'from'} 'typeorm';
 import { createConnection } ${'from'} '@shared/typeorm';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
@@ -74,7 +74,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
   it('should be able to show a ${this.names.lowerModuleName}', async () => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
-    }Repository.create({} as QueryRunner, {
+    }Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

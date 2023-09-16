@@ -78,7 +78,7 @@ export class Create${this.names.upperModuleName}Service {
     try {
       const ${this.names.lowerModuleName} = await this.${
       this.names.pluralLowerModuleName
-    }Repository.create(trx, ${this.names.lowerModuleName}Data);
+    }Repository.create(${this.names.lowerModuleName}Data, trx);
 
       await this.cacheProvider.invalidatePrefix('${
         this.names.pluralLowerModuleName

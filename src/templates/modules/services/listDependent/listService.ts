@@ -88,10 +88,8 @@ export class List${this.names.upperModuleName}Service {
         const { list, amount } = await this.${
           this.names.pluralLowerModuleName
         }Repository.findAll(
+          { where: filters, page, limit },
           trx,
-          page,
-          limit,
-          filters,
         );
         cache = { data: instanceToInstance(list), total: amount };
         await this.cacheProvider.save(cacheKey, cache);

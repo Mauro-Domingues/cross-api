@@ -45,7 +45,7 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource, QueryRunner } ${'from'} 'typeorm';
+import { DataSource } ${'from'} 'typeorm';
 import { createConnection } ${'from'} '@shared/typeorm';
 import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
       this.names.upperModuleName
@@ -74,7 +74,6 @@ describe('Delete${this.names.upperModuleName}Service', () => {
       this.names.pluralUpperModuleName
     }Repository();
     fakeCacheProvider = new FakeCacheProvider();
-
     delete${this.names.upperModuleName} = new Delete${
       this.names.upperModuleName
     }Service(
@@ -86,7 +85,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
   it('should be able to delete a ${this.names.lowerModuleName}', async () => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
-    }Repository.create({} as QueryRunner, {
+    }Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
@@ -97,10 +96,11 @@ describe('Delete${this.names.upperModuleName}Service', () => {
 
     const deleted${this.names.upperModuleName} = await fake${
       this.names.pluralUpperModuleName
-    }Repository.findBy(
-      {} as QueryRunner,
-      { id: ${this.names.lowerModuleName}.id },
-    );
+    }Repository.findBy({
+      where: {
+        id: ${this.names.lowerModuleName}.id,
+      },
+    });
 
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });

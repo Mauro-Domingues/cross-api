@@ -68,7 +68,7 @@ export class Delete${this.names.upperModuleName}Service {
     try {
       const ${this.names.lowerModuleName} = await this.${
       this.names.pluralLowerModuleName
-    }Repository.exists(trx, { id });
+    }Repository.exists({ where: { id } }, trx);
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);
@@ -76,7 +76,7 @@ export class Delete${this.names.upperModuleName}Service {
 
       await this.${
         this.names.pluralLowerModuleName
-      }Repository.delete(trx, { id });
+      }Repository.delete({ id }, trx);
 
       await this.cacheProvider.invalidatePrefix('${
         this.names.pluralLowerModuleName

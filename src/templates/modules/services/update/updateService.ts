@@ -75,17 +75,17 @@ export class Update${this.names.upperModuleName}Service {
     try {
       const ${this.names.lowerModuleName} = await this.${
       this.names.pluralLowerModuleName
-    }Repository.findBy(trx, { id });
+    }Repository.findBy({ where: { id } }, trx);
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);
       }
 
       await this.${this.names.pluralLowerModuleName}Repository.update(
-        trx,
         mapAndUpdateAttribute(${this.names.lowerModuleName}, ${
       this.names.lowerModuleName
     }Data),
+        trx,
       );
 
       await this.cacheProvider.invalidatePrefix('${

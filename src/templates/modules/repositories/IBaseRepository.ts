@@ -3,8 +3,8 @@ export class CreateIBaseRepository {
     return `import {
   DeepPartial,
   DeleteResult,
-  FindOptionsOrder,
-  FindOptionsSelect,
+  FindManyOptions,
+  FindOneOptions,
   FindOptionsWhere,
   ObjectLiteral,
   QueryRunner,
@@ -12,64 +12,61 @@ export class CreateIBaseRepository {
 
 export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
   exists(
-    trx: QueryRunner,
-    baseData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+    baseData: FindManyOptions<Entity>,
+    trx?: QueryRunner,
   ): Promise<boolean>;
   findAll(
-    trx: QueryRunner,
-    page: number,
-    limit: number,
-    conditions?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
-    relations?: keysOfEntity<Entity> | Array<string>,
-    order?: FindOptionsOrder<Entity>,
-    select?: FindOptionsSelect<Entity>,
+    baseData: FindManyOptions<Entity> &
+      Partial<{ page: number; limit: number }>,
+    trx?: QueryRunner,
   ): Promise<{ list: Array<Entity>; amount: number }>;
   findBy(
-    trx: QueryRunner,
-    entityData: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
-    relations?: keysOfEntity<Entity> | Array<string>,
-    select?: FindOptionsSelect<Entity>,
+    entityData: FindOneOptions<Entity>,
+    trx?: QueryRunner,
   ): Promise<Entity | null>;
   findIn(
-    trx: QueryRunner,
-    propertyName: keyof Entity,
-    baseData: Array<Entity[keyof Entity]>,
-    relations?: keysOfEntity<Entity> | Array<string>,
-    order?: FindOptionsOrder<Entity>,
-    select?: FindOptionsSelect<Entity>,
+    baseData: Omit<FindManyOptions<Entity>, 'where'> & {
+      where: Partial<{ [key in keyof Entity]: Array<Entity[keyof Entity]> }>;
+    },
+    trx?: QueryRunner,
   ): Promise<Array<Entity>>;
   findLike(
-    trx: QueryRunner,
-    baseData: Partial<{ [key in keyof Entity]: string }>,
-    order?: FindOptionsOrder<Entity>,
-    select?: FindOptionsSelect<Entity>,
-    limit?: number,
+    baseData: Omit<FindManyOptions<Entity>, 'where'> & {
+      where: NonNullable<FindManyOptions<Entity>['where']>;
+    },
+    trx?: QueryRunner,
   ): Promise<Array<Entity>>;
-  create(trx: QueryRunner, entityData: DeepPartial<Entity>): Promise<Entity>;
+  create(
+    entityData: Partial<Entity> | DeepPartial<Entity>,
+    trx?: QueryRunner,
+  ): Promise<Entity>;
   createMany(
-    trx: QueryRunner,
-    entityData: Array<DeepPartial<Entity>>,
+    entityData: Array<Partial<Entity>> | Array<DeepPartial<Entity>>,
+    trx?: QueryRunner,
   ): Promise<Array<Entity>>;
-  update(trx: QueryRunner, entityData: Entity): Promise<Entity>;
+  update(
+    entityData: Partial<Entity> | DeepPartial<Entity>,
+    trx?: QueryRunner,
+  ): Promise<Entity>;
   updateMany(
-    trx: QueryRunner,
-    entityData: Array<Entity>,
+    entityData: Array<Partial<Entity>> | Array<DeepPartial<Entity>>,
+    trx?: QueryRunner,
   ): Promise<Array<Entity>>;
   delete(
-    trx: QueryRunner,
     entityData: FindOptionsWhere<Entity>,
+    trx?: QueryRunner,
   ): Promise<DeleteResult>;
   deleteMany(
-    trx: QueryRunner,
     entityData: Array<FindOptionsWhere<Entity>>,
+    trx?: QueryRunner,
   ): Promise<DeleteResult>;
   softDelete(
-    trx: QueryRunner,
     entityData: FindOptionsWhere<Entity>,
+    trx?: QueryRunner,
   ): Promise<DeleteResult>;
   softDeleteMany(
-    trx: QueryRunner,
     entityData: Array<FindOptionsWhere<Entity>>,
+    trx?: QueryRunner,
   ): Promise<DeleteResult>;
 }
 `;

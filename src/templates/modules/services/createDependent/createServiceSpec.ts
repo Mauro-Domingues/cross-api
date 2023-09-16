@@ -74,7 +74,6 @@ describe('Create${this.names.upperModuleName}Service', () => {
       this.names.pluralUpperModuleName
     }Repository();
     fakeCacheProvider = new FakeCacheProvider();
-
     create${this.names.upperModuleName} = new Create${
       this.names.upperModuleName
     }Service(

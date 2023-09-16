@@ -35,7 +35,7 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource, QueryRunner } ${'from'} 'typeorm';
+import { DataSource } ${'from'} 'typeorm';
 import { createConnection } ${'from'} '@shared/typeorm';
 import { Update${this.names.upperModuleName}Service } ${'from'} './Update${
       this.names.upperModuleName
@@ -76,7 +76,7 @@ describe('Update${this.names.upperModuleName}Service', () => {
   it('Should be able to update a ${this.names.lowerModuleName}', async () => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
-    }Repository.create({} as QueryRunner, {
+    }Repository.create({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
