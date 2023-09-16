@@ -1,6 +1,7 @@
+import { createInterface } from 'readline';
 import { Config } from '@templates/assets/config';
 import { Shell } from '@tools/shell';
-import { ConfigLanguage } from '@tools/languageConfig';
+import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
 
 export class ConfigJson extends ConfigLanguage {
   private readonly config: Config;
@@ -183,11 +184,43 @@ export class ConfigJson extends ConfigLanguage {
     if (this.fileManager.checkIfExists(['package-lock.json'])) {
       await this.fileManager.removeFile(['package-lock.json']);
     }
+
+    return this.config.execute();
   }
 
   public async execute(): Promise<void> {
-    await this.showLanguageOptions();
-    await this.setConfig();
-    return this.config.execute();
+    this.console.one([this.messages.language, 'yellow', true, true, true]);
+    console.table(Object.keys(this.languageOptions));
+    this.console.one(['', 'white', false, false, false]);
+
+    const rl = createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(this.messages.answer, optionChosen => {
+      const choice = Object.keys(this.languageOptions)[
+        Number(optionChosen)
+      ] as keyof ILanguageOptionsDTO;
+
+      if (
+        this.isLanguageOptionsKeyType(choice) &&
+        Object.keys(this.languageOptions)[Number(optionChosen)]
+      ) {
+        this.languageConfig = {
+          option: choice,
+          index: Number(optionChosen),
+        };
+
+        rl.close();
+        this.execute();
+        this.setConfig();
+        this.setLanguageOption();
+      } else {
+        rl.close();
+        this.validateOption(optionChosen);
+        this.execute();
+      }
+    });
   }
 }

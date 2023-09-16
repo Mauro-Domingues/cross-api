@@ -18,14 +18,14 @@ interface ILanguageConfigDTO {
 }
 
 export class ConfigLanguage {
+  protected readonly languageOptions: ILanguageOptionsDTO;
   protected readonly fileManager: FileManager;
   protected readonly console: Console;
+  protected languageConfig: ILanguageConfigDTO;
   protected messages: IMessagesDTO;
   private readonly englishMessages: EnglishMessages;
   private readonly portugueseMessages: PortugueseMessages;
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  private readonly languageOptions: ILanguageOptionsDTO;
-  private languageConfig: ILanguageConfigDTO;
 
   constructor() {
     this.englishMessages = new EnglishMessages();
@@ -44,7 +44,7 @@ export class ConfigLanguage {
     };
   }
 
-  protected async showLanguageOptions(): Promise<void> {
+  private showLanguageOptions(): void {
     this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
     console.table(Object.keys(this.languageOptions));
     this.console.one(['', 'white', false, false, false]);
@@ -78,7 +78,7 @@ export class ConfigLanguage {
     });
   }
 
-  private validateOption(optionChosen: string): void {
+  protected validateOption(optionChosen: string): void {
     this.console.one([
       `"${optionChosen}"${this.messages.invalidLanguage}`,
       'red',
@@ -102,7 +102,7 @@ export class ConfigLanguage {
     ]);
   }
 
-  private async setLanguageOption(): Promise<void> {
+  protected async setLanguageOption(): Promise<void> {
     await this.fileManager.truncateFile([
       'node_modules',
       'cross-api',
@@ -116,7 +116,7 @@ export class ConfigLanguage {
     );
   }
 
-  private isLanguageOptionsKeyType(
+  protected isLanguageOptionsKeyType(
     _option: keyof ILanguageOptionsDTO,
   ): _option is keyof ILanguageOptionsDTO {
     return true;
