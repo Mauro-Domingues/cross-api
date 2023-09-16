@@ -10,8 +10,8 @@ export const createConnection = async (): Promise<DataSource> => {
 
 // Image examples
 
-// import uploadConfig ${'from'} "@config/upload";
-// import { Exclude, Expose } ${'from'} "class-transformer";
+// import uploadConfig ${'from'} '@config/upload';
+// import { Exclude, Expose } ${'from'} 'class-transformer';
 //
 // @Exclude()
 // @Column({ type: 'varchar', nullable: true })

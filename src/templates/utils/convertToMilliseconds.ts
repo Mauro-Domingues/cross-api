@@ -1,6 +1,8 @@
 export class CreateConvertToMilliseconds {
   public execute(): string {
-    return `export function convertToMilliseconds(
+    return `import { AppError } ${'from'} '@shared/errors/AppError';
+
+export function convertToMilliseconds(
   delay:
     | \`\${number}d\`
     | \`\${number}h\`

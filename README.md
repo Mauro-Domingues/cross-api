@@ -337,7 +337,7 @@ const example = await this.examplesRepository.findBy(
   {
     where: { id: 123 },
     relations: ["relation-1", "relation-2"], // or { "relation-1": true, "relation-2": true }
-    select
+    select,
   },
   trx,
 );
@@ -407,7 +407,7 @@ const exampleArray = await this.examplesRepository.findAll(
     where: { name: "example" },
     ["relation-1", "relation-2.nested-relation"] // or { "relation-1": true, "relation-2": { nested-relation: true } }
     order: { id: 'ASC' },
-    select
+    select,
   },
   trx,
 );
@@ -578,11 +578,16 @@ const param: FindOptionsWhere<Example> = {
   key: "example",
 };
 
-const example = await this.examplesRepository.findBy(trx, [
-  { id: key },
-  { name: key },
-  {description: key},
-]);
+const example = await this.examplesRepository.findBy(
+  { 
+    where: [
+      { id: key },
+      { name: key },
+      {description: key},
+    ]
+  },
+  trx,
+);
 
 // Find where id = key OR name = key OR description = key
 ```
