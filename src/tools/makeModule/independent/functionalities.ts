@@ -14,34 +14,34 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeFunctionalities {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly updateService: UpdateService;
-  private readonly updateController: UpdateController;
-  private readonly showService: ShowService;
-  private readonly showController: ShowController;
-  private readonly listService: ListService;
-  private readonly listController: ListController;
-  private readonly deleteService: DeleteService;
-  private readonly deleteController: DeleteController;
-  private readonly createService: CreateService;
   private readonly createController: CreateController;
+  private readonly deleteController: DeleteController;
+  private readonly updateController: UpdateController;
+  private readonly showController: ShowController;
+  private readonly listController: ListController;
+  private readonly updateService: UpdateService;
+  private readonly deleteService: DeleteService;
+  private readonly createService: CreateService;
+  private readonly listService: ListService;
+  private readonly showService: ShowService;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(private readonly names: IModuleNamesDTO | undefined) {
+    this.updateController = new UpdateController(this.names);
+    this.createController = new CreateController(this.names);
+    this.deleteController = new DeleteController(this.names);
+    this.showController = new ShowController(this.names);
+    this.listController = new ListController(this.names);
+    this.updateService = new UpdateService(this.names);
+    this.deleteService = new DeleteService(this.names);
+    this.createService = new CreateService(this.names);
+    this.showService = new ShowService(this.names);
+    this.listService = new ListService(this.names);
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.updateService = new UpdateService(this.names);
-    this.updateController = new UpdateController(this.names);
-    this.showService = new ShowService(this.names);
-    this.showController = new ShowController(this.names);
-    this.listService = new ListService(this.names);
-    this.listController = new ListController(this.names);
-    this.deleteService = new DeleteService(this.names);
-    this.deleteController = new DeleteController(this.names);
-    this.createService = new CreateService(this.names);
-    this.createController = new CreateController(this.names);
   }
 
   public async execute(): Promise<void> {

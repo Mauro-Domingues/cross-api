@@ -11,8 +11,8 @@ export class CreateEntity {
       | Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>
       | undefined,
   ) {
-    this.console = new Console();
     this.messages = new Messages().execute();
+    this.console = new Console();
   }
 
   public execute(): string {

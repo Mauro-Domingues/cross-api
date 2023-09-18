@@ -14,44 +14,37 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentFunctionalities {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly updateDependentService: UpdateDependentService;
   private readonly updateDependentController: UpdateDependentController;
-  private readonly showDependentService: ShowDependentService;
-  private readonly showDependentController: ShowDependentController;
-  private readonly listDependentService: ListDependentService;
-  private readonly listDependentController: ListDependentController;
-  private readonly deleteDependentService: DeleteDependentService;
-  private readonly deleteDependentController: DeleteDependentController;
-  private readonly createDependentService: CreateDependentService;
   private readonly createDependentController: CreateDependentController;
+  private readonly deleteDependentController: DeleteDependentController;
+  private readonly showDependentController: ShowDependentController;
+  private readonly listDependentController: ListDependentController;
+  private readonly updateDependentService: UpdateDependentService;
+  private readonly deleteDependentService: DeleteDependentService;
+  private readonly createDependentService: CreateDependentService;
+  private readonly showDependentService: ShowDependentService;
+  private readonly listDependentService: ListDependentService;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.fileManager = new FileManager();
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.updateDependentService = new UpdateDependentService(
-      this.names,
-      this.fatherNames,
-    );
     this.updateDependentController = new UpdateDependentController(
       this.names,
       this.fatherNames,
     );
-    this.showDependentService = new ShowDependentService(
+    this.createDependentController = new CreateDependentController(
+      this.names,
+      this.fatherNames,
+    );
+    this.deleteDependentController = new DeleteDependentController(
       this.names,
       this.fatherNames,
     );
     this.showDependentController = new ShowDependentController(
-      this.names,
-      this.fatherNames,
-    );
-    this.listDependentService = new ListDependentService(
       this.names,
       this.fatherNames,
     );
@@ -63,18 +56,25 @@ export class MakeDependentFunctionalities {
       this.names,
       this.fatherNames,
     );
-    this.deleteDependentController = new DeleteDependentController(
-      this.names,
-      this.fatherNames,
-    );
     this.createDependentService = new CreateDependentService(
       this.names,
       this.fatherNames,
     );
-    this.createDependentController = new CreateDependentController(
+    this.updateDependentService = new UpdateDependentService(
       this.names,
       this.fatherNames,
     );
+    this.showDependentService = new ShowDependentService(
+      this.names,
+      this.fatherNames,
+    );
+    this.listDependentService = new ListDependentService(
+      this.names,
+      this.fatherNames,
+    );
+    this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

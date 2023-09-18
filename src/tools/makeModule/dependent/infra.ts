@@ -15,36 +15,26 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentInfra {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
+  private readonly createDependentFakeRepository: CreateDependentFakeRepository;
+  private readonly createIDependentRepository: CreateIDependentRepository;
+  private readonly createDependentRepository: CreateDependentRepository;
   private readonly createIndexDependentRoute: CreateIndexDependentRoute;
+  private readonly createDependentInjection: CreateDependentInjection;
   private readonly createFullDependentRoute: CreateFullDependentRoute;
   private readonly createDependentRoute: CreateDependentRoute;
-  private readonly createIDependentRepository: CreateIDependentRepository;
-  private readonly createDependentFakeRepository: CreateDependentFakeRepository;
-  private readonly createDependentRepository: CreateDependentRepository;
-  private readonly createDependentInjection: CreateDependentInjection;
-  private readonly createEntity: CreateEntity;
   private readonly createModuleDTO: CreateModuleDTO;
-  private readonly createRoutes: CreateRoutes;
   private readonly createContainer: CreateContainer;
+  private readonly createRoutes: CreateRoutes;
+  private readonly createEntity: CreateEntity;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createIndexDependentRoute = new CreateIndexDependentRoute(
-      this.fatherNames,
-    );
-    this.createFullDependentRoute = new CreateFullDependentRoute(
-      this.names,
-      this.fatherNames,
-    );
-    this.createDependentRoute = new CreateDependentRoute(
+    this.createDependentFakeRepository = new CreateDependentFakeRepository(
       this.names,
       this.fatherNames,
     );
@@ -52,11 +42,14 @@ export class MakeDependentInfra {
       this.names,
       this.fatherNames,
     );
-    this.createDependentFakeRepository = new CreateDependentFakeRepository(
+    this.createDependentRepository = new CreateDependentRepository(
       this.names,
       this.fatherNames,
     );
-    this.createDependentRepository = new CreateDependentRepository(
+    this.createIndexDependentRoute = new CreateIndexDependentRoute(
+      this.fatherNames,
+    );
+    this.createFullDependentRoute = new CreateFullDependentRoute(
       this.names,
       this.fatherNames,
     );
@@ -64,10 +57,17 @@ export class MakeDependentInfra {
       this.names,
       this.fatherNames,
     );
-    this.createEntity = new CreateEntity(this.names);
+    this.createDependentRoute = new CreateDependentRoute(
+      this.names,
+      this.fatherNames,
+    );
     this.createModuleDTO = new CreateModuleDTO(this.names);
-    this.createRoutes = new CreateRoutes();
+    this.createEntity = new CreateEntity(this.names);
     this.createContainer = new CreateContainer();
+    this.messages = new Messages().execute();
+    this.createRoutes = new CreateRoutes();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

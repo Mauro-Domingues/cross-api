@@ -8,12 +8,12 @@ import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
 import { mapAndUpdateStringify } ${'from'} './mapAndUpdateString';
 
 export {
-  mapAndCloneAttribute as cloneAttribute,
   mapAndInsertAttribute as insertAttribute,
-  mapAndPatchAttribute as patchStringify,
-  mapAndPatchStringify as patchAttribute,
   mapAndUpdateAttribute as updateAttribute,
   mapAndUpdateStringify as updateStringify,
+  mapAndCloneAttribute as cloneAttribute,
+  mapAndPatchStringify as patchAttribute,
+  mapAndPatchAttribute as patchStringify,
 };
 `;
   }

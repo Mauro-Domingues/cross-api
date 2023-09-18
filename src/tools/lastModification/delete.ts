@@ -5,11 +5,11 @@ import { FileManager } from '@tools/fileManager';
 import { Provider } from '@tools/provider';
 
 export class DeleteRegister {
-  private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
-  private readonly console: Console;
+  private readonly messages: IMessagesDTO;
   private readonly provider: Provider;
   private readonly basePath: string;
+  private readonly console: Console;
 
   constructor() {
     this.messages = new Messages().execute();

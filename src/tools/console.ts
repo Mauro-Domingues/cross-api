@@ -10,13 +10,13 @@ const colorOptions = {
 type IInputDTO = [string, keyof typeof colorOptions, boolean, boolean, boolean];
 
 export class Console {
-  private readonly getColor = (color: keyof typeof colorOptions) =>
-    colorOptions[color];
-  private readonly isBold = (bold?: boolean) => (bold ? '\x1b[1m' : '\x1b[0m');
   private readonly isbreakStart = (breakStart?: boolean) =>
     breakStart ? '\n' : '\b';
   private readonly isbreakend = (breakEnd?: boolean) =>
     breakEnd ? '\n' : '\b';
+  private readonly getColor = (color: keyof typeof colorOptions) =>
+    colorOptions[color];
+  private readonly isBold = (bold?: boolean) => (bold ? '\x1b[1m' : '\x1b[0m');
 
   public one(assets: IInputDTO): void {
     const payload: Array<string> = [

@@ -2,8 +2,8 @@ import { FileManager } from '@tools/fileManager';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class CreateRegister {
-  private readonly basePath: string;
   private readonly fileManager: FileManager;
+  private readonly basePath: string;
 
   constructor(
     private readonly comand: Array<string> | undefined,

@@ -3,8 +3,8 @@ import { FileManager } from '@tools/fileManager';
 import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class MakeInfra {
-  private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
   constructor() {

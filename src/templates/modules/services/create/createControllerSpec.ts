@@ -5,6 +5,7 @@ import { Console } from '@tools/console';
 export class CreateSpecController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
+
   constructor(
     private readonly names:
       | Pick<

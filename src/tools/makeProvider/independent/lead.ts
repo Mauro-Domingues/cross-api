@@ -10,28 +10,28 @@ import { FileManager } from '@tools/fileManager';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 
 export class MakeLeadProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createILead: CreateILead;
-  private readonly createILeadDTO: CreateILeadDTO;
-  private readonly createIAuthDTO: CreateIAuthDTO;
   private readonly createRDStationLead: CreateRDStationLead;
-  private readonly createFakeLead: CreateFakeLead;
   private readonly createLeadConfig: CreateLeadConfig;
   private readonly createLeadIndex: CreateLeadIndex;
+  private readonly createILeadDTO: CreateILeadDTO;
+  private readonly createIAuthDTO: CreateIAuthDTO;
+  private readonly createFakeLead: CreateFakeLead;
+  private readonly fileManager: FileManager;
+  private readonly createILead: CreateILead;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createILead = new CreateILead();
-    this.createILeadDTO = new CreateILeadDTO();
-    this.createIAuthDTO = new CreateIAuthDTO();
     this.createRDStationLead = new CreateRDStationLead();
-    this.createFakeLead = new CreateFakeLead();
     this.createLeadConfig = new CreateLeadConfig();
     this.createLeadIndex = new CreateLeadIndex();
+    this.createILeadDTO = new CreateILeadDTO();
+    this.createIAuthDTO = new CreateIAuthDTO();
+    this.createFakeLead = new CreateFakeLead();
+    this.messages = new Messages().execute();
+    this.createILead = new CreateILead();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

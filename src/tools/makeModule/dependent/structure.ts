@@ -4,8 +4,8 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentStructure {
-  private readonly messages: IMessagesDTO;
   private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
   constructor(

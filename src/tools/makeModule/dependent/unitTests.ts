@@ -14,62 +14,62 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentUnitTests {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly updateSpecDependentService: UpdateSpecDependentService;
   private readonly updateSpecDependentController: UpdateSpecDependentController;
-  private readonly showSpecDependentService: ShowSpecDependentService;
-  private readonly showSpecDependentController: ShowSpecDependentController;
-  private readonly listSpecDependentService: ListSpecDependentService;
-  private readonly listSpecDependentController: ListSpecDependentController;
-  private readonly deleteSpecDependentService: DeleteSpecDependentService;
   private readonly deleteSpecDependentController: DeleteSpecDependentController;
-  private readonly createSpecDependentService: CreateSpecDependentService;
   private readonly createSpecDependentController: CreateSpecDependentController;
+  private readonly showSpecDependentController: ShowSpecDependentController;
+  private readonly listSpecDependentController: ListSpecDependentController;
+  private readonly updateSpecDependentService: UpdateSpecDependentService;
+  private readonly deleteSpecDependentService: DeleteSpecDependentService;
+  private readonly createSpecDependentService: CreateSpecDependentService;
+  private readonly showSpecDependentService: ShowSpecDependentService;
+  private readonly listSpecDependentService: ListSpecDependentService;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.updateSpecDependentService = new UpdateSpecDependentService(
-      this.names,
-      this.fatherNames,
-    );
     this.updateSpecDependentController = new UpdateSpecDependentController(
       this.names,
     );
-    this.showSpecDependentService = new ShowSpecDependentService(
-      this.names,
-      this.fatherNames,
-    );
-    this.showSpecDependentController = new ShowSpecDependentController(
+    this.createSpecDependentController = new CreateSpecDependentController(
       this.names,
     );
-    this.listSpecDependentService = new ListSpecDependentService(
+    this.deleteSpecDependentController = new DeleteSpecDependentController(
       this.names,
-      this.fatherNames,
     );
     this.listSpecDependentController = new ListSpecDependentController(
+      this.names,
+    );
+    this.showSpecDependentController = new ShowSpecDependentController(
       this.names,
     );
     this.deleteSpecDependentService = new DeleteSpecDependentService(
       this.names,
       this.fatherNames,
     );
-    this.deleteSpecDependentController = new DeleteSpecDependentController(
+    this.updateSpecDependentService = new UpdateSpecDependentService(
       this.names,
+      this.fatherNames,
     );
     this.createSpecDependentService = new CreateSpecDependentService(
       this.names,
       this.fatherNames,
     );
-    this.createSpecDependentController = new CreateSpecDependentController(
+    this.showSpecDependentService = new ShowSpecDependentService(
       this.names,
+      this.fatherNames,
     );
+    this.listSpecDependentService = new ListSpecDependentService(
+      this.names,
+      this.fatherNames,
+    );
+    this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

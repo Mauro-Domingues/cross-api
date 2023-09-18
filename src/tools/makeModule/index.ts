@@ -12,9 +12,9 @@ export class CreateModule {
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {
+    this.module = new Module(this.names, this.fatherNames);
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.module = new Module(this.names, this.fatherNames);
   }
 
   public async execute(): Promise<void> {

@@ -10,30 +10,30 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentCacheProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createICache: CreateICache;
-  private readonly createRedisCache: CreateRedisCache;
-  private readonly createFakeRedis: CreateFakeRedis;
   private readonly createCacheConfig: CreateCacheConfig;
   private readonly createCacheIndex: CreateCacheIndex;
+  private readonly createRedisCache: CreateRedisCache;
+  private readonly createFakeRedis: CreateFakeRedis;
   private readonly createContainer: CreateContainer;
+  private readonly createICache: CreateICache;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createICache = new CreateICache();
-    this.createRedisCache = new CreateRedisCache();
-    this.createFakeRedis = new CreateFakeRedis();
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
+    this.createRedisCache = new CreateRedisCache();
     this.createContainer = new CreateContainer();
+    this.createFakeRedis = new CreateFakeRedis();
+    this.messages = new Messages().execute();
+    this.createICache = new CreateICache();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

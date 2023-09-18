@@ -10,30 +10,30 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentCryptoProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly createICrypto: CreateICrypto;
-  private readonly createICryptoDTO: CreateICryptoDTO;
-  private readonly createCrypto: CreateCrypto;
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
+  private readonly createICryptoDTO: CreateICryptoDTO;
   private readonly createContainer: CreateContainer;
+  private readonly createICrypto: CreateICrypto;
+  private readonly createCrypto: CreateCrypto;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createICrypto = new CreateICrypto();
-    this.createICryptoDTO = new CreateICryptoDTO();
-    this.createCrypto = new CreateCrypto();
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
+    this.createICryptoDTO = new CreateICryptoDTO();
     this.createContainer = new CreateContainer();
+    this.createICrypto = new CreateICrypto();
+    this.messages = new Messages().execute();
+    this.createCrypto = new CreateCrypto();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

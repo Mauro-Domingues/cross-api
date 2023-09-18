@@ -1,8 +1,8 @@
 import { FileManager } from '@tools/fileManager';
 
 export class Config {
-  private readonly configBody: string;
   private readonly fileManager: FileManager;
+  private readonly configBody: string;
 
   constructor() {
     this.fileManager = new FileManager();

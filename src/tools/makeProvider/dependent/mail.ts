@@ -12,36 +12,36 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailProvider {
-  private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly createIMail: CreateIMail;
-  private readonly createFakeMail: CreateFakeMail;
-  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
+  private readonly createDependentSESMail: CreateDependentSESMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
   private readonly createContainer: CreateContainer;
-  private readonly createDependentSESMail: CreateDependentSESMail;
-  private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
+  private readonly createFakeMail: CreateFakeMail;
+  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createIMail: CreateIMail;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createIMail = new CreateIMail();
-    this.createFakeMail = new CreateFakeMail();
-    this.createIMailDTO = new CreateIMailDTO();
-    this.createMailConfig = new CreateMailConfig();
-    this.createMailIndex = new CreateMailIndex();
-    this.createContainer = new CreateContainer();
     this.createDependentSESMail = new CreateDependentSESMail(this.fatherNames);
     this.createDependentNodemailerMail = new CreateDependentNodemailerMail(
       this.fatherNames,
     );
+    this.createMailConfig = new CreateMailConfig();
+    this.createMailIndex = new CreateMailIndex();
+    this.createContainer = new CreateContainer();
+    this.createFakeMail = new CreateFakeMail();
+    this.createIMailDTO = new CreateIMailDTO();
+    this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
+    this.createIMail = new CreateIMail();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

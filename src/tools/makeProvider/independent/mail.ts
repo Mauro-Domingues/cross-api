@@ -10,28 +10,28 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeMailProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createIMail: CreateIMail;
-  private readonly createFakeMail: CreateFakeMail;
-  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createNodemailerMail: CreateNodemailerMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
+  private readonly createIMailDTO: CreateIMailDTO;
+  private readonly createFakeMail: CreateFakeMail;
   private readonly createSESMail: CreateSESMail;
-  private readonly createNodemailerMail: CreateNodemailerMail;
+  private readonly fileManager: FileManager;
+  private readonly createIMail: CreateIMail;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createIMail = new CreateIMail();
-    this.createFakeMail = new CreateFakeMail();
-    this.createIMailDTO = new CreateIMailDTO();
+    this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
+    this.createIMailDTO = new CreateIMailDTO();
+    this.createFakeMail = new CreateFakeMail();
     this.createSESMail = new CreateSESMail();
-    this.createNodemailerMail = new CreateNodemailerMail();
+    this.messages = new Messages().execute();
+    this.createIMail = new CreateIMail();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

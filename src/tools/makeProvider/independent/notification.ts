@@ -8,24 +8,24 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeNotificationProvider {
+  private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createNotificationIndex: CreateNotificationIndex;
+  private readonly createFakeNotification: CreateFakeNotification;
+  private readonly createINotificationDTO: CreateINotificationDTO;
+  private readonly createINotification: CreateINotification;
+  private readonly fileManager: FileManager;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createINotification: CreateINotification;
-  private readonly createINotificationDTO: CreateINotificationDTO;
-  private readonly createOneSignalNotification: CreateOneSignalNotification;
-  private readonly createFakeNotification: CreateFakeNotification;
-  private readonly createNotificationIndex: CreateNotificationIndex;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.fileManager = new FileManager();
-    this.createINotification = new CreateINotification();
-    this.createINotificationDTO = new CreateINotificationDTO();
     this.createOneSignalNotification = new CreateOneSignalNotification();
-    this.createFakeNotification = new CreateFakeNotification();
     this.createNotificationIndex = new CreateNotificationIndex();
+    this.createFakeNotification = new CreateFakeNotification();
+    this.createINotificationDTO = new CreateINotificationDTO();
+    this.createINotification = new CreateINotification();
+    this.messages = new Messages().execute();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

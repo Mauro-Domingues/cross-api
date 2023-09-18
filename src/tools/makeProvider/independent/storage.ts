@@ -9,26 +9,26 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeStorageProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createIStorage: CreateIStorage;
-  private readonly createDiskStorage: CreateDiskStorage;
-  private readonly createS3Storage: CreateS3Storage;
-  private readonly createFakeStorage: CreateFakeStorage;
   private readonly createUploadConfig: CreateUploadConfig;
   private readonly createStorageIndex: CreateStorageIndex;
+  private readonly createDiskStorage: CreateDiskStorage;
+  private readonly createFakeStorage: CreateFakeStorage;
+  private readonly createS3Storage: CreateS3Storage;
+  private readonly createIStorage: CreateIStorage;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
+    this.createStorageIndex = new CreateStorageIndex();
+    this.createUploadConfig = new CreateUploadConfig();
+    this.createDiskStorage = new CreateDiskStorage();
+    this.createFakeStorage = new CreateFakeStorage();
+    this.createS3Storage = new CreateS3Storage();
+    this.createIStorage = new CreateIStorage();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.createDiskStorage = new CreateDiskStorage();
-    this.createS3Storage = new CreateS3Storage();
-    this.createFakeStorage = new CreateFakeStorage();
-    this.createUploadConfig = new CreateUploadConfig();
-    this.createIStorage = new CreateIStorage();
-    this.createStorageIndex = new CreateStorageIndex();
   }
 
   public async execute(): Promise<void> {

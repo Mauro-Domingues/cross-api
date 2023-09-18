@@ -1,7 +1,7 @@
 import { IMessagesDTO } from '@tools/messages';
 
 export class EnglishMessages {
-  public messages: IMessagesDTO;
+  private readonly messages: IMessagesDTO;
 
   constructor() {
     this.messages = {

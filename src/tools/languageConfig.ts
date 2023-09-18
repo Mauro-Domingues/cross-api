@@ -18,22 +18,22 @@ interface ILanguageConfigDTO {
 }
 
 export class ConfigLanguage {
-  protected readonly languageOptions: ILanguageOptionsDTO;
-  protected readonly fileManager: FileManager;
-  protected readonly console: Console;
-  protected languageConfig: ILanguageConfigDTO;
-  protected messages: IMessagesDTO;
-  private readonly englishMessages: EnglishMessages;
-  private readonly portugueseMessages: PortugueseMessages;
   private readonly createDefaultLanguage: CreateDefaultLanguage;
+  protected readonly languageOptions: ILanguageOptionsDTO;
+  private readonly portugueseMessages: PortugueseMessages;
+  private readonly englishMessages: EnglishMessages;
+  protected readonly fileManager: FileManager;
+  protected languageConfig: ILanguageConfigDTO;
+  protected readonly console: Console;
+  protected messages: IMessagesDTO;
 
   constructor() {
+    this.createDefaultLanguage = new CreateDefaultLanguage();
+    this.portugueseMessages = new PortugueseMessages();
     this.englishMessages = new EnglishMessages();
+    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.portugueseMessages = new PortugueseMessages();
-    this.createDefaultLanguage = new CreateDefaultLanguage();
-    this.messages = new Messages().execute();
     this.languageOptions = {
       'en-us': 'englishMessages',
       'pt-br': 'portugueseMessages',

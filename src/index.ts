@@ -17,15 +17,15 @@ import { Console } from '@tools/console';
 new (class Main {
   private readonly fullComand: Array<string> = process.argv.slice(2);
   private readonly comand: string = process.argv[2];
-  private readonly arg: string = process.argv[3];
-  private readonly father: string = process.argv[4];
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly getNames: GetNames;
-  private readonly shell: Shell;
-  private readonly getFatherNames: GetNames;
   private readonly deleteRegister: DeleteRegister;
   private readonly createRegister: CreateRegister;
+  private readonly father: string = process.argv[4];
+  private readonly arg: string = process.argv[3];
+  private readonly getFatherNames: GetNames;
+  private readonly messages: IMessagesDTO;
+  private readonly getNames: GetNames;
+  private readonly console: Console;
+  private readonly shell: Shell;
   private readonly actions: {
     config: ConfigJson;
     comands: Board;
@@ -46,18 +46,18 @@ new (class Main {
   };
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-    this.shell = new Shell();
-    this.getNames = new GetNames(this.arg);
     this.getFatherNames = new GetNames(this.father);
     this.deleteRegister = new DeleteRegister();
+    this.messages = new Messages().execute();
+    this.getNames = new GetNames(this.arg);
     this.createRegister = new CreateRegister(
       this.fullComand,
       this.arg,
       this.getNames.execute(),
       this.getFatherNames.execute(),
     );
+    this.console = new Console();
+    this.shell = new Shell();
     this.actions = {
       config: new ConfigJson(),
       comands: new Board(),

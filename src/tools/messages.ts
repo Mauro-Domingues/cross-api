@@ -41,7 +41,7 @@ export interface IMessagesDTO {
 }
 
 export class Messages {
-  public messages: IMessagesDTO;
+  private readonly messages: IMessagesDTO;
 
   constructor() {
     this.messages = {

@@ -12,32 +12,32 @@ import { FileManager } from '@tools/fileManager';
 import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
 
 export class MakeFourthLayer {
-  private readonly fileManager: FileManager;
-  private readonly createIndexMapper: CreateIndexMapper;
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
-  private readonly createMapAndUpdate: CreateMapAndUpdate;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
-  private readonly createMapAndPatch: CreateMapAndPatch;
+  private readonly createMapAndUpdate: CreateMapAndUpdate;
   private readonly createMapAndInsert: CreateMapAndInsert;
+  private readonly createMapAndPatch: CreateMapAndPatch;
   private readonly createMapAndClone: CreateMapAndClone;
+  private readonly createIndexMapper: CreateIndexMapper;
   private readonly createDataSource: CreateDataSource;
   private readonly createContainer: CreateContainer;
   private readonly createAppError: CreateAppError;
   private readonly createTypeorm: CreateTypeorm;
+  private readonly fileManager: FileManager;
 
   constructor() {
-    this.fileManager = new FileManager();
-    this.createIndexMapper = new CreateIndexMapper();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
-    this.createMapAndUpdate = new CreateMapAndUpdate();
     this.createMapAndPatchString = new CreateMapAndPatchString();
-    this.createMapAndPatch = new CreateMapAndPatch();
+    this.createMapAndUpdate = new CreateMapAndUpdate();
     this.createMapAndInsert = new CreateMapAndInsert();
+    this.createMapAndPatch = new CreateMapAndPatch();
+    this.createIndexMapper = new CreateIndexMapper();
     this.createMapAndClone = new CreateMapAndClone();
     this.createDataSource = new CreateDataSource();
     this.createContainer = new CreateContainer();
     this.createAppError = new CreateAppError();
     this.createTypeorm = new CreateTypeorm();
+    this.fileManager = new FileManager();
   }
 
   public async execute(): Promise<void> {

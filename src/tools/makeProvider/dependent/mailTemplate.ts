@@ -10,30 +10,30 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailTemplateProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly createIMailTemplate: CreateIMailTemplate;
-  private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
-  private readonly createMailTemplate: CreateMailTemplate;
-  private readonly createFakeMailTemplate: CreateFakeMailTemplate;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
+  private readonly createFakeMailTemplate: CreateFakeMailTemplate;
+  private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
+  private readonly createIMailTemplate: CreateIMailTemplate;
+  private readonly createMailTemplate: CreateMailTemplate;
   private readonly createContainer: CreateContainer;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.createMailTemplateIndex = new CreateMailTemplateIndex();
+    this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
+    this.createFakeMailTemplate = new CreateFakeMailTemplate();
+    this.createIMailTemplate = new CreateIMailTemplate();
+    this.createMailTemplate = new CreateMailTemplate();
+    this.createContainer = new CreateContainer();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.createIMailTemplate = new CreateIMailTemplate();
-    this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
-    this.createMailTemplate = new CreateMailTemplate();
-    this.createFakeMailTemplate = new CreateFakeMailTemplate();
-    this.createMailTemplateIndex = new CreateMailTemplateIndex();
-    this.createContainer = new CreateContainer();
   }
 
   public async execute(): Promise<void> {

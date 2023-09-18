@@ -12,32 +12,32 @@ import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 
 export class MakeQueueProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createIQueue: CreateIQueue;
-  private readonly createKueQueue: CreateKueQueue;
-  private readonly createBeeQueue: CreateBeeQueue;
-  private readonly createBullQueue: CreateBullQueue;
-  private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
+  private readonly createIQueueDTO: CreateIQueueDTO;
+  private readonly createBullQueue: CreateBullQueue;
+  private readonly createKueQueue: CreateKueQueue;
+  private readonly createBeeQueue: CreateBeeQueue;
+  private readonly createIQueue: CreateIQueue;
+  private readonly fileManager: FileManager;
   private readonly createJobs: CreateJobs;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
+    this.createQueueConfig = new CreateQueueConfig();
+    this.createExampleJob = new CreateExampleJob();
+    this.createQueueIndex = new CreateQueueIndex();
+    this.createIQueueDTO = new CreateIQueueDTO();
+    this.createBullQueue = new CreateBullQueue();
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
-    this.createBullQueue = new CreateBullQueue();
-    this.createQueueConfig = new CreateQueueConfig();
+    this.messages = new Messages().execute();
     this.createIQueue = new CreateIQueue();
-    this.createIQueueDTO = new CreateIQueueDTO();
-    this.createQueueIndex = new CreateQueueIndex();
-    this.createExampleJob = new CreateExampleJob();
+    this.fileManager = new FileManager();
     this.createJobs = new CreateJobs();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

@@ -8,24 +8,24 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeCacheProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
+  private readonly createCacheConfig: CreateCacheConfig;
+  private readonly createRedisCache: CreateRedisCache;
+  private readonly createCacheIndex: CreateCacheIndex;
+  private readonly createFakeRedis: CreateFakeRedis;
   private readonly createICache: CreateICache;
   private readonly fileManager: FileManager;
-  private readonly createRedisCache: CreateRedisCache;
-  private readonly createFakeRedis: CreateFakeRedis;
-  private readonly createCacheConfig: CreateCacheConfig;
-  private readonly createCacheIndex: CreateCacheIndex;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createICache = new CreateICache();
-    this.createRedisCache = new CreateRedisCache();
-    this.createFakeRedis = new CreateFakeRedis();
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
+    this.createRedisCache = new CreateRedisCache();
+    this.createFakeRedis = new CreateFakeRedis();
+    this.messages = new Messages().execute();
+    this.createICache = new CreateICache();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

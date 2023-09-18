@@ -4,50 +4,15 @@ import { Shell } from '@tools/shell';
 import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
 
 export class ConfigJson extends ConfigLanguage {
+  private readonly devDependencies: Array<string>;
+  private readonly dependencies: Array<string>;
   private readonly config: Config;
   private readonly shell: Shell;
-  private readonly dependencies: Array<string>;
-  private readonly devDependencies: Array<string>;
 
   constructor() {
     super();
-    this.shell = new Shell();
     this.config = new Config();
-    this.dependencies = [
-      '@aws-sdk/client-s3',
-      '@aws-sdk/client-ses',
-      'axios',
-      'bcrypt',
-      'bee-queue',
-      'bull',
-      'celebrate',
-      'class-transformer',
-      'cors',
-      'dotenv',
-      'express',
-      'express-async-errors',
-      'express-jwt',
-      'handlebars',
-      'ioredis',
-      'jsonwebtoken',
-      'jwks-rsa',
-      'kue',
-      'mime',
-      'multer',
-      'mysql',
-      'nodemailer',
-      'pem-jwk',
-      'rate-limiter-flexible',
-      'redis@^3.0.2',
-      'reflect-metadata',
-      'supertest',
-      'swagger-ui-express',
-      'ts-jest',
-      'tsoa',
-      'tsyringe',
-      'typeorm@^0.3.15',
-      'uuid',
-    ];
+    this.shell = new Shell();
     this.devDependencies = [
       '@babel/cli',
       '@babel/core',
@@ -86,6 +51,41 @@ export class ConfigJson extends ConfigLanguage {
       'ts-node-dev',
       'tsconfig-paths',
       'typescript',
+    ];
+    this.dependencies = [
+      '@aws-sdk/client-s3',
+      '@aws-sdk/client-ses',
+      'axios',
+      'bcrypt',
+      'bee-queue',
+      'bull',
+      'celebrate',
+      'class-transformer',
+      'cors',
+      'dotenv',
+      'express',
+      'express-async-errors',
+      'express-jwt',
+      'handlebars',
+      'ioredis',
+      'jsonwebtoken',
+      'jwks-rsa',
+      'kue',
+      'mime',
+      'multer',
+      'mysql',
+      'nodemailer',
+      'pem-jwk',
+      'rate-limiter-flexible',
+      'redis@^3.0.2',
+      'reflect-metadata',
+      'supertest',
+      'swagger-ui-express',
+      'ts-jest',
+      'tsoa',
+      'tsyringe',
+      'typeorm@^0.3.15',
+      'uuid',
     ];
   }
 

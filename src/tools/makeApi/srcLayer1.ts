@@ -13,34 +13,34 @@ import { CreateTsConfig } from '@templates/root/tsConfig';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeFirstLayer {
-  private readonly fileManager: FileManager;
-  private readonly createTsConfig: CreateTsConfig;
   private readonly createPrettierConfig: CreatePrettierConfig;
+  private readonly createDockerCompose: CreateDockerCompose;
+  private readonly createEsLintrcJson: CreateEsLintrcJson;
+  private readonly createEsLintIgnore: CreateEsLintIgnore;
+  private readonly createEditorConfig: CreateEditorConfig;
   private readonly createNodemonJson: CreateNodemonJson;
+  private readonly createBabelConfig: CreateBabelConfig;
   private readonly createJestConfig: CreateJestConfig;
   private readonly createDocConfig: CreateDocConfig;
   private readonly createGitIgnore: CreateGitIgnore;
-  private readonly createEsLintrcJson: CreateEsLintrcJson;
-  private readonly createEsLintIgnore: CreateEsLintIgnore;
+  private readonly createTsConfig: CreateTsConfig;
+  private readonly fileManager: FileManager;
   private readonly createEnv: CreateEnv;
-  private readonly createEditorConfig: CreateEditorConfig;
-  private readonly createDockerCompose: CreateDockerCompose;
-  private readonly createBabelConfig: CreateBabelConfig;
 
   constructor() {
-    this.fileManager = new FileManager();
-    this.createTsConfig = new CreateTsConfig();
     this.createPrettierConfig = new CreatePrettierConfig();
+    this.createDockerCompose = new CreateDockerCompose();
+    this.createEsLintrcJson = new CreateEsLintrcJson();
+    this.createEsLintIgnore = new CreateEsLintIgnore();
+    this.createEditorConfig = new CreateEditorConfig();
+    this.createBabelConfig = new CreateBabelConfig();
     this.createNodemonJson = new CreateNodemonJson();
     this.createJestConfig = new CreateJestConfig();
     this.createDocConfig = new CreateDocConfig();
     this.createGitIgnore = new CreateGitIgnore();
-    this.createEsLintrcJson = new CreateEsLintrcJson();
-    this.createEsLintIgnore = new CreateEsLintIgnore();
+    this.createTsConfig = new CreateTsConfig();
+    this.fileManager = new FileManager();
     this.createEnv = new CreateEnv();
-    this.createEditorConfig = new CreateEditorConfig();
-    this.createDockerCompose = new CreateDockerCompose();
-    this.createBabelConfig = new CreateBabelConfig();
   }
 
   public async execute(): Promise<void> {

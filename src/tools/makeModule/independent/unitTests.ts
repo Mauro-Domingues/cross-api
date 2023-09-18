@@ -14,34 +14,34 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeUnitTests {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly updateSpecService: UpdateSpecService;
   private readonly updateSpecController: UpdateSpecController;
-  private readonly showSpecService: ShowSpecService;
-  private readonly showSpecController: ShowSpecController;
-  private readonly listSpecService: ListSpecService;
-  private readonly listSpecController: ListSpecController;
-  private readonly deleteSpecService: DeleteSpecService;
-  private readonly deleteSpecController: DeleteSpecController;
-  private readonly createSpecService: CreateSpecService;
   private readonly createSpecController: CreateSpecController;
+  private readonly deleteSpecController: DeleteSpecController;
+  private readonly showSpecController: ShowSpecController;
+  private readonly listSpecController: ListSpecController;
+  private readonly updateSpecService: UpdateSpecService;
+  private readonly createSpecService: CreateSpecService;
+  private readonly deleteSpecService: DeleteSpecService;
+  private readonly showSpecService: ShowSpecService;
+  private readonly listSpecService: ListSpecService;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(private readonly names: IModuleNamesDTO | undefined) {
+    this.createSpecController = new CreateSpecController(this.names);
+    this.updateSpecController = new UpdateSpecController(this.names);
+    this.deleteSpecController = new DeleteSpecController(this.names);
+    this.showSpecController = new ShowSpecController(this.names);
+    this.listSpecController = new ListSpecController(this.names);
+    this.deleteSpecService = new DeleteSpecService(this.names);
+    this.createSpecService = new CreateSpecService(this.names);
+    this.updateSpecService = new UpdateSpecService(this.names);
+    this.showSpecService = new ShowSpecService(this.names);
+    this.listSpecService = new ListSpecService(this.names);
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.updateSpecService = new UpdateSpecService(this.names);
-    this.updateSpecController = new UpdateSpecController(this.names);
-    this.showSpecService = new ShowSpecService(this.names);
-    this.showSpecController = new ShowSpecController(this.names);
-    this.listSpecService = new ListSpecService(this.names);
-    this.listSpecController = new ListSpecController(this.names);
-    this.deleteSpecService = new DeleteSpecService(this.names);
-    this.deleteSpecController = new DeleteSpecController(this.names);
-    this.createSpecService = new CreateSpecService(this.names);
-    this.createSpecController = new CreateSpecController(this.names);
   }
 
   public async execute(): Promise<void> {

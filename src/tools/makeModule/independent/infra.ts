@@ -14,34 +14,34 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeInfra {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly createIndexRoute: CreateIndexRoute;
   private readonly createIndependentRoute: CreateIndependentRoute;
-  private readonly createIRepository: CreateIRepository;
   private readonly createFakeRepository: CreateFakeRepository;
+  private readonly createIRepository: CreateIRepository;
+  private readonly createIndexRoute: CreateIndexRoute;
   private readonly createRepository: CreateRepository;
   private readonly createInjection: CreateInjection;
-  private readonly createEntity: CreateEntity;
   private readonly createModuleDTO: CreateModuleDTO;
-  private readonly createRoutes: CreateRoutes;
   private readonly createContainer: CreateContainer;
+  private readonly createRoutes: CreateRoutes;
+  private readonly createEntity: CreateEntity;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(private readonly names: IModuleNamesDTO | undefined) {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createIndexRoute = new CreateIndexRoute(this.names);
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
-    this.createIRepository = new CreateIRepository(this.names);
     this.createFakeRepository = new CreateFakeRepository(this.names);
+    this.createIRepository = new CreateIRepository(this.names);
+    this.createIndexRoute = new CreateIndexRoute(this.names);
     this.createRepository = new CreateRepository(this.names);
     this.createInjection = new CreateInjection(this.names);
-    this.createEntity = new CreateEntity(this.names);
     this.createModuleDTO = new CreateModuleDTO(this.names);
-    this.createRoutes = new CreateRoutes();
+    this.createEntity = new CreateEntity(this.names);
     this.createContainer = new CreateContainer();
+    this.messages = new Messages().execute();
+    this.createRoutes = new CreateRoutes();
+    this.fileManager = new FileManager();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

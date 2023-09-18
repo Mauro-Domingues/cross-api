@@ -11,17 +11,17 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 export class Module {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly makeUnitTests: MakeUnitTests;
-  private readonly makeStructure: MakeStructure;
-  private readonly makeInfra: MakeInfra;
-  private readonly makeFunctionalities: MakeFunctionalities;
-  private readonly makeDependentUnitTests: MakeDependentUnitTests;
-  private readonly makeDependentStructure: MakeDependentStructure;
-  private readonly makeDependentInfra: MakeDependentInfra;
   private readonly makeDependentFunctionalities: MakeDependentFunctionalities;
   public readonly key: 'makeDependentModule' | 'makeIndependentModule';
+  private readonly makeDependentUnitTests: MakeDependentUnitTests;
+  private readonly makeDependentStructure: MakeDependentStructure;
+  private readonly makeFunctionalities: MakeFunctionalities;
+  private readonly makeDependentInfra: MakeDependentInfra;
+  private readonly makeUnitTests: MakeUnitTests;
+  private readonly makeStructure: MakeStructure;
+  private readonly messages: IMessagesDTO;
+  private readonly makeInfra: MakeInfra;
+  private readonly console: Console;
 
   constructor(
     private readonly names: IModuleNamesDTO | undefined,
@@ -32,14 +32,11 @@ export class Module {
     } else {
       this.key = 'makeIndependentModule';
     }
-    this.messages = new Messages().execute();
-    this.console = new Console();
 
-    this.makeUnitTests = new MakeUnitTests(this.names);
-    this.makeStructure = new MakeStructure(this.names);
-    this.makeInfra = new MakeInfra(this.names);
-    this.makeFunctionalities = new MakeFunctionalities(this.names);
-
+    this.makeDependentFunctionalities = new MakeDependentFunctionalities(
+      this.names,
+      this.fatherNames,
+    );
     this.makeDependentUnitTests = new MakeDependentUnitTests(
       this.names,
       this.fatherNames,
@@ -52,10 +49,12 @@ export class Module {
       this.names,
       this.fatherNames,
     );
-    this.makeDependentFunctionalities = new MakeDependentFunctionalities(
-      this.names,
-      this.fatherNames,
-    );
+    this.makeFunctionalities = new MakeFunctionalities(this.names);
+    this.makeStructure = new MakeStructure(this.names);
+    this.makeUnitTests = new MakeUnitTests(this.names);
+    this.makeInfra = new MakeInfra(this.names);
+    this.messages = new Messages().execute();
+    this.console = new Console();
   }
 
   public async makeIndependentModule(): Promise<void> {

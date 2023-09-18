@@ -11,32 +11,32 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentStorageProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly createIStorage: CreateIStorage;
-  private readonly createDiskStorage: CreateDiskStorage;
-  private readonly createS3Storage: CreateS3Storage;
-  private readonly createFakeStorage: CreateFakeStorage;
-  private readonly createUploadConfig: CreateUploadConfig;
   private readonly createStorageIndex: CreateStorageIndex;
+  private readonly createUploadConfig: CreateUploadConfig;
+  private readonly createDiskStorage: CreateDiskStorage;
+  private readonly createFakeStorage: CreateFakeStorage;
+  private readonly createS3Storage: CreateS3Storage;
   private readonly createContainer: CreateContainer;
+  private readonly createIStorage: CreateIStorage;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.createStorageIndex = new CreateStorageIndex();
+    this.createUploadConfig = new CreateUploadConfig();
+    this.createDiskStorage = new CreateDiskStorage();
+    this.createFakeStorage = new CreateFakeStorage();
+    this.createS3Storage = new CreateS3Storage();
+    this.createContainer = new CreateContainer();
+    this.createIStorage = new CreateIStorage();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.createDiskStorage = new CreateDiskStorage();
-    this.createS3Storage = new CreateS3Storage();
-    this.createFakeStorage = new CreateFakeStorage();
-    this.createUploadConfig = new CreateUploadConfig();
-    this.createIStorage = new CreateIStorage();
-    this.createStorageIndex = new CreateStorageIndex();
-    this.createContainer = new CreateContainer();
   }
 
   public async execute(): Promise<void> {

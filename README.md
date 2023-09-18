@@ -129,8 +129,8 @@ yarn cross make:module [name]
 .
 └── middlewares
     ├── ensureAuthenticated.ts
-    ├── GuardRoute.ts
-    ├── RateLimiter.ts
+    ├── parseParam.ts
+    ├── rateLimiter.ts
     └── [name].ts
 ```
 

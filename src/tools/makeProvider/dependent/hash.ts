@@ -10,15 +10,15 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentHashProvider {
-  private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly createIHash: CreateIHash;
-  private readonly createHash: CreateHash;
-  private readonly createFakeHash: CreateFakeHash;
   private readonly createHashConfig: CreateHashConfig;
   private readonly createHashIndex: CreateHashIndex;
   private readonly createContainer: CreateContainer;
+  private readonly createFakeHash: CreateFakeHash;
+  private readonly createIHash: CreateIHash;
+  private readonly fileManager: FileManager;
+  private readonly createHash: CreateHash;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:

@@ -7,22 +7,22 @@ import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
 
 export class MakeLastLayer {
-  private readonly createBaseEntity: CreateBaseEntity;
-  private readonly createBaseRepository: CreateBaseRepository;
-  private readonly createIBaseRepository: CreateIBaseRepository;
   private readonly createBaseFakeRepository: CreateBaseFakeRepository;
-  private readonly fileManager: FileManager;
+  private readonly createIBaseRepository: CreateIBaseRepository;
+  private readonly createBaseRepository: CreateBaseRepository;
   private readonly createCorsConfig: CreateCorsConfig;
   private readonly createAuthConfig: CreateAuthConfig;
+  private readonly createBaseEntity: CreateBaseEntity;
+  private readonly fileManager: FileManager;
 
   constructor() {
-    this.fileManager = new FileManager();
-    this.createBaseEntity = new CreateBaseEntity();
-    this.createBaseRepository = new CreateBaseRepository();
-    this.createIBaseRepository = new CreateIBaseRepository();
     this.createBaseFakeRepository = new CreateBaseFakeRepository();
+    this.createIBaseRepository = new CreateIBaseRepository();
+    this.createBaseRepository = new CreateBaseRepository();
+    this.createBaseEntity = new CreateBaseEntity();
     this.createCorsConfig = new CreateCorsConfig();
     this.createAuthConfig = new CreateAuthConfig();
+    this.fileManager = new FileManager();
   }
 
   public async execute(): Promise<void> {

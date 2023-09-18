@@ -25,58 +25,58 @@ import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
 
 export class MakeThirdLayer {
-  private readonly fileManager: FileManager;
-  private readonly createEnvNamespace: CreateEnvNamespace;
-  private readonly createEnsureAuthenticated: CreateEnsureAuthenticated;
-  private readonly createDomainsManager: CreateDomainsManager;
-  private readonly createNormalizeQueryLink: CreateNormalizeQueryLink;
-  private readonly createDecimaAdjust: CreateDecimaAdjust;
-  private readonly createErrorLog: CreateErrorLog;
-  private readonly createRateLimiter: CreateRateLimiter;
-  private readonly createDecodeJwt: CreateDecodeJwt;
-  private readonly createGuard: CreateGuard;
-  private readonly createJsonToXml: CreateJsonToXml;
   private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
-  private readonly createParseParam: CreateparseParam;
-  private readonly createKeys: CreateKeys;
-  private readonly createRoutes: CreateRoutes;
-  private readonly createIResponseDTO: CreateIResponseDTO;
-  private readonly createIObjectDTO: CreateIObjectDTO;
-  private readonly createIListDTO: CreateIListDTO;
-  private readonly createICacheDTO: CreateICacheDTO;
-  private readonly createIExceptionDTO: CreateIExceptionDTO;
-  private readonly createDomains: CreateDomains;
-  private readonly createCombinations: CreateCombinations;
-  private readonly createServer: CreateServer;
-  private readonly createApp: CreateApp;
+  private readonly createEnsureAuthenticated: CreateEnsureAuthenticated;
+  private readonly createNormalizeQueryLink: CreateNormalizeQueryLink;
   private readonly createExpressNamespace: CreateExpressNamespace;
+  private readonly createDomainsManager: CreateDomainsManager;
+  private readonly createIExceptionDTO: CreateIExceptionDTO;
+  private readonly createEnvNamespace: CreateEnvNamespace;
+  private readonly createDecimaAdjust: CreateDecimaAdjust;
+  private readonly createIResponseDTO: CreateIResponseDTO;
+  private readonly createCombinations: CreateCombinations;
+  private readonly createRateLimiter: CreateRateLimiter;
+  private readonly createParseParam: CreateparseParam;
+  private readonly createIObjectDTO: CreateIObjectDTO;
+  private readonly createDecodeJwt: CreateDecodeJwt;
+  private readonly createJsonToXml: CreateJsonToXml;
+  private readonly createICacheDTO: CreateICacheDTO;
+  private readonly createErrorLog: CreateErrorLog;
+  private readonly createIListDTO: CreateIListDTO;
+  private readonly createDomains: CreateDomains;
+  private readonly createRoutes: CreateRoutes;
+  private readonly createServer: CreateServer;
+  private readonly fileManager: FileManager;
+  private readonly createGuard: CreateGuard;
+  private readonly createKeys: CreateKeys;
+  private readonly createApp: CreateApp;
 
   constructor() {
-    this.fileManager = new FileManager();
-    this.createEnvNamespace = new CreateEnvNamespace();
-    this.createDecodeJwt = new CreateDecodeJwt();
-    this.createKeys = new CreateKeys();
+    this.createConvertToMilliseconds = new CreateConvertToMilliseconds();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
-    this.createDomainsManager = new CreateDomainsManager();
-    this.createDecimaAdjust = new CreateDecimaAdjust();
-    this.createRateLimiter = new CreateRateLimiter();
-    this.createErrorLog = new CreateErrorLog();
-    this.createRoutes = new CreateRoutes();
-    this.createGuard = new CreateGuard();
-    this.createConvertToMilliseconds = new CreateConvertToMilliseconds();
-    this.createParseParam = new CreateparseParam();
-    this.createJsonToXml = new CreateJsonToXml();
-    this.createIResponseDTO = new CreateIResponseDTO();
-    this.createIObjectDTO = new CreateIObjectDTO();
-    this.createIListDTO = new CreateIListDTO();
-    this.createIExceptionDTO = new CreateIExceptionDTO();
-    this.createICacheDTO = new CreateICacheDTO();
-    this.createDomains = new CreateDomains();
-    this.createCombinations = new CreateCombinations();
-    this.createServer = new CreateServer();
-    this.createApp = new CreateApp();
     this.createExpressNamespace = new CreateExpressNamespace();
+    this.createDomainsManager = new CreateDomainsManager();
+    this.createIExceptionDTO = new CreateIExceptionDTO();
+    this.createDecimaAdjust = new CreateDecimaAdjust();
+    this.createIResponseDTO = new CreateIResponseDTO();
+    this.createEnvNamespace = new CreateEnvNamespace();
+    this.createCombinations = new CreateCombinations();
+    this.createRateLimiter = new CreateRateLimiter();
+    this.createParseParam = new CreateparseParam();
+    this.createIObjectDTO = new CreateIObjectDTO();
+    this.createDecodeJwt = new CreateDecodeJwt();
+    this.createJsonToXml = new CreateJsonToXml();
+    this.createICacheDTO = new CreateICacheDTO();
+    this.createErrorLog = new CreateErrorLog();
+    this.createIListDTO = new CreateIListDTO();
+    this.createDomains = new CreateDomains();
+    this.createRoutes = new CreateRoutes();
+    this.createServer = new CreateServer();
+    this.fileManager = new FileManager();
+    this.createGuard = new CreateGuard();
+    this.createKeys = new CreateKeys();
+    this.createApp = new CreateApp();
   }
 
   public async execute(): Promise<void> {
@@ -117,11 +117,11 @@ export class MakeThirdLayer {
       this.createIResponseDTO,
     );
     await this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'RateLimiter.ts'],
+      ['src', 'middlewares', 'rateLimiter.ts'],
       this.createRateLimiter,
     );
     await this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'EnsureAuthenticated.ts'],
+      ['src', 'middlewares', 'ensureAuthenticated.ts'],
       this.createEnsureAuthenticated,
     );
     await this.fileManager.checkAndCreateFile(
@@ -129,7 +129,7 @@ export class MakeThirdLayer {
       this.createParseParam,
     );
     await this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'DecodeJwt.ts'],
+      ['src', 'middlewares', 'decodeJwt.ts'],
       this.createDecodeJwt,
     );
     await this.fileManager.checkAndCreateFile(

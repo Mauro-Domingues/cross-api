@@ -5,8 +5,8 @@ import { Provider } from '@tools/provider';
 
 export class CreateProvider {
   private readonly messages: IMessagesDTO;
-  private readonly console: Console;
   private readonly provider: Provider;
+  private readonly console: Console;
 
   constructor(
     private readonly providerName: string | undefined,
@@ -14,9 +14,9 @@ export class CreateProvider {
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.provider = new Provider(this.fatherNames);
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.provider = new Provider(this.fatherNames);
   }
 
   public async execute(): Promise<void> {

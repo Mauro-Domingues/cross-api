@@ -10,30 +10,30 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentNotificationProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly fileManager: FileManager;
-  private readonly console: Console;
-  private readonly createINotification: CreateINotification;
-  private readonly createINotificationDTO: CreateINotificationDTO;
   private readonly createOneSignalNotification: CreateOneSignalNotification;
-  private readonly createFakeNotification: CreateFakeNotification;
   private readonly createNotificationIndex: CreateNotificationIndex;
+  private readonly createINotificationDTO: CreateINotificationDTO;
+  private readonly createFakeNotification: CreateFakeNotification;
+  private readonly createINotification: CreateINotification;
   private readonly createContainer: CreateContainer;
+  private readonly fileManager: FileManager;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.createOneSignalNotification = new CreateOneSignalNotification();
+    this.createNotificationIndex = new CreateNotificationIndex();
+    this.createINotificationDTO = new CreateINotificationDTO();
+    this.createFakeNotification = new CreateFakeNotification();
+    this.createINotification = new CreateINotification();
+    this.createContainer = new CreateContainer();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.createINotification = new CreateINotification();
-    this.createINotificationDTO = new CreateINotificationDTO();
-    this.createOneSignalNotification = new CreateOneSignalNotification();
-    this.createFakeNotification = new CreateFakeNotification();
-    this.createNotificationIndex = new CreateNotificationIndex();
-    this.createContainer = new CreateContainer();
   }
 
   public async execute(): Promise<void> {

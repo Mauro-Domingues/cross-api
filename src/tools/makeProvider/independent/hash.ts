@@ -8,24 +8,24 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeHashProvider {
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
-  private readonly fileManager: FileManager;
-  private readonly createIHash: CreateIHash;
-  private readonly createHash: CreateHash;
-  private readonly createFakeHash: CreateFakeHash;
   private readonly createHashConfig: CreateHashConfig;
   private readonly createHashIndex: CreateHashIndex;
+  private readonly createFakeHash: CreateFakeHash;
+  private readonly createIHash: CreateIHash;
+  private readonly fileManager: FileManager;
+  private readonly createHash: CreateHash;
+  private readonly messages: IMessagesDTO;
+  private readonly console: Console;
 
   constructor() {
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.createIHash = new CreateIHash();
-    this.createHash = new CreateHash();
-    this.createFakeHash = new CreateFakeHash();
     this.createHashConfig = new CreateHashConfig();
     this.createHashIndex = new CreateHashIndex();
+    this.createFakeHash = new CreateFakeHash();
+    this.messages = new Messages().execute();
+    this.createIHash = new CreateIHash();
+    this.fileManager = new FileManager();
+    this.createHash = new CreateHash();
+    this.console = new Console();
   }
 
   public async execute(): Promise<void> {

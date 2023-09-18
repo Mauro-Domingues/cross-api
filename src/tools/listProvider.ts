@@ -6,8 +6,8 @@ export class ListProvider {
   private readonly console: Console;
 
   constructor() {
-    this.console = new Console();
     this.provider = new Provider(undefined);
+    this.console = new Console();
   }
 
   private renderEmptyLine(): void {
