@@ -243,17 +243,17 @@ export class Pluralize {
   private readonly console: Console;
 
   constructor(private readonly word: string | undefined) {
-    this.irregularData.map(data => this.addIrregularRule(data[0], data[1]));
-    this.singularData.map(data => this.addSingularRule(data[0], data[1]));
-    this.pluralData.map(data => this.addPluralRule(data[0], data[1]));
-    this.uncontableData.map(data => this.addUncountableRule(data));
     this.messages = new Messages().execute();
     this.console = new Console();
-    this.irregularSingles = {};
     this.irregularPlurals = {};
+    this.irregularSingles = {};
     this.singularRules = [];
     this.uncountables = {};
     this.pluralRules = [];
+    this.pluralData.map(data => this.addPluralRule(data[0], data[1]));
+    this.singularData.map(data => this.addSingularRule(data[0], data[1]));
+    this.uncontableData.map(data => this.addUncountableRule(data));
+    this.irregularData.map(data => this.addIrregularRule(data[0], data[1]));
   }
 
   private replace(word: string, rule: [RegExp, string]) {
