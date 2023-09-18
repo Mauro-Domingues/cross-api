@@ -12,8 +12,8 @@ export {
   mapAndUpdateAttribute as updateAttribute,
   mapAndUpdateStringify as updateStringify,
   mapAndCloneAttribute as cloneAttribute,
-  mapAndPatchStringify as patchAttribute,
-  mapAndPatchAttribute as patchStringify,
+  mapAndPatchAttribute as patchAttribute,
+  mapAndPatchStringify as patchStringify,
 };
 `;
   }
