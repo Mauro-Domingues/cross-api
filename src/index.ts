@@ -34,12 +34,6 @@ new (class Main {
     'make:api': CreateApi;
     'make:module': CreateModule;
     'make:provider': CreateProvider;
-    'migration:generate': {
-      execute: () => Promise<string>;
-    };
-    'migration:run': {
-      execute: () => Promise<string>;
-    };
     revert: {
       execute: () => Promise<void>;
     };
@@ -72,18 +66,6 @@ new (class Main {
         this.arg,
         this.getFatherNames.execute(),
       ),
-      'migration:generate': {
-        execute: (): Promise<string> =>
-          this.shell.execute(
-            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:generate ./src/shared/typeorm/migrations/default',
-          ),
-      },
-      'migration:run': {
-        execute: (): Promise<string> =>
-          this.shell.execute(
-            'ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/typeorm/dataSource.ts migration:run',
-          ),
-      },
       revert: {
         execute: (): Promise<void> =>
           this.deleteRegister

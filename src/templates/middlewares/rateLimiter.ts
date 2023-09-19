@@ -12,7 +12,6 @@ const redisClient = new Redis({
   enableOfflineQueue: false,
 });
 
-
 const limiter = new RateLimiterRedis({
   storeClient: redisClient,
   keyPrefix: 'ratelimit',

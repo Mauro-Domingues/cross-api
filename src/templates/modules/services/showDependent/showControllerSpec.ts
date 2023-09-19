@@ -32,8 +32,6 @@ import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSourc
 import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 
-let connection: DataSource;
-
 describe('Show${this.names.upperModuleName}Controller', () => {
   beforeAll(async () => {
     Connection.mysql = await MysqlDataSource('database_test').initialize();

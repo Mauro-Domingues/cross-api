@@ -212,7 +212,11 @@ yarn cross make:module [name]
     │   │   └── hash.default.ts
     │   ├── seeds
     │   │   └── [name].ts
-    │   ├── dataSource.ts
+    │   ├── dataSources
+    │   │   ├── fakes
+    │   │   │   └── FakeDataSource.ts
+    │   │   ├── mysqlDataSource.ts
+    │   │   └── [name]DataSource.ts
     │   └── index.ts
     ├── app.ts
     └── server.ts

@@ -9,7 +9,6 @@ interface IOptionDTO {
 export class Board {
   private readonly structureOptions: Array<IOptionDTO>;
   private readonly toolOptions: Array<IOptionDTO>;
-  private readonly ormOptions: Array<IOptionDTO>;
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
@@ -25,16 +24,6 @@ export class Board {
       {
         title: 'list:provider       ',
         description: this.messages.listProvider,
-      },
-    ];
-    this.ormOptions = [
-      {
-        title: 'migration:generate           ',
-        description: this.messages.migrationGenerate,
-      },
-      {
-        title: 'migration:run                ',
-        description: this.messages.migrationRun,
       },
     ];
     this.structureOptions = [
@@ -111,31 +100,6 @@ export class Board {
     });
   }
 
-  private renderOrmOptions(): void {
-    this.console.many([
-      ['|   ', 'blue', true, false, false],
-      [` 〇 ORM   `, 'green', true, false, false],
-      [
-        '                                                                                                          |   ',
-        'blue',
-        true,
-        false,
-        false,
-      ],
-    ]);
-    this.renderEmptyLine();
-    this.ormOptions.forEach(orm => {
-      this.console.many([
-        ['|   ', 'blue', true, false, false],
-        [`   ➤  ${orm.title}   `, 'yellow', true, false, false],
-        ['|   ', 'blue', true, false, false],
-        [`${orm.description}   `, 'white', false, false, false],
-        ['|   ', 'blue', true, false, false],
-      ]);
-      this.renderEmptyLine();
-    });
-  }
-
   private renderStructureOptions(): void {
     this.console.many([
       ['|   ', 'blue', true, false, false],
@@ -174,7 +138,6 @@ export class Board {
   public execute(): void {
     this.renderHeader();
     this.renderToolOptions();
-    this.renderOrmOptions();
     this.renderStructureOptions();
     this.renderFooter();
   }
