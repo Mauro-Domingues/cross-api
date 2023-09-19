@@ -26,7 +26,13 @@ export const rateLimiter = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    await limiter.consume(request.ip, 1);
+    if (
+      !['/api-docs', '/uploads', '/keys'].some(route =>
+        request.path.startsWith(route),
+      )
+    ) {
+      await limiter.consume(request.ip, 1);
+    }
 
     return next();
   } catch {
