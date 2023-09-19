@@ -34,10 +34,6 @@ export class PortugueseMessages {
       comands: 'É usado para visualizar os comandos disponíveis  ',
       changeLanguage: 'É usado para alterar o idioma                    ',
       listProvider: 'É utilizado para listar os provedores disponíveis',
-      migrationGenerate:
-        'É utilizado para gerar ou atualizar migrações                              ',
-      migrationRun:
-        'É utilizado para rodar as migrações                                        ',
       structure: 'CRIAÇÃO DA ESTRUTURA',
       makeApi:
         'É utilizado para gerar a estrutura da sua API                              ',

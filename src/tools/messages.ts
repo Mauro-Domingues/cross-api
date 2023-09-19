@@ -23,8 +23,6 @@ export interface IMessagesDTO {
   comands: string;
   changeLanguage: string;
   listProvider: string;
-  migrationGenerate: string;
-  migrationRun: string;
   structure: string;
   makeApi: string;
   makeModule: string;
@@ -73,10 +71,6 @@ export class Messages {
       comands: 'It is used to view the available commands        ',
       changeLanguage: 'It is used to change the language                ',
       listProvider: 'It is used to list the available providers       ',
-      migrationGenerate:
-        'It is used to generate or update migrations                                ',
-      migrationRun:
-        'It is used to run the migrations                                           ',
       structure: 'STRUCTURE CREATION  ',
       makeApi:
         'It is used to generate the structure of your API                           ',
