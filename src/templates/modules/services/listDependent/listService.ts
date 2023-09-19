@@ -44,7 +44,7 @@ import { ${this.names.upperModuleName} } ${'from'} '@modules/${
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { ICacheDTO } ${'from'} '@dtos/ICacheDTO';
 import { IListDTO } ${'from'} '@dtos/IListDTO';
-import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Connection } ${'from'} '@shared/typeorm';
 import { FindOptionsWhere } ${'from'} 'typeorm';
 import { Get, Route, Tags, Query, Inject } ${'from'} 'tsoa';
 
@@ -68,7 +68,7 @@ export class List${this.names.upperModuleName}Service {
     @Query() limit: number,
     @Inject() filters: FindOptionsWhere<${this.names.upperModuleName}>,
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
-    const trx = AppDataSource.createQueryRunner();
+    const trx = Connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {

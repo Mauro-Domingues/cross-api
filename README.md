@@ -249,7 +249,7 @@ import { AppDataSource } from '@shared/typeorm/dataSource';
 
 class Example {
   public async handle() {
-    const trx = AppDataSource.createQueryRunner(); // Creates a queryRunner
+    const trx = Connection.mysql.createQueryRunner(); // Creates a queryRunner
 
     await trx.startTransaction(); // Creates a single connection to the database
     try {

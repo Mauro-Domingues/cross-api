@@ -28,18 +28,16 @@ export class ShowSpecController {
     }
 
     return `import request ${'from'} 'supertest';
-import { DataSource } ${'from'} 'typeorm';
-import { createConnection } ${'from'} '@shared/typeorm';
+import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
+import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
-
-let connection: DataSource;
 
 describe('Show${this.names.upperModuleName}Controller', () => {
   beforeAll(async () => {
-    connection = await createConnection();
-    await connection.runMigrations();
+    Connection.mysql = await MysqlDataSource('database_test').initialize();
+    await Connection.mysql.runMigrations();
 
-    return connection.query(
+    return Connection.mysql.query(
       \`INSERT INTO ${
         this.names.dbModuleName
       }(id, name, description) values('12345', '${
@@ -49,12 +47,12 @@ describe('Show${this.names.upperModuleName}Controller', () => {
   });
 
   afterAll(async () => {
-    await connection.dropDatabase();
-    return connection.destroy();
+    await Connection.mysql.dropDatabase();
+    return Connection.mysql.destroy();
   });
 
   it('Should be able to show a ${this.names.lowerModuleName}', async () => {
-    const response = await request(app).get('/${
+    const response = await request(app.server).get('/${
       this.names.routeModuleName
     }/12345');
 

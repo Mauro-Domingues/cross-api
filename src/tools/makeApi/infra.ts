@@ -66,6 +66,19 @@ export class MakeInfra {
       'src',
       'shared',
       'typeorm',
+      'dataSources',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'typeorm',
+      'dataSources',
+      'fakes',
+    ]);
+    await this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'typeorm',
       'migrations',
     ]);
     await this.fileManager.checkAndCreateDir([

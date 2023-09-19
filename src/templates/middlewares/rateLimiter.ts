@@ -2,21 +2,23 @@ export class CreateRateLimiter {
   public execute(): string {
     return `import { Request, Response, NextFunction } ${'from'} 'express';
 import { RateLimiterRedis } ${'from'} 'rate-limiter-flexible';
-import { createClient } ${'from'} 'redis';
+import { Redis } ${'from'} 'ioredis';
 
 import { AppError } ${'from'} '@shared/errors/AppError';
+import { cacheConfig } ${'from'} '@config/cache';
 
-const redisClient = createClient({
-  host: process.env.REDIS_HOST,
-  port: Number(process.env.REDIS_PORT),
-  password: process.env.REDIS_PASSWORD,
+const redisClient = new Redis({
+  ...cacheConfig.config.redis,
+  enableOfflineQueue: false,
 });
+
 
 const limiter = new RateLimiterRedis({
   storeClient: redisClient,
   keyPrefix: 'ratelimit',
-  points: 5,
+  blockDuration: 600,
   duration: 1,
+  points: 5,
 });
 
 export const rateLimiter = async (
@@ -25,7 +27,7 @@ export const rateLimiter = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    await limiter.consume(request.ip);
+    await limiter.consume(request.ip, 1);
 
     return next();
   } catch {

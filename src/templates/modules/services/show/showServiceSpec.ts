@@ -33,8 +33,8 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { DataSource } ${'from'} 'typeorm';
-import { createConnection } ${'from'} '@shared/typeorm';
+import { Connection } ${'from'} '@shared/typeorm';
+import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
     }Service';
@@ -43,15 +43,10 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
       this.names.pluralUpperModuleName
     }Repository;
 let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
-let connection: DataSource;
 
 describe('Show${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    connection = await createConnection();
-  });
-
-  afterAll(async () => {
-    return connection.destroy();
+    Connection.mysql = FakeMysqlDataSource;
   });
 
   beforeEach(() => {

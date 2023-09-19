@@ -36,9 +36,9 @@ export class ListSpecDependentService {
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { DataSource } ${'from'} 'typeorm';
-import { createConnection } ${'from'} '@shared/typeorm';
+import { Connection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
+import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { List${this.names.upperModuleName}Service } ${'from'} './List${
       this.names.upperModuleName
     }Service';
@@ -48,15 +48,10 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
     }Repository;
 let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
-let connection: DataSource;
 
 describe('List${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    connection = await createConnection();
-  });
-
-  afterAll(async () => {
-    return connection.destroy();
+    Connection.mysql = FakeMysqlDataSource;
   });
 
   beforeEach(() => {

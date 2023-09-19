@@ -1,7 +1,5 @@
-import { CreateTypeorm } from '@templates/api/typeorm';
 import { CreateAppError } from '@templates/errors/appError';
 import { CreateContainer } from '@templates/index/container';
-import { CreateDataSource } from '@templates/api/dataSource';
 import { CreateMapAndClone } from '@templates/utils/mappers/mapAndClone';
 import { CreateMapAndInsert } from '@templates/utils/mappers/mapAndInsert';
 import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
@@ -10,6 +8,7 @@ import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import { FileManager } from '@tools/fileManager';
 import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
+import { CreateConnection } from '@templates/api/connection';
 
 export class MakeFourthLayer {
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
@@ -19,10 +18,9 @@ export class MakeFourthLayer {
   private readonly createMapAndPatch: CreateMapAndPatch;
   private readonly createMapAndClone: CreateMapAndClone;
   private readonly createIndexMapper: CreateIndexMapper;
-  private readonly createDataSource: CreateDataSource;
+  private readonly createConnection: CreateConnection;
   private readonly createContainer: CreateContainer;
   private readonly createAppError: CreateAppError;
-  private readonly createTypeorm: CreateTypeorm;
   private readonly fileManager: FileManager;
 
   constructor() {
@@ -33,10 +31,9 @@ export class MakeFourthLayer {
     this.createMapAndPatch = new CreateMapAndPatch();
     this.createIndexMapper = new CreateIndexMapper();
     this.createMapAndClone = new CreateMapAndClone();
-    this.createDataSource = new CreateDataSource();
+    this.createConnection = new CreateConnection();
     this.createContainer = new CreateContainer();
     this.createAppError = new CreateAppError();
-    this.createTypeorm = new CreateTypeorm();
     this.fileManager = new FileManager();
   }
 
@@ -77,13 +74,9 @@ export class MakeFourthLayer {
       ['src', 'shared', 'errors', 'AppError.ts'],
       this.createAppError,
     );
-    await this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'typeorm', 'index.ts'],
-      this.createTypeorm,
-    );
     return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'typeorm', 'dataSource.ts'],
-      this.createDataSource,
+      ['src', 'shared', 'typeorm', 'index.ts'],
+      this.createConnection,
     );
   }
 }

@@ -48,7 +48,7 @@ import { ${this.names.upperModuleName} } ${'from'} '@modules/${
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Connection } ${'from'} '@shared/typeorm';
 import { Route, Tags, Put, Body, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
@@ -72,7 +72,7 @@ export class Update${this.names.upperModuleName}Service {
     }DTO,
     @Path() id?: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
-    const trx = AppDataSource.createQueryRunner();
+    const trx = Connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {

@@ -36,7 +36,7 @@ import { I${
       this.names.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { AppDataSource } ${'from'} '@shared/typeorm/dataSource';
+import { Connection } ${'from'} '@shared/typeorm';
 import { Route, Tags, Delete, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
@@ -55,7 +55,7 @@ export class Delete${this.names.upperModuleName}Service {
   @Delete('{id}')
   @Tags('${this.names.upperModuleName}')
   public async execute(@Path() id?: string): Promise<IResponseDTO<null>> {
-    const trx = AppDataSource.createQueryRunner();
+    const trx = Connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {

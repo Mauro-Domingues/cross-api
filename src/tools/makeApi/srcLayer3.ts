@@ -23,6 +23,10 @@ import { CreateparseParam } from '@templates/middlewares/parseParam';
 import { CreateCombinations } from '@templates/utils/combinations';
 import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
+import { CreateErrorHandler } from '@templates/middlewares/errorHandler';
+import { CreateSetConnection } from '@templates/middlewares/setConnection';
+import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
+import { CreateAuthConfig } from '@templates/providers/config/authConfig';
 
 export class MakeThirdLayer {
   private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
@@ -31,13 +35,17 @@ export class MakeThirdLayer {
   private readonly createExpressNamespace: CreateExpressNamespace;
   private readonly createDomainsManager: CreateDomainsManager;
   private readonly createIExceptionDTO: CreateIExceptionDTO;
+  private readonly createSetConnection: CreateSetConnection;
   private readonly createEnvNamespace: CreateEnvNamespace;
   private readonly createDecimaAdjust: CreateDecimaAdjust;
   private readonly createIResponseDTO: CreateIResponseDTO;
   private readonly createCombinations: CreateCombinations;
+  private readonly createErrorHandler: CreateErrorHandler;
   private readonly createRateLimiter: CreateRateLimiter;
   private readonly createParseParam: CreateparseParam;
   private readonly createIObjectDTO: CreateIObjectDTO;
+  private readonly createCorsConfig: CreateCorsConfig;
+  private readonly createAuthConfig: CreateAuthConfig;
   private readonly createDecodeJwt: CreateDecodeJwt;
   private readonly createJsonToXml: CreateJsonToXml;
   private readonly createICacheDTO: CreateICacheDTO;
@@ -58,13 +66,17 @@ export class MakeThirdLayer {
     this.createExpressNamespace = new CreateExpressNamespace();
     this.createDomainsManager = new CreateDomainsManager();
     this.createIExceptionDTO = new CreateIExceptionDTO();
+    this.createSetConnection = new CreateSetConnection();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createIResponseDTO = new CreateIResponseDTO();
     this.createEnvNamespace = new CreateEnvNamespace();
+    this.createErrorHandler = new CreateErrorHandler();
     this.createCombinations = new CreateCombinations();
     this.createRateLimiter = new CreateRateLimiter();
     this.createParseParam = new CreateparseParam();
     this.createIObjectDTO = new CreateIObjectDTO();
+    this.createCorsConfig = new CreateCorsConfig();
+    this.createAuthConfig = new CreateAuthConfig();
     this.createDecodeJwt = new CreateDecodeJwt();
     this.createJsonToXml = new CreateJsonToXml();
     this.createICacheDTO = new CreateICacheDTO();
@@ -97,6 +109,14 @@ export class MakeThirdLayer {
       this.createDomains,
     );
     await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'auth.ts'],
+      this.createAuthConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'cors.ts'],
+      this.createCorsConfig,
+    );
+    await this.fileManager.checkAndCreateFile(
       ['src', 'dtos', 'IExceptionDTO.ts'],
       this.createIExceptionDTO,
     );
@@ -123,6 +143,14 @@ export class MakeThirdLayer {
     await this.fileManager.checkAndCreateFile(
       ['src', 'middlewares', 'ensureAuthenticated.ts'],
       this.createEnsureAuthenticated,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'middlewares', 'setConnection.ts'],
+      this.createSetConnection,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'middlewares', 'errorHandler.ts'],
+      this.createErrorHandler,
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'middlewares', 'parseParam.ts'],

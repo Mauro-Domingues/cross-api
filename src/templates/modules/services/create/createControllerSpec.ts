@@ -31,27 +31,13 @@ export class CreateSpecController {
     }
 
     return `import request ${'from'} 'supertest';
-import { DataSource } ${'from'} 'typeorm';
-import { createConnection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 
-let connection: DataSource;
-
 describe('Create${this.names.upperModuleName}Controller', () => {
-  beforeAll(async () => {
-    connection = await createConnection();
-    return connection.runMigrations();
-  });
-
-  afterAll(async () => {
-    await connection.dropDatabase();
-    return connection.destroy();
-  });
-
   it('Should be able to create a new ${
     this.names.lowerModuleName
   }', async () => {
-    const response = await request(app).post('/${
+    const response = await request(app.server).post('/${
       this.names.routeModuleName
     }').send({
       name: '${this.names.lowerModuleName}',

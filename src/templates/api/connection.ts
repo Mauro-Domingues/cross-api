@@ -1,12 +1,12 @@
-export class CreateTypeorm {
+export class CreateConnection {
   public execute(): string {
     return `import { DataSource } ${'from'} 'typeorm';
 
-import { AppDataSource } ${'from'} './dataSource';
+export class Connection {
+  static mysql: DataSource;
 
-export const createConnection = async (): Promise<DataSource> => {
-  return AppDataSource.initialize();
-};
+  // static otherConnection: DataSource
+}
 
 // Image examples
 
@@ -24,7 +24,7 @@ export const createConnection = async (): Promise<DataSource> => {
 //   }
 //   switch (uploadConfig.driver) {
 //     case "disk":
-//       return \`\${process.env.API_URL}/files/\${this.image}\`;
+//       return \`\${process.env.API_URL}/uploads/\${this.image}\`;
 //     case "s3":
 //       return \`https://\${uploadConfig.config.aws.bucket}.s3.amazonaws.com/\${this.image}\`;
 //     default:
