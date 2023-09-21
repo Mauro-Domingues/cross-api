@@ -74,9 +74,9 @@ export class Delete${this.names.upperModuleName}Service {
         this.names.pluralLowerModuleName
       }Repository.delete({ id }, trx);
 
-      await this.cacheProvider.invalidatePrefix(\`\${Connection.client}:${
-        this.names.pluralLowerModuleName
-      }\`);
+      await this.cacheProvider.invalidatePrefix(\`\${
+        Connection.client
+      }:${this.names.pluralLowerModuleName}\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {

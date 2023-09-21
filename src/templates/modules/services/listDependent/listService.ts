@@ -72,7 +72,9 @@ export class List${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const cacheKey = \`\${Connection.client}:${
+      const cacheKey = \`\${
+        Connection.client
+      }:${
         this.names.pluralLowerModuleName
       }:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
 
