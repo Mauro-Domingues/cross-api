@@ -5,7 +5,7 @@ export class CreateCacheConfig {
 interface ICacheConfigDTO {
   driver: 'redis';
   config: {
-    redis: RedisOptions;
+    redis: RedisOptions & { keyPrefix: string };
   };
 }
 
