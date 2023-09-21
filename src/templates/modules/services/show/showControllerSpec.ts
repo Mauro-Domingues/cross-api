@@ -34,7 +34,7 @@ import { app } ${'from'} '@shared/app';
 
 describe('Show${this.names.upperModuleName}Controller', () => {
   beforeAll(async () => {
-    Connection.mysql = await MysqlDataSource('database_test').initialize();
+    Connection.mysql = await MysqlDataSource(Connection.client).initialize();
     await Connection.mysql.runMigrations();
 
     return Connection.mysql.query(

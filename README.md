@@ -249,7 +249,7 @@ yarn cross make:module [name]
 <h3>Transactions</h3><h4> By introducing the transactions, they revert all changes made to the database in the event that the method fails to execute. This helps prevent traces of data considered junk.</h4>
 
 ```typescript
-import { AppDataSource } from '@shared/typeorm/dataSource';
+import { Connection } from '@shared/typeorm';
 
 class Example {
   public async handle() {

@@ -3,6 +3,8 @@ export class CreateConnection {
     return `import { DataSource } ${'from'} 'typeorm';
 
 export class Connection {
+  static client: string;
+
   static mysql: DataSource;
 
   // static otherConnection: DataSource
