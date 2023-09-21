@@ -17,9 +17,9 @@ import { Console } from '@tools/console';
 new (class Main {
   private readonly fullComand: Array<string> = process.argv.slice(2);
   private readonly comand: string = process.argv[2];
+  private readonly father: string = process.argv[4];
   private readonly deleteRegister: DeleteRegister;
   private readonly createRegister: CreateRegister;
-  private readonly father: string = process.argv[4];
   private readonly arg: string = process.argv[3];
   private readonly getFatherNames: GetNames;
   private readonly messages: IMessagesDTO;
