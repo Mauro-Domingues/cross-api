@@ -91,7 +91,7 @@ export class List${this.names.upperModuleName}Service {
         await this.cacheProvider.save(cacheKey, cache);
       }
 
-      await trx.commitTransaction();
+      if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
         code: 200,
@@ -106,7 +106,7 @@ export class List${this.names.upperModuleName}Service {
         data: cache.data,
       };
     } catch (error: unknown) {
-      await trx.rollbackTransaction();
+      if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
       await trx.release();

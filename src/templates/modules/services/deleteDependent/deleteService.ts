@@ -77,7 +77,7 @@ export class Delete${this.names.upperModuleName}Service {
       await this.cacheProvider.invalidatePrefix('${
         this.names.pluralLowerModuleName
       }');
-      await trx.commitTransaction();
+      if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
         code: 204,
@@ -86,7 +86,7 @@ export class Delete${this.names.upperModuleName}Service {
         data: null,
       };
     } catch (error: unknown) {
-      await trx.rollbackTransaction();
+      if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
       await trx.release();

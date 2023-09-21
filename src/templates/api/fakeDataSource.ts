@@ -7,6 +7,7 @@ import 'reflect-metadata';
 export const FakeMysqlDataSource = {
   isInitialized: true,
   createQueryRunner: () => ({
+    isTransactionActive: true,
     connect: async () => Promise.resolve(),
     startTransaction: async () => Promise.resolve(),
     commitTransaction: async () => Promise.resolve(),

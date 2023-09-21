@@ -91,7 +91,7 @@ export class Update${this.names.upperModuleName}Service {
       await this.cacheProvider.invalidatePrefix('${
         this.names.pluralLowerModuleName
       }');
-      await trx.commitTransaction();
+      if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
         code: 200,
@@ -100,7 +100,7 @@ export class Update${this.names.upperModuleName}Service {
         data: instanceToInstance(${this.names.lowerModuleName}),
       };
     } catch (error: unknown) {
-      await trx.rollbackTransaction();
+      if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
       await trx.release();

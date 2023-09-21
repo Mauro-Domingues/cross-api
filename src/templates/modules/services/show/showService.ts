@@ -69,7 +69,7 @@ export class Show${this.names.upperModuleName}Service {
         throw new AppError('${this.names.upperModuleName} not found', 404);
       }
 
-      await trx.commitTransaction();
+      if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
         code: 200,
@@ -78,7 +78,7 @@ export class Show${this.names.upperModuleName}Service {
         data: instanceToInstance(${this.names.lowerModuleName}),
       };
     } catch (error: unknown) {
-      await trx.rollbackTransaction();
+      if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
       await trx.release();

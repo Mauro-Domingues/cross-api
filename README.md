@@ -260,11 +260,11 @@ class Example {
       
       const result = await this.examplesRepository.create({ name: 'example' }, trx); // The trx object is mandatory if there is a connection to a database but optional if you are using "in memory repositories"
 
-      await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
+      if (trx.isTransactionActive) await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
 
       return result;
     } catch (error: unknown) {
-      await trx.rollbackTransaction(); // In case of execution failure rolls back all changes made to the database
+      if (trx.isTransactionActive) await trx.rollbackTransaction(); // In case of execution failure rolls back all changes made to the database
       throw error;
     } finally {
       await trx.release(); // Releases the connection so it can be used in other cases

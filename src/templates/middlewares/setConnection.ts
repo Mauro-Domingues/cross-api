@@ -4,12 +4,6 @@ export class CreateSetConnection {
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { Connection } ${'from'} '@shared/typeorm';
 
-const getClient = (client?: string): string => {
-  if (process.env.NODE_ENV === 'test') return 'database_test';
-  if (client) return client;
-  return process.env.DB_DATABASE;
-};
-
 /**
  * @description Defaults to the process.env database, but supports multi-tenancy
  */
@@ -18,7 +12,8 @@ export const setConnection = async (
   _response: Response,
   next: NextFunction,
 ): Promise<void> => {
-  Connection.client = getClient(request.headers['tenant-id'] as string);
+  Connection.client =
+    (request.headers['tenant-id'] as string) ?? process.env.MYSQL_DATABASE;
   Connection.mysql = MysqlDataSource(Connection.client);
 
   if (!Connection.mysql.isInitialized) {
