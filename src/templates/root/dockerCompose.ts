@@ -12,6 +12,8 @@ services:
       - '3306:3306'
     env_file:
       - .env
+    environment:
+      - MYSQL_USER=username
     networks:
       - cross-network
 

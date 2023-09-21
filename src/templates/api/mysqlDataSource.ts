@@ -13,8 +13,7 @@ export const MysqlDataSource = (database: string) => {
       name: database,
       host: process.env.MYSQL_HOST,
       port: Number(process.env.MYSQL_PORT),
-      username:
-        process.env.NODE_ENV === 'test' ? 'root' : process.env.MYSQL_USER,
+      username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.NODE_ENV === 'test' ? 'database_test' : database,
       synchronize: process.env.NODE_ENV !== 'production',
