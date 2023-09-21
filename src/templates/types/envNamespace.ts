@@ -9,11 +9,6 @@ export class CreateEnvNamespace {
     JWT_LIFETIME: string;
     CRYPTO_SECRET_KEY: string;
     HASH_SECRET_KEY: string;
-    DB_HOST: string;
-    DB_PORT: string;
-    DB_USER: string;
-    DB_PASSWORD: string;
-    DB_DATABASE: string;
     MYSQL_HOST: string;
     MYSQL_PORT: string;
     MYSQL_USER: string;

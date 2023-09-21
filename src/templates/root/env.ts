@@ -7,7 +7,7 @@ WEB_URL=http://localhost:3000
 NODE_ENV=development
 
 # Auth
-JWT_LIFETIME=
+JWT_LIFETIME=1d
 
 # Crypto
 CRYPTO_SECRET_KEY=
@@ -15,14 +15,7 @@ CRYPTO_SECRET_KEY=
 # Hash
 HASH_SECRET_KEY=10
 
-# DataSource config
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=12345
-DB_DATABASE=database
-
-# Mysql image
+# Mysql
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=username
@@ -30,13 +23,13 @@ MYSQL_PASSWORD=12345
 MYSQL_ROOT_PASSWORD=12345
 MYSQL_DATABASE=database
 
-# Redis image
+# Redis
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_PASSWORD=12345
 REDIS_PREFIX=api
 
-# File upload
+# Upload
 STORAGE_DRIVER=disk
 #STORAGE_DRIVER=s3
 STORAGE_BUCKET=
