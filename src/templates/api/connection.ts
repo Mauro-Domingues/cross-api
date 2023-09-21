@@ -10,6 +10,12 @@ export class Connection {
   // static otherConnection: DataSource
 }
 
+// Set entities from each database
+
+// @Entity('name', { database: Connection.client }) // only client database
+// @Entity('name', { database: Connection.clientprocess.env.MYSQL_DATABASE }) // only default database
+// @Entity('name') // both databases
+
 // Image examples
 
 // import uploadConfig ${'from'} '@config/upload';

@@ -91,9 +91,9 @@ export class Update${this.names.upperModuleName}Service {
         trx,
       );
 
-      await this.cacheProvider.invalidatePrefix('${
+      await this.cacheProvider.invalidatePrefix(\`\${Connection.client}:${
         this.names.pluralLowerModuleName
-      }');
+      }\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
@@ -106,7 +106,7 @@ export class Update${this.names.upperModuleName}Service {
       if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
-      await trx.release();
+      if (!trx.isReleased) await trx.release();
     }
   }
 }

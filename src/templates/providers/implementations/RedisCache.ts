@@ -3,7 +3,6 @@ export class CreateRedisCache {
     return `import { cacheConfig } ${'from'} '@config/cache';
 import { Redis } ${'from'} 'ioredis';
 
-import { Connection } ${'from'} '@shared/typeorm';
 import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
 
 export class RedisCacheProvider implements ICacheProviderDTO {
@@ -14,14 +13,11 @@ export class RedisCacheProvider implements ICacheProviderDTO {
   }
 
   public async save<T>(key: string, value: T): Promise<void> {
-    await this.client.set(
-      \`:\${Connection.client}:\${key}\`,
-      JSON.stringify(value),
-    );
+    await this.client.set(key, JSON.stringify(value));
   }
 
   public async recovery<T>(key: string): Promise<T | null> {
-    const data = await this.client.get(\`:\${Connection.client}:\${key}\`);
+    const data = await this.client.get(key);
 
     if (!data) {
       return null;
@@ -33,12 +29,12 @@ export class RedisCacheProvider implements ICacheProviderDTO {
   }
 
   public async invalidate(key: string): Promise<void> {
-    await this.client.del(\`:\${Connection.client}:\${key}\`);
+    await this.client.del(key);
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
     const keys = await this.client.keys(
-      \`\${cacheConfig.config.redis.keyPrefix}:\${Connection.client}:\${prefix}:*\`,
+      \`\${cacheConfig.config.redis.keyPrefix}\${prefix}:*\`,
     );
 
     const pipeline = this.client.pipeline();

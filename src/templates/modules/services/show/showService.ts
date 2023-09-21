@@ -81,7 +81,7 @@ export class Show${this.names.upperModuleName}Service {
       if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
-      await trx.release();
+      if (!trx.isReleased) await trx.release();
     }
   }
 }

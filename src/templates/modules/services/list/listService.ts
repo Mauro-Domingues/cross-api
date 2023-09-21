@@ -69,7 +69,7 @@ export class List${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const cacheKey = \`${
+      const cacheKey = \`\${Connection.client}:${
         this.names.pluralLowerModuleName
       }:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
 
@@ -106,7 +106,7 @@ export class List${this.names.upperModuleName}Service {
       if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
-      await trx.release();
+      if (!trx.isReleased) await trx.release();
     }
   }
 }

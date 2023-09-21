@@ -267,7 +267,7 @@ class Example {
       if (trx.isTransactionActive) await trx.rollbackTransaction(); // In case of execution failure rolls back all changes made to the database
       throw error;
     } finally {
-      await trx.release(); // Releases the connection so it can be used in other cases
+      if (!trx.isReleased) await trx.release(); // Releases the connection so it can be used in other cases
     }
   }
 }
