@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     networks:
-      - rs-network
+      - cross-network
 
   redis:
     image: bitnami/redis
@@ -24,10 +24,10 @@ services:
     env_file:
       - .env
     networks:
-      - rs-network
+      - cross-network
 
 networks:
-  rs-network:
+  cross-network:
     driver: bridge`;
   }
 }
