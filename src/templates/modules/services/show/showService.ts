@@ -64,9 +64,9 @@ export class Show${this.names.upperModuleName}Service {
       const ${this.names.lowerModuleName} = await this.${
       this.names.pluralLowerModuleName
     }Repository.findBy(
-      { where: { id } },
-      trx,
-    );
+        { where: { id } },
+        trx,
+      );
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError('${this.names.upperModuleName} not found', 404);

@@ -73,9 +73,9 @@ export class Create${this.names.upperModuleName}Service {
       this.names.pluralLowerModuleName
     }Repository.create(${this.names.lowerModuleName}Data, trx);
 
-      await this.cacheProvider.invalidatePrefix(\`\${
-        Connection.client
-      }:${this.names.pluralLowerModuleName}\`);
+      await this.cacheProvider.invalidatePrefix(
+        \`\${Connection.client}:${this.names.pluralLowerModuleName}\`,
+      );
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
