@@ -33,7 +33,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
     const ContentType = getType(originalPath);
 
     if (!ContentType) {
-      throw new AppError('File not found', 404);
+      throw new AppError('FILE_NOT_FOUND', 'File not found', 404);
     }
 
     const fileContent = readFileSync(originalPath);

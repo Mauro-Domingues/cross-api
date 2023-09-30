@@ -22,7 +22,10 @@ export function mapAndPatchAttribute<
 >(oldAttributes: Entity, newAttributes: DTO): Entity {
   const isValid = (field: unknown) => field && field !== '';
   Object.keys(newAttributes).forEach(attribute => {
-    if (Object.prototype.hasOwnProperty.call(oldAttributes, attribute)) {
+    if (
+      Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
+      (oldAttributes as IObjectDTO)[attribute]
+    )
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (!isValid(newValue)) {
         return;

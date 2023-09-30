@@ -39,42 +39,26 @@ export class GetNames {
 
     const { singular, pluralName } = this.getSingularAndPlural(this.name);
 
-    const lowerModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toLowerCase(),
+    const lowerModuleName =
+      singular.charAt(0).toLowerCase() + singular.slice(1);
+
+    const upperModuleName =
+      singular.charAt(0).toUpperCase() + singular.slice(1);
+
+    const pluralLowerModuleName =
+      pluralName.charAt(0).toLowerCase() + pluralName.slice(1);
+
+    const pluralUpperModuleName =
+      pluralName.charAt(0).toUpperCase() + pluralName.slice(1);
+
+    const dbModuleName = pluralLowerModuleName.replace(
+      /[A-Z]/g,
+      letter => `_${letter.toLowerCase()}`,
     );
 
-    const upperModuleName = singular.replace(
-      singular.charAt(0),
-      singular.charAt(0).toUpperCase(),
-    );
-
-    const pluralLowerModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toLowerCase(),
-    );
-
-    const pluralUpperModuleName = pluralName.replace(
-      pluralName.charAt(0),
-      pluralName.charAt(0).toUpperCase(),
-    );
-
-    const dbModuleName = Array.from(pluralLowerModuleName).reduce(
-      (accumulator, letter) => {
-        if (letter === letter.toUpperCase()) {
-          return `${accumulator}_${letter.toLowerCase()}`;
-        }
-        return `${accumulator}${letter}`;
-      },
-    );
-
-    const routeModuleName = Array.from(pluralLowerModuleName).reduce(
-      (accumulator, letter) => {
-        if (letter === letter.toUpperCase()) {
-          return `${accumulator}-${letter.toLowerCase()}`;
-        }
-        return `${accumulator}${letter}`;
-      },
+    const routeModuleName = pluralLowerModuleName.replace(
+      /[A-Z]/g,
+      letter => `-${letter.toLowerCase()}`,
     );
 
     return {

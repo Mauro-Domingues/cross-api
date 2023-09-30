@@ -21,7 +21,10 @@ export function mapAndUpdateAttribute<
   DTO extends Partial<Entity>,
 >(oldAttributes: Entity, newAttributes: DTO): Entity {
   Object.keys(newAttributes).forEach(attribute => {
-    if (Object.prototype.hasOwnProperty.call(oldAttributes, attribute)) {
+    if (
+      Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
+      (oldAttributes as IObjectDTO)[attribute]
+    )
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (Array.isArray(newValue)) {
         newValue = newValue.map((item, index) => {

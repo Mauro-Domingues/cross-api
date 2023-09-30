@@ -2,7 +2,7 @@ export class CreateIListDTO {
   public execute(): string {
     return `export interface IListDTO<T> {
   code: number;
-  message_code: string;
+  message_code: messageCode;
   message: string;
   pagination: {
     total: number;

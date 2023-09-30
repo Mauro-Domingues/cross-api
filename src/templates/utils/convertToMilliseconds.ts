@@ -12,7 +12,7 @@ export function convertToMilliseconds(
 ): number {
   const match = delay.match(/\\d+/);
   if (match === null) {
-    throw new AppError('Invalid delay format');
+    throw new AppError('INVALID_DELAY_FORMAT', 'Invalid delay format');
   }
 
   const miliseconds = parseInt(match[0], 10);

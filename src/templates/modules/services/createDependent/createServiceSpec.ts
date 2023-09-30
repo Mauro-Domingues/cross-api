@@ -90,7 +90,9 @@ describe('Create${this.names.upperModuleName}Service', () => {
     jest.spyOn(fake${
       this.names.pluralUpperModuleName
     }Repository, 'create').mockImplementationOnce(() => {
-      throw new AppError('Failed to create a ${this.names.lowerModuleName}');
+      throw new AppError('FAILED_TO_CREATE', 'Failed to create a ${
+        this.names.lowerModuleName
+      }');
     });
 
     await expect(

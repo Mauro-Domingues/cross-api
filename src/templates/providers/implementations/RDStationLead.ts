@@ -25,7 +25,11 @@ export class RDStationProvider implements ILeadProviderDTO {
       return axiosResult.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
-        throw new AppError(error.response.statusText, error.response.status);
+        throw new AppError(
+          'FAILED_TO_GET_SESSION',
+          error.response.statusText,
+          error.response.status,
+        );
       } else {
         throw error;
       }
@@ -60,7 +64,11 @@ export class RDStationProvider implements ILeadProviderDTO {
       return axiosResult.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
-        throw new AppError(error.response.statusText, error.response.status);
+        throw new AppError(
+          'FAILED_TO_CREATE_LEAD',
+          error.response.statusText,
+          error.response.status,
+        );
       } else {
         throw error;
       }

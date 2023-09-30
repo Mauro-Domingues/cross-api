@@ -1,10 +1,14 @@
 export class CreateErrorLog {
   public execute(): string {
-    return `import { NextFunction } ${'from'} 'express';
-import { appendFileSync } ${'from'} 'fs';
+    return `import { appendFileSync } ${'from'} 'fs';
 import { resolve } ${'from'} 'path';
 
-export function createErrorLog(error: Error, next: NextFunction): void {
+export function createErrorLog(error: {
+  code: number;
+  message_code: string;
+  message: string;
+  stack: Error['stack'];
+}): void {
   const currentTime = new Date();
   const offset = currentTime.getTimezoneOffset();
   const offsetHours = -offset / 60;
@@ -15,39 +19,20 @@ export function createErrorLog(error: Error, next: NextFunction): void {
   };
   const timeZoneString = \`UTC\${sign(offsetHours)}\${Math.abs(offsetHours)}\`;
 
+  const errorBody = {
+    TIME_OF_OCCURRENCE: \`\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
+    [error.message_code]: error.message,
+    PATH:
+      error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
+      'NOT SET',
+  };
+
   appendFileSync(
     resolve(__dirname, '..', 'assets', 'errors.log'),
-    \`{
-  "Time of occurrence": "\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}",
-  "\${error.name ?? 'AppError'}": "\${error.message}",
-  "Path":
-\${
-  error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
-  '    "not set."'
-},
-}\\${'n'}\`,
+    JSON.stringify(errorBody, null, 2),
   );
 
-  console.log(
-    '{',
-    '\\x1b[1m',
-    '\\x1b[38;2;0;155;255m',
-    \`\\${'n'}  "Time of occurrence": \${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
-    '\\x1b[0m',
-    ',',
-    '\\x1b[1m',
-    '\\x1b[38;2;255;0;0m',
-    \`\\${'n'}  "\${error.name ?? 'AppError'}": \${error.message}\`,
-    '\\x1b[0m',
-    error.stack
-      ? \`,\\${'n'}  "Path": \\${'n'}\${
-          error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
-          '    "not set."'
-        }\\${'n'}}\\${'n'}\`
-      : '\\${'n'}}\\${'n'}',
-  );
-
-  return next();
+  console.log(errorBody);
 }
 `;
   }

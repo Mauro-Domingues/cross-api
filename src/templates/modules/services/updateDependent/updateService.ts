@@ -84,7 +84,9 @@ export class Update${this.names.upperModuleName}Service {
       );
 
       if (!${this.names.lowerModuleName}) {
-        throw new AppError('${this.names.upperModuleName} not found', 404);
+        throw new AppError('NOT_FOUND', '${
+          this.names.upperModuleName
+        } not found', 404);
       }
 
       await this.${this.names.pluralLowerModuleName}Repository.update(
@@ -101,7 +103,7 @@ export class Update${this.names.upperModuleName}Service {
 
       return {
         code: 200,
-        message_code: 'OK',
+        message_code: 'UPDATED',
         message: 'successfully updated ${this.names.lowerModuleName}',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };

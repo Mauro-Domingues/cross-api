@@ -18,7 +18,7 @@ export class Connection {
 
 // Image examples
 
-// import uploadConfig ${'from'} '@config/upload';
+// import { uploadConfig } ${'from'} '@config/upload';
 // import { Exclude, Expose } ${'from'} 'class-transformer';
 //
 // @Exclude()

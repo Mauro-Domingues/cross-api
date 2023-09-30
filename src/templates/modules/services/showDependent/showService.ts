@@ -72,14 +72,16 @@ export class Show${this.names.upperModuleName}Service {
       );
 
       if (!${this.names.lowerModuleName}) {
-        throw new AppError('${this.names.upperModuleName} not found', 404);
+        throw new AppError('NOT_FOUND', '${
+          this.names.upperModuleName
+        } not found', 404);
       }
 
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {
         code: 200,
-        message_code: 'OK',
+        message_code: 'FOUND',
         message: '${this.names.upperModuleName} found successfully',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };

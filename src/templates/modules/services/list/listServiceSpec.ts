@@ -168,7 +168,9 @@ describe('List${this.names.upperModuleName}Service', () => {
     jest.spyOn(fake${
       this.names.pluralUpperModuleName
     }Repository, 'findAll').mockImplementationOnce(() => {
-      throw new AppError('Failed to list ${this.names.pluralLowerModuleName}');
+      throw new AppError('FAILED_TO_LIST', 'Failed to list ${
+        this.names.pluralLowerModuleName
+      }');
     });
 
     await expect(list${

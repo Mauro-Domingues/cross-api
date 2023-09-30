@@ -75,6 +75,7 @@ yarn cross make:module [name]
 ```bash
 .
 └── @types
+    ├── codes.d.ts
     ├── env.d.ts
     ├── express.d.ts
     ├── keys.d.ts
@@ -494,7 +495,7 @@ const example = await this.examplesRepository.findBy(
 );
 
 if (!example) {
-  throw new AppError("Example not found");
+  throw new AppError("NOT_FOUND", "Example not found");
 };
 
 await this.examplesRepository.delete({ id: example.id }, trx);
@@ -536,7 +537,7 @@ const example = await this.examplesRepository.findBy(
 );
 
 if (!example) {
-  throw new AppError("Example not found");
+  throw new AppError("NOT_FOUND", "Example not found");
 };
 
 await this.examplesRepository.softDelete({ id: example.id }, trx);

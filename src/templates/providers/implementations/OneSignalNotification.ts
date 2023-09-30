@@ -34,7 +34,11 @@ export class OneSignalProvider implements INotificationProviderDTO {
       return console.log(axiosResult.data);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
-        throw new AppError(error.response.statusText, error.response.status);
+        throw new AppError(
+          'FAILED_TO_CREATE_NOTIFICATION',
+          error.response.statusText,
+          error.response.status,
+        );
       } else {
         throw error;
       }

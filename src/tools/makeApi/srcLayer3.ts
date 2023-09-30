@@ -27,6 +27,7 @@ import { CreateErrorHandler } from '@templates/middlewares/errorHandler';
 import { CreateSetConnection } from '@templates/middlewares/setConnection';
 import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
 import { CreateAuthConfig } from '@templates/providers/config/authConfig';
+import { CreateCodes } from '@templates/types/codes';
 
 export class MakeThirdLayer {
   private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
@@ -54,6 +55,7 @@ export class MakeThirdLayer {
   private readonly createDomains: CreateDomains;
   private readonly createRoutes: CreateRoutes;
   private readonly createServer: CreateServer;
+  private readonly createCodes: CreateCodes;
   private readonly fileManager: FileManager;
   private readonly createGuard: CreateGuard;
   private readonly createKeys: CreateKeys;
@@ -85,6 +87,7 @@ export class MakeThirdLayer {
     this.createDomains = new CreateDomains();
     this.createRoutes = new CreateRoutes();
     this.createServer = new CreateServer();
+    this.createCodes = new CreateCodes();
     this.fileManager = new FileManager();
     this.createGuard = new CreateGuard();
     this.createKeys = new CreateKeys();
@@ -92,6 +95,10 @@ export class MakeThirdLayer {
   }
 
   public async execute(): Promise<void> {
+    await this.fileManager.checkAndCreateFile(
+      ['src', '@types', 'codes.d.ts'],
+      this.createCodes,
+    );
     await this.fileManager.checkAndCreateFile(
       ['src', '@types', 'express.d.ts'],
       this.createExpressNamespace,

@@ -67,7 +67,9 @@ export class Delete${this.names.upperModuleName}Service {
       );
 
       if (!${this.names.lowerModuleName}) {
-        throw new AppError('${this.names.upperModuleName} not found', 404);
+        throw new AppError('NOT_FOUND', '${
+          this.names.upperModuleName
+        } not found', 404);
       }
 
       await this.${
@@ -81,7 +83,7 @@ export class Delete${this.names.upperModuleName}Service {
 
       return {
         code: 204,
-        message_code: 'NO_CONTENT',
+        message_code: 'DELETED',
         message: 'successfully deleted ${this.names.lowerModuleName}',
         data: null,
       };

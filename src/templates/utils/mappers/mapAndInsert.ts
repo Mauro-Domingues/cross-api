@@ -36,9 +36,9 @@ export function mapAndInsertAttribute<
             ]
           : undefined;
         if (
-          'id' in item &&
           !isValid(item.id) &&
-          Array.isArray((oldAttributes as IObjectDTO)[attribute])
+          Array.isArray((oldAttributes as IObjectDTO)[attribute]) &&
+          'id' in item
         ) {
           const exists = (
             oldAttributes as { [key: string]: Array<IObjectDTO> }
