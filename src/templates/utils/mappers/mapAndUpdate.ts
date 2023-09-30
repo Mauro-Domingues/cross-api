@@ -24,7 +24,7 @@ export function mapAndUpdateAttribute<
     if (
       Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
       (oldAttributes as IObjectDTO)[attribute]
-    )
+    ) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (Array.isArray(newValue)) {
         newValue = newValue.map((item, index) => {

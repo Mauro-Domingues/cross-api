@@ -25,7 +25,7 @@ export function mapAndPatchAttribute<
     if (
       Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
       (oldAttributes as IObjectDTO)[attribute]
-    )
+    ) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (!isValid(newValue)) {
         return;
