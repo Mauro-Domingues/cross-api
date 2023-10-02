@@ -57,8 +57,10 @@ export const errorHandler = (
   createErrorLog(errorBody);
 
   if (process.env.NODE_ENV === 'production') {
-    errorBody.message = 'Internal Server Error';
-    errorBody.code = 500;
+    Object.assign(errorBody, {
+      message: 'Internal Server Error',
+      code: 500,
+    });
   }
 
   return (
