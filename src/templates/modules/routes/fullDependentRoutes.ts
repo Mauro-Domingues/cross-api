@@ -75,21 +75,16 @@ const delete${this.names.upperModuleName}Controller = new Delete${
       this.names.upperModuleName
     }Controller();
 
-${this.fatherNames.lowerModuleName}Router.post('/${
-      this.names.routeModuleName
-    }', create${this.names.upperModuleName}Controller.handle);
-${this.fatherNames.lowerModuleName}Router.get('/${
-      this.names.routeModuleName
-    }', list${this.names.upperModuleName}Controller.handle);
-${this.fatherNames.lowerModuleName}Router.get('/${
-      this.names.routeModuleName
-    }/:id', show${this.names.upperModuleName}Controller.handle);
-${this.fatherNames.lowerModuleName}Router.put('/${
-      this.names.routeModuleName
-    }/:id', update${this.names.upperModuleName}Controller.handle);
-${this.fatherNames.lowerModuleName}Router.delete('/${
-      this.names.routeModuleName
-    }/:id', delete${this.names.upperModuleName}Controller.handle);
+${this.fatherNames.lowerModuleName}Router
+  .route('/${this.names.routeModuleName}')
+  .post(create${this.names.upperModuleName}Controller.handle)
+  .get(list${this.names.upperModuleName}Controller.handle);
+
+${this.fatherNames.lowerModuleName}Router
+  .route('/${this.names.routeModuleName}/:id')
+  .get(show${this.names.upperModuleName}Controller.handle)
+  .put(update${this.names.upperModuleName}Controller.handle)
+  .delete(delete${this.names.upperModuleName}Controller.handle);
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;

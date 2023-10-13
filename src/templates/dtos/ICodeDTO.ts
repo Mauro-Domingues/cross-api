@@ -1,9 +1,9 @@
-export class CreateCodes {
+export class CreateICodeDTO {
   public execute(): string {
     return `/**
 * @description Add your message codes here
 */
-declare type messageCode =
+export type ICodeDTO =
   | 'FAILED_TO_CREATE_NOTIFICATION'
   | 'FAILED_TO_CREATE_LEAD'
   | 'FAILED_TO_GET_SESSION'

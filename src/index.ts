@@ -10,7 +10,6 @@ import { CreateProvider } from '@tools/makeProvider/index';
 import { CreateRegister } from '@tools/lastModification/save';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
-import { Shell } from '@tools/shell';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
@@ -25,7 +24,6 @@ new (class Main {
   private readonly messages: IMessagesDTO;
   private readonly getNames: GetNames;
   private readonly console: Console;
-  private readonly shell: Shell;
   private readonly actions: {
     config: ConfigJson;
     comands: Board;
@@ -51,7 +49,6 @@ new (class Main {
       this.getFatherNames.execute(),
     );
     this.console = new Console();
-    this.shell = new Shell();
     this.actions = {
       config: new ConfigJson(),
       comands: new Board(),

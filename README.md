@@ -1,6 +1,6 @@
 ﻿﻿<h1>cross-api</h1>
 
-<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/social-media-using-cross-api">social-media-using-cross-api@^3.2.4</a>
+<h3> Check an application example at <a href="https://github.com/Mauro-Domingues/personal-vault-using-cross-api">personal-vault-using-cross-api@^5.0.8</a>
 
 <hr>
 
@@ -75,7 +75,6 @@ yarn cross make:module [name]
 ```bash
 .
 └── @types
-    ├── codes.d.ts
     ├── env.d.ts
     ├── express.d.ts
     ├── keys.d.ts
@@ -116,6 +115,7 @@ yarn cross make:module [name]
 .
 └── dtos
     ├── ICacheDTO.ts
+    ├── ICodeDTO.ts
     ├── IExceptionDTO.ts
     ├── IListDTO.ts
     ├── IObjectDTO.ts

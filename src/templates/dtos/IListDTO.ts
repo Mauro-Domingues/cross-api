@@ -1,8 +1,10 @@
 export class CreateIListDTO {
   public execute(): string {
-    return `export interface IListDTO<T> {
+    return `import { ICodeDTO } ${'from'} './ICodeDTO';
+
+export interface IListDTO<T> {
   code: number;
-  message_code: messageCode;
+  message_code: ICodeDTO;
   message: string;
   pagination: {
     total: number;

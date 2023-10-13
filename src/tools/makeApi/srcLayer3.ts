@@ -27,7 +27,7 @@ import { CreateErrorHandler } from '@templates/middlewares/errorHandler';
 import { CreateSetConnection } from '@templates/middlewares/setConnection';
 import { CreateCorsConfig } from '@templates/providers/config/corsConfig';
 import { CreateAuthConfig } from '@templates/providers/config/authConfig';
-import { CreateCodes } from '@templates/types/codes';
+import { CreateICodeDTO } from '@templates/dtos/ICodeDTO';
 
 export class MakeThirdLayer {
   private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
@@ -51,11 +51,11 @@ export class MakeThirdLayer {
   private readonly createJsonToXml: CreateJsonToXml;
   private readonly createICacheDTO: CreateICacheDTO;
   private readonly createErrorLog: CreateErrorLog;
+  private readonly createICodeDTO: CreateICodeDTO;
   private readonly createIListDTO: CreateIListDTO;
   private readonly createDomains: CreateDomains;
   private readonly createRoutes: CreateRoutes;
   private readonly createServer: CreateServer;
-  private readonly createCodes: CreateCodes;
   private readonly fileManager: FileManager;
   private readonly createGuard: CreateGuard;
   private readonly createKeys: CreateKeys;
@@ -84,10 +84,10 @@ export class MakeThirdLayer {
     this.createICacheDTO = new CreateICacheDTO();
     this.createErrorLog = new CreateErrorLog();
     this.createIListDTO = new CreateIListDTO();
+    this.createICodeDTO = new CreateICodeDTO();
     this.createDomains = new CreateDomains();
     this.createRoutes = new CreateRoutes();
     this.createServer = new CreateServer();
-    this.createCodes = new CreateCodes();
     this.fileManager = new FileManager();
     this.createGuard = new CreateGuard();
     this.createKeys = new CreateKeys();
@@ -95,10 +95,6 @@ export class MakeThirdLayer {
   }
 
   public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateFile(
-      ['src', '@types', 'codes.d.ts'],
-      this.createCodes,
-    );
     await this.fileManager.checkAndCreateFile(
       ['src', '@types', 'express.d.ts'],
       this.createExpressNamespace,
@@ -130,6 +126,10 @@ export class MakeThirdLayer {
     await this.fileManager.checkAndCreateFile(
       ['src', 'dtos', 'ICacheDTO.ts'],
       this.createICacheDTO,
+    );
+    await this.fileManager.checkAndCreateFile(
+      ['src', 'dtos', 'ICodeDTO.ts'],
+      this.createICodeDTO,
     );
     await this.fileManager.checkAndCreateFile(
       ['src', 'dtos', 'IListDTO.ts'],

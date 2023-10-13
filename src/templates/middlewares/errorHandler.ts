@@ -6,14 +6,12 @@ import { CelebrateError } ${'from'} 'celebrate';
 import { Request, Response, NextFunction } ${'from'} 'express';
 
 const toUpperSnakeCase = (message: string): string => {
-  return (
-    message.charAt(0).toLowerCase() +
-    message
-      .slice(1)
-      .trim()
-      .replace(/'\\${'s'}'/g, '_')
-      .replace(/[A-Z]/g, letter => \`_\${letter}\`)
-  ).toUpperCase();
+  return message
+    .trim()
+    .replace(/\\${'s+'}/g, '_')
+    .replace(/[A-Z]/g, letter => \`_\${letter}\`)
+    .replace(/^_/, '')
+    .toUpperCase();
 };
 
 export const errorHandler = (
