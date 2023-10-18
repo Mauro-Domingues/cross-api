@@ -11,10 +11,7 @@ export class CreateIBaseRepository {
 } ${'from'} 'typeorm';
 
 export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
-  exists(
-    baseData: FindManyOptions<Entity>,
-    trx?: QueryRunner,
-  ): Promise<boolean>;
+  exists(baseData: FindManyOptions<Entity>, trx: QueryRunner): Promise<boolean>;
   findAll(
     baseData: FindManyOptions<Entity> &
       Partial<{ page: number; limit: number }>,
@@ -36,20 +33,14 @@ export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
     } & Partial<{ page: number; limit: number }>,
     trx?: QueryRunner,
   ): Promise<Array<Entity>>;
-  create(
-    entityData: Partial<Entity> | DeepPartial<Entity>,
-    trx?: QueryRunner,
-  ): Promise<Entity>;
+  create(entityData: DeepPartial<Entity>, trx?: QueryRunner): Promise<Entity>;
   createMany(
-    entityData: Array<Partial<Entity>> | Array<DeepPartial<Entity>>,
+    entityData: Array<DeepPartial<Entity>>,
     trx?: QueryRunner,
   ): Promise<Array<Entity>>;
-  update(
-    entityData: Partial<Entity> | DeepPartial<Entity>,
-    trx?: QueryRunner,
-  ): Promise<Entity>;
+  update(entityData: DeepPartial<Entity>, trx?: QueryRunner): Promise<Entity>;
   updateMany(
-    entityData: Array<Partial<Entity>> | Array<DeepPartial<Entity>>,
+    entityData: Array<DeepPartial<Entity>>,
     trx?: QueryRunner,
   ): Promise<Array<Entity>>;
   delete(

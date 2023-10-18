@@ -12,9 +12,8 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async exists({
     where,
-  }: {
-    where: Partial<Entity> | Array<Partial<Entity>>;
-  }): Promise<boolean> {
+  }: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0]): Promise<boolean> {
+    if (!where) return false;
     if (where instanceof Array) {
       return this.fakeRepository.some(entity =>
         where.some(property =>
@@ -33,11 +32,11 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async findBy({
     where,
-  }: {
-    where: Partial<Entity> | Array<Partial<Entity>>;
-  }): Promise<Entity | null> {
+  }: Parameters<
+    IBaseRepositoryDTO<Entity>['findBy']
+  >[0]): Promise<Entity | null> {
+    if (!where) return null;
     let findEntity: Entity | undefined;
-
     if (where instanceof Array) {
       findEntity = this.fakeRepository.find(entity =>
         where.some(property =>
@@ -62,14 +61,13 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async findAll({
-    page = 1,
-    limit = 20,
+    page,
+    limit,
     where,
-  }: {
-    page: number;
-    limit: number;
-    where: Partial<Entity> | Array<Partial<Entity>>;
-  }): Promise<{ list: Array<Entity>; amount: number }> {
+  }: Parameters<IBaseRepositoryDTO<Entity>['findAll']>[0]): Promise<{
+    list: Array<Entity>;
+    amount: number;
+  }> {
     let filtered: Array<Entity>;
     if (!where) {
       filtered = this.fakeRepository;
@@ -89,16 +87,19 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       );
     }
 
-    const filtredEntities = filtered.slice((page - 1) * limit, page * limit);
+    const filtredEntities = filtered.slice(
+      ((page ?? 1) - 1) * (limit ?? this.fakeRepository.length),
+      (page ?? 1) * (limit ?? this.fakeRepository.length),
+    );
 
     return { list: filtredEntities, amount: filtered.length };
   }
 
   public async findIn({
     where,
-  }: {
-    where: Partial<{ [key in keyof Entity]: Array<Entity[keyof Entity]> }>;
-  }): Promise<Array<Entity>> {
+  }: Parameters<IBaseRepositoryDTO<Entity>['findIn']>[0]): Promise<
+    Array<Entity>
+  > {
     return this.fakeRepository.filter(entity =>
       Object.entries(where).every(([key, values]) =>
         (values as Array<Entity[keyof Entity]>).includes(
@@ -110,9 +111,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async findLike({
     where,
-  }: {
-    where: Partial<Entity> | Array<Partial<Entity>>;
-  }): Promise<Array<Entity>> {
+  }: Parameters<IBaseRepositoryDTO<Entity>['findLike']>[0]): Promise<
+    Array<Entity>
+  > {
     return this.fakeRepository.filter(entity =>
       Object.entries(where).every(([key, value]) => {
         let strValue = value.toString();
@@ -127,7 +128,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     );
   }
 
-  public async create(baseData: Partial<Entity>): Promise<Entity> {
+  public async create(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['create']>[0],
+  ): Promise<Entity> {
     const base = {
       ...baseData,
       id: uuid(),
@@ -142,7 +145,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async createMany(
-    baseData: Array<Partial<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['createMany']>[0],
   ): Promise<Array<Entity>> {
     return (baseData as Array<Entity>).map(data => {
       const base = {
@@ -159,7 +162,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     });
   }
 
-  public async update(baseData: Partial<Entity>): Promise<Entity> {
+  public async update(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['update']>[0],
+  ): Promise<Entity> {
     const findEntity: number = this.fakeRepository.findIndex(
       entity => entity.id === baseData.id,
     );
@@ -171,7 +176,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async updateMany(
-    baseData: Array<Partial<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['updateMany']>[0],
   ): Promise<Array<Entity>> {
     return (baseData as Array<Entity>).map(data => {
       const findEntity: number = this.fakeRepository.findIndex(
@@ -185,7 +190,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     });
   }
 
-  public async delete(baseData: Partial<Entity>): Promise<{
+  public async delete(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['delete']>[0],
+  ): Promise<{
     raw: string;
     affected: number;
   }> {
@@ -205,7 +212,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     };
   }
 
-  public async deleteMany(baseData: Array<Partial<Entity>>): Promise<{
+  public async deleteMany(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['deleteMany']>[0],
+  ): Promise<{
     raw: string;
     affected: number;
   }> {
@@ -229,7 +238,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     };
   }
 
-  public async softDelete(baseData: Partial<Entity>): Promise<{
+  public async softDelete(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDelete']>[0],
+  ): Promise<{
     raw: string;
     affected: number;
   }> {
@@ -249,7 +260,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     };
   }
 
-  public async softDeleteMany(baseData: Array<Partial<Entity>>): Promise<{
+  public async softDeleteMany(
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDeleteMany']>[0],
+  ): Promise<{
     raw: string;
     affected: number;
   }> {

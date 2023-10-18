@@ -1,12 +1,9 @@
 export class CreateBaseRepository {
   public execute(): string {
     return `import {
-  DeepPartial,
   DeleteResult,
   EntityTarget,
   FindManyOptions,
-  FindOneOptions,
-  FindOptionsWhere,
   In,
   Like,
   ObjectLiteral,
@@ -21,14 +18,14 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   constructor(private readonly target: EntityTarget<Entity>) {}
 
   public async exists(
-    baseData: FindManyOptions<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0],
     trx: QueryRunner,
   ): Promise<boolean> {
     return trx.manager.exists(this.target, baseData);
   }
 
   public async findBy(
-    baseData: FindOneOptions<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['findBy']>[0],
     trx: QueryRunner,
   ): Promise<Entity | null> {
     return trx.manager.findOne(this.target, baseData);
@@ -39,7 +36,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
       page,
       limit,
       ...baseData
-    }: FindManyOptions<Entity> & Partial<{ page: number; limit: number }>,
+    }: Parameters<IBaseRepositoryDTO<Entity>['findAll']>[0],
     trx: QueryRunner,
   ): Promise<{ list: Array<Entity>; amount: number }> {
     return trx.manager
@@ -57,9 +54,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
       page,
       limit,
       ...baseData
-    }: Omit<FindManyOptions<Entity>, 'where'> & {
-      where: Partial<{ [key in keyof Entity]: Array<Entity[keyof Entity]> }>;
-    } & Partial<{ page: number; limit: number }>,
+    }: Parameters<IBaseRepositoryDTO<Entity>['findIn']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.find(this.target, {
@@ -81,9 +76,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
       page,
       limit,
       ...baseData
-    }: Omit<FindManyOptions<Entity>, 'where'> & {
-      where: NonNullable<FindManyOptions<Entity>['where']>;
-    } & Partial<{ page: number; limit: number }>,
+    }: Parameters<IBaseRepositoryDTO<Entity>['findLike']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.find(this.target, {
@@ -97,7 +90,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async create(
-    baseData: DeepPartial<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['create']>[0],
     trx: QueryRunner,
   ): Promise<Entity> {
     return trx.manager.save(
@@ -107,7 +100,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async createMany(
-    baseData: Array<DeepPartial<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['createMany']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.save(
@@ -117,42 +110,42 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async update(
-    baseData: DeepPartial<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['create']>[0],
     trx: QueryRunner,
   ): Promise<Entity> {
     return trx.manager.save(this.target, baseData);
   }
 
   public async updateMany(
-    baseData: Array<DeepPartial<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['updateMany']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
     return trx.manager.save(this.target, baseData);
   }
 
   public async delete(
-    baseData: FindOptionsWhere<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['delete']>[0],
     trx: QueryRunner,
   ): Promise<DeleteResult> {
     return trx.manager.delete(this.target, baseData);
   }
 
   public async deleteMany(
-    baseData: Array<FindOptionsWhere<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['deleteMany']>[0],
     trx: QueryRunner,
   ): Promise<DeleteResult> {
     return trx.manager.delete(this.target, baseData);
   }
 
   public async softDelete(
-    baseData: FindOptionsWhere<Entity>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDelete']>[0],
     trx: QueryRunner,
   ): Promise<DeleteResult> {
     return trx.manager.softDelete(this.target, baseData);
   }
 
   public async softDeleteMany(
-    baseData: Array<FindOptionsWhere<Entity>>,
+    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDeleteMany']>[0],
     trx: QueryRunner,
   ): Promise<DeleteResult> {
     return trx.manager.softDelete(this.target, baseData);

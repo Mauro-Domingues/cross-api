@@ -23,8 +23,12 @@ export function createErrorLog(error: {
     TIME_OF_OCCURRENCE: \`\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
     [error.message_code]: error.message,
     PATH:
-      error.stack?.split('\\${'n'}').slice(1).toString().replaceAll(',', '\\${'n'}') ??
-      'NOT SET',
+      error.stack
+          ?.split('\\${'n'}')
+          .slice(1)
+          .toString()
+          .trim()
+          .replaceAll(',', '\\${'n'}') ?? 'NOT SET',
   };
 
   appendFileSync(
