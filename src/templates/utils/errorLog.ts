@@ -24,11 +24,11 @@ export function createErrorLog(error: {
     [error.message_code]: error.message,
     PATH:
       error.stack
-          ?.split('\\${'n'}')
-          .slice(1)
-          .toString()
-          .trim()
-          .replaceAll(',', '\\${'n'}') ?? 'NOT SET',
+        ?.split('\\${'n'}')
+        .slice(1)
+        .toString()
+        .trim()
+        .replaceAll(',', '\\${'n'}') ?? 'NOT SET',
   };
 
   appendFileSync(
