@@ -37,6 +37,12 @@ export class CreateRegister {
     this.fileManager.checkAndCreateDir(['src']);
     this.fileManager.checkAndCreateDir(['src', 'shared']);
     this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+    ]);
     this.fileManager.checkAndCreateDir(['src', 'routes']);
     if (
       !this.fileManager.checkIfExists([
@@ -54,6 +60,20 @@ export class CreateRegister {
     if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
       this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
+        this.createRoutes.execute(),
+      );
+    }
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'index.ts',
+      ])
+    ) {
+      this.fileManager.createFile(
+        ['src', 'shared', 'container', 'providers', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
