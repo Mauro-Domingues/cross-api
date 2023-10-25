@@ -19,14 +19,13 @@ export class CreateModule {
 
   public execute(): void {
     if (!this.names) {
-      this.console.one([
+      throw this.console.one([
         this.messages.moduleNotFound,
         'red',
         true,
         false,
         false,
       ]);
-      throw new Error(this.messages.moduleNotFound);
     }
     this.module[this.module.key]();
     return this.console.one([

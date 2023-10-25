@@ -316,14 +316,13 @@ export class Pluralize {
     assets: Array<Assets>,
   ): string {
     if (!this.word) {
-      this.console.one([
+      throw this.console.one([
         `this${this.messages.invalidLanguage}`,
         'red',
         true,
         false,
         false,
       ]);
-      throw new Error();
     }
 
     const token = this.word.toLowerCase();
@@ -345,14 +344,13 @@ export class Pluralize {
     assets: Array<Assets>,
   ): boolean {
     if (!this.word) {
-      this.console.one([
+      throw this.console.one([
         `this${this.messages.invalidLanguage}`,
         'red',
         true,
         false,
         false,
       ]);
-      throw new Error();
     }
 
     const token = this.word.toLowerCase();

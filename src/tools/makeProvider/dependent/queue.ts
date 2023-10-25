@@ -50,14 +50,13 @@ export class MakeDependentQueueProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      this.console.one([
+      throw this.console.one([
         this.messages.providerNotFound,
         'red',
         true,
         false,
         false,
       ]);
-      throw new Error();
     }
 
     this.fileManager.checkAndCreateDir(['src']);

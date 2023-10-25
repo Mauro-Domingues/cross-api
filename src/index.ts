@@ -73,18 +73,18 @@ new (class Main {
   }
 
   public execute(): void {
-    try {
-      if (this.comand !== 'revert') {
-        this.createRegister.execute();
-      }
-      return this.actions[this.comand as keyof typeof this.actions].execute();
-    } catch {
-      return this.console.many([
+    if (!this.comand) {
+      throw this.console.many([
         [this.messages.notFound, 'red', true, true, true],
         [this.messages.try[0], 'blue', true, false, false],
         [this.messages.try[1], 'yellow', true, false, false],
         [this.messages.try[2], 'blue', true, false, true],
       ]);
     }
+
+    if (this.comand !== 'revert') {
+      this.createRegister.execute();
+    }
+    return this.actions[this.comand as keyof typeof this.actions].execute();
   }
 })().execute();
