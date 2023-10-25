@@ -2,12 +2,8 @@ export class CreateFakeRedis {
   public execute(): string {
     return `import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
 
-interface ICacheDataDTO {
-  [key: string]: string;
-}
-
 export class FakeCacheProvider implements ICacheProviderDTO {
-  private readonly cache: ICacheDataDTO = {};
+  private readonly cache: Record<string, string> = {};
 
   public async save<T>(key: string, value: T): Promise<void> {
     this.cache[key] = JSON.stringify(value);

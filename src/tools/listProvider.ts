@@ -11,7 +11,7 @@ export class ListProvider {
   }
 
   private renderEmptyLine(): void {
-    this.console.one([
+    return this.console.one([
       '|                                                       |   ',
       'blue',
       true,
@@ -21,7 +21,7 @@ export class ListProvider {
   }
 
   private renderHeader(): void {
-    this.console.many([
+    return this.console.many([
       [
         ` /=====================================================\\   `,
         'blue',
@@ -58,7 +58,7 @@ export class ListProvider {
   }
 
   private renderFooter(): void {
-    this.console.one([
+    return this.console.one([
       ` \\=====================================================/   `,
       'blue',
       true,
@@ -70,6 +70,6 @@ export class ListProvider {
   public execute(): void {
     this.renderHeader();
     this.renderProviderOptions();
-    this.renderFooter();
+    return this.renderFooter();
   }
 }

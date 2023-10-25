@@ -1,12 +1,8 @@
 export class CreateIMailTemplateDTO {
   public execute(): string {
-    return `interface ITemplateVariablesDTO {
-  [key: string]: string | number;
-}
-
-export interface IParseMailTemplateDTO {
+    return `export interface IParseMailTemplateDTO {
   file: string;
-  variables: ITemplateVariablesDTO;
+  variables: Record<string, string | number>;
 }
 `;
   }

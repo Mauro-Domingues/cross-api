@@ -33,7 +33,7 @@ new (class Main {
     'make:module': CreateModule;
     'make:provider': CreateProvider;
     revert: {
-      execute: () => Promise<void>;
+      execute: () => void;
     };
   };
 
@@ -64,15 +64,15 @@ new (class Main {
         this.getFatherNames.execute(),
       ),
       revert: {
-        execute: (): Promise<void> =>
-          this.deleteRegister
-            .execute()
-            .then(() => this.createRegister.execute()),
+        execute: (): void => {
+          this.deleteRegister.execute();
+          return this.createRegister.execute();
+        },
       },
     };
   }
 
-  public execute(): Promise<void | string> | void {
+  public execute(): void {
     try {
       if (this.comand !== 'revert') {
         this.createRegister.execute();

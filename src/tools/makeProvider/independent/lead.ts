@@ -34,25 +34,25 @@ export class MakeLeadProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+  public execute(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
       'LeadProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -60,7 +60,7 @@ export class MakeLeadProvider {
       'LeadProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -68,7 +68,7 @@ export class MakeLeadProvider {
       'LeadProvider',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -76,7 +76,7 @@ export class MakeLeadProvider {
       'LeadProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -84,15 +84,15 @@ export class MakeLeadProvider {
       'LeadProvider',
       'models',
     ]);
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './LeadProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'lead.ts'],
       this.createLeadConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -104,7 +104,7 @@ export class MakeLeadProvider {
       ],
       this.createILeadDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -116,7 +116,7 @@ export class MakeLeadProvider {
       ],
       this.createIAuthDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -128,7 +128,7 @@ export class MakeLeadProvider {
       ],
       this.createFakeLead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -140,7 +140,7 @@ export class MakeLeadProvider {
       ],
       this.createRDStationLead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -152,7 +152,7 @@ export class MakeLeadProvider {
       ],
       this.createILead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
       this.createLeadIndex,
     );

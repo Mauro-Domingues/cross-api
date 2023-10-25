@@ -19,53 +19,53 @@ export class FileManager {
     return existsSync(resolve(...path));
   }
 
-  public async createDir(path: Array<string>): Promise<void> {
+  public createDir(path: Array<string>): void {
     return mkdirSync(resolve(...path));
   }
 
-  public async createFile(path: Array<string>, data: string): Promise<void> {
+  public createFile(path: Array<string>, data: string): void {
     return appendFileSync(resolve(...path), data);
   }
 
-  public async removeDir(path: Array<string>): Promise<void> {
+  public removeDir(path: Array<string>): void {
     return rmSync(resolve(...path), { recursive: true, force: true });
   }
 
-  public async removeFile(path: Array<string>): Promise<void> {
+  public removeFile(path: Array<string>): void {
     return unlinkSync(resolve(...path));
   }
 
-  public async readFile(path: Array<string>): Promise<string> {
+  public readFile(path: Array<string>): string {
     return readFileSync(resolve(...path), 'ascii');
   }
 
-  public async writeFile(path: Array<string>, data: string): Promise<void> {
+  public writeFile(path: Array<string>, data: string): void {
     return writeFileSync(resolve(...path), data, {
       encoding: 'utf8',
       flag: 'w',
     });
   }
 
-  public async truncateFile(path: Array<string>): Promise<void> {
+  public truncateFile(path: Array<string>): void {
     return truncateSync(resolve(...path));
   }
 
-  public async checkAndCreateFile(
+  public checkAndCreateFile(
     path: Array<string>,
     instance: {
       execute(): string;
     },
-  ): Promise<void> {
+  ): void {
     if (!this.checkIfExists(path)) {
       return this.createFile(path, instance.execute());
     }
-    await this.truncateFile(path);
+    this.truncateFile(path);
     return this.createFile(path, instance.execute());
   }
 
-  public async checkAndCreateDir(path: Array<string>): Promise<void> {
+  public checkAndCreateDir(path: Array<string>): void {
     if (!this.checkIfExists(path)) {
-      await this.createDir(path);
+      this.createDir(path);
     }
   }
 }

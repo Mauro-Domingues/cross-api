@@ -42,7 +42,7 @@ export class MakeDependentLeadProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.fatherNames) {
       this.console.one([
         this.messages.providerNotFound,
@@ -54,30 +54,30 @@ export class MakeDependentLeadProvider {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'modules']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'modules']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
       'LeadProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -85,7 +85,7 @@ export class MakeDependentLeadProvider {
       'LeadProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -93,7 +93,7 @@ export class MakeDependentLeadProvider {
       'LeadProvider',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -101,7 +101,7 @@ export class MakeDependentLeadProvider {
       'LeadProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -117,7 +117,7 @@ export class MakeDependentLeadProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
@@ -131,7 +131,7 @@ export class MakeDependentLeadProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [
           'src',
           'modules',
@@ -142,11 +142,11 @@ export class MakeDependentLeadProvider {
         '',
       );
     }
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       [
         'src',
         'modules',
@@ -156,11 +156,11 @@ export class MakeDependentLeadProvider {
       ],
       `import './LeadProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'lead.ts'],
       this.createLeadConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -172,7 +172,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createILeadDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -184,7 +184,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createIAuthDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -196,7 +196,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createFakeLead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -208,7 +208,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createRDStationLead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -220,7 +220,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createILead,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

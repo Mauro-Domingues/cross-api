@@ -70,7 +70,7 @@ export class MakeDependentInfra {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names || !this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -90,18 +90,18 @@ export class MakeDependentInfra {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
     }
     if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       this.createDependentInjection.execute(),
     );
@@ -112,21 +112,21 @@ export class MakeDependentInfra {
         `${this.fatherNames.lowerModuleName}Router.ts`,
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createFullDependentRoute.execute(),
       );
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createIndexDependentRoute.execute(),
       );
     } else {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
         this.createDependentRoute.execute(),
       );
     }
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -136,7 +136,7 @@ export class MakeDependentInfra {
       ],
       this.createModuleDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -146,7 +146,7 @@ export class MakeDependentInfra {
       ],
       this.createEntity,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -156,7 +156,7 @@ export class MakeDependentInfra {
       ],
       this.createDependentRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

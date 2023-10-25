@@ -4,7 +4,7 @@ export class CreateMysqlDataSource {
 import 'dotenv/config';
 import 'reflect-metadata';
 
-const dataSources: { [key: string]: DataSource } = {};
+const dataSources: Record<string, DataSource> = {};
 
 export const MysqlDataSource = (database: string) => {
   if (!dataSources[database]) {

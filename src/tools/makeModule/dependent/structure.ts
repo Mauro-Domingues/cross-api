@@ -21,7 +21,7 @@ export class MakeDependentStructure {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names || !this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -33,69 +33,69 @@ export class MakeDependentStructure {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'modules']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir(['src', 'routes']);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'modules']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir(['src', 'routes']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'entities',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'repositories',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'repositories',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'services',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'services',
       `create${this.names.upperModuleName}`,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'services',
       `delete${this.names.upperModuleName}`,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'services',
       `list${this.names.upperModuleName}`,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,

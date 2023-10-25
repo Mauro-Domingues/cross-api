@@ -44,7 +44,7 @@ export class MakeDependentMailProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.fatherNames) {
       this.console.one([
         this.messages.providerNotFound,
@@ -56,30 +56,30 @@ export class MakeDependentMailProvider {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'modules']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'modules']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
       'MailProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -87,7 +87,7 @@ export class MakeDependentMailProvider {
       'MailProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -95,7 +95,7 @@ export class MakeDependentMailProvider {
       'MailProvider',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -103,7 +103,7 @@ export class MakeDependentMailProvider {
       'MailProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -119,7 +119,7 @@ export class MakeDependentMailProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
@@ -133,7 +133,7 @@ export class MakeDependentMailProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [
           'src',
           'modules',
@@ -144,11 +144,11 @@ export class MakeDependentMailProvider {
         '',
       );
     }
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       [
         'src',
         'modules',
@@ -158,11 +158,11 @@ export class MakeDependentMailProvider {
       ],
       `import './MailProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'mail.ts'],
       this.createMailConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -174,7 +174,7 @@ export class MakeDependentMailProvider {
       ],
       this.createIMailDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -186,7 +186,7 @@ export class MakeDependentMailProvider {
       ],
       this.createFakeMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -198,7 +198,7 @@ export class MakeDependentMailProvider {
       ],
       this.createDependentNodemailerMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -210,7 +210,7 @@ export class MakeDependentMailProvider {
       ],
       this.createDependentSESMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -222,7 +222,7 @@ export class MakeDependentMailProvider {
       ],
       this.createIMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

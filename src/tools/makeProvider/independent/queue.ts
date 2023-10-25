@@ -40,26 +40,26 @@ export class MakeQueueProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'jobs']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+  public execute(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'jobs']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
       'QueueProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -67,7 +67,7 @@ export class MakeQueueProvider {
       'QueueProvider',
       'public',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -75,7 +75,7 @@ export class MakeQueueProvider {
       'QueueProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -83,7 +83,7 @@ export class MakeQueueProvider {
       'QueueProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -91,19 +91,19 @@ export class MakeQueueProvider {
       'QueueProvider',
       'models',
     ]);
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './QueueProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'queue.ts'],
       this.createQueueConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'jobs', 'Example.ts'],
       this.createExampleJob,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -115,7 +115,7 @@ export class MakeQueueProvider {
       ],
       this.createJobs,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -127,7 +127,7 @@ export class MakeQueueProvider {
       ],
       this.createIQueueDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -139,7 +139,7 @@ export class MakeQueueProvider {
       ],
       this.createKueQueue,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -151,7 +151,7 @@ export class MakeQueueProvider {
       ],
       this.createBeeQueue,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -163,7 +163,7 @@ export class MakeQueueProvider {
       ],
       this.createBullQueue,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -175,7 +175,7 @@ export class MakeQueueProvider {
       ],
       this.createIQueue,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'index.ts'],
       this.createQueueIndex,
     );

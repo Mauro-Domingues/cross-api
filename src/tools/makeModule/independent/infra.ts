@@ -44,7 +44,7 @@ export class MakeInfra {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -64,26 +64,26 @@ export class MakeInfra {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
     }
     if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
       );
     }
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       this.createInjection.execute(),
     );
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'routes', 'index.ts'],
       this.createIndexRoute.execute(),
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -93,7 +93,7 @@ export class MakeInfra {
       ],
       this.createModuleDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -103,7 +103,7 @@ export class MakeInfra {
       ],
       this.createEntity,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -113,7 +113,7 @@ export class MakeInfra {
       ],
       this.createRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -123,7 +123,7 @@ export class MakeInfra {
       ],
       this.createIRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

@@ -24,14 +24,14 @@ export class CreateRegister {
     this.constructBase();
   }
 
-  private async constructBase(): Promise<void> {
-    await this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    await this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    await this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
+  private constructBase(): void {
+    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
     if (
       !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'comands', 'comands.log'],
         '',
       );
@@ -43,7 +43,7 @@ export class CreateRegister {
         'moduleInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'moduleInjection.log'],
         '',
       );
@@ -55,7 +55,7 @@ export class CreateRegister {
         'routeInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'routeInjection.log'],
         '',
       );
@@ -67,16 +67,16 @@ export class CreateRegister {
         'providerInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'providers', 'providerInjection.log'],
         '',
       );
     }
   }
 
-  private async makeProvider(): Promise<void> {
+  private makeProvider(): void {
     if (this.providerName && this.fatherNames) {
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'routeInjection.log',
@@ -90,61 +90,61 @@ export class CreateRegister {
           'index.ts',
         ])
       ) {
-        const providerInjection = await this.fileManager.readFile([
+        const providerInjection = this.fileManager.readFile([
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'index.ts',
         ]);
-        await this.fileManager.createFile(
+        this.fileManager.createFile(
           [this.basePath, 'modules', 'routeInjection.log'],
           providerInjection,
         );
       } else {
-        await this.fileManager.createFile(
+        this.fileManager.createFile(
           [this.basePath, 'modules', 'routeInjection.log'],
           '',
         );
       }
     } else if (this.providerName) {
-      const providerInjection = await this.fileManager.readFile([
+      const providerInjection = this.fileManager.readFile([
         'src',
         'shared',
         'container',
         'providers',
         'index.ts',
       ]);
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'routeInjection.log'],
         providerInjection,
       );
     }
   }
 
-  private async makeModule(): Promise<void> {
+  private makeModule(): void {
     if (this.names && this.fatherNames) {
-      const moduleInjection = await this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFile([
         'src',
         'shared',
         'container',
         'index.ts',
       ]);
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'routeInjection.log',
@@ -156,12 +156,12 @@ export class CreateRegister {
           `${this.fatherNames.lowerModuleName}Router.ts`,
         ])
       ) {
-        const routeInjection = await this.fileManager.readFile([
+        const routeInjection = this.fileManager.readFile([
           'src',
           'routes',
           `${this.fatherNames.lowerModuleName}Router.ts`,
         ]);
-        await this.fileManager.createFile(
+        this.fileManager.createFile(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
@@ -172,57 +172,53 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
-        await this.fileManager.createFile(
+        this.fileManager.createFile(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
       }
     } else if (this.names) {
-      const moduleInjection = await this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFile([
         'src',
         'shared',
         'container',
         'index.ts',
       ]);
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      const routeInjection = await this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFile([
         'src',
         'routes',
         'index.ts',
       ]);
 
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'routeInjection.log'],
         routeInjection,
       );
     }
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (this.comand && this.comand[0] === 'make:provider') {
-      await this.makeProvider();
+      this.makeProvider();
     } else if (this.comand && this.comand[0] === 'make:module') {
-      await this.makeModule();
+      this.makeModule();
     }
 
-    await this.fileManager.truncateFile([
-      this.basePath,
-      'comands',
-      'comands.log',
-    ]);
+    this.fileManager.truncateFile([this.basePath, 'comands', 'comands.log']);
     return this.fileManager.createFile(
       [this.basePath, 'comands', 'comands.log'],
       String(this.comand),

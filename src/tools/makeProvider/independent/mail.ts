@@ -34,25 +34,25 @@ export class MakeMailProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+  public execute(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
       'MailProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -60,7 +60,7 @@ export class MakeMailProvider {
       'MailProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -68,7 +68,7 @@ export class MakeMailProvider {
       'MailProvider',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -76,7 +76,7 @@ export class MakeMailProvider {
       'MailProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -84,15 +84,15 @@ export class MakeMailProvider {
       'MailProvider',
       'models',
     ]);
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './MailProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'mail.ts'],
       this.createMailConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -104,7 +104,7 @@ export class MakeMailProvider {
       ],
       this.createIMailDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -116,7 +116,7 @@ export class MakeMailProvider {
       ],
       this.createFakeMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -128,7 +128,7 @@ export class MakeMailProvider {
       ],
       this.createNodemailerMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -140,7 +140,7 @@ export class MakeMailProvider {
       ],
       this.createSESMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -152,7 +152,7 @@ export class MakeMailProvider {
       ],
       this.createIMail,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
       this.createMailIndex,
     );

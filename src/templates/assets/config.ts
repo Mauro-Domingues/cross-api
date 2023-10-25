@@ -23,8 +23,8 @@ export class ConfigJson {
 `;
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.truncateFile([
+  public execute(): void {
+    this.fileManager.truncateFile([
       'node_modules',
       'cross-api',
       'src',

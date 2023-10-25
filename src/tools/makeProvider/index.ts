@@ -19,7 +19,7 @@ export class CreateProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     try {
       return this.provider.list[this.providerName as string][
         this.provider.key

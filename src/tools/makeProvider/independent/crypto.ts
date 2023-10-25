@@ -28,25 +28,25 @@ export class MakeCryptoProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+  public execute(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'providers',
       'CryptoProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -54,7 +54,7 @@ export class MakeCryptoProvider {
       'CryptoProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -62,7 +62,7 @@ export class MakeCryptoProvider {
       'CryptoProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -70,15 +70,15 @@ export class MakeCryptoProvider {
       'CryptoProvider',
       'models',
     ]);
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './CryptoProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'crypto.ts'],
       this.createCryptoConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -90,7 +90,7 @@ export class MakeCryptoProvider {
       ],
       this.createICryptoDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -102,7 +102,7 @@ export class MakeCryptoProvider {
       ],
       this.createCrypto,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -114,7 +114,7 @@ export class MakeCryptoProvider {
       ],
       this.createICrypto,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'index.ts'],
       this.createCryptoIndex,
     );

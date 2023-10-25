@@ -30,8 +30,7 @@ export class Console {
       String('\x1b[0m'),
     ];
 
-    const output = payload.reduce((acc, input) => acc + input);
-    return console.log(output);
+    return console.log(payload.join(''));
   }
 
   public many(assets: Array<IInputDTO>): void {
@@ -49,7 +48,6 @@ export class Console {
       );
     });
 
-    const output = payload.reduce((acc, input) => acc + input);
-    return console.log(output);
+    return console.log(payload.join(''));
   }
 }

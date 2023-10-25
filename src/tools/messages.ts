@@ -98,7 +98,7 @@ export class Messages {
     };
   }
 
-  execute(): IMessagesDTO {
+  public execute(): IMessagesDTO {
     return this.messages;
   }
 }

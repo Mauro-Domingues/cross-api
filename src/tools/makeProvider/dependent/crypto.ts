@@ -36,7 +36,7 @@ export class MakeDependentCryptoProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.fatherNames) {
       this.console.one([
         this.messages.providerNotFound,
@@ -48,30 +48,30 @@ export class MakeDependentCryptoProvider {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'modules']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'modules']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'providers',
       'CryptoProvider',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -79,7 +79,7 @@ export class MakeDependentCryptoProvider {
       'CryptoProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -87,7 +87,7 @@ export class MakeDependentCryptoProvider {
       'CryptoProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'modules',
       this.fatherNames.pluralLowerModuleName,
@@ -103,7 +103,7 @@ export class MakeDependentCryptoProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainer.execute(),
       );
@@ -117,7 +117,7 @@ export class MakeDependentCryptoProvider {
         'index.ts',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [
           'src',
           'modules',
@@ -128,11 +128,11 @@ export class MakeDependentCryptoProvider {
         '',
       );
     }
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'index.ts'],
       `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
     );
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       [
         'src',
         'modules',
@@ -142,11 +142,11 @@ export class MakeDependentCryptoProvider {
       ],
       `import './CryptoProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'config', 'crypto.ts'],
       this.createCryptoConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -158,7 +158,7 @@ export class MakeDependentCryptoProvider {
       ],
       this.createICryptoDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -170,7 +170,7 @@ export class MakeDependentCryptoProvider {
       ],
       this.createCrypto,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -182,7 +182,7 @@ export class MakeDependentCryptoProvider {
       ],
       this.createICrypto,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

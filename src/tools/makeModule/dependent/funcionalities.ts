@@ -77,7 +77,7 @@ export class MakeDependentFunctionalities {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names || !this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -89,7 +89,7 @@ export class MakeDependentFunctionalities {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -100,7 +100,7 @@ export class MakeDependentFunctionalities {
       ],
       this.createDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -111,7 +111,7 @@ export class MakeDependentFunctionalities {
       ],
       this.createDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -122,7 +122,7 @@ export class MakeDependentFunctionalities {
       ],
       this.deleteDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -133,7 +133,7 @@ export class MakeDependentFunctionalities {
       ],
       this.deleteDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -144,7 +144,7 @@ export class MakeDependentFunctionalities {
       ],
       this.listDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -155,7 +155,7 @@ export class MakeDependentFunctionalities {
       ],
       this.listDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -166,7 +166,7 @@ export class MakeDependentFunctionalities {
       ],
       this.showDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -177,7 +177,7 @@ export class MakeDependentFunctionalities {
       ],
       this.showDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

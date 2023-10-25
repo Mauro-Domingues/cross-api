@@ -7,7 +7,7 @@ export class MakeSecondLayer {
     this.fileManager = new FileManager();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     return this.fileManager.checkAndCreateFile(['src', 'swagger.json'], {
       execute() {
         return '{}';

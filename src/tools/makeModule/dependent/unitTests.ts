@@ -72,7 +72,7 @@ export class MakeDependentUnitTests {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names || !this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -84,7 +84,7 @@ export class MakeDependentUnitTests {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -95,7 +95,7 @@ export class MakeDependentUnitTests {
       ],
       this.createSpecDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -106,7 +106,7 @@ export class MakeDependentUnitTests {
       ],
       this.createSpecDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -117,7 +117,7 @@ export class MakeDependentUnitTests {
       ],
       this.deleteSpecDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -128,7 +128,7 @@ export class MakeDependentUnitTests {
       ],
       this.deleteSpecDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -139,7 +139,7 @@ export class MakeDependentUnitTests {
       ],
       this.listSpecDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -150,7 +150,7 @@ export class MakeDependentUnitTests {
       ],
       this.listSpecDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -161,7 +161,7 @@ export class MakeDependentUnitTests {
       ],
       this.showSpecDependentController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -172,7 +172,7 @@ export class MakeDependentUnitTests {
       ],
       this.showSpecDependentService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

@@ -28,10 +28,10 @@ export function mapAndInsertAttribute<
     }
     if (Array.isArray(newValue)) {
       newValue = newValue.map((item, index) => {
-        let oldItem = (oldAttributes as { [key: string]: Array<IObjectDTO> })[
+        let oldItem = (oldAttributes as Record<string, Array<IObjectDTO>>)[
           attribute
         ]
-          ? (oldAttributes as { [key: string]: Array<IObjectDTO> })[attribute][
+          ? (oldAttributes as Record<string, Array<IObjectDTO>>)[attribute][
               index
             ]
           : undefined;
@@ -40,9 +40,9 @@ export function mapAndInsertAttribute<
           Array.isArray((oldAttributes as IObjectDTO)[attribute]) &&
           'id' in item
         ) {
-          const exists = (
-            oldAttributes as { [key: string]: Array<IObjectDTO> }
-          )[attribute].find(oldItem => oldItem.id === item.id);
+          const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
+            attribute
+          ].find(oldItem => oldItem.id === item.id);
           if (exists) oldItem = exists;
         }
         if (

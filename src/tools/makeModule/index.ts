@@ -17,7 +17,7 @@ export class CreateModule {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -28,7 +28,7 @@ export class CreateModule {
       ]);
       throw new Error(this.messages.moduleNotFound);
     }
-    await this.module[this.module.key]();
+    this.module[this.module.key]();
     return this.console.one([
       `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
       'yellow',

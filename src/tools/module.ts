@@ -57,14 +57,14 @@ export class Module {
     this.console = new Console();
   }
 
-  public async makeIndependentModule(): Promise<void> {
-    await this.makeStructure.execute();
-    await this.makeInfra.execute();
-    await this.makeFunctionalities.execute();
+  public makeIndependentModule(): void {
+    this.makeStructure.execute();
+    this.makeInfra.execute();
+    this.makeFunctionalities.execute();
     return this.makeUnitTests.execute();
   }
 
-  public async makeDependentModule(): Promise<void> {
+  public makeDependentModule(): void {
     if (!this.fatherNames) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -75,9 +75,9 @@ export class Module {
       ]);
       throw new Error(this.messages.moduleNotFound);
     }
-    await this.makeDependentStructure.execute();
-    await this.makeDependentInfra.execute();
-    await this.makeDependentFunctionalities.execute();
+    this.makeDependentStructure.execute();
+    this.makeDependentInfra.execute();
+    this.makeDependentFunctionalities.execute();
     return this.makeDependentUnitTests.execute();
   }
 }

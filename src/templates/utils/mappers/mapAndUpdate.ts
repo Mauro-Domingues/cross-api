@@ -28,13 +28,13 @@ export function mapAndUpdateAttribute<
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (Array.isArray(newValue)) {
         newValue = newValue.map((item, index) => {
-          let oldItem = (oldAttributes as { [key: string]: Array<IObjectDTO> })[
+          let oldItem = (oldAttributes as Record<string, Array<IObjectDTO>>)[
             attribute
           ][index];
           if ('id' in item) {
-            const exists = (
-              oldAttributes as { [key: string]: Array<IObjectDTO> }
-            )[attribute].find(oldItem => oldItem.id === item.id);
+            const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
+              attribute
+            ].find(oldItem => oldItem.id === item.id);
             if (exists) oldItem = exists;
           }
           if (

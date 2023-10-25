@@ -87,10 +87,8 @@ export class ConfigJson extends ConfigLanguage {
     ];
   }
 
-  private async patchPackage(): Promise<void> {
-    const stringifiedPackage = await this.fileManager.readFile([
-      'package.json',
-    ]);
+  private patchPackage(): void {
+    const stringifiedPackage = this.fileManager.readFile(['package.json']);
     const jsonPackage = JSON.parse(stringifiedPackage);
 
     jsonPackage.scripts = {
@@ -102,31 +100,26 @@ export class ConfigJson extends ConfigLanguage {
       start: 'node dist/shared/server.js',
     };
 
-    await this.fileManager.truncateFile(['package.json']);
+    this.fileManager.truncateFile(['package.json']);
     return this.fileManager.writeFile(
       ['package.json'],
-      JSON.stringify(jsonPackage),
+      JSON.stringify(jsonPackage, null, 2),
     );
   }
 
-  private installYarn(): void {
+  private installYarn(): string {
     this.console.many([
       [this.messages.yarn, 'blue', true, true, true],
       [`- yarn ${this.messages.installed}`, 'yellow', false, true, true],
     ]);
-    this.shell.execute('npm install yarn --location=global');
+    return this.shell.execute('npm install yarn --location=global');
   }
 
   private installDependencies(): void {
     this.console.one([this.messages.dependencies, 'blue', true, false, true]);
-    const dependenciesToInstall = this.dependencies.reduce(
-      (acc, dependency) => {
-        return `${acc} ${dependency}`;
-      },
-    );
-    this.shell.execute(`yarn add ${dependenciesToInstall}`);
-    this.dependencies.forEach(dependency => {
-      this.console.one([
+    this.shell.execute(`yarn add ${this.dependencies.join(' ')}`);
+    return this.dependencies.forEach(dependency => {
+      return this.console.one([
         `- ${dependency} ${this.messages.installed}`,
         'yellow',
         false,
@@ -138,14 +131,9 @@ export class ConfigJson extends ConfigLanguage {
 
   private installDevDependencies(): void {
     this.console.one([this.messages.devDependencies, 'blue', true, true, true]);
-    const devDependenciesToInstall = this.devDependencies.reduce(
-      (acc, devDependency) => {
-        return `${acc} ${devDependency}`;
-      },
-    );
-    this.shell.execute(`yarn add ${devDependenciesToInstall} -D`);
-    this.devDependencies.forEach(devDependency => {
-      this.console.one([
+    this.shell.execute(`yarn add ${this.devDependencies.join(' ')} -D`);
+    return this.devDependencies.forEach(devDependency => {
+      return this.console.one([
         `- ${devDependency} ${this.messages.installed}`,
         'yellow',
         false,
@@ -156,7 +144,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private renderEnding(): void {
-    this.console.many([
+    return this.console.many([
       [this.messages.marketplaceTool[0], 'blue', true, true, false],
       [
         'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig   ',
@@ -172,15 +160,15 @@ export class ConfigJson extends ConfigLanguage {
     ]);
   }
 
-  private async setConfig(): Promise<void> {
-    await this.patchPackage();
+  private setConfig(): void {
+    this.patchPackage();
     this.installYarn();
     this.installDependencies();
     this.installDevDependencies();
     this.renderEnding();
 
     if (this.fileManager.checkIfExists(['package-lock.json'])) {
-      await this.fileManager.removeFile(['package-lock.json']);
+      this.fileManager.removeFile(['package-lock.json']);
     }
 
     return this.config.execute();
@@ -196,7 +184,7 @@ export class ConfigJson extends ConfigLanguage {
       output: process.stdout,
     });
 
-    rl.question(this.messages.answer, optionChosen => {
+    return rl.question(this.messages.answer, optionChosen => {
       const choice = Object.keys(this.languageOptions)[
         Number(optionChosen)
       ] as keyof ILanguageOptionsDTO;
@@ -213,16 +201,15 @@ export class ConfigJson extends ConfigLanguage {
         rl.close();
         this.showChosenOption();
         this.setConfig();
-        this.setLanguageOption();
-      } else {
-        rl.close();
-        this.validateOption(optionChosen);
-        this.execute();
+        return this.setLanguageOption();
       }
+      rl.close();
+      this.validateOption(optionChosen);
+      return this.execute();
     });
   }
 
-  public async execute(): Promise<void> {
+  public override execute(): void {
     return this.configLanguage();
   }
 }

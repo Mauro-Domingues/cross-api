@@ -37,40 +37,40 @@ export class MakeFourthLayer {
     this.fileManager = new FileManager();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateFile(
+  public execute(): void {
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'index.ts'],
       this.createIndexMapper,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
       this.createMapAndClone,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
       this.createMapAndInsert,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
       this.createMapAndPatch,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
       this.createMapAndPatchString,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
       this.createMapAndUpdate,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
       this.createMapAndUpdateString,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'index.ts'],
       this.createContainer,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'errors', 'AppError.ts'],
       this.createAppError,
     );

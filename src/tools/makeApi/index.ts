@@ -25,13 +25,13 @@ export class CreateApi {
     this.makeInfra = new MakeInfra();
   }
 
-  public async execute(): Promise<void> {
-    await this.makeInfra.execute();
-    await this.makeFirstLayer.execute();
-    await this.makeSecondLayer.execute();
-    await this.makeThirdLayer.execute();
-    await this.makeFourthLayer.execute();
-    await this.makeLastLayer.execute();
+  public execute(): void {
+    this.makeInfra.execute();
+    this.makeFirstLayer.execute();
+    this.makeSecondLayer.execute();
+    this.makeThirdLayer.execute();
+    this.makeFourthLayer.execute();
+    this.makeLastLayer.execute();
     return this.createProvider.execute();
   }
 }

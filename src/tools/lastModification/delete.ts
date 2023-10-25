@@ -26,14 +26,14 @@ export class DeleteRegister {
     this.constructBase();
   }
 
-  private async constructBase(): Promise<void> {
-    await this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    await this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    await this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
+  private constructBase(): void {
+    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
     if (
       !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'comands', 'comands.log'],
         '',
       );
@@ -45,7 +45,7 @@ export class DeleteRegister {
         'moduleInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'moduleInjection.log'],
         '',
       );
@@ -57,7 +57,7 @@ export class DeleteRegister {
         'routeInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'modules', 'routeInjection.log'],
         '',
       );
@@ -69,35 +69,35 @@ export class DeleteRegister {
         'providerInjection.log',
       ])
     ) {
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [this.basePath, 'providers', 'providerInjection.log'],
         '',
       );
     }
   }
 
-  private async makeProvider(
+  private makeProvider(
     comand: string,
     names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
     fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
-  ): Promise<void> {
+  ): void {
     if (names && fatherNames) {
-      const oldProviders = await this.fileManager.readFile([
+      const oldProviders = this.fileManager.readFile([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
 
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'providers',
         'index.ts',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         [
           'src',
           'modules',
@@ -107,7 +107,7 @@ export class DeleteRegister {
         ],
         oldProviders,
       );
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
@@ -121,7 +121,7 @@ export class DeleteRegister {
           `${names.lowerModuleName}.ts`,
         ])
       ) {
-        await this.fileManager.removeFile([
+        this.fileManager.removeFile([
           'src',
           'config',
           `${names.lowerModuleName}.ts`,
@@ -135,24 +135,24 @@ export class DeleteRegister {
         false,
       ]);
     } else if (names) {
-      const oldProviders = await this.fileManager.readFile([
+      const oldProviders = this.fileManager.readFile([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
 
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         'src',
         'shared',
         'container',
         'providers',
         'index.ts',
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'providers', 'index.ts'],
         oldProviders,
       );
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'shared',
         'container',
@@ -166,7 +166,7 @@ export class DeleteRegister {
           `${names.lowerModuleName}.ts`,
         ])
       ) {
-        await this.fileManager.removeFile([
+        this.fileManager.removeFile([
           'src',
           'config',
           `${names.lowerModuleName}.ts`,
@@ -182,7 +182,7 @@ export class DeleteRegister {
     }
   }
 
-  private async makeModule(
+  private makeModule(
     comand: string,
     names:
       | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
@@ -190,72 +190,72 @@ export class DeleteRegister {
     fatherNames:
       | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
-  ): Promise<void> {
+  ): void {
     if (names && fatherNames) {
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'services',
         `create${names.upperModuleName}`,
       ]);
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'services',
         `delete${names.upperModuleName}`,
       ]);
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'services',
         `list${names.upperModuleName}`,
       ]);
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'services',
         `show${names.upperModuleName}`,
       ]);
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'services',
         `update${names.upperModuleName}`,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'dtos',
         `I${names.upperModuleName}DTO.ts`,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'entities',
         `${names.upperModuleName}.ts`,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'repositories',
         `${names.pluralUpperModuleName}Repository.ts`,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'repositories',
         `I${names.pluralUpperModuleName}Repository.ts`,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
@@ -263,32 +263,27 @@ export class DeleteRegister {
         'fakes',
         `Fake${names.pluralUpperModuleName}Repository.ts`,
       ]);
-      const moduleInjection = await this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFile([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
+      this.fileManager.truncateFile(['src', 'shared', 'container', 'index.ts']);
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = await this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFile([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      await this.fileManager.truncateFile([
+      this.fileManager.truncateFile([
         'src',
         'routes',
         `${fatherNames.lowerModuleName}Router.ts`,
       ]);
-      await this.fileManager.createFile(
+      this.fileManager.createFile(
         ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
@@ -300,38 +295,33 @@ export class DeleteRegister {
         false,
       ]);
     } else if (names) {
-      await this.fileManager.removeDir([
+      this.fileManager.removeDir([
         'src',
         'modules',
         names.pluralLowerModuleName,
       ]);
-      await this.fileManager.removeFile([
+      this.fileManager.removeFile([
         'src',
         'routes',
         `${names.lowerModuleName}Router.ts`,
       ]);
-      const moduleInjection = await this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFile([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      await this.fileManager.truncateFile([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ]);
-      await this.fileManager.createFile(
+      this.fileManager.truncateFile(['src', 'shared', 'container', 'index.ts']);
+      this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = await this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFile([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      await this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
-      await this.fileManager.createFile(
+      this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
+      this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         routeInjection,
       );
@@ -345,23 +335,23 @@ export class DeleteRegister {
     }
   }
 
-  private async makeAPi(comand: string) {
-    await this.fileManager.removeDir(['src']);
-    await this.fileManager.removeDir(['dist']);
-    await this.fileManager.removeDir(['coverage']);
-    await this.fileManager.removeFile(['.editorconfig']);
-    await this.fileManager.removeFile(['.env']);
-    await this.fileManager.removeFile(['.env.template']);
-    await this.fileManager.removeFile(['.eslintignore']);
-    await this.fileManager.removeFile(['.eslintrc.json']);
-    await this.fileManager.removeFile(['.gitignore']);
-    await this.fileManager.removeFile(['babel.config.js']);
-    await this.fileManager.removeFile(['docker-compose.yml']);
-    await this.fileManager.removeFile(['doc.config.ts']);
-    await this.fileManager.removeFile(['jest.config.ts']);
-    await this.fileManager.removeFile(['nodemon.json']);
-    await this.fileManager.removeFile(['prettier.config.js']);
-    await this.fileManager.removeFile(['tsconfig.json']);
+  private makeAPi(comand: string) {
+    this.fileManager.removeDir(['src']);
+    this.fileManager.removeDir(['dist']);
+    this.fileManager.removeDir(['coverage']);
+    this.fileManager.removeFile(['.editorconfig']);
+    this.fileManager.removeFile(['.env']);
+    this.fileManager.removeFile(['.env.template']);
+    this.fileManager.removeFile(['.eslintignore']);
+    this.fileManager.removeFile(['.eslintrc.json']);
+    this.fileManager.removeFile(['.gitignore']);
+    this.fileManager.removeFile(['babel.config.js']);
+    this.fileManager.removeFile(['docker-compose.yml']);
+    this.fileManager.removeFile(['doc.config.ts']);
+    this.fileManager.removeFile(['jest.config.ts']);
+    this.fileManager.removeFile(['nodemon.json']);
+    this.fileManager.removeFile(['prettier.config.js']);
+    this.fileManager.removeFile(['tsconfig.json']);
     return this.console.one([
       `- ${this.messages.reversed}: ${comand}`,
       'yellow',
@@ -371,8 +361,8 @@ export class DeleteRegister {
     ]);
   }
 
-  public async execute(): Promise<void> {
-    const register = await this.fileManager.readFile([
+  public execute(): void {
+    const register = this.fileManager.readFile([
       this.basePath,
       'comands',
       'comands.log',

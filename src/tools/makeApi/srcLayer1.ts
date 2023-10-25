@@ -43,49 +43,43 @@ export class MakeFirstLayer {
     this.createEnv = new CreateEnv();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateFile(
+  public execute(): void {
+    this.fileManager.checkAndCreateFile(
       ['.editorconfig'],
       this.createEditorConfig,
     );
-    await this.fileManager.checkAndCreateFile(['.env'], this.createEnv);
-    await this.fileManager.checkAndCreateFile(
-      ['.env.template'],
-      this.createEnv,
-    );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(['.env'], this.createEnv);
+    this.fileManager.checkAndCreateFile(['.env.template'], this.createEnv);
+    this.fileManager.checkAndCreateFile(
       ['.eslintignore'],
       this.createEsLintIgnore,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['.eslintrc.json'],
       this.createEsLintrcJson,
     );
-    await this.fileManager.checkAndCreateFile(
-      ['.gitignore'],
-      this.createGitIgnore,
-    );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(['.gitignore'], this.createGitIgnore);
+    this.fileManager.checkAndCreateFile(
       ['babel.config.js'],
       this.createBabelConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['doc.config.ts'],
       this.createDocConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['docker-compose.yml'],
       this.createDockerCompose,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['jest.config.ts'],
       this.createJestConfig,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['nodemon.json'],
       this.createNodemonJson,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['prettier.config.js'],
       this.createPrettierConfig,
     );

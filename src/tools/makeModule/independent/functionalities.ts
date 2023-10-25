@@ -44,7 +44,7 @@ export class MakeFunctionalities {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
+  public execute(): void {
     if (!this.names) {
       this.console.one([
         this.messages.moduleNotFound,
@@ -56,7 +56,7 @@ export class MakeFunctionalities {
       throw new Error();
     }
 
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -67,7 +67,7 @@ export class MakeFunctionalities {
       ],
       this.createController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -78,7 +78,7 @@ export class MakeFunctionalities {
       ],
       this.createService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -89,7 +89,7 @@ export class MakeFunctionalities {
       ],
       this.deleteController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -100,7 +100,7 @@ export class MakeFunctionalities {
       ],
       this.deleteService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -111,7 +111,7 @@ export class MakeFunctionalities {
       ],
       this.listController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -122,7 +122,7 @@ export class MakeFunctionalities {
       ],
       this.listService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -133,7 +133,7 @@ export class MakeFunctionalities {
       ],
       this.showController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -144,7 +144,7 @@ export class MakeFunctionalities {
       ],
       this.showService,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -155,7 +155,7 @@ export class MakeFunctionalities {
       ],
       this.updateController,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',

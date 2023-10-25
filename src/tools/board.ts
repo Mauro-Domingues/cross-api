@@ -55,7 +55,7 @@ export class Board {
   }
 
   private renderEmptyLine(): void {
-    this.console.one([
+    return this.console.one([
       '|                                                                                                                   |',
       'blue',
       true,
@@ -65,7 +65,7 @@ export class Board {
   }
 
   private renderHeader(): void {
-    this.console.one([
+    return this.console.one([
       ` /==============================================${this.messages.comandTitle}==============================================\\`,
       'blue',
       true,
@@ -88,7 +88,7 @@ export class Board {
       ],
     ]);
     this.renderEmptyLine();
-    this.toolOptions.forEach(tool => {
+    return this.toolOptions.forEach(tool => {
       this.console.many([
         ['|   ', 'blue', true, false, false],
         [`   ➤  ${tool.title}            `, 'yellow', true, false, false],
@@ -96,7 +96,7 @@ export class Board {
         [`${tool.description}   `, 'white', false, false, false],
         ['                          |   ', 'blue', true, false, false],
       ]);
-      this.renderEmptyLine();
+      return this.renderEmptyLine();
     });
   }
 
@@ -113,7 +113,7 @@ export class Board {
       ],
     ]);
     this.renderEmptyLine();
-    this.structureOptions.forEach(structure => {
+    return this.structureOptions.forEach(structure => {
       this.console.many([
         ['|   ', 'blue', true, false, false],
         [`   ➤  ${structure.title}   `, 'yellow', true, false, false],
@@ -121,12 +121,12 @@ export class Board {
         [`${structure.description}   `, 'white', false, false, false],
         ['|   ', 'blue', true, false, false],
       ]);
-      this.renderEmptyLine();
+      return this.renderEmptyLine();
     });
   }
 
   private renderFooter(): void {
-    this.console.one([
+    return this.console.one([
       ` \\=================================================================================================================/`,
       'blue',
       true,
@@ -139,6 +139,6 @@ export class Board {
     this.renderHeader();
     this.renderToolOptions();
     this.renderStructureOptions();
-    this.renderFooter();
+    return this.renderFooter();
   }
 }

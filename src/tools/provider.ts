@@ -20,14 +20,15 @@ import { IModuleNamesDTO } from '@tools/names';
 
 export class Provider {
   public readonly key: 'dependent' | 'independent';
-  public readonly list: {
-    [key: string]: {
+  public readonly list: Record<
+    string,
+    {
       name: string;
       description: string;
-      dependent: { execute: () => Promise<void> };
-      independent: { execute: () => Promise<void> };
-    };
-  };
+      dependent: { execute: () => void };
+      independent: { execute: () => void };
+    }
+  >;
 
   constructor(
     private readonly fatherNames:
@@ -69,16 +70,14 @@ export class Provider {
         name: 'mail        ',
         description: 'MailProvider        ',
         independent: {
-          execute: async (): Promise<void> => {
-            await new MakeMailTemplateProvider().execute();
+          execute: (): void => {
+            new MakeMailTemplateProvider().execute();
             return new MakeMailProvider().execute();
           },
         },
         dependent: {
-          execute: async (): Promise<void> => {
-            await new MakeDependentMailTemplateProvider(
-              this.fatherNames,
-            ).execute();
+          execute: (): void => {
+            new MakeDependentMailTemplateProvider(this.fatherNames).execute();
             return new MakeDependentMailProvider(this.fatherNames).execute();
           },
         },

@@ -25,12 +25,12 @@ export class MakeLastLayer {
     this.fileManager = new FileManager();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateFile(
+  public execute(): void {
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
       this.createBaseEntity,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -41,7 +41,7 @@ export class MakeLastLayer {
       ],
       this.createBaseRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -52,7 +52,7 @@ export class MakeLastLayer {
       ],
       this.createIBaseRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -64,7 +64,7 @@ export class MakeLastLayer {
       ],
       this.createBaseFakeRepository,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'typeorm', 'dataSources', 'mysqlDataSource.ts'],
       this.createMysqlDataSource,
     );

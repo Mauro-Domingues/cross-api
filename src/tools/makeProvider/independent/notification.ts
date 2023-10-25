@@ -28,12 +28,12 @@ export class MakeNotificationProvider {
     this.console = new Console();
   }
 
-  public async execute(): Promise<void> {
-    await this.fileManager.checkAndCreateDir(['src']);
-    await this.fileManager.checkAndCreateDir(['src', 'config']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared']);
-    await this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    await this.fileManager.checkAndCreateDir([
+  public execute(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'config']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -48,7 +48,7 @@ export class MakeNotificationProvider {
         'NotificationProvider',
       ])
     ) {
-      await this.fileManager.checkAndCreateDir([
+      this.fileManager.checkAndCreateDir([
         'src',
         'shared',
         'container',
@@ -56,7 +56,7 @@ export class MakeNotificationProvider {
         'NotificationProvider',
       ]);
     }
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -64,7 +64,7 @@ export class MakeNotificationProvider {
       'NotificationProvider',
       'dtos',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -72,7 +72,7 @@ export class MakeNotificationProvider {
       'NotificationProvider',
       'fakes',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -80,7 +80,7 @@ export class MakeNotificationProvider {
       'NotificationProvider',
       'implementations',
     ]);
-    await this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
@@ -88,11 +88,11 @@ export class MakeNotificationProvider {
       'NotificationProvider',
       'models',
     ]);
-    await this.fileManager.createFile(
+    this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './NotificationProvider';\n`,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -104,7 +104,7 @@ export class MakeNotificationProvider {
       ],
       this.createINotificationDTO,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -116,7 +116,7 @@ export class MakeNotificationProvider {
       ],
       this.createFakeNotification,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -128,7 +128,7 @@ export class MakeNotificationProvider {
       ],
       this.createOneSignalNotification,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -140,7 +140,7 @@ export class MakeNotificationProvider {
       ],
       this.createINotification,
     );
-    await this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
