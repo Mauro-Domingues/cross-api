@@ -74,7 +74,7 @@ export class CreateRegister {
     ) {
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'providers', 'index.ts'],
-        this.createRoutes.execute(),
+        '',
       );
     }
     if (
