@@ -1,7 +1,11 @@
+import { CreateContainer } from '@templates/index/container';
+import { CreateRoutes } from '@templates/index/routes';
 import { FileManager } from '@tools/fileManager';
 import { IModuleNamesDTO } from '@tools/names';
 
 export class CreateRegister {
+  private readonly createContainer: CreateContainer;
+  private readonly createRoutes: CreateRoutes;
   private readonly fileManager: FileManager;
   private readonly basePath: string;
 
@@ -14,6 +18,8 @@ export class CreateRegister {
       | undefined,
   ) {
     this.fileManager = new FileManager();
+    this.createContainer = new CreateContainer();
+    this.createRoutes = new CreateRoutes();
     this.basePath = this.fileManager.resolvePath([
       'node_modules',
       'cross-api',
@@ -28,6 +34,29 @@ export class CreateRegister {
     this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
     this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
     this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir(['src', 'routes']);
+    if (
+      !this.fileManager.checkIfExists([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
+        this.createContainer.execute(),
+      );
+    }
+    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+      this.fileManager.createFile(
+        ['src', 'routes', 'index.ts'],
+        this.createRoutes.execute(),
+      );
+    }
     if (
       !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
     ) {
