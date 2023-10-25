@@ -85,6 +85,7 @@ new (class Main {
     if (this.comand !== 'revert') {
       this.createRegister.execute();
     }
+
     return this.actions[this.comand as keyof typeof this.actions].execute();
   }
 })().execute();
