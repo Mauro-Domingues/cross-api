@@ -1,8 +1,12 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
+type Assets = [rule: RegExp, replacement: string];
+type Words = [single: string, plural: string];
+type Obj = Record<string, string>;
+
 export class Pluralize {
-  private readonly singularData: Array<Array<string | RegExp>> = [
+  private readonly singularData: Array<Assets> = [
     [/s$/i, ''],
     [/(ss)$/i, '$1'],
     [/(wi|kni|(?:after|half|high|low|mid|non|night|[^\w]|^)li)ves$/i, '$1fe'],
@@ -45,7 +49,7 @@ export class Pluralize {
     [/(eau)x?$/i, '$1'],
     [/men$/i, 'man'],
   ];
-  private readonly pluralData: Array<Array<string | RegExp>> = [
+  private readonly pluralData: Array<Assets> = [
     [/s?$/i, 's'],
     [/[^\u0000-\u007F]$/i, '$0'],
     [/([^aeiou]ese)$/i, '$1'],
@@ -79,7 +83,7 @@ export class Pluralize {
     [/(child)(?:ren)?$/i, '$1ren'],
     [/eaux$/i, '$0'],
     [/m[ae]n$/i, 'men'],
-    ['thou', 'you'],
+    [/^thou$/i, 'you'],
   ];
   private readonly uncontableData: Array<string | RegExp> = [
     'adulthood',
@@ -185,7 +189,7 @@ export class Pluralize {
     /pox$/i,
     /sheep$/i,
   ];
-  private readonly irregularData: Array<Array<string>> = [
+  private readonly irregularData: Array<Words> = [
     ['I', 'we'],
     ['me', 'us'],
     ['he', 'they'],
@@ -234,12 +238,12 @@ export class Pluralize {
     ['pickaxe', 'pickaxes'],
     ['passerby', 'passersby'],
   ];
-  private readonly irregularPlurals: { [key: string]: string };
-  private readonly irregularSingles: { [key: string]: string };
-  private readonly uncountables: { [key: string]: boolean };
-  private readonly singularRules: Array<[RegExp, string]>;
-  private readonly pluralRules: Array<[RegExp, string]>;
+  private readonly uncountables: Record<string, boolean>;
+  private readonly singularRules: Array<Assets>;
+  private readonly pluralRules: Array<Assets>;
   private readonly messages: IMessagesDTO;
+  private readonly irregularPlurals: Obj;
+  private readonly irregularSingles: Obj;
   private readonly console: Console;
 
   constructor(private readonly word: string | undefined) {
@@ -250,15 +254,15 @@ export class Pluralize {
     this.singularRules = [];
     this.uncountables = {};
     this.pluralRules = [];
-    this.pluralData.map(data => this.addPluralRule(data[0], data[1]));
-    this.singularData.map(data => this.addSingularRule(data[0], data[1]));
+    this.pluralData.map(data => this.addPluralRule(data));
+    this.singularData.map(data => this.addSingularRule(data));
     this.uncontableData.map(data => this.addUncountableRule(data));
-    this.irregularData.map(data => this.addIrregularRule(data[0], data[1]));
+    this.irregularData.map(data => this.addIrregularRule(data));
   }
 
-  private replace(word: string, rule: [RegExp, string]) {
-    return word.replace(rule[0], (match, index) => {
-      const result: string = this.interpolate(rule[1], [null, index]);
+  private replace(word: string, [rule, replacement]: Assets): string {
+    return word.replace(rule, (match, index) => {
+      const result: string = this.interpolate(replacement, [null, index]);
 
       if (match === '') {
         return this.restoreCase(word[index - 1], result);
@@ -268,7 +272,7 @@ export class Pluralize {
     });
   }
 
-  private restoreCase(word: string, token: string) {
+  private restoreCase(word: string, token: string): string {
     if (word === token) return token;
 
     if (word === word.toLowerCase()) return token.toLowerCase();
@@ -276,10 +280,7 @@ export class Pluralize {
     if (word === word.toUpperCase()) return token.toUpperCase();
 
     if (word[0] === word[0].toUpperCase()) {
-      return (
-        token.charAt(0).toUpperCase() +
-        token.replace(token.charAt(0), token.charAt(0).toUpperCase())
-      );
+      return token.charAt(0).toUpperCase() + token.slice(1);
     }
 
     return token.toLowerCase();
@@ -288,21 +289,21 @@ export class Pluralize {
   private sanitizeWord(
     token: string,
     word: string,
-    rules: Array<[RegExp, string]>,
-  ) {
+    assets: Array<Assets>,
+  ): string {
     if (!token.length || this.uncountables[token]) {
       return word;
     }
 
-    let len = rules.length;
+    let len = assets.length;
 
     while (len) {
       len -= 1;
 
-      const rule = rules[len];
+      const asset = assets[len];
 
-      if (rule && rule[0].test(word)) {
-        return this.replace(word, rule);
+      if (asset && asset[0].test(word)) {
+        return this.replace(word, asset);
       }
     }
 
@@ -310,13 +311,9 @@ export class Pluralize {
   }
 
   private replaceWord(
-    replaceMap: {
-      [key: string]: string;
-    },
-    keepMap: {
-      [key: string]: string;
-    },
-    rules: Array<[RegExp, string]>,
+    replaceMap: Obj,
+    keepMap: Obj,
+    assets: Array<Assets>,
   ): string {
     if (!this.word) {
       this.console.one([
@@ -339,17 +336,13 @@ export class Pluralize {
       return this.restoreCase(this.word, replaceMap[token]);
     }
 
-    return this.sanitizeWord(token, this.word, rules);
+    return this.sanitizeWord(token, this.word, assets);
   }
 
   private checkWord(
-    replaceMap: {
-      [key: string]: string;
-    },
-    keepMap: {
-      [key: string]: string;
-    },
-    rules: Array<[RegExp, string]>,
+    replaceMap: Obj,
+    keepMap: Obj,
+    assets: Array<Assets>,
   ): boolean {
     if (!this.word) {
       this.console.one([
@@ -367,7 +360,7 @@ export class Pluralize {
     if (keepMap[token]) return true;
     if (replaceMap[token]) return false;
 
-    return this.sanitizeWord(token, token, rules) === token;
+    return this.sanitizeWord(token, token, assets) === token;
   }
 
   private sanitizeRule(rule: RegExp | string): RegExp {
@@ -384,25 +377,21 @@ export class Pluralize {
     });
   }
 
-  private addIrregularRule(single: string, plural: string): void {
+  private addIrregularRule([single, plural]: Words): void {
     this.irregularSingles[single] = plural.toLowerCase();
     this.irregularPlurals[plural] = single.toLowerCase();
   }
 
-  private addPluralRule(
-    rule: RegExp | string,
-    replacement: RegExp | string,
-  ): void {
-    if (typeof replacement === 'string')
+  private addPluralRule([rule, replacement]: Assets): void {
+    if (typeof replacement === 'string') {
       this.pluralRules.push([this.sanitizeRule(rule), replacement]);
+    }
   }
 
-  private addSingularRule(
-    rule: RegExp | string,
-    replacement: RegExp | string,
-  ): void {
-    if (typeof replacement === 'string')
+  private addSingularRule([rule, replacement]: Assets): void {
+    if (typeof replacement === 'string') {
       this.singularRules.push([this.sanitizeRule(rule), replacement]);
+    }
   }
 
   private addUncountableRule(word: RegExp | string): void {
@@ -411,8 +400,8 @@ export class Pluralize {
       return;
     }
 
-    this.addPluralRule(word, '$0');
-    this.addSingularRule(word, '$0');
+    this.addPluralRule([word, '$0']);
+    this.addSingularRule([word, '$0']);
   }
 
   public isPlural(): boolean {
