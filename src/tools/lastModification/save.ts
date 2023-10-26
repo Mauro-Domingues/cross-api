@@ -30,19 +30,10 @@ export class CreateRegister {
     this.constructBase();
   }
 
-  private constructBase(): void {
-    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
+  private constructModuleBase(): void {
     this.fileManager.checkAndCreateDir(['src']);
     this.fileManager.checkAndCreateDir(['src', 'shared']);
     this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
     this.fileManager.checkAndCreateDir(['src', 'routes']);
     if (
       !this.fileManager.checkIfExists([
@@ -63,6 +54,18 @@ export class CreateRegister {
         this.createRoutes.execute(),
       );
     }
+  }
+
+  private constructProviderBase(): void {
+    this.fileManager.checkAndCreateDir(['src']);
+    this.fileManager.checkAndCreateDir(['src', 'shared']);
+    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
+    this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+    ]);
     if (
       !this.fileManager.checkIfExists([
         'src',
@@ -77,6 +80,12 @@ export class CreateRegister {
         '',
       );
     }
+  }
+
+  private constructBase(): void {
+    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
+    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
     if (
       !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
     ) {
@@ -124,6 +133,7 @@ export class CreateRegister {
   }
 
   private makeProvider(): void {
+    this.constructProviderBase();
     if (this.providerName && this.fatherNames) {
       this.fileManager.truncateFile([
         this.basePath,
@@ -177,6 +187,7 @@ export class CreateRegister {
   }
 
   private makeModule(): void {
+    this.constructModuleBase();
     if (this.names && this.fatherNames) {
       const moduleInjection = this.fileManager.readFile([
         'src',

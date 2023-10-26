@@ -54,14 +54,6 @@ export class CreateEsLintrcJson {
         "ts": "never"
       }
     ],
-    // "import-helpers/order-imports": [
-    //   "warn",
-    //   {
-    //     "newlinesBetween": "always",
-    //     "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
-    //     "alphabetize": { "order": "asc", "ignoreCase": true }
-    //   }
-    // ],
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/*.spec.js"] }
