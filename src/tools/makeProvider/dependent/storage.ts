@@ -196,7 +196,7 @@ export class MakeDependentStorageProvider {
       ],
       this.createIStorage,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -207,12 +207,5 @@ export class MakeDependentStorageProvider {
       ],
       this.createStorageIndex,
     );
-    return this.console.one([
-      `- StorageProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

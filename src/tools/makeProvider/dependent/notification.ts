@@ -197,7 +197,7 @@ export class MakeDependentNotificationProvider {
       ],
       this.createINotification,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -208,12 +208,5 @@ export class MakeDependentNotificationProvider {
       ],
       this.createNotificationIndex,
     );
-    return this.console.one([
-      `- NotificationProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

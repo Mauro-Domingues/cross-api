@@ -219,7 +219,7 @@ export class MakeDependentLeadProvider {
       ],
       this.createILead,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -230,12 +230,5 @@ export class MakeDependentLeadProvider {
       ],
       this.createLeadIndex,
     );
-    return this.console.one([
-      `- LeadProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

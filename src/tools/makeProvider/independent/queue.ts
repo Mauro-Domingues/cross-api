@@ -1,5 +1,3 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
@@ -22,8 +20,6 @@ export class MakeQueueProvider {
   private readonly createIQueue: CreateIQueue;
   private readonly fileManager: FileManager;
   private readonly createJobs: CreateJobs;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createQueueConfig = new CreateQueueConfig();
@@ -33,11 +29,9 @@ export class MakeQueueProvider {
     this.createBullQueue = new CreateBullQueue();
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
-    this.messages = new Messages().execute();
     this.createIQueue = new CreateIQueue();
     this.fileManager = new FileManager();
     this.createJobs = new CreateJobs();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -175,16 +169,9 @@ export class MakeQueueProvider {
       ],
       this.createIQueue,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'index.ts'],
       this.createQueueIndex,
     );
-    return this.console.one([
-      `- QueueProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

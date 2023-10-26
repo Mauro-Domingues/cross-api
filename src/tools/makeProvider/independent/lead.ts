@@ -4,8 +4,6 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 
@@ -18,8 +16,6 @@ export class MakeLeadProvider {
   private readonly createFakeLead: CreateFakeLead;
   private readonly fileManager: FileManager;
   private readonly createILead: CreateILead;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createRDStationLead = new CreateRDStationLead();
@@ -28,10 +24,8 @@ export class MakeLeadProvider {
     this.createILeadDTO = new CreateILeadDTO();
     this.createIAuthDTO = new CreateIAuthDTO();
     this.createFakeLead = new CreateFakeLead();
-    this.messages = new Messages().execute();
     this.createILead = new CreateILead();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -152,16 +146,9 @@ export class MakeLeadProvider {
       ],
       this.createILead,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
       this.createLeadIndex,
     );
-    return this.console.one([
-      `- LeadProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

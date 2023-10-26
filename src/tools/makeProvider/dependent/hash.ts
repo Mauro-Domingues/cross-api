@@ -181,7 +181,7 @@ export class MakeDependentHashProvider {
       ],
       this.createIHash,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -192,12 +192,5 @@ export class MakeDependentHashProvider {
       ],
       this.createHashIndex,
     );
-    return this.console.one([
-      `- HashProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

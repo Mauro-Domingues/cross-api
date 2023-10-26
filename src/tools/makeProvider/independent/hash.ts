@@ -3,8 +3,6 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeHashProvider {
@@ -14,18 +12,14 @@ export class MakeHashProvider {
   private readonly createIHash: CreateIHash;
   private readonly fileManager: FileManager;
   private readonly createHash: CreateHash;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createHashConfig = new CreateHashConfig();
     this.createHashIndex = new CreateHashIndex();
     this.createFakeHash = new CreateFakeHash();
-    this.messages = new Messages().execute();
     this.createIHash = new CreateIHash();
     this.fileManager = new FileManager();
     this.createHash = new CreateHash();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -119,12 +113,5 @@ export class MakeHashProvider {
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
       this.createHashIndex,
     );
-    return this.console.one([
-      `- HashProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

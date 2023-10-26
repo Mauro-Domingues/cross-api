@@ -242,7 +242,7 @@ export class MakeDependentQueueProvider {
       ],
       this.createIQueue,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -253,12 +253,5 @@ export class MakeDependentQueueProvider {
       ],
       this.createQueueIndex,
     );
-    return this.console.one([
-      `- QueueProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

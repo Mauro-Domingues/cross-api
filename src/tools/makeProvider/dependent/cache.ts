@@ -181,7 +181,7 @@ export class MakeDependentCacheProvider {
       ],
       this.createICache,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -192,12 +192,5 @@ export class MakeDependentCacheProvider {
       ],
       this.createCacheIndex,
     );
-    return this.console.one([
-      `- CacheProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

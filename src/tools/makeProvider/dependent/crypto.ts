@@ -181,7 +181,7 @@ export class MakeDependentCryptoProvider {
       ],
       this.createICrypto,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -192,12 +192,5 @@ export class MakeDependentCryptoProvider {
       ],
       this.createCryptoIndex,
     );
-    return this.console.one([
-      `- CryptoProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

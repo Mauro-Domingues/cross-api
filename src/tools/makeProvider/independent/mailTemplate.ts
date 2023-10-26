@@ -3,8 +3,6 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeMailTemplateProvider {
@@ -14,8 +12,6 @@ export class MakeMailTemplateProvider {
   private readonly createIMailTemplate: CreateIMailTemplate;
   private readonly createMailTemplate: CreateMailTemplate;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
@@ -23,9 +19,7 @@ export class MakeMailTemplateProvider {
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createIMailTemplate = new CreateIMailTemplate();
     this.createMailTemplate = new CreateMailTemplate();
-    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -141,12 +135,5 @@ export class MakeMailTemplateProvider {
       ],
       this.createMailTemplateIndex,
     );
-    return this.console.one([
-      `- MailTemplateProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

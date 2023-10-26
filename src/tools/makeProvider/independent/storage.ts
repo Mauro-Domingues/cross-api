@@ -4,8 +4,6 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeStorageProvider {
@@ -16,8 +14,6 @@ export class MakeStorageProvider {
   private readonly createS3Storage: CreateS3Storage;
   private readonly createIStorage: CreateIStorage;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createStorageIndex = new CreateStorageIndex();
@@ -26,9 +22,7 @@ export class MakeStorageProvider {
     this.createFakeStorage = new CreateFakeStorage();
     this.createS3Storage = new CreateS3Storage();
     this.createIStorage = new CreateIStorage();
-    this.messages = new Messages().execute();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -129,7 +123,7 @@ export class MakeStorageProvider {
       ],
       this.createIStorage,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -140,12 +134,5 @@ export class MakeStorageProvider {
       ],
       this.createStorageIndex,
     );
-    return this.console.one([
-      `- StorageProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

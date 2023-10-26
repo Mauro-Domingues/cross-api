@@ -3,8 +3,6 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeCryptoProvider {
@@ -14,18 +12,14 @@ export class MakeCryptoProvider {
   private readonly createICrypto: CreateICrypto;
   private readonly createCrypto: CreateCrypto;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createICrypto = new CreateICrypto();
-    this.messages = new Messages().execute();
     this.createCrypto = new CreateCrypto();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -114,16 +108,9 @@ export class MakeCryptoProvider {
       ],
       this.createICrypto,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'index.ts'],
       this.createCryptoIndex,
     );
-    return this.console.one([
-      `- CryptoProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

@@ -197,7 +197,7 @@ export class MakeDependentMailTemplateProvider {
       ],
       this.createIMailTemplate,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -208,12 +208,5 @@ export class MakeDependentMailTemplateProvider {
       ],
       this.createMailTemplateIndex,
     );
-    return this.console.one([
-      `- MailTemplateProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

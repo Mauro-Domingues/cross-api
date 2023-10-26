@@ -21,11 +21,20 @@ export class CreateProvider {
 
   public execute(): void {
     try {
-      return this.provider.list[this.providerName as string][
+      this.provider.list[this.providerName as string][
         this.provider.key
       ].execute();
-    } catch {
       return this.console.one([
+        `- ${this.provider.list[
+          this.providerName as string
+        ].description.trim()} ${this.messages.created}`,
+        'yellow',
+        true,
+        false,
+        false,
+      ]);
+    } catch {
+      throw this.console.one([
         this.messages.providerNotFound,
         'red',
         true,

@@ -3,8 +3,6 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeRedis } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeCacheProvider {
@@ -14,18 +12,14 @@ export class MakeCacheProvider {
   private readonly createFakeRedis: CreateFakeRedis;
   private readonly createICache: CreateICache;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   constructor() {
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeRedis = new CreateFakeRedis();
-    this.messages = new Messages().execute();
     this.createICache = new CreateICache();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -118,16 +112,9 @@ export class MakeCacheProvider {
       ],
       this.createICache,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'CacheProvider', 'index.ts'],
       this.createCacheIndex,
     );
-    return this.console.one([
-      `- CacheProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

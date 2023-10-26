@@ -152,16 +152,9 @@ export class MakeMailProvider {
       ],
       this.createIMail,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
       this.createMailIndex,
     );
-    return this.console.one([
-      `- MailProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }

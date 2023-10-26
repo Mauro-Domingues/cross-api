@@ -221,7 +221,7 @@ export class MakeDependentMailProvider {
       ],
       this.createIMail,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateFile(
       [
         'src',
         'modules',
@@ -232,12 +232,5 @@ export class MakeDependentMailProvider {
       ],
       this.createMailIndex,
     );
-    return this.console.one([
-      `- MailProvider ${this.messages.created}`,
-      'yellow',
-      true,
-      false,
-      false,
-    ]);
   }
 }
