@@ -73,7 +73,7 @@ new (class Main {
   }
 
   public execute(): void {
-    if (!this.comand) {
+    if (!Object.keys(this.actions).includes(this.comand)) {
       throw this.console.many([
         [this.messages.notFound, 'red', true, true, true],
         [this.messages.try[0], 'blue', true, false, false],
