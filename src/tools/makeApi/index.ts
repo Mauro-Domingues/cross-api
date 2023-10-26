@@ -7,9 +7,9 @@ import { MakeFourthLayer } from './srcLayer4';
 import { MakeLastLayer } from './srcLastLayer';
 
 export class CreateApi {
+  private readonly makeCacheProvider: MakeCacheProvider;
   private readonly makeSecondLayer: MakeSecondLayer;
   private readonly makeFourthLayer: MakeFourthLayer;
-  private readonly makeCacheProvider: MakeCacheProvider;
   private readonly makeFirstLayer: MakeFirstLayer;
   private readonly makeThirdLayer: MakeThirdLayer;
   private readonly makeLastLayer: MakeLastLayer;
