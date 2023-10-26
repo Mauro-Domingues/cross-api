@@ -1,4 +1,4 @@
-import { CreateProvider } from '@tools/makeProvider/index';
+import { MakeCacheProvider } from '@tools/makeProvider/independent/cache';
 import { MakeInfra } from './infra';
 import { MakeFirstLayer } from './srcLayer1';
 import { MakeSecondLayer } from './srcLayer2';
@@ -9,14 +9,14 @@ import { MakeLastLayer } from './srcLastLayer';
 export class CreateApi {
   private readonly makeSecondLayer: MakeSecondLayer;
   private readonly makeFourthLayer: MakeFourthLayer;
-  private readonly createProvider: CreateProvider;
+  private readonly makeCacheProvider: MakeCacheProvider;
   private readonly makeFirstLayer: MakeFirstLayer;
   private readonly makeThirdLayer: MakeThirdLayer;
   private readonly makeLastLayer: MakeLastLayer;
   private readonly makeInfra: MakeInfra;
 
   constructor() {
-    this.createProvider = new CreateProvider('cache', undefined);
+    this.makeCacheProvider = new MakeCacheProvider();
     this.makeSecondLayer = new MakeSecondLayer();
     this.makeFourthLayer = new MakeFourthLayer();
     this.makeThirdLayer = new MakeThirdLayer();
@@ -32,6 +32,6 @@ export class CreateApi {
     this.makeThirdLayer.execute();
     this.makeFourthLayer.execute();
     this.makeLastLayer.execute();
-    return this.createProvider.execute();
+    return this.makeCacheProvider.execute();
   }
 }
