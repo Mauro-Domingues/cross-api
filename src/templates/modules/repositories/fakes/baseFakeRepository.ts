@@ -115,16 +115,24 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     Array<Entity>
   > {
     return this.fakeRepository.filter(entity =>
-      Object.entries(where).every(([key, value]) => {
-        let strValue = value.toString();
-        if (strValue.startsWith('%')) {
-          strValue = strValue.substring(1);
-        }
-        if (strValue.endsWith('%')) {
-          strValue = strValue.slice(0, -1);
-        }
-        return entity[key as keyof Entity].toString().includes(strValue);
-      }),
+      (Array.isArray(where) ? where : [where])
+        .flatMap(condition =>
+          Object.entries(condition).map(([key, value]) => ({
+            [key]: value,
+          })),
+        )
+        .every(condition =>
+          Object.entries(condition).every(([key, value]) => {
+            let strValue = value.toString();
+            if (strValue.startsWith('%')) {
+              strValue = strValue.substring(1);
+            }
+            if (strValue.endsWith('%')) {
+              strValue = strValue.slice(0, -1);
+            }
+            return entity[key as keyof Entity].toString().includes(strValue);
+          }),
+        ),
     );
   }
 

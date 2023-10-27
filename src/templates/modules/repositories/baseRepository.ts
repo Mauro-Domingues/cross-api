@@ -83,9 +83,18 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
       skip: page && limit && (page - 1) * limit,
       take: limit,
       ...baseData,
-      where: Object.fromEntries(
-        Object.entries(where).map(([key, values]) => [key, Like(values)]),
-      ) as FindManyOptions<Entity>['where'],
+      where: (() => {
+        if (Array.isArray(where)) {
+          return where.flatMap(condition =>
+            Object.entries(condition).map(([key, value]) => ({
+              [key]: Like(value),
+            })),
+          );
+        }
+        return Object.entries(where).map(([key, value]) => ({
+          [key]: Like(value),
+        }));
+      })() as FindManyOptions<Entity>['where'],
     });
   }
 
