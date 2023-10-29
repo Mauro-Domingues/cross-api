@@ -13,20 +13,14 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async exists({
     where,
   }: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0]): Promise<boolean> {
-    if (!where) return false;
-    if (where instanceof Array) {
-      return this.fakeRepository.some(entity =>
-        where.some(property =>
-          Object.entries(property).every(
-            ([key, value]) => entity[key] === value && !entity.deleted_at,
-          ),
-        ),
-      );
-    }
     return this.fakeRepository.some(entity =>
-      Object.entries(where).every(
-        ([key, value]) => entity[key] === value && !entity.deleted_at,
-      ),
+      Array.isArray(where)
+        ? where
+        : [where].some(property =>
+            Object.entries(property as Entity).every(
+              ([key, value]) => entity[key] === value && !entity.deleted_at,
+            ),
+          ),
     );
   }
 
@@ -35,29 +29,17 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }: Parameters<
     IBaseRepositoryDTO<Entity>['findBy']
   >[0]): Promise<Entity | null> {
-    if (!where) return null;
-    let findEntity: Entity | undefined;
-    if (where instanceof Array) {
-      findEntity = this.fakeRepository.find(entity =>
-        where.some(property =>
-          Object.entries(property).every(
-            ([key, value]) => entity[key] === value && !entity.deleted_at,
+    const findEntity: Entity | undefined = this.fakeRepository.find(entity =>
+      Array.isArray(where)
+        ? where
+        : [where].some(property =>
+            Object.entries(property as Entity).every(
+              ([key, value]) => entity[key] === value && !entity.deleted_at,
+            ),
           ),
-        ),
-      );
-    } else {
-      findEntity = this.fakeRepository.find(entity =>
-        Object.entries(where).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
-      );
-    }
+    );
 
-    if (!findEntity) {
-      return null;
-    }
-
-    return findEntity;
+    return findEntity ?? null;
   }
 
   public async findAll({
@@ -68,24 +50,15 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     list: Array<Entity>;
     amount: number;
   }> {
-    let filtered: Array<Entity>;
-    if (!where) {
-      filtered = this.fakeRepository;
-    } else if (where instanceof Array) {
-      filtered = this.fakeRepository.filter(entity =>
-        where.some(property =>
-          Object.entries(property).every(
-            ([key, value]) => entity[key] === value && !entity.deleted_at,
+    const filtered: Array<Entity> = this.fakeRepository.filter(entity =>
+      Array.isArray(where)
+        ? where
+        : [where].some(property =>
+            Object.entries(property as Entity).every(
+              ([key, value]) => entity[key] === value && !entity.deleted_at,
+            ),
           ),
-        ),
-      );
-    } else {
-      filtered = this.fakeRepository.filter(entity =>
-        Object.entries(where).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
-      );
-    }
+    );
 
     const filtredEntities = filtered.slice(
       ((page ?? 1) - 1) * (limit ?? this.fakeRepository.length),
@@ -115,24 +88,13 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     Array<Entity>
   > {
     return this.fakeRepository.filter(entity =>
-      (Array.isArray(where) ? where : [where])
-        .flatMap(condition =>
-          Object.entries(condition).map(([key, value]) => ({
-            [key]: value,
-          })),
-        )
-        .every(condition =>
-          Object.entries(condition).every(([key, value]) => {
-            let strValue = value.toString();
-            if (strValue.startsWith('%')) {
-              strValue = strValue.substring(1);
-            }
-            if (strValue.endsWith('%')) {
-              strValue = strValue.slice(0, -1);
-            }
-            return entity[key as keyof Entity].toString().includes(strValue);
-          }),
-        ),
+      (Array.isArray(where) ? where : [where]).some(condition =>
+        Object.entries(condition).every(([key, value]) => {
+          return entity[key as keyof Entity]
+            ?.toString()
+            ?.includes(value?.toString()?.replace(/^%|%$/g, ''));
+        }),
+      ),
     );
   }
 
