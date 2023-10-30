@@ -82,12 +82,12 @@ export class MakeInfra {
       'migrations',
     ]);
     this.fileManager.checkAndCreateDir(['src', 'shared', 'typeorm', 'seeds']);
-    return this.console.one([
-      this.messages.apiCreated,
-      'blue',
-      true,
-      false,
-      false,
-    ]);
+    return this.console.one({
+      message: this.messages.apiCreated,
+      color: 'blue',
+      bold: true,
+      breakStart: false,
+      breakEnd: false,
+    });
   }
 }

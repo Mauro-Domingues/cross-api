@@ -45,9 +45,21 @@ export class ConfigLanguage {
   }
 
   private showLanguageOptions(): void {
-    this.console.one([`${this.messages.language}`, 'yellow', true, true, true]);
+    this.console.one({
+      message: `${this.messages.language}`,
+      color: 'yellow',
+      bold: true,
+      breakStart: true,
+      breakEnd: true,
+    });
     console.table(Object.keys(this.languageOptions));
-    this.console.one(['', 'white', false, false, false]);
+    this.console.one({
+      message: '',
+      color: 'white',
+      bold: false,
+      breakStart: false,
+      breakEnd: false,
+    });
 
     const rl = createInterface({
       input: process.stdin,
@@ -79,13 +91,13 @@ export class ConfigLanguage {
   }
 
   protected validateOption(optionChosen: string): void {
-    return this.console.one([
-      `"${optionChosen}"${this.messages.invalidLanguage}`,
-      'red',
-      true,
-      true,
-      false,
-    ]);
+    return this.console.one({
+      message: `"${optionChosen}"${this.messages.invalidLanguage}`,
+      color: 'red',
+      bold: true,
+      breakStart: true,
+      breakEnd: false,
+    });
   }
 
   protected showChosenOption({ option, index } = this.languageConfig): void {
@@ -93,13 +105,15 @@ export class ConfigLanguage {
 
     this.messages = languageChosen;
 
-    return this.console.one([
-      `${this.messages.choice}${Object.keys(this.languageOptions)[index]}`,
-      'green',
-      true,
-      true,
-      true,
-    ]);
+    return this.console.one({
+      message: `${this.messages.choice}${
+        Object.keys(this.languageOptions)[index]
+      }`,
+      color: 'green',
+      bold: true,
+      breakStart: true,
+      breakEnd: true,
+    });
   }
 
   protected setLanguageOption(): void {

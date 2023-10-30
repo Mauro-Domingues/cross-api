@@ -7,24 +7,30 @@ const colorOptions = {
   white: '\x1b[38;2;0;0;0m',
 };
 
-type IInputDTO = [string, keyof typeof colorOptions, boolean, boolean, boolean];
+interface IInputDTO {
+  message: string;
+  color: keyof typeof colorOptions;
+  bold: boolean;
+  breakStart: boolean;
+  breakEnd: boolean;
+}
 
 export class Console {
   private readonly isbreakStart = (breakStart?: boolean) =>
     breakStart ? '\n' : '\b';
-  private readonly isbreakend = (breakEnd?: boolean) =>
+  private readonly isbreakEnd = (breakEnd?: boolean) =>
     breakEnd ? '\n' : '\b';
   private readonly getColor = (color: keyof typeof colorOptions) =>
     colorOptions[color];
   private readonly isBold = (bold?: boolean) => (bold ? '\x1b[1m' : '\x1b[0m');
 
-  public one(assets: IInputDTO): void {
+  public one({ message, color, bold, breakStart, breakEnd }: IInputDTO): void {
     const payload: Array<string> = [
-      String(this.isBold(assets[2])),
-      String(this.getColor(assets[1])),
+      String(this.isBold(bold)),
+      String(this.getColor(color)),
       String(
-        `${this.isbreakStart(assets[3])}${assets[0]}${this.isbreakend(
-          assets[4],
+        `${this.isbreakStart(breakStart)}${message}${this.isbreakEnd(
+          breakEnd,
         )}`,
       ),
       String('\x1b[0m'),
@@ -37,12 +43,12 @@ export class Console {
     const payload: Array<string> = [];
     assets.map(asset => {
       return payload.push(
-        String(this.isBold(asset[2])),
-        String(this.getColor(asset[1])),
+        String(this.isBold(asset.bold)),
+        String(this.getColor(asset.color)),
         String(
-          `${this.isbreakStart(asset[3])}${asset[0]}${this.isbreakend(
-            asset[4],
-          )}`,
+          `${this.isbreakStart(asset.breakStart)}${
+            asset.message
+          }${this.isbreakEnd(asset.breakEnd)}`,
         ),
         String('\x1b[0m'),
       );

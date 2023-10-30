@@ -127,13 +127,13 @@ export class DeleteRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.one([
-        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
-        'yellow',
-        true,
-        true,
-        false,
-      ]);
+      this.console.one({
+        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        color: 'yellow',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      });
     } else if (names) {
       const oldProviders = this.fileManager.readFile([
         this.basePath,
@@ -172,13 +172,13 @@ export class DeleteRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.one([
-        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
-        'yellow',
-        true,
-        true,
-        false,
-      ]);
+      this.console.one({
+        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        color: 'yellow',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      });
     }
   }
 
@@ -287,13 +287,13 @@ export class DeleteRegister {
         ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
-      this.console.one([
-        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
-        'yellow',
-        true,
-        true,
-        false,
-      ]);
+      this.console.one({
+        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        color: 'yellow',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      });
     } else if (names) {
       this.fileManager.removeDir([
         'src',
@@ -325,13 +325,13 @@ export class DeleteRegister {
         ['src', 'routes', 'index.ts'],
         routeInjection,
       );
-      this.console.one([
-        `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
-        'yellow',
-        true,
-        true,
-        false,
-      ]);
+      this.console.one({
+        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        color: 'yellow',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      });
     }
   }
 
@@ -352,13 +352,13 @@ export class DeleteRegister {
     this.fileManager.removeFile(['nodemon.json']);
     this.fileManager.removeFile(['prettier.config.js']);
     this.fileManager.removeFile(['tsconfig.json']);
-    return this.console.one([
-      `- ${this.messages.reversed}: ${comand}`,
-      'yellow',
-      true,
-      true,
-      false,
-    ]);
+    return this.console.one({
+      message: `- ${this.messages.reversed}: ${comand}`,
+      color: 'yellow',
+      bold: true,
+      breakStart: true,
+      breakEnd: false,
+    });
   }
 
   public execute(): void {
@@ -380,13 +380,13 @@ export class DeleteRegister {
       case 'make:api':
         return this.makeAPi(comand);
       default:
-        return this.console.one([
-          this.messages.noReversed,
-          'red',
-          true,
-          true,
-          true,
-        ]);
+        return this.console.one({
+          message: this.messages.noReversed,
+          color: 'red',
+          bold: true,
+          breakStart: true,
+          breakEnd: true,
+        });
     }
   }
 }

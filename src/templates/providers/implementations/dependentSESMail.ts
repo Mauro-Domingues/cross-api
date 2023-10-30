@@ -17,14 +17,13 @@ export class CreateDependentSESMail {
 
   public execute(): string {
     if (!this.fatherNames) {
-      this.console.one([
-        this.messages.providerNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+      throw this.console.one({
+        message: this.messages.providerNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     return `import { mailConfig } ${'from'} '@config/mail';
@@ -64,7 +63,7 @@ export class SESMailProvider implements IMailProviderDTO {
   }: ISendMailDTO): Promise<void> {
     const { email } = mailConfig.defaults.from;
 
-    const content = await this.mailTemplateProvider.parse(templateData);
+    const content = this.mailTemplateProvider.parse(templateData);
 
     await this.client.send(
       new SendEmailCommand({

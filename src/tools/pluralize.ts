@@ -316,13 +316,13 @@ export class Pluralize {
     assets: Array<Assets>,
   ): string {
     if (!this.word) {
-      throw this.console.one([
-        `this${this.messages.invalidLanguage}`,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: `${this.messages.invalidLanguage}`,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     const token = this.word.toLowerCase();
@@ -344,13 +344,13 @@ export class Pluralize {
     assets: Array<Assets>,
   ): boolean {
     if (!this.word) {
-      throw this.console.one([
-        `this${this.messages.invalidLanguage}`,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: `${this.messages.invalidLanguage}`,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     const token = this.word.toLowerCase();

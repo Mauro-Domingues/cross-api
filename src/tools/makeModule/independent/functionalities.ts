@@ -46,13 +46,13 @@ export class MakeFunctionalities {
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: this.messages.moduleNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     this.fileManager.checkAndCreateFile(

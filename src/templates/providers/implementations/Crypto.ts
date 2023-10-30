@@ -22,7 +22,7 @@ import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 import { ICryptoProviderDTO } ${'from'} '../models/ICryptoProvider';
 
 export class CryptoProvider implements ICryptoProviderDTO {
-  public async encrypt(text: string): Promise<ICryptoDTO> {
+  public encrypt(text: string): ICryptoDTO {
     const iv = randomBytes(16);
 
     const cipher = createCipheriv(
@@ -39,7 +39,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
     };
   }
 
-  public async decrypt(data: ICryptoDTO): Promise<string> {
+  public decrypt(data: ICryptoDTO): string {
     const decipher = createDecipheriv(
       cryptoConfig.algorithm,
       cryptoConfig.secretKey,
@@ -54,14 +54,14 @@ export class CryptoProvider implements ICryptoProviderDTO {
     return decrpyted.toString();
   }
 
-  public async generateJwt(
+  public generateJwt(
     payload: object,
     ip: string,
     options?: SignOptions,
-  ): Promise<{
+  ): {
     jwt_token: string;
     refresh_token: string;
-  }> {
+  } {
     const secret = readFileSync(
       resolve(cryptoConfig.basePath, 'keys', 'private.pem'),
     );
@@ -80,7 +80,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
     };
   }
 
-  public async generateKeys(): Promise<JWK<{ use: string }>> {
+  public generateKeys(): JWK<{ use: string }> {
     const { publicKey, privateKey } = generateKeyPairSync('rsa', {
       modulusLength: 3072,
     });
@@ -139,7 +139,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
 
     appendFileSync(
       resolve(cryptoConfig.basePath, '.well-known', 'jwks.json'),
-      JSON.stringify(jwksJson),
+      JSON.stringify(jwksJson, null, 2),
     );
 
     return parsedJwk;

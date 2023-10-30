@@ -17,7 +17,7 @@ export class ConfigJson {
     this.console = new Console();
   }
   execute() {
-    this.console.one([this.messages.configured, 'green', true, true, true]);
+    this.console.one({this.messages.configured, 'green', true, true, true]);
   }
 }
 `;

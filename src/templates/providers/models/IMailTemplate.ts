@@ -3,7 +3,7 @@ export class CreateIMailTemplate {
     return `import { IParseMailTemplateDTO } ${'from'} '../dtos/IParseMailTemplateDTO';
 
 export interface IMailTemplateProviderDTO {
-  parse(data: IParseMailTemplateDTO): Promise<string>;
+  parse(data: IParseMailTemplateDTO): string;
 }
 `;
   }

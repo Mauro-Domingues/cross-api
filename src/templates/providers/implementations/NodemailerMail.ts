@@ -53,6 +53,8 @@ export class NodemailerMailProvider implements IMailProviderDTO {
 
     const { email, name } = mailConfig.defaults.from;
 
+    const content = this.mailTemplateProvider.parse(templateData);
+
     const message = await this.client.sendMail({
       from: {
         name: from?.name ?? name,
@@ -63,7 +65,7 @@ export class NodemailerMailProvider implements IMailProviderDTO {
         address: to.email,
       },
       subject,
-      html: await this.mailTemplateProvider.parse(templateData),
+      html: content,
     });
 
     console.log('Message sent: %s', message.messageId);

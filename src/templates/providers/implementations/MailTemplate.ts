@@ -9,10 +9,10 @@ import { IMailTemplateProviderDTO } ${'from'} '../models/IMailTemplateProvider';
 export class HandlebarsMailTemplateProvider
   implements IMailTemplateProviderDTO
 {
-  public async parse({
+  public parse({
     file,
     variables,
-  }: IParseMailTemplateDTO): Promise<string> {
+  }: IParseMailTemplateDTO): string {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',
     });

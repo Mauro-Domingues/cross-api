@@ -66,13 +66,13 @@ export class Module {
 
   public makeDependentModule(): void {
     if (!this.fatherNames) {
-      throw this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: this.messages.moduleNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
     this.makeDependentStructure.execute();
     this.makeDependentInfra.execute();

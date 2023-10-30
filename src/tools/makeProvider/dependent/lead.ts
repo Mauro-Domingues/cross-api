@@ -44,13 +44,13 @@ export class MakeDependentLeadProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one([
-        this.messages.providerNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: this.messages.providerNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     this.fileManager.checkAndCreateDir(['src']);

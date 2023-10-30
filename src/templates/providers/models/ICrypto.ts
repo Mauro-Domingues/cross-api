@@ -5,21 +5,19 @@ import { JWK } ${'from'} 'pem-jwk';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 
 export interface ICryptoProviderDTO {
-  encrypt(text: string): Promise<ICryptoDTO>;
-  decrypt(hash: ICryptoDTO): Promise<string>;
-  generateKeys(): Promise<
-    JWK<{
-      use: string;
-    }>
-  >;
+  encrypt(text: string): ICryptoDTO;
+  decrypt(hash: ICryptoDTO): string;
+  generateKeys(): JWK<{
+    use: string;
+  }>;
   generateJwt(
     payload: object,
     ip: string,
     options?: SignOptions,
-  ): Promise<{
+  ): {
     jwt_token: string;
     refresh_token: string;
-  }>;
+  };
 }
 `;
   }

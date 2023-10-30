@@ -55,46 +55,90 @@ export class Board {
   }
 
   private renderEmptyLine(): void {
-    return this.console.one([
-      '|                                                                                                                   |',
-      'blue',
-      true,
-      false,
-      false,
-    ]);
+    return this.console.one({
+      message:
+        '|                                                                                                                   |',
+      color: 'blue',
+      bold: true,
+      breakStart: false,
+      breakEnd: false,
+    });
   }
 
   private renderHeader(): void {
-    return this.console.one([
-      ` /==============================================${this.messages.comandTitle}==============================================\\`,
-      'blue',
-      true,
-      true,
-      false,
-    ]);
+    return this.console.one({
+      message: ` /==============================================${this.messages.comandTitle}==============================================\\`,
+      color: 'blue',
+      bold: true,
+      breakStart: true,
+      breakEnd: false,
+    });
   }
 
   private renderToolOptions(): void {
     this.renderEmptyLine();
     this.console.many([
-      ['|   ', 'blue', true, false, false],
-      [` 〇 ${this.messages.tools}   `, 'green', true, false, false],
-      [
-        '                                                                                                  |',
-        'blue',
-        true,
-        false,
-        false,
-      ],
+      {
+        message: '|   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: ` 〇 ${this.messages.tools}   `,
+        color: 'green',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message:
+          '                                                                                                  |',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
     ]);
     this.renderEmptyLine();
     return this.toolOptions.forEach(tool => {
       this.console.many([
-        ['|   ', 'blue', true, false, false],
-        [`   ➤  ${tool.title}            `, 'yellow', true, false, false],
-        ['|   ', 'blue', true, false, false],
-        [`${tool.description}   `, 'white', false, false, false],
-        ['                          |   ', 'blue', true, false, false],
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: `   ➤  ${tool.title}            `,
+          color: 'yellow',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: `${tool.description}   `,
+          color: 'white',
+          bold: false,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: '                          |   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
       ]);
       return this.renderEmptyLine();
     });
@@ -102,37 +146,80 @@ export class Board {
 
   private renderStructureOptions(): void {
     this.console.many([
-      ['|   ', 'blue', true, false, false],
-      [` 〇 ${this.messages.structure}   `, 'green', true, false, false],
-      [
-        '                                                                                         |',
-        'blue',
-        true,
-        false,
-        false,
-      ],
+      {
+        message: '|   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: ` 〇 ${this.messages.structure}   `,
+        color: 'green',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message:
+          '                                                                                         |',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
     ]);
     this.renderEmptyLine();
     return this.structureOptions.forEach(structure => {
       this.console.many([
-        ['|   ', 'blue', true, false, false],
-        [`   ➤  ${structure.title}   `, 'yellow', true, false, false],
-        ['|   ', 'blue', true, false, false],
-        [`${structure.description}   `, 'white', false, false, false],
-        ['|   ', 'blue', true, false, false],
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: `   ➤  ${structure.title}   `,
+          color: 'yellow',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: `${structure.description}   `,
+          color: 'white',
+          bold: false,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
       ]);
       return this.renderEmptyLine();
     });
   }
 
   private renderFooter(): void {
-    return this.console.one([
-      ` \\=================================================================================================================/`,
-      'blue',
-      true,
-      false,
-      true,
-    ]);
+    return this.console.one({
+      message: ` \\=================================================================================================================/`,
+      color: 'blue',
+      bold: true,
+      breakStart: false,
+      breakEnd: true,
+    });
   }
 
   public execute(): void {

@@ -109,54 +109,109 @@ export class ConfigJson extends ConfigLanguage {
 
   private installYarn(): string {
     this.console.many([
-      [this.messages.yarn, 'blue', true, true, true],
-      [`- yarn ${this.messages.installed}`, 'yellow', false, true, true],
+      {
+        message: this.messages.yarn,
+        color: 'blue',
+        bold: true,
+        breakStart: true,
+        breakEnd: true,
+      },
+      {
+        message: `- yarn ${this.messages.installed}`,
+        color: 'yellow',
+        bold: false,
+        breakStart: true,
+        breakEnd: true,
+      },
     ]);
     return this.shell.execute('npm install yarn --location=global');
   }
 
   private installDependencies(): void {
-    this.console.one([this.messages.dependencies, 'blue', true, false, true]);
+    this.console.one({
+      message: this.messages.dependencies,
+      color: 'blue',
+      bold: true,
+      breakStart: false,
+      breakEnd: true,
+    });
     this.shell.execute(`yarn add ${this.dependencies.join(' ')}`);
     return this.dependencies.forEach(dependency => {
-      return this.console.one([
-        `- ${dependency} ${this.messages.installed}`,
-        'yellow',
-        false,
-        false,
-        false,
-      ]);
+      return this.console.one({
+        message: `- ${dependency} ${this.messages.installed}`,
+        color: 'yellow',
+        bold: false,
+        breakStart: false,
+        breakEnd: false,
+      });
     });
   }
 
   private installDevDependencies(): void {
-    this.console.one([this.messages.devDependencies, 'blue', true, true, true]);
+    this.console.one({
+      message: this.messages.devDependencies,
+      color: 'blue',
+      bold: true,
+      breakStart: true,
+      breakEnd: true,
+    });
     this.shell.execute(`yarn add ${this.devDependencies.join(' ')} -D`);
     return this.devDependencies.forEach(devDependency => {
-      return this.console.one([
-        `- ${devDependency} ${this.messages.installed}`,
-        'yellow',
-        false,
-        false,
-        false,
-      ]);
+      return this.console.one({
+        message: `- ${devDependency} ${this.messages.installed}`,
+        color: 'yellow',
+        bold: false,
+        breakStart: false,
+        breakEnd: false,
+      });
     });
   }
 
   private renderEnding(): void {
     return this.console.many([
-      [this.messages.marketplaceTool[0], 'blue', true, true, false],
-      [
-        'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig   ',
-        'purple',
-        true,
-        false,
-        false,
-      ],
-      [this.messages.marketplaceTool[1], 'blue', true, false, false],
-      [this.messages.try[0], 'blue', true, true, false],
-      [this.messages.try[1], 'yellow', true, false, false],
-      [this.messages.try[2], 'blue', true, false, true],
+      {
+        message: this.messages.marketplaceTool[0],
+        color: 'blue',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      },
+      {
+        message:
+          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig   ',
+        color: 'purple',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.marketplaceTool[1],
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.try[0],
+        color: 'blue',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.try[1],
+        color: 'yellow',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.try[2],
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: true,
+      },
     ]);
   }
 
@@ -175,9 +230,21 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private configLanguage(): void {
-    this.console.one([this.messages.language, 'yellow', true, true, true]);
+    this.console.one({
+      message: this.messages.language,
+      color: 'yellow',
+      bold: true,
+      breakStart: true,
+      breakEnd: true,
+    });
     console.table(Object.keys(this.languageOptions));
-    this.console.one(['', 'white', false, false, false]);
+    this.console.one({
+      message: '',
+      color: 'white',
+      bold: false,
+      breakStart: false,
+      breakEnd: false,
+    });
 
     const rl = createInterface({
       input: process.stdin,

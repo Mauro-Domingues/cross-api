@@ -24,23 +24,23 @@ export class CreateProvider {
       this.provider.list[this.providerName as string][
         this.provider.key
       ].execute();
-      return this.console.one([
-        `- ${this.provider.list[
+      return this.console.one({
+        message: `- ${this.provider.list[
           this.providerName as string
         ].description.trim()} ${this.messages.created}`,
-        'yellow',
-        true,
-        false,
-        false,
-      ]);
+        color: 'yellow',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     } catch {
-      throw this.console.one([
-        this.messages.providerNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
+      throw this.console.one({
+        message: this.messages.providerNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
   }
 }

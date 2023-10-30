@@ -75,10 +75,34 @@ new (class Main {
   public execute(): void {
     if (!Object.keys(this.actions).includes(this.comand)) {
       throw this.console.many([
-        [this.messages.notFound, 'red', true, true, true],
-        [this.messages.try[0], 'blue', true, false, false],
-        [this.messages.try[1], 'yellow', true, false, false],
-        [this.messages.try[2], 'blue', true, false, true],
+        {
+          message: this.messages.notFound,
+          color: 'red',
+          bold: true,
+          breakStart: true,
+          breakEnd: true,
+        },
+        {
+          message: this.messages.try[0],
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: this.messages.try[1],
+          color: 'yellow',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: this.messages.try[2],
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: true,
+        },
       ]);
     }
 

@@ -20,14 +20,13 @@ export class CreateIDependentRepository {
 
   public execute(): string {
     if (!this.names || !this.fatherNames) {
-      this.console.one([
-        this.messages.moduleNotFound,
-        'red',
-        true,
-        false,
-        false,
-      ]);
-      throw new Error();
+      throw this.console.one({
+        message: this.messages.moduleNotFound,
+        color: 'red',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      });
     }
 
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
