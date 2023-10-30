@@ -8,17 +8,22 @@ export class Config {
     this.fileManager = new FileManager();
     this.configBody = `import { Messages } ${'from'} './messages.js';
 import { Console } ${'from'} './console.js';
-
 export class ConfigJson {
-  messages;
-  console;
-  constructor() {
-    this.messages = new Messages().execute();
-    this.console = new Console();
-  }
-  execute() {
-    this.console.one({this.messages.configured, 'green', true, true, true]);
-  }
+    messages;
+    console;
+    constructor() {
+        this.messages = new Messages().execute();
+        this.console = new Console();
+    }
+    execute() {
+        this.console.one({
+            message: this.messages.configured,
+            color: 'green',
+            bold: true,
+            breakStart: true,
+            breakEnd: true,
+        });
+    }
 }
 `;
   }

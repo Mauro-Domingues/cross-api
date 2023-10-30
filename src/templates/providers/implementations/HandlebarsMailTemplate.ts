@@ -1,4 +1,4 @@
-export class CreateMailTemplate {
+export class CreateHandlebarsMailTemplate {
   public execute(): string {
     return `import { readFileSync } ${'from'} 'fs';
 import { compile } ${'from'} 'handlebars';
@@ -9,10 +9,7 @@ import { IMailTemplateProviderDTO } ${'from'} '../models/IMailTemplateProvider';
 export class HandlebarsMailTemplateProvider
   implements IMailTemplateProviderDTO
 {
-  public parse({
-    file,
-    variables,
-  }: IParseMailTemplateDTO): string {
+  public parse({ file, variables }: IParseMailTemplateDTO): string {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',
     });

@@ -1,7 +1,7 @@
 import { CreateContainer } from '@templates/index/container';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
 import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
-import { CreateMailTemplate } from '@templates/providers/implementations/MailTemplate';
+import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import { IMessagesDTO, Messages } from '@tools/messages';
@@ -10,11 +10,11 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeDependentMailTemplateProvider {
+  private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
   private readonly createFakeMailTemplate: CreateFakeMailTemplate;
   private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
   private readonly createIMailTemplate: CreateIMailTemplate;
-  private readonly createMailTemplate: CreateMailTemplate;
   private readonly createContainer: CreateContainer;
   private readonly fileManager: FileManager;
   private readonly messages: IMessagesDTO;
@@ -25,11 +25,11 @@ export class MakeDependentMailTemplateProvider {
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createFakeMailTemplate = new CreateFakeMailTemplate();
     this.createIMailTemplate = new CreateIMailTemplate();
-    this.createMailTemplate = new CreateMailTemplate();
     this.createContainer = new CreateContainer();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
@@ -183,7 +183,7 @@ export class MakeDependentMailTemplateProvider {
         'implementations',
         'HandlebarsMailTemplateProvider.ts',
       ],
-      this.createMailTemplate,
+      this.createHandlebarsMailTemplate,
     );
     this.fileManager.checkAndCreateFile(
       [
