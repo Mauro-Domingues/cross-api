@@ -137,7 +137,7 @@ export class CreateRegister {
     if (this.providerName && this.fatherNames) {
       this.fileManager.truncateFile([
         this.basePath,
-        'modules',
+        'providers',
         'providerInjection.log',
       ]);
       if (
