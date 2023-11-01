@@ -1,3 +1,4 @@
+import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
 import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
@@ -7,6 +8,7 @@ import { FileManager } from '@tools/fileManager';
 
 export class MakeMailTemplateProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
+  private readonly createMailTemplateConfig: CreateMailTemplateConfig;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
   private readonly createFakeMailTemplate: CreateFakeMailTemplate;
   private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
@@ -15,6 +17,7 @@ export class MakeMailTemplateProvider {
 
   constructor() {
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
+    this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
     this.createFakeMailTemplate = new CreateFakeMailTemplate();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
@@ -75,6 +78,10 @@ export class MakeMailTemplateProvider {
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './MailTemplateProvider';\n`,
+    );
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'mailTemplate.ts'],
+      this.createMailTemplateConfig,
     );
     this.fileManager.checkAndCreateFile(
       [

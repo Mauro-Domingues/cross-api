@@ -1,3 +1,4 @@
+import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
@@ -7,6 +8,7 @@ import { FileManager } from '@tools/fileManager';
 
 export class MakeNotificationProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createNotificationConfig: CreateNotificationConfig;
   private readonly createNotificationIndex: CreateNotificationIndex;
   private readonly createFakeNotification: CreateFakeNotification;
   private readonly createINotificationDTO: CreateINotificationDTO;
@@ -15,6 +17,7 @@ export class MakeNotificationProvider {
 
   constructor() {
     this.createOneSignalNotification = new CreateOneSignalNotification();
+    this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
     this.createFakeNotification = new CreateFakeNotification();
     this.createINotificationDTO = new CreateINotificationDTO();
@@ -85,6 +88,10 @@ export class MakeNotificationProvider {
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './NotificationProvider';\n`,
+    );
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'notification.ts'],
+      this.createNotificationConfig,
     );
     this.fileManager.checkAndCreateFile(
       [

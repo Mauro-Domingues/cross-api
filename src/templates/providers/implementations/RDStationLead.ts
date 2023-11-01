@@ -15,9 +15,9 @@ export class RDStationProvider implements ILeadProviderDTO {
       const url: AxiosRequestConfig['url'] = \`\${process.env.RD_API_URL}/auth/token\`;
 
       const body = {
-        client_id: leadConfig.clientId,
-        client_secret: leadConfig.clientSecret,
-        code: leadConfig.code,
+        client_id: leadConfig.config.clientId,
+        client_secret: leadConfig.config.clientSecret,
+        code: leadConfig.config.code,
       };
 
       const axiosResult = await axios.post<IAuthDTO>(url, body);
@@ -40,7 +40,7 @@ export class RDStationProvider implements ILeadProviderDTO {
     try {
       const token = await this.getSession();
 
-      const url: AxiosRequestConfig['url'] = \`\${process.env.RD_API_URL}/platform/conversions?api_key=\${leadConfig.publicApiKey}\`;
+      const url: AxiosRequestConfig['url'] = \`\${process.env.RD_API_URL}/platform/conversions?api_key=\${leadConfig.config.publicApiKey}\`;
 
       const body = {
         event_type: 'CONVERSION',

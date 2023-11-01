@@ -8,9 +8,11 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 
 export class MakeDependentNotificationProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createNotificationConfig: CreateNotificationConfig;
   private readonly createNotificationIndex: CreateNotificationIndex;
   private readonly createINotificationDTO: CreateINotificationDTO;
   private readonly createFakeNotification: CreateFakeNotification;
@@ -26,6 +28,7 @@ export class MakeDependentNotificationProvider {
       | undefined,
   ) {
     this.createOneSignalNotification = new CreateOneSignalNotification();
+    this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createFakeNotification = new CreateFakeNotification();
@@ -148,6 +151,10 @@ export class MakeDependentNotificationProvider {
         'index.ts',
       ],
       `import './NotificationProvider';\n`,
+    );
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'notification.ts'],
+      this.createNotificationConfig,
     );
     this.fileManager.checkAndCreateFile(
       [

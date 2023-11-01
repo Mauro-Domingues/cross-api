@@ -2,13 +2,13 @@ export class CreateMailConfig {
   public execute(): string {
     return `interface IMailConfigDTO {
   driver: 'nodemailer' | 'ses';
-  defaults: {
-    from: {
-      name: string;
-      email: string;
-    };
-  };
   config: {
+    defaults: {
+      from: {
+        name: string;
+        email: string;
+      };
+    };
     host: string;
     port: number;
     user: string;
@@ -20,13 +20,13 @@ export class CreateMailConfig {
 
 export const mailConfig: IMailConfigDTO = {
   driver: process.env.MAIL_DRIVER,
-  defaults: {
-    from: {
-      name: process.env.MAIL_NAME,
-      email: process.env.MAIL_ADRESS,
-    },
-  },
   config: {
+    defaults: {
+      from: {
+        name: process.env.MAIL_NAME,
+        email: process.env.MAIL_ADRESS,
+      },
+    },
     host: process.env.MAIL_HOST,
     port: Number(process.env.MAIL_PORT),
     user: process.env.MAIL_USER,

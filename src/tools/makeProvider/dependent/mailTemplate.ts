@@ -8,9 +8,11 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 
 export class MakeDependentMailTemplateProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
+  private readonly createMailTemplateConfig: CreateMailTemplateConfig;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
   private readonly createFakeMailTemplate: CreateFakeMailTemplate;
   private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
@@ -26,6 +28,7 @@ export class MakeDependentMailTemplateProvider {
       | undefined,
   ) {
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
+    this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createFakeMailTemplate = new CreateFakeMailTemplate();
@@ -148,6 +151,10 @@ export class MakeDependentMailTemplateProvider {
         'index.ts',
       ],
       `import './MailTemplateProvider';\n`,
+    );
+    this.fileManager.checkAndCreateFile(
+      ['src', 'config', 'mailTemplate.ts'],
+      this.createMailTemplateConfig,
     );
     this.fileManager.checkAndCreateFile(
       [

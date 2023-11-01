@@ -28,7 +28,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
   }
 
   public async saveFile(file: string): Promise<string> {
-    const originalPath = resolve(uploadConfig.tmpFolder, file);
+    const originalPath = resolve(uploadConfig.config.tmpFolder, file);
 
     const ContentType = getType(originalPath);
 

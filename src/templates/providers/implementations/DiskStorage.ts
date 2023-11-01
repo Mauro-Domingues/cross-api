@@ -8,24 +8,24 @@ import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class DiskStorageProvider implements IStorageProviderDTO {
   public async saveFile(file: string): Promise<string> {
-    if (!existsSync(uploadConfig.tmpFolder)) {
-      mkdirSync(uploadConfig.tmpFolder);
+    if (!existsSync(uploadConfig.config.tmpFolder)) {
+      mkdirSync(uploadConfig.config.tmpFolder);
     }
 
-    if (!existsSync(uploadConfig.uploadsFolder)) {
-      mkdirSync(uploadConfig.uploadsFolder);
+    if (!existsSync(uploadConfig.config.uploadsFolder)) {
+      mkdirSync(uploadConfig.config.uploadsFolder);
     }
 
     renameSync(
-      resolve(uploadConfig.tmpFolder, file),
-      resolve(uploadConfig.uploadsFolder, file),
+      resolve(uploadConfig.config.tmpFolder, file),
+      resolve(uploadConfig.config.uploadsFolder, file),
     );
 
     return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
-    unlinkSync(resolve(uploadConfig.uploadsFolder, file));
+    unlinkSync(resolve(uploadConfig.config.uploadsFolder, file));
   }
 }
 `;

@@ -61,7 +61,7 @@ export class SESMailProvider implements IMailProviderDTO {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    const { email } = mailConfig.defaults.from;
+    const { email } = mailConfig.config.defaults.from;
 
     const content = this.mailTemplateProvider.parse(templateData);
 

@@ -36,8 +36,8 @@ class App {
 
   private staticRoutes() {
     this.server.use('/api-docs', serve, setup(swaggerDocs));
-    // this.server.use('/uploads', express.static(uploadConfig.uploadsFolder)); // uploadProvider
-    // this.server.use('/keys', express.static(cryptoConfig.keysPath)); // expose public key feature
+    // this.server.use('/uploads', express.static(uploadConfig.config.uploadsFolder)); // uploadProvider
+    // this.server.use('/keys', express.static(cryptoConfig.config.keysPath)); // expose public key feature
   }
 
   private errorHandlers(): void {

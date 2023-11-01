@@ -1,14 +1,18 @@
 export class CreateAuthConfig {
   public execute(): string {
     return `export interface IAuthConfigDTO {
-  jwt: {
-    expiresIn: string;
+  config: {
+    jwt: {
+      expiresIn: string;
+    };
   };
 }
 
 export const authConfig: IAuthConfigDTO = {
-  jwt: {
-    expiresIn: process.env.JWT_LIFETIME ?? '1d',
+  config: {
+    jwt: {
+      expiresIn: process.env.JWT_LIFETIME ?? '1d',
+    },
   },
 };
 `;

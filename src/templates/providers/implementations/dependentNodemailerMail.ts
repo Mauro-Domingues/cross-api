@@ -79,7 +79,7 @@ export class NodemailerMailProvider implements IMailProviderDTO {
       await this.createClient();
     }
 
-    const { email, name } = mailConfig.defaults.from;
+    const { email, name } = mailConfig.config.defaults.from;
 
     const content = this.mailTemplateProvider.parse(templateData);
 
