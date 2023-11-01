@@ -4,7 +4,7 @@ export class CreateMailTemplateConfig {
   driver: 'handlebars';
 }
 
-export const mailConfig: IMailTemplateConfigDTO = {
+export const mailTemplateConfig: IMailTemplateConfigDTO = {
   driver: 'handlebars',
 };
 `;

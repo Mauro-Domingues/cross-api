@@ -138,7 +138,7 @@ export class CreateRegister {
       this.fileManager.truncateFile([
         this.basePath,
         'modules',
-        'routeInjection.log',
+        'providerInjection.log',
       ]);
       if (
         this.fileManager.checkIfExists([
@@ -157,12 +157,12 @@ export class CreateRegister {
           'index.ts',
         ]);
         this.fileManager.createFile(
-          [this.basePath, 'modules', 'routeInjection.log'],
+          [this.basePath, 'providers', 'providerInjection.log'],
           providerInjection,
         );
       } else {
         this.fileManager.createFile(
-          [this.basePath, 'modules', 'routeInjection.log'],
+          [this.basePath, 'providers', 'providerInjection.log'],
           '',
         );
       }
@@ -176,11 +176,11 @@ export class CreateRegister {
       ]);
       this.fileManager.truncateFile([
         this.basePath,
-        'modules',
-        'routeInjection.log',
+        'providers',
+        'providerInjection.log',
       ]);
       this.fileManager.createFile(
-        [this.basePath, 'modules', 'routeInjection.log'],
+        [this.basePath, 'providers', 'providerInjection.log'],
         providerInjection,
       );
     }
