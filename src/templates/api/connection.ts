@@ -2,7 +2,7 @@ export class CreateConnection {
   public execute(): string {
     return `import { DataSource } ${'from'} 'typeorm';
 
-export class Connection {
+export abstract class Connection {
   static client: string;
 
   static mysql: DataSource;

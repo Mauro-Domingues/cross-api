@@ -10,19 +10,33 @@ import { ILeadProviderDTO } ${'from'} '../models/ILeadProvider';
 import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
 
 export class RDStationProvider implements ILeadProviderDTO {
-  private async getSession(): Promise<IAuthDTO> {
-    try {
-      const url: AxiosRequestConfig['url'] = \`\${process.env.RD_API_URL}/auth/token\`;
+  private options: AxiosRequestConfig;
 
+  constructor() {
+    this.options = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+  }
+
+  private async getSession(): Promise<void> {
+    try {
       const body = {
         client_id: leadConfig.config.clientId,
         client_secret: leadConfig.config.clientSecret,
         code: leadConfig.config.code,
       };
 
-      const axiosResult = await axios.post<IAuthDTO>(url, body);
+      const axiosResult = await axios.post<IAuthDTO>(
+        'auth/token',
+        body,
+        this.options,
+      );
 
-      return axiosResult.data;
+      if (this.options.headers) {
+        this.options.headers.Authorization = \`Bearer \${axiosResult.data.access_token}\`;
+      }
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(
@@ -38,9 +52,7 @@ export class RDStationProvider implements ILeadProviderDTO {
 
   public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {
     try {
-      const token = await this.getSession();
-
-      const url: AxiosRequestConfig['url'] = \`\${process.env.RD_API_URL}/platform/conversions?api_key=\${leadConfig.config.publicApiKey}\`;
+      await this.getSession();
 
       const body = {
         event_type: 'CONVERSION',
@@ -52,14 +64,11 @@ export class RDStationProvider implements ILeadProviderDTO {
         },
       };
 
-      const options: AxiosRequestConfig = {
-        headers: {
-          'Content-Type': 'application/json',
-          token: \`Bearer \${token.access_token}\`,
-        },
-      };
-
-      const axiosResult = await axios.post<ICreateLeadDTO>(url, body, options);
+      const axiosResult = await axios.post<ICreateLeadDTO>(
+        \`platform/conversions?api_key=\${leadConfig.config.publicApiKey}\`,
+        body,
+        this.options,
+      );
 
       return axiosResult.data;
     } catch (error: unknown) {

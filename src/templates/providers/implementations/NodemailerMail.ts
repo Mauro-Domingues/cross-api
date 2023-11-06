@@ -21,9 +21,7 @@ export class NodemailerMailProvider implements IMailProviderDTO {
   constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
-  ) {
-    this.createClient();
-  }
+  ) {}
 
   private async createClient(): Promise<void> {
     const account = await createTestAccount();
@@ -47,9 +45,7 @@ export class NodemailerMailProvider implements IMailProviderDTO {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    if (!this.client) {
-      await this.createClient();
-    }
+    await this.createClient();
 
     const { email, name } = mailConfig.config.defaults.from;
 

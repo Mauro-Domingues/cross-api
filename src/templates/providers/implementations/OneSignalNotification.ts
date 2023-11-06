@@ -11,6 +11,7 @@ export class OneSignalProvider implements INotificationProviderDTO {
 
   constructor() {
     this.options = {
+      baseURL: process.env.OS_API_URL,
       headers: {
         'Content-Type': 'application/json',
         token: \`Basic \${process.env.OS_TOKEN}\`,
@@ -27,9 +28,11 @@ export class OneSignalProvider implements INotificationProviderDTO {
     };
 
     try {
-      const url: AxiosRequestConfig['url'] = \`\${process.env.OS_API_URL}/api/v1/notifications\`;
-
-      const axiosResult = await axios.post(url, body, this.options);
+      const axiosResult = await axios.post(
+        'api/v1/notifications',
+        body,
+        this.options,
+      );
 
       return console.log(axiosResult.data);
     } catch (error: unknown) {
