@@ -1,19 +1,19 @@
 export class CreateDockerCompose {
   public execute(): string {
-    return `version: '3'
-
-services:
-  database:
+    return `services:
+  mysql:
     image: mysql
     restart: unless-stopped
     container_name: mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - '3306:3306'
+      - 3306:3306
     env_file:
       - .env
     environment:
       - MYSQL_USER=username
+    volumes:
+      - mysql:/var/lib/mysql
     networks:
       - cross-network
 
@@ -30,6 +30,9 @@ services:
 
 networks:
   cross-network:
-    driver: bridge`;
+    driver: bridge
+
+volumes:
+  mysql: {}`;
   }
 }

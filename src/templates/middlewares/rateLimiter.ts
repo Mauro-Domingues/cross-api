@@ -31,7 +31,7 @@ export const rateLimiter = async (
         request.path.startsWith(route),
       )
     ) {
-      await limiter.consume(request.ip, 1);
+      await limiter.consume(request.ip as string, 1);
     }
 
     return next();
