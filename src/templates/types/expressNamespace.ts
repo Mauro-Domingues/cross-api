@@ -2,8 +2,9 @@ export class CreateExpressNamespace {
   public execute(): string {
     return `declare namespace Express {
   export interface Request {
-    user: {
-      id: string;
+    readonly files: Record<string, Array<Express.Multer.File>>;
+    readonly auth: import('jsonwebtoken').JwtPayload & {
+      sub: string;
     };
   }
 }

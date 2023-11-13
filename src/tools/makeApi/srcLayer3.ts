@@ -13,7 +13,6 @@ import { CreateDomainsManager } from '@templates/utils/domains';
 import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
 import { CreateEnvNamespace } from '@templates/types/envNamespace';
 import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
-import { CreateDecodeJwt } from '@templates/middlewares/decodeJwt';
 import { CreateGuard } from '@templates/index/guard';
 import { CreateErrorLog } from '@templates/utils/errorLog';
 import { FileManager } from '@tools/fileManager';
@@ -47,7 +46,6 @@ export class MakeThirdLayer {
   private readonly createIObjectDTO: CreateIObjectDTO;
   private readonly createCorsConfig: CreateCorsConfig;
   private readonly createAuthConfig: CreateAuthConfig;
-  private readonly createDecodeJwt: CreateDecodeJwt;
   private readonly createJsonToXml: CreateJsonToXml;
   private readonly createICacheDTO: CreateICacheDTO;
   private readonly createErrorLog: CreateErrorLog;
@@ -79,7 +77,6 @@ export class MakeThirdLayer {
     this.createIObjectDTO = new CreateIObjectDTO();
     this.createCorsConfig = new CreateCorsConfig();
     this.createAuthConfig = new CreateAuthConfig();
-    this.createDecodeJwt = new CreateDecodeJwt();
     this.createJsonToXml = new CreateJsonToXml();
     this.createICacheDTO = new CreateICacheDTO();
     this.createErrorLog = new CreateErrorLog();
@@ -162,10 +159,6 @@ export class MakeThirdLayer {
     this.fileManager.checkAndCreateFile(
       ['src', 'middlewares', 'parseParam.ts'],
       this.createParseParam,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'decodeJwt.ts'],
-      this.createDecodeJwt,
     );
     this.fileManager.checkAndCreateFile(
       ['src', 'routes', 'guardRouter.ts'],

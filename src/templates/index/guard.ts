@@ -2,7 +2,6 @@ export class CreateGuard {
   public execute(): string {
     return `import { Router } ${'from'} 'express';
 import { ensureAuthenticated } ${'from'} '@middlewares/ensureAuthenticated';
-import { decodeJwt } ${'from'} '@middlewares/decodeJwt';
 import { IExceptionDTO } ${'from'} '@dtos/IExceptionDTO';
 
 const guardRouter = Router();
@@ -41,7 +40,6 @@ const exceptions: IExceptionDTO = {
 };
 
 guardRouter.use(ensureAuthenticated.unless(exceptions));
-guardRouter.use(decodeJwt);
 
 export { guardRouter };
 `;
