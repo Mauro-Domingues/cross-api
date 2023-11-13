@@ -13,7 +13,7 @@ export class MakeHashProvider {
   private readonly fileManager: FileManager;
   private readonly createHash: CreateHash;
 
-  constructor() {
+  public constructor() {
     this.createHashConfig = new CreateHashConfig();
     this.createHashIndex = new CreateHashIndex();
     this.createFakeHash = new CreateFakeHash();

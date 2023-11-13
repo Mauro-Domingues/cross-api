@@ -28,7 +28,7 @@ export class MakeUnitTests {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNamesDTO | undefined) {
     this.createSpecController = new CreateSpecController(this.names);
     this.updateSpecController = new UpdateSpecController(this.names);
     this.deleteSpecController = new DeleteSpecController(this.names);

@@ -30,7 +30,7 @@ export class Provider {
     }
   >;
 
-  constructor(
+  public constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,

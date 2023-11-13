@@ -15,7 +15,7 @@ export class MakeMailTemplateProvider {
   private readonly createIMailTemplate: CreateIMailTemplate;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
     this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();

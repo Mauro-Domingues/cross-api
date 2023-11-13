@@ -246,7 +246,7 @@ export class Pluralize {
   private readonly irregularSingles: Obj;
   private readonly console: Console;
 
-  constructor(private readonly word: string | undefined) {
+  public constructor(private readonly word: string | undefined) {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.irregularPlurals = {};

@@ -21,7 +21,7 @@ export class MakeQueueProvider {
   private readonly fileManager: FileManager;
   private readonly createJobs: CreateJobs;
 
-  constructor() {
+  public constructor() {
     this.createQueueConfig = new CreateQueueConfig();
     this.createExampleJob = new CreateExampleJob();
     this.createQueueIndex = new CreateQueueIndex();

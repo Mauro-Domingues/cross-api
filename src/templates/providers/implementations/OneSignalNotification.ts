@@ -9,7 +9,7 @@ import { INotificationProviderDTO } ${'from'} '../models/INotificationProvider';
 export class OneSignalProvider implements INotificationProviderDTO {
   private readonly options: AxiosRequestConfig;
 
-  constructor() {
+  public constructor() {
     this.options = {
       baseURL: process.env.OS_API_URL,
       headers: {

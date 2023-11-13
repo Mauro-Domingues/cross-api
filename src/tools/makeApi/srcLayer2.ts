@@ -3,7 +3,7 @@ import { FileManager } from '@tools/fileManager';
 export class MakeSecondLayer {
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.fileManager = new FileManager();
   }
 

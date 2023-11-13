@@ -6,7 +6,7 @@ export class CreateEntity {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Pick<IModuleNamesDTO, 'upperModuleName' | 'dbModuleName'>
       | undefined,
@@ -33,10 +33,10 @@ import { Connection } ${'from'} '@shared/typeorm';
 @Entity('${this.names.dbModuleName}', { database: Connection.client })
 export class ${this.names.upperModuleName} extends Base {
   @Column({ type: 'varchar', unique: false })
-  name: string;
+  public name: string;
 
   @Column({ type: 'varchar', nullable: true })
-  description: string;
+  public description: string;
 }
 `;
   }

@@ -23,7 +23,7 @@ export class MakeFourthLayer {
   private readonly createAppError: CreateAppError;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndPatchString = new CreateMapAndPatchString();
     this.createMapAndUpdate = new CreateMapAndUpdate();

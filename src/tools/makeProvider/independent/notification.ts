@@ -15,7 +15,7 @@ export class MakeNotificationProvider {
   private readonly createINotification: CreateINotification;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createOneSignalNotification = new CreateOneSignalNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();

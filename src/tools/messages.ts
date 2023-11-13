@@ -41,7 +41,7 @@ export interface IMessagesDTO {
 export class Messages {
   private readonly messages: IMessagesDTO;
 
-  constructor() {
+  public constructor() {
     this.messages = {
       language: '➤  Which language do you prefer?',
       invalidLanguage: ' is not a valid option',

@@ -9,7 +9,7 @@ export class ConfigJson extends ConfigLanguage {
   private readonly config: Config;
   private readonly shell: Shell;
 
-  constructor() {
+  public constructor() {
     super();
     this.config = new Config();
     this.shell = new Shell();

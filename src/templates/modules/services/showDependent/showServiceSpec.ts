@@ -6,7 +6,7 @@ export class ShowSpecDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Omit<IModuleNamesDTO, 'routeModuleName' | 'dbModuleName'>
       | undefined,

@@ -6,7 +6,7 @@ export class UpdateService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined,
   ) {
     this.messages = new Messages().execute();
@@ -50,7 +50,7 @@ import { Route, Tags, Put, Body, Path } ${'from'} 'tsoa';
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Update${this.names.upperModuleName}Service {
-  constructor(
+  public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
     private readonly ${this.names.pluralLowerModuleName}Repository: I${
       this.names.pluralUpperModuleName

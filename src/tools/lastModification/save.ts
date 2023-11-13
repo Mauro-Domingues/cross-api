@@ -9,7 +9,7 @@ export class CreateRegister {
   private readonly fileManager: FileManager;
   private readonly basePath: string;
 
-  constructor(
+  public constructor(
     private readonly comand: Array<string> | undefined,
     private readonly providerName: string | undefined,
     private readonly names: IModuleNamesDTO | undefined,

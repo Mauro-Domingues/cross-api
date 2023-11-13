@@ -37,7 +37,7 @@ new (class Main {
     };
   };
 
-  constructor() {
+  public constructor() {
     this.getFatherNames = new GetNames(this.father);
     this.deleteRegister = new DeleteRegister();
     this.messages = new Messages().execute();

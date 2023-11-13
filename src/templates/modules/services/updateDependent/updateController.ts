@@ -6,7 +6,7 @@ export class UpdateDependentController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Pick<IModuleNamesDTO, 'lowerModuleName' | 'upperModuleName'>
       | undefined,

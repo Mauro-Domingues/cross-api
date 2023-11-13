@@ -5,7 +5,7 @@ export class ListProvider {
   private readonly provider: Provider;
   private readonly console: Console;
 
-  constructor() {
+  public constructor() {
     this.provider = new Provider(undefined);
     this.console = new Console();
   }

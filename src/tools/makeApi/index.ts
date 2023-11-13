@@ -15,7 +15,7 @@ export class CreateApi {
   private readonly makeLastLayer: MakeLastLayer;
   private readonly makeInfra: MakeInfra;
 
-  constructor() {
+  public constructor() {
     this.makeCacheProvider = new MakeCacheProvider();
     this.makeSecondLayer = new MakeSecondLayer();
     this.makeFourthLayer = new MakeFourthLayer();

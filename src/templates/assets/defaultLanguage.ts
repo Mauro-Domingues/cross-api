@@ -2,7 +2,7 @@ export class CreateDefaultLanguage {
   public execute(languageData: string): string {
     return `export class Messages {
   messages;
-  constructor() {
+  public constructor() {
     this.messages = ${languageData}
   }
   execute() {

@@ -15,7 +15,7 @@ export class MakeLastLayer {
   private readonly createBaseEntity: CreateBaseEntity;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createBaseFakeRepository = new CreateBaseFakeRepository();
     this.createMysqlDataSource = new CreateMysqlDataSource();
     this.createIBaseRepository = new CreateIBaseRepository();

@@ -7,7 +7,7 @@ export class MakeInfra {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor() {
+  public constructor() {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();

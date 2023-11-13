@@ -17,7 +17,7 @@ import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 export class S3StorageProvider implements IStorageProviderDTO {
   private readonly client: S3Client;
 
-  constructor() {
+  public constructor() {
     this.client = new S3Client({
       credentials: {
         accessKeyId: uploadConfig.config.aws.user,

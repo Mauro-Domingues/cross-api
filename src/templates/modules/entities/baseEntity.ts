@@ -9,16 +9,16 @@ export class CreateBaseEntity {
 
 export abstract class Base {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  public readonly id: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  created_at: Date;
+  public readonly created_at: Date;
 
   @UpdateDateColumn({ type: 'datetime' })
-  updated_at: Date;
+  public readonly updated_at: Date;
 
   @DeleteDateColumn({ type: 'datetime' })
-  deleted_at: Date;
+  public readonly deleted_at: Date;
 }
 `;
   }

@@ -8,7 +8,7 @@ export class CreateModule {
   private readonly console: Console;
   private readonly module: Module;
 
-  constructor(
+  public constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {

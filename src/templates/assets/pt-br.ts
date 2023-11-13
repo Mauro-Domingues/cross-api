@@ -3,7 +3,7 @@ import { IMessagesDTO } from '@tools/messages';
 export class PortugueseMessages {
   private readonly messages: IMessagesDTO;
 
-  constructor() {
+  public constructor() {
     this.messages = {
       language: '➤  Qual linguagem você prefere?',
       invalidLanguage: ' não é uma opção válida',

@@ -27,7 +27,7 @@ export class MakeFirstLayer {
   private readonly fileManager: FileManager;
   private readonly createEnv: CreateEnv;
 
-  constructor() {
+  public constructor() {
     this.createPrettierConfig = new CreatePrettierConfig();
     this.createDockerCompose = new CreateDockerCompose();
     this.createEsLintrcJson = new CreateEsLintrcJson();

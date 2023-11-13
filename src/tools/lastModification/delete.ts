@@ -11,7 +11,7 @@ export class DeleteRegister {
   private readonly basePath: string;
   private readonly console: Console;
 
-  constructor() {
+  public constructor() {
     this.messages = new Messages().execute();
     this.provider = new Provider(undefined);
     this.fileManager = new FileManager();

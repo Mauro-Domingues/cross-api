@@ -18,7 +18,7 @@ import '@shared/container';
 class App {
   public readonly server: Express;
 
-  constructor() {
+  public constructor() {
     this.server = express();
     this.middlewares();
     this.staticRoutes();

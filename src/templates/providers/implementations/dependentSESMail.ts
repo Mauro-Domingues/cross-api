@@ -6,7 +6,7 @@ export class CreateDependentSESMail {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
@@ -42,7 +42,7 @@ import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
 export class SESMailProvider implements IMailProviderDTO {
   private readonly client: SESClient;
 
-  constructor(
+  public constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {

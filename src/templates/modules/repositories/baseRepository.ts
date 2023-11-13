@@ -15,7 +15,7 @@ import { IBaseRepositoryDTO } ${'from'} './IBaseRepository.js';
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepositoryDTO<Entity>
 {
-  constructor(private readonly target: EntityTarget<Entity>) {}
+  public constructor(private readonly target: EntityTarget<Entity>) {}
 
   public async exists(
     baseData: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0],

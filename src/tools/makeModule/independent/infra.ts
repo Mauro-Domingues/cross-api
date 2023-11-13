@@ -28,7 +28,7 @@ export class MakeInfra {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNamesDTO | undefined) {
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
     this.createFakeRepository = new CreateFakeRepository(this.names);
     this.createIRepository = new CreateIRepository(this.names);

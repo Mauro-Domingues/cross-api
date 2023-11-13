@@ -23,7 +23,7 @@ export class Module {
   private readonly makeInfra: MakeInfra;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {

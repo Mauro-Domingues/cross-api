@@ -1,8 +1,8 @@
 export class CreateICodeDTO {
   public execute(): string {
     return `/**
-* @description Add your message codes here
-*/
+ * @description Add your message codes here
+ */
 export type ICodeDTO =
   | 'FAILED_TO_CREATE_NOTIFICATION'
   | 'FAILED_TO_CREATE_LEAD'

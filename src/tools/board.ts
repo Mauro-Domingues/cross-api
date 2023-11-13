@@ -12,7 +12,7 @@ export class Board {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor() {
+  public constructor() {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.toolOptions = [

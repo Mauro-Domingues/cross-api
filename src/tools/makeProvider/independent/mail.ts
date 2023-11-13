@@ -21,7 +21,7 @@ export class MakeMailProvider {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor() {
+  public constructor() {
     this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();

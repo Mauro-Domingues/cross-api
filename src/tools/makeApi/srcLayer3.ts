@@ -59,7 +59,7 @@ export class MakeThirdLayer {
   private readonly createKeys: CreateKeys;
   private readonly createApp: CreateApp;
 
-  constructor() {
+  public constructor() {
     this.createConvertToMilliseconds = new CreateConvertToMilliseconds();
     this.createEnsureAuthenticated = new CreateEnsureAuthenticated();
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();

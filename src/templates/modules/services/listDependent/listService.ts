@@ -6,7 +6,7 @@ export class ListDependentService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Omit<IModuleNamesDTO, 'lowerModuleName' | 'dbModuleName'>
       | undefined,
@@ -50,7 +50,7 @@ import { Get, Route, Tags, Query, Inject } ${'from'} 'tsoa';
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class List${this.names.upperModuleName}Service {
-  constructor(
+  public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
     private readonly ${this.names.pluralLowerModuleName}Repository: I${
       this.names.pluralUpperModuleName

@@ -27,7 +27,7 @@ export class ConfigLanguage {
   protected readonly console: Console;
   protected messages: IMessagesDTO;
 
-  constructor() {
+  public constructor() {
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.portugueseMessages = new PortugueseMessages();
     this.englishMessages = new EnglishMessages();

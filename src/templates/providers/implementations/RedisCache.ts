@@ -8,7 +8,7 @@ import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
 export class RedisCacheProvider implements ICacheProviderDTO {
   private readonly client: Redis;
 
-  constructor() {
+  public constructor() {
     this.client = new Redis(cacheConfig.config.redis);
   }
 

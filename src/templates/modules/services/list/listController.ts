@@ -6,7 +6,7 @@ export class ListController {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Pick<IModuleNamesDTO, 'upperModuleName' | 'pluralLowerModuleName'>
       | undefined,

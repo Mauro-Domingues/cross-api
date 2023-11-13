@@ -3,7 +3,7 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 export class CreateMapAndUpdate {
   private readonly messages: IMessagesDTO;
 
-  constructor() {
+  public constructor() {
     this.messages = new Messages().execute();
   }
 

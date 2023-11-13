@@ -28,7 +28,7 @@ export class MakeFunctionalities {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNamesDTO | undefined) {
     this.updateController = new UpdateController(this.names);
     this.createController = new CreateController(this.names);
     this.deleteController = new DeleteController(this.names);

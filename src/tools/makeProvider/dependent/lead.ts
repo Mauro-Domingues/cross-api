@@ -24,7 +24,7 @@ export class MakeDependentLeadProvider {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,

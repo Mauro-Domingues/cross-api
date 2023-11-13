@@ -17,7 +17,7 @@ export class MakeLeadProvider {
   private readonly fileManager: FileManager;
   private readonly createILead: CreateILead;
 
-  constructor() {
+  public constructor() {
     this.createRDStationLead = new CreateRDStationLead();
     this.createLeadConfig = new CreateLeadConfig();
     this.createLeadIndex = new CreateLeadIndex();

@@ -14,7 +14,7 @@ import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
 export class SESMailProvider implements IMailProviderDTO {
   private readonly client: SESClient;
 
-  constructor(
+  public constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {

@@ -4,14 +4,14 @@ export class Config {
   private readonly fileManager: FileManager;
   private readonly configBody: string;
 
-  constructor() {
+  public constructor() {
     this.fileManager = new FileManager();
     this.configBody = `import { Messages } ${'from'} './messages.js';
 import { Console } ${'from'} './console.js';
 export class ConfigJson {
     messages;
     console;
-    constructor() {
+    public constructor() {
         this.messages = new Messages().execute();
         this.console = new Console();
     }

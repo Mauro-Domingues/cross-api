@@ -6,7 +6,7 @@ export class CreateDependentFakeRepository {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Pick<IModuleNamesDTO, 'pluralUpperModuleName' | 'upperModuleName'>
       | undefined,

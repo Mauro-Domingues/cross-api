@@ -13,7 +13,7 @@ export class MakeCryptoProvider {
   private readonly createCrypto: CreateCrypto;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
     this.createICryptoDTO = new CreateICryptoDTO();

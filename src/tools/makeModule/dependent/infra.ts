@@ -30,7 +30,7 @@ export class MakeDependentInfra {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names: IModuleNamesDTO | undefined,
     private readonly fatherNames: IModuleNamesDTO | undefined,
   ) {

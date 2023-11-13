@@ -18,7 +18,7 @@ import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
 export class NodemailerMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
-  constructor(
+  public constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {}

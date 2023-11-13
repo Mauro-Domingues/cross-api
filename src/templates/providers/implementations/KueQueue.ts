@@ -10,7 +10,7 @@ import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 export class KueProvider implements IQueueProviderDTO {
   private queues: IQueueDTO<Queue> = {};
 
-  constructor() {
+  public constructor() {
     this.init();
     this.processQueue();
   }

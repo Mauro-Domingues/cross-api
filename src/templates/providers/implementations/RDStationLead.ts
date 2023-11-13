@@ -12,7 +12,7 @@ import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
 export class RDStationProvider implements ILeadProviderDTO {
   private options: AxiosRequestConfig;
 
-  constructor() {
+  public constructor() {
     this.options = {
       headers: {
         'Content-Type': 'application/json',

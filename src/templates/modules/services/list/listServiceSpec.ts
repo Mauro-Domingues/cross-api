@@ -6,7 +6,7 @@ export class ListSpecService {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
       | undefined,

@@ -13,7 +13,7 @@ export class MakeCacheProvider {
   private readonly createICache: CreateICache;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
     this.createRedisCache = new CreateRedisCache();

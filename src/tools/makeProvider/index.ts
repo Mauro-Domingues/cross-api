@@ -8,7 +8,7 @@ export class CreateProvider {
   private readonly provider: Provider;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly providerName: string | undefined,
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>

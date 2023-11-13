@@ -6,7 +6,7 @@ export class CreateDependentNodemailerMail {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
@@ -46,7 +46,7 @@ import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
 export class NodemailerMailProvider implements IMailProviderDTO {
   private client: Transporter;
 
-  constructor(
+  public constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProviderDTO,
   ) {}

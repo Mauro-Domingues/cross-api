@@ -6,7 +6,7 @@ export class CreateDependentRepository {
   private readonly messages: IMessagesDTO;
   private readonly console: Console;
 
-  constructor(
+  public constructor(
     private readonly names:
       | Pick<IModuleNamesDTO, 'pluralUpperModuleName' | 'upperModuleName'>
       | undefined,
@@ -43,7 +43,7 @@ export class ${this.names.pluralUpperModuleName}Repository
   extends BaseRepository<${this.names.upperModuleName}>
   implements I${this.names.pluralUpperModuleName}RepositoryDTO
 {
-  constructor() {
+  public constructor() {
     super(${this.names.upperModuleName});
   }
 

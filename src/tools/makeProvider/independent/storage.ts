@@ -15,7 +15,7 @@ export class MakeStorageProvider {
   private readonly createIStorage: CreateIStorage;
   private readonly fileManager: FileManager;
 
-  constructor() {
+  public constructor() {
     this.createStorageIndex = new CreateStorageIndex();
     this.createUploadConfig = new CreateUploadConfig();
     this.createDiskStorage = new CreateDiskStorage();
