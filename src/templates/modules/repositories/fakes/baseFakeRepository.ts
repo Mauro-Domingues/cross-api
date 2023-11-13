@@ -139,8 +139,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       entity => entity.id === baseData.id,
     );
 
-    this.fakeRepository[findEntity] = baseData as Entity;
-    this.fakeRepository[findEntity].updated_at = new Date();
+    this.fakeRepository[findEntity] = {
+      ...baseData,
+      updated_at: new Date(),
+    } as Entity;
 
     return this.fakeRepository[findEntity];
   }
@@ -153,8 +155,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         entity => entity.id === data.id,
       );
 
-      this.fakeRepository[findEntity] = data;
-      this.fakeRepository[findEntity].updated_at = new Date();
+      this.fakeRepository[findEntity] = { ...data, updated_at: new Date() };
 
       return this.fakeRepository[findEntity];
     });
@@ -221,7 +222,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     );
 
     deleteEntities.forEach(entity => {
-      entity.deleted_at = new Date();
+      Object.assign(entity, { deleted_at: new Date() });
     });
 
     return {
@@ -247,7 +248,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     });
 
     deleteEntities.forEach(entity => {
-      entity.deleted_at = new Date();
+      Object.assign(entity, { deleted_at: new Date() });
     });
 
     return {
