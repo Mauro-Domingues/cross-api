@@ -14,13 +14,11 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where,
   }: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0]): Promise<boolean> {
     return this.fakeRepository.some(entity =>
-      Array.isArray(where)
-        ? where
-        : [where].some(property =>
-            Object.entries(property as Entity).every(
-              ([key, value]) => entity[key] === value && !entity.deleted_at,
-            ),
-          ),
+      (Array.isArray(where) ? where : [where]).some(property =>
+        Object.entries(property as Entity).every(
+          ([key, value]) => entity[key] === value && !entity.deleted_at,
+        ),
+      ),
     );
   }
 
@@ -30,13 +28,11 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     IBaseRepositoryDTO<Entity>['findBy']
   >[0]): Promise<Entity | null> {
     const findEntity: Entity | undefined = this.fakeRepository.find(entity =>
-      Array.isArray(where)
-        ? where
-        : [where].some(property =>
-            Object.entries(property as Entity).every(
-              ([key, value]) => entity[key] === value && !entity.deleted_at,
-            ),
-          ),
+      (Array.isArray(where) ? where : [where]).some(property =>
+        Object.entries(property as Entity).every(
+          ([key, value]) => entity[key] === value && !entity.deleted_at,
+        ),
+      ),
     );
 
     return findEntity ?? null;
@@ -51,13 +47,11 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     amount: number;
   }> {
     const filtered: Array<Entity> = this.fakeRepository.filter(entity =>
-      Array.isArray(where)
-        ? where
-        : [where].some(property =>
-            Object.entries(property as Entity).every(
-              ([key, value]) => entity[key] === value && !entity.deleted_at,
-            ),
-          ),
+      (Array.isArray(where) ? where : [where]).some(property =>
+        Object.entries(property as Entity).every(
+          ([key, value]) => entity[key] === value && !entity.deleted_at,
+        ),
+      ),
     );
 
     const filtredEntities = filtered.slice(
