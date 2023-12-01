@@ -13,7 +13,7 @@ export interface ICryptoProviderDTO {
   generateJwt(
     payload: object,
     ip: string,
-    options?: SignOptions,
+    options?: Omit<SignOptions, 'algorithm'>,
   ): {
     jwt_token: string;
     refresh_token: string;

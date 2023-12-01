@@ -22,8 +22,8 @@ export class OneSignalProvider implements INotificationProviderDTO {
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     const body = {
       app_id: process.env.OS_APP_ID,
-      headings: { en: data.headings },
-      contents: { en: data.headings },
+      headings: { en: data.header },
+      contents: { en: data.content },
       include_player_ids: [data.device_id],
     };
 

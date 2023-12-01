@@ -53,7 +53,7 @@ export class BullProvider implements IQueueProviderDTO {
     return this.queues[key].queue.add(data, { delay: parsedDelay, attempts });
   }
 
-  public processQueue(): void {
+  private processQueue(): void {
     return jobs.forEach(job => {
       const { queue, handle } = this.queues[job.key];
 

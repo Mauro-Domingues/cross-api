@@ -34,10 +34,10 @@ class App {
     this.server.use(parseParam);
   }
 
-  private staticRoutes() {
+  private staticRoutes(): void {
     this.server.use('/api-docs', serve, setup(swaggerDocs));
     // this.server.use('/uploads', express.static(uploadConfig.config.uploadsFolder)); // uploadProvider
-    // this.server.use('/keys', express.static(cryptoConfig.config.keysPath)); // expose public key feature
+    // this.server.use('/jwks', express.static(cryptoConfig.config.jwksPath)); // expose public key feature
   }
 
   private errorHandlers(): void {

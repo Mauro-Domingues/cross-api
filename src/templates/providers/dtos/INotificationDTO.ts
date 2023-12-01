@@ -3,7 +3,7 @@ export class CreateINotificationDTO {
     return `export interface ISendNotificationDTO {
   name: string;
   device_id: string;
-  headings: string;
+  header: string;
   content: string;
 }
 `;

@@ -9,8 +9,9 @@ interface ICryptoConfigDTO {
     algorithm: string;
     encoding: BufferEncoding;
     secretKey: string;
-    basePath: string;
+    assetsPath: string;
     keysPath: string;
+    jwksPath: string;
   };
 }
 
@@ -21,8 +22,9 @@ export const cryptoConfig: ICryptoConfigDTO = {
     algorithm: 'aes-256-ctr',
     encoding: 'hex',
     secretKey: process.env.CRYPTO_SECRET_KEY ?? '',
-    basePath: resolve(__dirname, '..', 'assets'),
-    keysPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
+    keysPath: resolve(__dirname, '..', 'keys'),
+    assetsPath: resolve(__dirname, '..', 'assets'),
+    jwksPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
   },
 };
 `;

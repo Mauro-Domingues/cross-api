@@ -58,7 +58,7 @@ export class BeeProvider implements IQueueProviderDTO {
       .save();
   }
 
-  public processQueue(): void {
+  private processQueue(): void {
     return jobs.forEach(job => {
       const { queue, handle } = this.queues[job.key];
 

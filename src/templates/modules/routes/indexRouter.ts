@@ -29,7 +29,7 @@ export class CreateIndexRoute {
     return `import { ${this.names.lowerModuleName}Router } ${'from'} './${
       this.names.lowerModuleName
     }Router';
-routes.use('/', ${this.names.lowerModuleName}Router);
+routes.use(${this.names.lowerModuleName}Router);
 `;
   }
 }

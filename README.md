@@ -62,6 +62,8 @@ yarn cross make:module [name]
     ├── assets
     ├── config
     ├── dtos
+    ├── jobs
+    ├── keys
     ├── middlewares
     ├── modules
     ├── routes
@@ -89,9 +91,6 @@ yarn cross make:module [name]
 └── assets
     ├── .well-known
     │   └── jwks.json
-    ├── keys
-    │   ├── private.pem
-    │   └── public.pem
     ├── domains.txt
     └── errors.log   
 ```
@@ -123,6 +122,26 @@ yarn cross make:module [name]
     └── [name].ts
 ```
 
+<h3>jobs</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where jobs from queue implementations are declared</h4>
+
+```bash
+.
+└── jobs
+    ├── Example.ts
+    └── [name].ts
+```
+
+<h3>keys</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is where some credentials are stored</h4>
+
+```bash
+.
+└── keys
+    ├── private.pem
+    └── public.pem
+```
+
 <h3>middlewares</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the public project middlewares are declared</h4>
 
@@ -148,11 +167,7 @@ yarn cross make:module [name]
         │   └── Entity.ts
         ├── providers
         │   ├── [name]
-        │   │   ├── dtos
-        │   │   ├── fakes
-        │   │   ├── implementations
-        │   │   ├── models
-        │   │   └── index.ts
+        │   │   └── [provider-structure]
         │   └── index.ts
         ├── repositories
         │   ├── fakes
@@ -203,6 +218,9 @@ yarn cross make:module [name]
     │   │   │   │   └── Implementation.ts
     │   │   │   ├── models
     │   │   │   │   └── IProvider.ts
+    │   │   │   ├── public
+    │   │   │   │   ├── jobs.ts
+    │   │   │   │   └── [something-shareable].ts
     │   │   │   └── index.ts
     │   │   └── index.ts
     │   └── index.ts
@@ -250,25 +268,30 @@ yarn cross make:module [name]
 <h3>Transactions</h3><h4> By introducing the transactions, they revert all changes made to the database in the event that the method fails to execute. This helps prevent traces of data considered junk.</h4>
 
 ```typescript
-import { Connection } from '@shared/typeorm';
 
 class Example {
   public async handle() {
-    const trx = Connection.mysql.createQueryRunner(); // Creates a queryRunner
+    // Creates a queryRunner
+    const trx = Connection.mysql.createQueryRunner();
 
-    await trx.startTransaction(); // Creates a single connection to the database
+    // Creates a single connection to the database
+    await trx.startTransaction();
     try {
       
-      const result = await this.examplesRepository.create({ name: 'example' }, trx); // The trx object is mandatory if there is a connection to a database but optional if you are using "in memory repositories"
+      // The trx object is mandatory if there is a connection to a database but optional if you are using "in memory repositories"
+      const result = await this.examplesRepository.create({ name: 'example' }, trx);
 
-      if (trx.isTransactionActive) await trx.commitTransaction(); // Use after all the logic and before the method returns to persist modifications to the database
+      // Use after all the logic and before the method returns to persist modifications to the database
+      if (trx.isTransactionActive) await trx.commitTransaction();
 
       return result;
     } catch (error: unknown) {
-      if (trx.isTransactionActive) await trx.rollbackTransaction(); // In case of execution failure rolls back all changes made to the database
+      // In case of execution failure rolls back all changes made to the database
+      if (trx.isTransactionActive) await trx.rollbackTransaction();
       throw error;
     } finally {
-      if (!trx.isReleased) await trx.release(); // Releases the connection so it can be used in other cases
+      // Releases the connection so it can be used in other cases
+      if (!trx.isReleased) await trx.release();
     }
   }
 }

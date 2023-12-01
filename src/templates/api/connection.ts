@@ -23,10 +23,10 @@ export abstract class Connection {
 //
 // @Exclude()
 // @Column({ type: 'varchar', nullable: true })
-// image: string
+// public image: string
 //
 // @Expose({ name: "avatar_url" })
-// getAvatarUrl(): string | null {
+// public getAvatarUrl(): string | null {
 //   if (!this.image) {
 //     return null;
 //   }
@@ -42,21 +42,21 @@ export abstract class Connection {
 
 // Relations examples
 
-// @OneToOne(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
+// @OneToOne(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
-// @JoinColumn()
-// relationEntity: relationEntity;
+// @JoinColumn({ name: 'relationEntity_id' })
+// public relationEntity: EntityClass;
 
-// @OneToMany(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
+// @OneToMany(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
-// relationEntity: Array<relationEntity>;
+// public relationEntity: Array<EntityClass>;
 
-// @ManyToOne(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
+// @ManyToOne(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinColumn({ name: "relationEntity_id" })
-// relationEntity: relationEntity;
+// public relationEntity: EntityClass;
 
-// @ManyToMany(() => relationEntity, relationEntityParam => relationEntityParam.thisEntityColumn,
+// @ManyToMany(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinTable({
 //   name: 'thisEntity_relationEntity',
@@ -69,7 +69,7 @@ export abstract class Connection {
 //       referencedColumnName: 'id',
 //   },
 // })
-// relationEntity: Array<relationEntity>;
+// public relationEntity: Array<EntityClass>;
 `;
   }
 }

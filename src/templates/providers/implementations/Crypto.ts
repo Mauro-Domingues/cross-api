@@ -58,13 +58,13 @@ export class CryptoProvider implements ICryptoProviderDTO {
   public generateJwt(
     payload: object,
     ip: string,
-    options?: SignOptions,
+    options?: Omit<SignOptions, 'algorithm'>,
   ): {
     jwt_token: string;
     refresh_token: string;
   } {
     const secret = readFileSync(
-      resolve(cryptoConfig.config.basePath, 'keys', 'private.pem'),
+      resolve(cryptoConfig.config.keysPath, 'private.pem'),
     );
 
     const jwtToken = sign(payload, secret, {
@@ -106,50 +106,44 @@ export class CryptoProvider implements ICryptoProviderDTO {
       keys: [parsedJwk],
     };
 
-    if (!existsSync(resolve(cryptoConfig.config.basePath, 'keys'))) {
-      mkdirSync(resolve(cryptoConfig.config.basePath, 'keys'));
+    if (!existsSync(resolve(cryptoConfig.config.keysPath))) {
+      mkdirSync(resolve(cryptoConfig.config.keysPath));
     }
 
-    if (!existsSync(resolve(cryptoConfig.config.basePath, '.well-known'))) {
-      mkdirSync(resolve(cryptoConfig.config.basePath, '.well-known'));
+    if (!existsSync(resolve(cryptoConfig.config.assetsPath, '.well-known'))) {
+      mkdirSync(resolve(cryptoConfig.config.assetsPath, '.well-known'));
     }
 
-    if (
-      existsSync(resolve(cryptoConfig.config.basePath, 'keys', 'private.pem'))
-    ) {
-      truncateSync(
-        resolve(cryptoConfig.config.basePath, 'keys', 'private.pem'),
-      );
+    if (existsSync(resolve(cryptoConfig.config.keysPath, 'private.pem'))) {
+      truncateSync(resolve(cryptoConfig.config.keysPath, 'private.pem'));
     }
 
     appendFileSync(
-      resolve(cryptoConfig.config.basePath, 'keys', 'private.pem'),
+      resolve(cryptoConfig.config.keysPath, 'private.pem'),
       privateExported,
     );
 
-    if (
-      existsSync(resolve(cryptoConfig.config.basePath, 'keys', 'public.pem'))
-    ) {
-      truncateSync(resolve(cryptoConfig.config.basePath, 'keys', 'public.pem'));
+    if (existsSync(resolve(cryptoConfig.config.keysPath, 'public.pem'))) {
+      truncateSync(resolve(cryptoConfig.config.keysPath, 'public.pem'));
     }
 
     appendFileSync(
-      resolve(cryptoConfig.config.basePath, 'keys', 'public.pem'),
+      resolve(cryptoConfig.config.keysPath, 'public.pem'),
       publicExported,
     );
 
     if (
       existsSync(
-        resolve(cryptoConfig.config.basePath, '.well-known', 'jwks.json'),
+        resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
       )
     ) {
       truncateSync(
-        resolve(cryptoConfig.config.basePath, '.well-known', 'jwks.json'),
+        resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
       );
     }
 
     appendFileSync(
-      resolve(cryptoConfig.config.basePath, '.well-known', 'jwks.json'),
+      resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
       JSON.stringify(jwksJson, null, 2),
     );
 

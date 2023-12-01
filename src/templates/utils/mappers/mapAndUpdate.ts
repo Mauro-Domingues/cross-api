@@ -23,7 +23,7 @@ export function mapAndUpdateAttribute<
   Object.keys(newAttributes).forEach(attribute => {
     if (
       Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
-      (oldAttributes as IObjectDTO)[attribute]
+      (oldAttributes as IObjectDTO)[attribute] !== undefined
     ) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (Array.isArray(newValue)) {
