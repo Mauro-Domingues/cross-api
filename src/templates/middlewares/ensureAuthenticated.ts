@@ -5,7 +5,7 @@ import { expressJwtSecret, GetVerificationKey } ${'from'} 'jwks-rsa';
 
 export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
   secret: expressJwtSecret({
-    jwksUri: \`\${process.env.API_URL}/keys\`,
+    jwksUri: \`\${process.env.API_URL}/jwks\`,
     cache: true,
     rateLimit: true,
   }) as GetVerificationKey,
