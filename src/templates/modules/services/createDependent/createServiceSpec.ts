@@ -41,7 +41,7 @@ import { Fake${
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { Connection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
+import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
       this.names.upperModuleName
     }Service';
@@ -56,7 +56,7 @@ let create${this.names.upperModuleName}: Create${
 
 describe('Create${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    Connection.mysql = FakeMysqlDataSource;
+    Connection.mysql = FakeDataSource;
   });
 
   beforeEach(() => {

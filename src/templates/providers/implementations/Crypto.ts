@@ -132,24 +132,17 @@ export class CryptoProvider implements ICryptoProviderDTO {
       publicExported,
     );
 
-    if (
-      existsSync(
-        resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
-      )
-    ) {
-      truncateSync(
-        resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
-      );
+    if (existsSync(resolve(cryptoConfig.config.jwksPath))) {
+      truncateSync(resolve(cryptoConfig.config.jwksPath));
     }
 
     appendFileSync(
-      resolve(cryptoConfig.config.assetsPath, '.well-known', 'jwks.json'),
+      resolve(cryptoConfig.config.jwksPath),
       JSON.stringify(jwksJson, null, 2),
     );
 
     return parsedJwk;
   }
-}
-`;
+}`;
   }
 }

@@ -35,7 +35,7 @@ import { Fake${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { Connection } ${'from'} '@shared/typeorm';
-import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
+import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
       this.names.upperModuleName
     }Service';
@@ -50,7 +50,7 @@ let delete${this.names.upperModuleName}: Delete${
 
 describe('Delete${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    Connection.mysql = FakeMysqlDataSource;
+    Connection.mysql = FakeDataSource;
   });
 
   beforeEach(() => {

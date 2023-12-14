@@ -34,7 +34,7 @@ export class ListSpecService {
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { Connection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
+import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { List${this.names.upperModuleName}Service } ${'from'} './List${
       this.names.upperModuleName
     }Service';
@@ -47,7 +47,7 @@ let fakeCacheProvider: FakeCacheProvider;
 
 describe('List${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    Connection.mysql = FakeMysqlDataSource;
+    Connection.mysql = FakeDataSource;
   });
 
   beforeEach(() => {

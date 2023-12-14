@@ -12,6 +12,7 @@ import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
+import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
 
 export class MakeDependentQueueProvider {
   private readonly createQueueConfig: CreateQueueConfig;
@@ -19,6 +20,7 @@ export class MakeDependentQueueProvider {
   private readonly createExampleJob: CreateExampleJob;
   private readonly createContainer: CreateContainer;
   private readonly createBullQueue: CreateBullQueue;
+  private readonly createFakeQueue: CreateFakeQueue;
   private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
@@ -39,6 +41,7 @@ export class MakeDependentQueueProvider {
     this.createIQueueDTO = new CreateIQueueDTO();
     this.createContainer = new CreateContainer();
     this.createBullQueue = new CreateBullQueue();
+    this.createFakeQueue = new CreateFakeQueue();
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
     this.messages = new Messages().execute();
@@ -98,6 +101,14 @@ export class MakeDependentQueueProvider {
       'providers',
       'QueueProvider',
       'dtos',
+    ]);
+    this.fileManager.checkAndCreateDir([
+      'src',
+      'modules',
+      this.fatherNames.pluralLowerModuleName,
+      'providers',
+      'QueueProvider',
+      'fakes',
     ]);
     this.fileManager.checkAndCreateDir([
       'src',
@@ -193,6 +204,18 @@ export class MakeDependentQueueProvider {
         'IQueueDTO.ts',
       ],
       this.createIQueueDTO,
+    );
+    this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'fakes',
+        'FakeQueueProvider.ts',
+      ],
+      this.createFakeQueue,
     );
     this.fileManager.checkAndCreateFile(
       [

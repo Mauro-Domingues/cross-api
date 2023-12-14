@@ -1,4 +1,4 @@
-export class CreateFakeRedis {
+export class CreateFakeCache {
   public execute(): string {
     return `import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
 

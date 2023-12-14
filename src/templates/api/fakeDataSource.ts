@@ -4,7 +4,7 @@ export class CreateFakeDataSource {
 import 'dotenv/config';
 import 'reflect-metadata';
 
-export const FakeMysqlDataSource = {
+export const FakeDataSource = {
   isInitialized: true,
   createQueryRunner: () => ({
     rollbackTransaction: async () => Promise.resolve(),

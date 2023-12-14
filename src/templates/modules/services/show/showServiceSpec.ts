@@ -33,7 +33,7 @@ import { Fake${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { Connection } ${'from'} '@shared/typeorm';
-import { FakeMysqlDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
+import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
     }Service';
@@ -45,7 +45,7 @@ let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
 
 describe('Show${this.names.upperModuleName}Service', () => {
   beforeAll(async () => {
-    Connection.mysql = FakeMysqlDataSource;
+    Connection.mysql = FakeDataSource;
   });
 
   beforeEach(() => {

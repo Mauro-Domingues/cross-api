@@ -8,6 +8,7 @@ import { CreateIQueue } from '@templates/providers/models/IQueue';
 import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
+import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
 
 export class MakeQueueProvider {
   private readonly createQueueConfig: CreateQueueConfig;
@@ -15,6 +16,7 @@ export class MakeQueueProvider {
   private readonly createExampleJob: CreateExampleJob;
   private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createBullQueue: CreateBullQueue;
+  private readonly createFakeQueue: CreateFakeQueue;
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
   private readonly createIQueue: CreateIQueue;
@@ -27,6 +29,7 @@ export class MakeQueueProvider {
     this.createQueueIndex = new CreateQueueIndex();
     this.createIQueueDTO = new CreateIQueueDTO();
     this.createBullQueue = new CreateBullQueue();
+    this.createFakeQueue = new CreateFakeQueue();
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
     this.createIQueue = new CreateIQueue();
@@ -68,6 +71,14 @@ export class MakeQueueProvider {
       'providers',
       'QueueProvider',
       'dtos',
+    ]);
+    this.fileManager.checkAndCreateDir([
+      'src',
+      'shared',
+      'container',
+      'providers',
+      'QueueProvider',
+      'fakes',
     ]);
     this.fileManager.checkAndCreateDir([
       'src',
@@ -120,6 +131,18 @@ export class MakeQueueProvider {
         'IQueueDTO.ts',
       ],
       this.createIQueueDTO,
+    );
+    this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'QueueProvider',
+        'fakes',
+        'FakeQueueProvider.ts',
+      ],
+      this.createKueQueue,
     );
     this.fileManager.checkAndCreateFile(
       [
