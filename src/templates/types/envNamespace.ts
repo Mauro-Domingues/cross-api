@@ -34,10 +34,12 @@ export class CreateEnvNamespace {
     readonly MAIL_NAME: string;
     readonly MAIL_REGION: string;
     readonly QUEUE_DRIVER: 'kue' | 'bull' | 'bee';
-    readonly SENTRY_DSN: string;
-    readonly OS_APP_ID: string;
+    readonly NOTIFICATION_DRIVER: 'firebase' | 'onesignal';
     readonly OS_API_URL: string;
+    readonly OS_APP_ID: string;
     readonly OS_TOKEN: string;
+    readonly FIREBASE_API_URL: string;
+    readonly FIREBASE_API_KEY: string;
     readonly RD_API_URL: string;
     readonly RD_CLIENT_ID: string;
     readonly RD_CLIENT_SECRET: string;

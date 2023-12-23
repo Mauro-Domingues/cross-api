@@ -3,12 +3,7 @@ export class CreateConvertToMilliseconds {
     return `import { AppError } ${'from'} '@shared/errors/AppError';
 
 export function convertToMilliseconds(
-  delay:
-    | \`\${number}d\`
-    | \`\${number}h\`
-    | \`\${number}min\`
-    | \`\${number}s\`
-    | \`\${number}ms\`,
+  delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
 ): number {
   const match = delay.match(/\\d+/);
   if (match === null) {

@@ -52,8 +52,12 @@ MAIL_REGION=us-east-1
 # Queue
 QUEUE_DRIVER=bull
 
-# Sentry
-SENTRY_DSN=
+# Notification
+NOTIFICATION_PROVIDER=firebase
+
+# Firebase
+FIREBASE_API_URL=https://fcm.googleapis.com
+FIREBASE_API_KEY=
 
 # One Signal
 OS_API_URL=https://onesignal.com
