@@ -5,7 +5,7 @@ export class CreateNotificationIndex {
 import { notificationConfig } ${'from'} '@config/notification';
 import { OneSignalProvider } ${'from'} './implementations/OneSignalProvider';
 import { INotificationProviderDTO } ${'from'} './models/INotificationProvider';
-import { FirebaseProvider } ${'from'} './implementations/FireBaseProvider';
+import { FirebaseProvider } ${'from'} './implementations/FirebaseProvider';
 
 const providers = {
   onesignal: container.resolve(OneSignalProvider),

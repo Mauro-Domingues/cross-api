@@ -54,6 +54,7 @@ QUEUE_DRIVER=bull
 
 # Notification
 NOTIFICATION_PROVIDER=firebase
+# NOTIFICATION_PROVIDER=onesignal
 
 # Firebase
 FIREBASE_API_URL=https://fcm.googleapis.com
