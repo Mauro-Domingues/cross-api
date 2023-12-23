@@ -1,6 +1,7 @@
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
+import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
@@ -8,6 +9,7 @@ import { FileManager } from '@tools/fileManager';
 
 export class MakeNotificationProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createFirebaseNotification: CreateFirebaseNotification;
   private readonly createNotificationConfig: CreateNotificationConfig;
   private readonly createNotificationIndex: CreateNotificationIndex;
   private readonly createFakeNotification: CreateFakeNotification;
@@ -17,6 +19,7 @@ export class MakeNotificationProvider {
 
   public constructor() {
     this.createOneSignalNotification = new CreateOneSignalNotification();
+    this.createFirebaseNotification = new CreateFirebaseNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
     this.createFakeNotification = new CreateFakeNotification();
@@ -128,6 +131,18 @@ export class MakeNotificationProvider {
         'OneSignalProvider.ts',
       ],
       this.createOneSignalNotification,
+    );
+    this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'NotificationProvider',
+        'implementations',
+        'FirebaseProvider.ts',
+      ],
+      this.createFirebaseNotification,
     );
     this.fileManager.checkAndCreateFile(
       [

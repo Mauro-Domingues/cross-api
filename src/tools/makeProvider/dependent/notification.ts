@@ -9,9 +9,11 @@ import { IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
+import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
 
 export class MakeDependentNotificationProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
+  private readonly createFirebaseNotification: CreateFirebaseNotification;
   private readonly createNotificationConfig: CreateNotificationConfig;
   private readonly createNotificationIndex: CreateNotificationIndex;
   private readonly createINotificationDTO: CreateINotificationDTO;
@@ -28,6 +30,7 @@ export class MakeDependentNotificationProvider {
       | undefined,
   ) {
     this.createOneSignalNotification = new CreateOneSignalNotification();
+    this.createFirebaseNotification = new CreateFirebaseNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
     this.createINotificationDTO = new CreateINotificationDTO();
@@ -191,6 +194,18 @@ export class MakeDependentNotificationProvider {
         'OneSignalProvider.ts',
       ],
       this.createOneSignalNotification,
+    );
+    this.fileManager.checkAndCreateFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'NotificationProvider',
+        'implementations',
+        'FirebaseProvider.ts',
+      ],
+      this.createFirebaseNotification,
     );
     this.fileManager.checkAndCreateFile(
       [
