@@ -22,7 +22,7 @@ export class FirebaseProvider implements INotificationProviderDTO {
     const body = {
       to: data.device_id,
       notification: {
-        title: data.headings,
+        title: data.header,
         body: data.content,
       },
     };
@@ -33,7 +33,11 @@ export class FirebaseProvider implements INotificationProviderDTO {
       return console.log(axiosResult.data);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
-        throw new AppError(error.response.statusText, error.response.status);
+        throw new AppError(
+          'FAILED_TO_CREATE_NOTIFICATION',
+          error.response.statusText,
+          error.response.status,
+        );
       } else {
         throw error;
       }
