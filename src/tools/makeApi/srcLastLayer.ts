@@ -26,7 +26,7 @@ export class MakeLastLayer {
   }
 
   public execute(): void {
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [
         ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
         this.createBaseEntity,

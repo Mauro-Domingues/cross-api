@@ -24,7 +24,7 @@ export class CreateProvider {
       this.provider.list[this.providerName as string][
         this.provider.key
       ].execute();
-      return this.console.one({
+      return this.console.single({
         message: `- ${this.provider.list[
           this.providerName as string
         ].description.trim()} ${this.messages.created}`,
@@ -34,7 +34,7 @@ export class CreateProvider {
         breakEnd: false,
       });
     } catch {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,

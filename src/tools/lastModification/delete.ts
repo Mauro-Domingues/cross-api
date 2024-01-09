@@ -67,7 +67,7 @@ export class DeleteRegister extends BaseRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.one({
+      this.console.single({
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -112,7 +112,7 @@ export class DeleteRegister extends BaseRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.one({
+      this.console.single({
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -231,7 +231,7 @@ export class DeleteRegister extends BaseRegister {
         ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
-      this.console.one({
+      this.console.single({
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -269,7 +269,7 @@ export class DeleteRegister extends BaseRegister {
         ['src', 'routes', 'index.ts'],
         routeInjection,
       );
-      this.console.one({
+      this.console.single({
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -296,7 +296,7 @@ export class DeleteRegister extends BaseRegister {
       ['prettier.config.js'],
       ['tsconfig.json'],
     ]);
-    return this.console.one({
+    return this.console.single({
       message: `- ${this.messages.reversed}: ${comand}`,
       color: 'yellow',
       bold: true,
@@ -324,7 +324,7 @@ export class DeleteRegister extends BaseRegister {
       case 'make:api':
         return this.makeAPi(comand);
       default:
-        return this.console.one({
+        return this.console.single({
           message: this.messages.noReversed,
           color: 'red',
           bold: true,

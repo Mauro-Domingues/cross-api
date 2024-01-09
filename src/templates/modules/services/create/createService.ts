@@ -15,7 +15,7 @@ export class CreateService {
 
   public execute(): string {
     if (!this.names) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,

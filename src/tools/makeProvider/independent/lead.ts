@@ -29,7 +29,11 @@ export class MakeLeadProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './LeadProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'],
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'],
       [
@@ -42,11 +46,7 @@ export class MakeLeadProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './LeadProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'lead.ts'], this.createLeadConfig],
       [
         [

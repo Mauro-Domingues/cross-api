@@ -18,7 +18,7 @@ export class BaseRegister {
   }
 
   private constructBase(): void {
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.checkAndCreateMultiDir([
       [this.basePath, 'comands'],
       [this.basePath, 'modules'],
       [this.basePath, 'providers'],

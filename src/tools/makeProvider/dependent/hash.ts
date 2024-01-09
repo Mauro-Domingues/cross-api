@@ -28,7 +28,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -38,7 +38,17 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './HashProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'modules',
@@ -64,17 +74,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './HashProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'hash.ts'], this.createHashConfig],
       [
         [

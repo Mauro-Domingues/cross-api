@@ -14,7 +14,7 @@ export class MakeInfra {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'config'],
       ['src', '@types'],
       ['src', 'dtos'],
@@ -31,7 +31,7 @@ export class MakeInfra {
       ['src', 'shared', 'typeorm', 'migrations'],
       ['src', 'shared', 'typeorm', 'seeds'],
     ]);
-    return this.console.one({
+    return this.console.single({
       message: this.messages.apiCreated,
       color: 'blue',
       bold: true,

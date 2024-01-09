@@ -16,7 +16,7 @@ export class ConfigJson {
         this.console = new Console();
     }
     execute() {
-        this.console.one({
+        this.console.single({
             message: this.messages.configured,
             color: 'green',
             bold: true,

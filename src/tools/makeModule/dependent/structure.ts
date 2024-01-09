@@ -23,7 +23,7 @@ export class MakeDependentStructure {
 
   public execute(): void {
     if (!this.names || !this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
@@ -32,7 +32,7 @@ export class MakeDependentStructure {
       });
     }
 
-    return this.fileManager.checkAndCreateManyDirs([
+    return this.fileManager.checkAndCreateMultiDir([
       ['src', 'modules'],
       ['src', 'shared', 'container'],
       ['src', 'routes'],

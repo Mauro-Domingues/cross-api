@@ -70,14 +70,14 @@ export class FileManager {
   }
 
   public removeManyDirs(paths: Array<Array<string>>): void {
-    return paths.forEach(this.removeDir);
+    return paths.forEach(path => this.removeDir(path));
   }
 
   public removeManyFiles(paths: Array<Array<string>>): void {
-    return paths.forEach(this.removeFile);
+    return paths.forEach(file => this.removeFile(file));
   }
 
-  public checkAndCreateManyFiles(
+  public checkAndCreateMultiFile(
     data: Array<
       [
         Array<string>,
@@ -90,7 +90,7 @@ export class FileManager {
     return data.forEach(fileData => this.checkAndCreateFile(...fileData));
   }
 
-  public checkAndCreateManyDirs(paths: Array<Array<string>>): void {
-    return paths.forEach(this.checkAndCreateDir);
+  public checkAndCreateMultiDir(paths: Array<Array<string>>): void {
+    return paths.forEach(dir => this.checkAndCreateDir(dir));
   }
 }

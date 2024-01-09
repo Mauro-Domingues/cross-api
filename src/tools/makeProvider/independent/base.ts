@@ -11,7 +11,7 @@ export class BaseProvider {
   }
 
   protected constructBase(): void {
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'config'],
       ['src', 'shared', 'container', 'providers'],
     ]);

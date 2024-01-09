@@ -72,7 +72,7 @@ export class MakeDependentInfra {
 
   public execute(): void {
     if (!this.names || !this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
@@ -125,7 +125,7 @@ export class MakeDependentInfra {
         this.createDependentRoute.execute(),
       );
     }
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [
         [
           'src',

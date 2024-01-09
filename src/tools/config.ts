@@ -108,7 +108,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private installYarn(): string {
-    this.console.many([
+    this.console.multi([
       {
         message: this.messages.yarn,
         color: 'blue',
@@ -128,7 +128,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private installDependencies(): void {
-    this.console.one({
+    this.console.single({
       message: this.messages.dependencies,
       color: 'blue',
       bold: true,
@@ -137,7 +137,7 @@ export class ConfigJson extends ConfigLanguage {
     });
     this.shell.execute(`yarn add ${this.dependencies.join(' ')}`);
     return this.dependencies.forEach(dependency => {
-      return this.console.one({
+      return this.console.single({
         message: `- ${dependency} ${this.messages.installed}`,
         color: 'yellow',
         bold: false,
@@ -148,7 +148,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private installDevDependencies(): void {
-    this.console.one({
+    this.console.single({
       message: this.messages.devDependencies,
       color: 'blue',
       bold: true,
@@ -157,7 +157,7 @@ export class ConfigJson extends ConfigLanguage {
     });
     this.shell.execute(`yarn add ${this.devDependencies.join(' ')} -D`);
     return this.devDependencies.forEach(devDependency => {
-      return this.console.one({
+      return this.console.single({
         message: `- ${devDependency} ${this.messages.installed}`,
         color: 'yellow',
         bold: false,
@@ -168,7 +168,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private renderEnding(): void {
-    return this.console.many([
+    return this.console.multi([
       {
         message: this.messages.marketplaceTool[0],
         color: 'blue',
@@ -230,7 +230,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private configLanguage(): void {
-    this.console.one({
+    this.console.single({
       message: this.messages.language,
       color: 'yellow',
       bold: true,
@@ -238,7 +238,7 @@ export class ConfigJson extends ConfigLanguage {
       breakEnd: true,
     });
     console.table(Object.keys(this.languageOptions));
-    this.console.one({
+    this.console.single({
       message: '',
       color: 'white',
       bold: false,

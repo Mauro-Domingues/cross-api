@@ -29,7 +29,11 @@ export class MakeMailProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './MailProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'dtos'],
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'fakes'],
       [
@@ -42,11 +46,7 @@ export class MakeMailProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './MailProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'mail.ts'], this.createMailConfig],
       [
         [

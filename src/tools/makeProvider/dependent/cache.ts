@@ -28,7 +28,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -38,7 +38,17 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './CacheProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'modules',
@@ -64,17 +74,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './CacheProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'cache.ts'], this.createCacheConfig],
       [
         [

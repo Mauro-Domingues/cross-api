@@ -36,7 +36,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -46,7 +46,17 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './MailProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'modules',
@@ -80,17 +90,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './MailProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'mail.ts'], this.createMailConfig],
       [
         [

@@ -17,7 +17,7 @@ export class CreateDependentNodemailerMail {
 
   public execute(): string {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,

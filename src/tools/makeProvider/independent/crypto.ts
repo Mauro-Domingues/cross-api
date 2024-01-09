@@ -23,7 +23,11 @@ export class MakeCryptoProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './CryptoProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'dtos'],
       [
         'src',
@@ -35,11 +39,7 @@ export class MakeCryptoProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './CryptoProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
       [
         [

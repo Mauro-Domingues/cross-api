@@ -24,7 +24,13 @@ export class Console {
     colorOptions[color];
   private readonly isBold = (bold?: boolean) => (bold ? '\x1b[1m' : '\x1b[0m');
 
-  public one({ message, color, bold, breakStart, breakEnd }: IInputDTO): void {
+  public single({
+    message,
+    color,
+    bold,
+    breakStart,
+    breakEnd,
+  }: IInputDTO): void {
     const payload: Array<string> = [
       String(this.isBold(bold)),
       String(this.getColor(color)),
@@ -39,7 +45,7 @@ export class Console {
     return console.log(payload.join(''));
   }
 
-  public many(assets: Array<IInputDTO>): void {
+  public multi(assets: Array<IInputDTO>): void {
     const payload: Array<string> = [];
     assets.map(asset => {
       return payload.push(

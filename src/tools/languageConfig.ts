@@ -45,7 +45,7 @@ export class ConfigLanguage {
   }
 
   private showLanguageOptions(): void {
-    this.console.one({
+    this.console.single({
       message: `${this.messages.language}`,
       color: 'yellow',
       bold: true,
@@ -53,7 +53,7 @@ export class ConfigLanguage {
       breakEnd: true,
     });
     console.table(Object.keys(this.languageOptions));
-    this.console.one({
+    this.console.single({
       message: '',
       color: 'white',
       bold: false,
@@ -88,7 +88,7 @@ export class ConfigLanguage {
   }
 
   protected validateOption(optionChosen: string): void {
-    return this.console.one({
+    return this.console.single({
       message: `"${optionChosen}"${this.messages.invalidLanguage}`,
       color: 'red',
       bold: true,
@@ -102,7 +102,7 @@ export class ConfigLanguage {
 
     this.messages = languageChosen;
 
-    return this.console.one({
+    return this.console.single({
       message: `${this.messages.choice}${
         Object.keys(this.languageOptions)[index]
       }`,

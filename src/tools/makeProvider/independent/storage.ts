@@ -26,7 +26,11 @@ export class MakeStorageProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './StorageProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'fakes'],
       [
         'src',
@@ -38,11 +42,7 @@ export class MakeStorageProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './StorageProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'upload.ts'], this.createUploadConfig],
       [
         [

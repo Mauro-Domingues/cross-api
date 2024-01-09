@@ -23,7 +23,7 @@ export class DependentBaseProvider {
 
   protected constructBase(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -32,7 +32,7 @@ export class DependentBaseProvider {
       });
     }
 
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'config'],
       ['src', 'shared', 'container'],
       ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'],

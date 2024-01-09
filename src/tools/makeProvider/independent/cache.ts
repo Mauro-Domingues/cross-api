@@ -23,7 +23,11 @@ export class MakeCacheProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './CacheProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'CacheProvider', 'fakes'],
       [
         'src',
@@ -35,11 +39,7 @@ export class MakeCacheProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'CacheProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './CacheProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'cache.ts'], this.createCacheConfig],
       [
         [

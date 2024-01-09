@@ -34,7 +34,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -44,7 +44,17 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './NotificationProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'modules',
@@ -78,17 +88,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './NotificationProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'notification.ts'], this.createNotificationConfig],
       [
         [

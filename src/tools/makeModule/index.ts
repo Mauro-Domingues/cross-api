@@ -19,7 +19,7 @@ export class CreateModule {
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
@@ -28,7 +28,7 @@ export class CreateModule {
       });
     }
     this.module[this.module.key]();
-    return this.console.one({
+    return this.console.single({
       message: `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
       color: 'yellow',
       bold: true,

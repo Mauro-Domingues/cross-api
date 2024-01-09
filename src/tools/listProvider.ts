@@ -11,7 +11,7 @@ export class ListProvider {
   }
 
   private renderEmptyLine(): void {
-    return this.console.one({
+    return this.console.single({
       message: '|                                                       |   ',
       color: 'blue',
       bold: true,
@@ -21,7 +21,7 @@ export class ListProvider {
   }
 
   private renderHeader(): void {
-    return this.console.many([
+    return this.console.multi([
       {
         message: ` /=====================================================\\   `,
         color: 'blue',
@@ -76,7 +76,7 @@ export class ListProvider {
 
   private renderProviderOptions(): void {
     Object.values(this.provider.list).flatMap(provider => {
-      this.console.many([
+      this.console.multi([
         {
           message: '|   ',
           color: 'blue',
@@ -118,7 +118,7 @@ export class ListProvider {
   }
 
   private renderFooter(): void {
-    return this.console.one({
+    return this.console.single({
       message: ` \\=====================================================/   `,
       color: 'blue',
       bold: true,

@@ -23,7 +23,11 @@ export class MakeHashProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './HashProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'fakes'],
       [
         'src',
@@ -35,11 +39,7 @@ export class MakeHashProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './HashProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'hash.ts'], this.createHashConfig],
       [
         [

@@ -21,7 +21,7 @@ export class CreateRegister extends BaseRegister {
   }
 
   private constructModuleBase(): void {
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'shared', 'container'],
       ['src', 'routes'],
     ]);

@@ -55,7 +55,7 @@ export class Board {
   }
 
   private renderEmptyLine(): void {
-    return this.console.one({
+    return this.console.single({
       message:
         '|                                                                                                                   |',
       color: 'blue',
@@ -66,7 +66,7 @@ export class Board {
   }
 
   private renderHeader(): void {
-    return this.console.one({
+    return this.console.single({
       message: ` /==============================================${this.messages.comandTitle}==============================================\\`,
       color: 'blue',
       bold: true,
@@ -77,7 +77,7 @@ export class Board {
 
   private renderToolOptions(): void {
     this.renderEmptyLine();
-    this.console.many([
+    this.console.multi([
       {
         message: '|   ',
         color: 'blue',
@@ -103,7 +103,7 @@ export class Board {
     ]);
     this.renderEmptyLine();
     return this.toolOptions.forEach(tool => {
-      this.console.many([
+      this.console.multi([
         {
           message: '|   ',
           color: 'blue',
@@ -145,7 +145,7 @@ export class Board {
   }
 
   private renderStructureOptions(): void {
-    this.console.many([
+    this.console.multi([
       {
         message: '|   ',
         color: 'blue',
@@ -171,7 +171,7 @@ export class Board {
     ]);
     this.renderEmptyLine();
     return this.structureOptions.forEach(structure => {
-      this.console.many([
+      this.console.multi([
         {
           message: '|   ',
           color: 'blue',
@@ -213,7 +213,7 @@ export class Board {
   }
 
   private renderFooter(): void {
-    return this.console.one({
+    return this.console.single({
       message: ` \\=================================================================================================================/`,
       color: 'blue',
       bold: true,

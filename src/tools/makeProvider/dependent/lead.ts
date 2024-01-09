@@ -34,7 +34,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -44,7 +44,17 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './LeadProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'modules',
@@ -78,17 +88,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './LeadProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'lead.ts'], this.createLeadConfig],
       [
         [

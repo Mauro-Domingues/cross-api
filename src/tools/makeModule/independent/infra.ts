@@ -46,7 +46,7 @@ export class MakeInfra {
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
@@ -82,7 +82,7 @@ export class MakeInfra {
       ['src', 'routes', 'index.ts'],
       this.createIndexRoute.execute(),
     );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [
         [
           'src',

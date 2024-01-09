@@ -26,7 +26,11 @@ export class MakeMailTemplateProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './MailTemplateProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       [
         'src',
         'shared',
@@ -60,11 +64,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './MailTemplateProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'mailTemplate.ts'], this.createMailTemplateConfig],
       [
         [

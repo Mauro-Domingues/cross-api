@@ -38,7 +38,11 @@ export class MakeQueueProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './QueueProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'jobs'],
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'public'],
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'dtos'],
@@ -53,11 +57,7 @@ export class MakeQueueProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'models'],
     ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './QueueProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'queue.ts'], this.createQueueConfig],
       [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [

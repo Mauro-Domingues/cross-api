@@ -20,7 +20,7 @@ export class CreateDependentRepository {
 
   public execute(): string {
     if (!this.names || !this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,

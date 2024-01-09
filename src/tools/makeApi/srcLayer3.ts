@@ -92,7 +92,7 @@ export class MakeThirdLayer {
   }
 
   public execute(): void {
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', '@types', 'express.d.ts'], this.createExpressNamespace],
       [['src', '@types', 'env.d.ts'], this.createEnvNamespace],
       [['src', '@types', 'keys.d.ts'], this.createKeys],

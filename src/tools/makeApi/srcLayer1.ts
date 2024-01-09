@@ -44,7 +44,7 @@ export class MakeFirstLayer {
   }
 
   public execute(): void {
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['.editorconfig'], this.createEditorConfig],
       [['.env'], this.createEnv],
       [['.env.template'], this.createEnv],

@@ -38,7 +38,7 @@ export class MakeFourthLayer {
   }
 
   public execute(): void {
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'utils', 'mappers', 'index.ts'], this.createIndexMapper],
       [
         ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],

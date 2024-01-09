@@ -43,7 +43,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
@@ -53,7 +53,17 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateManyDirs([
+    this.fileManager.createFile(
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
+      ],
+      `import './QueueProvider';\n`,
+    );
+    this.fileManager.checkAndCreateMultiDir([
       ['src', 'jobs'],
       [
         'src',
@@ -96,17 +106,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
         'models',
       ],
     ]);
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      `import './QueueProvider';\n`,
-    );
-    return this.fileManager.checkAndCreateManyFiles([
+    return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'queue.ts'], this.createQueueConfig],
       [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [

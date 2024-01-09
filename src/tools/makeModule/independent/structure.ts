@@ -20,7 +20,7 @@ export class MakeStructure {
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.one({
+      throw this.console.single({
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
@@ -29,7 +29,7 @@ export class MakeStructure {
       });
     }
 
-    return this.fileManager.checkAndCreateManyDirs([
+    return this.fileManager.checkAndCreateMultiDir([
       ['src', 'modules'],
       ['src', 'shared', 'container'],
       ['src', 'routes'],
