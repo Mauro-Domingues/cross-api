@@ -58,6 +58,7 @@ export class FakeQueueProvider implements IQueueProviderDTO {
       }
     }, parsedDelay);
   }
-}`;
+}
+`;
   }
 }

@@ -69,11 +69,11 @@ export class FileManager {
     }
   }
 
-  public removeManyDirs(paths: Array<Array<string>>): void {
+  public removeMultiDir(paths: Array<Array<string>>): void {
     return paths.forEach(path => this.removeDir(path));
   }
 
-  public removeManyFiles(paths: Array<Array<string>>): void {
+  public removeMultiFile(paths: Array<Array<string>>): void {
     return paths.forEach(file => this.removeFile(file));
   }
 

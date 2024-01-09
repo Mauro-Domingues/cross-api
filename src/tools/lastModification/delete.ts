@@ -132,7 +132,7 @@ export class DeleteRegister extends BaseRegister {
       | undefined,
   ): void {
     if (names && fatherNames) {
-      this.fileManager.removeManyDirs([
+      this.fileManager.removeMultiDir([
         [
           'src',
           'modules',
@@ -169,7 +169,7 @@ export class DeleteRegister extends BaseRegister {
           `update${names.upperModuleName}`,
         ],
       ]);
-      this.fileManager.removeManyFiles([
+      this.fileManager.removeMultiFile([
         [
           'src',
           'modules',
@@ -280,8 +280,8 @@ export class DeleteRegister extends BaseRegister {
   }
 
   private makeAPi(comand: string) {
-    this.fileManager.removeManyDirs([['src'], ['dist'], ['coverage']]);
-    this.fileManager.removeManyFiles([
+    this.fileManager.removeMultiDir([['src'], ['dist'], ['coverage']]);
+    this.fileManager.removeMultiFile([
       ['.editorconfig'],
       ['.env'],
       ['.env.template'],
