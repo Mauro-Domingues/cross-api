@@ -9,7 +9,7 @@ export class MakeSecondLayer {
 
   public execute(): void {
     return this.fileManager.checkAndCreateFile(['src', 'swagger.json'], {
-      execute() {
+      execute(): string {
         return '{}';
       },
     });

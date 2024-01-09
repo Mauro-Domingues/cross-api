@@ -23,6 +23,18 @@ import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 import { ICryptoProviderDTO } ${'from'} '../models/ICryptoProvider';
 
 export class CryptoProvider implements ICryptoProviderDTO {
+  private write(path: string, filename: string, data: string): void {
+    if (!existsSync(resolve(path))) {
+      mkdirSync(resolve(path), { recursive: true });
+    }
+
+    if (existsSync(resolve(path, filename))) {
+      truncateSync(resolve(path, filename));
+    }
+
+    appendFileSync(resolve(path, filename), data);
+  }
+
   public encrypt(text: string): ICryptoDTO {
     const iv = randomBytes(16);
 
@@ -106,43 +118,17 @@ export class CryptoProvider implements ICryptoProviderDTO {
       keys: [parsedJwk],
     };
 
-    if (!existsSync(resolve(cryptoConfig.config.keysPath))) {
-      mkdirSync(resolve(cryptoConfig.config.keysPath));
-    }
-
-    if (!existsSync(resolve(cryptoConfig.config.assetsPath, '.well-known'))) {
-      mkdirSync(resolve(cryptoConfig.config.assetsPath, '.well-known'));
-    }
-
-    if (existsSync(resolve(cryptoConfig.config.keysPath, 'private.pem'))) {
-      truncateSync(resolve(cryptoConfig.config.keysPath, 'private.pem'));
-    }
-
-    appendFileSync(
-      resolve(cryptoConfig.config.keysPath, 'private.pem'),
-      privateExported,
-    );
-
-    if (existsSync(resolve(cryptoConfig.config.keysPath, 'public.pem'))) {
-      truncateSync(resolve(cryptoConfig.config.keysPath, 'public.pem'));
-    }
-
-    appendFileSync(
-      resolve(cryptoConfig.config.keysPath, 'public.pem'),
-      publicExported,
-    );
-
-    if (existsSync(resolve(cryptoConfig.config.jwksPath))) {
-      truncateSync(resolve(cryptoConfig.config.jwksPath));
-    }
-
-    appendFileSync(
-      resolve(cryptoConfig.config.jwksPath),
+    this.write(cryptoConfig.config.keysPath, 'private.pem', privateExported);
+    this.write(cryptoConfig.config.keysPath, 'public.pem', publicExported);
+    this.write(
+      resolve(cryptoConfig.config.assetsPath, '.well-known'),
+      'jwks.json',
       JSON.stringify(jwksJson, null, 2),
     );
 
     return parsedJwk;
   }
-}`;
+}
+`;
   }
 }

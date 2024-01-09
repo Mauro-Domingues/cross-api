@@ -12,11 +12,11 @@ export interface IMessagesDTO {
   apiCreated: string;
   available: string;
   notFound: string;
-  try: Array<string>;
+  try: [string, string, string];
   yarn: string;
   dependencies: string;
   devDependencies: string;
-  marketplaceTool: Array<string>;
+  marketplaceTool: [string, string];
   installed: string;
   comandTitle: string;
   tools: string;

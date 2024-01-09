@@ -19,8 +19,8 @@ export class FileManager {
     return existsSync(resolve(...path));
   }
 
-  public createDir(path: Array<string>): void {
-    return mkdirSync(resolve(...path));
+  public createDir(path: Array<string>): string | undefined {
+    return mkdirSync(resolve(...path), { recursive: true });
   }
 
   public createFile(path: Array<string>, data: string): void {
@@ -36,7 +36,7 @@ export class FileManager {
   }
 
   public readFile(path: Array<string>): string {
-    return readFileSync(resolve(...path), 'ascii');
+    return readFileSync(resolve(...path), 'utf8');
   }
 
   public writeFile(path: Array<string>, data: string): void {
