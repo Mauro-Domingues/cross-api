@@ -38,6 +38,7 @@ export class MakeQueueProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
+    this.fileManager.checkAndCreateDir(['src', 'jobs']);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',
