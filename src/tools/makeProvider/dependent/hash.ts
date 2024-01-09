@@ -38,29 +38,31 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'HashProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'HashProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'HashProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'HashProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -72,56 +74,55 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
       ],
       `import './HashProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'hash.ts'],
-      this.createHashConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'hash.ts'], this.createHashConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'fakes',
-        'FakeHashProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'fakes',
+          'FakeHashProvider.ts',
+        ],
+        this.createFakeHash,
       ],
-      this.createFakeHash,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'implementations',
-        'BCryptHashProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'implementations',
+          'BCryptHashProvider.ts',
+        ],
+        this.createHash,
       ],
-      this.createHash,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'models',
-        'IHashProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'models',
+          'IHashProvider.ts',
+        ],
+        this.createIHash,
       ],
-      this.createIHash,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'HashProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'HashProvider',
+          'index.ts',
+        ],
+        this.createHashIndex,
       ],
-      this.createHashIndex,
-    );
+    ]);
   }
 }

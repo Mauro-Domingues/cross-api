@@ -125,56 +125,58 @@ export class MakeDependentInfra {
         this.createDependentRoute.execute(),
       );
     }
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'dtos',
-        `I${this.names.upperModuleName}DTO.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ],
+        this.createModuleDTO,
       ],
-      this.createModuleDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'entities',
-        `${this.names.upperModuleName}.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ],
+        this.createEntity,
       ],
-      this.createEntity,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createDependentRepository,
       ],
-      this.createDependentRepository,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        `I${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createIDependentRepository,
       ],
-      this.createIDependentRepository,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createDependentFakeRepository,
       ],
-      this.createDependentFakeRepository,
-    );
+    ]);
   }
 }

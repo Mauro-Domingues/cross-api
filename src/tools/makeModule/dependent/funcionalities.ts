@@ -88,115 +88,117 @@ export class MakeDependentFunctionalities {
       });
     }
 
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Controller.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.ts`,
+        ],
+        this.createDependentController,
       ],
-      this.createDependentController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Service.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.ts`,
+        ],
+        this.createDependentService,
       ],
-      this.createDependentService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Controller.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.ts`,
+        ],
+        this.deleteDependentController,
       ],
-      this.deleteDependentController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Service.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.ts`,
+        ],
+        this.deleteDependentService,
       ],
-      this.deleteDependentService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Controller.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.ts`,
+        ],
+        this.listDependentController,
       ],
-      this.listDependentController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Service.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.ts`,
+        ],
+        this.listDependentService,
       ],
-      this.listDependentService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Controller.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.ts`,
+        ],
+        this.showDependentController,
       ],
-      this.showDependentController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Service.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.ts`,
+        ],
+        this.showDependentService,
       ],
-      this.showDependentService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Controller.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.ts`,
+        ],
+        this.updateDependentController,
       ],
-      this.updateDependentController,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Service.ts`,
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.ts`,
+        ],
+        this.updateDependentService,
       ],
-      this.updateDependentService,
-    );
+    ]);
   }
 }

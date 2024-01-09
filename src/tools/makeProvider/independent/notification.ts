@@ -29,47 +29,7 @@ export class MakeNotificationProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'NotificationProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'NotificationProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'NotificationProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'NotificationProvider',
-      'models',
-    ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './NotificationProvider';\n`,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'notification.ts'],
-      this.createNotificationConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateManyDirs([
       [
         'src',
         'shared',
@@ -77,11 +37,7 @@ export class MakeNotificationProvider extends BaseProvider {
         'providers',
         'NotificationProvider',
         'dtos',
-        'ISendNotificationDTO.ts',
       ],
-      this.createINotificationDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -89,11 +45,7 @@ export class MakeNotificationProvider extends BaseProvider {
         'providers',
         'NotificationProvider',
         'fakes',
-        'FakeNotificationProvider.ts',
       ],
-      this.createFakeNotification,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -101,23 +53,7 @@ export class MakeNotificationProvider extends BaseProvider {
         'providers',
         'NotificationProvider',
         'implementations',
-        'OneSignalProvider.ts',
       ],
-      this.createOneSignalNotification,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'implementations',
-        'FirebaseProvider.ts',
-      ],
-      this.createFirebaseNotification,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -125,20 +61,85 @@ export class MakeNotificationProvider extends BaseProvider {
         'providers',
         'NotificationProvider',
         'models',
-        'INotificationProvider.ts',
       ],
-      this.createINotification,
+    ]);
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './NotificationProvider';\n`,
     );
-    return this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'notification.ts'], this.createNotificationConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'index.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ],
+        this.createINotificationDTO,
       ],
-      this.createNotificationIndex,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ],
+        this.createFakeNotification,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ],
+        this.createOneSignalNotification,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'FirebaseProvider.ts',
+        ],
+        this.createFirebaseNotification,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ],
+        this.createINotification,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ],
+        this.createNotificationIndex,
+      ],
+    ]);
   }
 }

@@ -41,37 +41,39 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'MailTemplateProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'MailTemplateProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'MailTemplateProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'MailTemplateProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailTemplateProvider',
+        'dtos',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailTemplateProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailTemplateProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailTemplateProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -83,68 +85,67 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
       ],
       `import './MailTemplateProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'mailTemplate.ts'],
-      this.createMailTemplateConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'mailTemplate.ts'], this.createMailTemplateConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'MailTemplateProvider',
-        'dtos',
-        'IParseMailTemplateDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ],
+        this.createIMailTemplateDTO,
       ],
-      this.createIMailTemplateDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'MailTemplateProvider',
-        'fakes',
-        'FakeMailTemplateProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ],
+        this.createFakeMailTemplate,
       ],
-      this.createFakeMailTemplate,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'MailTemplateProvider',
-        'implementations',
-        'HandlebarsMailTemplateProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ],
+        this.createHandlebarsMailTemplate,
       ],
-      this.createHandlebarsMailTemplate,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'MailTemplateProvider',
-        'models',
-        'IMailTemplateProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ],
+        this.createIMailTemplate,
       ],
-      this.createIMailTemplate,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'MailTemplateProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ],
+        this.createMailTemplateIndex,
       ],
-      this.createMailTemplateIndex,
-    );
+    ]);
   }
 }

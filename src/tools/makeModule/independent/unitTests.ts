@@ -55,115 +55,117 @@ export class MakeUnitTests {
       });
     }
 
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Controller.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Controller.spec.ts`,
+        ],
+        this.createSpecController,
       ],
-      this.createSpecController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `create${this.names.upperModuleName}`,
-        `Create${this.names.upperModuleName}Service.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `create${this.names.upperModuleName}`,
+          `Create${this.names.upperModuleName}Service.spec.ts`,
+        ],
+        this.createSpecService,
       ],
-      this.createSpecService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Controller.spec.ts`,
+        ],
+        this.deleteSpecController,
       ],
-      this.deleteSpecController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `delete${this.names.upperModuleName}`,
-        `Delete${this.names.upperModuleName}Service.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `delete${this.names.upperModuleName}`,
+          `Delete${this.names.upperModuleName}Service.spec.ts`,
+        ],
+        this.deleteSpecService,
       ],
-      this.deleteSpecService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Controller.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Controller.spec.ts`,
+        ],
+        this.listSpecController,
       ],
-      this.listSpecController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `list${this.names.upperModuleName}`,
-        `List${this.names.upperModuleName}Service.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `list${this.names.upperModuleName}`,
+          `List${this.names.upperModuleName}Service.spec.ts`,
+        ],
+        this.listSpecService,
       ],
-      this.listSpecService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Controller.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Controller.spec.ts`,
+        ],
+        this.showSpecController,
       ],
-      this.showSpecController,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `show${this.names.upperModuleName}`,
-        `Show${this.names.upperModuleName}Service.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `show${this.names.upperModuleName}`,
+          `Show${this.names.upperModuleName}Service.spec.ts`,
+        ],
+        this.showSpecService,
       ],
-      this.showSpecService,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Controller.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Controller.spec.ts`,
+        ],
+        this.updateSpecController,
       ],
-      this.updateSpecController,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'services',
-        `update${this.names.upperModuleName}`,
-        `Update${this.names.upperModuleName}Service.spec.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'services',
+          `update${this.names.upperModuleName}`,
+          `Update${this.names.upperModuleName}Service.spec.ts`,
+        ],
+        this.updateSpecService,
       ],
-      this.updateSpecService,
-    );
+    ]);
   }
 }

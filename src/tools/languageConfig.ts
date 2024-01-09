@@ -71,10 +71,7 @@ export class ConfigLanguage {
         Number(optionChosen)
       ] as keyof ILanguageOptionsDTO;
 
-      if (
-        this.isLanguageOptionsKeyType(choice) &&
-        Object.keys(this.languageOptions)[Number(optionChosen)]
-      ) {
+      if (Object.keys(this.languageOptions)[Number(optionChosen)]) {
         this.languageConfig = {
           option: choice,
           index: Number(optionChosen),
@@ -128,12 +125,6 @@ export class ConfigLanguage {
       ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
       this.createDefaultLanguage.execute(JSON.stringify(this.messages)),
     );
-  }
-
-  protected isLanguageOptionsKeyType(
-    _option: keyof ILanguageOptionsDTO,
-  ): _option is keyof ILanguageOptionsDTO {
-    return true;
   }
 
   public execute(): void {

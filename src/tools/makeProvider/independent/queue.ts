@@ -38,146 +38,123 @@ export class MakeQueueProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir(['src', 'jobs']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-      'public',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'jobs'],
+      ['src', 'shared', 'container', 'providers', 'QueueProvider', 'public'],
+      ['src', 'shared', 'container', 'providers', 'QueueProvider', 'dtos'],
+      ['src', 'shared', 'container', 'providers', 'QueueProvider', 'fakes'],
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'QueueProvider',
+        'implementations',
+      ],
+      ['src', 'shared', 'container', 'providers', 'QueueProvider', 'models'],
     ]);
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './QueueProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'queue.ts'],
-      this.createQueueConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'jobs', 'Example.ts'],
-      this.createExampleJob,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'queue.ts'], this.createQueueConfig],
+      [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'public',
-        'jobs.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'public',
+          'jobs.ts',
+        ],
+        this.createJobs,
       ],
-      this.createJobs,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'dtos',
-        'IQueueDTO.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'dtos',
+          'IQueueDTO.ts',
+        ],
+        this.createIQueueDTO,
       ],
-      this.createIQueueDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'fakes',
-        'FakeQueueProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'fakes',
+          'FakeQueueProvider.ts',
+        ],
+        this.createFakeQueue,
       ],
-      this.createFakeQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'KueProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'KueProvider.ts',
+        ],
+        this.createKueQueue,
       ],
-      this.createKueQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'BeeProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'BeeProvider.ts',
+        ],
+        this.createBeeQueue,
       ],
-      this.createBeeQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'BullProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'BullProvider.ts',
+        ],
+        this.createBullQueue,
       ],
-      this.createBullQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'QueueProvider',
-        'models',
-        'IQueueProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'models',
+          'IQueueProvider.ts',
+        ],
+        this.createIQueue,
       ],
-      this.createIQueue,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'providers', 'QueueProvider', 'index.ts'],
-      this.createQueueIndex,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'QueueProvider',
+          'index.ts',
+        ],
+        this.createQueueIndex,
+      ],
+    ]);
   }
 }

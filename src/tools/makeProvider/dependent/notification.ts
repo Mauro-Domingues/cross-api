@@ -44,37 +44,39 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'NotificationProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'NotificationProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'NotificationProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'NotificationProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'NotificationProvider',
+        'dtos',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'NotificationProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'NotificationProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'NotificationProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -86,80 +88,79 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
       ],
       `import './NotificationProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'notification.ts'],
-      this.createNotificationConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'notification.ts'], this.createNotificationConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'dtos',
-        'ISendNotificationDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'dtos',
+          'ISendNotificationDTO.ts',
+        ],
+        this.createINotificationDTO,
       ],
-      this.createINotificationDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'fakes',
-        'FakeNotificationProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'fakes',
+          'FakeNotificationProvider.ts',
+        ],
+        this.createFakeNotification,
       ],
-      this.createFakeNotification,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'implementations',
-        'OneSignalProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'OneSignalProvider.ts',
+        ],
+        this.createOneSignalNotification,
       ],
-      this.createOneSignalNotification,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'implementations',
-        'FirebaseProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'implementations',
+          'FirebaseProvider.ts',
+        ],
+        this.createFirebaseNotification,
       ],
-      this.createFirebaseNotification,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'models',
-        'INotificationProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'models',
+          'INotificationProvider.ts',
+        ],
+        this.createINotification,
       ],
-      this.createINotification,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'NotificationProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'NotificationProvider',
+          'index.ts',
+        ],
+        this.createNotificationIndex,
       ],
-      this.createNotificationIndex,
-    );
+    ]);
   }
 }

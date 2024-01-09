@@ -44,48 +44,20 @@ export class MakeFirstLayer {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateFile(
-      ['.editorconfig'],
-      this.createEditorConfig,
-    );
-    this.fileManager.checkAndCreateFile(['.env'], this.createEnv);
-    this.fileManager.checkAndCreateFile(['.env.template'], this.createEnv);
-    this.fileManager.checkAndCreateFile(
-      ['.eslintignore'],
-      this.createEsLintIgnore,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['.eslintrc.json'],
-      this.createEsLintrcJson,
-    );
-    this.fileManager.checkAndCreateFile(['.gitignore'], this.createGitIgnore);
-    this.fileManager.checkAndCreateFile(
-      ['babel.config.js'],
-      this.createBabelConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['doc.config.ts'],
-      this.createDocConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['docker-compose.yml'],
-      this.createDockerCompose,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['jest.config.ts'],
-      this.createJestConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['nodemon.json'],
-      this.createNodemonJson,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['prettier.config.js'],
-      this.createPrettierConfig,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['tsconfig.json'],
-      this.createTsConfig,
-    );
+    return this.fileManager.checkAndCreateManyFiles([
+      [['.editorconfig'], this.createEditorConfig],
+      [['.env'], this.createEnv],
+      [['.env.template'], this.createEnv],
+      [['.eslintignore'], this.createEsLintIgnore],
+      [['.eslintrc.json'], this.createEsLintrcJson],
+      [['.gitignore'], this.createGitIgnore],
+      [['babel.config.js'], this.createBabelConfig],
+      [['doc.config.ts'], this.createDocConfig],
+      [['docker-compose.yml'], this.createDockerCompose],
+      [['jest.config.ts'], this.createJestConfig],
+      [['nodemon.json'], this.createNodemonJson],
+      [['prettier.config.js'], this.createPrettierConfig],
+      [['tsconfig.json'], this.createTsConfig],
+    ]);
   }
 }

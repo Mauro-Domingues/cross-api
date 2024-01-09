@@ -11,12 +11,9 @@ export class BaseProvider {
   }
 
   protected constructBase(): void {
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'config'],
+      ['src', 'shared', 'container', 'providers'],
     ]);
     if (
       !this.fileManager.checkIfExists([

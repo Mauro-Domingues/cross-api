@@ -23,55 +23,8 @@ export class MakeCacheProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CacheProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CacheProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CacheProvider',
-      'models',
-    ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './CacheProvider';\n`,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'cache.ts'],
-      this.createCacheConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CacheProvider',
-        'fakes',
-        'FakeCacheProvider.ts',
-      ],
-      this.createFakeCache,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'cache.ts'],
-      this.createCacheConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'fakes'],
       [
         'src',
         'shared',
@@ -79,25 +32,63 @@ export class MakeCacheProvider extends BaseProvider {
         'providers',
         'CacheProvider',
         'implementations',
-        'RedisCacheProvider.ts',
       ],
-      this.createRedisCache,
+      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'models'],
+    ]);
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './CacheProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'cache.ts'], this.createCacheConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CacheProvider',
-        'models',
-        'ICacheProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ],
+        this.createFakeCache,
       ],
-      this.createICache,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'index.ts'],
-      this.createCacheIndex,
-    );
+      [['src', 'config', 'cache.ts'], this.createCacheConfig],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ],
+        this.createRedisCache,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ],
+        this.createICache,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ],
+        this.createCacheIndex,
+      ],
+    ]);
   }
 }

@@ -26,51 +26,60 @@ export class MakeLastLayer {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
-      this.createBaseEntity,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
       [
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'BaseRepository.ts',
+        ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
+        this.createBaseEntity,
       ],
-      this.createBaseRepository,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'IBaseRepository.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'modules',
+          'repositories',
+          'BaseRepository.ts',
+        ],
+        this.createBaseRepository,
       ],
-      this.createIBaseRepository,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'modules',
-        'repositories',
-        'fakes',
-        'FakeBaseRepository.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'modules',
+          'repositories',
+          'IBaseRepository.ts',
+        ],
+        this.createIBaseRepository,
       ],
-      this.createBaseFakeRepository,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'typeorm', 'dataSources', 'mysqlDataSource.ts'],
-      this.createMysqlDataSource,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'typeorm', 'dataSources', 'fakes', 'fakeDataSource.ts'],
-      this.createFakeDataSource,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'modules',
+          'repositories',
+          'fakes',
+          'FakeBaseRepository.ts',
+        ],
+        this.createBaseFakeRepository,
+      ],
+      [
+        ['src', 'shared', 'typeorm', 'dataSources', 'mysqlDataSource.ts'],
+        this.createMysqlDataSource,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'typeorm',
+          'dataSources',
+          'fakes',
+          'fakeDataSource.ts',
+        ],
+        this.createFakeDataSource,
+      ],
+    ]);
   }
 }

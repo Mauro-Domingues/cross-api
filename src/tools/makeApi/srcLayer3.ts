@@ -92,117 +92,44 @@ export class MakeThirdLayer {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateFile(
-      ['src', '@types', 'express.d.ts'],
-      this.createExpressNamespace,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', '@types', 'env.d.ts'],
-      this.createEnvNamespace,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', '@types', 'keys.d.ts'],
-      this.createKeys,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'assets', 'domains.txt'],
-      this.createDomains,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'auth.ts'],
-      this.createAuthConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'cors.ts'],
-      this.createCorsConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'IExceptionDTO.ts'],
-      this.createIExceptionDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'ICacheDTO.ts'],
-      this.createICacheDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'ICodeDTO.ts'],
-      this.createICodeDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'IListDTO.ts'],
-      this.createIListDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'IObjectDTO.ts'],
-      this.createIObjectDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'dtos', 'IResponseDTO.ts'],
-      this.createIResponseDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'rateLimiter.ts'],
-      this.createRateLimiter,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'ensureAuthenticated.ts'],
-      this.createEnsureAuthenticated,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'setConnection.ts'],
-      this.createSetConnection,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'errorHandler.ts'],
-      this.createErrorHandler,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'middlewares', 'parseParam.ts'],
-      this.createParseParam,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'routes', 'guardRouter.ts'],
-      this.createGuard,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'routes', 'index.ts'],
-      this.createRoutes,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'app.ts'],
-      this.createApp,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'server.ts'],
-      this.createServer,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'decimalAdjust.ts'],
-      this.createDecimaAdjust,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'domainsManager.ts'],
-      this.createDomainsManager,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'convertToMilliseconds.ts'],
-      this.createConvertToMilliseconds,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'combinations.ts'],
-      this.createCombinations,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'errorLog.ts'],
-      this.createErrorLog,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'jsonToXml.ts'],
-      this.createJsonToXml,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'normalizeQueryLink.ts'],
-      this.createNormalizeQueryLink,
-    );
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', '@types', 'express.d.ts'], this.createExpressNamespace],
+      [['src', '@types', 'env.d.ts'], this.createEnvNamespace],
+      [['src', '@types', 'keys.d.ts'], this.createKeys],
+      [['src', 'assets', 'domains.txt'], this.createDomains],
+      [['src', 'config', 'auth.ts'], this.createAuthConfig],
+      [['src', 'config', 'cors.ts'], this.createCorsConfig],
+      [['src', 'dtos', 'IExceptionDTO.ts'], this.createIExceptionDTO],
+      [['src', 'dtos', 'ICacheDTO.ts'], this.createICacheDTO],
+      [['src', 'dtos', 'ICodeDTO.ts'], this.createICodeDTO],
+      [['src', 'dtos', 'IListDTO.ts'], this.createIListDTO],
+      [['src', 'dtos', 'IObjectDTO.ts'], this.createIObjectDTO],
+      [['src', 'dtos', 'IResponseDTO.ts'], this.createIResponseDTO],
+      [['src', 'middlewares', 'rateLimiter.ts'], this.createRateLimiter],
+      [
+        ['src', 'middlewares', 'ensureAuthenticated.ts'],
+        this.createEnsureAuthenticated,
+      ],
+      [['src', 'middlewares', 'setConnection.ts'], this.createSetConnection],
+      [['src', 'middlewares', 'errorHandler.ts'], this.createErrorHandler],
+      [['src', 'middlewares', 'parseParam.ts'], this.createParseParam],
+      [['src', 'routes', 'guardRouter.ts'], this.createGuard],
+      [['src', 'routes', 'index.ts'], this.createRoutes],
+      [['src', 'shared', 'app.ts'], this.createApp],
+      [['src', 'shared', 'server.ts'], this.createServer],
+      [['src', 'utils', 'decimalAdjust.ts'], this.createDecimaAdjust],
+      [['src', 'utils', 'domainsManager.ts'], this.createDomainsManager],
+      [
+        ['src', 'utils', 'convertToMilliseconds.ts'],
+        this.createConvertToMilliseconds,
+      ],
+      [['src', 'utils', 'combinations.ts'], this.createCombinations],
+      [['src', 'utils', 'errorLog.ts'], this.createErrorLog],
+      [['src', 'utils', 'jsonToXml.ts'], this.createJsonToXml],
+      [
+        ['src', 'utils', 'normalizeQueryLink.ts'],
+        this.createNormalizeQueryLink,
+      ],
+    ]);
   }
 }

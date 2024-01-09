@@ -26,47 +26,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailTemplateProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailTemplateProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailTemplateProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailTemplateProvider',
-      'models',
-    ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './MailTemplateProvider';\n`,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'mailTemplate.ts'],
-      this.createMailTemplateConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateManyDirs([
       [
         'src',
         'shared',
@@ -74,11 +34,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
         'providers',
         'MailTemplateProvider',
         'dtos',
-        'IParseMailTemplateDTO.ts',
       ],
-      this.createIMailTemplateDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -86,11 +42,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
         'providers',
         'MailTemplateProvider',
         'fakes',
-        'FakeMailTemplateProvider.ts',
       ],
-      this.createFakeMailTemplate,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -98,11 +50,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
         'providers',
         'MailTemplateProvider',
         'implementations',
-        'HandlebarsMailTemplateProvider.ts',
       ],
-      this.createHandlebarsMailTemplate,
-    );
-    this.fileManager.checkAndCreateFile(
       [
         'src',
         'shared',
@@ -110,20 +58,73 @@ export class MakeMailTemplateProvider extends BaseProvider {
         'providers',
         'MailTemplateProvider',
         'models',
-        'IMailTemplateProvider.ts',
       ],
-      this.createIMailTemplate,
+    ]);
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './MailTemplateProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'mailTemplate.ts'], this.createMailTemplateConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'index.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateDTO.ts',
+        ],
+        this.createIMailTemplateDTO,
       ],
-      this.createMailTemplateIndex,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'fakes',
+          'FakeMailTemplateProvider.ts',
+        ],
+        this.createFakeMailTemplate,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'implementations',
+          'HandlebarsMailTemplateProvider.ts',
+        ],
+        this.createHandlebarsMailTemplate,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'models',
+          'IMailTemplateProvider.ts',
+        ],
+        this.createIMailTemplate,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailTemplateProvider',
+          'index.ts',
+        ],
+        this.createMailTemplateIndex,
+      ],
+    ]);
   }
 }

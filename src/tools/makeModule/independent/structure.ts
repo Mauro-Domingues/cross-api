@@ -29,62 +29,54 @@ export class MakeStructure {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir(['src', 'routes']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'entities',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'repositories',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'services',
-      `create${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'services',
-      `delete${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'services',
-      `list${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'services',
-      `show${this.names.upperModuleName}`,
-    ]);
-    return this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.names.pluralLowerModuleName,
-      'services',
-      `update${this.names.upperModuleName}`,
+    return this.fileManager.checkAndCreateManyDirs([
+      ['src', 'modules'],
+      ['src', 'shared', 'container'],
+      ['src', 'routes'],
+      ['src', 'modules', this.names.pluralLowerModuleName, 'dtos'],
+      ['src', 'modules', this.names.pluralLowerModuleName, 'entities'],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.names.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+      ],
     ]);
   }
 }

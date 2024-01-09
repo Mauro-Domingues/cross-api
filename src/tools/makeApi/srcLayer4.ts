@@ -38,45 +38,35 @@ export class MakeFourthLayer {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'index.ts'],
-      this.createIndexMapper,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
-      this.createMapAndClone,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
-      this.createMapAndInsert,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
-      this.createMapAndPatch,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
-      this.createMapAndPatchString,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
-      this.createMapAndUpdate,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
-      this.createMapAndUpdateString,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      this.createContainer,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'errors', 'AppError.ts'],
-      this.createAppError,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'typeorm', 'index.ts'],
-      this.createConnection,
-    );
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'utils', 'mappers', 'index.ts'], this.createIndexMapper],
+      [
+        ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
+        this.createMapAndClone,
+      ],
+      [
+        ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
+        this.createMapAndInsert,
+      ],
+      [
+        ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
+        this.createMapAndPatch,
+      ],
+      [
+        ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
+        this.createMapAndPatchString,
+      ],
+      [
+        ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
+        this.createMapAndUpdate,
+      ],
+      [
+        ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
+        this.createMapAndUpdateString,
+      ],
+      [['src', 'shared', 'container', 'index.ts'], this.createContainer],
+      [['src', 'shared', 'errors', 'AppError.ts'], this.createAppError],
+      [['src', 'shared', 'typeorm', 'index.ts'], this.createConnection],
+    ]);
   }
 }

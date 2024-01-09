@@ -38,29 +38,31 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CryptoProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CryptoProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CryptoProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'dtos',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -72,56 +74,55 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       ],
       `import './CryptoProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'crypto.ts'],
-      this.createCryptoConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'dtos',
-        'ICryptoDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ],
+        this.createICryptoDTO,
       ],
-      this.createICryptoDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'implementations',
-        'CryptoProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ],
+        this.createCrypto,
       ],
-      this.createCrypto,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'models',
-        'ICryptoProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ],
+        this.createICrypto,
       ],
-      this.createICrypto,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CryptoProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ],
+        this.createCryptoIndex,
       ],
-      this.createCryptoIndex,
-    );
+    ]);
   }
 }

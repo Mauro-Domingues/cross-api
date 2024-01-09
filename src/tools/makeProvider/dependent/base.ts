@@ -32,13 +32,10 @@ export class DependentBaseProvider {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'config'],
+      ['src', 'shared', 'container'],
+      ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'],
     ]);
     if (
       !this.fileManager.checkIfExists([

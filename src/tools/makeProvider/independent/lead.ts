@@ -29,83 +29,9 @@ export class MakeLeadProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'LeadProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'LeadProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'LeadProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'LeadProvider',
-      'models',
-    ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './LeadProvider';\n`,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'lead.ts'],
-      this.createLeadConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'ICreateLeadDTO.ts',
-      ],
-      this.createILeadDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'IAuthDTO.ts',
-      ],
-      this.createIAuthDTO,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'LeadProvider',
-        'fakes',
-        'FakeLeadProvider.ts',
-      ],
-      this.createFakeLead,
-    );
-    this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'],
+      ['src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'],
       [
         'src',
         'shared',
@@ -113,25 +39,79 @@ export class MakeLeadProvider extends BaseProvider {
         'providers',
         'LeadProvider',
         'implementations',
-        'RDStationProvider.ts',
       ],
-      this.createRDStationLead,
+      ['src', 'shared', 'container', 'providers', 'LeadProvider', 'models'],
+    ]);
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './LeadProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'lead.ts'], this.createLeadConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'LeadProvider',
-        'models',
-        'ILeadProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ],
+        this.createILeadDTO,
       ],
-      this.createILead,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
-      this.createLeadIndex,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ],
+        this.createFakeLead,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ],
+        this.createRDStationLead,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ],
+        this.createILead,
+      ],
+      [
+        ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
+        this.createLeadIndex,
+      ],
+    ]);
   }
 }

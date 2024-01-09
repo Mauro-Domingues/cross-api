@@ -32,62 +32,54 @@ export class MakeDependentStructure {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir(['src', 'routes']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'entities',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'repositories',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
-      `create${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
-      `delete${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
-      `list${this.names.upperModuleName}`,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
-      `show${this.names.upperModuleName}`,
-    ]);
-    return this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
-      `update${this.names.upperModuleName}`,
+    return this.fileManager.checkAndCreateManyDirs([
+      ['src', 'modules'],
+      ['src', 'shared', 'container'],
+      ['src', 'routes'],
+      ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'dtos'],
+      ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'entities'],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'repositories',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'services',
+        `create${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'services',
+        `delete${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'services',
+        `list${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'services',
+        `show${this.names.upperModuleName}`,
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'services',
+        `update${this.names.upperModuleName}`,
+      ],
     ]);
   }
 }

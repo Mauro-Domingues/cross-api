@@ -44,37 +44,39 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'LeadProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'LeadProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'LeadProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'LeadProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'dtos',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -86,80 +88,79 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
       ],
       `import './LeadProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'lead.ts'],
-      this.createLeadConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'lead.ts'], this.createLeadConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'ICreateLeadDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'ICreateLeadDTO.ts',
+        ],
+        this.createILeadDTO,
       ],
-      this.createILeadDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'dtos',
-        'IAuthDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'dtos',
+          'IAuthDTO.ts',
+        ],
+        this.createIAuthDTO,
       ],
-      this.createIAuthDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'fakes',
-        'FakeLeadProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'fakes',
+          'FakeLeadProvider.ts',
+        ],
+        this.createFakeLead,
       ],
-      this.createFakeLead,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'implementations',
-        'RDStationProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'implementations',
+          'RDStationProvider.ts',
+        ],
+        this.createRDStationLead,
       ],
-      this.createRDStationLead,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'models',
-        'ILeadProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'models',
+          'ILeadProvider.ts',
+        ],
+        this.createILead,
       ],
-      this.createILead,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'LeadProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'LeadProvider',
+          'index.ts',
+        ],
+        this.createLeadIndex,
       ],
-      this.createLeadIndex,
-    );
+    ]);
   }
 }

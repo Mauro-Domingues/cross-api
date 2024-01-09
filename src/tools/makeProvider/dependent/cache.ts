@@ -38,29 +38,31 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CacheProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CacheProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'CacheProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -72,56 +74,55 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
       ],
       `import './CacheProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'cache.ts'],
-      this.createCacheConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'cache.ts'], this.createCacheConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'fakes',
-        'FakeCacheProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'fakes',
+          'FakeCacheProvider.ts',
+        ],
+        this.createFakeCache,
       ],
-      this.createFakeCache,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'implementations',
-        'RedisCacheProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'implementations',
+          'RedisCacheProvider.ts',
+        ],
+        this.createRedisCache,
       ],
-      this.createRedisCache,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'models',
-        'ICacheProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'models',
+          'ICacheProvider.ts',
+        ],
+        this.createICache,
       ],
-      this.createICache,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CacheProvider',
+          'index.ts',
+        ],
+        this.createCacheIndex,
       ],
-      this.createCacheIndex,
-    );
+    ]);
   }
 }

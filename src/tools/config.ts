@@ -256,10 +256,7 @@ export class ConfigJson extends ConfigLanguage {
         Number(optionChosen)
       ] as keyof ILanguageOptionsDTO;
 
-      if (
-        this.isLanguageOptionsKeyType(choice) &&
-        Object.keys(this.languageOptions)[Number(optionChosen)]
-      ) {
+      if (Object.keys(this.languageOptions)[Number(optionChosen)]) {
         this.languageConfig = {
           option: choice,
           index: Number(optionChosen),

@@ -41,29 +41,31 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'StorageProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'StorageProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'StorageProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -75,68 +77,67 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       ],
       `import './StorageProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'upload.ts'],
-      this.createUploadConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'upload.ts'], this.createUploadConfig],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'fakes',
-        'FakeStorageProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ],
+        this.createFakeStorage,
       ],
-      this.createFakeStorage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'DiskStorageProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ],
+        this.createDiskStorage,
       ],
-      this.createDiskStorage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'S3StorageProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ],
+        this.createS3Storage,
       ],
-      this.createS3Storage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'models',
-        'IStorageProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ],
+        this.createIStorage,
       ],
-      this.createIStorage,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ],
+        this.createStorageIndex,
       ],
-      this.createStorageIndex,
-    );
+    ]);
   }
 }

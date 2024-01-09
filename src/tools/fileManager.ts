@@ -68,4 +68,29 @@ export class FileManager {
       this.createDir(path);
     }
   }
+
+  public removeManyDirs(paths: Array<Array<string>>): void {
+    return paths.forEach(this.removeDir);
+  }
+
+  public removeManyFiles(paths: Array<Array<string>>): void {
+    return paths.forEach(this.removeFile);
+  }
+
+  public checkAndCreateManyFiles(
+    data: Array<
+      [
+        Array<string>,
+        {
+          execute(): string;
+        },
+      ]
+    >,
+  ): void {
+    return data.forEach(fileData => this.checkAndCreateFile(...fileData));
+  }
+
+  public checkAndCreateManyDirs(paths: Array<Array<string>>): void {
+    return paths.forEach(this.checkAndCreateDir);
+  }
 }

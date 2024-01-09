@@ -26,96 +26,83 @@ export class MakeStorageProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'StorageProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'StorageProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'StorageProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container', 'providers', 'StorageProvider', 'fakes'],
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'implementations',
+      ],
+      ['src', 'shared', 'container', 'providers', 'StorageProvider', 'models'],
     ]);
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './StorageProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'upload.ts'],
-      this.createUploadConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'upload.ts'], this.createUploadConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'fakes',
-        'FakeStorageProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'fakes',
+          'FakeStorageProvider.ts',
+        ],
+        this.createFakeStorage,
       ],
-      this.createFakeStorage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'DiskStorageProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'DiskStorageProvider.ts',
+        ],
+        this.createDiskStorage,
       ],
-      this.createDiskStorage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'implementations',
-        'S3StorageProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'implementations',
+          'S3StorageProvider.ts',
+        ],
+        this.createS3Storage,
       ],
-      this.createS3Storage,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'models',
-        'IStorageProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'models',
+          'IStorageProvider.ts',
+        ],
+        this.createIStorage,
       ],
-      this.createIStorage,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'StorageProvider',
-        'index.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'StorageProvider',
+          'index.ts',
+        ],
+        this.createStorageIndex,
       ],
-      this.createStorageIndex,
-    );
+    ]);
   }
 }

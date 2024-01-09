@@ -21,27 +21,18 @@ export class CreateRegister extends BaseRegister {
   }
 
   private constructModuleBase(): void {
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir(['src', 'routes']);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
-      );
-    }
-    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
-      this.fileManager.createFile(
-        ['src', 'routes', 'index.ts'],
-        this.createRoutes.execute(),
-      );
-    }
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container'],
+      ['src', 'routes'],
+    ]);
+    return [
+      ['src', 'shared', 'container', 'index.ts'],
+      ['src', 'routes', 'index.ts'],
+    ].forEach(path => {
+      if (!this.fileManager.checkIfExists(path)) {
+        this.fileManager.createFile(path, '');
+      }
+    });
   }
 
   private constructProviderBase(): void {

@@ -23,51 +23,8 @@ export class MakeCryptoProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CryptoProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CryptoProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CryptoProvider',
-      'models',
-    ]);
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './CryptoProvider';\n`,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'crypto.ts'],
-      this.createCryptoConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CryptoProvider',
-        'dtos',
-        'ICryptoDTO.ts',
-      ],
-      this.createICryptoDTO,
-    );
-    this.fileManager.checkAndCreateFile(
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'dtos'],
       [
         'src',
         'shared',
@@ -75,25 +32,62 @@ export class MakeCryptoProvider extends BaseProvider {
         'providers',
         'CryptoProvider',
         'implementations',
-        'CryptoProvider.ts',
       ],
-      this.createCrypto,
+      ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'models'],
+    ]);
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      `import './CryptoProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CryptoProvider',
-        'models',
-        'ICryptoProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'dtos',
+          'ICryptoDTO.ts',
+        ],
+        this.createICryptoDTO,
       ],
-      this.createICrypto,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'index.ts'],
-      this.createCryptoIndex,
-    );
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'implementations',
+          'CryptoProvider.ts',
+        ],
+        this.createCrypto,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'models',
+          'ICryptoProvider.ts',
+        ],
+        this.createICrypto,
+      ],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'index.ts',
+        ],
+        this.createCryptoIndex,
+      ],
+    ]);
   }
 }

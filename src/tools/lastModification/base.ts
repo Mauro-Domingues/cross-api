@@ -18,52 +18,20 @@ export class BaseRegister {
   }
 
   private constructBase(): void {
-    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
-    if (
-      !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'comands', 'comands.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'moduleInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'moduleInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'routeInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'routeInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'providers',
-        'providerInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'providers', 'providerInjection.log'],
-        '',
-      );
-    }
+    this.fileManager.checkAndCreateManyDirs([
+      [this.basePath, 'comands'],
+      [this.basePath, 'modules'],
+      [this.basePath, 'providers'],
+    ]);
+    return [
+      [this.basePath, 'comands', 'comands.log'],
+      [this.basePath, 'modules', 'moduleInjection.log'],
+      [this.basePath, 'modules', 'routeInjection.log'],
+      [this.basePath, 'providers', 'providerInjection.log'],
+    ].forEach(path => {
+      if (!this.fileManager.checkIfExists(path)) {
+        this.fileManager.createFile(path, '');
+      }
+    });
   }
 }

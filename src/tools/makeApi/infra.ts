@@ -14,52 +14,23 @@ export class MakeInfra {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', '@types']);
-    this.fileManager.checkAndCreateDir(['src', 'dtos']);
-    this.fileManager.checkAndCreateDir(['src', 'assets']);
-    this.fileManager.checkAndCreateDir(['src', 'middlewares']);
-    this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'routes']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'utils', 'mappers']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'modules',
-      'entities',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'config'],
+      ['src', '@types'],
+      ['src', 'dtos'],
+      ['src', 'assets'],
+      ['src', 'middlewares'],
+      ['src', 'modules'],
+      ['src', 'routes'],
+      ['src', 'utils', 'mappers'],
+      ['src', 'shared', 'container', 'modules', 'entities'],
+      ['src', 'shared', 'container', 'modules', 'repositories', 'fakes'],
+      ['src', 'shared', 'errors'],
+      ['src', 'shared', 'container', 'providers'],
+      ['src', 'shared', 'typeorm', 'dataSources', 'fakes'],
+      ['src', 'shared', 'typeorm', 'migrations'],
+      ['src', 'shared', 'typeorm', 'seeds'],
     ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'modules',
-      'repositories',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'errors']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'typeorm']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'typeorm',
-      'dataSources',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'typeorm',
-      'migrations',
-    ]);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'typeorm', 'seeds']);
     return this.console.one({
       message: this.messages.apiCreated,
       color: 'blue',

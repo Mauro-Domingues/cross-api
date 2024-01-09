@@ -53,46 +53,48 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     }
 
     this.constructBase();
-    this.fileManager.checkAndCreateDir(['src', 'jobs']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'QueueProvider',
-      'public',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'QueueProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'QueueProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'QueueProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'QueueProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'jobs'],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'public',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'dtos',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'models',
+      ],
     ]);
     this.fileManager.createFile(
       [
@@ -104,108 +106,104 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       ],
       `import './QueueProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'queue.ts'],
-      this.createQueueConfig,
-    );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'jobs', 'Example.ts'],
-      this.createExampleJob,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'queue.ts'], this.createQueueConfig],
+      [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'public',
-        'jobs.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'public',
+          'jobs.ts',
+        ],
+        this.createJobs,
       ],
-      this.createJobs,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'dtos',
-        'IQueueDTO.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'dtos',
+          'IQueueDTO.ts',
+        ],
+        this.createIQueueDTO,
       ],
-      this.createIQueueDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'fakes',
-        'FakeQueueProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'fakes',
+          'FakeQueueProvider.ts',
+        ],
+        this.createFakeQueue,
       ],
-      this.createFakeQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'KueProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'KueProvider.ts',
+        ],
+        this.createKueQueue,
       ],
-      this.createKueQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'BeeProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'BeeProvider.ts',
+        ],
+        this.createBeeQueue,
       ],
-      this.createBeeQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'implementations',
-        'BullProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'implementations',
+          'BullProvider.ts',
+        ],
+        this.createBullQueue,
       ],
-      this.createBullQueue,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'models',
-        'IQueueProvider.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'models',
+          'IQueueProvider.ts',
+        ],
+        this.createIQueue,
       ],
-      this.createIQueue,
-    );
-    return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'index.ts',
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'QueueProvider',
+          'index.ts',
+        ],
+        this.createQueueIndex,
       ],
-      this.createQueueIndex,
-    );
+    ]);
   }
 }

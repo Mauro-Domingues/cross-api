@@ -82,60 +82,62 @@ export class MakeInfra {
       ['src', 'routes', 'index.ts'],
       this.createIndexRoute.execute(),
     );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'dtos',
-        `I${this.names.upperModuleName}DTO.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'dtos',
+          `I${this.names.upperModuleName}DTO.ts`,
+        ],
+        this.createModuleDTO,
       ],
-      this.createModuleDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'entities',
-        `${this.names.upperModuleName}.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'entities',
+          `${this.names.upperModuleName}.ts`,
+        ],
+        this.createEntity,
       ],
-      this.createEntity,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        `${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'repositories',
+          `${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createRepository,
       ],
-      this.createRepository,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        `I${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'repositories',
+          `I${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createIRepository,
       ],
-      this.createIRepository,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-        `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        [
+          'src',
+          'modules',
+          this.names.pluralLowerModuleName,
+          'repositories',
+          'fakes',
+          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+        ],
+        this.createFakeRepository,
       ],
-      this.createFakeRepository,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'routes', `${this.names.lowerModuleName}Router.ts`],
-      this.createIndependentRoute,
-    );
+      [
+        ['src', 'routes', `${this.names.lowerModuleName}Router.ts`],
+        this.createIndependentRoute,
+      ],
+    ]);
   }
 }

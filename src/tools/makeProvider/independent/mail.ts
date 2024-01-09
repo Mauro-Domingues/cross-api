@@ -29,109 +29,89 @@ export class MakeMailProvider extends BaseProvider {
 
   public execute(): void {
     this.constructBase();
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailProvider',
-      'dtos',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailProvider',
-      'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailProvider',
-      'implementations',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailProvider',
-      'models',
+    this.fileManager.checkAndCreateManyDirs([
+      ['src', 'shared', 'container', 'providers', 'MailProvider', 'dtos'],
+      ['src', 'shared', 'container', 'providers', 'MailProvider', 'fakes'],
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'MailProvider',
+        'implementations',
+      ],
+      ['src', 'shared', 'container', 'providers', 'MailProvider', 'models'],
     ]);
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './MailProvider';\n`,
     );
-    this.fileManager.checkAndCreateFile(
-      ['src', 'config', 'mail.ts'],
-      this.createMailConfig,
-    );
-    this.fileManager.checkAndCreateFile(
+    return this.fileManager.checkAndCreateManyFiles([
+      [['src', 'config', 'mail.ts'], this.createMailConfig],
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'dtos',
-        'ISendMailDTO.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailProvider',
+          'dtos',
+          'ISendMailDTO.ts',
+        ],
+        this.createIMailDTO,
       ],
-      this.createIMailDTO,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'fakes',
-        'FakeMailProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailProvider',
+          'fakes',
+          'FakeMailProvider.ts',
+        ],
+        this.createFakeMail,
       ],
-      this.createFakeMail,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'implementations',
-        'NodemailerMailProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailProvider',
+          'implementations',
+          'NodemailerMailProvider.ts',
+        ],
+        this.createNodemailerMail,
       ],
-      this.createNodemailerMail,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'implementations',
-        'SESMailProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailProvider',
+          'implementations',
+          'SESMailProvider.ts',
+        ],
+        this.createSESMail,
       ],
-      this.createSESMail,
-    );
-    this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'models',
-        'IMailProvider.ts',
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'MailProvider',
+          'models',
+          'IMailProvider.ts',
+        ],
+        this.createIMail,
       ],
-      this.createIMail,
-    );
-    return this.fileManager.checkAndCreateFile(
-      ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
-      this.createMailIndex,
-    );
+      [
+        ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
+        this.createMailIndex,
+      ],
+    ]);
   }
 }
