@@ -28,6 +28,7 @@ export class MakeNotificationProvider extends BaseProvider {
   }
 
   public execute(): void {
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

@@ -37,6 +37,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       });
     }
 
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',

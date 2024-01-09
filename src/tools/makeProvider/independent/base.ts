@@ -10,7 +10,7 @@ export class BaseProvider {
     this.fileManager = new FileManager();
   }
 
-  public execute(): void {
+  protected constructBase(): void {
     this.fileManager.checkAndCreateDir(['src', 'config']);
     this.fileManager.checkAndCreateDir([
       'src',

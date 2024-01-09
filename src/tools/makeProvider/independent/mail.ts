@@ -28,6 +28,7 @@ export class MakeMailProvider extends BaseProvider {
   }
 
   public execute(): void {
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

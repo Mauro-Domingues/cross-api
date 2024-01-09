@@ -45,6 +45,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
       });
     }
 
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',

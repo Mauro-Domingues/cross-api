@@ -52,6 +52,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       });
     }
 
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',

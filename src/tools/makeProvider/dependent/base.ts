@@ -19,10 +19,9 @@ export class DependentBaseProvider {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.constructBase();
   }
 
-  private constructBase(): void {
+  protected constructBase(): void {
     if (!this.fatherNames) {
       throw this.console.one({
         message: this.messages.providerNotFound,

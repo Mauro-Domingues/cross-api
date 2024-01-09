@@ -22,6 +22,7 @@ export class MakeCacheProvider extends BaseProvider {
   }
 
   public execute(): void {
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

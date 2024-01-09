@@ -37,6 +37,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
       });
     }
 
+    this.constructBase();
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',
