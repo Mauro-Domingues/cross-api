@@ -4,45 +4,27 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeMailTemplateProvider {
+export class MakeMailTemplateProvider extends BaseProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
   private readonly createMailTemplateConfig: CreateMailTemplateConfig;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
   private readonly createFakeMailTemplate: CreateFakeMailTemplate;
   private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
   private readonly createIMailTemplate: CreateIMailTemplate;
-  private readonly fileManager: FileManager;
 
   public constructor() {
+    super();
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
     this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
     this.createFakeMailTemplate = new CreateFakeMailTemplate();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
     this.createIMailTemplate = new CreateIMailTemplate();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailTemplateProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

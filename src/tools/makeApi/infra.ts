@@ -14,7 +14,6 @@ export class MakeInfra {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
     this.fileManager.checkAndCreateDir(['src', 'config']);
     this.fileManager.checkAndCreateDir(['src', '@types']);
     this.fileManager.checkAndCreateDir(['src', 'dtos']);
@@ -23,28 +22,13 @@ export class MakeInfra {
     this.fileManager.checkAndCreateDir(['src', 'modules']);
     this.fileManager.checkAndCreateDir(['src', 'routes']);
     this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'utils']);
     this.fileManager.checkAndCreateDir(['src', 'utils', 'mappers']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'modules',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',
       'container',
       'modules',
       'entities',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'modules',
-      'repositories',
     ]);
     this.fileManager.checkAndCreateDir([
       'src',
@@ -61,12 +45,6 @@ export class MakeInfra {
       'shared',
       'container',
       'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'typeorm',
-      'dataSources',
     ]);
     this.fileManager.checkAndCreateDir([
       'src',

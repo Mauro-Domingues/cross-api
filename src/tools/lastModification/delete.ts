@@ -1,79 +1,19 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
 import { Provider } from '@tools/provider';
+import { BaseRegister } from './base';
 
-export class DeleteRegister {
-  private readonly fileManager: FileManager;
+export class DeleteRegister extends BaseRegister {
   private readonly messages: IMessagesDTO;
   private readonly provider: Provider;
-  private readonly basePath: string;
   private readonly console: Console;
 
   public constructor() {
+    super();
     this.messages = new Messages().execute();
     this.provider = new Provider(undefined);
-    this.fileManager = new FileManager();
     this.console = new Console();
-    this.basePath = this.fileManager.resolvePath([
-      'node_modules',
-      'cross-api',
-      'src',
-      'tools',
-      'lastModification',
-    ]);
-    this.constructBase();
-  }
-
-  private constructBase(): void {
-    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
-    if (
-      !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'comands', 'comands.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'moduleInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'moduleInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'routeInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'routeInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'providers',
-        'providerInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'providers', 'providerInjection.log'],
-        '',
-      );
-    }
   }
 
   private makeProvider(
@@ -368,9 +308,9 @@ export class DeleteRegister {
       'comands.log',
     ]);
 
-    const comand = register.split(',')[0];
-    const names = new GetNames(register.split(',')[1]).execute();
-    const fatherNames = new GetNames(register.split(',')[2]).execute();
+    const [comand, name, fatherName] = register.split(',');
+    const names = new GetNames(name).execute();
+    const fatherNames = new GetNames(fatherName).execute();
 
     switch (comand) {
       case 'make:provider':

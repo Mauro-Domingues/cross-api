@@ -32,16 +32,9 @@ export class MakeDependentStructure {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src']);
     this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
     this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
     this.fileManager.checkAndCreateDir(['src', 'routes']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',
@@ -59,19 +52,7 @@ export class MakeDependentStructure {
       'modules',
       this.fatherNames.pluralLowerModuleName,
       'repositories',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'repositories',
       'fakes',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'services',
     ]);
     this.fileManager.checkAndCreateDir([
       'src',

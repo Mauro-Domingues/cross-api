@@ -5,9 +5,9 @@ import { CreateFirebaseNotification } from '@templates/providers/implementations
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeNotificationProvider {
+export class MakeNotificationProvider extends BaseProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
   private readonly createFirebaseNotification: CreateFirebaseNotification;
   private readonly createNotificationConfig: CreateNotificationConfig;
@@ -15,9 +15,9 @@ export class MakeNotificationProvider {
   private readonly createFakeNotification: CreateFakeNotification;
   private readonly createINotificationDTO: CreateINotificationDTO;
   private readonly createINotification: CreateINotification;
-  private readonly fileManager: FileManager;
 
   public constructor() {
+    super();
     this.createOneSignalNotification = new CreateOneSignalNotification();
     this.createFirebaseNotification = new CreateFirebaseNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
@@ -25,37 +25,9 @@ export class MakeNotificationProvider {
     this.createFakeNotification = new CreateFakeNotification();
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createINotification = new CreateINotification();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-      ])
-    ) {
-      this.fileManager.checkAndCreateDir([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-      ]);
-    }
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

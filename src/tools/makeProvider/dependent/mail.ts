@@ -1,4 +1,3 @@
-import { CreateContainer } from '@templates/index/container';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
@@ -6,42 +5,33 @@ import { CreateDependentNodemailerMail } from '@templates/providers/implementati
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
-import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
+import { DependentBaseProvider } from './base';
 
-export class MakeDependentMailProvider {
+export class MakeDependentMailProvider extends DependentBaseProvider {
   private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
   private readonly createDependentSESMail: CreateDependentSESMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
-  private readonly createContainer: CreateContainer;
   private readonly createFakeMail: CreateFakeMail;
   private readonly createIMailDTO: CreateIMailDTO;
   private readonly createIMail: CreateIMail;
-  private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   public constructor(
-    private readonly fatherNames:
+    protected readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    super(fatherNames);
     this.createDependentSESMail = new CreateDependentSESMail(this.fatherNames);
     this.createDependentNodemailerMail = new CreateDependentNodemailerMail(
       this.fatherNames,
     );
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
-    this.createContainer = new CreateContainer();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
     this.createIMail = new CreateIMail();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -55,29 +45,6 @@ export class MakeDependentMailProvider {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'MailProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',
@@ -110,43 +77,6 @@ export class MakeDependentMailProvider {
       'MailProvider',
       'models',
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ],
-        '',
-      );
-    }
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-    );
     this.fileManager.createFile(
       [
         'src',

@@ -1,4 +1,3 @@
-import { FileManager } from '@tools/fileManager';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
 import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
@@ -9,8 +8,9 @@ import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
+import { BaseProvider } from './base';
 
-export class MakeQueueProvider {
+export class MakeQueueProvider extends BaseProvider {
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
@@ -20,10 +20,10 @@ export class MakeQueueProvider {
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
   private readonly createIQueue: CreateIQueue;
-  private readonly fileManager: FileManager;
   private readonly createJobs: CreateJobs;
 
   public constructor() {
+    super();
     this.createQueueConfig = new CreateQueueConfig();
     this.createExampleJob = new CreateExampleJob();
     this.createQueueIndex = new CreateQueueIndex();
@@ -33,29 +33,10 @@ export class MakeQueueProvider {
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
     this.createIQueue = new CreateIQueue();
-    this.fileManager = new FileManager();
     this.createJobs = new CreateJobs();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'jobs']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'QueueProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',
@@ -142,7 +123,7 @@ export class MakeQueueProvider {
         'fakes',
         'FakeQueueProvider.ts',
       ],
-      this.createKueQueue,
+      this.createFakeQueue,
     );
     this.fileManager.checkAndCreateFile(
       [

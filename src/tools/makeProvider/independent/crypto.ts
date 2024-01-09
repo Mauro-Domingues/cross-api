@@ -3,43 +3,25 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeCryptoProvider {
+export class MakeCryptoProvider extends BaseProvider {
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
   private readonly createICryptoDTO: CreateICryptoDTO;
   private readonly createICrypto: CreateICrypto;
   private readonly createCrypto: CreateCrypto;
-  private readonly fileManager: FileManager;
 
   public constructor() {
+    super();
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createICrypto = new CreateICrypto();
     this.createCrypto = new CreateCrypto();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CryptoProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

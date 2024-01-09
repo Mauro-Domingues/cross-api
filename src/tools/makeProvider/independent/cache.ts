@@ -3,43 +3,25 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeCacheProvider {
+export class MakeCacheProvider extends BaseProvider {
   private readonly createCacheConfig: CreateCacheConfig;
   private readonly createRedisCache: CreateRedisCache;
   private readonly createCacheIndex: CreateCacheIndex;
   private readonly createFakeCache: CreateFakeCache;
   private readonly createICache: CreateICache;
-  private readonly fileManager: FileManager;
 
   public constructor() {
+    super();
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeCache = new CreateFakeCache();
     this.createICache = new CreateICache();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'CacheProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

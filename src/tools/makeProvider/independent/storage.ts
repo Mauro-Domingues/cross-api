@@ -4,45 +4,27 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeStorageProvider {
+export class MakeStorageProvider extends BaseProvider {
   private readonly createUploadConfig: CreateUploadConfig;
   private readonly createStorageIndex: CreateStorageIndex;
   private readonly createDiskStorage: CreateDiskStorage;
   private readonly createFakeStorage: CreateFakeStorage;
   private readonly createS3Storage: CreateS3Storage;
   private readonly createIStorage: CreateIStorage;
-  private readonly fileManager: FileManager;
 
   public constructor() {
+    super();
     this.createStorageIndex = new CreateStorageIndex();
     this.createUploadConfig = new CreateUploadConfig();
     this.createDiskStorage = new CreateDiskStorage();
     this.createFakeStorage = new CreateFakeStorage();
     this.createS3Storage = new CreateS3Storage();
     this.createIStorage = new CreateIStorage();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'StorageProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

@@ -1,13 +1,11 @@
 import { CreateContainer } from '@templates/index/container';
 import { CreateRoutes } from '@templates/index/routes';
-import { FileManager } from '@tools/fileManager';
 import { IModuleNamesDTO } from '@tools/names';
+import { BaseRegister } from './base';
 
-export class CreateRegister {
+export class CreateRegister extends BaseRegister {
   private readonly createContainer: CreateContainer;
   private readonly createRoutes: CreateRoutes;
-  private readonly fileManager: FileManager;
-  private readonly basePath: string;
 
   public constructor(
     private readonly comand: Array<string> | undefined,
@@ -17,22 +15,12 @@ export class CreateRegister {
       | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.fileManager = new FileManager();
+    super();
     this.createContainer = new CreateContainer();
     this.createRoutes = new CreateRoutes();
-    this.basePath = this.fileManager.resolvePath([
-      'node_modules',
-      'cross-api',
-      'src',
-      'tools',
-      'lastModification',
-    ]);
-    this.constructBase();
   }
 
   private constructModuleBase(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
     this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
     this.fileManager.checkAndCreateDir(['src', 'routes']);
     if (
@@ -57,9 +45,6 @@ export class CreateRegister {
   }
 
   private constructProviderBase(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',
@@ -77,56 +62,6 @@ export class CreateRegister {
     ) {
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'providers', 'index.ts'],
-        '',
-      );
-    }
-  }
-
-  private constructBase(): void {
-    this.fileManager.checkAndCreateDir([this.basePath, 'comands']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'modules']);
-    this.fileManager.checkAndCreateDir([this.basePath, 'providers']);
-    if (
-      !this.fileManager.checkIfExists([this.basePath, 'comands', 'comands.log'])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'comands', 'comands.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'moduleInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'moduleInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'modules',
-        'routeInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'modules', 'routeInjection.log'],
-        '',
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        this.basePath,
-        'providers',
-        'providerInjection.log',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [this.basePath, 'providers', 'providerInjection.log'],
         '',
       );
     }

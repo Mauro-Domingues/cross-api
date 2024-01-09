@@ -4,20 +4,20 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { FileManager } from '@tools/fileManager';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
+import { BaseProvider } from './base';
 
-export class MakeLeadProvider {
+export class MakeLeadProvider extends BaseProvider {
   private readonly createRDStationLead: CreateRDStationLead;
   private readonly createLeadConfig: CreateLeadConfig;
   private readonly createLeadIndex: CreateLeadIndex;
   private readonly createILeadDTO: CreateILeadDTO;
   private readonly createIAuthDTO: CreateIAuthDTO;
   private readonly createFakeLead: CreateFakeLead;
-  private readonly fileManager: FileManager;
   private readonly createILead: CreateILead;
 
   public constructor() {
+    super();
     this.createRDStationLead = new CreateRDStationLead();
     this.createLeadConfig = new CreateLeadConfig();
     this.createLeadIndex = new CreateLeadIndex();
@@ -25,27 +25,9 @@ export class MakeLeadProvider {
     this.createIAuthDTO = new CreateIAuthDTO();
     this.createFakeLead = new CreateFakeLead();
     this.createILead = new CreateILead();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'LeadProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

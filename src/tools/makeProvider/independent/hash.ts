@@ -3,44 +3,25 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeHashProvider {
+export class MakeHashProvider extends BaseProvider {
   private readonly createHashConfig: CreateHashConfig;
   private readonly createHashIndex: CreateHashIndex;
   private readonly createFakeHash: CreateFakeHash;
   private readonly createIHash: CreateIHash;
-  private readonly fileManager: FileManager;
   private readonly createHash: CreateHash;
 
   public constructor() {
+    super();
     this.createHashConfig = new CreateHashConfig();
     this.createHashIndex = new CreateHashIndex();
     this.createFakeHash = new CreateFakeHash();
     this.createIHash = new CreateIHash();
-    this.fileManager = new FileManager();
     this.createHash = new CreateHash();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'HashProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

@@ -5,53 +5,29 @@ import { CreateNodemailerMail } from '@templates/providers/implementations/Nodem
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
+import { BaseProvider } from './base';
 
-export class MakeMailProvider {
+export class MakeMailProvider extends BaseProvider {
   private readonly createNodemailerMail: CreateNodemailerMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
   private readonly createIMailDTO: CreateIMailDTO;
   private readonly createFakeMail: CreateFakeMail;
   private readonly createSESMail: CreateSESMail;
-  private readonly fileManager: FileManager;
   private readonly createIMail: CreateIMail;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   public constructor() {
+    super();
     this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
     this.createIMailDTO = new CreateIMailDTO();
     this.createFakeMail = new CreateFakeMail();
     this.createSESMail = new CreateSESMail();
-    this.messages = new Messages().execute();
     this.createIMail = new CreateIMail();
-    this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
-      'MailProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'shared',

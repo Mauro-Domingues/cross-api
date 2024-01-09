@@ -1,17 +1,14 @@
-import { CreateContainer } from '@templates/index/container';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
-import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
+import { DependentBaseProvider } from './base';
 
-export class MakeDependentNotificationProvider {
+export class MakeDependentNotificationProvider extends DependentBaseProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
   private readonly createFirebaseNotification: CreateFirebaseNotification;
   private readonly createNotificationConfig: CreateNotificationConfig;
@@ -19,16 +16,13 @@ export class MakeDependentNotificationProvider {
   private readonly createINotificationDTO: CreateINotificationDTO;
   private readonly createFakeNotification: CreateFakeNotification;
   private readonly createINotification: CreateINotification;
-  private readonly createContainer: CreateContainer;
-  private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
-  private readonly console: Console;
 
   public constructor(
-    private readonly fatherNames:
+    protected readonly fatherNames:
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    super(fatherNames);
     this.createOneSignalNotification = new CreateOneSignalNotification();
     this.createFirebaseNotification = new CreateFirebaseNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
@@ -36,10 +30,6 @@ export class MakeDependentNotificationProvider {
     this.createINotificationDTO = new CreateINotificationDTO();
     this.createFakeNotification = new CreateFakeNotification();
     this.createINotification = new CreateINotification();
-    this.createContainer = new CreateContainer();
-    this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
@@ -53,29 +43,6 @@ export class MakeDependentNotificationProvider {
       });
     }
 
-    this.fileManager.checkAndCreateDir(['src']);
-    this.fileManager.checkAndCreateDir(['src', 'config']);
-    this.fileManager.checkAndCreateDir(['src', 'modules']);
-    this.fileManager.checkAndCreateDir(['src', 'shared']);
-    this.fileManager.checkAndCreateDir(['src', 'shared', 'container']);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-    ]);
-    this.fileManager.checkAndCreateDir([
-      'src',
-      'modules',
-      this.fatherNames.pluralLowerModuleName,
-      'providers',
-      'NotificationProvider',
-    ]);
     this.fileManager.checkAndCreateDir([
       'src',
       'modules',
@@ -108,43 +75,6 @@ export class MakeDependentNotificationProvider {
       'NotificationProvider',
       'models',
     ]);
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
-      );
-    }
-    if (
-      !this.fileManager.checkIfExists([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ],
-        '',
-      );
-    }
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-    );
     this.fileManager.createFile(
       [
         'src',
