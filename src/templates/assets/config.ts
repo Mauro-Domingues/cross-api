@@ -11,7 +11,7 @@ import { Console } ${'from'} './console.js';
 export class ConfigJson {
     messages;
     console;
-    public constructor() {
+    constructor() {
         this.messages = new Messages().execute();
         this.console = new Console();
     }
