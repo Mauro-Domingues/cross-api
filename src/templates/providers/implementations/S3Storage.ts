@@ -7,7 +7,7 @@ import {
   DeleteObjectCommand,
 } ${'from'} '@aws-sdk/client-s3';
 import { readFileSync, unlinkSync } ${'from'} 'fs';
-import mime ${'from'} 'mime';
+import { getType } ${'from'} 'mime';
 import { resolve } ${'from'} 'path';
 
 import { AppError } ${'from'} '@shared/errors/AppError';
@@ -30,7 +30,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
   public async saveFile(file: string): Promise<string> {
     const originalPath = resolve(uploadConfig.config.tmpFolder, file);
 
-    const ContentType = mime.getType(originalPath);
+    const ContentType = getType(originalPath);
 
     if (!ContentType) {
       throw new AppError('FILE_NOT_FOUND', 'File not found', 404);
