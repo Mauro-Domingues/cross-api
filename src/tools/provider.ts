@@ -21,12 +21,20 @@ import { IModuleNamesDTO } from '@tools/names';
 export class Provider {
   public readonly key: 'dependent' | 'independent';
   public readonly list: Record<
-    string,
+    | 'cache'
+    | 'crypto'
+    | 'hash'
+    | 'lead'
+    | 'mail'
+    | 'mailTemplate'
+    | 'queue'
+    | 'notification'
+    | 'upload',
     {
-      name: string;
-      description: string;
-      dependent: { execute: () => void };
-      independent: { execute: () => void };
+      readonly name: string;
+      readonly description: string;
+      readonly dependent: { readonly execute: () => void };
+      readonly independent: { readonly execute: () => void };
     }
   >;
 
@@ -41,7 +49,7 @@ export class Provider {
       this.key = 'independent';
     }
 
-    this.list = {
+    this.list = Object.freeze({
       cache: {
         name: 'cache       ',
         description: 'CacheProvider       ',
@@ -106,6 +114,6 @@ export class Provider {
         independent: new MakeStorageProvider(),
         dependent: new MakeDependentStorageProvider(this.fatherNames),
       },
-    };
+    });
   }
 }

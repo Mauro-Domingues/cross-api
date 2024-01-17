@@ -25,15 +25,15 @@ new (class Main {
   private readonly getNames: GetNames;
   private readonly console: Console;
   private readonly actions: {
-    config: ConfigJson;
-    comands: Board;
-    language: ConfigLanguage;
-    'list:provider': ListProvider;
-    'make:api': CreateApi;
-    'make:module': CreateModule;
-    'make:provider': CreateProvider;
-    revert: {
-      execute: () => void;
+    readonly config: ConfigJson;
+    readonly comands: Board;
+    readonly language: ConfigLanguage;
+    readonly 'list:provider': ListProvider;
+    readonly 'make:api': CreateApi;
+    readonly 'make:module': CreateModule;
+    readonly 'make:provider': CreateProvider;
+    readonly revert: {
+      readonly execute: () => void;
     };
   };
 
@@ -49,7 +49,7 @@ new (class Main {
       this.getFatherNames.execute(),
     );
     this.console = new Console();
-    this.actions = {
+    this.actions = Object.freeze({
       config: new ConfigJson(),
       comands: new Board(),
       language: new ConfigLanguage(),
@@ -69,7 +69,7 @@ new (class Main {
           return this.createRegister.execute();
         },
       },
-    };
+    });
   }
 
   public execute(): void {

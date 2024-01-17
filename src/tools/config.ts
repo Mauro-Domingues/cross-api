@@ -89,7 +89,9 @@ export class ConfigJson extends ConfigLanguage {
 
   private patchPackage(): void {
     const stringifiedPackage = this.fileManager.readFile(['package.json']);
-    const jsonPackage = JSON.parse(stringifiedPackage);
+    const jsonPackage: Record<string, Record<string, string>> = JSON.parse(
+      stringifiedPackage,
+    );
 
     jsonPackage.scripts = {
       ...jsonPackage.scripts,

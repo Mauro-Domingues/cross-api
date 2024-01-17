@@ -52,7 +52,9 @@ export class DeleteRegister extends BaseRegister {
         'modules',
         fatherNames.pluralLowerModuleName,
         'providers',
-        this.provider.list[names.lowerModuleName].description.trim(),
+        this.provider.list[
+          names.lowerModuleName as keyof typeof this.provider.list
+        ].description.trim(),
       ]);
       if (
         this.fileManager.checkIfExists([
@@ -97,7 +99,9 @@ export class DeleteRegister extends BaseRegister {
         'shared',
         'container',
         'providers',
-        this.provider.list[names.lowerModuleName].description.trim(),
+        this.provider.list[
+          names.lowerModuleName as keyof typeof this.provider.list
+        ].description.trim(),
       ]);
       if (
         this.fileManager.checkIfExists([

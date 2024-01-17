@@ -1,8 +1,8 @@
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
-type Assets = [rule: RegExp, replacement: string];
-type Words = [single: string, plural: string];
+type Assets = readonly [rule: RegExp, replacement: string];
+type Words = readonly [single: string, plural: string];
 type Obj = Record<string, string>;
 
 export class Pluralize {

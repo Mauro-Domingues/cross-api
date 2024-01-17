@@ -1,12 +1,7 @@
-import { CreateContainer } from '@templates/index/container';
-import { CreateRoutes } from '@templates/index/routes';
 import { IModuleNamesDTO } from '@tools/names';
 import { BaseRegister } from './base';
 
 export class CreateRegister extends BaseRegister {
-  private readonly createContainer: CreateContainer;
-  private readonly createRoutes: CreateRoutes;
-
   public constructor(
     private readonly comand: Array<string> | undefined,
     private readonly providerName: string | undefined,
@@ -16,8 +11,6 @@ export class CreateRegister extends BaseRegister {
       | undefined,
   ) {
     super();
-    this.createContainer = new CreateContainer();
-    this.createRoutes = new CreateRoutes();
   }
 
   private constructModuleBase(): void {

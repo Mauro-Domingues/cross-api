@@ -2,8 +2,8 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { Console } from '@tools/console';
 
 interface IOptionDTO {
-  title: string;
-  description: string;
+  readonly title: string;
+  readonly description: string;
 }
 
 export class Board {

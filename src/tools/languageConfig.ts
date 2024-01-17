@@ -8,13 +8,13 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export interface ILanguageOptionsDTO {
-  'en-us': 'englishMessages';
-  'pt-br': 'portugueseMessages';
+  readonly 'pt-br': 'portugueseMessages';
+  readonly 'en-us': 'englishMessages';
 }
 
 interface ILanguageConfigDTO {
-  option: keyof ILanguageOptionsDTO;
-  index: number;
+  readonly option: keyof ILanguageOptionsDTO;
+  readonly index: number;
 }
 
 export class ConfigLanguage {
@@ -34,10 +34,10 @@ export class ConfigLanguage {
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
     this.console = new Console();
-    this.languageOptions = {
-      'en-us': 'englishMessages',
+    this.languageOptions = Object.freeze({
       'pt-br': 'portugueseMessages',
-    };
+      'en-us': 'englishMessages',
+    });
     this.languageConfig = {
       option: 'en-us',
       index: 0,
@@ -123,7 +123,9 @@ export class ConfigLanguage {
     ]);
     return this.fileManager.createFile(
       ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
-      this.createDefaultLanguage.execute(JSON.stringify(this.messages)),
+      this.createDefaultLanguage.execute(
+        JSON.stringify(this.messages, null, 4),
+      ),
     );
   }
 

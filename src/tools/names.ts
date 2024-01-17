@@ -1,12 +1,12 @@
 import { Pluralize } from '@tools/pluralize';
 
 export interface IModuleNamesDTO {
-  pluralLowerModuleName: string;
-  pluralUpperModuleName: string;
-  routeModuleName: string;
-  lowerModuleName: string;
-  upperModuleName: string;
-  dbModuleName: string;
+  readonly pluralLowerModuleName: string;
+  readonly pluralUpperModuleName: string;
+  readonly routeModuleName: string;
+  readonly lowerModuleName: string;
+  readonly upperModuleName: string;
+  readonly dbModuleName: string;
 }
 
 export class GetNames {

@@ -1,7 +1,7 @@
 export class CreateExampleJob {
   public execute(): string {
     return `export class Example {
-  public static get key(): string {
+  public static get key(): Capitalize<string> {
     return 'Example';
   }
 

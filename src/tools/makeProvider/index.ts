@@ -20,20 +20,7 @@ export class CreateProvider {
   }
 
   public execute(): void {
-    try {
-      this.provider.list[this.providerName as string][
-        this.provider.key
-      ].execute();
-      return this.console.single({
-        message: `- ${this.provider.list[
-          this.providerName as string
-        ].description.trim()} ${this.messages.created}`,
-        color: 'yellow',
-        bold: true,
-        breakStart: false,
-        breakEnd: false,
-      });
-    } catch {
+    if (!this.providerName) {
       throw this.console.single({
         message: this.messages.providerNotFound,
         color: 'red',
@@ -42,5 +29,17 @@ export class CreateProvider {
         breakEnd: false,
       });
     }
+    this.provider.list[this.providerName as keyof typeof this.provider.list][
+      this.provider.key
+    ].execute();
+    return this.console.single({
+      message: `- ${this.provider.list[
+        this.providerName as keyof typeof this.provider.list
+      ].description.trim()} ${this.messages.created}`,
+      color: 'yellow',
+      bold: true,
+      breakStart: false,
+      breakEnd: false,
+    });
   }
 }
