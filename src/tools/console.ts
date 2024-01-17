@@ -41,16 +41,12 @@ export class Console {
     breakStart,
     breakEnd,
   }: IInputDTO): string {
-    return (
-      String(this.isBold(bold)),
-      String(this.getColor(color)),
-      String(
-        `${this.isbreakStart(breakStart)}${message}${this.isbreakEnd(
-          breakEnd,
-        )}`,
-      ),
-      String('\x1b[0m')
-    );
+    return [
+      this.isBold(bold),
+      this.getColor(color),
+      `${this.isbreakStart(breakStart)}${message}${this.isbreakEnd(breakEnd)}`,
+      '\x1b[0m',
+    ].join('');
   }
 
   public single(asset: IInputDTO): void {
