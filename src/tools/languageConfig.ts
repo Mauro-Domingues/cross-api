@@ -35,8 +35,8 @@ export class ConfigLanguage {
     this.fileManager = new FileManager();
     this.console = new Console();
     this.languageOptions = Object.freeze({
-      'pt-br': 'portugueseMessages',
       'en-us': 'englishMessages',
+      'pt-br': 'portugueseMessages',
     });
     this.languageConfig = {
       option: 'en-us',
@@ -124,7 +124,7 @@ export class ConfigLanguage {
     return this.fileManager.createFile(
       ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
       this.createDefaultLanguage.execute(
-        JSON.stringify(this.messages, null, 4),
+        JSON.stringify(this.messages, null, 6),
       ),
     );
   }
