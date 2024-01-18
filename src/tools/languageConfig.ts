@@ -124,7 +124,7 @@ export class ConfigLanguage {
     return this.fileManager.createFile(
       ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
       this.createDefaultLanguage.execute(
-        JSON.stringify(this.messages, null, 6),
+        JSON.stringify(this.messages, null, 2),
       ),
     );
   }
