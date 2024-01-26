@@ -56,10 +56,7 @@ export class Console {
   }
 
   public multi(assets: Array<IInputDTO>): void {
-    const payload: Array<string> = [];
-    assets.forEach(asset => {
-      payload.push(this.stringifyPayload(asset));
-    });
+    const payload = assets.map(asset => this.stringifyPayload(asset));
 
     return console.log(payload.join(''));
   }

@@ -25,9 +25,13 @@ export class FileManager {
   }
 
   public createFile(path: Array<string>, data: string): void {
-    return appendFile(resolve(...path), data, error => {
-      if (error) throw error;
-    });
+    return appendFile(
+      resolve(...path),
+      data,
+      (error: NodeJS.ErrnoException | null): void => {
+        if (error) throw error;
+      },
+    );
   }
 
   public createFileSync(path: Array<string>, data: string): void {
@@ -35,15 +39,22 @@ export class FileManager {
   }
 
   public removeDir(path: Array<string>): void {
-    return rm(resolve(...path), { recursive: true, force: true }, error => {
-      if (error) throw error;
-    });
+    return rm(
+      resolve(...path),
+      { recursive: true, force: true },
+      (error: NodeJS.ErrnoException | null): void => {
+        if (error) throw error;
+      },
+    );
   }
 
   public removeFile(path: Array<string>): void {
-    return unlink(resolve(...path), error => {
-      if (error) throw error;
-    });
+    return unlink(
+      resolve(...path),
+      (error: NodeJS.ErrnoException | null): void => {
+        if (error) throw error;
+      },
+    );
   }
 
   public readFileSync(path: Array<string>): string {
