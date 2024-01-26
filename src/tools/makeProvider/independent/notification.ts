@@ -33,7 +33,7 @@ export class MakeNotificationProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './NotificationProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'shared',

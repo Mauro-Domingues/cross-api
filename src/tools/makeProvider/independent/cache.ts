@@ -27,7 +27,7 @@ export class MakeCacheProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './CacheProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'CacheProvider', 'fakes'],
       [
         'src',

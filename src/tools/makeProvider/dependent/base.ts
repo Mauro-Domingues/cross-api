@@ -32,13 +32,13 @@ export class DependentBaseProvider {
       });
     }
 
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', 'shared', 'container'],
       ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'],
     ]);
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'shared',
         'container',
@@ -51,7 +51,7 @@ export class DependentBaseProvider {
       );
     }
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,

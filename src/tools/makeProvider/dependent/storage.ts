@@ -51,7 +51,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       ],
       `import './StorageProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',

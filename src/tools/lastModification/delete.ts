@@ -24,20 +24,20 @@ export class DeleteRegister extends BaseRegister {
       | undefined,
   ): void {
     if (names && fatherNames) {
-      const oldProviders = this.fileManager.readFile([
+      const oldProviders = this.fileManager.readFileSync([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
 
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         'src',
         'modules',
         fatherNames.pluralLowerModuleName,
         'providers',
         'index.ts',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         [
           'src',
           'modules',
@@ -57,7 +57,7 @@ export class DeleteRegister extends BaseRegister {
         ].description.trim(),
       ]);
       if (
-        this.fileManager.checkIfExists([
+        this.fileManager.checkIfExistsSync([
           'src',
           'config',
           `${names.lowerModuleName}.ts`,
@@ -77,20 +77,20 @@ export class DeleteRegister extends BaseRegister {
         breakEnd: false,
       });
     } else if (names) {
-      const oldProviders = this.fileManager.readFile([
+      const oldProviders = this.fileManager.readFileSync([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
 
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         'src',
         'shared',
         'container',
         'providers',
         'index.ts',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'providers', 'index.ts'],
         oldProviders,
       );
@@ -104,7 +104,7 @@ export class DeleteRegister extends BaseRegister {
         ].description.trim(),
       ]);
       if (
-        this.fileManager.checkIfExists([
+        this.fileManager.checkIfExistsSync([
           'src',
           'config',
           `${names.lowerModuleName}.ts`,
@@ -211,27 +211,32 @@ export class DeleteRegister extends BaseRegister {
           `Fake${names.pluralUpperModuleName}Repository.ts`,
         ],
       ]);
-      const moduleInjection = this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFileSync([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      this.fileManager.truncateFile(['src', 'shared', 'container', 'index.ts']);
-      this.fileManager.createFile(
+      this.fileManager.truncateFileSync([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFileSync([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         'src',
         'routes',
         `${fatherNames.lowerModuleName}Router.ts`,
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
@@ -253,23 +258,28 @@ export class DeleteRegister extends BaseRegister {
         'routes',
         `${names.lowerModuleName}Router.ts`,
       ]);
-      const moduleInjection = this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFileSync([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      this.fileManager.truncateFile(['src', 'shared', 'container', 'index.ts']);
-      this.fileManager.createFile(
+      this.fileManager.truncateFileSync([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ]);
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'index.ts'],
         moduleInjection,
       );
-      const routeInjection = this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFileSync([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      this.fileManager.truncateFile(['src', 'routes', 'index.ts']);
-      this.fileManager.createFile(
+      this.fileManager.truncateFileSync(['src', 'routes', 'index.ts']);
+      this.fileManager.createFileSync(
         ['src', 'routes', 'index.ts'],
         routeInjection,
       );
@@ -310,7 +320,7 @@ export class DeleteRegister extends BaseRegister {
   }
 
   public execute(): void {
-    const register = this.fileManager.readFile([
+    const register = this.fileManager.readFileSync([
       this.basePath,
       'comands',
       'comands.log',

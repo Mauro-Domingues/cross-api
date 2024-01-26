@@ -54,7 +54,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
       ],
       `import './NotificationProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',

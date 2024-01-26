@@ -88,7 +88,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private patchPackage(): void {
-    const stringifiedPackage = this.fileManager.readFile(['package.json']);
+    const stringifiedPackage = this.fileManager.readFileSync(['package.json']);
     const jsonPackage: Record<string, Record<string, string>> = JSON.parse(
       stringifiedPackage,
     );
@@ -102,8 +102,8 @@ export class ConfigJson extends ConfigLanguage {
       start: 'node dist/shared/server.js',
     };
 
-    this.fileManager.truncateFile(['package.json']);
-    return this.fileManager.writeFile(
+    this.fileManager.truncateFileSync(['package.json']);
+    return this.fileManager.writeFileSync(
       ['package.json'],
       JSON.stringify(jsonPackage, null, 2),
     );
@@ -224,7 +224,7 @@ export class ConfigJson extends ConfigLanguage {
     this.installDevDependencies();
     this.renderEnding();
 
-    if (this.fileManager.checkIfExists(['package-lock.json'])) {
+    if (this.fileManager.checkIfExistsSync(['package-lock.json'])) {
       this.fileManager.removeFile(['package-lock.json']);
     }
 

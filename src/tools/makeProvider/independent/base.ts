@@ -11,12 +11,12 @@ export class BaseProvider {
   }
 
   protected constructBase(): void {
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', 'shared', 'container', 'providers'],
     ]);
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'shared',
         'container',

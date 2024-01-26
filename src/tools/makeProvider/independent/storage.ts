@@ -30,7 +30,7 @@ export class MakeStorageProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './StorageProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'fakes'],
       [
         'src',

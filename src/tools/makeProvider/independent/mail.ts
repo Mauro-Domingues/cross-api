@@ -33,7 +33,7 @@ export class MakeMailProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './MailProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'dtos'],
       ['src', 'shared', 'container', 'providers', 'MailProvider', 'fakes'],
       [

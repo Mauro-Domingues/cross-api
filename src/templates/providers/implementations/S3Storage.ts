@@ -6,9 +6,9 @@ import {
   PutObjectCommand,
   DeleteObjectCommand,
 } ${'from'} '@aws-sdk/client-s3';
-import { readFileSync, unlinkSync } ${'from'} 'fs';
+import { readFileSync, unlinkSync } ${'from'} 'node:fs';
 import { getType } ${'from'} 'mime';
-import { resolve } ${'from'} 'path';
+import { resolve } ${'from'} 'node:path';
 
 import { AppError } ${'from'} '@shared/errors/AppError';
 

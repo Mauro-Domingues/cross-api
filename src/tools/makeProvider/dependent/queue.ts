@@ -63,7 +63,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       ],
       `import './QueueProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'jobs'],
       [
         'src',

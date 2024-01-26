@@ -42,7 +42,7 @@ export class MakeQueueProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './QueueProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'jobs'],
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'public'],
       ['src', 'shared', 'container', 'providers', 'QueueProvider', 'dtos'],

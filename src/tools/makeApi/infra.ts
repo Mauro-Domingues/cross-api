@@ -14,7 +14,7 @@ export class MakeInfra {
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', '@types'],
       ['src', 'dtos'],

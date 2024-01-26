@@ -27,7 +27,7 @@ export class MakeCryptoProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './CryptoProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'dtos'],
       [
         'src',

@@ -29,7 +29,7 @@ export class ConfigJson {
   }
 
   public execute(): void {
-    this.fileManager.truncateFile([
+    this.fileManager.truncateFileSync([
       'node_modules',
       'cross-api',
       'src',

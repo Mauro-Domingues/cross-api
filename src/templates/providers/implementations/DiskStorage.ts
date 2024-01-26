@@ -1,8 +1,8 @@
 export class CreateDiskStorage {
   public execute(): string {
     return `import { uploadConfig } ${'from'} '@config/upload';
-import { existsSync, mkdirSync, unlinkSync, renameSync } ${'from'} 'fs';
-import { resolve } ${'from'} 'path';
+import { existsSync, mkdirSync, unlinkSync, renameSync } ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
 
 import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 

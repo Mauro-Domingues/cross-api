@@ -1,7 +1,7 @@
 export class CreateErrorLog {
   public execute(): string {
-    return `import { appendFileSync } ${'from'} 'fs';
-import { resolve } ${'from'} 'path';
+    return `import { appendFileSync } ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
 
 export function createErrorLog(error: {
   code: number;

@@ -4,7 +4,6 @@ export class CreateEnvNamespace {
   export interface ProcessEnv {
     readonly PORT: string;
     readonly API_URL: string;
-    readonly WEB_URL: string;
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly JWT_LIFETIME: string;
     readonly CRYPTO_SECRET_KEY: string;

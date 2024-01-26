@@ -1,52 +1,63 @@
 import {
   existsSync,
   mkdirSync,
-  rmSync,
   writeFileSync,
-  unlinkSync,
+  unlink,
   readFileSync,
+  appendFile,
   appendFileSync,
   truncateSync,
-} from 'fs';
-import { resolve } from 'path';
+  rm,
+} from 'node:fs';
+import { resolve } from 'node:path';
 
 export class FileManager {
   public resolvePath(path: Array<string>): string {
     return resolve(...path);
   }
 
-  public checkIfExists(path: Array<string>): boolean {
+  public checkIfExistsSync(path: Array<string>): boolean {
     return existsSync(resolve(...path));
   }
 
-  public createDir(path: Array<string>): string | undefined {
+  public createDirSync(path: Array<string>): string | undefined {
     return mkdirSync(resolve(...path), { recursive: true });
   }
 
   public createFile(path: Array<string>, data: string): void {
+    return appendFile(resolve(...path), data, error => {
+      if (error) throw error;
+    });
+  }
+
+  public createFileSync(path: Array<string>, data: string): void {
     return appendFileSync(resolve(...path), data);
   }
 
   public removeDir(path: Array<string>): void {
-    return rmSync(resolve(...path), { recursive: true, force: true });
+    return rm(resolve(...path), { recursive: true, force: true }, error => {
+      if (error) throw error;
+    });
   }
 
   public removeFile(path: Array<string>): void {
-    return unlinkSync(resolve(...path));
+    return unlink(resolve(...path), error => {
+      if (error) throw error;
+    });
   }
 
-  public readFile(path: Array<string>): string {
+  public readFileSync(path: Array<string>): string {
     return readFileSync(resolve(...path), 'utf8');
   }
 
-  public writeFile(path: Array<string>, data: string): void {
+  public writeFileSync(path: Array<string>, data: string): void {
     return writeFileSync(resolve(...path), data, {
       encoding: 'utf8',
       flag: 'w',
     });
   }
 
-  public truncateFile(path: Array<string>): void {
+  public truncateFileSync(path: Array<string>): void {
     return truncateSync(resolve(...path));
   }
 
@@ -56,16 +67,16 @@ export class FileManager {
       execute(): string;
     },
   ): void {
-    if (!this.checkIfExists(path)) {
+    if (!this.checkIfExistsSync(path)) {
       return this.createFile(path, instance.execute());
     }
-    this.truncateFile(path);
+    this.truncateFileSync(path);
     return this.createFile(path, instance.execute());
   }
 
-  public checkAndCreateDir(path: Array<string>): void {
-    if (!this.checkIfExists(path)) {
-      this.createDir(path);
+  public checkAndCreateDirSync(path: Array<string>): void {
+    if (!this.checkIfExistsSync(path)) {
+      this.createDirSync(path);
     }
   }
 
@@ -90,7 +101,7 @@ export class FileManager {
     return data.forEach(fileData => this.checkAndCreateFile(...fileData));
   }
 
-  public checkAndCreateMultiDir(paths: Array<Array<string>>): void {
-    return paths.forEach(dir => this.checkAndCreateDir(dir));
+  public checkAndCreateMultiDirSync(paths: Array<Array<string>>): void {
+    return paths.forEach(dir => this.checkAndCreateDirSync(dir));
   }
 }

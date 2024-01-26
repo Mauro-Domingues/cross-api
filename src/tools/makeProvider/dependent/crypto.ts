@@ -48,7 +48,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       ],
       `import './CryptoProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',

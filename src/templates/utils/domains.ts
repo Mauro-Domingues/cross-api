@@ -6,8 +6,8 @@ export class CreateDomainsManager {
   mkdirSync,
   appendFileSync,
   writeFileSync,
-} ${'from'} 'fs';
-import { resolve } ${'from'} 'path';
+} ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
 
 const basePath = resolve(__dirname, '..', 'assets', 'domains.txt');
 

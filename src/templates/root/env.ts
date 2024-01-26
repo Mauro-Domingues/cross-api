@@ -3,7 +3,6 @@ export class CreateEnv {
     return `# Api
 PORT=3333
 API_URL=http://localhost:3333
-WEB_URL=http://localhost:3000
 NODE_ENV=development
 
 # Auth
@@ -53,8 +52,8 @@ MAIL_REGION=us-east-1
 QUEUE_DRIVER=bull
 
 # Notification
-NOTIFICATION_PROVIDER=firebase
-# NOTIFICATION_PROVIDER=onesignal
+NOTIFICATION_DRIVER=firebase
+# NOTIFICATION_DRIVER=onesignal
 
 # Firebase
 FIREBASE_API_URL=https://fcm.googleapis.com

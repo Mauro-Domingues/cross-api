@@ -82,7 +82,7 @@ export class MakeDependentInfra {
     }
 
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'shared',
         'container',
@@ -94,7 +94,7 @@ export class MakeDependentInfra {
         this.createContainer.execute(),
       );
     }
-    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+    if (!this.fileManager.checkIfExistsSync(['src', 'routes', 'index.ts'])) {
       this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),
@@ -105,7 +105,7 @@ export class MakeDependentInfra {
       this.createDependentInjection.execute(),
     );
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'routes',
         `${this.fatherNames.lowerModuleName}Router.ts`,

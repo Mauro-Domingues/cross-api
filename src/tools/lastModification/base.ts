@@ -18,7 +18,7 @@ export class BaseRegister {
   }
 
   private constructBase(): void {
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [this.basePath, 'comands'],
       [this.basePath, 'modules'],
       [this.basePath, 'providers'],
@@ -29,8 +29,8 @@ export class BaseRegister {
       [this.basePath, 'modules', 'routeInjection.log'],
       [this.basePath, 'providers', 'providerInjection.log'],
     ].forEach(path => {
-      if (!this.fileManager.checkIfExists(path)) {
-        this.fileManager.createFile(path, '');
+      if (!this.fileManager.checkIfExistsSync(path)) {
+        this.fileManager.createFileSync(path, '');
       }
     });
   }

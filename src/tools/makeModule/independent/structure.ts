@@ -29,7 +29,7 @@ export class MakeStructure {
       });
     }
 
-    return this.fileManager.checkAndCreateMultiDir([
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'modules'],
       ['src', 'shared', 'container'],
       ['src', 'routes'],

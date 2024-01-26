@@ -56,7 +56,7 @@ export class MakeInfra {
     }
 
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'shared',
         'container',
@@ -68,7 +68,7 @@ export class MakeInfra {
         this.createContainer.execute(),
       );
     }
-    if (!this.fileManager.checkIfExists(['src', 'routes', 'index.ts'])) {
+    if (!this.fileManager.checkIfExistsSync(['src', 'routes', 'index.ts'])) {
       this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
         this.createRoutes.execute(),

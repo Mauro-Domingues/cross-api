@@ -1,6 +1,6 @@
 export class CreateHandlebarsMailTemplate {
   public execute(): string {
-    return `import { readFileSync } ${'from'} 'fs';
+    return `import { readFileSync } ${'from'} 'node:fs';
 import { compile } ${'from'} 'handlebars';
 
 import { IParseMailTemplateDTO } ${'from'} '../dtos/IParseMailTemplateDTO';

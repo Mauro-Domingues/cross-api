@@ -6,15 +6,15 @@ export class CreateCrypto {
   createDecipheriv,
   createHash,
   generateKeyPairSync,
-} ${'from'} 'crypto';
+} ${'from'} 'node:crypto';
 import {
   readFileSync,
   appendFileSync,
   truncateSync,
   existsSync,
   mkdirSync,
-} ${'from'} 'fs';
-import { resolve } ${'from'} 'path';
+} ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
 import { sign, SignOptions } ${'from'} 'jsonwebtoken';
 import { JWK, pem2jwk } ${'from'} 'pem-jwk';
 import { cryptoConfig } ${'from'} '@config/crypto';

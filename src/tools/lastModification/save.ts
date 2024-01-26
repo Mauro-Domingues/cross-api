@@ -14,7 +14,7 @@ export class CreateRegister extends BaseRegister {
   }
 
   private constructModuleBase(): void {
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container'],
       ['src', 'routes'],
     ]);
@@ -22,21 +22,21 @@ export class CreateRegister extends BaseRegister {
       ['src', 'shared', 'container', 'index.ts'],
       ['src', 'routes', 'index.ts'],
     ].forEach(path => {
-      if (!this.fileManager.checkIfExists(path)) {
-        this.fileManager.createFile(path, '');
+      if (!this.fileManager.checkIfExistsSync(path)) {
+        this.fileManager.createFileSync(path, '');
       }
     });
   }
 
   private constructProviderBase(): void {
-    this.fileManager.checkAndCreateDir([
+    this.fileManager.checkAndCreateDirSync([
       'src',
       'shared',
       'container',
       'providers',
     ]);
     if (
-      !this.fileManager.checkIfExists([
+      !this.fileManager.checkIfExistsSync([
         'src',
         'shared',
         'container',
@@ -44,7 +44,7 @@ export class CreateRegister extends BaseRegister {
         'index.ts',
       ])
     ) {
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'providers', 'index.ts'],
         '',
       );
@@ -54,13 +54,13 @@ export class CreateRegister extends BaseRegister {
   private makeProvider(): void {
     this.constructProviderBase();
     if (this.providerName && this.fatherNames) {
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
       if (
-        this.fileManager.checkIfExists([
+        this.fileManager.checkIfExistsSync([
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
@@ -68,37 +68,37 @@ export class CreateRegister extends BaseRegister {
           'index.ts',
         ])
       ) {
-        const providerInjection = this.fileManager.readFile([
+        const providerInjection = this.fileManager.readFileSync([
           'src',
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'providers',
           'index.ts',
         ]);
-        this.fileManager.createFile(
+        this.fileManager.createFileSync(
           [this.basePath, 'providers', 'providerInjection.log'],
           providerInjection,
         );
       } else {
-        this.fileManager.createFile(
+        this.fileManager.createFileSync(
           [this.basePath, 'providers', 'providerInjection.log'],
           '',
         );
       }
     } else if (this.providerName) {
-      const providerInjection = this.fileManager.readFile([
+      const providerInjection = this.fileManager.readFileSync([
         'src',
         'shared',
         'container',
         'providers',
         'index.ts',
       ]);
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'providers',
         'providerInjection.log',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         [this.basePath, 'providers', 'providerInjection.log'],
         providerInjection,
       );
@@ -108,39 +108,39 @@ export class CreateRegister extends BaseRegister {
   private makeModule(): void {
     this.constructModuleBase();
     if (this.names && this.fatherNames) {
-      const moduleInjection = this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFileSync([
         'src',
         'shared',
         'container',
         'index.ts',
       ]);
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
       if (
-        this.fileManager.checkIfExists([
+        this.fileManager.checkIfExistsSync([
           'src',
           'routes',
           `${this.fatherNames.lowerModuleName}Router.ts`,
         ])
       ) {
-        const routeInjection = this.fileManager.readFile([
+        const routeInjection = this.fileManager.readFileSync([
           'src',
           'routes',
           `${this.fatherNames.lowerModuleName}Router.ts`,
         ]);
-        this.fileManager.createFile(
+        this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
@@ -151,39 +151,39 @@ const ${this.fatherNames.lowerModuleName}Router = Router();
 
 export { ${this.fatherNames.lowerModuleName}Router };
 `;
-        this.fileManager.createFile(
+        this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
       }
     } else if (this.names) {
-      const moduleInjection = this.fileManager.readFile([
+      const moduleInjection = this.fileManager.readFileSync([
         'src',
         'shared',
         'container',
         'index.ts',
       ]);
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'modules',
         'moduleInjection.log',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         [this.basePath, 'modules', 'moduleInjection.log'],
         moduleInjection,
       );
-      const routeInjection = this.fileManager.readFile([
+      const routeInjection = this.fileManager.readFileSync([
         'src',
         'routes',
         'index.ts',
       ]);
 
-      this.fileManager.truncateFile([
+      this.fileManager.truncateFileSync([
         this.basePath,
         'modules',
         'routeInjection.log',
       ]);
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         [this.basePath, 'modules', 'routeInjection.log'],
         routeInjection,
       );
@@ -197,8 +197,12 @@ export { ${this.fatherNames.lowerModuleName}Router };
       this.makeModule();
     }
 
-    this.fileManager.truncateFile([this.basePath, 'comands', 'comands.log']);
-    return this.fileManager.createFile(
+    this.fileManager.truncateFileSync([
+      this.basePath,
+      'comands',
+      'comands.log',
+    ]);
+    return this.fileManager.createFileSync(
       [this.basePath, 'comands', 'comands.log'],
       String(this.comand),
     );

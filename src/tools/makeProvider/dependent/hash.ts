@@ -48,7 +48,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
       ],
       `import './HashProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',

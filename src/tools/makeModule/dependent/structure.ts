@@ -32,7 +32,7 @@ export class MakeDependentStructure {
       });
     }
 
-    return this.fileManager.checkAndCreateMultiDir([
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'modules'],
       ['src', 'shared', 'container'],
       ['src', 'routes'],

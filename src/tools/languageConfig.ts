@@ -114,7 +114,7 @@ export class ConfigLanguage {
   }
 
   protected setLanguageOption(): void {
-    this.fileManager.truncateFile([
+    this.fileManager.truncateFileSync([
       'node_modules',
       'cross-api',
       'src',

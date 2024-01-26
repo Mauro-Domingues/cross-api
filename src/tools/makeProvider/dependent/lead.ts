@@ -54,7 +54,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
       ],
       `import './LeadProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',

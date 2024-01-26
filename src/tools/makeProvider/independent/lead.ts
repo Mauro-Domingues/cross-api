@@ -33,7 +33,7 @@ export class MakeLeadProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'index.ts'],
       `import './LeadProvider';\n`,
     );
-    this.fileManager.checkAndCreateMultiDir([
+    this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'],
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'],
       [
