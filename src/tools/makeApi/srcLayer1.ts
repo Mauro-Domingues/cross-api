@@ -7,7 +7,6 @@ import { CreateEsLintIgnore } from '@templates/root/esLintIgnore';
 import { CreateEsLintrcJson } from '@templates/root/esLintrcJson';
 import { CreateGitIgnore } from '@templates/root/gitIgnore';
 import { CreateJestConfig } from '@templates/root/jestConfig';
-import { CreateNodemonJson } from '@templates/root/nodemonJson';
 import { CreatePrettierConfig } from '@templates/root/prettierConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
 import { FileManager } from '@tools/fileManager';
@@ -18,7 +17,6 @@ export class MakeFirstLayer {
   private readonly createEsLintrcJson: CreateEsLintrcJson;
   private readonly createEsLintIgnore: CreateEsLintIgnore;
   private readonly createEditorConfig: CreateEditorConfig;
-  private readonly createNodemonJson: CreateNodemonJson;
   private readonly createBabelConfig: CreateBabelConfig;
   private readonly createJestConfig: CreateJestConfig;
   private readonly createDocConfig: CreateDocConfig;
@@ -34,7 +32,6 @@ export class MakeFirstLayer {
     this.createEsLintIgnore = new CreateEsLintIgnore();
     this.createEditorConfig = new CreateEditorConfig();
     this.createBabelConfig = new CreateBabelConfig();
-    this.createNodemonJson = new CreateNodemonJson();
     this.createJestConfig = new CreateJestConfig();
     this.createDocConfig = new CreateDocConfig();
     this.createGitIgnore = new CreateGitIgnore();
@@ -55,7 +52,6 @@ export class MakeFirstLayer {
       [['doc.config.ts'], this.createDocConfig],
       [['docker-compose.yml'], this.createDockerCompose],
       [['jest.config.ts'], this.createJestConfig],
-      [['nodemon.json'], this.createNodemonJson],
       [['prettier.config.js'], this.createPrettierConfig],
       [['tsconfig.json'], this.createTsConfig],
     ]);
