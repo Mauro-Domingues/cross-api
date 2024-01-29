@@ -1,20 +1,20 @@
 export class CreateMailConfig {
   public execute(): string {
     return `interface IMailConfigDTO {
-  driver: 'nodemailer' | 'ses';
-  config: {
-    defaults: {
-      from: {
-        name: string;
-        email: string;
+  readonly driver: 'nodemailer' | 'ses';
+  readonly config: {
+    readonly defaults: {
+      readonly from: {
+        readonly name: string;
+        readonly email: string;
       };
     };
-    host: string;
-    port: number;
-    user: string;
-    secure: boolean;
-    password: string;
-    region: string;
+    readonly host: string;
+    readonly port: number;
+    readonly user: string;
+    readonly secure: boolean;
+    readonly password: string;
+    readonly region: string;
   };
 }
 

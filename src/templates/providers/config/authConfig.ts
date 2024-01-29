@@ -1,9 +1,9 @@
 export class CreateAuthConfig {
   public execute(): string {
     return `export interface IAuthConfigDTO {
-  config: {
-    jwt: {
-      expiresIn: string;
+  readonly config: {
+    readonly jwt: {
+      readonly expiresIn: string;
     };
   };
 }

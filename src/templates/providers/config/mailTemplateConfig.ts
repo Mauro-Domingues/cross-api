@@ -1,7 +1,7 @@
 export class CreateMailTemplateConfig {
   public execute(): string {
     return `interface IMailTemplateConfigDTO {
-  driver: 'handlebars';
+  readonly driver: 'handlebars';
 }
 
 export const mailTemplateConfig: IMailTemplateConfigDTO = {

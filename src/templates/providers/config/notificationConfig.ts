@@ -1,15 +1,15 @@
 export class CreateNotificationConfig {
   public execute(): string {
     return `interface INotificationConfigDTO {
-  driver: 'onesignal' | 'firebase';
-  onesignal: {
-    api_url: string;
-    app_id: string;
-    token: string;
+  readonly driver: 'onesignal' | 'firebase';
+  readonly onesignal: {
+    readonly api_url: string;
+    readonly app_id: string;
+    readonly token: string;
   };
-  firebase: {
-    api_url: string;
-    api_key: string;
+  readonly firebase: {
+    readonly api_url: string;
+    readonly api_key: string;
   };
 }
 

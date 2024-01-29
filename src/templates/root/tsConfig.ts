@@ -6,12 +6,11 @@ export class CreateTsConfig {
     "module": "CommonJS",
     "moduleResolution": "node",
     "lib": ["ES2022"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
-    "strictPropertyInitialization": false,
     "baseUrl": "./src",
-    "allowJs": true,
     "paths": {
       "@config/*": ["config/*"],
       "@dtos/*": ["dtos/*"],
@@ -22,17 +21,26 @@ export class CreateTsConfig {
       "@shared/*": ["shared/*"],
       "@utils/*": ["utils/*"]
     },
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "skipLibCheck": true,
+    "incremental": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "importsNotUsedAsValues": "remove",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "useDefineForClassFields": true,
+    "removeComments": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts"],
-  "ts-node": { "files": true }
+  "ts-node": { "files": true },
+  "tsc-alias": {
+    "resolveFullPaths": true
+  }
 }
 `;
   }

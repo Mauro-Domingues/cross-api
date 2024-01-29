@@ -3,15 +3,15 @@ export class CreateCryptoConfig {
     return `import { resolve } ${'from'} 'node:path';
 
 interface ICryptoConfigDTO {
-  driver: 'crypto';
-  config: {
-    bytes: number;
-    algorithm: string;
-    encoding: BufferEncoding;
-    secretKey: string;
-    assetsPath: string;
-    keysPath: string;
-    jwksPath: string;
+  readonly driver: 'crypto';
+  readonly config: {
+    readonly bytes: number;
+    readonly algorithm: string;
+    readonly encoding: BufferEncoding;
+    readonly secretKey: string;
+    readonly assetsPath: string;
+    readonly keysPath: string;
+    readonly jwksPath: string;
   };
 }
 

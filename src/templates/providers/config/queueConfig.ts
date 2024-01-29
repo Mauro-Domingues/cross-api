@@ -1,11 +1,11 @@
 export class CreateQueueConfig {
   public execute(): string {
     return `interface IQueueConfigDTO {
-  driver: 'kue' | 'bull' | 'bee';
-  config: {
-    host: string;
-    port: number;
-    password: string;
+  readonly driver: 'kue' | 'bull' | 'bee';
+  readonly config: {
+    readonly host: string;
+    readonly port: number;
+    readonly password: string;
   };
 }
 

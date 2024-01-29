@@ -4,6 +4,7 @@ export class CreateGitIgnore {
 
 /src/assets/.well-known/jwks.json
 /src/assets/errors.log
+/tsconfig.tsbuildinfo
 /node_modules
 /src/keys
 /coverage

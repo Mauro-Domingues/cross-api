@@ -3,9 +3,9 @@ export class CreateCacheConfig {
     return `import { RedisOptions } ${'from'} 'ioredis';
 
 interface ICacheConfigDTO {
-  driver: 'redis';
-  config: {
-    redis: RedisOptions & { keyPrefix: string };
+  readonly driver: 'redis';
+  readonly config: {
+    readonly redis: RedisOptions;
   };
 }
 

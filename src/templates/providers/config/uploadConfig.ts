@@ -7,14 +7,19 @@ import { resolve } ${'from'} 'node:path';
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 
 interface IUploadConfigDTO {
-  driver: 'disk' | 's3';
-  config: {
-    tmpFolder: string;
-    uploadsFolder: string;
-    disk: object;
-    aws: { bucket: string; user: string; password: string; region: string };
-    multer: {
-      storage: StorageEngine;
+  readonly driver: 'disk' | 's3';
+  readonly config: {
+    readonly tmpFolder: string;
+    readonly uploadsFolder: string;
+    readonly disk: object;
+    readonly aws: {
+      readonly bucket: string;
+      readonly user: string;
+      readonly password: string;
+      readonly region: string;
+    };
+    readonly multer: {
+      readonly storage: StorageEngine;
     };
   };
 }

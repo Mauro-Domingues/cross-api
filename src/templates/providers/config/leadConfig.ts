@@ -1,12 +1,12 @@
 export class CreateLeadConfig {
   public execute(): string {
     return `interface ILeadConfigDTO {
-  driver: 'rdstation';
-  config: {
-    clientId: string;
-    clientSecret: string;
-    code: string;
-    publicApiKey: string;
+  readonly driver: 'rdstation';
+  readonly config: {
+    readonly clientId: string;
+    readonly clientSecret: string;
+    readonly code: string;
+    readonly publicApiKey: string;
   };
 }
 

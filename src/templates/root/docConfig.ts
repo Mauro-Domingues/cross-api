@@ -2,6 +2,7 @@ export class CreateDocConfig {
   public execute(): string {
     return `import { generateSpec } ${'from'} 'tsoa';
 import { resolve } ${'from'} 'node:path';
+import { compilerOptions } ${'from'} './tsconfig.json';
 
 generateSpec(
   {
@@ -44,29 +45,11 @@ generateSpec(
     },
   },
   {
-    target: 9,
-    lib: ['ES2022'],
+    ...compilerOptions,
     module: 1,
-    outDir: './dist',
-    rootDir: '.',
-    strict: true,
-    strictPropertyInitialization: false,
-    baseUrl: './src',
-    allowJs: true,
-    paths: {
-      '@modules/*': ['modules/*'],
-      '@middlewares/*': ['middlewares/*'],
-      '@config/*': ['config/*'],
-      '@shared/*': ['shared/*'],
-      '@dtos/*': ['dtos/*'],
-      '@utils/*': ['utils/*'],
-    },
-    esModuleInterop: true,
-    experimentalDecorators: true,
-    emitDecoratorMetadata: true,
-    skipLibCheck: true,
-    forceConsistentCasingInFileNames: true,
-    resolveJsonModule: true,
+    target: 9,
+    moduleResolution: 2,
+    importsNotUsedAsValues: 0,
   },
   ['node_modules', 'dist', '**/*.spec.ts'],
 );

@@ -2,7 +2,7 @@ export class CreateBabelConfig {
   public execute(): string {
     return `module.exports = {
   presets: [
-    ['@babel/preset-env', {targets: {node: 'current'}}],
+    ['@babel/preset-env', { targets: { node: 'current' } }],
     '@babel/preset-typescript'
   ],
   plugins: [
@@ -18,8 +18,8 @@ export class CreateBabelConfig {
       }
     }],
     'babel-plugin-transform-typescript-metadata',
-    ['@babel/plugin-proposal-decorators', {'legacy': true}],
-    ['@babel/plugin-proposal-class-properties', {'loose': true}]
+    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+    ['@babel/plugin-proposal-class-properties', { 'loose': true }]
   ],
 }
 `;

@@ -1,8 +1,8 @@
 export class CreateHashConfig {
   public execute(): string {
     return `interface IHashConfigDTO {
-  driver: 'bcrypt';
-  config: { secret: number };
+  readonly driver: 'bcrypt';
+  readonly config: { readonly secret: number };
 }
 
 export const hashConfig: IHashConfigDTO = {
