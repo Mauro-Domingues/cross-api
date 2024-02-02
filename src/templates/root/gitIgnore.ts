@@ -8,6 +8,7 @@ export class CreateGitIgnore {
 /node_modules
 /src/keys
 /coverage
+/.swc
 /.env
 /dist
 /tmp

@@ -42,7 +42,7 @@ yarn cross make:module [name]
 ├── .eslintignore
 ├── .eslintrc.json
 ├── .gitignore
-├── babel.config.js
+├── .swcrc
 ├── docker-compose.yml
 ├── jest.config.ts
 ├── nodemon.json

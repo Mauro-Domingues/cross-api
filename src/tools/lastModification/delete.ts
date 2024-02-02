@@ -302,7 +302,7 @@ export class DeleteRegister extends BaseRegister {
       ['.eslintignore'],
       ['.eslintrc.json'],
       ['.gitignore'],
-      ['babel.config.js'],
+      ['.swcrc'],
       ['docker-compose.yml'],
       ['doc.config.ts'],
       ['jest.config.ts'],

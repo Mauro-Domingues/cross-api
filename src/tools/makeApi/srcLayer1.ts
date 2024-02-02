@@ -1,4 +1,4 @@
-import { CreateBabelConfig } from '@templates/root/babelConfig';
+import { CreateSwcConfig } from '@templates/root/swcConfig';
 import { CreateDocConfig } from '@templates/root/docConfig';
 import { CreateDockerCompose } from '@templates/root/dockerCompose';
 import { CreateEditorConfig } from '@templates/root/editorConfig';
@@ -17,8 +17,8 @@ export class MakeFirstLayer {
   private readonly createEsLintrcJson: CreateEsLintrcJson;
   private readonly createEsLintIgnore: CreateEsLintIgnore;
   private readonly createEditorConfig: CreateEditorConfig;
-  private readonly createBabelConfig: CreateBabelConfig;
   private readonly createJestConfig: CreateJestConfig;
+  private readonly createSwcConfig: CreateSwcConfig;
   private readonly createDocConfig: CreateDocConfig;
   private readonly createGitIgnore: CreateGitIgnore;
   private readonly createTsConfig: CreateTsConfig;
@@ -31,8 +31,8 @@ export class MakeFirstLayer {
     this.createEsLintrcJson = new CreateEsLintrcJson();
     this.createEsLintIgnore = new CreateEsLintIgnore();
     this.createEditorConfig = new CreateEditorConfig();
-    this.createBabelConfig = new CreateBabelConfig();
     this.createJestConfig = new CreateJestConfig();
+    this.createSwcConfig = new CreateSwcConfig();
     this.createDocConfig = new CreateDocConfig();
     this.createGitIgnore = new CreateGitIgnore();
     this.createTsConfig = new CreateTsConfig();
@@ -48,7 +48,7 @@ export class MakeFirstLayer {
       [['.eslintignore'], this.createEsLintIgnore],
       [['.eslintrc.json'], this.createEsLintrcJson],
       [['.gitignore'], this.createGitIgnore],
-      [['babel.config.js'], this.createBabelConfig],
+      [['.swcrc'], this.createSwcConfig],
       [['doc.config.ts'], this.createDocConfig],
       [['docker-compose.yml'], this.createDockerCompose],
       [['jest.config.ts'], this.createJestConfig],

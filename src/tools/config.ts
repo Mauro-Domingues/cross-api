@@ -14,13 +14,8 @@ export class ConfigJson extends ConfigLanguage {
     this.config = new Config();
     this.shell = new Shell();
     this.devDependencies = [
-      '@babel/cli',
-      '@babel/core',
-      '@babel/node',
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-decorators',
-      '@babel/preset-env',
-      '@babel/preset-typescript',
+      '@swc/cli',
+      '@swc/core',
       '@types/bcrypt',
       '@types/cors',
       '@types/express',
@@ -36,8 +31,6 @@ export class ConfigJson extends ConfigLanguage {
       '@types/uuid',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
-      'babel-plugin-module-resolver',
-      'babel-plugin-transform-typescript-metadata',
       'eslint',
       'eslint-config-airbnb-base',
       'eslint-config-prettier',
@@ -47,6 +40,7 @@ export class ConfigJson extends ConfigLanguage {
       'eslint-plugin-prettier',
       'jest',
       'prettier',
+      'swc_mut_cjs_exports',
       'ts-node-dev',
       'tsconfig-paths',
       'typescript',
@@ -97,7 +91,8 @@ export class ConfigJson extends ConfigLanguage {
       ...jsonPackage.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
       doc: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only doc.config.ts',
-      build: 'babel src --extensions ".js,.ts" --out-dir dist --copy-files',
+      build:
+        'swc src --out-dir dist --copy-files --strip-leading-paths --ignore **/*.spec.ts --ignore src/**/dtos',
       comp: 'npx tsc && npx tsc-alias',
       test: 'set NODE_ENV=test&&jest --runInBand',
       start: 'node dist/shared/server.js',
