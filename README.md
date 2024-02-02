@@ -45,7 +45,6 @@ yarn cross make:module [name]
 ├── .swcrc
 ├── docker-compose.yml
 ├── jest.config.ts
-├── nodemon.json
 ├── package.json
 ├── prettier.config.js
 ├── tsconfig.json

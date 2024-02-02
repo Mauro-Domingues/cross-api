@@ -306,7 +306,6 @@ export class DeleteRegister extends BaseRegister {
       ['docker-compose.yml'],
       ['doc.config.ts'],
       ['jest.config.ts'],
-      ['nodemon.json'],
       ['prettier.config.js'],
       ['tsconfig.json'],
     ]);
