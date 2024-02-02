@@ -92,7 +92,7 @@ export class ConfigJson extends ConfigLanguage {
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
       doc: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only doc.config.ts',
       build:
-        'swc src --out-dir dist --copy-files --strip-leading-paths --ignore **/*.spec.ts --ignore src/**/dtos',
+        'swc src --out-dir dist --copy-files --strip-leading-paths --ignore **/*.spec.ts',
       comp: 'npx tsc && npx tsc-alias',
       test: 'set NODE_ENV=test&&jest --runInBand',
       start: 'node dist/shared/server.js',
