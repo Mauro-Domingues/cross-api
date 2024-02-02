@@ -294,7 +294,12 @@ export class DeleteRegister extends BaseRegister {
   }
 
   private makeAPi(comand: string) {
-    this.fileManager.removeMultiDir([['src'], ['dist'], ['coverage']]);
+    this.fileManager.removeMultiDir([
+      ['.swc'],
+      ['src'],
+      ['dist'],
+      ['coverage'],
+    ]);
     this.fileManager.removeMultiFile([
       ['.editorconfig'],
       ['.env'],
@@ -308,6 +313,7 @@ export class DeleteRegister extends BaseRegister {
       ['jest.config.ts'],
       ['prettier.config.js'],
       ['tsconfig.json'],
+      ['tsconfig.tsbuildinfo'],
     ]);
     return this.console.single({
       message: `- ${this.messages.reversed}: ${comand}`,
