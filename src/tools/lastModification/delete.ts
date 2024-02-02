@@ -299,6 +299,7 @@ export class DeleteRegister extends BaseRegister {
       ['src'],
       ['dist'],
       ['coverage'],
+      ['tmp'],
     ]);
     this.fileManager.removeMultiFile([
       ['.editorconfig'],
