@@ -5,7 +5,7 @@ export class CreateCacheConfig {
 interface ICacheConfigDTO {
   readonly driver: 'redis';
   readonly config: {
-    readonly redis: RedisOptions & { keyPrefix: string };
+    readonly redis: RedisOptions & { readonly keyPrefix: string };
   };
 }
 

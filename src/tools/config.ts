@@ -90,7 +90,7 @@ export class ConfigJson extends ConfigLanguage {
     jsonPackage.scripts = {
       ...jsonPackage.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
-      doc: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only doc.config.ts',
+      doc: 'ts-node-dev doc.config.ts',
       build:
         'swc src --out-dir dist --copy-files --strip-leading-paths --ignore **/*.spec.ts',
       comp: 'npx tsc && npx tsc-alias',
