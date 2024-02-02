@@ -53,7 +53,6 @@ export class MakeCacheProvider extends BaseProvider {
         ],
         this.createFakeCache,
       ],
-      [['src', 'config', 'cache.ts'], this.createCacheConfig],
       [
         [
           'src',
