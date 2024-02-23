@@ -173,7 +173,7 @@ export class DeleteRegister extends BaseRegister {
           `update${names.upperModuleName}`,
         ],
       ]);
-      this.fileManager.removeMultiFile([
+      this.fileManager.checkAndRemoveMultiFile([
         [
           'src',
           'modules',
@@ -301,7 +301,7 @@ export class DeleteRegister extends BaseRegister {
       ['coverage'],
       ['tmp'],
     ]);
-    this.fileManager.removeMultiFile([
+    this.fileManager.checkAndRemoveMultiFile([
       ['.editorconfig'],
       ['.env'],
       ['.env.template'],

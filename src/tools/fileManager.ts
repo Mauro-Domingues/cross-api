@@ -95,8 +95,12 @@ export class FileManager {
     return paths.forEach(path => this.removeDir(path));
   }
 
-  public removeMultiFile(paths: Array<Array<string>>): void {
-    return paths.forEach(file => this.removeFile(file));
+  public checkAndRemoveMultiFile(paths: Array<Array<string>>): void {
+    return paths.forEach(file => {
+      if (this.checkIfExistsSync(file)) {
+        this.removeFile(file);
+      }
+    });
   }
 
   public checkAndCreateMultiFile(
