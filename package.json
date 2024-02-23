@@ -1,16 +1,15 @@
 {
   "name": "cross-api",
-  "version": "5.3.7",
-  "type": "module",
+  "version": "5.3.8",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers, unit tests and documentation generation.",
-  "keywords": [
-    "cross-api",
-    "cross",
-    "api",
-    "cli"
-  ],
-  "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
-  "contributors": [],
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "prepublishOnly": "npx tsc && npx tsc-alias"
+  },
+  "bin": {
+    "cross": "./src/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Mauro-Domingues/cross-api"
@@ -18,13 +17,16 @@
   "bugs": {
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
   },
-  "bin": {
-    "cross": "./src/index.js"
-  },
-  "scripts": {
-    "postinstall": "npx tsc && npx tsc-alias"
-  },
+  "keywords": [
+    "cross-api",
+    "cross",
+    "api",
+    "cli"
+  ],
+  "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
   "license": "Apache-2.0",
+  "contributors": [],
+  "files": ["src/*.js"],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
@@ -37,5 +39,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.7",
     "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }
