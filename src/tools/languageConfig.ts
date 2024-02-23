@@ -66,7 +66,7 @@ export class ConfigLanguage {
       output: process.stdout,
     });
 
-    return rl.question(this.messages.answer, optionChosen => {
+    return rl.question(this.messages.answer, (optionChosen: string): void => {
       const choice = Object.keys(this.languageOptions)[
         Number(optionChosen)
       ] as keyof ILanguageOptionsDTO;
