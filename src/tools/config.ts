@@ -1,5 +1,5 @@
 import { Config } from '@templates/assets/config';
-import { createInterface } from 'readline';
+import { createInterface } from 'node:readline';
 import { Shell } from '@tools/shell';
 import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
 

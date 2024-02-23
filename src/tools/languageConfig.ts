@@ -1,4 +1,4 @@
-import { createInterface } from 'readline';
+import { createInterface } from 'node:readline';
 
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
