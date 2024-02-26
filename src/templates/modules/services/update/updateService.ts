@@ -100,7 +100,7 @@ export class Update${this.names.upperModuleName}Service {
       return {
         code: 200,
         message_code: 'UPDATED',
-        message: 'successfully updated ${this.names.lowerModuleName}',
+        message: 'Successfully updated ${this.names.lowerModuleName}',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };
     } catch (error: unknown) {

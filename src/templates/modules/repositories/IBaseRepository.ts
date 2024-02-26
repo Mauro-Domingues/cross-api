@@ -11,7 +11,7 @@ export class CreateIBaseRepository {
 } ${'from'} 'typeorm';
 
 export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
-  exists(baseData: FindManyOptions<Entity>, trx: QueryRunner): Promise<boolean>;
+  exists(baseData: FindManyOptions<Entity>, trx?: QueryRunner): Promise<boolean>;
   findAll(
     baseData: FindManyOptions<Entity> &
       Partial<{ page: number; limit: number }>,
