@@ -30,6 +30,9 @@ export class UpdateSpecController {
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
+import { v4 as uuid } ${'from'} 'uuid';
+
+const id = uuid();
 
 describe('Update${this.names.upperModuleName}Controller', (): void => {
   beforeAll(async (): Promise<void> => {
@@ -40,7 +43,7 @@ describe('Update${this.names.upperModuleName}Controller', (): void => {
       'INSERT INTO ${
         this.names.dbModuleName
       } (id, name, description) values (?, ?, ?);',
-      ['12345', ${this.names.lowerModuleName}, 'This is a ${
+      [id, '${this.names.lowerModuleName}', 'This is a ${
       this.names.lowerModuleName
     }'],
     );
@@ -54,9 +57,9 @@ describe('Update${this.names.upperModuleName}Controller', (): void => {
   it('Should be able to update a ${
     this.names.lowerModuleName
   }', async (): Promise<void> => {
-    const response = await request(app.server).put('/${
+    const response = await request(app.server).put(\`/${
       this.names.routeModuleName
-    }/12345').send({
+    }/\${id}\`).send({
       name: 'updated${this.names.upperModuleName}',
     });
 

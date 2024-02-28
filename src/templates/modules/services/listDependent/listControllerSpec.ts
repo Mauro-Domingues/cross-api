@@ -30,6 +30,7 @@ export class ListSpecDependentController {
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
+import { v4 as uuid } ${'from'} 'uuid';
 
 describe('List${this.names.upperModuleName}Controller', (): void => {
   beforeAll(async (): Promise<void> => {
@@ -40,7 +41,7 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
       'INSERT INTO ${
         this.names.dbModuleName
       } (id, name, description) values (?, ?, ?);',
-      ['12345', ${this.names.lowerModuleName}, 'This is a ${
+      [uuid(), '${this.names.lowerModuleName}', 'This is a ${
       this.names.lowerModuleName
     }'],
     );

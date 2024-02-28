@@ -19,11 +19,11 @@ export class CreateMapAndClone {
 export function mapAndCloneAttribute<Entity>(
   attribute: Partial<Entity>,
   params: Array<keyof Entity>,
-): Array<Partial<Entity>> {
+): Array<Partial<IObjectDTO>> {
   const objectArray = params.map(param => {
     return {
       [param]: Object.values(attribute)[0],
-    } as Partial<Entity>;
+    };
   });
   return objectArray;
 }

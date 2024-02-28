@@ -30,6 +30,9 @@ export class DeleteSpecDependentController {
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
+import { v4 as uuid } ${'from'} 'uuid';
+
+const id = uuid();
 
 describe('Delete${this.names.upperModuleName}Controller', (): void => {
   beforeAll(async (): Promise<void> => {
@@ -40,7 +43,7 @@ describe('Delete${this.names.upperModuleName}Controller', (): void => {
       'INSERT INTO ${
         this.names.dbModuleName
       } (id, name, description) values (?, ?, ?);',
-      ['12345', ${this.names.lowerModuleName}, 'This is a ${
+      [id, '${this.names.lowerModuleName}', 'This is a ${
       this.names.lowerModuleName
     }'],
     );
@@ -54,9 +57,9 @@ describe('Delete${this.names.upperModuleName}Controller', (): void => {
   it('Should be able to delete a ${
     this.names.lowerModuleName
   }', async (): Promise<void> => {
-    const response = await request(app.server).delete('/${
+    const response = await request(app.server).delete(\`/${
       this.names.routeModuleName
-    }/12345');
+    }/\${id}\`);
 
     expect(response.status).toBe(200);
   });
