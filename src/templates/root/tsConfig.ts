@@ -36,7 +36,7 @@ export class CreateTsConfig {
     "removeComments": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts"],
+  "exclude": ["node_modules", "dist"],
   "ts-node": { "files": true },
   "tsc-alias": {
     "resolveFullPaths": true
