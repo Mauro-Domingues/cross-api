@@ -596,7 +596,7 @@ await this.examplesRepository.softDeleteMany(
 <h4>Mappers are tools that interpret objects for the purpose of simplifying work and making code smaller and cleaner without losing its functionality and also avoid possible human errors in addition to malformed requests. All of them have dynamic typing, they are:</h4>
 <hr>
 <br>
-<h3>mapAndCloneAttribute</h3><h4>Receives as parameter a string array and another object of type { [key: string]: string }, returns an array of objects with the same value, is useful for queries find WHERE + OR</h4>
+<h3>mapAndCloneAttribute</h3><h4>Receives as parameter a key array and another object of type { [key: string]: unknown }, returns an array of objects with the same value, is useful for queries find WHERE + OR</h4>
 
 ```typescript
 // no mapper
@@ -630,7 +630,7 @@ const param: FindOptionsWhere<Example> = {
 
 const example = await this.examplesRepository.findBy(
   {
-    where: cloneAttribute(param, ['id', 'name', 'description']),
+    where: cloneAttribute<Example>(param, ['id', 'name', 'description']),
   },
   trx,
 );

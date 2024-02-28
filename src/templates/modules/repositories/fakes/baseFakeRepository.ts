@@ -46,13 +46,15 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     list: Array<Entity>;
     amount: number;
   }> {
-    const filtered: Array<Entity> = this.fakeRepository.filter(entity =>
-      (Array.isArray(where) ? where : [where]).some(property =>
-        Object.entries(property as Entity).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
-      ),
-    );
+    const filtered: Array<Entity> = where
+      ? this.fakeRepository.filter(entity =>
+          (Array.isArray(where) ? where : [where]).some(property =>
+            Object.entries(property as Entity).every(
+              ([key, value]) => entity[key] === value && !entity.deleted_at,
+            ),
+          ),
+        )
+      : this.fakeRepository;
 
     const filtredEntities = filtered.slice(
       ((page ?? 1) - 1) * (limit ?? this.fakeRepository.length),

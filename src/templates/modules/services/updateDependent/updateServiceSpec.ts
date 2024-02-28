@@ -54,8 +54,8 @@ let update${this.names.upperModuleName}Service: Update${
       this.names.upperModuleName
     }Service;
 
-describe('Update${this.names.upperModuleName}Service', () => {
-  beforeAll(async () => {
+describe('Update${this.names.upperModuleName}Service', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = FakeDataSource;
   });
 
@@ -72,7 +72,9 @@ describe('Update${this.names.upperModuleName}Service', () => {
     );
   });
 
-  it('Should be able to update a ${this.names.lowerModuleName}', async () => {
+  it('Should be able to update a ${
+    this.names.lowerModuleName
+  }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -83,9 +85,9 @@ describe('Update${this.names.upperModuleName}Service', () => {
     const updated${this.names.upperModuleName} = await update${
       this.names.upperModuleName
     }Service.execute(
-      { name: 'updated${
-        this.names.upperModuleName
-      }', description: 'This is a updated${this.names.lowerModuleName}' },
+      { ...${this.names.lowerModuleName}, description: 'This is a updated${
+      this.names.lowerModuleName
+    }' },
       ${this.names.lowerModuleName}.id,
     );
 
@@ -94,7 +96,7 @@ describe('Update${this.names.upperModuleName}Service', () => {
     }');
   });
 
-  it('should return AppError', async () => {
+  it('should return AppError', async (): Promise<void> => {
     await expect(
       update${
         this.names.upperModuleName

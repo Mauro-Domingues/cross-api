@@ -19,7 +19,7 @@ export const errorHandler = (
   _request: Request,
   response: Response,
   next: NextFunction,
-) => {
+): void => {
   const errorBody = {} as Parameters<typeof createErrorLog>[0];
 
   if (error instanceof CelebrateError) {

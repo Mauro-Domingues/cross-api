@@ -48,8 +48,8 @@ let create${this.names.upperModuleName}: Create${
       this.names.upperModuleName
     }Service;
 
-describe('Create${this.names.upperModuleName}Service', () => {
-  beforeAll(async () => {
+describe('Create${this.names.upperModuleName}Service', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = FakeDataSource;
   });
 
@@ -68,7 +68,7 @@ describe('Create${this.names.upperModuleName}Service', () => {
 
   it('should be able to create a new ${
     this.names.lowerModuleName
-  }', async () => {
+  }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await create${
       this.names.upperModuleName
     }.execute({
@@ -79,7 +79,7 @@ describe('Create${this.names.upperModuleName}Service', () => {
     expect(${this.names.lowerModuleName}.data).toHaveProperty('id');
   });
 
-  it('should return AppError', async () => {
+  it('should return AppError', async (): Promise<void> => {
     jest.spyOn(fake${
       this.names.pluralUpperModuleName
     }Repository, 'create').mockImplementationOnce(() => {

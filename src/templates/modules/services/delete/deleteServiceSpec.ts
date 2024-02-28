@@ -48,8 +48,8 @@ let delete${this.names.upperModuleName}: Delete${
       this.names.upperModuleName
     }Service;
 
-describe('Delete${this.names.upperModuleName}Service', () => {
-  beforeAll(async () => {
+describe('Delete${this.names.upperModuleName}Service', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = FakeDataSource;
   });
 
@@ -68,7 +68,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
 
   it('should be able to delete a new ${
     this.names.lowerModuleName
-  }', async () => {
+  }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -91,7 +91,7 @@ describe('Delete${this.names.upperModuleName}Service', () => {
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });
 
-  it('should return AppError', async () => {
+  it('should return AppError', async (): Promise<void> => {
     await expect(delete${
       this.names.upperModuleName
     }.execute()).rejects.toBeInstanceOf(AppError);

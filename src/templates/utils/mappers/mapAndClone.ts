@@ -16,16 +16,15 @@ export class CreateMapAndClone {
  * @returns Promise: Array<IObjectDTO>
  * @param params Array<string>
  */
-export function mapAndCloneAttribute(
-  attribute: IObjectDTO,
-  params: Array<string>,
-): Array<IObjectDTO> {
-  const objectArray: Array<IObjectDTO> = params.map((param: string) => {
+export function mapAndCloneAttribute<Entity>(
+  attribute: Partial<Entity>,
+  params: Array<keyof Entity>,
+): Array<Partial<Entity>> {
+  const objectArray = params.map(param => {
     return {
       [param]: Object.values(attribute)[0],
-    };
+    } as Partial<Entity>;
   });
-
   return objectArray;
 }
 `;

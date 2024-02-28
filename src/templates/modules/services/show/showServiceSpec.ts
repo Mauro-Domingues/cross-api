@@ -43,8 +43,8 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
     }Repository;
 let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
 
-describe('Show${this.names.upperModuleName}Service', () => {
-  beforeAll(async () => {
+describe('Show${this.names.upperModuleName}Service', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = FakeDataSource;
   });
 
@@ -57,7 +57,9 @@ describe('Show${this.names.upperModuleName}Service', () => {
     }Service(fake${this.names.pluralUpperModuleName}Repository);
   });
 
-  it('should be able to show a ${this.names.lowerModuleName}', async () => {
+  it('should be able to show a ${
+    this.names.lowerModuleName
+  }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -77,7 +79,7 @@ describe('Show${this.names.upperModuleName}Service', () => {
 
   it('should not be able to show ${
     this.names.pluralLowerModuleName
-  } with a non-existing id', async () => {
+  } with a non-existing id', async (): Promise<void> => {
     await expect(
       show${this.names.upperModuleName}.execute('non-existing-${
       this.names.lowerModuleName

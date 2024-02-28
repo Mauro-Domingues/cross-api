@@ -31,26 +31,29 @@ import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSourc
 import { Connection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 
-describe('Update${this.names.upperModuleName}Controller', () => {
-  beforeAll(async () => {
+describe('Update${this.names.upperModuleName}Controller', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = await MysqlDataSource(Connection.client).initialize();
     await Connection.mysql.runMigrations();
 
     return Connection.mysql.query(
-      \`INSERT INTO ${
+      'INSERT INTO ${
         this.names.dbModuleName
-      }(id, name, description) values('12345', '${
+      } (id, name, description) values (?, ?, ?);',
+      ['12345', ${this.names.lowerModuleName}, 'This is a ${
       this.names.lowerModuleName
-    }', 'This is a ${this.names.lowerModuleName}')\`,
+    }'],
     );
   });
 
-  afterAll(async () => {
+  afterAll(async (): Promise<void> => {
     await Connection.mysql.dropDatabase();
     return Connection.mysql.destroy();
   });
 
-  it('Should be able to update a ${this.names.lowerModuleName}', async () => {
+  it('Should be able to update a ${
+    this.names.lowerModuleName
+  }', async (): Promise<void> => {
     const response = await request(app.server).put('/${
       this.names.routeModuleName
     }/12345').send({

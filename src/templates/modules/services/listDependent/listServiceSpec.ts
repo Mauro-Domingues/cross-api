@@ -48,8 +48,8 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
 let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
 let fakeCacheProvider: FakeCacheProvider;
 
-describe('List${this.names.upperModuleName}Service', () => {
-  beforeAll(async () => {
+describe('List${this.names.upperModuleName}Service', (): void => {
+  beforeAll(async (): Promise<void> => {
     Connection.mysql = FakeDataSource;
   });
 
@@ -67,7 +67,7 @@ describe('List${this.names.upperModuleName}Service', () => {
 
   it('should be able to list all the ${
     this.names.pluralLowerModuleName
-  }', async () => {
+  }', async (): Promise<void> => {
     const ${this.names.lowerModuleName}01 = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -93,7 +93,7 @@ describe('List${this.names.upperModuleName}Service', () => {
 
   it('should be able to list all the ${
     this.names.pluralLowerModuleName
-  } using cache', async () => {
+  } using cache', async (): Promise<void> => {
     const ${this.names.lowerModuleName}01 = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -114,23 +114,16 @@ describe('List${this.names.upperModuleName}Service', () => {
       this.names.upperModuleName
     }.execute(1, 2, {});
 
-    expect(${this.names.lowerModuleName}List.data).toEqual([
-      {
-        ...${this.names.lowerModuleName}01,
-        created_at: ${this.names.lowerModuleName}01.created_at.toISOString(),
-        updated_at: ${this.names.lowerModuleName}01.updated_at.toISOString(),
-      },
-      {
-        ...${this.names.lowerModuleName}02,
-        created_at: ${this.names.lowerModuleName}02.created_at.toISOString(),
-        updated_at: ${this.names.lowerModuleName}02.updated_at.toISOString(),
-      },
-    ]);
+    expect(${this.names.lowerModuleName}List.data).toEqual(
+      JSON.parse(JSON.stringify([${this.names.lowerModuleName}01, ${
+      this.names.lowerModuleName
+    }02])),
+    );
   });
 
   it('should be able to list the ${
     this.names.pluralLowerModuleName
-  } with the specified pagination', async () => {
+  } with the specified pagination', async (): Promise<void> => {
     const ${this.names.lowerModuleName}01 = await fake${
       this.names.pluralUpperModuleName
     }Repository.create({
@@ -166,7 +159,7 @@ describe('List${this.names.upperModuleName}Service', () => {
     }01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should return AppError', async () => {
+  it('should return AppError', async (): Promise<void> => {
     jest.spyOn(fake${
       this.names.pluralUpperModuleName
     }Repository, 'findAll').mockImplementationOnce(() => {
