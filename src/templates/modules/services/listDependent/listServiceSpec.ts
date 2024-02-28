@@ -68,19 +68,18 @@ describe('List${this.names.upperModuleName}Service', (): void => {
   it('should be able to list all the ${
     this.names.pluralLowerModuleName
   }', async (): Promise<void> => {
-    const ${this.names.lowerModuleName}01 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 1',
-      description: 'This is the first ${this.names.lowerModuleName}',
-    });
-
-    const ${this.names.lowerModuleName}02 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 2',
-      description: 'This is the second ${this.names.lowerModuleName}',
-    });
+    const [${this.names.lowerModuleName}01, ${
+      this.names.lowerModuleName
+    }02] = await fake${this.names.pluralUpperModuleName}Repository.createMany([
+      {
+        name: '${this.names.lowerModuleName} 1',
+        description: 'This is the first ${this.names.lowerModuleName}',
+      },
+      {
+        name: '${this.names.lowerModuleName} 2',
+        description: 'This is the second ${this.names.lowerModuleName}',
+      },
+    ]);
 
     const ${this.names.lowerModuleName}List = await list${
       this.names.upperModuleName
@@ -94,19 +93,18 @@ describe('List${this.names.upperModuleName}Service', (): void => {
   it('should be able to list all the ${
     this.names.pluralLowerModuleName
   } using cache', async (): Promise<void> => {
-    const ${this.names.lowerModuleName}01 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 1',
-      description: 'This is the first ${this.names.lowerModuleName}',
-    });
-
-    const ${this.names.lowerModuleName}02 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 2',
-      description: 'This is the second ${this.names.lowerModuleName}',
-    });
+    const [${this.names.lowerModuleName}01, ${
+      this.names.lowerModuleName
+    }02] = await fake${this.names.pluralUpperModuleName}Repository.createMany([
+      {
+        name: '${this.names.lowerModuleName} 1',
+        description: 'This is the first ${this.names.lowerModuleName}',
+      },
+      {
+        name: '${this.names.lowerModuleName} 2',
+        description: 'This is the second ${this.names.lowerModuleName}',
+      },
+    ]);
 
     await list${this.names.upperModuleName}.execute(1, 2, {});
 
@@ -124,24 +122,22 @@ describe('List${this.names.upperModuleName}Service', (): void => {
   it('should be able to list the ${
     this.names.pluralLowerModuleName
   } with the specified pagination', async (): Promise<void> => {
-    const ${this.names.lowerModuleName}01 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 1',
-      description: 'This is the first ${this.names.lowerModuleName}',
-    });
-
-    const ${this.names.lowerModuleName}02 = await fake${
-      this.names.pluralUpperModuleName
-    }Repository.create({
-      name: '${this.names.lowerModuleName} 2',
-      description: 'This is the second ${this.names.lowerModuleName}',
-    });
-
-    await fake${this.names.pluralUpperModuleName}Repository.create({
-      name: '${this.names.lowerModuleName} 3',
-      description: 'This is the third ${this.names.lowerModuleName}',
-    });
+    const [${this.names.lowerModuleName}01, ${
+      this.names.lowerModuleName
+    }02] = await fake${this.names.pluralUpperModuleName}Repository.createMany([
+      {
+        name: '${this.names.lowerModuleName} 1',
+        description: 'This is the first ${this.names.lowerModuleName}',
+      },
+      {
+        name: '${this.names.lowerModuleName} 2',
+        description: 'This is the second ${this.names.lowerModuleName}',
+      },
+      {
+        name: '${this.names.lowerModuleName} 3',
+        description: 'This is the third ${this.names.lowerModuleName}',
+      },
+    ]);
 
     const ${this.names.lowerModuleName}List01 = await list${
       this.names.upperModuleName
