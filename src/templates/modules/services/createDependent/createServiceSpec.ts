@@ -50,7 +50,7 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
       this.names.pluralUpperModuleName
     }Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let create${this.names.upperModuleName}: Create${
+let create${this.names.upperModuleName}Service: Create${
       this.names.upperModuleName
     }Service;
 
@@ -64,7 +64,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
       this.names.pluralUpperModuleName
     }Repository();
     fakeCacheProvider = new FakeCacheProvider();
-    create${this.names.upperModuleName} = new Create${
+    create${this.names.upperModuleName}Service = new Create${
       this.names.upperModuleName
     }Service(
       fake${this.names.pluralUpperModuleName}Repository,
@@ -95,7 +95,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
     });
 
     await expect(
-      create${this.names.upperModuleName}.execute({
+      create${this.names.upperModuleName}Service.execute({
         name: '${this.names.lowerModuleName}',
         description: 'This is a ${this.names.lowerModuleName}',
       }),

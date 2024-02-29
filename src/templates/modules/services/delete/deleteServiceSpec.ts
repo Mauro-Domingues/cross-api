@@ -44,7 +44,7 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
       this.names.pluralUpperModuleName
     }Repository;
 let fakeCacheProvider: FakeCacheProvider;
-let delete${this.names.upperModuleName}: Delete${
+let delete${this.names.upperModuleName}Service: Delete${
       this.names.upperModuleName
     }Service;
 
@@ -58,7 +58,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
       this.names.pluralUpperModuleName
     }Repository();
     fakeCacheProvider = new FakeCacheProvider();
-    delete${this.names.upperModuleName} = new Delete${
+    delete${this.names.upperModuleName}Service = new Delete${
       this.names.upperModuleName
     }Service(
       fake${this.names.pluralUpperModuleName}Repository,
@@ -76,7 +76,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    await delete${this.names.upperModuleName}.execute(${
+    await delete${this.names.upperModuleName}Service.execute(${
       this.names.lowerModuleName
     }.id);
 
@@ -94,7 +94,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
   it('should return AppError', async (): Promise<void> => {
     await expect(delete${
       this.names.upperModuleName
-    }.execute()).rejects.toBeInstanceOf(AppError);
+    }Service.execute()).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

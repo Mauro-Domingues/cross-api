@@ -45,7 +45,9 @@ import { List${this.names.upperModuleName}Service } ${'from'} './List${
 let fake${this.names.pluralUpperModuleName}Repository: Fake${
       this.names.pluralUpperModuleName
     }Repository;
-let list${this.names.upperModuleName}: List${this.names.upperModuleName}Service;
+let list${this.names.upperModuleName}Service: List${
+      this.names.upperModuleName
+    }Service;
 let fakeCacheProvider: FakeCacheProvider;
 
 describe('List${this.names.upperModuleName}Service', (): void => {
@@ -58,7 +60,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       this.names.pluralUpperModuleName
     }Repository();
     fakeCacheProvider = new FakeCacheProvider();
-    list${this.names.upperModuleName} = new List${
+    list${this.names.upperModuleName}Service = new List${
       this.names.upperModuleName
     }Service(fake${
       this.names.pluralUpperModuleName
@@ -106,7 +108,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       },
     ]);
 
-    await list${this.names.upperModuleName}.execute(1, 2, {});
+    await list${this.names.upperModuleName}Service.execute(1, 2, {});
 
     const ${this.names.lowerModuleName}List = await list${
       this.names.upperModuleName

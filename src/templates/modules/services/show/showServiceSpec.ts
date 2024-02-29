@@ -41,7 +41,9 @@ import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
 let fake${this.names.pluralUpperModuleName}Repository: Fake${
       this.names.pluralUpperModuleName
     }Repository;
-let show${this.names.upperModuleName}: Show${this.names.upperModuleName}Service;
+let show${this.names.upperModuleName}Service: Show${
+      this.names.upperModuleName
+    }Service;
 
 describe('Show${this.names.upperModuleName}Service', (): void => {
   beforeAll(async (): Promise<void> => {
@@ -52,7 +54,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${
       this.names.pluralUpperModuleName
     }Repository();
-    show${this.names.upperModuleName} = new Show${
+    show${this.names.upperModuleName}Service = new Show${
       this.names.upperModuleName
     }Service(fake${this.names.pluralUpperModuleName}Repository);
   });
@@ -69,7 +71,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
 
     const get${this.names.upperModuleName} = await show${
       this.names.upperModuleName
-    }.execute(${this.names.lowerModuleName}.id);
+    }Service.execute(${this.names.lowerModuleName}.id);
 
     expect(get${this.names.upperModuleName}.data).toHaveProperty('id');
     expect(get${this.names.upperModuleName}.data).toEqual(${
@@ -81,7 +83,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     this.names.pluralLowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(
-      show${this.names.upperModuleName}.execute('non-existing-${
+      show${this.names.upperModuleName}Service.execute('non-existing-${
       this.names.lowerModuleName
     }-id'),
     ).rejects.toBeInstanceOf(AppError);
