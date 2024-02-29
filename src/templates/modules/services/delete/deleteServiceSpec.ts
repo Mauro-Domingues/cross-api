@@ -66,7 +66,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
     );
   });
 
-  it('should be able to delete a new ${
+  it('should be able to delete a ${
     this.names.lowerModuleName
   }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
@@ -91,10 +91,14 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });
 
-  it('should return AppError', async (): Promise<void> => {
-    await expect(delete${
-      this.names.upperModuleName
-    }Service.execute()).rejects.toBeInstanceOf(AppError);
+  it('should not be able to delete a ${
+    this.names.lowerModuleName
+  } with a non-existing id', async (): Promise<void> => {
+    await expect(
+      delete${this.names.upperModuleName}Service.execute('non-existing-${
+      this.names.lowerModuleName
+    }-id'),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

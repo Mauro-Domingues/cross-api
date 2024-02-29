@@ -52,7 +52,7 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
     return Connection.mysql.destroy();
   });
 
-  it('Should be able to list ${
+  it('Should be able to list all ${
     this.names.pluralLowerModuleName
   }', async (): Promise<void> => {
     const response = await request(app.server).get('/${

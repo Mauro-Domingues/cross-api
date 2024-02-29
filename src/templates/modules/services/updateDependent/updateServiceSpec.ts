@@ -96,11 +96,14 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     }');
   });
 
-  it('should return AppError', async (): Promise<void> => {
+  it('non-existing-${
+    this.names.lowerModuleName
+  }-id', async (): Promise<void> => {
     await expect(
-      update${
-        this.names.upperModuleName
-      }Service.execute({ name: '', description: '' }),
+      update${this.names.upperModuleName}Service.execute(
+        { name: '', description: '' },
+        'non-existing-${this.names.lowerModuleName}-id',
+      ),
     ).rejects.toBeInstanceOf(AppError);
   });
 });
