@@ -96,9 +96,9 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     }');
   });
 
-  it('non-existing-${
+  it('should not be able to update a ${
     this.names.lowerModuleName
-  }-id', async (): Promise<void> => {
+  } with a non-existing id', async (): Promise<void> => {
     await expect(
       update${this.names.upperModuleName}Service.execute(
         { name: '', description: '' },

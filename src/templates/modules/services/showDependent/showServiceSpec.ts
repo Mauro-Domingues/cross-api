@@ -82,8 +82,8 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     });
   });
 
-  it('should not be able to show ${
-    this.names.pluralLowerModuleName
+  it('should not be able to show a ${
+    this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(
       show${this.names.upperModuleName}Service.execute('non-existing-${
