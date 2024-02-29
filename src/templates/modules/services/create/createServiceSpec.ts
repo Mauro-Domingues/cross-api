@@ -71,7 +71,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
   }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await create${
       this.names.upperModuleName
-    }.execute({
+    }Service.execute({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

@@ -82,7 +82,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     const ${this.names.lowerModuleName}List = await list${
       this.names.upperModuleName
-    }.execute(1, 2, {});
+    }Service.execute(1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual([${
       this.names.lowerModuleName
@@ -109,7 +109,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     const ${this.names.lowerModuleName}List = await list${
       this.names.upperModuleName
-    }.execute(1, 2, {});
+    }Service.execute(1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual(
       JSON.parse(JSON.stringify([${this.names.lowerModuleName}01, ${
@@ -140,7 +140,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     const ${this.names.lowerModuleName}List01 = await list${
       this.names.upperModuleName
-    }.execute(1, 1, {});
+    }Service.execute(1, 1, {});
 
     expect(${this.names.lowerModuleName}List01.data).toEqual([${
       this.names.lowerModuleName
@@ -148,7 +148,8 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     const ${this.names.lowerModuleName}List02 = await list${
       this.names.upperModuleName
-    }.execute(1, 2, {});
+    }Service.execute(1, 2, {});
+
     expect(${this.names.lowerModuleName}List02.data).toEqual([${
       this.names.lowerModuleName
     }01, ${this.names.lowerModuleName}02]);
@@ -165,7 +166,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     await expect(list${
       this.names.upperModuleName
-    }.execute(1, 2, {})).rejects.toBeInstanceOf(AppError);
+    }Service.execute(1, 2, {})).rejects.toBeInstanceOf(AppError);
   });
 });
 `;
