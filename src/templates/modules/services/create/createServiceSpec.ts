@@ -88,12 +88,11 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
       }');
     });
 
-    await expect(
-      create${this.names.upperModuleName}Service.execute({
-        name: '${this.names.lowerModuleName}',
-        description: 'This is a ${this.names.lowerModuleName}',
-      }),
-    ).rejects.toBeInstanceOf(AppError);
+    await expect(create${
+      this.names.upperModuleName
+    }Service.execute({})).rejects.toBeInstanceOf(
+      AppError,
+    );
   });
 });
 `;

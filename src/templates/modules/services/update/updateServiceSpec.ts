@@ -94,10 +94,9 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(
-      update${this.names.upperModuleName}Service.execute(
-        { name: '', description: '' },
-        'non-existing-${this.names.lowerModuleName}-id',
-      ),
+      update${this.names.upperModuleName}Service.execute({}, 'non-existing-${
+      this.names.lowerModuleName
+    }-id'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });
