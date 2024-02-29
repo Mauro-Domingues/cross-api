@@ -42,7 +42,7 @@ describe('Delete${this.names.upperModuleName}Controller', (): void => {
     return Connection.mysql.query(
       'INSERT INTO ${
         this.names.dbModuleName
-      } (id, name, description) values (?, ?, ?);',
+      } (id, name, description) VALUES (?, ?, ?);',
       [id, '${this.names.lowerModuleName}', 'This is a ${
       this.names.lowerModuleName
     }'],

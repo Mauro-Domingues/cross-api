@@ -40,7 +40,7 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
     return Connection.mysql.query(
       'INSERT INTO ${
         this.names.dbModuleName
-      } (id, name, description) values (?, ?, ?);',
+      } (id, name, description) VALUES (?, ?, ?);',
       [uuid(), '${this.names.lowerModuleName}', 'This is a ${
       this.names.lowerModuleName
     }'],
