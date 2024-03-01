@@ -1,14 +1,18 @@
 export class CreateBaseFakeRepository {
   public execute(): string {
     return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
-import { ObjectLiteral } ${'from'} 'typeorm';
 import { v4 as uuid } ${'from'} 'uuid';
+import { ObjectLiteral } ${'from'} 'typeorm';
 import { IBaseRepositoryDTO } ${'from'} '../IBaseRepository';
 
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepositoryDTO<Entity>
 {
   protected fakeRepository: Array<Entity> = [];
+
+  public constructor(
+    protected readonly Entity: new (...args: unknown[]) => Entity,
+  ) {}
 
   public async exists({
     where,
@@ -97,13 +101,13 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async create(
     baseData: Parameters<IBaseRepositoryDTO<Entity>['create']>[0],
   ): Promise<Entity> {
-    const base = {
+    const base = Object.assign(new this.Entity(), {
       ...baseData,
       id: uuid(),
       created_at: new Date(),
       updated_at: new Date(),
       deleted_at: null,
-    } as unknown as Entity;
+    });
 
     this.fakeRepository.push(base);
 
@@ -114,13 +118,13 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     baseData: Parameters<IBaseRepositoryDTO<Entity>['createMany']>[0],
   ): Promise<Array<Entity>> {
     return (baseData as Array<Entity>).map(data => {
-      const base = {
+      const base = Object.assign(new this.Entity(), {
         ...data,
         id: uuid(),
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null,
-      } as unknown as Entity;
+      });
 
       this.fakeRepository.push(base);
 
@@ -135,10 +139,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       entity => entity.id === baseData.id,
     );
 
-    this.fakeRepository[findEntity] = {
+    Object.assign(this.fakeRepository[findEntity], {
       ...baseData,
       updated_at: new Date(),
-    } as Entity;
+    });
 
     return this.fakeRepository[findEntity];
   }
@@ -151,7 +155,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         entity => entity.id === data.id,
       );
 
-      this.fakeRepository[findEntity] = { ...data, updated_at: new Date() };
+      Object.assign(this.fakeRepository[findEntity], {
+        ...data,
+        updated_at: new Date(),
+      });
 
       return this.fakeRepository[findEntity];
     });
