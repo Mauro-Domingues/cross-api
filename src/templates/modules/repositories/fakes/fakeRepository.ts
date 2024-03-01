@@ -41,7 +41,8 @@ import { FakeBaseRepository } ${'from'} '@shared/container/modules/repositories/
 
 export class Fake${this.names.pluralUpperModuleName}Repository
   extends FakeBaseRepository<${this.names.upperModuleName}>
-  implements I${this.names.pluralUpperModuleName}RepositoryDTO {
+  implements I${this.names.pluralUpperModuleName}RepositoryDTO
+{
   public constructor() {
     super(${this.names.upperModuleName});
   }
