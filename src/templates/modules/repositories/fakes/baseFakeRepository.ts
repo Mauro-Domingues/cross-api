@@ -11,7 +11,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   protected fakeRepository: Array<Entity> = [];
 
   public constructor(
-    protected readonly Entity: new (...args: unknown[]) => Entity,
+    private readonly Entity: new (...args: unknown[]) => Entity,
   ) {}
 
   public async exists({
