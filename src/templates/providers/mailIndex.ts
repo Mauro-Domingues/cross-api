@@ -7,14 +7,14 @@ import { NodemailerMailProvider } ${'from'} './implementations/NodemailerMailPro
 import { SESMailProvider } ${'from'} './implementations/SESMailProvider';
 import { IMailProviderDTO } ${'from'} './models/IMailProvider';
 
-const providers = {
-  nodemailer: container.resolve(NodemailerMailProvider),
-  ses: container.resolve(SESMailProvider),
+const providers: Record<typeof mailConfig.driver, () => IMailProviderDTO> = {
+  nodemailer: () => container.resolve(NodemailerMailProvider),
+  ses: () => container.resolve(SESMailProvider),
 };
 
 container.registerInstance<IMailProviderDTO>(
   'MailProvider',
-  providers[mailConfig.driver],
+  providers[mailConfig.driver](),
 );
 `;
   }

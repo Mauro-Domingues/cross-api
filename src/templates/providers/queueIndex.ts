@@ -7,15 +7,15 @@ import { IQueueProviderDTO } ${'from'} './models/IQueueProvider';
 import { BullProvider } ${'from'} './implementations/BullProvider';
 import { BeeProvider } ${'from'} './implementations/BeeProvider';
 
-const providers = {
-  kue: container.resolve(KueProvider),
-  bull: container.resolve(BullProvider),
-  bee: container.resolve(BeeProvider),
+const providers: Record<typeof queueConfig.driver, () => IQueueProviderDTO> = {
+  kue: () => container.resolve(KueProvider),
+  bull: () => container.resolve(BullProvider),
+  bee: () => container.resolve(BeeProvider),
 };
 
 container.registerInstance<IQueueProviderDTO>(
   'QueueProvider',
-  providers[queueConfig.driver],
+  providers[queueConfig.driver](),
 );
 `;
   }

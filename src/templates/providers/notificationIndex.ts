@@ -7,9 +7,12 @@ import { OneSignalProvider } ${'from'} './implementations/OneSignalProvider';
 import { INotificationProviderDTO } ${'from'} './models/INotificationProvider';
 import { FirebaseProvider } ${'from'} './implementations/FirebaseProvider';
 
-const providers = {
-  onesignal: container.resolve(OneSignalProvider),
-  firebase: container.resolve(FirebaseProvider),
+const providers: Record<
+  typeof notificationConfig.driver,
+  () => INotificationProviderDTO
+> = {
+  onesignal: () => container.resolve(OneSignalProvider),
+  firebase: () => container.resolve(FirebaseProvider),
 };
 
 container.registerInstance<INotificationProviderDTO>(

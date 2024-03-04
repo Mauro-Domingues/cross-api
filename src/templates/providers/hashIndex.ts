@@ -6,13 +6,13 @@ import { hashConfig } ${'from'} '@config/hash';
 import { BCryptHashProvider } ${'from'} './implementations/BCryptHashProvider';
 import { IHashProviderDTO } ${'from'} './models/IHashProvider';
 
-const providers = {
-  bcrypt: container.resolve(BCryptHashProvider),
+const providers: Record<typeof hashConfig.driver, () => IHashProviderDTO> = {
+  bcrypt: () => container.resolve(BCryptHashProvider),
 };
 
 container.registerInstance<IHashProviderDTO>(
   'HashProvider',
-  providers[hashConfig.driver],
+  providers[hashConfig.driver](),
 );
 `;
   }

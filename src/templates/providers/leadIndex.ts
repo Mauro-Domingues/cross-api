@@ -6,8 +6,8 @@ import { leadConfig } ${'from'} '@config/lead';
 import { RDStationProvider } ${'from'} './implementations/RDStationProvider';
 import { ILeadProviderDTO } ${'from'} './models/ILeadProvider';
 
-const providers = {
-  rdstation: container.resolve(RDStationProvider),
+const providers: Record<typeof leadConfig.driver, () => ILeadProviderDTO> = {
+  rdstation: () => container.resolve(RDStationProvider),
 };
 
 container.registerInstance<ILeadProviderDTO>(

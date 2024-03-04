@@ -59,7 +59,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
     Connection.mysql = FakeDataSource;
   });
 
-  beforeEach(() => {
+  beforeEach((): void => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${
       this.names.pluralUpperModuleName
     }Repository();

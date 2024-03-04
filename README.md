@@ -1,5 +1,7 @@
 ﻿﻿<h1>cross-api</h1>
 
+<h3>A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.</h3>
+
 <h3> Check an application example at <a href="https://github.com/Mauro-Domingues/personal-vault-using-cross-api">personal-vault-using-cross-api@^5.0.8</a>
 
 <hr>
