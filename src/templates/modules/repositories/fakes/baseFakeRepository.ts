@@ -14,29 +14,55 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     private readonly Entity: new (...args: unknown[]) => Entity,
   ) {}
 
+  private parseWhere<Type extends ObjectLiteral>(
+    entity: Type,
+    where: unknown,
+  ): boolean {
+    return (Array.isArray(where) ? where : [where]).some(property =>
+      Object.entries(property as Entity).every(([key, value]) => {
+        if (Array.isArray(value)) {
+          return (
+            Array.isArray(entity[key]) &&
+            value.every(subValue =>
+              entity[key].some((subEntity: ObjectLiteral) =>
+                this.parseWhere(subEntity, subValue),
+              ),
+            )
+          );
+        }
+        if (typeof value === 'object' && value !== null) {
+          return (
+            typeof entity[key] === 'object' &&
+            entity[key] !== null &&
+            Object.entries(value).every(([subKey, subValue]) =>
+              this.parseWhere(entity[key][subKey], subValue),
+            )
+          );
+        }
+        return entity[key] === value;
+      }),
+    );
+  }
+
   public async exists({
     where,
+    withDeleted,
   }: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0]): Promise<boolean> {
-    return this.fakeRepository.some(entity =>
-      (Array.isArray(where) ? where : [where]).some(property =>
-        Object.entries(property as Entity).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
-      ),
+    return this.fakeRepository.some(
+      entity =>
+        this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
     );
   }
 
   public async findBy({
     where,
+    withDeleted,
   }: Parameters<
     IBaseRepositoryDTO<Entity>['findBy']
   >[0]): Promise<Entity | null> {
-    const findEntity: Entity | undefined = this.fakeRepository.find(entity =>
-      (Array.isArray(where) ? where : [where]).some(property =>
-        Object.entries(property as Entity).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
-        ),
-      ),
+    const findEntity: Entity | undefined = this.fakeRepository.find(
+      entity =>
+        this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
     );
 
     return findEntity ?? null;
@@ -46,17 +72,16 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     page,
     limit,
     where,
+    withDeleted,
   }: Parameters<IBaseRepositoryDTO<Entity>['findAll']>[0]): Promise<{
     list: Array<Entity>;
     amount: number;
   }> {
     const filtered: Array<Entity> = where
-      ? this.fakeRepository.filter(entity =>
-          (Array.isArray(where) ? where : [where]).some(property =>
-            Object.entries(property as Entity).every(
-              ([key, value]) => entity[key] === value && !entity.deleted_at,
-            ),
-          ),
+      ? this.fakeRepository.filter(
+          entity =>
+            this.parseWhere(entity, where) &&
+            (withDeleted ?? !entity.deleted_at),
         )
       : this.fakeRepository;
 
@@ -70,31 +95,37 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
   public async findIn({
     where,
+    withDeleted,
   }: Parameters<IBaseRepositoryDTO<Entity>['findIn']>[0]): Promise<
     Array<Entity>
   > {
-    return this.fakeRepository.filter(entity =>
-      Object.entries(where).every(([key, values]) =>
-        (values as Array<Entity[keyof Entity]>).includes(
-          entity[key as keyof Entity],
-        ),
-      ),
+    return this.fakeRepository.filter(
+      entity =>
+        Object.entries(where).every(([key, values]) =>
+          (values as Array<Entity[keyof Entity]>).includes(
+            entity[key as keyof Entity],
+          ),
+        ) &&
+        (withDeleted ?? !entity.deleted_at),
     );
   }
 
   public async findLike({
     where,
+    withDeleted,
   }: Parameters<IBaseRepositoryDTO<Entity>['findLike']>[0]): Promise<
     Array<Entity>
   > {
-    return this.fakeRepository.filter(entity =>
-      (Array.isArray(where) ? where : [where]).some(condition =>
-        Object.entries(condition).every(([key, value]) => {
-          return entity[key as keyof Entity]
-            ?.toString()
-            ?.includes(value?.toString()?.replace(/^%|%$/g, ''));
-        }),
-      ),
+    return this.fakeRepository.filter(
+      entity =>
+        (Array.isArray(where) ? where : [where]).some(condition =>
+          Object.entries(condition).every(([key, value]) => {
+            return entity[key as keyof Entity]
+              ?.toString()
+              ?.includes(value?.toString()?.replace(/^%|%$/g, ''));
+          }),
+        ) &&
+        (withDeleted ?? !entity.deleted_at),
     );
   }
 

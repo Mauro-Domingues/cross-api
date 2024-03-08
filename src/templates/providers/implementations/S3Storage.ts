@@ -1,6 +1,6 @@
 export class CreateS3Storage {
   public execute(): string {
-    return `import { uploadConfig } ${'from'} '@config/upload';
+    return `import { storageConfig } ${'from'} '@config/storage';
 import {
   S3Client,
   PutObjectCommand,
@@ -20,15 +20,15 @@ export class S3StorageProvider implements IStorageProviderDTO {
   public constructor() {
     this.client = new S3Client({
       credentials: {
-        accessKeyId: uploadConfig.config.aws.user,
-        secretAccessKey: uploadConfig.config.aws.user,
+        accessKeyId: storageConfig.config.aws.user,
+        secretAccessKey: storageConfig.config.aws.user,
       },
-      region: uploadConfig.config.aws.region,
+      region: storageConfig.config.aws.region,
     });
   }
 
   public async saveFile(file: string): Promise<string> {
-    const originalPath = resolve(uploadConfig.config.tmpFolder, file);
+    const originalPath = resolve(storageConfig.config.tmpFolder, file);
 
     const ContentType = getType(originalPath);
 
@@ -40,7 +40,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
 
     await this.client.send(
       new PutObjectCommand({
-        Bucket: uploadConfig.config.aws.bucket,
+        Bucket: storageConfig.config.aws.bucket,
         Key: file,
         ACL: 'public-read',
         Body: fileContent,
@@ -56,7 +56,7 @@ export class S3StorageProvider implements IStorageProviderDTO {
   public async deleteFile(file: string): Promise<void> {
     await this.client.send(
       new DeleteObjectCommand({
-        Bucket: uploadConfig.config.aws.bucket,
+        Bucket: storageConfig.config.aws.bucket,
         Key: file,
       }),
     );

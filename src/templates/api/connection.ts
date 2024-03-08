@@ -18,7 +18,7 @@ export abstract class Connection {
 
 // Image examples
 
-// import { uploadConfig } ${'from'} '@config/upload';
+// import { storageConfig } ${'from'} '@config/storage';
 // import { Exclude, Expose } ${'from'} 'class-transformer';
 //
 // @Exclude()
@@ -30,11 +30,11 @@ export abstract class Connection {
 //   if (!this.image) {
 //     return null;
 //   }
-//   switch (uploadConfig.driver) {
+//   switch (storageConfig.driver) {
 //     case "disk":
 //       return \`\${process.env.API_URL}/uploads/\${this.image}\`;
 //     case "s3":
-//       return \`https://\${uploadConfig.config.aws.bucket}.s3.amazonaws.com/\${this.image}\`;
+//       return \`https://\${storageConfig.config.aws.bucket}.s3.amazonaws.com/\${this.image}\`;
 //     default:
 //       return null;
 //   }

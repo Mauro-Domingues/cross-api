@@ -3,11 +3,13 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
+import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { BaseProvider } from './base';
 
 export class MakeCryptoProvider extends BaseProvider {
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
+  private readonly createFakeCrypto: CreateFakeCrypto;
   private readonly createICryptoDTO: CreateICryptoDTO;
   private readonly createICrypto: CreateICrypto;
   private readonly createCrypto: CreateCrypto;
@@ -16,6 +18,7 @@ export class MakeCryptoProvider extends BaseProvider {
     super();
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
+    this.createFakeCrypto = new CreateFakeCrypto();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createICrypto = new CreateICrypto();
     this.createCrypto = new CreateCrypto();
@@ -28,6 +31,7 @@ export class MakeCryptoProvider extends BaseProvider {
       `import './CryptoProvider';\n`,
     );
     this.fileManager.checkAndCreateMultiDirSync([
+      ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'fakes'],
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'dtos'],
       [
         'src',
@@ -41,6 +45,18 @@ export class MakeCryptoProvider extends BaseProvider {
     ]);
     return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
+      [
+        [
+          'src',
+          'shared',
+          'container',
+          'providers',
+          'CryptoProvider',
+          'fakes',
+          'FakeCryptoProvider.ts',
+        ],
+        this.createFakeCrypto,
+      ],
       [
         [
           'src',

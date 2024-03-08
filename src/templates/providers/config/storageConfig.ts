@@ -1,4 +1,4 @@
-export class CreateUploadConfig {
+export class CreateStorageConfig {
   public execute(): string {
     return `import { randomBytes } ${'from'} 'node:crypto';
 import { StorageEngine, diskStorage } ${'from'} 'multer';
@@ -6,7 +6,7 @@ import { resolve } ${'from'} 'node:path';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 
-interface IUploadConfigDTO {
+interface IStorageConfigDTO {
   readonly driver: 'disk' | 's3';
   readonly config: {
     readonly tmpFolder: string;
@@ -24,7 +24,7 @@ interface IUploadConfigDTO {
   };
 }
 
-export const uploadConfig: IUploadConfigDTO = {
+export const storageConfig: IStorageConfigDTO = {
   driver: process.env.STORAGE_DRIVER,
   config: {
     tmpFolder,

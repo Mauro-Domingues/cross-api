@@ -1,4 +1,4 @@
-import { CreateUploadConfig } from '@templates/providers/config/uploadConfig';
+import { CreateStorageConfig } from '@templates/providers/config/storageConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
@@ -8,8 +8,8 @@ import { IModuleNamesDTO } from '@tools/names';
 import { DependentBaseProvider } from './base';
 
 export class MakeDependentStorageProvider extends DependentBaseProvider {
+  private readonly createStorageConfig: CreateStorageConfig;
   private readonly createStorageIndex: CreateStorageIndex;
-  private readonly createUploadConfig: CreateUploadConfig;
   private readonly createDiskStorage: CreateDiskStorage;
   private readonly createFakeStorage: CreateFakeStorage;
   private readonly createS3Storage: CreateS3Storage;
@@ -21,8 +21,8 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       | undefined,
   ) {
     super(fatherNames);
+    this.createStorageConfig = new CreateStorageConfig();
     this.createStorageIndex = new CreateStorageIndex();
-    this.createUploadConfig = new CreateUploadConfig();
     this.createDiskStorage = new CreateDiskStorage();
     this.createFakeStorage = new CreateFakeStorage();
     this.createS3Storage = new CreateS3Storage();
@@ -78,7 +78,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       ],
     ]);
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'upload.ts'], this.createUploadConfig],
+      [['src', 'config', 'upload.ts'], this.createStorageConfig],
       [
         [
           'src',

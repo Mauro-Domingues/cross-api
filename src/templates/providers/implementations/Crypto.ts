@@ -67,6 +67,10 @@ export class CryptoProvider implements ICryptoProviderDTO {
     return decrpyted.toString();
   }
 
+  public generateRefreshToken(ip: string): string {
+    return createHash('sha256').update(ip).digest('hex');
+  }
+
   public generateJwt(
     payload: object,
     ip: string,
@@ -85,7 +89,7 @@ export class CryptoProvider implements ICryptoProviderDTO {
       algorithm: 'RS256',
     });
 
-    const refreshToken = createHash('sha256').update(ip).digest('hex');
+    const refreshToken = this.generateRefreshToken(ip);
 
     return {
       jwt_token: jwtToken,

@@ -4,11 +4,13 @@ import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { IModuleNamesDTO } from '@tools/names';
+import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { DependentBaseProvider } from './base';
 
 export class MakeDependentCryptoProvider extends DependentBaseProvider {
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
+  private readonly createFakeCrypto: CreateFakeCrypto;
   private readonly createICryptoDTO: CreateICryptoDTO;
   private readonly createICrypto: CreateICrypto;
   private readonly createCrypto: CreateCrypto;
@@ -21,6 +23,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
     super(fatherNames);
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
+    this.createFakeCrypto = new CreateFakeCrypto();
     this.createICryptoDTO = new CreateICryptoDTO();
     this.createICrypto = new CreateICrypto();
     this.createCrypto = new CreateCrypto();
@@ -55,6 +58,14 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
         this.fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
         'dtos',
       ],
       [
@@ -76,6 +87,18 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
     ]);
     return this.fileManager.checkAndCreateMultiFile([
       [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
+      [
+        [
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'CryptoProvider',
+          'fakes',
+          'FakeCryptoProvider.ts',
+        ],
+        this.createFakeCrypto,
+      ],
       [
         [
           'src',

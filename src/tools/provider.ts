@@ -29,7 +29,7 @@ export class Provider {
     | 'mailTemplate'
     | 'queue'
     | 'notification'
-    | 'upload',
+    | 'storage',
     {
       readonly name: string;
       readonly description: string;
@@ -108,8 +108,8 @@ export class Provider {
         independent: new MakeNotificationProvider(),
         dependent: new MakeDependentNotificationProvider(this.fatherNames),
       },
-      upload: {
-        name: 'upload      ',
+      storage: {
+        name: 'storage     ',
         description: 'StorageProvider     ',
         independent: new MakeStorageProvider(),
         dependent: new MakeDependentStorageProvider(this.fatherNames),
