@@ -43,7 +43,7 @@ export class MakeStorageProvider extends BaseProvider {
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'models'],
     ]);
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'upload.ts'], this.createStorageConfig],
+      [['src', 'config', 'storage.ts'], this.createStorageConfig],
       [
         [
           'src',

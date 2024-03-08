@@ -78,7 +78,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       ],
     ]);
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'upload.ts'], this.createStorageConfig],
+      [['src', 'config', 'storage.ts'], this.createStorageConfig],
       [
         [
           'src',
