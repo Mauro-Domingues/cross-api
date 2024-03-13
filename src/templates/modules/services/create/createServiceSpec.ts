@@ -33,7 +33,7 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { Connection } ${'from'} '@shared/typeorm';
+import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
@@ -47,10 +47,11 @@ let fakeCacheProvider: FakeCacheProvider;
 let create${this.names.upperModuleName}Service: Create${
       this.names.upperModuleName
     }Service;
+let connection: IConnectionDTO;
 
 describe('Create${this.names.upperModuleName}Service', (): void => {
-  beforeAll(async (): Promise<void> => {
-    Connection.mysql = FakeDataSource;
+  beforeAll((): void => {
+    connection = new Connection('database_test', FakeDataSource);
   });
 
   beforeEach((): void => {
@@ -63,6 +64,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
     }Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
+      connection,
     );
   });
 

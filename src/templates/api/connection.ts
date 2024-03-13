@@ -2,19 +2,22 @@ export class CreateConnection {
   public execute(): string {
     return `import { DataSource } ${'from'} 'typeorm';
 
-export abstract class Connection {
-  static client: string;
+export interface IConnectionDTO {
+  readonly client: string;
+  readonly mysql: DataSource;
+}
 
-  static mysql: DataSource;
-
-  // static otherConnection: DataSource
+export class Connection implements IConnectionDTO {
+  constructor(
+    public readonly client: string,
+    public readonly mysql: DataSource,
+  ) {}
 }
 
 // Set entities from each database
 
-// @Entity('name', { database: Connection.client }) // only client database
-// @Entity('name', { database: Connection.clientprocess.env.MYSQL_DATABASE }) // only default database
 // @Entity('name') // both databases
+// @Entity('name', { database: process.env.MYSQL_DATABASE }) // only default database
 
 // Image examples
 

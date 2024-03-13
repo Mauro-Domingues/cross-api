@@ -40,7 +40,7 @@ import { ${this.names.upperModuleName} } ${'from'} '@modules/${
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { ICacheDTO } ${'from'} '@dtos/ICacheDTO';
 import { IListDTO } ${'from'} '@dtos/IListDTO';
-import { Connection } ${'from'} '@shared/typeorm';
+import { IConnectionDTO } ${'from'} '@shared/typeorm';
 import { FindOptionsWhere } ${'from'} 'typeorm';
 import { Get, Route, Tags, Query, Inject } ${'from'} 'tsoa';
 
@@ -55,6 +55,9 @@ export class List${this.names.upperModuleName}Service {
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProviderDTO,
+
+    @inject('Connection')
+    private readonly connection: IConnectionDTO,
   ) {}
 
   @Get()
@@ -64,12 +67,12 @@ export class List${this.names.upperModuleName}Service {
     @Query() limit: number,
     @Inject() filters: FindOptionsWhere<${this.names.upperModuleName}>,
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
-    const trx = Connection.mysql.createQueryRunner();
+    const trx = this.connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
       const cacheKey = \`\${
-        Connection.client
+        this.connection.client
       }:${
         this.names.pluralLowerModuleName
       }:\${page}:\${limit}:\${JSON.stringify(filters)}\`;

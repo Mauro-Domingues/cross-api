@@ -28,9 +28,8 @@ export class CreateEntity {
 
     return `import { Entity, Column } ${'from'} 'typeorm';
 import { Base } ${'from'} '@shared/container/modules/entities/Base';
-import { Connection } ${'from'} '@shared/typeorm';
 
-@Entity('${this.names.dbModuleName}', { database: Connection.client })
+@Entity('${this.names.dbModuleName})
 export class ${this.names.upperModuleName} extends Base {
   @Column({ type: 'varchar', unique: false })
   public name: string;

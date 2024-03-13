@@ -32,7 +32,7 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { Connection } ${'from'} '@shared/typeorm';
+import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
@@ -44,10 +44,11 @@ let fake${this.names.pluralUpperModuleName}Repository: Fake${
 let show${this.names.upperModuleName}Service: Show${
       this.names.upperModuleName
     }Service;
+let connection: IConnectionDTO;
 
 describe('Show${this.names.upperModuleName}Service', (): void => {
-  beforeAll(async (): Promise<void> => {
-    Connection.mysql = FakeDataSource;
+  beforeAll((): void => {
+    connection = new Connection('database_test', FakeDataSource);
   });
 
   beforeEach((): void => {
@@ -56,7 +57,10 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     }Repository();
     show${this.names.upperModuleName}Service = new Show${
       this.names.upperModuleName
-    }Service(fake${this.names.pluralUpperModuleName}Repository);
+    }Service(
+      fake${this.names.pluralUpperModuleName}Repository,
+      connection,
+    );
   });
 
   it('should be able to show a ${

@@ -32,7 +32,7 @@ export class ListSpecService {
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { Connection } ${'from'} '@shared/typeorm';
+import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { List${this.names.upperModuleName}Service } ${'from'} './List${
@@ -46,10 +46,11 @@ let list${this.names.upperModuleName}Service: List${
       this.names.upperModuleName
     }Service;
 let fakeCacheProvider: FakeCacheProvider;
+let connection: IConnectionDTO;
 
 describe('List${this.names.upperModuleName}Service', (): void => {
-  beforeAll(async (): Promise<void> => {
-    Connection.mysql = FakeDataSource;
+  beforeAll((): void => {
+    connection = new Connection('database_test', FakeDataSource);
   });
 
   beforeEach((): void => {
@@ -59,9 +60,11 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     fakeCacheProvider = new FakeCacheProvider();
     list${this.names.upperModuleName}Service = new List${
       this.names.upperModuleName
-    }Service(fake${
-      this.names.pluralUpperModuleName
-    }Repository, fakeCacheProvider);
+    }Service(
+      fake${this.names.pluralUpperModuleName}Repository,
+      fakeCacheProvider,
+      connection,
+    );
   });
 
   it('should be able to list all the ${

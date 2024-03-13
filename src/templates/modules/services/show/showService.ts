@@ -38,7 +38,7 @@ import { ${this.names.upperModuleName} } ${'from'} '@modules/${
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { Connection } ${'from'} '@shared/typeorm';
+import { IConnectionDTO } ${'from'} '@shared/typeorm';
 import { Get, Route, Tags, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
@@ -49,6 +49,9 @@ export class Show${this.names.upperModuleName}Service {
     private readonly ${this.names.pluralLowerModuleName}Repository: I${
       this.names.pluralUpperModuleName
     }RepositoryDTO,
+
+    @inject('Connection')
+    private readonly connection: IConnectionDTO,
   ) {}
 
   @Get('{id}')
@@ -56,7 +59,7 @@ export class Show${this.names.upperModuleName}Service {
   public async execute(@Path() id?: string): Promise<IResponseDTO<${
     this.names.upperModuleName
   }>> {
-    const trx = Connection.mysql.createQueryRunner();
+    const trx = this.connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {

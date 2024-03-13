@@ -28,18 +28,22 @@ export class UpdateSpecDependentController {
 
     return `import request ${'from'} 'supertest';
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
-import { Connection } ${'from'} '@shared/typeorm';
+import { IConnectionDTO } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 import { v4 as uuid } ${'from'} 'uuid';
 
 const id = uuid();
+let connection: IConnectionDTO;
 
 describe('Update${this.names.upperModuleName}Controller', (): void => {
   beforeAll(async (): Promise<void> => {
-    Connection.mysql = await MysqlDataSource(Connection.client).initialize();
-    await Connection.mysql.runMigrations();
+    connection = {
+      client: 'database_test',
+      mysql: await MysqlDataSource('database_test').initialize(),
+    };
+    await connection.mysql.runMigrations();
 
-    return Connection.mysql.query(
+    return connection.mysql.query(
       'INSERT INTO ${
         this.names.dbModuleName
       } (id, name, description) VALUES (?, ?, ?);',
@@ -50,8 +54,8 @@ describe('Update${this.names.upperModuleName}Controller', (): void => {
   });
 
   afterAll(async (): Promise<void> => {
-    await Connection.mysql.dropDatabase();
-    return Connection.mysql.destroy();
+    await connection.mysql.dropDatabase();
+    return connection.mysql.destroy();
   });
 
   it('Should be able to update a ${

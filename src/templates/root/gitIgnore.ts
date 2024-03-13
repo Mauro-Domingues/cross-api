@@ -6,6 +6,7 @@ export class CreateGitIgnore {
 /src/assets/errors.log
 /tsconfig.tsbuildinfo
 /node_modules
+/yarn.lock
 /src/keys
 /coverage
 /.swc
