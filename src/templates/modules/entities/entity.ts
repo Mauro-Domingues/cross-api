@@ -29,7 +29,7 @@ export class CreateEntity {
     return `import { Entity, Column } ${'from'} 'typeorm';
 import { Base } ${'from'} '@shared/container/modules/entities/Base';
 
-@Entity('${this.names.dbModuleName})
+@Entity('${this.names.dbModuleName}')
 export class ${this.names.upperModuleName} extends Base {
   @Column({ type: 'varchar', unique: false })
   public name: string;
