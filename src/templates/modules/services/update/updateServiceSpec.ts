@@ -27,27 +27,32 @@ export class UpdateSpecService {
     }
 
     return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } ${'from'} '@shared/errors/AppError';
-
 import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Update${this.names.upperModuleName}Service } ${'from'} './Update${
       this.names.upperModuleName
     }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${
+let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }Repository;
-let fakeCacheProvider: FakeCacheProvider;
+    }RepositoryDTO;
+let fakeCacheProvider: ICacheProviderDTO;
+let connection: IConnectionDTO;
 let update${this.names.upperModuleName}Service: Update${
       this.names.upperModuleName
     }Service;
-let connection: IConnectionDTO;
 
 describe('Update${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
@@ -92,7 +97,7 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     }');
   });
 
-  it('should not be able to update a ${
+  it('Should not be able to update a ${
     this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(

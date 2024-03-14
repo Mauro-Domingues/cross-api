@@ -25,9 +25,7 @@ export class ShowService {
     }
 
     return `import { injectable, inject } ${'from'} 'tsyringe';
-
 import { AppError } ${'from'} '@shared/errors/AppError';
-
 import { I${
       this.names.pluralUpperModuleName
     }RepositoryDTO } ${'from'} '@modules/${

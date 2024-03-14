@@ -27,27 +27,32 @@ export class DeleteSpecService {
     }
 
     return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } ${'from'} '@shared/errors/AppError';
-
 import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.names.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
       this.names.upperModuleName
     }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${
+let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }Repository;
-let fakeCacheProvider: FakeCacheProvider;
+    }RepositoryDTO;
+let fakeCacheProvider: ICacheProviderDTO;
+let connection: IConnectionDTO;
 let delete${this.names.upperModuleName}Service: Delete${
       this.names.upperModuleName
     }Service;
-let connection: IConnectionDTO;
 
 describe('Delete${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
@@ -68,7 +73,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
     );
   });
 
-  it('should be able to delete a ${
+  it('Should be able to delete a ${
     this.names.lowerModuleName
   }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
@@ -93,7 +98,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
     expect(deleted${this.names.upperModuleName}).toBe(null);
   });
 
-  it('should not be able to delete a ${
+  it('Should not be able to delete a ${
     this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(

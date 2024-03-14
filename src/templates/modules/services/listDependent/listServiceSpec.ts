@@ -34,7 +34,13 @@ export class ListSpecDependentService {
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
@@ -42,14 +48,14 @@ import { List${this.names.upperModuleName}Service } ${'from'} './List${
       this.names.upperModuleName
     }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${
+let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }Repository;
+    }RepositoryDTO;
+let fakeCacheProvider: ICacheProviderDTO;
+let connection: IConnectionDTO;
 let list${this.names.upperModuleName}Service: List${
       this.names.upperModuleName
     }Service;
-let fakeCacheProvider: FakeCacheProvider;
-let connection: IConnectionDTO;
 
 describe('List${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
@@ -70,7 +76,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     );
   });
 
-  it('should be able to list all the ${
+  it('Should be able to list all the ${
     this.names.pluralLowerModuleName
   }', async (): Promise<void> => {
     const [${this.names.lowerModuleName}01, ${
@@ -95,7 +101,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     }01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should be able to list all the ${
+  it('Should be able to list all the ${
     this.names.pluralLowerModuleName
   } using cache', async (): Promise<void> => {
     const [${this.names.lowerModuleName}01, ${
@@ -124,7 +130,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     );
   });
 
-  it('should be able to list the ${
+  it('Should be able to list the ${
     this.names.pluralLowerModuleName
   } with the specified pagination', async (): Promise<void> => {
     const [${this.names.lowerModuleName}01, ${
@@ -161,7 +167,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     }01, ${this.names.lowerModuleName}02]);
   });
 
-  it('should return AppError', async (): Promise<void> => {
+  it('Should return AppError', async (): Promise<void> => {
     jest.spyOn(fake${
       this.names.pluralUpperModuleName
     }Repository, 'findAll').mockImplementationOnce(() => {

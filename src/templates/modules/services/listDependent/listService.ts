@@ -30,7 +30,6 @@ export class ListDependentService {
     }
 
     return `import { injectable, inject } ${'from'} 'tsyringe';
-
 import { I${
       this.names.pluralUpperModuleName
     }RepositoryDTO } ${'from'} '@modules/${

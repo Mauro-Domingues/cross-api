@@ -31,7 +31,6 @@ export class ListDependentController {
 
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
-
 import { FindOptionsWhere } ${'from'} 'typeorm';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName

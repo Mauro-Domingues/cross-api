@@ -31,7 +31,6 @@ export class UpdateDependentController {
 
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
-
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';

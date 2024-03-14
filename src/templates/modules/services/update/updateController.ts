@@ -31,7 +31,6 @@ export class UpdateController {
 
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
-
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';

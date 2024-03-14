@@ -28,9 +28,7 @@ export class CreateDependentService {
     }
 
     return `import { injectable, inject } ${'from'} 'tsyringe';
-
 import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-
 import { I${
       this.names.pluralUpperModuleName
     }RepositoryDTO } ${'from'} '@modules/${

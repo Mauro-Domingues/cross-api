@@ -35,19 +35,24 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import { I${
+      this.names.pluralUpperModuleName
+    }RepositoryDTO } ${'from'} '@modules/${
+      this.fatherNames.pluralLowerModuleName
+    }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
     }Service';
 
-let fake${this.names.pluralUpperModuleName}Repository: Fake${
+let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }Repository;
+    }RepositoryDTO;
+let connection: IConnectionDTO;
 let show${this.names.upperModuleName}Service: Show${
       this.names.upperModuleName
     }Service;
-let connection: IConnectionDTO;
 
 describe('Show${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
@@ -66,7 +71,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     );
   });
 
-  it('should be able to show a ${
+  it('Should be able to show a ${
     this.names.lowerModuleName
   }', async (): Promise<void> => {
     const ${this.names.lowerModuleName} = await fake${
@@ -86,7 +91,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     });
   });
 
-  it('should not be able to show a ${
+  it('Should not be able to show a ${
     this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(

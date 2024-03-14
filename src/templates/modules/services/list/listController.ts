@@ -28,7 +28,6 @@ export class ListController {
 
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
-
 import { FindOptionsWhere } ${'from'} 'typeorm';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.names.pluralLowerModuleName

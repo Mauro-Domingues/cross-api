@@ -34,7 +34,6 @@ export class CreateDependentController {
     }/dtos/I${this.names.upperModuleName}DTO';
 import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
-
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
