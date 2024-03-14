@@ -2,7 +2,6 @@ export class CreateHash {
   public execute(): string {
     return `import { hash, compare } ${'from'} 'bcrypt';
 import { hashConfig } ${'from'} '@config/hash';
-
 import { IHashProviderDTO } ${'from'} '../models/IHashProvider';
 
 export class BCryptHashProvider implements IHashProviderDTO {

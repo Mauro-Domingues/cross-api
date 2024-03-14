@@ -33,9 +33,9 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { Fake${
+import { I${
       this.names.pluralUpperModuleName
-    }Repository } ${'from'} '@modules/${
+    }RepositoryDTO } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';

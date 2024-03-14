@@ -27,7 +27,6 @@ export class CreateIndependentRoute {
     }
 
     return `import { Router } ${'from'} 'express';
-
 import { Create${this.names.upperModuleName}Controller } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/services/create${this.names.upperModuleName}/Create${

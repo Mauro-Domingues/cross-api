@@ -3,7 +3,6 @@ export class CreateRateLimiter {
     return `import { Request, Response, NextFunction } ${'from'} 'express';
 import { RateLimiterRedis } ${'from'} 'rate-limiter-flexible';
 import { Redis } ${'from'} 'ioredis';
-
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { cacheConfig } ${'from'} '@config/cache';
 

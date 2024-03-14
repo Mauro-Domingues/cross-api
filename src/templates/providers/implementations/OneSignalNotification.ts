@@ -1,7 +1,6 @@
 export class CreateOneSignalNotification {
   public execute(): string {
     return `import axios, { AxiosError, AxiosRequestConfig } ${'from'} 'axios';
-
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
 import { INotificationProviderDTO } ${'from'} '../models/INotificationProvider';

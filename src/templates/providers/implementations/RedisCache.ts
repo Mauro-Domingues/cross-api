@@ -2,7 +2,6 @@ export class CreateRedisCache {
   public execute(): string {
     return `import { cacheConfig } ${'from'} '@config/cache';
 import { Redis } ${'from'} 'ioredis';
-
 import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
 
 export class RedisCacheProvider implements ICacheProviderDTO {

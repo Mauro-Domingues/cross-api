@@ -3,7 +3,6 @@ export class CreateDiskStorage {
     return `import { storageConfig } ${'from'} '@config/storage';
 import { existsSync, mkdirSync, unlinkSync, renameSync } ${'from'} 'node:fs';
 import { resolve } ${'from'} 'node:path';
-
 import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class DiskStorageProvider implements IStorageProviderDTO {

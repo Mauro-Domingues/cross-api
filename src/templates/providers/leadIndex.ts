@@ -1,7 +1,6 @@
 export class CreateLeadIndex {
   public execute(): string {
     return `import { container } ${'from'} 'tsyringe';
-
 import { leadConfig } ${'from'} '@config/lead';
 import { RDStationProvider } ${'from'} './implementations/RDStationProvider';
 import { ILeadProviderDTO } ${'from'} './models/ILeadProvider';

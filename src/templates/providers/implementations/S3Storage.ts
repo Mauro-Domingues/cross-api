@@ -9,9 +9,7 @@ import {
 import { readFileSync, unlinkSync } ${'from'} 'node:fs';
 import { getType } ${'from'} 'mime';
 import { resolve } ${'from'} 'node:path';
-
 import { AppError } ${'from'} '@shared/errors/AppError';
-
 import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class S3StorageProvider implements IStorageProviderDTO {

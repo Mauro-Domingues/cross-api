@@ -1,7 +1,6 @@
 export class CreateJestConfig {
   public execute(): string {
     return `import { pathsToModuleNameMapper } ${'from'} 'ts-jest';
-
 import { compilerOptions } ${'from'} './tsconfig.json';
 
 export default {

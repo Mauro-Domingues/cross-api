@@ -2,9 +2,7 @@ export class CreateRDStationLead {
   public execute(): string {
     return `import { leadConfig } ${'from'} '@config/lead';
 import axios, { AxiosError, AxiosRequestConfig } ${'from'} 'axios';
-
 import { AppError } ${'from'} '@shared/errors/AppError';
-
 import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
 import { ILeadProviderDTO } ${'from'} '../models/ILeadProvider';
 import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
