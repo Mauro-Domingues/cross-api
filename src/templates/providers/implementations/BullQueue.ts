@@ -31,7 +31,7 @@ export class BullProvider implements IQueueProviderDTO {
   }
 
   public async execute<T extends object>(
-    key: string,
+    key: Capitalize<string>,
     data: T,
     attempts = 1,
   ): Promise<Job<T>> {
@@ -39,7 +39,7 @@ export class BullProvider implements IQueueProviderDTO {
   }
 
   public async schedule<T extends object>(
-    key: string,
+    key: Capitalize<string>,
     data: T,
     delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
     attempts = 1,
