@@ -4,9 +4,9 @@ export class CreateMailTemplateConfig {
   readonly driver: 'handlebars';
 }
 
-export const mailTemplateConfig: IMailTemplateConfigDTO = {
+export const mailTemplateConfig = Object.freeze<IMailTemplateConfigDTO>({
   driver: 'handlebars',
-};
+});
 `;
   }
 }

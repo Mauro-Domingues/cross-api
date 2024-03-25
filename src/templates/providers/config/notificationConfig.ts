@@ -13,7 +13,7 @@ export class CreateNotificationConfig {
   };
 }
 
-export const notificationConfig: INotificationConfigDTO = {
+export const notificationConfig = Object.freeze<INotificationConfigDTO>({
   driver: process.env.NOTIFICATION_DRIVER,
   firebase: {
     api_url: process.env.FIREBASE_API_URL,
@@ -24,7 +24,7 @@ export const notificationConfig: INotificationConfigDTO = {
     app_id: process.env.OS_APP_ID,
     token: process.env.OS_TOKEN,
   },
-};
+});
 `;
   }
 }

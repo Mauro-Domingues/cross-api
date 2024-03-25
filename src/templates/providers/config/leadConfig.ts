@@ -10,7 +10,7 @@ export class CreateLeadConfig {
   };
 }
 
-export const leadConfig: ILeadConfigDTO = {
+export const leadConfig = Object.freeze<ILeadConfigDTO>({
   driver: 'rdstation',
   config: {
     clientId: process.env.RD_CLIENT_ID,
@@ -18,7 +18,7 @@ export const leadConfig: ILeadConfigDTO = {
     code: process.env.RD_CODE,
     publicApiKey: process.env.RD_PUBLIC_API_KEY,
   },
-};
+});
 `;
   }
 }

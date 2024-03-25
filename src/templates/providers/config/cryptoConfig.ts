@@ -15,7 +15,7 @@ interface ICryptoConfigDTO {
   };
 }
 
-export const cryptoConfig: ICryptoConfigDTO = {
+export const cryptoConfig = Object.freeze<ICryptoConfigDTO>({
   driver: 'crypto',
   config: {
     bytes: 16,
@@ -26,7 +26,7 @@ export const cryptoConfig: ICryptoConfigDTO = {
     assetsPath: resolve(__dirname, '..', 'assets'),
     jwksPath: resolve(__dirname, '..', 'assets', '.well-known', 'jwks.json'),
   },
-};
+});
 `;
   }
 }

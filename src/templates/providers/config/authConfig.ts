@@ -8,13 +8,13 @@ export class CreateAuthConfig {
   };
 }
 
-export const authConfig: IAuthConfigDTO = {
+export const authConfig = Object.freeze<IAuthConfigDTO>({
   config: {
     jwt: {
       expiresIn: process.env.JWT_LIFETIME ?? '1d',
     },
   },
-};
+});
 `;
   }
 }

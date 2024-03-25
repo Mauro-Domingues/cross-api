@@ -18,7 +18,7 @@ export class CreateMailConfig {
   };
 }
 
-export const mailConfig: IMailConfigDTO = {
+export const mailConfig = Object.freeze<IMailConfigDTO>({
   driver: process.env.MAIL_DRIVER,
   config: {
     defaults: {
@@ -34,7 +34,7 @@ export const mailConfig: IMailConfigDTO = {
     password: process.env.MAIL_PASS,
     region: process.env.MAIL_REGION,
   },
-};
+});
 `;
   }
 }

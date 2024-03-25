@@ -1,6 +1,6 @@
 export class CreateJestConfig {
   public execute(): string {
-    return `import { pathsToModuleNameMapper } ${'from'} 'ts-jest';
+    return `import { pathsToModuleNameMapper, JestConfigWithTsJest } ${'from'} 'ts-jest';
 import { compilerOptions } ${'from'} './tsconfig.json';
 
 export default {
@@ -19,7 +19,7 @@ export default {
   setupFiles: ['dotenv/config', 'reflect-metadata'],
   testEnvironment: 'node',
   testMatch: ['**/*.spec.ts'],
-};
+} as JestConfigWithTsJest;
 `;
   }
 }

@@ -52,7 +52,7 @@ export class MakeFirstLayer {
       [['doc.config.ts'], this.createDocConfig],
       [['docker-compose.yml'], this.createDockerCompose],
       [['jest.config.ts'], this.createJestConfig],
-      [['prettier.config.js'], this.createPrettierConfig],
+      [['prettier.config.cjs'], this.createPrettierConfig],
       [['tsconfig.json'], this.createTsConfig],
     ]);
   }

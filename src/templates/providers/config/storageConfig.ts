@@ -24,7 +24,7 @@ interface IStorageConfigDTO {
   };
 }
 
-export const storageConfig: IStorageConfigDTO = {
+export const storageConfig = Object.freeze<IStorageConfigDTO>({
   driver: process.env.STORAGE_DRIVER,
   config: {
     tmpFolder,
@@ -48,7 +48,7 @@ export const storageConfig: IStorageConfigDTO = {
       }),
     },
   },
-};
+});
 `;
   }
 }

@@ -9,7 +9,7 @@ interface ICacheConfigDTO {
   };
 }
 
-export const cacheConfig: ICacheConfigDTO = {
+export const cacheConfig = Object.freeze<ICacheConfigDTO>({
   driver: 'redis',
   config: {
     redis: {
@@ -19,7 +19,7 @@ export const cacheConfig: ICacheConfigDTO = {
       keyPrefix: process.env.REDIS_PREFIX,
     },
   },
-};
+});
 `;
   }
 }
