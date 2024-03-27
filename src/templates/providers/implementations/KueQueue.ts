@@ -17,11 +17,12 @@ export class KueProvider implements IQueueProviderDTO {
 
   private init(): void {
     return jobs.forEach(Job => {
+      const instance = new Job();
       this.queues[Job.key] = {
         queue: createQueue({
           redis: { ...queueConfig.config, auth: queueConfig.config.password },
         }),
-        handle: new Job().handle as ({
+        handle: instance.handle.bind(instance) as ({
           data,
         }: {
           data: unknown;

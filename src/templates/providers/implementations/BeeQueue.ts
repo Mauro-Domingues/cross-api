@@ -17,12 +17,13 @@ export class BeeProvider implements IQueueProviderDTO {
 
   private init(): void {
     return jobs.forEach(Job => {
+      const instance = new Job();
       this.queues[Job.key] = {
         queue: new Bee(Job.key, {
           activateDelayedJobs: true,
           redis: queueConfig.config,
         }),
-        handle: new Job().handle as ({
+        handle: instance.handle.bind(instance) as ({
           data,
         }: {
           data: unknown;

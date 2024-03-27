@@ -14,9 +14,10 @@ export class FakeQueueProvider implements IQueueProviderDTO {
 
   private init(): void {
     return jobs.forEach(Job => {
+      const instance = new Job();
       this.queues[Job.key] = {
         queue: Job.key,
-        handle: new Job().handle as ({
+        handle: instance.handle.bind(instance) as ({
           data,
         }: {
           data: unknown;
