@@ -21,7 +21,7 @@ export class Shell {
       return execSync(command, { encoding: 'utf-8' });
     }
     throw this.console.single({
-      message: `"comand"${this.messages.invalidLanguage}`,
+      message: `"${command}"${this.messages.invalidLanguage}`,
       color: 'red',
       bold: true,
       breakStart: false,
