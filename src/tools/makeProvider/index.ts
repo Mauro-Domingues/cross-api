@@ -35,7 +35,7 @@ export class CreateProvider {
     return this.console.single({
       message: `- ${this.provider.list[
         this.providerName as keyof typeof this.provider.list
-      ].description.trim()} ${this.messages.created}`,
+      ].description.trimEnd()} ${this.messages.created}`,
       color: 'yellow',
       bold: true,
       breakStart: false,

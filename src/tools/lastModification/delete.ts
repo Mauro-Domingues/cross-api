@@ -54,7 +54,7 @@ export class DeleteRegister extends BaseRegister {
         'providers',
         this.provider.list[
           names.lowerModuleName as keyof typeof this.provider.list
-        ].description.trim(),
+        ].description.trimEnd(),
       ]);
       if (
         this.fileManager.checkIfExistsSync([
@@ -101,7 +101,7 @@ export class DeleteRegister extends BaseRegister {
         'providers',
         this.provider.list[
           names.lowerModuleName as keyof typeof this.provider.list
-        ].description.trim(),
+        ].description.trimEnd(),
       ]);
       if (
         this.fileManager.checkIfExistsSync([

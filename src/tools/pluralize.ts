@@ -317,7 +317,7 @@ export class Pluralize {
   ): string {
     if (!this.word) {
       throw this.console.single({
-        message: `${this.messages.invalidLanguage}`,
+        message: this.messages.invalidLanguage,
         color: 'red',
         bold: true,
         breakStart: false,
@@ -345,7 +345,7 @@ export class Pluralize {
   ): boolean {
     if (!this.word) {
       throw this.console.single({
-        message: `${this.messages.invalidLanguage}`,
+        message: this.messages.invalidLanguage,
         color: 'red',
         bold: true,
         breakStart: false,

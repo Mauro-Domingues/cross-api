@@ -46,7 +46,7 @@ export class ConfigLanguage {
 
   private showLanguageOptions(): void {
     this.console.single({
-      message: `${this.messages.language}`,
+      message: this.messages.language,
       color: 'yellow',
       bold: true,
       breakStart: true,
