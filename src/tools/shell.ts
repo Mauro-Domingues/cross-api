@@ -8,10 +8,8 @@ export class Shell {
   private readonly console: Console;
 
   constructor() {
-    Object.freeze(
-      (this.allowedPattern =
-        /^(npm install yarn --location=global|yarn add( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/),
-    );
+    this.allowedPattern =
+      /^(npm install yarn --location=global|yarn add( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/;
     this.messages = new Messages().execute();
     this.console = new Console();
   }
