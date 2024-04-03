@@ -12,21 +12,27 @@ import {
 import { resolve } from 'node:path';
 
 export class FileManager {
+  private readonly root: string;
+
+  public constructor() {
+    this.root = process.cwd();
+  }
+
   public resolvePath(path: Array<string>): string {
-    return resolve(...path);
+    return resolve(this.root, ...path);
   }
 
   public checkIfExistsSync(path: Array<string>): boolean {
-    return existsSync(resolve(...path));
+    return existsSync(this.resolvePath(path));
   }
 
   public createDirSync(path: Array<string>): string | undefined {
-    return mkdirSync(resolve(...path), { recursive: true });
+    return mkdirSync(this.resolvePath(path), { recursive: true });
   }
 
   public createFile(path: Array<string>, data: string): void {
     return appendFile(
-      resolve(...path),
+      this.resolvePath(path),
       data,
       (error: NodeJS.ErrnoException | null): void => {
         if (error) throw error;
@@ -35,12 +41,12 @@ export class FileManager {
   }
 
   public createFileSync(path: Array<string>, data: string): void {
-    return appendFileSync(resolve(...path), data);
+    return appendFileSync(this.resolvePath(path), data);
   }
 
   public removeDir(path: Array<string>): void {
     return rm(
-      resolve(...path),
+      this.resolvePath(path),
       { recursive: true, force: true },
       (error: NodeJS.ErrnoException | null): void => {
         if (error) throw error;
@@ -50,7 +56,7 @@ export class FileManager {
 
   public removeFile(path: Array<string>): void {
     return unlink(
-      resolve(...path),
+      this.resolvePath(path),
       (error: NodeJS.ErrnoException | null): void => {
         if (error) throw error;
       },
@@ -58,18 +64,18 @@ export class FileManager {
   }
 
   public readFileSync(path: Array<string>): string {
-    return readFileSync(resolve(...path), 'utf8');
+    return readFileSync(this.resolvePath(path), 'utf8');
   }
 
   public writeFileSync(path: Array<string>, data: string): void {
-    return writeFileSync(resolve(...path), data, {
+    return writeFileSync(this.resolvePath(path), data, {
       encoding: 'utf8',
       flag: 'w',
     });
   }
 
   public truncateFileSync(path: Array<string>): void {
-    return truncateSync(resolve(...path));
+    return truncateSync(this.resolvePath(path));
   }
 
   public checkAndCreateFile(

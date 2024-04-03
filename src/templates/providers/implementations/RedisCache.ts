@@ -22,7 +22,7 @@ export class RedisCacheProvider implements ICacheProviderDTO {
       return null;
     }
 
-    const parsedData: T = JSON.parse(data);
+    const parsedData = JSON.parse(data) as T;
 
     return parsedData;
   }
