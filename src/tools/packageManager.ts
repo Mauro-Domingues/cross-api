@@ -131,16 +131,6 @@ export class PackageManager {
   }
 
   public execute(action: 'install' | 'uninstall'): void {
-    try {
-      return this[action]();
-    } catch {
-      throw this.console.single({
-        message: `"${action}"${this.messages.invalidLanguage}`,
-        color: 'red',
-        bold: true,
-        breakStart: false,
-        breakEnd: false,
-      });
-    }
+    return this[action]();
   }
 }

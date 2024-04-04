@@ -9,7 +9,7 @@ export class Shell {
 
   constructor() {
     this.allowedPattern =
-      /^(npm install yarn --location=global|yarn add( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/;
+      /^(npm install yarn --location=global|yarn (add|remove)( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/;
     this.messages = new Messages().execute();
     this.console = new Console();
   }
