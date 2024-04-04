@@ -87,8 +87,7 @@ export class DeleteRegister extends BaseRegister {
         breakEnd: false,
       });
       packageManager.execute('uninstall');
-    }
-    if (names) {
+    } else if (names) {
       const oldProviders = this.fileManager.readFileSync([
         this.basePath,
         'providers',
