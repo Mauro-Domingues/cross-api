@@ -35,8 +35,8 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
 

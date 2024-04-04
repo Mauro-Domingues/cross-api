@@ -27,8 +27,8 @@ export class UpdateSpecDependentService {
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
 

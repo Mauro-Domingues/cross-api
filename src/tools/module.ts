@@ -70,8 +70,8 @@ export class Module {
         message: this.messages.moduleNotFound,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
     this.makeDependentStructure.execute();

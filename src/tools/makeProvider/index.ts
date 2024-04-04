@@ -26,8 +26,8 @@ export class CreateProvider {
         message: this.messages.providerNotFound,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
     this.provider.list[this.providerName as keyof typeof this.provider.list][
@@ -40,7 +40,7 @@ export class CreateProvider {
       color: 'yellow',
       bold: true,
       breakStart: false,
-      breakEnd: true,
+      breakEnd: false,
     });
     return new PackageManager(
       this.provider.list[

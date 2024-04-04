@@ -22,8 +22,8 @@ export class Shell {
       message: `"${command}"${this.messages.invalidLanguage}`,
       color: 'red',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
+      breakStart: true,
+      breakEnd: true,
     });
   }
 }

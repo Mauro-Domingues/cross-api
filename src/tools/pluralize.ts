@@ -320,8 +320,8 @@ export class Pluralize {
         message: this.messages.invalidLanguage,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
 
@@ -348,8 +348,8 @@ export class Pluralize {
         message: this.messages.invalidLanguage,
         color: 'red',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
+        breakStart: true,
+        breakEnd: true,
       });
     }
 

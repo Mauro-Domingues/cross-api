@@ -83,7 +83,7 @@ export class DeleteRegister extends BaseRegister {
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
-        breakStart: true,
+        breakStart: false,
         breakEnd: false,
       });
       packageManager.execute('uninstall');
@@ -132,7 +132,7 @@ export class DeleteRegister extends BaseRegister {
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
-        breakStart: true,
+        breakStart: false,
         breakEnd: false,
       });
       packageManager.execute('uninstall');
@@ -257,7 +257,7 @@ export class DeleteRegister extends BaseRegister {
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
-        breakStart: true,
+        breakStart: false,
         breakEnd: false,
       });
     } else if (names) {
@@ -300,7 +300,7 @@ export class DeleteRegister extends BaseRegister {
         message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
-        breakStart: true,
+        breakStart: false,
         breakEnd: false,
       });
     }
@@ -333,7 +333,7 @@ export class DeleteRegister extends BaseRegister {
       message: `- ${this.messages.reversed}: ${comand}`,
       color: 'yellow',
       bold: true,
-      breakStart: true,
+      breakStart: false,
       breakEnd: false,
     });
   }
