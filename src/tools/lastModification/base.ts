@@ -7,13 +7,7 @@ export class BaseRegister {
   public constructor() {
     this.fileManager = new FileManager();
 
-    this.basePath = this.fileManager.resolvePath([
-      'node_modules',
-      'cross-api',
-      'src',
-      'tools',
-      'lastModification',
-    ]);
+    this.basePath = this.fileManager.resolvePath(['.cross']);
     this.constructBase();
   }
 

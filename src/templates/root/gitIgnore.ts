@@ -9,6 +9,7 @@ export class CreateGitIgnore {
 /yarn.lock
 /src/keys
 /coverage
+/.cross
 /.swc
 /.env
 /dist
