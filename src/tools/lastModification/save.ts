@@ -209,7 +209,10 @@ export { ${this.fatherNames.lowerModuleName}Router };
         'comands',
         'comands.log',
       ]);
+    } else {
+      this.fileManager.checkAndCreateMultiDirSync([[this.basePath, 'comands']]);
     }
+
     return this.fileManager.createFileSync(
       [this.basePath, 'comands', 'comands.log'],
       String(this.comand),
