@@ -37,9 +37,12 @@ export class PackageManager {
     const existingDependencies = Object.keys(jsonPackage[field]);
 
     this[field].forEach(dependency => {
+      const dependencyName = dependency.replace(/@\^.*/, '');
       const shouldAddDependency =
-        (action === 'install' && !existingDependencies.includes(dependency)) ||
-        (action === 'uninstall' && existingDependencies.includes(dependency));
+        (action === 'install' &&
+          !existingDependencies.includes(dependencyName)) ||
+        (action === 'uninstall' &&
+          existingDependencies.includes(dependencyName));
 
       if (shouldAddDependency) {
         dependencies.add(dependency);
@@ -54,7 +57,7 @@ export class PackageManager {
       message: this.messages.dependencies,
       color: 'blue',
       bold: true,
-      breakStart: false,
+      breakStart: true,
       breakEnd: true,
     });
     this.shell.execute(`yarn add ${dependencies.join(' ')}`);
@@ -64,7 +67,7 @@ export class PackageManager {
         color: 'yellow',
         bold: false,
         breakStart: false,
-        breakEnd: false,
+        breakEnd: !this.devDependencies.length,
       });
     });
   }
@@ -84,7 +87,7 @@ export class PackageManager {
         color: 'yellow',
         bold: false,
         breakStart: false,
-        breakEnd: false,
+        breakEnd: true,
       });
     });
   }
@@ -94,7 +97,7 @@ export class PackageManager {
       message: this.messages.uninstallingDependencies,
       color: 'blue',
       bold: true,
-      breakStart: false,
+      breakStart: true,
       breakEnd: true,
     });
     this.shell.execute(`yarn remove ${dependencies.join(' ')}`);
@@ -104,7 +107,7 @@ export class PackageManager {
         color: 'red',
         bold: false,
         breakStart: false,
-        breakEnd: false,
+        breakEnd: true,
       });
     });
   }

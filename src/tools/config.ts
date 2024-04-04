@@ -106,7 +106,7 @@ export class ConfigJson extends ConfigLanguage {
         color: 'yellow',
         bold: false,
         breakStart: true,
-        breakEnd: true,
+        breakEnd: false,
       },
     ]);
     return this.shell.execute('npm install yarn --location=global');
@@ -118,7 +118,7 @@ export class ConfigJson extends ConfigLanguage {
         message: this.messages.marketplaceTool[0],
         color: 'blue',
         bold: true,
-        breakStart: true,
+        breakStart: false,
         breakEnd: false,
       },
       {
