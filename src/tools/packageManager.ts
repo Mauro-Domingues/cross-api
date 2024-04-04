@@ -87,7 +87,7 @@ export class PackageManager {
         color: 'yellow',
         bold: false,
         breakStart: false,
-        breakEnd: true,
+        breakEnd: false,
       });
     });
   }
@@ -107,7 +107,7 @@ export class PackageManager {
         color: 'red',
         bold: false,
         breakStart: false,
-        breakEnd: true,
+        breakEnd: false,
       });
     });
   }

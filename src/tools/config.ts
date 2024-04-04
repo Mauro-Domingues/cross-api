@@ -118,7 +118,7 @@ export class ConfigJson extends ConfigLanguage {
         message: this.messages.marketplaceTool[0],
         color: 'blue',
         bold: true,
-        breakStart: false,
+        breakStart: true,
         breakEnd: false,
       },
       {

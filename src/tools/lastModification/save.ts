@@ -197,11 +197,19 @@ export { ${this.fatherNames.lowerModuleName}Router };
       this.makeModule();
     }
 
-    this.fileManager.truncateFileSync([
-      this.basePath,
-      'comands',
-      'comands.log',
-    ]);
+    if (
+      this.fileManager.checkIfExistsSync([
+        this.basePath,
+        'comands',
+        'comands.log',
+      ])
+    ) {
+      this.fileManager.truncateFileSync([
+        this.basePath,
+        'comands',
+        'comands.log',
+      ]);
+    }
     return this.fileManager.createFileSync(
       [this.basePath, 'comands', 'comands.log'],
       String(this.comand),
