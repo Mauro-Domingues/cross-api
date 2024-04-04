@@ -24,10 +24,13 @@ export class PortugueseMessages {
         'para ver os comandos disponíveis   ',
       ],
       yarn: '==================={ Instalando Yarn }==================',
+      uninstallingDependencies:
+        '============={ Desinstalando Dependências }=============',
       dependencies: '=============={ Instalando Dependências }===============',
       devDependencies:
         '====={ Instalando Dependências de Desenvolvimento }=====',
       marketplaceTool: ['Instale   ', 'para te ajudar   '],
+      uninstalled: 'desinstalado',
       installed: 'instalado',
       comandTitle: '{ LISTA DE COMANDOS }',
       tools: 'FERRAMENTAS',

@@ -1,6 +1,7 @@
 import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { IModuleNamesDTO } from '@tools/names';
+import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class CreateProvider {
@@ -32,14 +33,22 @@ export class CreateProvider {
     this.provider.list[this.providerName as keyof typeof this.provider.list][
       this.provider.key
     ].execute();
-    return this.console.single({
+    this.console.single({
       message: `- ${this.provider.list[
         this.providerName as keyof typeof this.provider.list
       ].description.trimEnd()} ${this.messages.created}`,
       color: 'yellow',
       bold: true,
       breakStart: false,
-      breakEnd: false,
+      breakEnd: true,
     });
+    return new PackageManager(
+      this.provider.list[
+        this.providerName as keyof typeof this.provider.list
+      ].dependencies,
+      this.provider.list[
+        this.providerName as keyof typeof this.provider.list
+      ].devDependencies,
+    ).execute('install');
   }
 }

@@ -24,9 +24,12 @@ export class EnglishMessages {
         'to see available commands   ',
       ],
       yarn: '==============={ Installing Yarn }===============',
+      uninstallingDependencies:
+        '=========={ Uninstalling Dependencies }==========',
       dependencies: '==========={ Installing Dependencies }===========',
       devDependencies: '====={ Installing Development Dependencies }=====',
       marketplaceTool: ['Download   ', 'to help you   '],
+      uninstalled: 'uninstalled',
       installed: 'installed',
       comandTitle: '=={ COMANDS LIST }===',
       tools: 'TOOLS      ',

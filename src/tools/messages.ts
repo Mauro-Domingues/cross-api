@@ -1,41 +1,43 @@
 export interface IMessagesDTO {
-  readonly language: string;
-  readonly invalidLanguage: string;
-  readonly answer: string;
-  readonly choice: string;
-  readonly created: string;
-  readonly reversed: string;
-  readonly noReversed: string;
-  readonly configured: string;
-  readonly providerNotFound: string;
-  readonly moduleNotFound: string;
-  readonly apiCreated: string;
-  readonly available: string;
-  readonly notFound: string;
-  readonly try: readonly [string, string, string];
-  readonly yarn: string;
-  readonly dependencies: string;
-  readonly devDependencies: string;
   readonly marketplaceTool: readonly [string, string];
-  readonly installed: string;
-  readonly comandTitle: string;
-  readonly tools: string;
-  readonly comands: string;
+  readonly try: readonly [string, string, string];
+  readonly uninstallingDependencies: string;
+  readonly mapAndUpdateString: string;
+  readonly mapAndPatchString: string;
+  readonly providerNotFound: string;
+  readonly devDependencies: string;
+  readonly invalidLanguage: string;
+  readonly moduleNotFound: string;
+  readonly patchAndInsert: string;
   readonly changeLanguage: string;
-  readonly listProvider: string;
-  readonly structure: string;
-  readonly makeApi: string;
-  readonly makeModule: string;
-  readonly makeModuleD: string;
-  readonly makeProvider: string;
   readonly makeProviderD: string;
-  readonly undo: string;
+  readonly dependencies: string;
+  readonly mapAndUpdate: string;
+  readonly listProvider: string;
+  readonly makeProvider: string;
+  readonly comandTitle: string;
+  readonly makeModuleD: string;
   readonly mapAndClone: string;
   readonly mapAndPatch: string;
-  readonly patchAndInsert: string;
-  readonly mapAndUpdate: string;
-  readonly mapAndPatchString: string;
-  readonly mapAndUpdateString: string;
+  readonly uninstalled: string;
+  readonly noReversed: string;
+  readonly configured: string;
+  readonly apiCreated: string;
+  readonly makeModule: string;
+  readonly available: string;
+  readonly installed: string;
+  readonly structure: string;
+  readonly reversed: string;
+  readonly language: string;
+  readonly notFound: string;
+  readonly created: string;
+  readonly comands: string;
+  readonly makeApi: string;
+  readonly choice: string;
+  readonly answer: string;
+  readonly tools: string;
+  readonly yarn: string;
+  readonly undo: string;
 }
 
 export class Messages {
@@ -62,9 +64,12 @@ export class Messages {
         'to see available commands   ',
       ],
       yarn: '==============={ Installing Yarn }===============',
+      uninstallingDependencies:
+        '=========={ Uninstalling Dependencies }==========',
       dependencies: '==========={ Installing Dependencies }===========',
       devDependencies: '====={ Installing Development Dependencies }=====',
       marketplaceTool: ['Download   ', 'to help you   '],
+      uninstalled: 'uninstalled',
       installed: 'installed',
       comandTitle: '=={ COMANDS LIST }===',
       tools: 'TOOLS      ',

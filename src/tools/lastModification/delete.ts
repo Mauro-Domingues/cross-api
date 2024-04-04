@@ -2,6 +2,7 @@ import { IMessagesDTO, Messages } from '@tools/messages';
 import { GetNames, IModuleNamesDTO } from '@tools/names';
 import { Console } from '@tools/console';
 import { Provider } from '@tools/provider';
+import { PackageManager } from '@tools/packageManager';
 import { BaseRegister } from './base';
 
 export class DeleteRegister extends BaseRegister {
@@ -23,6 +24,15 @@ export class DeleteRegister extends BaseRegister {
       | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ): void {
+    const packageManager = new PackageManager(
+      this.provider.list[
+        names?.lowerModuleName as keyof typeof this.provider.list
+      ]?.dependencies,
+      this.provider.list[
+        names?.lowerModuleName as keyof typeof this.provider.list
+      ]?.devDependencies,
+    );
+
     if (names && fatherNames) {
       const oldProviders = this.fileManager.readFileSync([
         this.basePath,
@@ -76,7 +86,9 @@ export class DeleteRegister extends BaseRegister {
         breakStart: true,
         breakEnd: false,
       });
-    } else if (names) {
+      packageManager.execute('uninstall');
+    }
+    if (names) {
       const oldProviders = this.fileManager.readFileSync([
         this.basePath,
         'providers',
@@ -123,6 +135,7 @@ export class DeleteRegister extends BaseRegister {
         breakStart: true,
         breakEnd: false,
       });
+      packageManager.execute('uninstall');
     }
   }
 

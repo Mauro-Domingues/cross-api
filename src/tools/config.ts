@@ -2,9 +2,11 @@ import { Config } from '@templates/assets/config';
 import { createInterface } from 'node:readline';
 import { Shell } from '@tools/shell';
 import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
+import { PackageManager } from '@tools/packageManager';
 
 export class ConfigJson extends ConfigLanguage {
   private readonly devDependencies: Array<string>;
+  private readonly packageManager: PackageManager;
   private readonly dependencies: Array<string>;
   private readonly config: Config;
   private readonly shell: Shell;
@@ -16,16 +18,9 @@ export class ConfigJson extends ConfigLanguage {
     this.devDependencies = [
       '@swc/cli',
       '@swc/core',
-      '@types/bcrypt',
       '@types/cors',
       '@types/express',
       '@types/jest',
-      '@types/jsonwebtoken',
-      '@types/kue',
-      '@types/mime@^3.0.1',
-      '@types/multer',
-      '@types/nodemailer',
-      '@types/pem-jwk',
       '@types/supertest',
       '@types/swagger-ui-express',
       '@types/uuid',
@@ -46,12 +41,7 @@ export class ConfigJson extends ConfigLanguage {
       'typescript',
     ];
     this.dependencies = [
-      '@aws-sdk/client-s3',
-      '@aws-sdk/client-ses',
       'axios',
-      'bcrypt',
-      'bee-queue',
-      'bull',
       'celebrate',
       'class-transformer',
       'cors',
@@ -59,16 +49,9 @@ export class ConfigJson extends ConfigLanguage {
       'express',
       'express-async-errors',
       'express-jwt',
-      'handlebars',
       'ioredis',
-      'jsonwebtoken',
       'jwks-rsa',
-      'kue',
-      'mime@^3.0.0',
-      'multer',
       'mysql',
-      'nodemailer',
-      'pem-jwk',
       'rate-limiter-flexible',
       'reflect-metadata',
       'supertest',
@@ -79,11 +62,15 @@ export class ConfigJson extends ConfigLanguage {
       'typeorm@^0.3.15',
       'uuid',
     ];
+    this.packageManager = new PackageManager(
+      this.dependencies,
+      this.devDependencies,
+    );
   }
 
   private patchPackage(): void {
     const stringifiedPackage = this.fileManager.readFileSync(['package.json']);
-    const jsonPackage: Record<string, Record<string, string>> = JSON.parse(
+    const jsonPackage: Record<'scripts', Record<string, string>> = JSON.parse(
       stringifiedPackage,
     );
 
@@ -123,46 +110,6 @@ export class ConfigJson extends ConfigLanguage {
       },
     ]);
     return this.shell.execute('npm install yarn --location=global');
-  }
-
-  private installDependencies(): void {
-    this.console.single({
-      message: this.messages.dependencies,
-      color: 'blue',
-      bold: true,
-      breakStart: false,
-      breakEnd: true,
-    });
-    this.shell.execute(`yarn add ${this.dependencies.join(' ')}`);
-    return this.dependencies.forEach(dependency => {
-      return this.console.single({
-        message: `- ${dependency} ${this.messages.installed}`,
-        color: 'yellow',
-        bold: false,
-        breakStart: false,
-        breakEnd: false,
-      });
-    });
-  }
-
-  private installDevDependencies(): void {
-    this.console.single({
-      message: this.messages.devDependencies,
-      color: 'blue',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
-    });
-    this.shell.execute(`yarn add ${this.devDependencies.join(' ')} -D`);
-    return this.devDependencies.forEach(devDependency => {
-      return this.console.single({
-        message: `- ${devDependency} ${this.messages.installed}`,
-        color: 'yellow',
-        bold: false,
-        breakStart: false,
-        breakEnd: false,
-      });
-    });
   }
 
   private renderEnding(): void {
@@ -216,8 +163,7 @@ export class ConfigJson extends ConfigLanguage {
   private setConfig(): void {
     this.patchPackage();
     this.installYarn();
-    this.installDependencies();
-    this.installDevDependencies();
+    this.packageManager.execute('install');
     this.renderEnding();
 
     if (this.fileManager.checkIfExistsSync(['package-lock.json'])) {
