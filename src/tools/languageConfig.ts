@@ -112,7 +112,7 @@ export class ConfigLanguage {
           breakEnd: false,
         },
         {
-          message: ` ➤  ${key.padEnd(7, ' ')}`,
+          message: ` ➤  ${key.padEnd(12, ' ')}`,
           color: 'yellow',
           bold: true,
           breakStart: false,
