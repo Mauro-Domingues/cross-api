@@ -9,6 +9,7 @@ export interface IMessagesDTO {
   readonly devDependencies: string;
   readonly moduleNotFound: string;
   readonly patchAndInsert: string;
+  readonly chooseLanguage: string;
   readonly changeLanguage: string;
   readonly makeProviderD: string;
   readonly invalidOption: string;
@@ -29,8 +30,8 @@ export interface IMessagesDTO {
   readonly installed: string;
   readonly structure: string;
   readonly reversed: string;
-  readonly language: string;
   readonly notFound: string;
+  readonly language: string;
   readonly created: string;
   readonly comands: string;
   readonly makeApi: string;
@@ -46,7 +47,8 @@ export class Messages {
 
   public constructor() {
     this.messages = {
-      language: '➤  Which language do you prefer?',
+      language: 'english',
+      chooseLanguage: '➤  Which language do you prefer?',
       invalidOption: ' is not a valid option',
       answer: 'Your answer: ',
       choice: '➤  You chose the language: ',

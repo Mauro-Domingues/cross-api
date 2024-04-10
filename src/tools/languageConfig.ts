@@ -181,9 +181,7 @@ export class ConfigLanguage {
       this[`${this.languageOptions[this.languageChosen]}Messages`].execute();
 
     return this.console.single({
-      message: `${this.messages.choice}${
-        this.languageOptions[this.languageChosen]
-      }`,
+      message: `${this.messages.choice}${this.messages.language}`,
       color: 'green',
       bold: true,
       breakStart: true,

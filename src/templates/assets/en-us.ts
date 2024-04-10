@@ -5,7 +5,8 @@ export class EnglishMessages {
 
   public constructor() {
     this.messages = {
-      language: '➤  Which language do you prefer?',
+      language: 'english',
+      chooseLanguage: '➤  Which language do you prefer?',
       invalidOption: ' is not a valid option',
       answer: 'Your answer: ',
       choice: '➤  You chose the language: ',
