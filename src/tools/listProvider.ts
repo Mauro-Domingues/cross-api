@@ -12,7 +12,7 @@ export class ListProvider {
 
   private renderEmptyLine(): void {
     return this.console.single({
-      message: '|                                                       |   ',
+      message: `|${' '.repeat(55)}|`,
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -23,7 +23,7 @@ export class ListProvider {
   private renderHeader(): void {
     return this.console.multi([
       {
-        message: ` /=====================================================\\   `,
+        message: ` /${'='.repeat(53)}\\`,
         color: 'blue',
         bold: true,
         breakStart: true,
@@ -37,35 +37,35 @@ export class ListProvider {
         breakEnd: false,
       },
       {
-        message: `       NAME   `,
+        message: '       NAME'.padEnd(23, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '         |   ',
+        message: '|   ',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: `        DESCRIPTION   `,
+        message: '        DESCRIPTION'.padEnd(22, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '           |   ',
+        message: '|'.padStart(12, ' '),
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: true,
       },
       {
-        message: '| – – – – – – – – – – – – – – – – – – – – – – – – – – – |   ',
+        message: `| ${'– '.repeat(27)}|`,
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -106,7 +106,7 @@ export class ListProvider {
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -119,7 +119,7 @@ export class ListProvider {
 
   private renderFooter(): void {
     return this.console.single({
-      message: ` \\=====================================================/   `,
+      message: ` \\${'='.repeat(53)}/   `,
       color: 'blue',
       bold: true,
       breakStart: false,

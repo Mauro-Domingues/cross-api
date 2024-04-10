@@ -39,7 +39,7 @@ export class ConfigLanguage {
 
   private renderEmptyLine(): void {
     return this.console.single({
-      message: '|                                     |   ',
+      message: `|${' '.repeat(37)}|`,
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -50,7 +50,7 @@ export class ConfigLanguage {
   private renderHeader(): void {
     return this.console.multi([
       {
-        message: ` /===================================\\   `,
+        message: ` /${'='.repeat(35)}\\`,
         color: 'blue',
         bold: true,
         breakStart: true,
@@ -64,35 +64,35 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: `    KEY   `,
+        message: '    KEY'.padEnd(17, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '       |   ',
+        message: '|   ',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: `     VALUE   `,
+        message: '     VALUE'.padEnd(21, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '        |   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: true,
       },
       {
-        message: '| – – – – – – – – – – – – – – – – – – |   ',
+        message: `| ${'– '.repeat(18)}|`,
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -112,28 +112,28 @@ export class ConfigLanguage {
           breakEnd: false,
         },
         {
-          message: ` ➤  ${key.padEnd(12, ' ')}`,
+          message: ` ➤  ${key.padEnd(13, ' ')}`,
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: ' |   ',
+          message: '|   ',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: `  ${value.padEnd(18, ' ')}`,
+          message: `  ${value.padEnd(19, ' ')}`,
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: ' |   ',
+          message: '|   ',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -146,7 +146,7 @@ export class ConfigLanguage {
 
   private renderFooter(): void {
     return this.console.single({
-      message: ` \\===================================/   `,
+      message: ` \\${'='.repeat(35)}/   `,
       color: 'blue',
       bold: true,
       breakStart: false,

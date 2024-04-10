@@ -56,8 +56,7 @@ export class Board {
 
   private renderEmptyLine(): void {
     return this.console.single({
-      message:
-        '|                                                                                                                   |',
+      message: `|${' '.repeat(115)}|`,
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -67,7 +66,9 @@ export class Board {
 
   private renderHeader(): void {
     return this.console.single({
-      message: ` /==============================================${this.messages.comandTitle}==============================================\\`,
+      message: ` /${'='.repeat(46)}${this.messages.comandTitle}${'='.repeat(
+        46,
+      )}\\`,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -212,7 +213,7 @@ export class Board {
 
   private renderFooter(): void {
     return this.console.single({
-      message: ` \\=================================================================================================================/`,
+      message: ` \\${'='.repeat(113)}/`,
       color: 'blue',
       bold: true,
       breakStart: false,
