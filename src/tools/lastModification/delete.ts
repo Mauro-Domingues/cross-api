@@ -307,6 +307,7 @@ export class DeleteRegister extends BaseRegister {
 
   private makeAPi(comand: string) {
     this.fileManager.removeMultiDir([
+      ['.cross'],
       ['.swc'],
       ['src'],
       ['dist'],

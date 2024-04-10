@@ -6,7 +6,7 @@ export class PortugueseMessages {
   public constructor() {
     this.messages = {
       language: '➤  Qual linguagem você prefere?',
-      invalidLanguage: ' não é uma opção válida',
+      invalidOption: ' não é uma opção válida',
       answer: 'Sua resposta: ',
       choice: '➤  Você escolheu a linguagem: ',
       created: 'criado',
@@ -23,6 +23,7 @@ export class PortugueseMessages {
         'yarn cross comands   ',
         'para ver os comandos disponíveis   ',
       ],
+      uninstallDependencies: 'Você quer desinstalar as dependências?',
       yarn: '==================={ Instalando Yarn }==================',
       uninstallingDependencies:
         '============={ Desinstalando Dependências }=============',
@@ -34,21 +35,18 @@ export class PortugueseMessages {
       installed: 'instalado',
       comandTitle: '{ LISTA DE COMANDOS }',
       tools: 'FERRAMENTAS',
-      comands: 'É usado para visualizar os comandos disponíveis  ',
-      changeLanguage: 'É usado para alterar o idioma                    ',
+      comands: 'É usado para visualizar os comandos disponíveis',
+      changeLanguage: 'É usado para alterar o idioma',
       listProvider: 'É utilizado para listar os provedores disponíveis',
       structure: 'CRIAÇÃO DA ESTRUTURA',
-      makeApi:
-        'É utilizado para gerar a estrutura da sua API                              ',
+      makeApi: 'É utilizado para gerar a estrutura da sua API',
       makeModule:
-        'É utilizado para gerar um CRUD completo de um módulo independente          ',
+        'É utilizado para gerar um CRUD completo de um módulo independente',
       makeModuleD:
-        'É usado para gerar um CRUD completo de um módulo dependente de outro       ',
-      makeProvider:
-        'É utilizado para gerar um provedor                                         ',
-      makeProviderD:
-        'É usado para criar um provedor dentro de um módulo                         ',
-      undo: 'É usado para desfazer o último comando de criação                          ',
+        'É usado para gerar um CRUD completo de um módulo dependente de outro',
+      makeProvider: 'É utilizado para gerar um provedor',
+      makeProviderD: 'É usado para criar um provedor dentro de um módulo',
+      undo: 'É usado para desfazer o último comando de criação',
       mapAndClone:
         'CLONE VALUES -> Recebe como parâmetro um array de chaves e outro objeto do tipo { [key: string]: unknown }, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
       mapAndPatch:

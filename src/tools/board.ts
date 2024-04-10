@@ -16,31 +16,31 @@ export class Board {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.toolOptions = [
-      { title: 'comands             ', description: this.messages.comands },
+      { title: 'comands', description: this.messages.comands },
       {
-        title: 'language            ',
+        title: 'language',
         description: this.messages.changeLanguage,
       },
       {
-        title: 'list:provider       ',
+        title: 'list:provider',
         description: this.messages.listProvider,
       },
     ];
     this.structureOptions = [
       {
-        title: 'make:api                     ',
+        title: 'make:api',
         description: this.messages.makeApi,
       },
       {
-        title: 'make:module [name]           ',
+        title: 'make:module [name]',
         description: this.messages.makeModule,
       },
       {
-        title: 'make:module [name] [father]  ',
+        title: 'make:module [name] [father]',
         description: this.messages.makeModuleD,
       },
       {
-        title: 'make:provider [name]         ',
+        title: 'make:provider [name]',
         description: this.messages.makeProvider,
       },
       {
@@ -48,7 +48,7 @@ export class Board {
         description: this.messages.makeProviderD,
       },
       {
-        title: 'revert                       ',
+        title: 'revert',
         description: this.messages.undo,
       },
     ];
@@ -86,15 +86,14 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.tools}   `,
+        message: ` 〇 ${this.messages.tools.padEnd(112, ' ')}`,
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message:
-          '                                                                                                  |',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -112,7 +111,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: `   ➤  ${tool.title}            `,
+          message: `   ➤  ${tool.title.padEnd(32, ' ')}`,
           color: 'yellow',
           bold: true,
           breakStart: false,
@@ -126,14 +125,14 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: `${tool.description}   `,
+          message: tool.description.padEnd(78, ' '),
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '                          |   ',
+          message: '|   ',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -154,15 +153,14 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.structure}   `,
+        message: ` 〇 ${this.messages.structure.padEnd(112, ' ')}`,
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message:
-          '                                                                                         |',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -180,7 +178,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: `   ➤  ${structure.title}   `,
+          message: `   ➤  ${structure.title.padEnd(32, ' ')}`,
           color: 'yellow',
           bold: true,
           breakStart: false,
@@ -194,7 +192,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: `${structure.description}   `,
+          message: structure.description.padEnd(78, ' '),
           color: 'white',
           bold: false,
           breakStart: false,

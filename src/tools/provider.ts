@@ -18,25 +18,28 @@ import { MakeQueueProvider } from '@tools/makeProvider/independent/queue';
 import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
 import { IModuleNamesDTO } from '@tools/names';
 
+type providers =
+  | 'cache'
+  | 'crypto'
+  | 'hash'
+  | 'lead'
+  | 'mail'
+  | 'mailTemplate'
+  | 'queue'
+  | 'notification'
+  | 'storage';
+
 export class Provider {
   public readonly key: 'dependent' | 'independent';
   public readonly list: Record<
-    | 'cache'
-    | 'crypto'
-    | 'hash'
-    | 'lead'
-    | 'mail'
-    | 'mailTemplate'
-    | 'queue'
-    | 'notification'
-    | 'storage',
+    providers,
     {
       readonly independent: { readonly execute: () => void };
       readonly dependent: { readonly execute: () => void };
       readonly devDependencies: Array<string>;
       readonly dependencies: Array<string>;
       readonly description: string;
-      readonly name: string;
+      readonly name: providers;
     }
   >;
 
@@ -53,40 +56,40 @@ export class Provider {
 
     this.list = Object.freeze({
       cache: {
-        name: 'cache       ',
-        description: 'CacheProvider       ',
+        name: 'cache',
+        description: 'CacheProvider',
         independent: new MakeCacheProvider(),
         dependent: new MakeDependentCacheProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
       },
       crypto: {
-        name: 'crypto      ',
-        description: 'CryptoProvider      ',
+        name: 'crypto',
+        description: 'CryptoProvider',
         independent: new MakeCryptoProvider(),
         dependent: new MakeDependentCryptoProvider(this.fatherNames),
         dependencies: ['jsonwebtoken', 'pem-jwk'],
         devDependencies: ['@types/jsonwebtoken', '@types/pem-jwk'],
       },
       hash: {
-        name: 'hash        ',
-        description: 'HashProvider        ',
+        name: 'hash',
+        description: 'HashProvider',
         independent: new MakeHashProvider(),
         dependent: new MakeDependentHashProvider(this.fatherNames),
         dependencies: ['bcrypt'],
         devDependencies: ['@types/bcrypt'],
       },
       lead: {
-        name: 'lead        ',
-        description: 'leadProvider        ',
+        name: 'lead',
+        description: 'leadProvider',
         independent: new MakeLeadProvider(),
         dependent: new MakeDependentLeadProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
       },
       mail: {
-        name: 'mail        ',
-        description: 'MailProvider        ',
+        name: 'mail',
+        description: 'MailProvider',
         independent: {
           execute: (): void => {
             new MakeMailTemplateProvider().execute();
@@ -111,8 +114,8 @@ export class Provider {
         devDependencies: [],
       },
       queue: {
-        name: 'queue       ',
-        description: 'QueueProvider       ',
+        name: 'queue',
+        description: 'QueueProvider',
         independent: new MakeQueueProvider(),
         dependent: new MakeDependentQueueProvider(this.fatherNames),
         dependencies: ['bee-queue', 'bull', 'kue'],
@@ -127,8 +130,8 @@ export class Provider {
         devDependencies: [],
       },
       storage: {
-        name: 'storage     ',
-        description: 'StorageProvider     ',
+        name: 'storage',
+        description: 'StorageProvider',
         independent: new MakeStorageProvider(),
         dependent: new MakeDependentStorageProvider(this.fatherNames),
         dependencies: ['@aws-sdk/client-s3', 'mime@^3.0.0', 'multer'],

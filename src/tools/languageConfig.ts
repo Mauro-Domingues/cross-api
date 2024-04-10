@@ -1,29 +1,24 @@
-import { createInterface } from 'node:readline';
-
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
 import { IMessagesDTO, Messages } from '@tools/messages';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Readline } from '@tools/readline';
 
-export interface ILanguageOptionsDTO {
-  readonly 'pt-br': 'portugueseMessages';
-  readonly 'en-us': 'englishMessages';
-}
-
-interface ILanguageConfigDTO {
-  readonly option: keyof ILanguageOptionsDTO;
-  readonly index: number;
+interface ILanguageOptionsDTO {
+  readonly 'pt-br': 'portuguese';
+  readonly 'en-us': 'english';
 }
 
 export class ConfigLanguage {
   private readonly createDefaultLanguage: CreateDefaultLanguage;
   protected readonly languageOptions: ILanguageOptionsDTO;
   private readonly portugueseMessages: PortugueseMessages;
+  protected languageChosen: keyof ILanguageOptionsDTO;
   private readonly englishMessages: EnglishMessages;
-  protected languageConfig: ILanguageConfigDTO;
   protected readonly fileManager: FileManager;
+  protected readonly readline: Readline;
   protected readonly console: Console;
   protected messages: IMessagesDTO;
 
@@ -32,79 +27,162 @@ export class ConfigLanguage {
     this.portugueseMessages = new PortugueseMessages();
     this.englishMessages = new EnglishMessages();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
     this.languageOptions = Object.freeze({
-      'en-us': 'englishMessages',
-      'pt-br': 'portugueseMessages',
+      'pt-br': 'portuguese',
+      'en-us': 'english',
     });
-    this.languageConfig = {
-      option: 'en-us',
-      index: 0,
-    };
+    this.fileManager = new FileManager();
+    this.languageChosen = 'en-us';
+    this.console = new Console();
+    this.readline = new Readline(Object.keys(this.languageOptions));
   }
 
-  private showLanguageOptions(): void {
-    this.console.single({
-      message: this.messages.language,
-      color: 'yellow',
+  private renderEmptyLine(): void {
+    return this.console.single({
+      message: '|                                     |   ',
+      color: 'blue',
       bold: true,
-      breakStart: true,
-      breakEnd: true,
-    });
-    console.table(Object.keys(this.languageOptions));
-    this.console.single({
-      message: '',
-      color: 'white',
-      bold: false,
       breakStart: false,
       breakEnd: false,
     });
+  }
 
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+  private renderHeader(): void {
+    return this.console.multi([
+      {
+        message: ` /===================================\\   `,
+        color: 'blue',
+        bold: true,
+        breakStart: true,
+        breakEnd: true,
+      },
+      {
+        message: '|   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: `    KEY   `,
+        color: 'green',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: '       |   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: `     VALUE   `,
+        color: 'green',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: '        |   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: true,
+      },
+      {
+        message: '| – – – – – – – – – – – – – – – – – – |   ',
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+    ]);
+  }
 
-    return rl.question(this.messages.answer, (optionChosen: string): void => {
-      const choice = Object.keys(this.languageOptions)[
-        Number(optionChosen)
-      ] as keyof ILanguageOptionsDTO;
-
-      if (Object.keys(this.languageOptions)[Number(optionChosen)]) {
-        this.languageConfig = {
-          option: choice,
-          index: Number(optionChosen),
-        };
-
-        rl.close();
-        this.showChosenOption();
-        return this.setLanguageOption();
-      }
-      rl.close();
-      this.validateOption(optionChosen);
-      return this.execute();
+  private renderOptions(): void {
+    return Object.entries(this.languageOptions).forEach(([key, value]) => {
+      this.console.multi([
+        {
+          message: '|   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: ` ➤  ${key.padEnd(7, ' ')}`,
+          color: 'yellow',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: ' |   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: `  ${value.padEnd(18, ' ')}`,
+          color: 'white',
+          bold: false,
+          breakStart: false,
+          breakEnd: false,
+        },
+        {
+          message: ' |   ',
+          color: 'blue',
+          bold: true,
+          breakStart: false,
+          breakEnd: false,
+        },
+      ]);
+      return this.renderEmptyLine();
     });
   }
 
-  protected validateOption(optionChosen: string): void {
+  private renderFooter(): void {
     return this.console.single({
-      message: `"${optionChosen}"${this.messages.invalidLanguage}`,
-      color: 'red',
+      message: ` \\===================================/   `,
+      color: 'blue',
       bold: true,
-      breakStart: true,
-      breakEnd: false,
+      breakStart: false,
+      breakEnd: true,
     });
   }
 
-  protected showChosenOption({ option, index } = this.languageConfig): void {
-    const languageChosen = this[this.languageOptions[option]].execute();
+  protected renderLanguageOptions(): void {
+    this.renderHeader();
+    this.renderOptions();
+    return this.renderFooter();
+  }
 
-    this.messages = languageChosen;
+  private showLanguageOptions(): void {
+    this.renderLanguageOptions();
+    return this.readline.execute(
+      (optionChosen: keyof typeof this.languageOptions): void => {
+        if (this.languageOptions[optionChosen]) {
+          this.languageChosen = optionChosen;
+          this.showChosenOption();
+          this.setLanguageOption();
+        } else {
+          this.readline.invalidOption(optionChosen);
+          this.execute();
+        }
+      },
+    );
+  }
+
+  protected showChosenOption(): void {
+    this.messages =
+      this[`${this.languageOptions[this.languageChosen]}Messages`].execute();
 
     return this.console.single({
       message: `${this.messages.choice}${
-        Object.keys(this.languageOptions)[index]
+        this.languageOptions[this.languageChosen]
       }`,
       color: 'green',
       bold: true,

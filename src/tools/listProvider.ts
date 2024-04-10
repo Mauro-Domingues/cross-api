@@ -85,7 +85,7 @@ export class ListProvider {
           breakEnd: false,
         },
         {
-          message: ` ➤  ${provider.name}       `,
+          message: ` ➤  ${provider.name.padEnd(19, ' ')}`,
           color: 'yellow',
           bold: true,
           breakStart: false,
@@ -99,14 +99,14 @@ export class ListProvider {
           breakEnd: false,
         },
         {
-          message: ` ${provider.description}     `,
+          message: ` ${provider.description.padEnd(32, ' ')}`,
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '       |   ',
+          message: '|   ',
           color: 'blue',
           bold: true,
           breakStart: false,

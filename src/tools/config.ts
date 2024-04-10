@@ -1,7 +1,6 @@
 import { Config } from '@templates/assets/config';
-import { createInterface } from 'node:readline';
 import { Shell } from '@tools/shell';
-import { ConfigLanguage, ILanguageOptionsDTO } from '@tools/languageConfig';
+import { ConfigLanguage } from '@tools/languageConfig';
 import { PackageManager } from '@tools/packageManager';
 
 export class ConfigJson extends ConfigLanguage {
@@ -26,7 +25,7 @@ export class ConfigJson extends ConfigLanguage {
       '@types/uuid',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
-      'eslint',
+      'eslint@^8.43.0',
       'eslint-config-airbnb-base',
       'eslint-config-prettier',
       'eslint-import-resolver-typescript',
@@ -174,47 +173,19 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private configLanguage(): void {
-    this.console.single({
-      message: this.messages.language,
-      color: 'yellow',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
-    });
-    console.table(Object.keys(this.languageOptions));
-    this.console.single({
-      message: '',
-      color: 'white',
-      bold: false,
-      breakStart: false,
-      breakEnd: false,
-    });
-
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    return rl.question(this.messages.answer, (optionChosen: string): void => {
-      const choice = Object.keys(this.languageOptions)[
-        Number(optionChosen)
-      ] as keyof ILanguageOptionsDTO;
-
-      if (Object.keys(this.languageOptions)[Number(optionChosen)]) {
-        this.languageConfig = {
-          option: choice,
-          index: Number(optionChosen),
-        };
-
-        rl.close();
-        this.showChosenOption();
-        this.setConfig();
-        return this.setLanguageOption();
-      }
-      rl.close();
-      this.validateOption(optionChosen);
-      return this.execute();
-    });
+    this.renderLanguageOptions();
+    return this.readline.execute(
+      (optionChosen: keyof typeof this.languageOptions): void => {
+        if (this.languageOptions[optionChosen]) {
+          this.languageChosen = optionChosen;
+          this.showChosenOption();
+          this.setConfig();
+          return this.setLanguageOption();
+        }
+        this.readline.invalidOption(optionChosen);
+        return this.execute();
+      },
+    );
   }
 
   public override execute(): void {

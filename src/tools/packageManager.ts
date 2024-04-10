@@ -1,11 +1,13 @@
 import { Shell } from '@tools/shell';
 import { Console } from '@tools/console';
 import { IMessagesDTO, Messages } from '@tools/messages';
+import { Readline } from '@tools/readline';
 import { FileManager } from '@tools/fileManager';
 
 export class PackageManager {
   private readonly fileManager: FileManager;
   private readonly messages: IMessagesDTO;
+  private readonly readline: Readline;
   private readonly console: Console;
   private readonly shell: Shell;
 
@@ -14,6 +16,7 @@ export class PackageManager {
     private readonly devDependencies: Array<string>,
   ) {
     this.messages = new Messages().execute();
+    this.readline = new Readline(['y', 'n']);
     this.fileManager = new FileManager();
     this.console = new Console();
     this.shell = new Shell();
@@ -63,7 +66,9 @@ export class PackageManager {
     this.shell.execute(`yarn add ${dependencies.join(' ')}`);
     return dependencies.forEach(dependency => {
       return this.console.single({
-        message: `- ${dependency} ${this.messages.installed}`,
+        message: `- ${dependency.replace(/@\^.*/, '')} ${
+          this.messages.installed
+        }`,
         color: 'yellow',
         bold: false,
         breakStart: false,
@@ -83,7 +88,9 @@ export class PackageManager {
     this.shell.execute(`yarn add ${devDependencies.join(' ')} -D`);
     return devDependencies.forEach(devDependency => {
       return this.console.single({
-        message: `- ${devDependency} ${this.messages.installed}`,
+        message: `- ${devDependency.replace(/@\^.*/, '')} ${
+          this.messages.installed
+        }`,
         color: 'yellow',
         bold: false,
         breakStart: false,
@@ -94,21 +101,34 @@ export class PackageManager {
 
   private uninstallDependencies(dependencies: Array<string>): void {
     this.console.single({
-      message: this.messages.uninstallingDependencies,
-      color: 'blue',
+      message: this.messages.uninstallDependencies,
+      color: 'green',
       bold: true,
       breakStart: true,
       breakEnd: true,
     });
-    this.shell.execute(`yarn remove ${dependencies.join(' ')}`);
-    return dependencies.forEach(dependency => {
-      return this.console.single({
-        message: `- ${dependency} ${this.messages.uninstalled}`,
-        color: 'red',
-        bold: false,
-        breakStart: false,
-        breakEnd: false,
-      });
+    this.readline.execute((optionChosen: 'y' | 'n'): void => {
+      if (optionChosen === 'y') {
+        this.console.single({
+          message: this.messages.uninstallingDependencies,
+          color: 'blue',
+          bold: true,
+          breakStart: true,
+          breakEnd: true,
+        });
+        this.shell.execute(`yarn remove ${dependencies.join(' ')}`);
+        dependencies.forEach(dependency => {
+          return this.console.single({
+            message: `- ${dependency.replace(/@\^.*/, '')} ${
+              this.messages.uninstalled
+            }`,
+            color: 'red',
+            bold: false,
+            breakStart: false,
+            breakEnd: false,
+          });
+        });
+      }
     });
   }
 

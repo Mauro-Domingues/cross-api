@@ -6,7 +6,7 @@ export class EnglishMessages {
   public constructor() {
     this.messages = {
       language: '➤  Which language do you prefer?',
-      invalidLanguage: ' is not a valid option',
+      invalidOption: ' is not a valid option',
       answer: 'Your answer: ',
       choice: '➤  You chose the language: ',
       created: 'created',
@@ -23,6 +23,7 @@ export class EnglishMessages {
         'yarn cross comands   ',
         'to see available commands   ',
       ],
+      uninstallDependencies: 'Do you want to uninstall dependencies?',
       yarn: '==============={ Installing Yarn }===============',
       uninstallingDependencies:
         '=========={ Uninstalling Dependencies }==========',
@@ -32,22 +33,19 @@ export class EnglishMessages {
       uninstalled: 'uninstalled',
       installed: 'installed',
       comandTitle: '=={ COMANDS LIST }===',
-      tools: 'TOOLS      ',
-      comands: 'It is used to view the available commands        ',
-      changeLanguage: 'It is used to change the language                ',
-      listProvider: 'It is used to list the available providers       ',
-      structure: 'STRUCTURE CREATION  ',
-      makeApi:
-        'It is used to generate the structure of your API                           ',
+      tools: 'TOOLS',
+      comands: 'It is used to view the available commands',
+      changeLanguage: 'It is used to change the language',
+      listProvider: 'It is used to list the available providers',
+      structure: 'STRUCTURE CREATION',
+      makeApi: 'It is used to generate the structure of your API',
       makeModule:
-        'It is used to generate a complete CRUD of an independent module            ',
+        'It is used to generate a complete CRUD of an independent module',
       makeModuleD:
         'It is used to generate a complete CRUD from one module dependent on another',
-      makeProvider:
-        'It is used to generate a provider                                          ',
-      makeProviderD:
-        'It is used to generate a provider inside a module                          ',
-      undo: 'It is used to undo the last creation command                               ',
+      makeProvider: 'It is used to generate a provider',
+      makeProviderD: 'It is used to generate a provider inside a module',
+      undo: 'It is used to undo the last creation command',
       mapAndClone:
         'CLONE VALUES -> Receives as parameter a key array and another object of type { [key: string]: unknown }, returns an array of objects with the same value, is useful for queries find WHERE + OR.',
       mapAndPatch:
