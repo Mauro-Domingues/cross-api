@@ -60,7 +60,7 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: '     KEY'.padEnd(17, ' '),
+        message: `     ${this.messages.languageHeaders[0]}`.padEnd(17, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -74,7 +74,7 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: '      VALUE'.padEnd(21, ' '),
+        message: `      ${this.messages.languageHeaders[1]}`.padEnd(21, ' '),
         color: 'green',
         bold: true,
         breakStart: false,

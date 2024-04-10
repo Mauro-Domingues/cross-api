@@ -1,12 +1,15 @@
 import { Console } from '@tools/console';
 import { Provider } from '@tools/provider';
+import { IMessagesDTO, Messages } from '@tools/messages';
 
 export class ListProvider {
   private readonly provider: Provider;
   private readonly console: Console;
+  protected messages: IMessagesDTO;
 
   public constructor() {
     this.provider = new Provider(undefined);
+    this.messages = new Messages().execute();
     this.console = new Console();
   }
 
@@ -37,7 +40,7 @@ export class ListProvider {
         breakEnd: false,
       },
       {
-        message: '       NAME'.padEnd(23, ' '),
+        message: `       ${this.messages.providerHeaders[0]}`.padEnd(23, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -51,7 +54,7 @@ export class ListProvider {
         breakEnd: false,
       },
       {
-        message: '        DESCRIPTION'.padEnd(22, ' '),
+        message: `        ${this.messages.providerHeaders[1]}`.padEnd(22, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
