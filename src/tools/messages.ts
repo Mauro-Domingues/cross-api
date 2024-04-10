@@ -64,7 +64,7 @@ export class Messages {
         'yarn cross comands   ',
         'to see available commands   ',
       ],
-      uninstallDependencies: 'Do you want to uninstall dependencies?',
+      uninstallDependencies: 'Do you want to uninstall dependencies? (y/n)',
       yarn: '==============={ Installing Yarn }===============',
       uninstallingDependencies:
         '=========={ Uninstalling Dependencies }==========',

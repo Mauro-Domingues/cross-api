@@ -23,7 +23,7 @@ export class PortugueseMessages {
         'yarn cross comands   ',
         'para ver os comandos disponíveis   ',
       ],
-      uninstallDependencies: 'Você quer desinstalar as dependências?',
+      uninstallDependencies: 'Você quer desinstalar as dependências? (y/n)',
       yarn: '==================={ Instalando Yarn }==================',
       uninstallingDependencies:
         '============={ Desinstalando Dependências }=============',
