@@ -6,31 +6,27 @@ import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Readline } from '@tools/readline';
 
-interface ILanguageOptionsDTO {
-  readonly 'pt-br': 'portuguese';
-  readonly 'en-us': 'english';
-}
-
 export class ConfigLanguage {
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  protected readonly languageOptions: ILanguageOptionsDTO;
-  private readonly portugueseMessages: PortugueseMessages;
-  protected languageChosen: keyof ILanguageOptionsDTO;
-  private readonly englishMessages: EnglishMessages;
+  protected readonly languageOptions: IMessagesDTO['languages'];
+  protected languageChosen: keyof IMessagesDTO['languages'];
   protected readonly fileManager: FileManager;
   protected readonly readline: Readline;
   protected readonly console: Console;
+  private readonly languages: Record<
+    keyof IMessagesDTO['languages'],
+    { execute: () => IMessagesDTO }
+  >;
   protected messages: IMessagesDTO;
 
   public constructor() {
     this.createDefaultLanguage = new CreateDefaultLanguage();
-    this.portugueseMessages = new PortugueseMessages();
-    this.englishMessages = new EnglishMessages();
+    this.languages = {
+      'en-us': new EnglishMessages(),
+      'pt-br': new PortugueseMessages(),
+    };
     this.messages = new Messages().execute();
-    this.languageOptions = Object.freeze({
-      'pt-br': 'portuguese',
-      'en-us': 'english',
-    });
+    this.languageOptions = Object.freeze(this.messages.languages);
     this.fileManager = new FileManager();
     this.languageChosen = 'en-us';
     this.console = new Console();
@@ -64,7 +60,7 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: '    KEY'.padEnd(17, ' '),
+        message: '     KEY'.padEnd(17, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -78,7 +74,7 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: '     VALUE'.padEnd(21, ' '),
+        message: '      VALUE'.padEnd(21, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -177,11 +173,12 @@ export class ConfigLanguage {
   }
 
   protected showChosenOption(): void {
-    this.messages =
-      this[`${this.languageOptions[this.languageChosen]}Messages`].execute();
+    this.messages = this.languages[this.languageChosen].execute();
 
     return this.console.single({
-      message: `${this.messages.choice}${this.messages.language}`,
+      message: `${this.messages.choice}${
+        this.messages.languages[this.languageChosen]
+      }`,
       color: 'green',
       bold: true,
       breakStart: true,
