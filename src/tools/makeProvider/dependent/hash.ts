@@ -3,8 +3,8 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import { IModuleNamesDTO } from '@tools/names';
-import { DependentBaseProvider } from './base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentHashProvider extends DependentBaseProvider {
   private readonly createHashConfig: CreateHashConfig;
@@ -15,7 +15,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

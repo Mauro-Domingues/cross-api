@@ -4,7 +4,7 @@ import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeCryptoProvider extends BaseProvider {
   private readonly createCryptoConfig: CreateCryptoConfig;

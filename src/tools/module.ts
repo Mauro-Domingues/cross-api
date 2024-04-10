@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { MakeInfra } from '@tools/makeModule/independent/infra';
 import { MakeFunctionalities } from '@tools/makeModule/independent/functionalities';
 import { MakeStructure } from '@tools/makeModule/independent/structure';
@@ -7,7 +7,8 @@ import { MakeDependentFunctionalities } from '@tools/makeModule/dependent/funcio
 import { MakeDependentInfra } from '@tools/makeModule/dependent/infra';
 import { MakeDependentStructure } from '@tools/makeModule/dependent/structure';
 import { MakeDependentUnitTests } from '@tools/makeModule/dependent/unitTests';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 export class Module {
@@ -19,13 +20,13 @@ export class Module {
   private readonly makeDependentInfra: MakeDependentInfra;
   private readonly makeUnitTests: MakeUnitTests;
   private readonly makeStructure: MakeStructure;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly makeInfra: MakeInfra;
   private readonly console: Console;
 
   public constructor(
-    private readonly names: IModuleNamesDTO | undefined,
-    private readonly fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
+    private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     if (this.fatherNames) {
       this.key = 'makeDependentModule';

@@ -3,9 +3,9 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
-import { DependentBaseProvider } from './base';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
@@ -17,7 +17,7 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

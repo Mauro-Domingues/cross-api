@@ -8,8 +8,9 @@ import { ShowSpecDependentController } from '@templates/modules/services/showDep
 import { ShowSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec';
 import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
 import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -25,12 +26,12 @@ export class MakeDependentUnitTests {
   private readonly showSpecDependentService: ShowSpecDependentService;
   private readonly listSpecDependentService: ListSpecDependentService;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
-    private readonly names: IModuleNamesDTO | undefined,
-    private readonly fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
+    private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     this.updateSpecDependentController = new UpdateSpecDependentController(
       this.names,

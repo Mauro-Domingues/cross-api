@@ -1,6 +1,7 @@
 import { EnglishMessages } from '@templates/assets/en-us';
 import { PortugueseMessages } from '@templates/assets/pt-br';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
@@ -8,16 +9,16 @@ import { Readline } from '@tools/readline';
 
 export class ConfigLanguage {
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  protected readonly languageOptions: IMessagesDTO['languages'];
-  protected languageChosen: keyof IMessagesDTO['languages'];
+  protected readonly languageOptions: IMessageDTO['languages'];
+  protected languageChosen: keyof IMessageDTO['languages'];
   protected readonly fileManager: FileManager;
   protected readonly readline: Readline;
   protected readonly console: Console;
   private readonly languages: Record<
-    keyof IMessagesDTO['languages'],
-    { execute: () => IMessagesDTO }
+    keyof IMessageDTO['languages'],
+    { execute: () => IMessageDTO }
   >;
-  protected messages: IMessagesDTO;
+  protected messages: IMessageDTO;
 
   public constructor() {
     this.createDefaultLanguage = new CreateDefaultLanguage();

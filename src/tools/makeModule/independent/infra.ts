@@ -8,8 +8,9 @@ import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';
 import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -25,10 +26,10 @@ export class MakeInfra {
   private readonly createRoutes: CreateRoutes;
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
-  public constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
     this.createFakeRepository = new CreateFakeRepository(this.names);
     this.createIRepository = new CreateIRepository(this.names);

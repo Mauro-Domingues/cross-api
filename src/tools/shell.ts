@@ -1,10 +1,11 @@
 import { execSync } from 'node:child_process';
 import { Console } from '@tools/console';
-import { Messages, IMessagesDTO } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class Shell {
   private readonly allowedPattern: RegExp;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   constructor() {

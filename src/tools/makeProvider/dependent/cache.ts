@@ -3,8 +3,8 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { IModuleNamesDTO } from '@tools/names';
-import { DependentBaseProvider } from './base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCacheProvider extends DependentBaseProvider {
   private readonly createCacheConfig: CreateCacheConfig;
@@ -15,7 +15,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

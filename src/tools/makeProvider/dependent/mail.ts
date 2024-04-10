@@ -5,8 +5,8 @@ import { CreateDependentNodemailerMail } from '@templates/providers/implementati
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { IModuleNamesDTO } from '@tools/names';
-import { DependentBaseProvider } from './base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailProvider extends DependentBaseProvider {
   private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
@@ -19,7 +19,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

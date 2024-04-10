@@ -8,8 +8,9 @@ import { ShowController } from '@templates/modules/services/show/showController'
 import { ShowService } from '@templates/modules/services/show/showService';
 import { UpdateController } from '@templates/modules/services/update/updateController';
 import { UpdateService } from '@templates/modules/services/update/updateService';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -25,10 +26,10 @@ export class MakeFunctionalities {
   private readonly listService: ListService;
   private readonly showService: ShowService;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
-  public constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.updateController = new UpdateController(this.names);
     this.createController = new CreateController(this.names);
     this.deleteController = new DeleteController(this.names);

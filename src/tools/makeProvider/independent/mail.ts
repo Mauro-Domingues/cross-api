@@ -5,7 +5,7 @@ import { CreateNodemailerMail } from '@templates/providers/implementations/Nodem
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeMailProvider extends BaseProvider {
   private readonly createNodemailerMail: CreateNodemailerMail;

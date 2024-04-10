@@ -4,9 +4,9 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
-import { DependentBaseProvider } from './base';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentLeadProvider extends DependentBaseProvider {
   private readonly createRDStationLead: CreateRDStationLead;
@@ -19,7 +19,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

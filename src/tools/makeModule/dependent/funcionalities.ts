@@ -8,8 +8,9 @@ import { ShowDependentController } from '@templates/modules/services/showDepende
 import { ShowDependentService } from '@templates/modules/services/showDependent/showService';
 import { UpdateDependentController } from '@templates/modules/services/updateDependent/updateController';
 import { UpdateDependentService } from '@templates/modules/services/updateDependent/updateService';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -25,12 +26,12 @@ export class MakeDependentFunctionalities {
   private readonly showDependentService: ShowDependentService;
   private readonly listDependentService: ListDependentService;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
-    private readonly names: IModuleNamesDTO | undefined,
-    private readonly fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
+    private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     this.updateDependentController = new UpdateDependentController(
       this.names,

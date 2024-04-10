@@ -16,36 +16,26 @@ import { MakeMailTemplateProvider } from '@tools/makeProvider/independent/mailTe
 import { MakeNotificationProvider } from '@tools/makeProvider/independent/notification';
 import { MakeQueueProvider } from '@tools/makeProvider/independent/queue';
 import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
-import { IModuleNamesDTO } from '@tools/names';
-
-type providers =
-  | 'cache'
-  | 'crypto'
-  | 'hash'
-  | 'lead'
-  | 'mail'
-  | 'mailTemplate'
-  | 'queue'
-  | 'notification'
-  | 'storage';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IProviderOptionDTO } from '@interfaces/IProviderOptionDTO';
 
 export class Provider {
   public readonly key: 'dependent' | 'independent';
   public readonly list: Record<
-    providers,
+    IProviderOptionDTO,
     {
       readonly independent: { readonly execute: () => void };
       readonly dependent: { readonly execute: () => void };
       readonly devDependencies: Array<string>;
       readonly dependencies: Array<string>;
       readonly description: string;
-      readonly name: providers;
+      readonly name: IProviderOptionDTO;
     }
   >;
 
   public constructor(
     private readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     if (fatherNames) {

@@ -1,18 +1,19 @@
 import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class CreateProvider {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly provider: Provider;
   private readonly console: Console;
 
   public constructor(
     private readonly providerName: string | undefined,
     private readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     this.provider = new Provider(this.fatherNames);

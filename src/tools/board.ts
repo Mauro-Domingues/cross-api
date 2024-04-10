@@ -1,15 +1,12 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
 import { Console } from '@tools/console';
-
-interface IOptionDTO {
-  readonly title: string;
-  readonly description: string;
-}
+import { IOptionDTO } from '@interfaces/IOptionDTO';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class Board {
   private readonly structureOptions: Array<IOptionDTO>;
   private readonly toolOptions: Array<IOptionDTO>;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor() {

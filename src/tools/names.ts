@@ -1,13 +1,5 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Pluralize } from '@tools/pluralize';
-
-export interface IModuleNamesDTO {
-  readonly pluralLowerModuleName: string;
-  readonly pluralUpperModuleName: string;
-  readonly routeModuleName: string;
-  readonly lowerModuleName: string;
-  readonly upperModuleName: string;
-  readonly dbModuleName: string;
-}
 
 export class GetNames {
   private readonly pluralize: Pluralize;
@@ -32,7 +24,7 @@ export class GetNames {
     };
   }
 
-  public execute(): IModuleNamesDTO | undefined {
+  public execute(): IModuleNameDTO | undefined {
     if (!this.name) {
       return undefined;
     }

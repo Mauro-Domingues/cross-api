@@ -3,7 +3,7 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeCacheProvider extends BaseProvider {
   private readonly createCacheConfig: CreateCacheConfig;

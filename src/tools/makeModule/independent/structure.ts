@@ -1,16 +1,17 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeStructure {
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
     private readonly names:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'upperModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'upperModuleName'>
       | undefined,
   ) {
     this.messages = new Messages().execute();

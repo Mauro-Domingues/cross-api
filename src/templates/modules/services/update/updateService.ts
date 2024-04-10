@@ -1,13 +1,14 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 export class UpdateService {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
-    private readonly names: Omit<IModuleNamesDTO, 'dbModuleName'> | undefined,
+    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'> | undefined,
   ) {
     this.messages = new Messages().execute();
     this.console = new Console();

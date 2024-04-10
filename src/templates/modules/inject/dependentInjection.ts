@@ -1,17 +1,18 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 export class CreateDependentInjection {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
     private readonly names:
-      | Pick<IModuleNamesDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
       | undefined,
     private readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     this.messages = new Messages().execute();

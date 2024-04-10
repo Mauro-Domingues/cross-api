@@ -5,7 +5,7 @@ import { CreateRDStationLead } from '@templates/providers/implementations/RDStat
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeLeadProvider extends BaseProvider {
   private readonly createRDStationLead: CreateRDStationLead;

@@ -1,16 +1,17 @@
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Module } from '@tools/module';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 export class CreateModule {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
   private readonly module: Module;
 
   public constructor(
-    private readonly names: IModuleNamesDTO | undefined,
-    private readonly fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
+    private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     this.module = new Module(this.names, this.fatherNames);
     this.messages = new Messages().execute();

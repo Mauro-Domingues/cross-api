@@ -8,8 +8,9 @@ import { ShowSpecController } from '@templates/modules/services/show/showControl
 import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec';
 import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -25,10 +26,10 @@ export class MakeUnitTests {
   private readonly showSpecService: ShowSpecService;
   private readonly listSpecService: ListSpecService;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
-  public constructor(private readonly names: IModuleNamesDTO | undefined) {
+  public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.createSpecController = new CreateSpecController(this.names);
     this.updateSpecController = new UpdateSpecController(this.names);
     this.deleteSpecController = new DeleteSpecController(this.names);

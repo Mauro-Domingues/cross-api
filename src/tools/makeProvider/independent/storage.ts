@@ -4,7 +4,7 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeStorageProvider extends BaseProvider {
   private readonly createStorageConfig: CreateStorageConfig;

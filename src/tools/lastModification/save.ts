@@ -1,13 +1,13 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { BaseRegister } from './base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseRegister } from '@tools/lastModification/base';
 
 export class CreateRegister extends BaseRegister {
   public constructor(
     private readonly comand: Array<string> | undefined,
     private readonly providerName: string | undefined,
-    private readonly names: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
     private readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
     super();

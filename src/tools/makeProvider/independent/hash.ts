@@ -3,7 +3,7 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeHashProvider extends BaseProvider {
   private readonly createHashConfig: CreateHashConfig;

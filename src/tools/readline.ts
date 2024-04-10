@@ -1,9 +1,10 @@
 import { createInterface } from 'node:readline';
-import { Messages, IMessagesDTO } from '@tools/messages';
+import { Messages } from '@tools/messages';
 import { Console } from '@tools/console';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class Readline {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   constructor(private readonly suggestions: Array<string>) {

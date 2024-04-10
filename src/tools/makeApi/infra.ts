@@ -1,10 +1,11 @@
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class MakeInfra {
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor() {

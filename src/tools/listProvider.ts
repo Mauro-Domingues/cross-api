@@ -1,15 +1,16 @@
 import { Console } from '@tools/console';
 import { Provider } from '@tools/provider';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class ListProvider {
   private readonly provider: Provider;
   private readonly console: Console;
-  protected messages: IMessagesDTO;
+  protected messages: IMessageDTO;
 
   public constructor() {
-    this.provider = new Provider(undefined);
     this.messages = new Messages().execute();
+    this.provider = new Provider(undefined);
     this.console = new Console();
   }
 

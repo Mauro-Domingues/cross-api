@@ -8,7 +8,7 @@ import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeQueueProvider extends BaseProvider {
   private readonly createQueueConfig: CreateQueueConfig;

@@ -1,4 +1,4 @@
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateIQueue } from '@templates/providers/models/IQueue';
 import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
 import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
@@ -9,7 +9,7 @@ import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
-import { DependentBaseProvider } from './base';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentQueueProvider extends DependentBaseProvider {
   private readonly createQueueConfig: CreateQueueConfig;
@@ -25,7 +25,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

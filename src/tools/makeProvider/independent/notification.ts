@@ -5,7 +5,7 @@ import { CreateFirebaseNotification } from '@templates/providers/implementations
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeNotificationProvider extends BaseProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;

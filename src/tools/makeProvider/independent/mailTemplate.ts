@@ -4,7 +4,7 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { BaseProvider } from './base';
+import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeMailTemplateProvider extends BaseProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;

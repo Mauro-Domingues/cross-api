@@ -3,10 +3,10 @@ import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotificat
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
-import { DependentBaseProvider } from './base';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentNotificationProvider extends DependentBaseProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
@@ -19,7 +19,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

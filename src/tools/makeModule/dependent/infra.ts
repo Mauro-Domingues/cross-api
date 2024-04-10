@@ -9,8 +9,9 @@ import { CreateIDependentRepository } from '@templates/modules/repositories/IDep
 import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
 import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
@@ -27,12 +28,12 @@ export class MakeDependentInfra {
   private readonly createRoutes: CreateRoutes;
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
-    private readonly names: IModuleNamesDTO | undefined,
-    private readonly fatherNames: IModuleNamesDTO | undefined,
+    private readonly names: IModuleNameDTO | undefined,
+    private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     this.createDependentFakeRepository = new CreateDependentFakeRepository(
       this.names,

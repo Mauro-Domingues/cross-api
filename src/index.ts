@@ -10,7 +10,8 @@ import { CreateProvider } from '@tools/makeProvider/index';
 import { CreateRegister } from '@tools/lastModification/save';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { GetNames } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 new (class Main {
@@ -21,7 +22,7 @@ new (class Main {
   private readonly createRegister: CreateRegister;
   private readonly arg: string = process.argv[3];
   private readonly getFatherNames: GetNames;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly getNames: GetNames;
   private readonly console: Console;
   private readonly actions: {

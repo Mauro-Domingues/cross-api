@@ -1,18 +1,19 @@
 import { CreateContainer } from '@templates/index/container';
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { IModuleNamesDTO } from '@tools/names';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 
 export class DependentBaseProvider {
   private readonly createContainer: CreateContainer;
   protected readonly fileManager: FileManager;
-  protected readonly messages: IMessagesDTO;
+  protected readonly messages: IMessageDTO;
   protected readonly console: Console;
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     this.createContainer = new CreateContainer();

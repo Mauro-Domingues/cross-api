@@ -1,17 +1,18 @@
-import { IModuleNamesDTO } from '@tools/names';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 
 export class CreateDependentRoute {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(
     private readonly names:
-      | Pick<IModuleNamesDTO, 'upperModuleName' | 'routeModuleName'>
+      | Pick<IModuleNameDTO, 'upperModuleName' | 'routeModuleName'>
       | undefined,
     private readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     this.messages = new Messages().execute();

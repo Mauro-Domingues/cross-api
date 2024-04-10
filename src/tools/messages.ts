@@ -1,51 +1,7 @@
-export interface IMessagesDTO {
-  readonly languages: Record<'en-us' | 'pt-br', string>;
-  readonly marketplaceTool: readonly [string, string];
-  readonly try: readonly [string, string, string];
-  readonly uninstallingDependencies: string;
-  readonly uninstallDependencies: string;
-  readonly mapAndUpdateString: string;
-  readonly mapAndPatchString: string;
-  readonly providerNotFound: string;
-  readonly providerHeaders: [string, string];
-  readonly languageHeaders: [string, string];
-  readonly devDependencies: string;
-  readonly moduleNotFound: string;
-  readonly patchAndInsert: string;
-  readonly chooseLanguage: string;
-  readonly changeLanguage: string;
-  readonly makeProviderD: string;
-  readonly invalidOption: string;
-  readonly dependencies: string;
-  readonly mapAndUpdate: string;
-  readonly listProvider: string;
-  readonly makeProvider: string;
-  readonly comandTitle: string;
-  readonly makeModuleD: string;
-  readonly mapAndClone: string;
-  readonly mapAndPatch: string;
-  readonly uninstalled: string;
-  readonly noReversed: string;
-  readonly configured: string;
-  readonly apiCreated: string;
-  readonly makeModule: string;
-  readonly available: string;
-  readonly installed: string;
-  readonly structure: string;
-  readonly reversed: string;
-  readonly notFound: string;
-  readonly created: string;
-  readonly comands: string;
-  readonly makeApi: string;
-  readonly choice: string;
-  readonly answer: string;
-  readonly tools: string;
-  readonly yarn: string;
-  readonly undo: string;
-}
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class Messages {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
 
   public constructor() {
     this.messages = {
@@ -108,7 +64,7 @@ export class Messages {
     };
   }
 
-  public execute(): IMessagesDTO {
+  public execute(): IMessageDTO {
     return this.messages;
   }
 }

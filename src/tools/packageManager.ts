@@ -1,12 +1,13 @@
 import { Shell } from '@tools/shell';
 import { Console } from '@tools/console';
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Readline } from '@tools/readline';
 import { FileManager } from '@tools/fileManager';
 
 export class PackageManager {
   private readonly fileManager: FileManager;
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly readline: Readline;
   private readonly console: Console;
   private readonly shell: Shell;

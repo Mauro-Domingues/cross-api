@@ -1,12 +1,14 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
-import { GetNames, IModuleNamesDTO } from '@tools/names';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { GetNames } from '@tools/names';
 import { Console } from '@tools/console';
 import { Provider } from '@tools/provider';
 import { PackageManager } from '@tools/packageManager';
-import { BaseRegister } from './base';
+import { BaseRegister } from '@tools/lastModification/base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 
 export class DeleteRegister extends BaseRegister {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
   private readonly provider: Provider;
   private readonly console: Console;
 
@@ -19,9 +21,9 @@ export class DeleteRegister extends BaseRegister {
 
   private makeProvider(
     comand: string,
-    names: Pick<IModuleNamesDTO, 'lowerModuleName'> | undefined,
+    names: Pick<IModuleNameDTO, 'lowerModuleName'> | undefined,
     fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ): void {
     const packageManager = new PackageManager(
@@ -140,11 +142,9 @@ export class DeleteRegister extends BaseRegister {
 
   private makeModule(
     comand: string,
-    names:
-      | Omit<IModuleNamesDTO, 'dbModuleName' | 'routeModuleName'>
-      | undefined,
+    names: Omit<IModuleNameDTO, 'dbModuleName' | 'routeModuleName'> | undefined,
     fatherNames:
-      | Pick<IModuleNamesDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ): void {
     if (names && fatherNames) {

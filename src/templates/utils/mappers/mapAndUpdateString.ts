@@ -1,7 +1,8 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class CreateMapAndUpdateString {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
 
   public constructor() {
     this.messages = new Messages().execute();

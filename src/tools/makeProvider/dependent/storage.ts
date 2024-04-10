@@ -4,8 +4,8 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { IModuleNamesDTO } from '@tools/names';
-import { DependentBaseProvider } from './base';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentStorageProvider extends DependentBaseProvider {
   private readonly createStorageConfig: CreateStorageConfig;
@@ -17,7 +17,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

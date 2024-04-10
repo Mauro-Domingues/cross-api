@@ -3,9 +3,9 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { IModuleNamesDTO } from '@tools/names';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
-import { DependentBaseProvider } from './base';
+import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCryptoProvider extends DependentBaseProvider {
   private readonly createCryptoConfig: CreateCryptoConfig;
@@ -17,7 +17,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
 
   public constructor(
     protected readonly fatherNames:
-      | Pick<IModuleNamesDTO, 'pluralLowerModuleName'>
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(fatherNames);

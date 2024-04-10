@@ -8,6 +8,7 @@
     "outDir": "./src",
     "baseUrl": "./src",
     "paths": {
+      "@interfaces/*": ["interfaces/*"],
       "@templates/*": ["templates/*"],
       "@tools/*": ["tools/*"]
     },

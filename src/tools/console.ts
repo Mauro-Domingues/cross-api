@@ -1,21 +1,20 @@
-const colorOptions = {
-  purple: '\x1b[38;2;255;0;255m',
-  yellow: '\x1b[38;2;255;255;0m',
-  green: '\x1b[38;2;0;255;155m',
-  blue: '\x1b[38;2;0;155;255m',
-  white: '\x1b[38;2;0;0;0m',
-  red: '\x1b[38;2;255;0;0m',
-} as const;
-
-interface IInputDTO {
-  readonly color: keyof typeof colorOptions;
-  readonly breakStart: boolean;
-  readonly breakEnd: boolean;
-  readonly message: string;
-  readonly bold: boolean;
-}
+import { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
+import { IInputDTO } from '@interfaces/IInputDTO';
 
 export class Console {
+  private readonly colorOptions: IColorOptionDTO;
+
+  constructor() {
+    this.colorOptions = {
+      purple: '\x1b[38;2;255;0;255m',
+      yellow: '\x1b[38;2;255;255;0m',
+      green: '\x1b[38;2;0;255;155m',
+      blue: '\x1b[38;2;0;155;255m',
+      white: '\x1b[38;2;0;0;0m',
+      red: '\x1b[38;2;255;0;0m',
+    };
+  }
+
   private isbreakStart(breakStart?: boolean): '\n' | '\b' {
     return breakStart ? '\n' : '\b';
   }
@@ -25,9 +24,9 @@ export class Console {
   }
 
   private getColor(
-    color: keyof typeof colorOptions,
-  ): (typeof colorOptions)[keyof typeof colorOptions] {
-    return colorOptions[color];
+    color: keyof IColorOptionDTO,
+  ): IColorOptionDTO[keyof IColorOptionDTO] {
+    return this.colorOptions[color];
   }
 
   private isBold(bold?: boolean): '\x1b[1m' | '\x1b[0m' {

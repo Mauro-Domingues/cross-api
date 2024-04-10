@@ -1,7 +1,7 @@
-import { IMessagesDTO } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class PortugueseMessages {
-  private readonly messages: IMessagesDTO;
+  private readonly messages: IMessageDTO;
 
   public constructor() {
     this.messages = {
@@ -65,7 +65,7 @@ export class PortugueseMessages {
     };
   }
 
-  execute(): IMessagesDTO {
+  execute(): IMessageDTO {
     return this.messages;
   }
 }

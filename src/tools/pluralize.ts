@@ -1,12 +1,12 @@
-import { IMessagesDTO, Messages } from '@tools/messages';
+import { Messages } from '@tools/messages';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
-
-type Assets = readonly [rule: RegExp, replacement: string];
-type Words = readonly [single: string, plural: string];
-type Obj = Record<string, string>;
+import { IAssetDTO } from '@interfaces/IAssetDTO';
+import { IObjDTO } from '@interfaces/IObjDTO';
+import { IWordDTO } from '@interfaces/IWordDTO';
 
 export class Pluralize {
-  private readonly singularData: Array<Assets> = [
+  private readonly singularData: Array<IAssetDTO> = [
     [/s$/i, ''],
     [/(ss)$/i, '$1'],
     [/(wi|kni|(?:after|half|high|low|mid|non|night|[^\w]|^)li)ves$/i, '$1fe'],
@@ -49,7 +49,7 @@ export class Pluralize {
     [/(eau)x?$/i, '$1'],
     [/men$/i, 'man'],
   ];
-  private readonly pluralData: Array<Assets> = [
+  private readonly pluralData: Array<IAssetDTO> = [
     [/s?$/i, 's'],
     [/[^\u0000-\u007F]$/i, '$0'],
     [/([^aeiou]ese)$/i, '$1'],
@@ -189,7 +189,7 @@ export class Pluralize {
     /pox$/i,
     /sheep$/i,
   ];
-  private readonly irregularData: Array<Words> = [
+  private readonly irregularData: Array<IWordDTO> = [
     ['I', 'we'],
     ['me', 'us'],
     ['he', 'they'],
@@ -239,11 +239,11 @@ export class Pluralize {
     ['passerby', 'passersby'],
   ];
   private readonly uncountables: Record<string, boolean>;
-  private readonly singularRules: Array<Assets>;
-  private readonly pluralRules: Array<Assets>;
-  private readonly messages: IMessagesDTO;
-  private readonly irregularPlurals: Obj;
-  private readonly irregularSingles: Obj;
+  private readonly singularRules: Array<IAssetDTO>;
+  private readonly pluralRules: Array<IAssetDTO>;
+  private readonly irregularPlurals: IObjDTO;
+  private readonly irregularSingles: IObjDTO;
+  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor(private readonly word: string | undefined) {
@@ -260,7 +260,7 @@ export class Pluralize {
     this.irregularData.map(data => this.addIrregularRule(data));
   }
 
-  private replace(word: string, [rule, replacement]: Assets): string {
+  private replace(word: string, [rule, replacement]: IAssetDTO): string {
     return word.replace(rule, (match, index) => {
       const result: string = this.interpolate(replacement, [null, index]);
 
@@ -289,7 +289,7 @@ export class Pluralize {
   private sanitizeWord(
     token: string,
     word: string,
-    assets: Array<Assets>,
+    assets: Array<IAssetDTO>,
   ): string {
     if (!token.length || this.uncountables[token]) {
       return word;
@@ -311,9 +311,9 @@ export class Pluralize {
   }
 
   private replaceWord(
-    replaceMap: Obj,
-    keepMap: Obj,
-    assets: Array<Assets>,
+    replaceMap: IObjDTO,
+    keepMap: IObjDTO,
+    assets: Array<IAssetDTO>,
   ): string {
     if (!this.word) {
       throw this.console.single({
@@ -339,9 +339,9 @@ export class Pluralize {
   }
 
   private checkWord(
-    replaceMap: Obj,
-    keepMap: Obj,
-    assets: Array<Assets>,
+    replaceMap: IObjDTO,
+    keepMap: IObjDTO,
+    assets: Array<IAssetDTO>,
   ): boolean {
     if (!this.word) {
       throw this.console.single({
@@ -375,18 +375,18 @@ export class Pluralize {
     });
   }
 
-  private addIrregularRule([single, plural]: Words): void {
+  private addIrregularRule([single, plural]: IWordDTO): void {
     this.irregularSingles[single] = plural.toLowerCase();
     this.irregularPlurals[plural] = single.toLowerCase();
   }
 
-  private addPluralRule([rule, replacement]: Assets): void {
+  private addPluralRule([rule, replacement]: IAssetDTO): void {
     if (typeof replacement === 'string') {
       this.pluralRules.push([this.sanitizeRule(rule), replacement]);
     }
   }
 
-  private addSingularRule([rule, replacement]: Assets): void {
+  private addSingularRule([rule, replacement]: IAssetDTO): void {
     if (typeof replacement === 'string') {
       this.singularRules.push([this.sanitizeRule(rule), replacement]);
     }
