@@ -1,5 +1,5 @@
 export interface IMessagesDTO {
-  readonly languages: Record<'pt-br' | 'en-us', string>;
+  readonly languages: Record<'en-us' | 'pt-br', string>;
   readonly marketplaceTool: readonly [string, string];
   readonly try: readonly [string, string, string];
   readonly uninstallingDependencies: string;
@@ -7,6 +7,8 @@ export interface IMessagesDTO {
   readonly mapAndUpdateString: string;
   readonly mapAndPatchString: string;
   readonly providerNotFound: string;
+  readonly providerHeaders: [string, string];
+  readonly languageHeaders: [string, string];
   readonly devDependencies: string;
   readonly moduleNotFound: string;
   readonly patchAndInsert: string;
@@ -47,7 +49,9 @@ export class Messages {
 
   public constructor() {
     this.messages = {
-      languages: { 'pt-br': 'portuguese', 'en-us': 'english' },
+      languageHeaders: ['KEY', 'VALUE'],
+      providerHeaders: ['NAME', 'DESCRIPTION'],
+      languages: { 'en-us': 'english', 'pt-br': 'portuguese' },
       chooseLanguage: '➤  Which language do you prefer?',
       invalidOption: ' is not a valid option',
       answer: 'Your answer: ',

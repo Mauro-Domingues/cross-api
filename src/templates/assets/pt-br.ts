@@ -5,6 +5,8 @@ export class PortugueseMessages {
 
   public constructor() {
     this.messages = {
+      languageHeaders: ['CHAVE', 'VALOR'],
+      providerHeaders: ['NOME', 'DESCRIÇÃO'],
       languages: { 'pt-br': 'português', 'en-us': 'inglês' },
       chooseLanguage: '➤  Qual linguagem você prefere?',
       invalidOption: ' não é uma opção válida',
