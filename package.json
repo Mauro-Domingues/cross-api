@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "5.6.4",
+  "version": "5.6.5",
   "description": "A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers, unit tests and documentation generation.",
   "main": "src/index.js",
   "type": "module",
@@ -28,7 +28,7 @@
   "author": "Mauro Domingues <maurinho.villa@hotmail.com>",
   "license": "Apache-2.0",
   "contributors": [],
-  "files": ["src/**/*.js"],
+  "files": ["src/**/*.js", "!src/interfaces", "!src/interfaces/**"],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
