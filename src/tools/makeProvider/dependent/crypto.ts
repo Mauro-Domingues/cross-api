@@ -1,10 +1,10 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCryptoProvider extends DependentBaseProvider {
@@ -32,7 +32,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

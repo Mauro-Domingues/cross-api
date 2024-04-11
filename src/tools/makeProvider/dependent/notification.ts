@@ -1,11 +1,11 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';
+import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
-import { CreateFirebaseNotification } from '@templates/providers/implementations/FirebaseNotification';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentNotificationProvider extends DependentBaseProvider {
@@ -35,7 +35,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

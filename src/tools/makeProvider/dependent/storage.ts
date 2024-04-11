@@ -1,10 +1,10 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateStorageConfig } from '@templates/providers/config/storageConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentStorageProvider extends DependentBaseProvider {
@@ -32,7 +32,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

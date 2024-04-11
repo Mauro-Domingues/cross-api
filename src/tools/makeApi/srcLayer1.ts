@@ -1,4 +1,3 @@
-import { CreateSwcConfig } from '@templates/root/swcConfig';
 import { CreateDocConfig } from '@templates/root/docConfig';
 import { CreateDockerCompose } from '@templates/root/dockerCompose';
 import { CreateEditorConfig } from '@templates/root/editorConfig';
@@ -8,6 +7,7 @@ import { CreateEsLintrcJson } from '@templates/root/esLintrcJson';
 import { CreateGitIgnore } from '@templates/root/gitIgnore';
 import { CreateJestConfig } from '@templates/root/jestConfig';
 import { CreatePrettierConfig } from '@templates/root/prettierConfig';
+import { CreateSwcConfig } from '@templates/root/swcConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
 import { FileManager } from '@tools/fileManager';
 

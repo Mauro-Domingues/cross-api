@@ -1,5 +1,5 @@
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Messages } from '@tools/messages';
 
 export class CreateMapAndInsert {
   private readonly messages: IMessageDTO;
@@ -12,7 +12,7 @@ export class CreateMapAndInsert {
     return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
 
 /**
- * ${this.messages.patchAndInsert}
+ * ${this.messages.mappers.description.patchAndInsert}
  * @param oldAttributes Entity
  * @param newAttributes Object
  * @returns Entity

@@ -1,14 +1,14 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateIQueue } from '@templates/providers/models/IQueue';
-import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
-import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
-import { CreateBullQueue } from '@templates/providers/implementations/BullQueue';
-import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
-import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
-import { CreateJobs } from '@templates/providers/public/jobs';
+import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
+import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
+import { CreateBullQueue } from '@templates/providers/implementations/BullQueue';
+import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
+import { CreateIQueue } from '@templates/providers/models/IQueue';
+import { CreateJobs } from '@templates/providers/public/jobs';
+import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentQueueProvider extends DependentBaseProvider {
@@ -44,7 +44,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class Shell {
   private readonly allowedPattern: RegExp;
@@ -20,7 +20,7 @@ export class Shell {
       return execSync(command, { encoding: 'utf-8' });
     }
     throw this.console.single({
-      message: `"${command}"${this.messages.invalidOption}`,
+      message: `"${command}"${this.messages.comands.errors.invalidOption}`,
       color: 'red',
       bold: true,
       breakStart: true,

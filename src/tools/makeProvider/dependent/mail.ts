@@ -1,3 +1,4 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
@@ -5,7 +6,6 @@ import { CreateDependentNodemailerMail } from '@templates/providers/implementati
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailProvider extends DependentBaseProvider {
@@ -37,7 +37,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

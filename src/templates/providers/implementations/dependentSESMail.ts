@@ -1,7 +1,7 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 
 export class CreateDependentSESMail {
   private readonly messages: IMessageDTO;
@@ -19,7 +19,7 @@ export class CreateDependentSESMail {
   public execute(): string {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

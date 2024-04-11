@@ -1,5 +1,7 @@
+import { CreateConnection } from '@templates/api/connection';
 import { CreateAppError } from '@templates/errors/appError';
 import { CreateContainer } from '@templates/index/container';
+import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
 import { CreateMapAndClone } from '@templates/utils/mappers/mapAndClone';
 import { CreateMapAndInsert } from '@templates/utils/mappers/mapAndInsert';
 import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
@@ -7,8 +9,6 @@ import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchStr
 import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
 import { FileManager } from '@tools/fileManager';
-import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
-import { CreateConnection } from '@templates/api/connection';
 
 export class MakeFourthLayer {
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;

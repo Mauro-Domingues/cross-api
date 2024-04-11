@@ -1,7 +1,7 @@
 import { createInterface } from 'node:readline';
-import { Messages } from '@tools/messages';
-import { Console } from '@tools/console';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 
 export class Readline {
   private readonly messages: IMessageDTO;
@@ -14,7 +14,7 @@ export class Readline {
 
   public invalidOption(optionChosen: string): void {
     return this.console.single({
-      message: `"${optionChosen}"${this.messages.invalidOption}`,
+      message: `"${optionChosen}"${this.messages.comands.errors.invalidOption}`,
       color: 'red',
       bold: true,
       breakStart: true,
@@ -36,9 +36,12 @@ export class Readline {
       },
     });
 
-    return rl.question(this.messages.answer, (optionChosen: string): void => {
-      rl.close();
-      callback(optionChosen as Answer);
-    });
+    return rl.question(
+      this.messages.comands.answer,
+      (optionChosen: string): void => {
+        rl.close();
+        callback(optionChosen as Answer);
+      },
+    );
   }
 }

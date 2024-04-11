@@ -1,3 +1,5 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IProviderListDTO } from '@interfaces/IProviderListDTO';
 import { MakeDependentCacheProvider } from '@tools/makeProvider/dependent/cache';
 import { MakeDependentCryptoProvider } from '@tools/makeProvider/dependent/crypto';
 import { MakeDependentHashProvider } from '@tools/makeProvider/dependent/hash';
@@ -16,22 +18,10 @@ import { MakeMailTemplateProvider } from '@tools/makeProvider/independent/mailTe
 import { MakeNotificationProvider } from '@tools/makeProvider/independent/notification';
 import { MakeQueueProvider } from '@tools/makeProvider/independent/queue';
 import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IProviderOptionDTO } from '@interfaces/IProviderOptionDTO';
 
 export class Provider {
   public readonly key: 'dependent' | 'independent';
-  public readonly list: Record<
-    IProviderOptionDTO,
-    {
-      readonly independent: { readonly execute: () => void };
-      readonly dependent: { readonly execute: () => void };
-      readonly devDependencies: Array<string>;
-      readonly dependencies: Array<string>;
-      readonly description: string;
-      readonly name: IProviderOptionDTO;
-    }
-  >;
+  public readonly list: IProviderListDTO;
 
   public constructor(
     private readonly fatherNames:
@@ -44,7 +34,7 @@ export class Provider {
       this.key = 'independent';
     }
 
-    this.list = Object.freeze({
+    this.list = Object.freeze<IProviderListDTO>({
       cache: {
         name: 'cache',
         description: 'CacheProvider',

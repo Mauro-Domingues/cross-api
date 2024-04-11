@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateDependentController } from '@templates/modules/services/createDependent/createController';
 import { CreateDependentService } from '@templates/modules/services/createDependent/createService';
 import { DeleteDependentController } from '@templates/modules/services/deleteDependent/deleteController';
@@ -8,11 +10,9 @@ import { ShowDependentController } from '@templates/modules/services/showDepende
 import { ShowDependentService } from '@templates/modules/services/showDependent/showService';
 import { UpdateDependentController } from '@templates/modules/services/updateDependent/updateController';
 import { UpdateDependentService } from '@templates/modules/services/updateDependent/updateService';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeDependentFunctionalities {
   private readonly updateDependentController: UpdateDependentController;
@@ -81,7 +81,7 @@ export class MakeDependentFunctionalities {
   public execute(): void {
     if (!this.names || !this.fatherNames) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

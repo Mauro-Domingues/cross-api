@@ -1,7 +1,7 @@
-import { Messages } from '@tools/messages';
-import { Console } from '@tools/console';
-import { IOptionDTO } from '@interfaces/IOptionDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IOptionDTO } from '@interfaces/IOptionDTO';
+import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 
 export class Board {
   private readonly structureOptions: Array<IOptionDTO>;
@@ -13,40 +13,43 @@ export class Board {
     this.messages = new Messages().execute();
     this.console = new Console();
     this.toolOptions = [
-      { title: 'comands', description: this.messages.comands },
+      {
+        title: 'comands',
+        description: this.messages.board.description.comands,
+      },
       {
         title: 'language',
-        description: this.messages.changeLanguage,
+        description: this.messages.board.description.language,
       },
       {
         title: 'list:provider',
-        description: this.messages.listProvider,
+        description: this.messages.board.description['list:provider'],
       },
     ];
     this.structureOptions = [
       {
         title: 'make:api',
-        description: this.messages.makeApi,
+        description: this.messages.board.description['make:api'],
       },
       {
         title: 'make:module [name]',
-        description: this.messages.makeModule,
+        description: this.messages.board.description['make:module'],
       },
       {
         title: 'make:module [name] [father]',
-        description: this.messages.makeModuleD,
+        description: this.messages.board.description['make:dependent:module'],
       },
       {
         title: 'make:provider [name]',
-        description: this.messages.makeProvider,
+        description: this.messages.board.description['make:provider'],
       },
       {
         title: 'make:provider [name] [father]',
-        description: this.messages.makeProviderD,
+        description: this.messages.board.description['make:dependent:provider'],
       },
       {
         title: 'revert',
-        description: this.messages.undo,
+        description: this.messages.board.description.revert,
       },
     ];
   }
@@ -63,9 +66,9 @@ export class Board {
 
   private renderHeader(): void {
     return this.console.single({
-      message: ` /${'='.repeat(46)}${this.messages.comandTitle}${'='.repeat(
-        46,
-      )}\\`,
+      message: ` /${'='.repeat(46)}${
+        this.messages.board.headers.title
+      }${'='.repeat(46)}\\`,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -84,7 +87,7 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.tools.padEnd(112, ' ')}`,
+        message: ` 〇 ${this.messages.board.headers.tools.padEnd(112, ' ')}`,
         color: 'green',
         bold: true,
         breakStart: false,
@@ -151,7 +154,10 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.structure.padEnd(112, ' ')}`,
+        message: ` 〇 ${this.messages.board.headers.structure.padEnd(
+          112,
+          ' ',
+        )}`,
         color: 'green',
         bold: true,
         breakStart: false,

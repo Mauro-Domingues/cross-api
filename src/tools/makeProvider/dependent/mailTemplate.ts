@@ -1,10 +1,10 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
 import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
@@ -32,7 +32,7 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

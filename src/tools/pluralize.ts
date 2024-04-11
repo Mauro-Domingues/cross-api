@@ -1,9 +1,9 @@
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { Console } from '@tools/console';
 import { IAssetDTO } from '@interfaces/IAssetDTO';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IObjDTO } from '@interfaces/IObjDTO';
 import { IWordDTO } from '@interfaces/IWordDTO';
+import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 
 export class Pluralize {
   private readonly singularData: Array<IAssetDTO> = [
@@ -317,7 +317,7 @@ export class Pluralize {
   ): string {
     if (!this.word) {
       throw this.console.single({
-        message: this.messages.invalidOption,
+        message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -345,7 +345,7 @@ export class Pluralize {
   ): boolean {
     if (!this.word) {
       throw this.console.single({
-        message: this.messages.invalidOption,
+        message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,
         breakStart: true,

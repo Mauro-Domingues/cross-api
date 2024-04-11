@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateSpecDependentController } from '@templates/modules/services/createDependent/createControllerSpec';
 import { CreateSpecDependentService } from '@templates/modules/services/createDependent/createServiceSpec';
 import { DeleteSpecDependentController } from '@templates/modules/services/deleteDependent/deleteControllerSpec';
@@ -8,11 +10,9 @@ import { ShowSpecDependentController } from '@templates/modules/services/showDep
 import { ShowSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec';
 import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
 import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeDependentUnitTests {
   private readonly updateSpecDependentController: UpdateSpecDependentController;
@@ -76,7 +76,7 @@ export class MakeDependentUnitTests {
   public execute(): void {
     if (!this.names || !this.fatherNames) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

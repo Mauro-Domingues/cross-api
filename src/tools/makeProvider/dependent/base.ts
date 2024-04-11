@@ -1,9 +1,9 @@
-import { CreateContainer } from '@templates/index/container';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { CreateContainer } from '@templates/index/container';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class DependentBaseProvider {
   private readonly createContainer: CreateContainer;
@@ -25,7 +25,7 @@ export class DependentBaseProvider {
   protected constructBase(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

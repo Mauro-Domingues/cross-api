@@ -26,14 +26,57 @@
     "@typescript-eslint/naming-convention": [
       "error",
       {
-        "selector": "interface",
+        "selector": "default",
         "format": [
-          "PascalCase"
-        ],
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "interface",
+        "format": null,
         "custom": {
           "regex": "^I[A-Z]\\w*DTO$",
           "match": true
         }
+      },
+      {
+        "selector": "typeAlias",
+        "format": null,
+        "custom": {
+          "regex": "^I[A-Z]\\w*DTO$",
+          "match": true
+        }
+      },
+      {
+        "selector": "class",
+        "format": [
+          "PascalCase"
+        ]
+      },
+      {
+        "selector": "typeParameter",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "property",
+        "format": ["camelCase"],
+        "filter": {
+          "regex": "^[a-z]+(:[a-z]+)*$",
+          "match": false
+        }
+      },
+      {
+        "selector": "property",
+        "format": null,
+        "custom": {
+          "regex": "^[a-z]+(:[a-z]+)*$",
+          "match": true
+        }
+      },      
+      {
+        "selector": "parameter",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
       }
     ],
     "import/no-relative-packages": "off",
@@ -52,12 +95,13 @@
         "ts": "warn"
       }
     ],
-    "import/no-extraneous-dependencies": [
+    "import/order": [
       "error",
       {
-        "devDependencies": [
-          "**/*.spec.js"
-        ]
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ]
   },

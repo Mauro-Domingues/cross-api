@@ -1,7 +1,7 @@
-import { Console } from '@tools/console';
-import { Provider } from '@tools/provider';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
+import { Provider } from '@tools/provider';
 
 export class ListProvider {
   private readonly provider: Provider;
@@ -41,7 +41,10 @@ export class ListProvider {
         breakEnd: false,
       },
       {
-        message: `       ${this.messages.providerHeaders[0]}`.padEnd(23, ' '),
+        message: `       ${this.messages.providers.headers.title}`.padEnd(
+          23,
+          ' ',
+        ),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -55,7 +58,11 @@ export class ListProvider {
         breakEnd: false,
       },
       {
-        message: `        ${this.messages.providerHeaders[1]}`.padEnd(22, ' '),
+        message:
+          `        ${this.messages.providers.headers.description}`.padEnd(
+            22,
+            ' ',
+          ),
         color: 'green',
         bold: true,
         breakStart: false,

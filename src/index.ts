@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 
+import { IActionDTO } from '@interfaces/IActionDTO';
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
+import { Console } from '@tools/console';
 import { ConfigLanguage } from '@tools/languageConfig';
+import { DeleteRegister } from '@tools/lastModification/delete';
+import { CreateRegister } from '@tools/lastModification/save';
 import { ListProvider } from '@tools/listProvider';
 import { CreateApi } from '@tools/makeApi/index';
 import { CreateModule } from '@tools/makeModule/index';
 import { CreateProvider } from '@tools/makeProvider/index';
-import { CreateRegister } from '@tools/lastModification/save';
-import { DeleteRegister } from '@tools/lastModification/delete';
-import { GetNames } from '@tools/names';
 import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { Console } from '@tools/console';
+import { GetNames } from '@tools/names';
 
 new (class Main {
   private readonly fullComand: Array<string> = process.argv.slice(2);
@@ -23,20 +24,9 @@ new (class Main {
   private readonly arg: string = process.argv[3];
   private readonly getFatherNames: GetNames;
   private readonly messages: IMessageDTO;
+  private readonly actions: IActionDTO;
   private readonly getNames: GetNames;
   private readonly console: Console;
-  private readonly actions: {
-    readonly config: ConfigJson;
-    readonly comands: Board;
-    readonly language: ConfigLanguage;
-    readonly 'list:provider': ListProvider;
-    readonly 'make:api': CreateApi;
-    readonly 'make:module': CreateModule;
-    readonly 'make:provider': CreateProvider;
-    readonly revert: {
-      readonly execute: () => void;
-    };
-  };
 
   public constructor() {
     this.getFatherNames = new GetNames(this.father);
@@ -50,7 +40,7 @@ new (class Main {
       this.getFatherNames.execute(),
     );
     this.console = new Console();
-    this.actions = Object.freeze({
+    this.actions = Object.freeze<IActionDTO>({
       config: new ConfigJson(),
       comands: new Board(),
       language: new ConfigLanguage(),
@@ -77,28 +67,28 @@ new (class Main {
     if (!Object.keys(this.actions).includes(this.comand)) {
       throw this.console.multi([
         {
-          message: this.messages.notFound,
+          message: this.messages.comands.errors.notFound,
           color: 'red',
           bold: true,
           breakStart: true,
           breakEnd: true,
         },
         {
-          message: this.messages.try[0],
+          message: this.messages.comands.description.attempt.action,
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: this.messages.try[1],
+          message: this.messages.comands.description.attempt.comand,
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: this.messages.try[2],
+          message: this.messages.comands.description.attempt.info,
           color: 'blue',
           bold: true,
           breakStart: false,

@@ -1,5 +1,5 @@
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Messages } from '@tools/messages';
 
 export class CreateMapAndClone {
   private readonly messages: IMessageDTO;
@@ -12,7 +12,7 @@ export class CreateMapAndClone {
     return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
 
 /**
- * ${this.messages.mapAndClone}
+ * ${this.messages.mappers.description.mapAndClone}
  * @param attribute IObjectDTO
  * @returns Promise: Array<IObjectDTO>
  * @param params Array<string>

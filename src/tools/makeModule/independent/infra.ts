@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateContainer } from '@templates/index/container';
 import { CreateRoutes } from '@templates/index/routes';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
@@ -8,11 +10,9 @@ import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';
 import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeInfra {
   private readonly createIndependentRoute: CreateIndependentRoute;
@@ -48,7 +48,7 @@ export class MakeInfra {
   public execute(): void {
     if (!this.names) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

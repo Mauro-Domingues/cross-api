@@ -1,9 +1,9 @@
-import { Shell } from '@tools/shell';
-import { Console } from '@tools/console';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { Readline } from '@tools/readline';
+import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
+import { Readline } from '@tools/readline';
+import { Shell } from '@tools/shell';
 
 export class PackageManager {
   private readonly fileManager: FileManager;
@@ -58,7 +58,7 @@ export class PackageManager {
 
   private installDependencies(dependencies: Array<string>): void {
     this.console.single({
-      message: this.messages.dependencies,
+      message: this.messages.dependencies.headers.dependencies,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -68,7 +68,7 @@ export class PackageManager {
     return dependencies.forEach(dependency => {
       return this.console.single({
         message: `- ${dependency.replace(/@\^.*/, '')} ${
-          this.messages.installed
+          this.messages.dependencies.description.installed
         }`,
         color: 'yellow',
         bold: false,
@@ -80,7 +80,7 @@ export class PackageManager {
 
   private installDevDependencies(devDependencies: Array<string>): void {
     this.console.single({
-      message: this.messages.devDependencies,
+      message: this.messages.dependencies.headers.devDependencies,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -90,7 +90,7 @@ export class PackageManager {
     return devDependencies.forEach(devDependency => {
       return this.console.single({
         message: `- ${devDependency.replace(/@\^.*/, '')} ${
-          this.messages.installed
+          this.messages.dependencies.description.installed
         }`,
         color: 'yellow',
         bold: false,
@@ -102,7 +102,7 @@ export class PackageManager {
 
   private uninstallDependencies(dependencies: Array<string>): void {
     this.console.single({
-      message: this.messages.uninstallDependencies,
+      message: this.messages.dependencies.question,
       color: 'green',
       bold: true,
       breakStart: true,
@@ -111,7 +111,7 @@ export class PackageManager {
     this.readline.execute((optionChosen: 'y' | 'n'): void => {
       if (optionChosen === 'y') {
         this.console.single({
-          message: this.messages.uninstallingDependencies,
+          message: this.messages.dependencies.headers.uninstalling,
           color: 'blue',
           bold: true,
           breakStart: true,
@@ -121,7 +121,7 @@ export class PackageManager {
         dependencies.forEach(dependency => {
           return this.console.single({
             message: `- ${dependency.replace(/@\^.*/, '')} ${
-              this.messages.uninstalled
+              this.messages.dependencies.description.uninstalled
             }`,
             color: 'red',
             bold: false,

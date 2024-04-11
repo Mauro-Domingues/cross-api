@@ -1,10 +1,10 @@
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
 import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeLeadProvider extends BaseProvider {

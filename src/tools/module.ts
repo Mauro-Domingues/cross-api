@@ -1,15 +1,15 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { MakeInfra } from '@tools/makeModule/independent/infra';
-import { MakeFunctionalities } from '@tools/makeModule/independent/functionalities';
-import { MakeStructure } from '@tools/makeModule/independent/structure';
-import { MakeUnitTests } from '@tools/makeModule/independent/unitTests';
+import { Console } from '@tools/console';
 import { MakeDependentFunctionalities } from '@tools/makeModule/dependent/funcionalities';
 import { MakeDependentInfra } from '@tools/makeModule/dependent/infra';
 import { MakeDependentStructure } from '@tools/makeModule/dependent/structure';
 import { MakeDependentUnitTests } from '@tools/makeModule/dependent/unitTests';
+import { MakeFunctionalities } from '@tools/makeModule/independent/functionalities';
+import { MakeInfra } from '@tools/makeModule/independent/infra';
+import { MakeStructure } from '@tools/makeModule/independent/structure';
+import { MakeUnitTests } from '@tools/makeModule/independent/unitTests';
 import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { Console } from '@tools/console';
 
 export class Module {
   private readonly makeDependentFunctionalities: MakeDependentFunctionalities;
@@ -68,7 +68,7 @@ export class Module {
   public makeDependentModule(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

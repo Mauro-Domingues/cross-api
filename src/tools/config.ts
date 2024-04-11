@@ -1,7 +1,7 @@
 import { Config } from '@templates/assets/config';
-import { Shell } from '@tools/shell';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { PackageManager } from '@tools/packageManager';
+import { Shell } from '@tools/shell';
 
 export class ConfigJson extends ConfigLanguage {
   private readonly devDependencies: Array<string>;
@@ -94,14 +94,14 @@ export class ConfigJson extends ConfigLanguage {
   private installYarn(): string {
     this.console.multi([
       {
-        message: this.messages.yarn,
+        message: this.messages.dependencies.headers.yarn,
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: true,
       },
       {
-        message: `- yarn ${this.messages.installed}`,
+        message: `- yarn ${this.messages.dependencies.description.installed}`,
         color: 'yellow',
         bold: false,
         breakStart: true,
@@ -114,7 +114,7 @@ export class ConfigJson extends ConfigLanguage {
   private renderEnding(): void {
     return this.console.multi([
       {
-        message: this.messages.marketplaceTool[0],
+        message: this.messages.marketplaceTool.description.action,
         color: 'blue',
         bold: true,
         breakStart: true,
@@ -129,28 +129,28 @@ export class ConfigJson extends ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: this.messages.marketplaceTool[1],
+        message: this.messages.marketplaceTool.description.info,
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: this.messages.try[0],
+        message: this.messages.comands.description.attempt.action,
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: false,
       },
       {
-        message: this.messages.try[1],
+        message: this.messages.comands.description.attempt.comand,
         color: 'yellow',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: this.messages.try[2],
+        message: this.messages.comands.description.attempt.info,
         color: 'blue',
         bold: true,
         breakStart: false,

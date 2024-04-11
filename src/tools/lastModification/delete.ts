@@ -1,11 +1,11 @@
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { GetNames } from '@tools/names';
-import { Console } from '@tools/console';
-import { Provider } from '@tools/provider';
-import { PackageManager } from '@tools/packageManager';
-import { BaseRegister } from '@tools/lastModification/base';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Console } from '@tools/console';
+import { BaseRegister } from '@tools/lastModification/base';
+import { Messages } from '@tools/messages';
+import { GetNames } from '@tools/names';
+import { PackageManager } from '@tools/packageManager';
+import { Provider } from '@tools/provider';
 
 export class DeleteRegister extends BaseRegister {
   private readonly messages: IMessageDTO;
@@ -82,7 +82,7 @@ export class DeleteRegister extends BaseRegister {
         ]);
       }
       this.console.single({
-        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -130,7 +130,7 @@ export class DeleteRegister extends BaseRegister {
         ]);
       }
       this.console.single({
-        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -253,7 +253,7 @@ export class DeleteRegister extends BaseRegister {
         routeInjection,
       );
       this.console.single({
-        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -296,7 +296,7 @@ export class DeleteRegister extends BaseRegister {
         routeInjection,
       );
       this.console.single({
-        message: `- ${this.messages.reversed}: ${comand} ${names.lowerModuleName}`,
+        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -330,7 +330,7 @@ export class DeleteRegister extends BaseRegister {
       ['tsconfig.tsbuildinfo'],
     ]);
     return this.console.single({
-      message: `- ${this.messages.reversed}: ${comand}`,
+      message: `- ${this.messages.comands.description.reversed}: ${comand}`,
       color: 'yellow',
       bold: true,
       breakStart: false,
@@ -358,7 +358,7 @@ export class DeleteRegister extends BaseRegister {
         return this.makeAPi(comand);
       default:
         return this.console.single({
-          message: this.messages.noReversed,
+          message: this.messages.comands.errors.notReversed,
           color: 'red',
           bold: true,
           breakStart: true,

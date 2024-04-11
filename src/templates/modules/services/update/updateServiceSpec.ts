@@ -1,7 +1,7 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 
 export class UpdateSpecService {
   private readonly messages: IMessageDTO;
@@ -19,7 +19,7 @@ export class UpdateSpecService {
   public execute(): string {
     if (!this.names) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

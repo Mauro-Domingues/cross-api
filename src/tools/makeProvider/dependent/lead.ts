@@ -1,11 +1,11 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
+import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
 import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentLeadProvider extends DependentBaseProvider {
@@ -35,7 +35,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
   public execute(): void {
     if (!this.fatherNames) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

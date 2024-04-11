@@ -1,21 +1,23 @@
-import { EnglishMessages } from '@templates/assets/en-us';
-import { PortugueseMessages } from '@templates/assets/pt-br';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
+import { EnglishMessages } from '@templates/assets/enUs';
+import { PortugueseMessages } from '@templates/assets/ptBr';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 import { Readline } from '@tools/readline';
 
 export class ConfigLanguage {
+  protected readonly languageOptions: IMessageDTO['language']['options'];
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  protected readonly languageOptions: IMessageDTO['languages'];
-  protected languageChosen: keyof IMessageDTO['languages'];
+  protected languageChosen:
+    | keyof IMessageDTO['language']['options']
+    | undefined;
   protected readonly fileManager: FileManager;
   protected readonly readline: Readline;
   protected readonly console: Console;
   private readonly languages: Record<
-    keyof IMessageDTO['languages'],
+    keyof IMessageDTO['language']['options'],
     { execute: () => IMessageDTO }
   >;
   protected messages: IMessageDTO;
@@ -23,13 +25,12 @@ export class ConfigLanguage {
   public constructor() {
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.languages = {
-      'en-us': new EnglishMessages(),
-      'pt-br': new PortugueseMessages(),
+      ptBr: new PortugueseMessages(),
+      enUs: new EnglishMessages(),
     };
     this.messages = new Messages().execute();
-    this.languageOptions = Object.freeze(this.messages.languages);
+    this.languageOptions = Object.freeze(this.messages.language.options);
     this.fileManager = new FileManager();
-    this.languageChosen = 'en-us';
     this.console = new Console();
     this.readline = new Readline(Object.keys(this.languageOptions));
   }
@@ -61,7 +62,7 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: `     ${this.messages.languageHeaders[0]}`.padEnd(17, ' '),
+        message: `     ${this.messages.language.headers.title}`.padEnd(17, ' '),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -75,7 +76,10 @@ export class ConfigLanguage {
         breakEnd: false,
       },
       {
-        message: `      ${this.messages.languageHeaders[1]}`.padEnd(21, ' '),
+        message: `      ${this.messages.language.headers.description}`.padEnd(
+          21,
+          ' ',
+        ),
         color: 'green',
         bold: true,
         breakStart: false,
@@ -174,11 +178,16 @@ export class ConfigLanguage {
   }
 
   protected showChosenOption(): void {
-    this.messages = this.languages[this.languageChosen].execute();
+    this.messages =
+      this.languages[
+        this.languageChosen as keyof IMessageDTO['language']['options']
+      ].execute();
 
     return this.console.single({
-      message: `${this.messages.choice}${
-        this.messages.languages[this.languageChosen]
+      message: `${this.messages.language.choice}${
+        this.messages.language.options[
+          this.languageChosen as keyof IMessageDTO['language']['options']
+        ]
       }`,
       color: 'green',
       bold: true,

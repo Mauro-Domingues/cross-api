@@ -1,7 +1,7 @@
-import { Console } from '@tools/console';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
 import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
@@ -24,7 +24,7 @@ export class CreateProvider {
   public execute(): void {
     if (!this.providerName) {
       throw this.console.single({
-        message: this.messages.providerNotFound,
+        message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -37,7 +37,7 @@ export class CreateProvider {
     this.console.single({
       message: `- ${this.provider.list[
         this.providerName as keyof typeof this.provider.list
-      ].description.trimEnd()} ${this.messages.created}`,
+      ].description.trimEnd()} ${this.messages.comands.description.created}`,
       color: 'yellow',
       bold: true,
       breakStart: false,

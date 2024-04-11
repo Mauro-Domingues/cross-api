@@ -1,9 +1,9 @@
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeCryptoProvider extends BaseProvider {

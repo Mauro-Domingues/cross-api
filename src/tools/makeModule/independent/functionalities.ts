@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateController } from '@templates/modules/services/create/createController';
 import { CreateService } from '@templates/modules/services/create/createService';
 import { DeleteController } from '@templates/modules/services/delete/deleteController';
@@ -8,11 +10,9 @@ import { ShowController } from '@templates/modules/services/show/showController'
 import { ShowService } from '@templates/modules/services/show/showService';
 import { UpdateController } from '@templates/modules/services/update/updateController';
 import { UpdateService } from '@templates/modules/services/update/updateService';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeFunctionalities {
   private readonly createController: CreateController;
@@ -48,7 +48,7 @@ export class MakeFunctionalities {
   public execute(): void {
     if (!this.names) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

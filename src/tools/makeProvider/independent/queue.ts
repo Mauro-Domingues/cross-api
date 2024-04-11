@@ -1,13 +1,13 @@
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
+import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
+import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
 import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
 import { CreateBullQueue } from '@templates/providers/implementations/BullQueue';
 import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
 import { CreateIQueue } from '@templates/providers/models/IQueue';
 import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
-import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
-import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
 import { BaseProvider } from '@tools/makeProvider/independent/base';
 
 export class MakeQueueProvider extends BaseProvider {

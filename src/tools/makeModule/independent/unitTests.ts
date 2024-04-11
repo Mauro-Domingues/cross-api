@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateSpecController } from '@templates/modules/services/create/createControllerSpec';
 import { CreateSpecService } from '@templates/modules/services/create/createServiceSpec';
 import { DeleteSpecController } from '@templates/modules/services/delete/deleteControllerSpec';
@@ -8,11 +10,9 @@ import { ShowSpecController } from '@templates/modules/services/show/showControl
 import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec';
 import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeUnitTests {
   private readonly updateSpecController: UpdateSpecController;
@@ -48,7 +48,7 @@ export class MakeUnitTests {
   public execute(): void {
     if (!this.names) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

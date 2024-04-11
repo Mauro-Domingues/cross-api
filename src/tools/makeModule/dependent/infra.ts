@@ -1,3 +1,5 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateContainer } from '@templates/index/container';
 import { CreateRoutes } from '@templates/index/routes';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
@@ -9,11 +11,9 @@ import { CreateIDependentRepository } from '@templates/modules/repositories/IDep
 import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
 import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
+import { Messages } from '@tools/messages';
 
 export class MakeDependentInfra {
   private readonly createDependentFakeRepository: CreateDependentFakeRepository;
@@ -74,7 +74,7 @@ export class MakeDependentInfra {
   public execute(): void {
     if (!this.names || !this.fatherNames) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,

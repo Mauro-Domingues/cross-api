@@ -1,10 +1,10 @@
-import { FileManager } from '@tools/fileManager';
+import { CreateFakeDataSource } from '@templates/api/fakeDataSource';
+import { CreateMysqlDataSource } from '@templates/api/mysqlDataSource';
 import { CreateBaseEntity } from '@templates/modules/entities/baseEntity';
 import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository';
 import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/baseFakeRepository';
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
-import { CreateMysqlDataSource } from '@templates/api/mysqlDataSource';
-import { CreateFakeDataSource } from '@templates/api/fakeDataSource';
+import { FileManager } from '@tools/fileManager';
 
 export class MakeLastLayer {
   private readonly createBaseFakeRepository: CreateBaseFakeRepository;

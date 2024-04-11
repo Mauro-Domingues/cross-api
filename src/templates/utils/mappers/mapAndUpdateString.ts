@@ -1,5 +1,5 @@
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Messages } from '@tools/messages';
 
 export class CreateMapAndUpdateString {
   private readonly messages: IMessageDTO;
@@ -13,7 +13,7 @@ export class CreateMapAndUpdateString {
 import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
 
 /**
- * ${this.messages.mapAndUpdateString}
+ * ${this.messages.mappers.description.mapAndUpdateString}
  * @param oldAttributes string
  * @param newAttributes Object
  * @returns string

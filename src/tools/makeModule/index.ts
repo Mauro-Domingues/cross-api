@@ -1,8 +1,8 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Module } from '@tools/module';
-import { Messages } from '@tools/messages';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { Messages } from '@tools/messages';
+import { Module } from '@tools/module';
 
 export class CreateModule {
   private readonly messages: IMessageDTO;
@@ -21,7 +21,7 @@ export class CreateModule {
   public execute(): void {
     if (!this.names) {
       throw this.console.single({
-        message: this.messages.moduleNotFound,
+        message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -30,7 +30,7 @@ export class CreateModule {
     }
     this.module[this.module.key]();
     return this.console.single({
-      message: `- ${this.names.lowerModuleName}Module ${this.messages.created}`,
+      message: `- ${this.names.lowerModuleName}Module ${this.messages.comands.description.created}`,
       color: 'yellow',
       bold: true,
       breakStart: false,

@@ -1,7 +1,7 @@
+import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class MakeInfra {
   private readonly fileManager: FileManager;
@@ -33,7 +33,7 @@ export class MakeInfra {
       ['src', 'shared', 'typeorm', 'seeds'],
     ]);
     return this.console.single({
-      message: this.messages.apiCreated,
+      message: this.messages.comands.description.apiCreated,
       color: 'blue',
       bold: true,
       breakStart: false,
