@@ -25,7 +25,7 @@ export class ConfigJson extends ConfigLanguage {
       '@types/uuid',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
-      'eslint',
+      'eslint@^8.57.0',
       'eslint-config-airbnb-base',
       'eslint-config-prettier',
       'eslint-import-resolver-typescript',
