@@ -39,13 +39,15 @@ export class Console {
     bold,
     breakStart,
     breakEnd,
-  }: IInputDTO): string {
+  }: IInputDTO): Array<string> {
     return [
       this.isBold(bold),
       this.getColor(color),
-      `${this.isbreakStart(breakStart)}${message}${this.isbreakEnd(breakEnd)}`,
+      this.isbreakStart(breakStart),
+      message,
+      this.isbreakEnd(breakEnd),
       '\x1b[0m',
-    ].join('');
+    ];
   }
 
   public execute(assets: IInputDTO | Array<IInputDTO>): void {
@@ -53,6 +55,6 @@ export class Console {
       this.stringifyPayload(asset),
     );
 
-    return console.log(payload.join(''));
+    return console.log(payload.flat().join(''));
   }
 }
