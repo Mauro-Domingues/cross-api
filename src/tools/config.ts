@@ -92,7 +92,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private installYarn(): string {
-    this.console.multi([
+    this.console.execute([
       {
         message: this.messages.dependencies.headers.yarn,
         color: 'blue',
@@ -112,7 +112,7 @@ export class ConfigJson extends ConfigLanguage {
   }
 
   private renderEnding(): void {
-    return this.console.multi([
+    return this.console.execute([
       {
         message: this.messages.marketplaceTool.description.action,
         color: 'blue',

@@ -13,7 +13,7 @@ export class Readline {
   }
 
   public invalidOption(optionChosen: string): void {
-    return this.console.single({
+    return this.console.execute({
       message: `"${optionChosen}"${this.messages.comands.errors.invalidOption}`,
       color: 'red',
       bold: true,

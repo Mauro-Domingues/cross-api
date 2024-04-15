@@ -54,8 +54,12 @@ export class Board {
     ];
   }
 
+  private get circle(): string {
+    return String.fromCharCode(0x3007);
+  }
+
   private renderEmptyLine(): void {
-    return this.console.single({
+    return this.console.execute({
       message: `|${' '.repeat(115)}|`,
       color: 'blue',
       bold: true,
@@ -65,7 +69,7 @@ export class Board {
   }
 
   private renderHeader(): void {
-    return this.console.single({
+    return this.console.execute({
       message: ` /${'='.repeat(46)}${
         this.messages.board.headers.title
       }${'='.repeat(46)}\\`,
@@ -78,7 +82,7 @@ export class Board {
 
   private renderToolOptions(): void {
     this.renderEmptyLine();
-    this.console.multi([
+    this.console.execute([
       {
         message: '|   ',
         color: 'blue',
@@ -87,7 +91,10 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.board.headers.tools.padEnd(112, ' ')}`,
+        message: ` ${this.circle} ${this.messages.board.headers.tools.padEnd(
+          112,
+          ' ',
+        )}`,
         color: 'green',
         bold: true,
         breakStart: false,
@@ -103,7 +110,7 @@ export class Board {
     ]);
     this.renderEmptyLine();
     return this.toolOptions.forEach(tool => {
-      this.console.multi([
+      this.console.execute([
         {
           message: '|   ',
           color: 'blue',
@@ -145,7 +152,7 @@ export class Board {
   }
 
   private renderStructureOptions(): void {
-    this.console.multi([
+    this.console.execute([
       {
         message: '|   ',
         color: 'blue',
@@ -154,10 +161,9 @@ export class Board {
         breakEnd: false,
       },
       {
-        message: ` 〇 ${this.messages.board.headers.structure.padEnd(
-          112,
-          ' ',
-        )}`,
+        message: ` ${
+          this.circle
+        } ${this.messages.board.headers.structure.padEnd(112, ' ')}`,
         color: 'green',
         bold: true,
         breakStart: false,
@@ -173,7 +179,7 @@ export class Board {
     ]);
     this.renderEmptyLine();
     return this.structureOptions.forEach(structure => {
-      this.console.multi([
+      this.console.execute([
         {
           message: '|   ',
           color: 'blue',
@@ -215,7 +221,7 @@ export class Board {
   }
 
   private renderFooter(): void {
-    return this.console.single({
+    return this.console.execute({
       message: ` \\${'='.repeat(113)}/`,
       color: 'blue',
       bold: true,

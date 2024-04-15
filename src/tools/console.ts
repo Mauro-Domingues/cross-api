@@ -48,14 +48,10 @@ export class Console {
     ].join('');
   }
 
-  public single(asset: IInputDTO): void {
-    const payload = this.stringifyPayload(asset);
-
-    return console.log(payload);
-  }
-
-  public multi(assets: Array<IInputDTO>): void {
-    const payload = assets.map(asset => this.stringifyPayload(asset));
+  public execute(assets: IInputDTO | Array<IInputDTO>): void {
+    const payload = (Array.isArray(assets) ? assets : [assets]).map(asset =>
+      this.stringifyPayload(asset),
+    );
 
     return console.log(payload.join(''));
   }

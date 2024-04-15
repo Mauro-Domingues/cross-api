@@ -14,8 +14,12 @@ export class ListProvider {
     this.console = new Console();
   }
 
+  private get trace(): string {
+    return String.fromCharCode(0x2013);
+  }
+
   private renderEmptyLine(): void {
-    return this.console.single({
+    return this.console.execute({
       message: `|${' '.repeat(55)}|`,
       color: 'blue',
       bold: true,
@@ -25,7 +29,7 @@ export class ListProvider {
   }
 
   private renderHeader(): void {
-    return this.console.multi([
+    return this.console.execute([
       {
         message: ` /${'='.repeat(53)}\\`,
         color: 'blue',
@@ -76,7 +80,7 @@ export class ListProvider {
         breakEnd: true,
       },
       {
-        message: `| ${'– '.repeat(27)}|`,
+        message: `| ${`${this.trace} `.repeat(27)}|`,
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -87,7 +91,7 @@ export class ListProvider {
 
   private renderProviderOptions(): void {
     Object.values(this.provider.list).flatMap(provider => {
-      this.console.multi([
+      this.console.execute([
         {
           message: '|   ',
           color: 'blue',
@@ -129,7 +133,7 @@ export class ListProvider {
   }
 
   private renderFooter(): void {
-    return this.console.single({
+    return this.console.execute({
       message: ` \\${'='.repeat(53)}/   `,
       color: 'blue',
       bold: true,

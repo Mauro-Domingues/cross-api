@@ -18,7 +18,7 @@ export class CreateIndexDependentRoute {
 
   public execute(): string {
     if (!this.fatherNames) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

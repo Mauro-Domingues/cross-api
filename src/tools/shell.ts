@@ -19,7 +19,7 @@ export class Shell {
     if (this.allowedPattern.test(command)) {
       return execSync(command, { encoding: 'utf-8' });
     }
-    throw this.console.single({
+    throw this.console.execute({
       message: `"${command}"${this.messages.comands.errors.invalidOption}`,
       color: 'red',
       bold: true,

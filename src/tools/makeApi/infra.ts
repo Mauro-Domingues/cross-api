@@ -32,7 +32,7 @@ export class MakeInfra {
       ['src', 'shared', 'typeorm', 'migrations'],
       ['src', 'shared', 'typeorm', 'seeds'],
     ]);
-    return this.console.single({
+    return this.console.execute({
       message: this.messages.comands.description.apiCreated,
       color: 'blue',
       bold: true,

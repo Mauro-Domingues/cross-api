@@ -316,7 +316,7 @@ export class Pluralize {
     assets: Array<IAssetDTO>,
   ): string {
     if (!this.word) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,
@@ -344,7 +344,7 @@ export class Pluralize {
     assets: Array<IAssetDTO>,
   ): boolean {
     if (!this.word) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,

@@ -57,7 +57,7 @@ export class PackageManager {
   }
 
   private installDependencies(dependencies: Array<string>): void {
-    this.console.single({
+    this.console.execute({
       message: this.messages.dependencies.headers.dependencies,
       color: 'blue',
       bold: true,
@@ -66,7 +66,7 @@ export class PackageManager {
     });
     this.shell.execute(`yarn add ${dependencies.join(' ')}`);
     return dependencies.forEach(dependency => {
-      return this.console.single({
+      return this.console.execute({
         message: `- ${dependency.replace(/@\^.*/, '')} ${
           this.messages.dependencies.description.installed
         }`,
@@ -79,7 +79,7 @@ export class PackageManager {
   }
 
   private installDevDependencies(devDependencies: Array<string>): void {
-    this.console.single({
+    this.console.execute({
       message: this.messages.dependencies.headers.devDependencies,
       color: 'blue',
       bold: true,
@@ -88,7 +88,7 @@ export class PackageManager {
     });
     this.shell.execute(`yarn add ${devDependencies.join(' ')} -D`);
     return devDependencies.forEach(devDependency => {
-      return this.console.single({
+      return this.console.execute({
         message: `- ${devDependency.replace(/@\^.*/, '')} ${
           this.messages.dependencies.description.installed
         }`,
@@ -101,7 +101,7 @@ export class PackageManager {
   }
 
   private uninstallDependencies(dependencies: Array<string>): void {
-    this.console.single({
+    this.console.execute({
       message: this.messages.dependencies.question,
       color: 'green',
       bold: true,
@@ -110,7 +110,7 @@ export class PackageManager {
     });
     this.readline.execute((optionChosen: 'y' | 'n'): void => {
       if (optionChosen === 'y') {
-        this.console.single({
+        this.console.execute({
           message: this.messages.dependencies.headers.uninstalling,
           color: 'blue',
           bold: true,
@@ -119,7 +119,7 @@ export class PackageManager {
         });
         this.shell.execute(`yarn remove ${dependencies.join(' ')}`);
         dependencies.forEach(dependency => {
-          return this.console.single({
+          return this.console.execute({
             message: `- ${dependency.replace(/@\^.*/, '')} ${
               this.messages.dependencies.description.uninstalled
             }`,

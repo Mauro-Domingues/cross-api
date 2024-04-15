@@ -65,7 +65,7 @@ new (class Main {
 
   public execute(): void {
     if (!Object.keys(this.actions).includes(this.comand)) {
-      throw this.console.multi([
+      throw this.console.execute([
         {
           message: this.messages.comands.errors.notFound,
           color: 'red',

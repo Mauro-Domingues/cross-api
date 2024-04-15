@@ -81,7 +81,7 @@ export class DeleteRegister extends BaseRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.single({
+      this.console.execute({
         message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -129,7 +129,7 @@ export class DeleteRegister extends BaseRegister {
           `${names.lowerModuleName}.ts`,
         ]);
       }
-      this.console.single({
+      this.console.execute({
         message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -252,7 +252,7 @@ export class DeleteRegister extends BaseRegister {
         ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
         routeInjection,
       );
-      this.console.single({
+      this.console.execute({
         message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -295,7 +295,7 @@ export class DeleteRegister extends BaseRegister {
         ['src', 'routes', 'index.ts'],
         routeInjection,
       );
-      this.console.single({
+      this.console.execute({
         message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
         color: 'yellow',
         bold: true,
@@ -329,7 +329,7 @@ export class DeleteRegister extends BaseRegister {
       ['tsconfig.json'],
       ['tsconfig.tsbuildinfo'],
     ]);
-    return this.console.single({
+    return this.console.execute({
       message: `- ${this.messages.comands.description.reversed}: ${comand}`,
       color: 'yellow',
       bold: true,
@@ -357,7 +357,7 @@ export class DeleteRegister extends BaseRegister {
       case 'make:api':
         return this.makeAPi(comand);
       default:
-        return this.console.single({
+        return this.console.execute({
           message: this.messages.comands.errors.notReversed,
           color: 'red',
           bold: true,

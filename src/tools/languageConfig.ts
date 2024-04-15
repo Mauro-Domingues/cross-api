@@ -35,8 +35,12 @@ export class ConfigLanguage {
     this.readline = new Readline(Object.keys(this.languageOptions));
   }
 
+  private get trace(): string {
+    return String.fromCharCode(0x2013);
+  }
+
   private renderEmptyLine(): void {
-    return this.console.single({
+    return this.console.execute({
       message: `|${' '.repeat(37)}|`,
       color: 'blue',
       bold: true,
@@ -46,7 +50,7 @@ export class ConfigLanguage {
   }
 
   private renderHeader(): void {
-    return this.console.multi([
+    return this.console.execute([
       {
         message: ` /${'='.repeat(35)}\\`,
         color: 'blue',
@@ -93,7 +97,7 @@ export class ConfigLanguage {
         breakEnd: true,
       },
       {
-        message: `| ${'– '.repeat(18)}|`,
+        message: `| ${`${this.trace} `.repeat(18)}|`,
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -104,7 +108,7 @@ export class ConfigLanguage {
 
   private renderOptions(): void {
     return Object.entries(this.languageOptions).forEach(([key, value]) => {
-      this.console.multi([
+      this.console.execute([
         {
           message: '|   ',
           color: 'blue',
@@ -146,7 +150,7 @@ export class ConfigLanguage {
   }
 
   private renderFooter(): void {
-    return this.console.single({
+    return this.console.execute({
       message: ` \\${'='.repeat(35)}/   `,
       color: 'blue',
       bold: true,
@@ -183,7 +187,7 @@ export class ConfigLanguage {
         this.languageChosen as keyof IMessageDTO['language']['options']
       ].execute();
 
-    return this.console.single({
+    return this.console.execute({
       message: `${this.messages.language.choice}${
         this.messages.language.options[
           this.languageChosen as keyof IMessageDTO['language']['options']

@@ -34,7 +34,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

@@ -23,7 +23,7 @@ export class CreateProvider {
 
   public execute(): void {
     if (!this.providerName) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
@@ -34,7 +34,7 @@ export class CreateProvider {
     this.provider.list[this.providerName as keyof typeof this.provider.list][
       this.provider.key
     ].execute();
-    this.console.single({
+    this.console.execute({
       message: `- ${this.provider.list[
         this.providerName as keyof typeof this.provider.list
       ].description.trimEnd()} ${this.messages.comands.description.created}`,

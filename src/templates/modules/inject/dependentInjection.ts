@@ -21,7 +21,7 @@ export class CreateDependentInjection {
 
   public execute(): string {
     if (!this.names || !this.fatherNames) {
-      throw this.console.single({
+      throw this.console.execute({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,
