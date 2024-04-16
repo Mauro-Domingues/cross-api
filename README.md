@@ -35,6 +35,10 @@ yarn cross make:module [name]
 
 <h2>Api Structure</h2>
 
+<hr>
+<h3>root</h3>
+<h4>&nbsp;&nbsp;&nbsp;- It is the root of your project</h4>
+
 ```bash
 .
 ├── src
@@ -53,6 +57,7 @@ yarn cross make:module [name]
 └── yarn.lock
 ```
 
+<hr>
 <h3>src</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the entire structure of the api is located</h4>
 
@@ -72,6 +77,7 @@ yarn cross make:module [name]
     └── utils   
 ```
 
+<hr>
 <h3>@types</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the global project typings are declared</h4>
 
@@ -84,6 +90,7 @@ yarn cross make:module [name]
     └── [name].d.ts 
 ```
 
+<hr>
 <h3>assets</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where auxiliary files are stored, such as jsons, .txt, keys...</h4>
 
@@ -96,6 +103,7 @@ yarn cross make:module [name]
     └── errors.log   
 ```
 
+<hr>
 <h3>config</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where public settings are located in which providers consume</h4>
 
@@ -108,6 +116,7 @@ yarn cross make:module [name]
     └── [name].ts
 ```
 
+<hr>
 <h3>dtos</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the public interfaces of the project are declared</h4>
 
@@ -123,6 +132,7 @@ yarn cross make:module [name]
     └── [name].ts
 ```
 
+<hr>
 <h3>jobs</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where jobs from queue implementations are declared</h4>
 
@@ -133,6 +143,7 @@ yarn cross make:module [name]
     └── [name].ts
 ```
 
+<hr>
 <h3>keys</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where some credentials are stored</h4>
 
@@ -143,6 +154,7 @@ yarn cross make:module [name]
     └── public.pem
 ```
 
+<hr>
 <h3>middlewares</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the public project middlewares are declared</h4>
 
@@ -155,6 +167,7 @@ yarn cross make:module [name]
     └── [name].ts
 ```
 
+<hr>
 <h3>modules</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where private dtos/entities/repositories/private providers/controllers/services and unit tests of each module are located</h4>
 
@@ -183,6 +196,7 @@ yarn cross make:module [name]
                 └── Service.ts
 ```
 
+<hr>
 <h3>routes</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where the routes are located</h4>
 
@@ -194,6 +208,7 @@ yarn cross make:module [name]
     └── [name].ts 
 ```
 
+<hr>
 <h3>shared</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where public modules/providers/error handlers/connection configuration/app and server are located</h4>
 
@@ -242,6 +257,7 @@ yarn cross make:module [name]
     └── server.ts
 ```
 
+<hr>
 <h3>utils</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is where useful tools for various use cases are stored</h4>
 
@@ -1061,4 +1077,41 @@ output = {
 <br>
 <h2>Providers</h2>
 <h4>Providers are implementations of services that assist in the business rules of your project, such as storage providers, sending messages, leads... By default, they are created within the "src/shared/containers" directory, where they act as public and independent services, but can also be generated within the modules in "src/modules/[name]/providers". They can contain one or more implementations, you decide which one to use, to switch between them just change the key in .env</h4>
+<hr>
+<br>
+
+- <h3> Cache Provider (Redis, Fake)<h4>  A caching implementation to make the system more fluid and not always rely on SQL operations.</h4></h3>
+
+<hr>
+
+- <h3> Crypto Provider (Crypto, Fake)<h4>  An implementation of cryptographic features such as data encoding, RSA key generation, and authentication tokens.</h4></h3>
+
+<hr>
+
+- <h3> Hash Provider (Bcrypt, Fake)<h4>  A hash implementation for encrypting passwords.</h4></h3>
+
+<hr>
+
+- <h3> Lead Provider (RDStation, Fake)<h4>  An Implementation for Lead Collections.</h4></h3>
+
+<hr>
+
+- <h3> Mail Template Provider (Handlebars, Fake)<h4>  An implementation of a parser for assembling email bodies.</h4></h3>
+
+<hr>
+
+- <h3> Mail Provider (Nodemailer, Ses, Fake)<h4>  An implementation of email sends, it depends on the implementation of the mail template provider.</h4></h3>
+
+<hr>
+
+- <h3> Queue Provider (Bee, Bull, Kue, Fake)<h4>  A queue service to run tasks in the background or schedule them to run at a certain time.</h4></h3>
+
+<hr>
+
+- <h3> Notification Provider (OneSignal, Firebase, Fake)<h4>  An implementation of a push notification service.</h4></h3>
+
+<hr>
+
+- <h3> Storage Provider (Disk, S3, Fake)<h4>  A file storage implementation.</h4></h3>
+
 <hr>
