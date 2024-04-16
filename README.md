@@ -35,7 +35,6 @@ yarn cross make:module [name]
 
 <h2>Api Structure</h2>
 
-<hr>
 <h3>root</h3>
 <h4>&nbsp;&nbsp;&nbsp;- It is the root of your project</h4>
 
