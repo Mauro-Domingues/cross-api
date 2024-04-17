@@ -2,7 +2,7 @@
 
 <h3>A CLI which can generate a good, clean and statically typed api structure with typescript and SOLID principles. It's features includes cruds, providers and unit tests.</h3>
 
-<h3>Check cross-api <a href="https://cross-api.gitbook.io/cross-api">Documentation</a> for more details</h3>
+<h3>Check cross-api <a href="https://cross-packages.gitbook.io/cross-api">Documentation</a> for more details</h3>
 
 <hr>
 
