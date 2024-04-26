@@ -9,11 +9,13 @@ export const parseParam = (
 ): void => {
   if (request.query) {
     Object.keys(request.query).forEach(key => {
-      if (request.method === 'GET' && ['page', 'limit'].includes(key)) {
+      if (!Number.isNaN(Number(request.query[key]))) {
         Object.assign(request.query, { [key]: Number(request.query[key]) });
+        return;
       }
       if (request.query[key] === 'true') {
         Object.assign(request.query, { [key]: true });
+        return;
       }
       if (request.query[key] === 'false') {
         Object.assign(request.query, { [key]: false });
