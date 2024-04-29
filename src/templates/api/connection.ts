@@ -8,7 +8,7 @@ export interface IConnectionDTO {
 }
 
 export class Connection implements IConnectionDTO {
-  constructor(
+  public constructor(
     public readonly client: string,
     public readonly mysql: DataSource,
   ) {}

@@ -7,7 +7,7 @@ export class Shell {
   private readonly allowedPattern: RegExp;
   private readonly messages: IMessageDTO;
 
-  constructor() {
+  public constructor() {
     this.allowedPattern =
       /^(npm install yarn --location=global|yarn (add|remove)( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/;
     this.messages = new Messages().execute();

@@ -7,7 +7,7 @@ export class Readline {
   private readonly messages: IMessageDTO;
   private readonly console: Console;
 
-  constructor(private readonly suggestions: Array<string>) {
+  public constructor(private readonly suggestions: Array<string>) {
     this.messages = new Messages().execute();
     this.console = new Console();
   }

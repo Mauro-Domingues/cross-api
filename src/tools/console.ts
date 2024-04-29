@@ -4,7 +4,7 @@ import { IInputDTO } from '@interfaces/IInputDTO';
 export class Console {
   private readonly colorOptions: IColorOptionDTO;
 
-  constructor() {
+  public constructor() {
     this.colorOptions = {
       purple: '\x1b[38;2;255;0;255m',
       yellow: '\x1b[38;2;255;255;0m',
@@ -50,7 +50,7 @@ export class Console {
     ];
   }
 
-  protected buildPayload(assets: IInputDTO | Array<IInputDTO>): string {
+  public buildPayload(assets: IInputDTO | Array<IInputDTO>): string {
     const payload = (Array.isArray(assets) ? assets : [assets])
       .map(asset => this.stringifyPayload(asset))
       .flat()
