@@ -2,7 +2,7 @@ import { IAssetDTO } from '@interfaces/IAssetDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IObjDTO } from '@interfaces/IObjDTO';
 import { IWordDTO } from '@interfaces/IWordDTO';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 
 export class Pluralize {
@@ -244,11 +244,9 @@ export class Pluralize {
   private readonly irregularPlurals: IObjDTO;
   private readonly irregularSingles: IObjDTO;
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(private readonly word: string | undefined) {
     this.messages = new Messages().execute();
-    this.console = new Console();
     this.irregularPlurals = {};
     this.irregularSingles = {};
     this.singularRules = [];
@@ -316,7 +314,7 @@ export class Pluralize {
     assets: Array<IAssetDTO>,
   ): string {
     if (!this.word) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,
@@ -344,7 +342,7 @@ export class Pluralize {
     assets: Array<IAssetDTO>,
   ): boolean {
     if (!this.word) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.comands.errors.invalidOption,
         color: 'red',
         bold: true,

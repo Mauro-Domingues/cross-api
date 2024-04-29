@@ -10,7 +10,7 @@ import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';
 import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -27,7 +27,6 @@ export class MakeInfra {
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
@@ -42,12 +41,11 @@ export class MakeInfra {
     this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

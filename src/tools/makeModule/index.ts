@@ -1,6 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 import { Module } from '@tools/module';
 
@@ -20,7 +21,7 @@ export class CreateModule {
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

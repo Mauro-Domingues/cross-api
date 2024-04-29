@@ -10,7 +10,7 @@ import { ShowController } from '@templates/modules/services/show/showController'
 import { ShowService } from '@templates/modules/services/show/showService';
 import { UpdateController } from '@templates/modules/services/update/updateController';
 import { UpdateService } from '@templates/modules/services/update/updateService';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -27,7 +27,6 @@ export class MakeFunctionalities {
   private readonly showService: ShowService;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.updateController = new UpdateController(this.names);
@@ -42,12 +41,11 @@ export class MakeFunctionalities {
     this.listService = new ListService(this.names);
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

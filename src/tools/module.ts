@@ -1,6 +1,6 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { MakeDependentFunctionalities } from '@tools/makeModule/dependent/funcionalities';
 import { MakeDependentInfra } from '@tools/makeModule/dependent/infra';
 import { MakeDependentStructure } from '@tools/makeModule/dependent/structure';
@@ -22,7 +22,6 @@ export class Module {
   private readonly makeStructure: MakeStructure;
   private readonly messages: IMessageDTO;
   private readonly makeInfra: MakeInfra;
-  private readonly console: Console;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -55,7 +54,6 @@ export class Module {
     this.makeUnitTests = new MakeUnitTests(this.names);
     this.makeInfra = new MakeInfra(this.names);
     this.messages = new Messages().execute();
-    this.console = new Console();
   }
 
   public makeIndependentModule(): void {
@@ -67,7 +65,7 @@ export class Module {
 
   public makeDependentModule(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

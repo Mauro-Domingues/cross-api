@@ -6,6 +6,7 @@ import { CreateFirebaseNotification } from '@templates/providers/implementations
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentNotificationProvider extends DependentBaseProvider {
@@ -34,7 +35,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

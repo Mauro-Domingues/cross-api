@@ -5,6 +5,7 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentStorageProvider extends DependentBaseProvider {
@@ -31,7 +32,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

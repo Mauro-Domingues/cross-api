@@ -5,6 +5,7 @@ import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { DeleteRegister } from '@tools/lastModification/delete';
 import { CreateRegister } from '@tools/lastModification/save';
@@ -65,7 +66,7 @@ new (class Main {
 
   public execute(): void {
     if (!Object.keys(this.actions).includes(this.comand)) {
-      throw this.console.execute([
+      throw new CustomError([
         {
           message: this.messages.comands.errors.notFound,
           color: 'red',

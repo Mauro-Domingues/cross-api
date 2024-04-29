@@ -50,11 +50,18 @@ export class Console {
     ];
   }
 
-  public execute(assets: IInputDTO | Array<IInputDTO>): void {
-    const payload = (Array.isArray(assets) ? assets : [assets]).map(asset =>
-      this.stringifyPayload(asset),
-    );
+  protected buildPayload(assets: IInputDTO | Array<IInputDTO>): string {
+    const payload = (Array.isArray(assets) ? assets : [assets])
+      .map(asset => this.stringifyPayload(asset))
+      .flat()
+      .join('');
 
-    return console.log(payload.flat().join(''));
+    return payload;
+  }
+
+  public execute(assets: IInputDTO | Array<IInputDTO>): void {
+    const payload = this.buildPayload(assets);
+
+    return console.log(payload);
   }
 }

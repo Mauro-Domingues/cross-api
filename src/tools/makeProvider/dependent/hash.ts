@@ -4,6 +4,7 @@ import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
 import { CreateHash } from '@templates/providers/implementations/BCrypt';
 import { CreateIHash } from '@templates/providers/models/IHash';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentHashProvider extends DependentBaseProvider {
@@ -28,7 +29,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

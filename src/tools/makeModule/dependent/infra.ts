@@ -11,7 +11,7 @@ import { CreateIDependentRepository } from '@templates/modules/repositories/IDep
 import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
 import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -29,7 +29,6 @@ export class MakeDependentInfra {
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -68,12 +67,11 @@ export class MakeDependentInfra {
     this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
     if (!this.names || !this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

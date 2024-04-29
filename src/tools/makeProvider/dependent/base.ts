@@ -1,7 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateContainer } from '@templates/index/container';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -9,7 +9,6 @@ export class DependentBaseProvider {
   private readonly createContainer: CreateContainer;
   protected readonly fileManager: FileManager;
   protected readonly messages: IMessageDTO;
-  protected readonly console: Console;
 
   public constructor(
     protected readonly fatherNames:
@@ -19,12 +18,11 @@ export class DependentBaseProvider {
     this.createContainer = new CreateContainer();
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   protected constructBase(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

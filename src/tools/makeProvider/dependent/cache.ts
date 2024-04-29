@@ -4,6 +4,7 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCacheProvider extends DependentBaseProvider {
@@ -28,7 +29,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

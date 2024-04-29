@@ -5,6 +5,7 @@ import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCryptoProvider extends DependentBaseProvider {
@@ -31,7 +32,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

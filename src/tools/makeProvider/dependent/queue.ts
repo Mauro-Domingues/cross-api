@@ -9,6 +9,7 @@ import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
 import { CreateIQueue } from '@templates/providers/models/IQueue';
 import { CreateJobs } from '@templates/providers/public/jobs';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentQueueProvider extends DependentBaseProvider {
@@ -43,7 +44,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

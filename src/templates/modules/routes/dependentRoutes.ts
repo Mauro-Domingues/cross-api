@@ -1,11 +1,10 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 
 export class CreateDependentRoute {
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(
     private readonly names:
@@ -16,12 +15,11 @@ export class CreateDependentRoute {
       | undefined,
   ) {
     this.messages = new Messages().execute();
-    this.console = new Console();
   }
 
   public execute(): string {
     if (!this.names || !this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

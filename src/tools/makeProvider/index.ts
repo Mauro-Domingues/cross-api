@@ -1,6 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
@@ -23,7 +24,7 @@ export class CreateProvider {
 
   public execute(): void {
     if (!this.providerName) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,

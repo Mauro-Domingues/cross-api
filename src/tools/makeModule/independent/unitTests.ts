@@ -10,7 +10,7 @@ import { ShowSpecController } from '@templates/modules/services/show/showControl
 import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec';
 import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
-import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -27,7 +27,6 @@ export class MakeUnitTests {
   private readonly listSpecService: ListSpecService;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.createSpecController = new CreateSpecController(this.names);
@@ -42,12 +41,11 @@ export class MakeUnitTests {
     this.listSpecService = new ListSpecService(this.names);
     this.messages = new Messages().execute();
     this.fileManager = new FileManager();
-    this.console = new Console();
   }
 
   public execute(): void {
     if (!this.names) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.modules.errors.notFound,
         color: 'red',
         bold: true,

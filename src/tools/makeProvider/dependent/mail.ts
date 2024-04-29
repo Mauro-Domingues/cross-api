@@ -6,6 +6,7 @@ import { CreateDependentNodemailerMail } from '@templates/providers/implementati
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
+import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailProvider extends DependentBaseProvider {
@@ -36,7 +37,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
 
   public execute(): void {
     if (!this.fatherNames) {
-      throw this.console.execute({
+      throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
         bold: true,
