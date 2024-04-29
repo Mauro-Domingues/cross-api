@@ -35,11 +35,11 @@ export class EnglishMessages {
       providers: {
         headers: { title: 'NAME', description: 'DESCRIPTION' },
         errors: {
-          notFound: 'provider not found',
+          notFound: 'Provider not found',
         },
       },
       modules: {
-        errors: { notFound: 'module not found' },
+        errors: { notFound: 'Module not found' },
       },
       dependencies: {
         headers: {
@@ -64,7 +64,7 @@ export class EnglishMessages {
         description: {
           created: 'created',
           apiCreated: '➤  Api structure created',
-          reversed: 'undo',
+          reversed: 'Undo',
           configured: 'Already configured',
           attempt: {
             action: '➤  Execute   ',
@@ -75,7 +75,6 @@ export class EnglishMessages {
         answer: 'Your answer: ',
         errors: {
           notReversed: '➤  There are no commands to undo',
-          notAvailable: 'not available yet',
           notFound: '➤  No commands detected',
           invalidOption: ' is not a valid option',
         },

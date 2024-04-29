@@ -35,11 +35,11 @@ export class PortugueseMessages {
       providers: {
         headers: { title: 'NOME', description: 'DESCRIÇÃO' },
         errors: {
-          notFound: 'provedor não encontrado',
+          notFound: 'Provedor não encontrado',
         },
       },
       modules: {
-        errors: { notFound: 'módulo não encontrado' },
+        errors: { notFound: 'Módulo não encontrado' },
       },
       dependencies: {
         headers: {
@@ -64,7 +64,7 @@ export class PortugueseMessages {
         description: {
           created: 'criado',
           apiCreated: '➤  Estrutura da api criada',
-          reversed: 'desfazer',
+          reversed: 'Desfazer',
           configured: 'Já configurado',
           attempt: {
             action: '➤  Execute   ',
@@ -75,7 +75,6 @@ export class PortugueseMessages {
         answer: 'Sua resposta: ',
         errors: {
           notReversed: '➤  Não há comandos para desfazer',
-          notAvailable: 'Ainda não disponível',
           notFound: '➤  Nenhum comando detectado',
           invalidOption: ' não é uma opção válida',
         },

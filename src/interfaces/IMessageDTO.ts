@@ -59,7 +59,6 @@ export interface IMessageDTO {
     };
     readonly errors: {
       readonly invalidOption: string;
-      readonly notAvailable: string;
       readonly notReversed: string;
       readonly notFound: string;
     };
