@@ -1,6 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
+import { CustomError } from '@tools/customError';
 import { BaseRegister } from '@tools/lastModification/base';
 import { Messages } from '@tools/messages';
 import { GetNames } from '@tools/names';
@@ -357,7 +358,7 @@ export class DeleteRegister extends BaseRegister {
       case 'make:api':
         return this.makeAPi(comand);
       default:
-        return this.console.execute({
+        throw new CustomError({
           message: this.messages.comands.errors.notReversed,
           color: 'red',
           bold: true,
