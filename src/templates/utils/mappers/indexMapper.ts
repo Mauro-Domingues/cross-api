@@ -1,20 +1,12 @@
 export class CreateIndexMapper {
   public execute(): string {
-    return `import { mapAndCloneAttribute } ${'from'} './mapAndCloneAttribute';
-import { mapAndInsertAttribute } ${'from'} './mapAndInsertAttribute';
-import { mapAndPatchAttribute } ${'from'} './mapAndPatchAttribute';
-import { mapAndPatchStringify } ${'from'} './mapAndPatchString';
-import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
-import { mapAndUpdateStringify } ${'from'} './mapAndUpdateString';
-
-export {
-  mapAndInsertAttribute as insertAttribute,
-  mapAndUpdateAttribute as updateAttribute,
-  mapAndUpdateStringify as updateStringify,
-  mapAndCloneAttribute as cloneAttribute,
-  mapAndPatchAttribute as patchAttribute,
-  mapAndPatchStringify as patchStringify,
-};
+    return `export { mapAndCloneAttribute as cloneAttribute } ${'from'} './mapAndCloneAttribute';
+export { mapAndCloneParam as cloneParam } ${'from'} './mapAndCloneParam';
+export { mapAndInsertAttribute as insertAttribute } ${'from'} './mapAndInsertAttribute';
+export { mapAndPatchAttribute as patchAttribute } ${'from'} './mapAndPatchAttribute';
+export { mapAndPatchStringify as patchStringify } ${'from'} './mapAndPatchString';
+export { mapAndUpdateAttribute as updateAttribute } ${'from'} './mapAndUpdateAttribute';
+export { mapAndUpdateStringify as updateStringify } ${'from'} './mapAndUpdateString';
 `;
   }
 }
