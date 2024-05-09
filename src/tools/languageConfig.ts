@@ -182,16 +182,11 @@ export class ConfigLanguage {
   }
 
   protected showChosenOption(): void {
-    this.messages =
-      this.languages[
-        this.languageChosen as keyof IMessageDTO['language']['options']
-      ].execute();
+    this.messages = this.languages[this.languageChosen!].execute();
 
     return this.console.execute({
       message: `${this.messages.language.choice}${
-        this.messages.language.options[
-          this.languageChosen as keyof IMessageDTO['language']['options']
-        ]
+        this.messages.language.options[this.languageChosen!]
       }`,
       color: 'green',
       bold: true,

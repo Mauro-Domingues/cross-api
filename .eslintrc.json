@@ -20,9 +20,6 @@
     "prettier"
   ],
   "rules": {
-    "camelcase": "off",
-    "prettier/prettier": "error",
-    "import/no-unresolved": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -30,6 +27,16 @@
         "format": [
           "camelCase"
         ]
+      },
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "filter": {
+          "regex": "^I[A-Z]\\w*DTO$",
+          "match": false
+        }
       },
       {
         "selector": "interface",
@@ -55,11 +62,15 @@
       },
       {
         "selector": "typeParameter",
-        "format": ["PascalCase"]
+        "format": [
+          "PascalCase"
+        ]
       },
       {
         "selector": "property",
-        "format": ["camelCase"],
+        "format": [
+          "camelCase"
+        ],
         "filter": {
           "regex": "^[a-z]+(:[a-z]+)*$",
           "match": false
@@ -72,22 +83,17 @@
           "regex": "^[a-z]+(:[a-z]+)*$",
           "match": true
         }
-      },      
+      },
       {
         "selector": "parameter",
-        "format": ["camelCase"],
+        "format": [
+          "camelCase"
+        ],
         "leadingUnderscore": "allow"
       }
     ],
-    "import/no-relative-packages": "off",
+    "camelcase": "off",
     "class-methods-use-this": "off",
-    "import/prefer-default-export": "off",
-    "no-shadow": "off",
-    "no-console": "off",
-    "no-useless-constructor": "off",
-    "no-empty-function": "off",
-    "no-control-regex": "off",
-    "lines-between-class-members": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -95,6 +101,8 @@
         "ts": "warn"
       }
     ],
+    "import/no-relative-packages": "off",
+    "import/no-unresolved": "error",
     "import/order": [
       "warn",
       {
@@ -103,7 +111,16 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+    "import/prefer-default-export": "off",
+    "lines-between-class-members": "off",
+    "no-console": "off",
+    "no-control-regex": "off",
+    "no-empty-function": "off",
+    "no-shadow": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "prettier/prettier": "error"
   },
   "settings": {
     "import/resolver": {

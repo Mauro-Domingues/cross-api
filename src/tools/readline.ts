@@ -36,11 +36,11 @@ export class Readline {
       },
     });
 
-    return rl.question(
+    return rl.question<Answer>(
       this.messages.comands.answer,
-      (optionChosen: string): void => {
+      (optionChosen: Answer): void => {
         rl.close();
-        callback(optionChosen as Answer);
+        callback(optionChosen);
       },
     );
   }

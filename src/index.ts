@@ -4,7 +4,6 @@ import { IActionDTO } from '@interfaces/IActionDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
-import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { DeleteRegister } from '@tools/lastModification/delete';
@@ -17,19 +16,24 @@ import { Messages } from '@tools/messages';
 import { GetNames } from '@tools/names';
 
 new (class Main {
-  private readonly fullComand: Array<string> = process.argv.slice(2);
-  private readonly comand: string = process.argv[2];
-  private readonly father: string = process.argv[4];
+  private readonly fullComand: [keyof IActionDTO, ...Array<string>];
   private readonly deleteRegister: DeleteRegister;
   private readonly createRegister: CreateRegister;
-  private readonly arg: string = process.argv[3];
   private readonly getFatherNames: GetNames;
+  private readonly comand: keyof IActionDTO;
   private readonly messages: IMessageDTO;
   private readonly actions: IActionDTO;
   private readonly getNames: GetNames;
-  private readonly console: Console;
+  private readonly father: string;
+  private readonly arg: string;
 
   public constructor() {
+    const [, , ...fullComand] = process.argv;
+    const [comand, arg, father] = fullComand;
+    this.fullComand = fullComand;
+    this.comand = comand;
+    this.father = father;
+    this.arg = arg;
     this.getFatherNames = new GetNames(this.father);
     this.deleteRegister = new DeleteRegister();
     this.messages = new Messages().execute();
@@ -40,7 +44,6 @@ new (class Main {
       this.getNames.execute(),
       this.getFatherNames.execute(),
     );
-    this.console = new Console();
     this.actions = Object.freeze<IActionDTO>({
       config: new ConfigJson(),
       comands: new Board(),
@@ -102,6 +105,6 @@ new (class Main {
       this.createRegister.execute();
     }
 
-    return this.actions[this.comand as keyof typeof this.actions].execute();
+    return this.actions[this.comand].execute();
   }
 })().execute();

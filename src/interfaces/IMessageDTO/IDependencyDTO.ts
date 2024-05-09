@@ -1,0 +1,13 @@
+export interface IDependencyDTO {
+  readonly question: string;
+  readonly description: {
+    readonly uninstalled: string;
+    readonly installed: string;
+  };
+  readonly headers: {
+    readonly devDependencies: string;
+    readonly uninstalling: string;
+    readonly dependencies: string;
+    readonly yarn: string;
+  };
+}
