@@ -26,6 +26,10 @@
   "exclude": ["node_modules"],
   "ts-node": { "files": true },
   "tsc-alias": {
-    "resolveFullPaths": true
+    "resolveFullPaths": true,
+    "fileExtensions": {
+      "inputGlob": "js",
+      "outputCheck": ["js"]
+    }
   }
 }

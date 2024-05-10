@@ -9,7 +9,7 @@ export class CreateBaseRepository {
   ObjectLiteral,
   QueryRunner,
 } ${'from'} 'typeorm';
-import { IBaseRepositoryDTO } ${'from'} './IBaseRepository.js';
+import { IBaseRepositoryDTO } ${'from'} './IBaseRepository';
 
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepositoryDTO<Entity>

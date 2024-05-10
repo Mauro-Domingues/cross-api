@@ -3,7 +3,7 @@ declare namespace NodeJS {
     readonly argv: readonly [
       readonly string,
       readonly string,
-      readonly (keyof import('../interfaces/IActionDTO.js').IActionDTO),
+      readonly (keyof import('@interfaces/IActionDTO').IActionDTO),
       ...(readonly Array<string>),
     ];
   }

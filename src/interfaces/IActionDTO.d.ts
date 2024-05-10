@@ -2,9 +2,9 @@ import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { ListProvider } from '@tools/listProvider';
-import { CreateApi } from '@tools/makeApi';
-import { CreateModule } from '@tools/makeModule';
-import { CreateProvider } from '@tools/makeProvider';
+import { CreateApi } from '@tools/makeApi/index';
+import { CreateModule } from '@tools/makeModule/index';
+import { CreateProvider } from '@tools/makeProvider/index';
 
 export interface IActionDTO {
   readonly config: ConfigJson;
