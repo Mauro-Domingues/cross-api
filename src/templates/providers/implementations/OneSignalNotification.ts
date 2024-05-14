@@ -1,21 +1,21 @@
 export class CreateOneSignalNotification {
   public execute(): string {
-    return `import axios, { AxiosError, AxiosRequestConfig } ${'from'} 'axios';
+    return `import axios, { AxiosError, AxiosInstance } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
 import { INotificationProviderDTO } ${'from'} '../models/INotificationProvider';
 
 export class OneSignalProvider implements INotificationProviderDTO {
-  private readonly options: AxiosRequestConfig;
+  private readonly http: AxiosInstance;
 
   public constructor() {
-    this.options = {
+    this.http = axios.create({
       baseURL: process.env.OS_API_URL,
       headers: {
         'Content-Type': 'application/json',
-        token: \`Basic \${process.env.OS_TOKEN}\`,
+        Authorization: \`Basic \${process.env.OS_TOKEN}\`,
       },
-    };
+    });
   }
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
@@ -27,13 +27,9 @@ export class OneSignalProvider implements INotificationProviderDTO {
     };
 
     try {
-      const axiosResult = await axios.post(
-        'api/v1/notifications',
-        body,
-        this.options,
-      );
+      const httpResult = await this.http.post('api/v1/notifications', body);
 
-      return console.log(axiosResult.data);
+      return console.log(httpResult.data);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(

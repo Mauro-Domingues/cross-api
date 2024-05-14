@@ -4,7 +4,7 @@ export class CreateExpressNamespace {
   export interface Request {
     readonly files: Record<string, Array<Express.Multer.File>>;
     readonly auth: import('jsonwebtoken').JwtPayload & {
-      sub: string;
+      readonly sub: string;
     };
   }
 }

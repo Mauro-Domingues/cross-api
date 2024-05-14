@@ -1,21 +1,21 @@
 export class CreateRDStationLead {
   public execute(): string {
     return `import { leadConfig } ${'from'} '@config/lead';
-import axios, { AxiosError, AxiosRequestConfig } ${'from'} 'axios';
+import axios, { AxiosInstance, AxiosError } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
 import { ILeadProviderDTO } ${'from'} '../models/ILeadProvider';
 import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
 
 export class RDStationProvider implements ILeadProviderDTO {
-  private options: AxiosRequestConfig;
+  private readonly http: AxiosInstance;
 
   public constructor() {
-    this.options = {
+    this.http = axios.create({
       headers: {
         'Content-Type': 'application/json',
       },
-    };
+    });
   }
 
   private async getSession(): Promise<void> {
@@ -26,15 +26,12 @@ export class RDStationProvider implements ILeadProviderDTO {
         code: leadConfig.config.code,
       };
 
-      const axiosResult = await axios.post<IAuthDTO>(
-        'auth/token',
-        body,
-        this.options,
-      );
+      const httpResult = await this.http.post<IAuthDTO>('auth/token', body);
 
-      if (this.options.headers) {
-        this.options.headers.Authorization = \`Bearer \${axiosResult.data.access_token}\`;
-      }
+      this.http.interceptors.request.use(config => {
+        config.headers.Authorization = \`Bearer \${httpResult.data.access_token}\`;
+        return config;
+      });
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(
@@ -62,13 +59,17 @@ export class RDStationProvider implements ILeadProviderDTO {
         },
       };
 
-      const axiosResult = await axios.post<ICreateLeadDTO>(
-        \`platform/conversions?api_key=\${leadConfig.config.publicApiKey}\`,
+      const httpResult = await this.http.post<ICreateLeadDTO>(
+        'platform/conversions',
         body,
-        this.options,
+        {
+          params: {
+            api_key: leadConfig.config.publicApiKey,
+          },
+        },
       );
 
-      return axiosResult.data;
+      return httpResult.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(

@@ -6,7 +6,7 @@ import { resolve } ${'from'} 'node:path';
 import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
 
 export class DiskStorageProvider implements IStorageProviderDTO {
-  public async saveFile(file: string): Promise<string> {
+  public constructor() {
     if (!existsSync(storageConfig.config.tmpFolder)) {
       mkdirSync(storageConfig.config.tmpFolder);
     }
@@ -14,7 +14,9 @@ export class DiskStorageProvider implements IStorageProviderDTO {
     if (!existsSync(storageConfig.config.uploadsFolder)) {
       mkdirSync(storageConfig.config.uploadsFolder);
     }
+  }
 
+  public async saveFile(file: string): Promise<string> {
     renameSync(
       resolve(storageConfig.config.tmpFolder, file),
       resolve(storageConfig.config.uploadsFolder, file),

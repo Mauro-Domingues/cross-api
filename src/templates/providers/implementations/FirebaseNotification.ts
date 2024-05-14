@@ -1,21 +1,21 @@
 export class CreateFirebaseNotification {
   public execute(): string {
-    return `import axios, { AxiosError, AxiosRequestConfig } ${'from'} 'axios';
+    return `import axios, { AxiosError, AxiosInstance } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
 import { INotificationProviderDTO } ${'from'} '../models/INotificationProvider';
 
 export class FirebaseProvider implements INotificationProviderDTO {
-  private readonly options: AxiosRequestConfig;
+  private readonly http: AxiosInstance;
 
   public constructor() {
-    this.options = {
+    this.http = axios.create({
       baseURL: process.env.FIREBASE_API_URL,
       headers: {
         'Content-Type': 'application/json',
         Authorization: \`key=\${process.env.FIREBASE_API_KEY}\`,
       },
-    };
+    });
   }
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
@@ -28,9 +28,9 @@ export class FirebaseProvider implements INotificationProviderDTO {
     };
 
     try {
-      const axiosResult = await axios.post('fcm/send', body, this.options);
+      const httpResult = await this.http.post('fcm/send', body);
 
-      return console.log(axiosResult.data);
+      return console.log(httpResult.data);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(

@@ -54,9 +54,7 @@ export class NodemailerMailProvider implements IMailProviderDTO {
     this.client = createTransport({
       host: mailConfig.config.host || account.smtp.host,
       port: mailConfig.config.port || account.smtp.port,
-      secure: process.env.MAIL_SECURE
-        ? mailConfig.config.secure
-        : account.smtp.secure,
+      secure: mailConfig.config.secure ?? account.smtp.secure,
       auth: {
         user: mailConfig.config.user || account.user,
         pass: mailConfig.config.password || account.pass,
