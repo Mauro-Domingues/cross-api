@@ -1,6 +1,6 @@
 # cross-api
 
-[![node version](https://img.shields.io/badge/node-v14.14.0-00BBFF)](https://img.shields.io/badge/node-v14.14.0-00BBFF)
+[![node version](https://img.shields.io/badge/node-v14.14.0-00BBFF)](https://nodejs.org/en/download)
 &nbsp;
 [![Socket Badge](https://socket.dev/api/badge/npm/package/cross-api)](https://socket.dev/npm/package/cross-api)
 &nbsp;
