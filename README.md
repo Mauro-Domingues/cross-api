@@ -8,8 +8,6 @@
 &nbsp;
 [![install size](https://packagephobia.com/badge?p=cross-api)](https://packagephobia.com/result?p=cross-api)
 
----
-
 ### A CLI which can generate a good, clean and statically typed API structure with typescript and SOLID principles. It's features includes CRUD operations, providers, unit tests and documentation.
 
 ### Check cross-api [Documentation](https://cross-packages.gitbook.io/cross-api) for more details
