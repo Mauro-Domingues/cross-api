@@ -1,7 +1,6 @@
 export class CreateIndexMapper {
   public execute(): string {
     return `export { mapAndCloneAttribute as cloneAttribute } ${'from'} './mapAndCloneAttribute';
-export { mapAndCloneParam as cloneParam } ${'from'} './mapAndCloneParam';
 export { mapAndInsertAttribute as insertAttribute } ${'from'} './mapAndInsertAttribute';
 export { mapAndPatchAttribute as patchAttribute } ${'from'} './mapAndPatchAttribute';
 export { mapAndPatchStringify as patchStringify } ${'from'} './mapAndPatchString';
