@@ -2,7 +2,7 @@ export class CreateStorageConfig {
   public execute(): string {
     return `import { randomBytes } ${'from'} 'node:crypto';
 import { StorageEngine, diskStorage } ${'from'} 'multer';
-import { resolve } ${'from'} 'node:path';
+import { resolve, extname } ${'from'} 'node:path';
 import { slugify } ${'from'} '@utils/slugify';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
@@ -42,7 +42,15 @@ export const storageConfig = Object.freeze<IStorageConfigDTO>({
         destination: tmpFolder,
         filename(_request, file, callback) {
           const fileHash = randomBytes(10).toString('hex');
-          const fileName = \`\${fileHash}-\${slugify(file.originalname)}\`;
+          const extension = extname(file.originalname);
+          const name = slugify(
+            file.originalname.replace(new RegExp(\`\${extension}$\`), ''),
+          );
+
+          const fileName = fileHash
+            .concat('-')
+            .concat(name as string)
+            .concat(extension);
 
           return callback(null, fileName);
         },
