@@ -1,9 +1,4 @@
 export interface IBoardDTO {
-  readonly headers: {
-    readonly structure: string;
-    readonly title: string;
-    readonly tools: string;
-  };
   readonly description: {
     readonly 'make:dependent:provider': string;
     readonly 'make:dependent:module': string;
@@ -14,5 +9,10 @@ export interface IBoardDTO {
     readonly language: string;
     readonly comands: string;
     readonly revert: string;
+  };
+  readonly headers: {
+    readonly structure: string;
+    readonly title: string;
+    readonly tools: string;
   };
 }

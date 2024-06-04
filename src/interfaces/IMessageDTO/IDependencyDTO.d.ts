@@ -1,9 +1,9 @@
 export interface IDependencyDTO {
-  readonly question: string;
   readonly description: {
     readonly uninstalled: string;
     readonly installed: string;
   };
+  readonly question: string;
   readonly headers: {
     readonly devDependencies: string;
     readonly uninstalling: string;

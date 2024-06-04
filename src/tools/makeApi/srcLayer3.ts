@@ -26,6 +26,7 @@ import { CreateDomainsManager } from '@templates/utils/domains';
 import { CreateErrorLog } from '@templates/utils/errorLog';
 import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
+import { CreateSlugify } from '@templates/utils/slugify';
 import { FileManager } from '@tools/fileManager';
 
 export class MakeThirdLayer {
@@ -52,6 +53,7 @@ export class MakeThirdLayer {
   private readonly createICodeDTO: CreateICodeDTO;
   private readonly createIListDTO: CreateIListDTO;
   private readonly createDomains: CreateDomains;
+  private readonly createSlugify: CreateSlugify;
   private readonly createRoutes: CreateRoutes;
   private readonly createServer: CreateServer;
   private readonly fileManager: FileManager;
@@ -83,6 +85,7 @@ export class MakeThirdLayer {
     this.createIListDTO = new CreateIListDTO();
     this.createICodeDTO = new CreateICodeDTO();
     this.createDomains = new CreateDomains();
+    this.createSlugify = new CreateSlugify();
     this.createRoutes = new CreateRoutes();
     this.createServer = new CreateServer();
     this.fileManager = new FileManager();
@@ -130,6 +133,7 @@ export class MakeThirdLayer {
         ['src', 'utils', 'normalizeQueryLink.ts'],
         this.createNormalizeQueryLink,
       ],
+      [['src', 'utils', 'slugify.ts'], this.createSlugify],
     ]);
   }
 }

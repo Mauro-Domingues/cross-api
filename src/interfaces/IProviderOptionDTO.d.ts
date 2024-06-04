@@ -1,10 +1,10 @@
 export type IProviderOptionDTO =
-  | 'cache'
-  | 'crypto'
-  | 'hash'
-  | 'lead'
-  | 'mail'
   | 'mailTemplate'
-  | 'queue'
   | 'notification'
-  | 'storage';
+  | 'storage'
+  | 'crypto'
+  | 'cache'
+  | 'queue'
+  | 'mail'
+  | 'lead'
+  | 'hash';

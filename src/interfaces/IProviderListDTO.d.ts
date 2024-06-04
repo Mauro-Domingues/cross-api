@@ -7,7 +7,7 @@ export type IProviderListDTO = Record<
     readonly dependent: { readonly execute: () => void };
     readonly devDependencies: Array<string>;
     readonly dependencies: Array<string>;
-    readonly description: string;
     readonly name: IProviderOptionDTO;
+    readonly description: string;
   }
 >;

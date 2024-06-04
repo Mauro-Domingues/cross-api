@@ -1,6 +1,5 @@
 export interface ILanguageDTO {
   readonly question: string;
-  readonly choice: string;
   readonly headers: {
     readonly description: string;
     readonly title: string;
@@ -9,4 +8,5 @@ export interface ILanguageDTO {
     readonly enUs: string;
     readonly ptBr: string;
   };
+  readonly choice: string;
 }

@@ -1,5 +1,4 @@
 export interface IComandDTO {
-  readonly answer: string;
   readonly description: {
     readonly apiCreated: string;
     readonly configured: string;
@@ -11,6 +10,7 @@ export interface IComandDTO {
       readonly info: string;
     };
   };
+  readonly answer: string;
   readonly errors: {
     readonly invalidOption: string;
     readonly notReversed: string;

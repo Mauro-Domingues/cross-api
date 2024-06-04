@@ -11,7 +11,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   protected fakeRepository: Array<Entity> = [];
 
   public constructor(
-    private readonly Entity: new (...args: unknown[]) => Entity,
+    private readonly Entity: new (...args: Array<unknown>) => Entity,
   ) {}
 
   protected parseWhere<Type extends ObjectLiteral>(

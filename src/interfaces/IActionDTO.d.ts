@@ -7,13 +7,13 @@ import { CreateModule } from '@tools/makeModule/index';
 import { CreateProvider } from '@tools/makeProvider/index';
 
 export interface IActionDTO {
+  readonly 'make:provider': CreateProvider;
+  readonly 'list:provider': ListProvider;
+  readonly 'make:module': CreateModule;
+  readonly language: ConfigLanguage;
+  readonly 'make:api': CreateApi;
   readonly config: ConfigJson;
   readonly comands: Board;
-  readonly language: ConfigLanguage;
-  readonly 'list:provider': ListProvider;
-  readonly 'make:api': CreateApi;
-  readonly 'make:module': CreateModule;
-  readonly 'make:provider': CreateProvider;
   readonly revert: {
     readonly execute: () => void;
   };
