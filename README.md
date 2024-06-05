@@ -2,7 +2,7 @@
 
 [![node version](https://img.shields.io/badge/node-v14.14.0-00BBFF)](https://nodejs.org/en/download)
 &nbsp;
-[![Socket Badge](https://socket.dev/api/badge/npm/package/cross-api)](https://socket.dev/npm/package/cross-api)
+[![socket badge](https://socket.dev/api/badge/npm/package/cross-api)](https://socket.dev/npm/package/cross-api)
 &nbsp;
 [![npm version](https://img.shields.io/npm/v/cross-api.svg?color=CB3837)](https://www.npmjs.com/package/cross-api)
 &nbsp;

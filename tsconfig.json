@@ -16,6 +16,8 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "tsBuildInfoFile": "cross.tsbuildinfo",
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
