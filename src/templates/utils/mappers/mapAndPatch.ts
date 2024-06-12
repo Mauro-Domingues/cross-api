@@ -36,7 +36,10 @@ export function mapAndPatchAttribute<
           let oldItem = (oldAttributes as Record<string, Array<IObjectDTO>>)[
             attribute
           ][index];
-          if ('id' in item && !isValid(item.id)) {
+          if (
+            Object.prototype.hasOwnProperty.call(item, 'id') &&
+            !isValid(item.id)
+          ) {
             const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
               attribute
             ].find(oldItem => oldItem.id === item.id);

@@ -1,4 +1,4 @@
-# cross-api
+# Cross-api
 
 [![node version](https://img.shields.io/badge/node-v14.14.0-00BBFF)](https://nodejs.org/en/download)
 &nbsp;

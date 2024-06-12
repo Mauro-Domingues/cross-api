@@ -39,7 +39,7 @@ export function mapAndInsertAttribute<
         if (
           !isValid(item.id) &&
           Array.isArray((oldAttributes as IObjectDTO)[attribute]) &&
-          'id' in item
+          Object.prototype.hasOwnProperty.call(item, 'id')
         ) {
           const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
             attribute
