@@ -260,10 +260,10 @@ export class Pluralize {
   }
 
   private addRules(): void {
-    this.pluralData.map(data => this.addPluralRule(data));
-    this.singularData.map(data => this.addSingularRule(data));
     this.uncontableData.map(data => this.addUncountableRule(data));
     this.irregularData.map(data => this.addIrregularRule(data));
+    this.singularData.map(data => this.addSingularRule(data));
+    this.pluralData.map(data => this.addPluralRule(data));
   }
 
   private replace(word: string, [rule, replacement]: IAssetDTO): string {
