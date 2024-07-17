@@ -6,15 +6,25 @@ import 'reflect-metadata';
 
 export const FakeDataSource = {
   isInitialized: true,
-  createQueryRunner: () => ({
-    rollbackTransaction: async () => Promise.resolve(),
-    commitTransaction: async () => Promise.resolve(),
-    startTransaction: async () => Promise.resolve(),
-    connect: async () => Promise.resolve(),
-    release: async () => Promise.resolve(),
-    isTransactionActive: true,
-    isReleased: false,
-  }),
+  createQueryRunner() {
+    const self = {
+      rollbackTransaction: async (): Promise<void> => {
+        self.isTransactionActive = false;
+      },
+      commitTransaction: async (): Promise<void> => {
+        self.isTransactionActive = false;
+      },
+      startTransaction: async (): Promise<void> => {
+        self.isTransactionActive = true;
+      },
+      release: async (): Promise<void> => {
+        self.isReleased = true;
+      },
+      isTransactionActive: false,
+      isReleased: false,
+    };
+    return self;
+  },
 } as DataSource;
 `;
   }

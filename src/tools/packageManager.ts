@@ -64,12 +64,15 @@ export class PackageManager {
       breakStart: true,
       breakEnd: true,
     });
-    this.shell.execute(`yarn add ${dependencies.join(' ')}`);
+    this.shell.execute('yarn add '.concat(dependencies.join(' ')));
     return dependencies.forEach(dependency => {
       return this.console.execute({
-        message: `- ${dependency.replace(/@\^.*/, '')} ${
-          this.messages.dependencies.description.installed
-        }`,
+        message: [
+          '- ',
+          dependency.replace(/@\^.*/, ''),
+          ' ',
+          this.messages.dependencies.description.installed,
+        ],
         color: 'yellow',
         bold: false,
         breakStart: false,
@@ -86,12 +89,15 @@ export class PackageManager {
       breakStart: true,
       breakEnd: true,
     });
-    this.shell.execute(`yarn add ${devDependencies.join(' ')} -D`);
+    this.shell.execute('yarn add '.concat(devDependencies.join(' '), ' -D'));
     return devDependencies.forEach(devDependency => {
       return this.console.execute({
-        message: `- ${devDependency.replace(/@\^.*/, '')} ${
-          this.messages.dependencies.description.installed
-        }`,
+        message: [
+          '- ',
+          devDependency.replace(/@\^.*/, ''),
+          ' ',
+          this.messages.dependencies.description.installed,
+        ],
         color: 'yellow',
         bold: false,
         breakStart: false,
@@ -117,12 +123,15 @@ export class PackageManager {
           breakStart: true,
           breakEnd: true,
         });
-        this.shell.execute(`yarn remove ${dependencies.join(' ')}`);
+        this.shell.execute('yarn remove '.concat(dependencies.join(' ')));
         dependencies.forEach(dependency => {
           return this.console.execute({
-            message: `- ${dependency.replace(/@\^.*/, '')} ${
-              this.messages.dependencies.description.uninstalled
-            }`,
+            message: [
+              '- ',
+              dependency.replace(/@\^.*/, ''),
+              ' ',
+              this.messages.dependencies.description.uninstalled,
+            ],
             color: 'red',
             bold: false,
             breakStart: false,

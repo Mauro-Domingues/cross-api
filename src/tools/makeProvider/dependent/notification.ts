@@ -53,7 +53,7 @@ export class MakeDependentNotificationProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './NotificationProvider';\n`,
+      "import './NotificationProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

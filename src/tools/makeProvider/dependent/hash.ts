@@ -47,7 +47,7 @@ export class MakeDependentHashProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './HashProvider';\n`,
+      "import './HashProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

@@ -18,7 +18,7 @@ export class Shell {
       return execSync(command, { encoding: 'utf-8' });
     }
     throw new CustomError({
-      message: `"${command}"${this.messages.comands.errors.invalidOption}`,
+      message: ['"', command, '"', this.messages.comands.errors.invalidOption],
       color: 'red',
       bold: true,
       breakStart: true,

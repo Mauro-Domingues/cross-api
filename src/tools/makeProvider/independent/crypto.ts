@@ -28,7 +28,7 @@ export class MakeCryptoProvider extends BaseProvider {
     this.constructBase();
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './CryptoProvider';\n`,
+      "import './CryptoProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'fakes'],

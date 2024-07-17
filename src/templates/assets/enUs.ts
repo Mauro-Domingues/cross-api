@@ -58,7 +58,7 @@ export class EnglishMessages {
         question: 'Do you want to uninstall dependencies? (y/n)',
       },
       marketplaceTool: {
-        description: { action: 'Download   ', info: 'to help you   ' },
+        description: { action: 'Download ', info: ' to help you' },
       },
       comands: {
         description: {
@@ -67,9 +67,9 @@ export class EnglishMessages {
           reversed: 'Undo',
           configured: 'Already configured',
           attempt: {
-            action: '➤  Execute   ',
-            comand: 'yarn cross comands   ',
-            info: 'to see available commands   ',
+            action: '➤  Execute ',
+            comand: 'yarn cross comands ',
+            info: 'to see available commands',
           },
         },
         answer: 'Your answer: ',

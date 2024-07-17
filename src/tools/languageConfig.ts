@@ -41,7 +41,7 @@ export class ConfigLanguage {
 
   private renderEmptyLine(): void {
     return this.console.execute({
-      message: `|${' '.repeat(37)}|`,
+      message: ['|', ' '.repeat(37), '|'],
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -52,38 +52,41 @@ export class ConfigLanguage {
   private renderHeader(): void {
     return this.console.execute([
       {
-        message: ` /${'='.repeat(35)}\\`,
+        message: [' /', '='.repeat(35), '\\'],
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: true,
       },
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: `     ${this.messages.language.headers.title}`.padEnd(17, ' '),
+        message: [
+          ' '.repeat(6),
+          this.messages.language.headers.title.padEnd(17, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: `      ${this.messages.language.headers.description}`.padEnd(
-          21,
-          ' ',
-        ),
+        message: [
+          ' '.repeat(6),
+          this.messages.language.headers.description.padEnd(19, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
@@ -97,7 +100,7 @@ export class ConfigLanguage {
         breakEnd: true,
       },
       {
-        message: `| ${`${this.trace} `.repeat(18)}|`,
+        message: ['|', this.trace.concat(' ').repeat(18), '|'],
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -110,35 +113,35 @@ export class ConfigLanguage {
     return Object.entries(this.languageOptions).forEach(([key, value]) => {
       this.console.execute([
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: ` ➤  ${key.padEnd(13, ' ')}`,
+          message: ['  ➤  ', key.padEnd(12, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: `  ${value.padEnd(19, ' ')}`,
+          message: [' '.repeat(3), value.padEnd(16, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -151,7 +154,7 @@ export class ConfigLanguage {
 
   private renderFooter(): void {
     return this.console.execute({
-      message: ` \\${'='.repeat(35)}/   `,
+      message: [' \\', '='.repeat(35), '/'],
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -185,9 +188,10 @@ export class ConfigLanguage {
     this.messages = this.languages[this.languageChosen!].execute();
 
     return this.console.execute({
-      message: `${this.messages.language.choice}${
-        this.messages.language.options[this.languageChosen!]
-      }`,
+      message: [
+        this.messages.language.choice,
+        this.messages.language.options[this.languageChosen!],
+      ],
       color: 'green',
       bold: true,
       breakStart: true,

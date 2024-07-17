@@ -47,7 +47,7 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './CacheProvider';\n`,
+      "import './CacheProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

@@ -53,7 +53,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './LeadProvider';\n`,
+      "import './LeadProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

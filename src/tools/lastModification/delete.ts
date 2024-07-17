@@ -73,17 +73,26 @@ export class DeleteRegister extends BaseRegister {
         this.fileManager.checkIfExistsSync([
           'src',
           'config',
-          `${names.lowerModuleName}.ts`,
+          names.lowerModuleName.concat('.ts'),
         ])
       ) {
         this.fileManager.removeFile([
           'src',
           'config',
-          `${names.lowerModuleName}.ts`,
+          names.lowerModuleName.concat('.ts'),
         ]);
       }
       this.console.execute({
-        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        message: [
+          '- ',
+          this.messages.comands.description.reversed,
+          ': ',
+          comand,
+          ' ',
+          names.lowerModuleName,
+          ' ',
+          fatherNames.lowerModuleName,
+        ],
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -121,17 +130,24 @@ export class DeleteRegister extends BaseRegister {
         this.fileManager.checkIfExistsSync([
           'src',
           'config',
-          `${names.lowerModuleName}.ts`,
+          names.lowerModuleName.concat('.ts'),
         ])
       ) {
         this.fileManager.removeFile([
           'src',
           'config',
-          `${names.lowerModuleName}.ts`,
+          names.lowerModuleName.concat('.ts'),
         ]);
       }
       this.console.execute({
-        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
+        message: [
+          '- ',
+          this.messages.comands.description.reversed,
+          ': ',
+          comand,
+          ' ',
+          names.lowerModuleName,
+        ],
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -155,35 +171,35 @@ export class DeleteRegister extends BaseRegister {
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          `create${names.upperModuleName}`,
+          'create'.concat(names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          `delete${names.upperModuleName}`,
+          'delete'.concat(names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          `list${names.upperModuleName}`,
+          'list'.concat(names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          `show${names.upperModuleName}`,
+          'show'.concat(names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          `update${names.upperModuleName}`,
+          'update'.concat(names.upperModuleName),
         ],
       ]);
       this.fileManager.checkAndRemoveMultiFile([
@@ -192,28 +208,28 @@ export class DeleteRegister extends BaseRegister {
           'modules',
           fatherNames.pluralLowerModuleName,
           'dtos',
-          `I${names.upperModuleName}DTO.ts`,
+          'I'.concat(names.upperModuleName, 'DTO.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'entities',
-          `${names.upperModuleName}.ts`,
+          names.upperModuleName.concat('.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'repositories',
-          `${names.pluralUpperModuleName}Repository.ts`,
+          names.pluralUpperModuleName.concat('Repository.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'repositories',
-          `I${names.pluralUpperModuleName}Repository.ts`,
+          'I'.concat(names.pluralUpperModuleName, 'Repository.ts'),
         ],
         [
           'src',
@@ -221,7 +237,7 @@ export class DeleteRegister extends BaseRegister {
           fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
-          `Fake${names.pluralUpperModuleName}Repository.ts`,
+          'Fake'.concat(names.pluralUpperModuleName, 'Repository.ts'),
         ],
       ]);
       const moduleInjection = this.fileManager.readFileSync([
@@ -247,14 +263,23 @@ export class DeleteRegister extends BaseRegister {
       this.fileManager.truncateFileSync([
         'src',
         'routes',
-        `${fatherNames.lowerModuleName}Router.ts`,
+        fatherNames.lowerModuleName.concat('Router.ts'),
       ]);
       this.fileManager.createFileSync(
-        ['src', 'routes', `${fatherNames.lowerModuleName}Router.ts`],
+        ['src', 'routes', fatherNames.lowerModuleName.concat('Router.ts')],
         routeInjection,
       );
       this.console.execute({
-        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName} ${fatherNames.lowerModuleName}`,
+        message: [
+          '- ',
+          this.messages.comands.description.reversed,
+          ': ',
+          comand,
+          ' ',
+          names.lowerModuleName,
+          ' ',
+          fatherNames.lowerModuleName,
+        ],
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -269,7 +294,7 @@ export class DeleteRegister extends BaseRegister {
       this.fileManager.removeFile([
         'src',
         'routes',
-        `${names.lowerModuleName}Router.ts`,
+        names.lowerModuleName.concat('Router.ts'),
       ]);
       const moduleInjection = this.fileManager.readFileSync([
         this.basePath,
@@ -297,7 +322,14 @@ export class DeleteRegister extends BaseRegister {
         routeInjection,
       );
       this.console.execute({
-        message: `- ${this.messages.comands.description.reversed}: ${comand} ${names.lowerModuleName}`,
+        message: [
+          '- ',
+          this.messages.comands.description.reversed,
+          ': ',
+          comand,
+          ' ',
+          names.lowerModuleName,
+        ],
         color: 'yellow',
         bold: true,
         breakStart: false,
@@ -331,7 +363,7 @@ export class DeleteRegister extends BaseRegister {
       ['tsconfig.tsbuildinfo'],
     ]);
     return this.console.execute({
-      message: `- ${this.messages.comands.description.reversed}: ${comand}`,
+      message: ['- ', this.messages.comands.description.reversed, ': ', comand],
       color: 'yellow',
       bold: true,
       breakStart: false,

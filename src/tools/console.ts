@@ -15,12 +15,12 @@ export class Console {
     };
   }
 
-  private isbreakStart(breakStart?: boolean): '\n' | '\b' {
-    return breakStart ? '\n' : '\b';
+  private isbreakStart(breakStart?: boolean): '\n' | '' {
+    return breakStart ? '\n' : '';
   }
 
-  private isbreakEnd(breakEnd?: boolean): '\n' | '\b' {
-    return breakEnd ? '\n' : '\b';
+  private isbreakEnd(breakEnd?: boolean): '\n' | '' {
+    return breakEnd ? '\n' : '';
   }
 
   private getColor(
@@ -44,7 +44,7 @@ export class Console {
       this.isBold(bold),
       this.getColor(color),
       this.isbreakStart(breakStart),
-      message,
+      String.prototype.concat(...message),
       this.isbreakEnd(breakEnd),
       '\x1b[0m',
     ];

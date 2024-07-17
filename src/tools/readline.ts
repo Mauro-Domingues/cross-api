@@ -14,7 +14,12 @@ export class Readline {
 
   public invalidOption(optionChosen: string): void {
     return this.console.execute({
-      message: `"${optionChosen}"${this.messages.comands.errors.invalidOption}`,
+      message: [
+        '"',
+        optionChosen,
+        '"',
+        this.messages.comands.errors.invalidOption,
+      ],
       color: 'red',
       bold: true,
       breakStart: true,

@@ -50,7 +50,7 @@ export class MakeDependentMailTemplateProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './MailTemplateProvider';\n`,
+      "import './MailTemplateProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

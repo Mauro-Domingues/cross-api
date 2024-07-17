@@ -25,7 +25,7 @@ export class MakeHashProvider extends BaseProvider {
     this.constructBase();
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './HashProvider';\n`,
+      "import './HashProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'fakes'],

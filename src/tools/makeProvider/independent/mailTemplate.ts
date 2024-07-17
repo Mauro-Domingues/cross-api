@@ -28,7 +28,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
     this.constructBase();
     this.fileManager.createFile(
       ['src', 'shared', 'container', 'providers', 'index.ts'],
-      `import './MailTemplateProvider';\n`,
+      "import './MailTemplateProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

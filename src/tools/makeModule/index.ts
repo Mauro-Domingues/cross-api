@@ -31,7 +31,12 @@ export class CreateModule {
     }
     this.module[this.module.key]();
     return this.console.execute({
-      message: `- ${this.names.lowerModuleName}Module ${this.messages.comands.description.created}`,
+      message: [
+        '- ',
+        this.names.lowerModuleName.concat('Module'),
+        ' ',
+        this.messages.comands.description.created,
+      ],
       color: 'yellow',
       bold: true,
       breakStart: false,

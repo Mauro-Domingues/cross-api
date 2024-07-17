@@ -50,7 +50,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './StorageProvider';\n`,
+      "import './StorageProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

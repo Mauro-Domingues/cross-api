@@ -13,6 +13,15 @@ export class CreateRegister extends BaseRegister {
     super();
   }
 
+  private getRouterBase(lowerModuleName: string): string {
+    return `import { Router } from 'express';
+
+const ${lowerModuleName}Router = Router();
+
+export { ${lowerModuleName}Router };
+`;
+  }
+
   private constructModuleBase(): void {
     this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container'],
@@ -132,25 +141,22 @@ export class CreateRegister extends BaseRegister {
         this.fileManager.checkIfExistsSync([
           'src',
           'routes',
-          `${this.fatherNames.lowerModuleName}Router.ts`,
+          this.fatherNames.lowerModuleName.concat('Router.ts'),
         ])
       ) {
         const routeInjection = this.fileManager.readFileSync([
           'src',
           'routes',
-          `${this.fatherNames.lowerModuleName}Router.ts`,
+          this.fatherNames.lowerModuleName.concat('Router.ts'),
         ]);
         this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,
         );
       } else {
-        const routeInjection = `import { Router } from 'express';
-
-const ${this.fatherNames.lowerModuleName}Router = Router();
-
-export { ${this.fatherNames.lowerModuleName}Router };
-`;
+        const routeInjection = this.getRouterBase(
+          this.fatherNames.lowerModuleName,
+        );
         this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],
           routeInjection,

@@ -101,7 +101,7 @@ export class ConfigJson extends ConfigLanguage {
         breakEnd: true,
       },
       {
-        message: `- yarn ${this.messages.dependencies.description.installed}`,
+        message: ['- yarn ', this.messages.dependencies.description.installed],
         color: 'yellow',
         bold: false,
         breakStart: true,
@@ -122,7 +122,7 @@ export class ConfigJson extends ConfigLanguage {
       },
       {
         message:
-          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig   ',
+          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
         color: 'purple',
         bold: true,
         breakStart: false,

@@ -50,7 +50,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
         'providers',
         'index.ts',
       ],
-      `import './CryptoProvider';\n`,
+      "import './CryptoProvider';\n",
     );
     this.fileManager.checkAndCreateMultiDirSync([
       [

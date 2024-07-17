@@ -20,7 +20,7 @@ export class ListProvider {
 
   private renderEmptyLine(): void {
     return this.console.execute({
-      message: `|${' '.repeat(55)}|`,
+      message: ['|', ' '.repeat(55), '|'],
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -31,42 +31,41 @@ export class ListProvider {
   private renderHeader(): void {
     return this.console.execute([
       {
-        message: ` /${'='.repeat(53)}\\`,
+        message: [' /', '='.repeat(53), '\\'],
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: true,
       },
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: `       ${this.messages.providers.headers.title}`.padEnd(
-          23,
-          ' ',
-        ),
+        message: [
+          ' '.repeat(8),
+          this.messages.providers.headers.title.padEnd(21, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message:
-          `        ${this.messages.providers.headers.description}`.padEnd(
-            22,
-            ' ',
-          ),
+        message: [
+          ' '.repeat(10),
+          this.messages.providers.headers.description.padEnd(22, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
@@ -80,7 +79,7 @@ export class ListProvider {
         breakEnd: true,
       },
       {
-        message: `| ${`${this.trace} `.repeat(27)}|`,
+        message: ['| ', this.trace.concat(' ').repeat(27), '|'],
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -93,28 +92,28 @@ export class ListProvider {
     Object.values(this.provider.list).flatMap(provider => {
       this.console.execute([
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: ` ➤  ${provider.name.padEnd(19, ' ')}`,
+          message: ['  ➤  ', provider.name.padEnd(16, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: ` ${provider.description.padEnd(32, ' ')}`,
+          message: [' '.repeat(2), provider.description.padEnd(31, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,
@@ -134,7 +133,7 @@ export class ListProvider {
 
   private renderFooter(): void {
     return this.console.execute({
-      message: ` \\${'='.repeat(53)}/   `,
+      message: [' \\', '='.repeat(53), '/'],
       color: 'blue',
       bold: true,
       breakStart: false,

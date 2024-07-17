@@ -58,7 +58,7 @@ export class PortugueseMessages {
         question: 'Você quer desinstalar as dependências? (y/n)',
       },
       marketplaceTool: {
-        description: { action: 'Instale   ', info: 'para te ajudar   ' },
+        description: { action: 'Instale ', info: ' para te ajudar' },
       },
       comands: {
         description: {
@@ -67,9 +67,9 @@ export class PortugueseMessages {
           reversed: 'Desfazer',
           configured: 'Já configurado',
           attempt: {
-            action: '➤  Execute   ',
-            comand: 'yarn cross comands   ',
-            info: 'para ver os comandos disponíveis   ',
+            action: '➤  Execute ',
+            comand: 'yarn cross comands ',
+            info: 'para ver os comandos disponíveis ',
           },
         },
         answer: 'Sua resposta: ',

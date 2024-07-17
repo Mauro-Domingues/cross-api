@@ -107,11 +107,11 @@ export class MakeDependentInfra {
       !this.fileManager.checkIfExistsSync([
         'src',
         'routes',
-        `${this.fatherNames.lowerModuleName}Router.ts`,
+        this.fatherNames.lowerModuleName.concat('Router.ts'),
       ])
     ) {
       this.fileManager.createFile(
-        ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
+        ['src', 'routes', this.fatherNames.lowerModuleName.concat('Router.ts')],
         this.createFullDependentRoute.execute(),
       );
       this.fileManager.createFile(
@@ -120,7 +120,7 @@ export class MakeDependentInfra {
       );
     } else {
       this.fileManager.createFile(
-        ['src', 'routes', `${this.fatherNames.lowerModuleName}Router.ts`],
+        ['src', 'routes', this.fatherNames.lowerModuleName.concat('Router.ts')],
         this.createDependentRoute.execute(),
       );
     }
@@ -131,7 +131,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'dtos',
-          `I${this.names.upperModuleName}DTO.ts`,
+          'I'.concat(this.names.upperModuleName, 'DTO.ts'),
         ],
         this.createModuleDTO,
       ],
@@ -141,7 +141,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'entities',
-          `${this.names.upperModuleName}.ts`,
+          this.names.upperModuleName.concat('.ts'),
         ],
         this.createEntity,
       ],
@@ -151,7 +151,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
-          `${this.names.pluralUpperModuleName}Repository.ts`,
+          this.names.pluralUpperModuleName.concat('Repository.ts'),
         ],
         this.createDependentRepository,
       ],
@@ -161,7 +161,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
-          `I${this.names.pluralUpperModuleName}Repository.ts`,
+          'I'.concat(this.names.pluralUpperModuleName, 'Repository.ts'),
         ],
         this.createIDependentRepository,
       ],
@@ -172,7 +172,7 @@ export class MakeDependentInfra {
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
-          `Fake${this.names.pluralUpperModuleName}Repository.ts`,
+          'Fake'.concat(this.names.pluralUpperModuleName, 'Repository.ts'),
         ],
         this.createDependentFakeRepository,
       ],

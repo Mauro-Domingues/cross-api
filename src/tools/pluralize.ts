@@ -369,7 +369,7 @@ export class Pluralize {
 
   private sanitizeRule(rule: RegExp | string): RegExp {
     if (typeof rule === 'string') {
-      return new RegExp(`^${rule}$`, 'i');
+      return new RegExp('^'.concat(rule, '$'), 'i');
     }
 
     return rule;

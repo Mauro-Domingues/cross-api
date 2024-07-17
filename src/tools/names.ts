@@ -43,14 +43,12 @@ export class GetNames {
     const pluralUpperModuleName =
       pluralName.charAt(0).toUpperCase() + pluralName.slice(1);
 
-    const dbModuleName = pluralLowerModuleName.replace(
-      /[A-Z]/g,
-      letter => `_${letter.toLowerCase()}`,
+    const dbModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
+      '_'.concat(letter.toLowerCase()),
     );
 
-    const routeModuleName = pluralLowerModuleName.replace(
-      /[A-Z]/g,
-      letter => `-${letter.toLowerCase()}`,
+    const routeModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
+      '-'.concat(letter.toLowerCase()),
     );
 
     return {

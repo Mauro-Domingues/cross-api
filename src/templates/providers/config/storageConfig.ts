@@ -47,10 +47,7 @@ export const storageConfig = Object.freeze<IStorageConfigDTO>({
             file.originalname.replace(new RegExp(\`\${extension}$\`), ''),
           );
 
-          const fileName = fileHash
-            .concat('-')
-            .concat(name as string)
-            .concat(extension);
+          const fileName = fileHash.concat('-', name as string, extension);
 
           return callback(null, fileName);
         },

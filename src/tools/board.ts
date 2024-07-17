@@ -60,7 +60,7 @@ export class Board {
 
   private renderEmptyLine(): void {
     return this.console.execute({
-      message: `|${' '.repeat(115)}|`,
+      message: ['|', ' '.repeat(115), '|'],
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -70,9 +70,13 @@ export class Board {
 
   private renderHeader(): void {
     return this.console.execute({
-      message: ` /${'='.repeat(46)}${
-        this.messages.board.headers.title
-      }${'='.repeat(46)}\\`,
+      message: [
+        ' /',
+        '='.repeat(46),
+        this.messages.board.headers.title,
+        '='.repeat(46),
+        '\\',
+      ],
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -84,17 +88,19 @@ export class Board {
     this.renderEmptyLine();
     this.console.execute([
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: ` ${this.circle} ${this.messages.board.headers.tools.padEnd(
-          112,
+        message: [
+          ' '.repeat(2),
+          this.circle,
           ' ',
-        )}`,
+          this.messages.board.headers.tools.padEnd(110, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
@@ -112,35 +118,35 @@ export class Board {
     return this.toolOptions.forEach(tool => {
       this.console.execute([
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: `   ➤  ${tool.title.padEnd(32, ' ')}`,
+          message: [' '.repeat(4), '➤ ', tool.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: tool.description.padEnd(78, ' '),
+          message: [' ', tool.description.padEnd(76, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -154,16 +160,19 @@ export class Board {
   private renderStructureOptions(): void {
     this.console.execute([
       {
-        message: '|   ',
+        message: '|',
         color: 'blue',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: ` ${
-          this.circle
-        } ${this.messages.board.headers.structure.padEnd(112, ' ')}`,
+        message: [
+          ' '.repeat(2),
+          this.circle,
+          ' ',
+          this.messages.board.headers.structure.padEnd(110, ' '),
+        ],
         color: 'green',
         bold: true,
         breakStart: false,
@@ -181,35 +190,35 @@ export class Board {
     return this.structureOptions.forEach(structure => {
       this.console.execute([
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: `   ➤  ${structure.title.padEnd(32, ' ')}`,
+          message: [' '.repeat(4), '➤ ', structure.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: structure.description.padEnd(78, ' '),
+          message: [' ', structure.description.padEnd(76, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,
           breakEnd: false,
         },
         {
-          message: '|   ',
+          message: '|',
           color: 'blue',
           bold: true,
           breakStart: false,
@@ -222,7 +231,7 @@ export class Board {
 
   private renderFooter(): void {
     return this.console.execute({
-      message: ` \\${'='.repeat(113)}/`,
+      message: [' \\', '='.repeat(113), '/'],
       color: 'blue',
       bold: true,
       breakStart: false,
