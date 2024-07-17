@@ -73,13 +73,13 @@ export class DeleteRegister extends BaseRegister {
         this.fileManager.checkIfExistsSync([
           'src',
           'config',
-          names.lowerModuleName.concat('.ts'),
+          String.prototype.concat(names.lowerModuleName, '.ts'),
         ])
       ) {
         this.fileManager.removeFile([
           'src',
           'config',
-          names.lowerModuleName.concat('.ts'),
+          String.prototype.concat(names.lowerModuleName, '.ts'),
         ]);
       }
       this.console.execute({
@@ -130,13 +130,13 @@ export class DeleteRegister extends BaseRegister {
         this.fileManager.checkIfExistsSync([
           'src',
           'config',
-          names.lowerModuleName.concat('.ts'),
+          String.prototype.concat(names.lowerModuleName, '.ts'),
         ])
       ) {
         this.fileManager.removeFile([
           'src',
           'config',
-          names.lowerModuleName.concat('.ts'),
+          String.prototype.concat(names.lowerModuleName, '.ts'),
         ]);
       }
       this.console.execute({
@@ -171,35 +171,35 @@ export class DeleteRegister extends BaseRegister {
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          'create'.concat(names.upperModuleName),
+          String.prototype.concat('create', names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          'delete'.concat(names.upperModuleName),
+          String.prototype.concat('delete', names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          'list'.concat(names.upperModuleName),
+          String.prototype.concat('list', names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          'show'.concat(names.upperModuleName),
+          String.prototype.concat('show', names.upperModuleName),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'services',
-          'update'.concat(names.upperModuleName),
+          String.prototype.concat('update', names.upperModuleName),
         ],
       ]);
       this.fileManager.checkAndRemoveMultiFile([
@@ -208,28 +208,32 @@ export class DeleteRegister extends BaseRegister {
           'modules',
           fatherNames.pluralLowerModuleName,
           'dtos',
-          'I'.concat(names.upperModuleName, 'DTO.ts'),
+          String.prototype.concat('I', names.upperModuleName, 'DTO.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'entities',
-          names.upperModuleName.concat('.ts'),
+          String.prototype.concat(names.upperModuleName, '.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'repositories',
-          names.pluralUpperModuleName.concat('Repository.ts'),
+          String.prototype.concat(names.pluralUpperModuleName, 'Repository.ts'),
         ],
         [
           'src',
           'modules',
           fatherNames.pluralLowerModuleName,
           'repositories',
-          'I'.concat(names.pluralUpperModuleName, 'Repository.ts'),
+          String.prototype.concat(
+            'I',
+            names.pluralUpperModuleName,
+            'Repository.ts',
+          ),
         ],
         [
           'src',
@@ -237,7 +241,11 @@ export class DeleteRegister extends BaseRegister {
           fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
-          'Fake'.concat(names.pluralUpperModuleName, 'Repository.ts'),
+          String.prototype.concat(
+            'Fake',
+            names.pluralUpperModuleName,
+            'Repository.ts',
+          ),
         ],
       ]);
       const moduleInjection = this.fileManager.readFileSync([
@@ -263,10 +271,14 @@ export class DeleteRegister extends BaseRegister {
       this.fileManager.truncateFileSync([
         'src',
         'routes',
-        fatherNames.lowerModuleName.concat('Router.ts'),
+        String.prototype.concat(fatherNames.lowerModuleName, 'Router.ts'),
       ]);
       this.fileManager.createFileSync(
-        ['src', 'routes', fatherNames.lowerModuleName.concat('Router.ts')],
+        [
+          'src',
+          'routes',
+          String.prototype.concat(fatherNames.lowerModuleName, 'Router.ts'),
+        ],
         routeInjection,
       );
       this.console.execute({
@@ -294,7 +306,7 @@ export class DeleteRegister extends BaseRegister {
       this.fileManager.removeFile([
         'src',
         'routes',
-        names.lowerModuleName.concat('Router.ts'),
+        String.prototype.concat(names.lowerModuleName, 'Router.ts'),
       ]);
       const moduleInjection = this.fileManager.readFileSync([
         this.basePath,

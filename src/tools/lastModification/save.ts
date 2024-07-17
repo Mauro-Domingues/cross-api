@@ -141,13 +141,19 @@ export { ${lowerModuleName}Router };
         this.fileManager.checkIfExistsSync([
           'src',
           'routes',
-          this.fatherNames.lowerModuleName.concat('Router.ts'),
+          String.prototype.concat(
+            this.fatherNames.lowerModuleName,
+            'Router.ts',
+          ),
         ])
       ) {
         const routeInjection = this.fileManager.readFileSync([
           'src',
           'routes',
-          this.fatherNames.lowerModuleName.concat('Router.ts'),
+          String.prototype.concat(
+            this.fatherNames.lowerModuleName,
+            'Router.ts',
+          ),
         ]);
         this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],

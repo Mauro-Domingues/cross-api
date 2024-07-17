@@ -1,9 +1,9 @@
 import { IInputDTO } from '@interfaces/IInputDTO';
-import { Console } from '@tools/console';
+import { BuildPayload } from '@tools/buildPayload';
 
 export class CustomError extends Error {
   public constructor(assets: IInputDTO | Array<IInputDTO>) {
     super();
-    this.message = new Console().buildPayload(assets);
+    this.message = new BuildPayload().execute(assets);
   }
 }

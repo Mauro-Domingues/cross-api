@@ -44,11 +44,11 @@ export class GetNames {
       pluralName.charAt(0).toUpperCase() + pluralName.slice(1);
 
     const dbModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
-      '_'.concat(letter.toLowerCase()),
+      String.prototype.concat('_', letter.toLowerCase()),
     );
 
     const routeModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
-      '-'.concat(letter.toLowerCase()),
+      String.prototype.concat('-', letter.toLowerCase()),
     );
 
     return {

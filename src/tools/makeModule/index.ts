@@ -33,7 +33,7 @@ export class CreateModule {
     return this.console.execute({
       message: [
         '- ',
-        this.names.lowerModuleName.concat('Module'),
+        String.prototype.concat(this.names.lowerModuleName, 'Module'),
         ' ',
         this.messages.comands.description.created,
       ],

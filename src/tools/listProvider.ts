@@ -79,7 +79,11 @@ export class ListProvider {
         breakEnd: true,
       },
       {
-        message: ['| ', this.trace.concat(' ').repeat(27), '|'],
+        message: [
+          '| ',
+          String.prototype.concat(this.trace, ' ').repeat(27),
+          '|',
+        ],
         color: 'blue',
         bold: true,
         breakStart: false,

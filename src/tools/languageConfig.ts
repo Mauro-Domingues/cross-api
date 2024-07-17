@@ -100,7 +100,12 @@ export class ConfigLanguage {
         breakEnd: true,
       },
       {
-        message: ['|', ' ', this.trace.concat(' ').repeat(18), '|'],
+        message: [
+          '|',
+          ' ',
+          String.prototype.concat(this.trace, ' ').repeat(18),
+          '|',
+        ],
         color: 'blue',
         bold: true,
         breakStart: false,

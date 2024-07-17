@@ -64,7 +64,9 @@ export class PackageManager {
       breakStart: true,
       breakEnd: true,
     });
-    this.shell.execute('yarn add '.concat(dependencies.join(' ')));
+    this.shell.execute(
+      String.prototype.concat('yarn add ', dependencies.join(' ')),
+    );
     return dependencies.forEach(dependency => {
       return this.console.execute({
         message: [
@@ -89,7 +91,9 @@ export class PackageManager {
       breakStart: true,
       breakEnd: true,
     });
-    this.shell.execute('yarn add '.concat(devDependencies.join(' '), ' -D'));
+    this.shell.execute(
+      String.prototype.concat('yarn add ', devDependencies.join(' '), ' -D'),
+    );
     return devDependencies.forEach(devDependency => {
       return this.console.execute({
         message: [
@@ -123,7 +127,9 @@ export class PackageManager {
           breakStart: true,
           breakEnd: true,
         });
-        this.shell.execute('yarn remove '.concat(dependencies.join(' ')));
+        this.shell.execute(
+          String.prototype.concat('yarn remove ', dependencies.join(' ')),
+        );
         dependencies.forEach(dependency => {
           return this.console.execute({
             message: [
