@@ -139,7 +139,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: [' ', tool.description.padEnd(76, ' ')],
+          message: [' ', tool.description.padEnd(77, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,
@@ -211,7 +211,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: [' ', structure.description.padEnd(76, ' ')],
+          message: [' ', structure.description.padEnd(77, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,

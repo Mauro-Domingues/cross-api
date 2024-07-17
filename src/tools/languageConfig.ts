@@ -68,7 +68,7 @@ export class ConfigLanguage {
       {
         message: [
           ' '.repeat(6),
-          this.messages.language.headers.title.padEnd(17, ' '),
+          this.messages.language.headers.title.padEnd(12, ' '),
         ],
         color: 'green',
         bold: true,
@@ -85,7 +85,7 @@ export class ConfigLanguage {
       {
         message: [
           ' '.repeat(6),
-          this.messages.language.headers.description.padEnd(19, ' '),
+          this.messages.language.headers.description.padEnd(11, ' '),
         ],
         color: 'green',
         bold: true,
@@ -100,7 +100,7 @@ export class ConfigLanguage {
         breakEnd: true,
       },
       {
-        message: ['|', this.trace.concat(' ').repeat(18), '|'],
+        message: ['|', ' ', this.trace.concat(' ').repeat(13), '|'],
         color: 'blue',
         bold: true,
         breakStart: false,
@@ -134,7 +134,7 @@ export class ConfigLanguage {
           breakEnd: false,
         },
         {
-          message: [' '.repeat(3), value.padEnd(16, ' ')],
+          message: [' '.repeat(2), value.padEnd(17, ' ')],
           color: 'white',
           bold: false,
           breakStart: false,

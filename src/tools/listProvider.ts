@@ -47,7 +47,7 @@ export class ListProvider {
       {
         message: [
           ' '.repeat(8),
-          this.messages.providers.headers.title.padEnd(21, ' '),
+          this.messages.providers.headers.title.padEnd(16, ' '),
         ],
         color: 'green',
         bold: true,
@@ -64,7 +64,7 @@ export class ListProvider {
       {
         message: [
           ' '.repeat(10),
-          this.messages.providers.headers.description.padEnd(22, ' '),
+          this.messages.providers.headers.description.padEnd(17, ' '),
         ],
         color: 'green',
         bold: true,
