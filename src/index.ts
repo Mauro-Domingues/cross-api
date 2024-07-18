@@ -35,9 +35,9 @@ new (class Main {
     this.comand = comand;
     this.father = father;
     this.arg = arg;
+    this.messages = Messages.getInstance().execute();
     this.getFatherNames = new GetNames(this.father);
     this.deleteRegister = new DeleteRegister();
-    this.messages = new Messages().execute();
     this.getNames = new GetNames(this.arg);
     this.createRegister = new CreateRegister(
       this.fullComand,
@@ -46,19 +46,19 @@ new (class Main {
       this.getFatherNames.execute(),
     );
     this.actions = Object.freeze<IActionDTO>({
-      config: new ConfigJson(),
-      comands: new Board(),
-      language: new ConfigLanguage(),
-      'list:provider': new ListProvider(),
-      'make:api': new CreateApi(),
-      'make:module': new CreateModule(
-        this.getNames.execute(),
-        this.getFatherNames.execute(),
-      ),
       'make:provider': new CreateProvider(
         this.arg,
         this.getFatherNames.execute(),
       ),
+      'list:provider': new ListProvider(),
+      'make:module': new CreateModule(
+        this.getNames.execute(),
+        this.getFatherNames.execute(),
+      ),
+      language: new ConfigLanguage(),
+      'make:api': new CreateApi(),
+      config: new ConfigJson(),
+      comands: new Board(),
       revert: {
         execute: (): void => {
           this.deleteRegister.execute();

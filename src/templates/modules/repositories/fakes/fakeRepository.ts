@@ -14,7 +14,7 @@ export class CreateFakeRepository {
         >
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

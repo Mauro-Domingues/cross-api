@@ -52,8 +52,8 @@ export class Module {
     this.makeFunctionalities = new MakeFunctionalities(this.names);
     this.makeStructure = new MakeStructure(this.names);
     this.makeUnitTests = new MakeUnitTests(this.names);
+    this.messages = Messages.getInstance().execute();
     this.makeInfra = new MakeInfra(this.names);
-    this.messages = new Messages().execute();
   }
 
   public makeIndependentModule(): void {

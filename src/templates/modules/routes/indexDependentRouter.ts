@@ -11,7 +11,7 @@ export class CreateIndexDependentRoute {
       | Pick<IModuleNameDTO, 'lowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

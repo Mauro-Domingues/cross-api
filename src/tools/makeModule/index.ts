@@ -17,7 +17,7 @@ export class CreateModule {
     private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
     this.module = new Module(this.names, this.fatherNames);
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
   }

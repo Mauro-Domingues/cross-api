@@ -11,7 +11,7 @@ export class DeleteSpecController {
       | Omit<IModuleNameDTO, 'pluralUpperModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

@@ -20,7 +20,7 @@ export class Pluralize {
   private readonly concat: Concat;
 
   public constructor(private readonly word: string | undefined) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.concat = Concat.getInstance();
     this.irregularPlurals = {};
     this.irregularSingles = {};

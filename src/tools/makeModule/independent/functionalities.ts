@@ -39,10 +39,10 @@ export class MakeFunctionalities {
     this.updateService = new UpdateService(this.names);
     this.deleteService = new DeleteService(this.names);
     this.createService = new CreateService(this.names);
+    this.messages = Messages.getInstance().execute();
     this.showService = new ShowService(this.names);
     this.listService = new ListService(this.names);
     this.fileManager = FileManager.getInstance();
-    this.messages = new Messages().execute();
     this.concat = Concat.getInstance();
   }
 

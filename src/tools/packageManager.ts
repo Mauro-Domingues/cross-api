@@ -18,9 +18,9 @@ export class PackageManager {
     private readonly dependencies: Array<string>,
     private readonly devDependencies: Array<string>,
   ) {
+    this.messages = Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
     this.readline = new Readline(['y', 'n']);
-    this.messages = new Messages().execute();
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
     this.shell = Shell.getInstance();

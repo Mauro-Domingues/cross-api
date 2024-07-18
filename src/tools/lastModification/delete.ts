@@ -17,7 +17,7 @@ export class DeleteRegister extends BaseRegister {
 
   public constructor() {
     super();
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.provider = new Provider(undefined);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();

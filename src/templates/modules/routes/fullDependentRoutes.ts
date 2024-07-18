@@ -14,7 +14,7 @@ export class CreateFullDependentRoute {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

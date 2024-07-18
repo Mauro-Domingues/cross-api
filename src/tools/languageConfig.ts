@@ -25,7 +25,7 @@ export class ConfigLanguage {
   protected messages: IMessageDTO;
 
   public constructor() {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.languageOptions = Object.freeze(this.messages.language.options);
     this.readline = new Readline(Object.keys(this.languageOptions));
     this.createDefaultLanguage = new CreateDefaultLanguage();

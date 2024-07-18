@@ -11,7 +11,7 @@ export class ListController {
       | Pick<IModuleNameDTO, 'upperModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

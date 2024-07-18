@@ -65,9 +65,9 @@ export class MakeDependentInfra {
     );
     this.createModuleDTO = new CreateModuleDTO(this.names);
     this.createEntity = new CreateEntity(this.names);
+    this.messages = Messages.getInstance().execute();
     this.createContainer = new CreateContainer();
     this.fileManager = FileManager.getInstance();
-    this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
     this.concat = Concat.getInstance();
   }

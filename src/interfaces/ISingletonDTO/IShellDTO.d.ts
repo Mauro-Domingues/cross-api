@@ -1,3 +1,3 @@
 import { Shell } from '@tools/shell';
 
-export type IShellDTO = Shell;
+export type IShellDTO = readonly Shell;

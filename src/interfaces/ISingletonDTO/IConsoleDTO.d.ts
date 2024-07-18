@@ -1,3 +1,3 @@
 import { Console } from '@tools/console';
 
-export type IConsoleDTO = Console;
+export type IConsoleDTO = readonly Console;

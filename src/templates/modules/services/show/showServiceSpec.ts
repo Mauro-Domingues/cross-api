@@ -11,7 +11,7 @@ export class ShowSpecService {
       | Omit<IModuleNameDTO, 'dbModuleName' | 'routeModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

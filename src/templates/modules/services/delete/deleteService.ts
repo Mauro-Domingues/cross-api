@@ -9,7 +9,7 @@ export class DeleteService {
   public constructor(
     private readonly names: Omit<IModuleNameDTO, 'dbModuleName'> | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

@@ -14,7 +14,7 @@ export class CreateDependentController {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'upperModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

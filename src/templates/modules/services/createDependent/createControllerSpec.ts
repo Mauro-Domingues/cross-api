@@ -14,7 +14,7 @@ export class CreateSpecDependentController {
         >
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

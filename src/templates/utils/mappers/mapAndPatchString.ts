@@ -5,7 +5,7 @@ export class CreateMapAndPatchString {
   private readonly messages: IMessageDTO;
 
   public constructor() {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

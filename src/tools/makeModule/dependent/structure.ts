@@ -16,8 +16,8 @@ export class MakeDependentStructure {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.messages = Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
-    this.messages = new Messages().execute();
     this.concat = Concat.getInstance();
   }
 

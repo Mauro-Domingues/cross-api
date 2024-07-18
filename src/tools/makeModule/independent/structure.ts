@@ -15,8 +15,8 @@ export class MakeStructure {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'upperModuleName'>
       | undefined,
   ) {
+    this.messages = Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
-    this.messages = new Messages().execute();
     this.concat = Concat.getInstance();
   }
 

@@ -11,7 +11,7 @@ export class CreateInjection {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'pluralUpperModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

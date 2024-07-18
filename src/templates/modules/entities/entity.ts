@@ -11,7 +11,7 @@ export class CreateEntity {
       | Pick<IModuleNameDTO, 'upperModuleName' | 'dbModuleName'>
       | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

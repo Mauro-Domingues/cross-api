@@ -10,7 +10,7 @@ export class Board {
   private readonly console: Console;
 
   public constructor() {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.console = Console.getInstance();
     this.toolOptions = [
       {

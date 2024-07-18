@@ -5,7 +5,7 @@ export class CreateMapAndClone {
   private readonly messages: IMessageDTO;
 
   public constructor() {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

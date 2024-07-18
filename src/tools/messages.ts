@@ -1,9 +1,11 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IMessagesDTO } from '@interfaces/ISingletonDTO';
 
 export class Messages {
   private readonly messages: IMessageDTO;
+  private static instance: IMessagesDTO;
 
-  public constructor() {
+  private constructor() {
     this.messages = {
       board: {
         headers: {
@@ -96,6 +98,13 @@ export class Messages {
         },
       },
     };
+  }
+
+  public static getInstance(): IMessagesDTO {
+    if (!Messages.instance) {
+      Messages.instance = new Messages();
+    }
+    return Messages.instance;
   }
 
   public execute(): IMessageDTO {

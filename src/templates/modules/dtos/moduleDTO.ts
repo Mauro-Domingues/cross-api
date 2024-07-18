@@ -9,7 +9,7 @@ export class CreateModuleDTO {
   public constructor(
     private readonly names: Pick<IModuleNameDTO, 'upperModuleName'> | undefined,
   ) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): string {

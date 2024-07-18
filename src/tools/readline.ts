@@ -9,7 +9,7 @@ export class Readline {
   private readonly console: Console;
 
   public constructor(private readonly suggestions: Array<string>) {
-    this.messages = new Messages().execute();
+    this.messages = Messages.getInstance().execute();
     this.console = Console.getInstance();
   }
 

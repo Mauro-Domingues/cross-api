@@ -15,8 +15,8 @@ export class DependentBaseProvider {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.messages = Messages.getInstance().execute();
     this.createContainer = new CreateContainer();
-    this.messages = new Messages().execute();
     this.fileManager = FileManager.getInstance();
   }
 

@@ -10,7 +10,7 @@ export class Config {
 import { Console } ${'from'} './console.js';
 export class ConfigJson {
     constructor() {
-        this.messages = new Messages().execute();
+        this.messages = Messages.getInstance().execute();
         this.console = Console.getInstance();
     }
     execute() {

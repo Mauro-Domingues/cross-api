@@ -1,3 +1,3 @@
 import { BuildPayload } from '@tools/buildPayload';
 
-export type IBuildPayloadDTO = BuildPayload;
+export type IBuildPayloadDTO = readonly BuildPayload;

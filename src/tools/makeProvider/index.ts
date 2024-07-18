@@ -17,8 +17,8 @@ export class CreateProvider {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.messages = Messages.getInstance().execute();
     this.provider = new Provider(this.fatherNames);
-    this.messages = new Messages().execute();
     this.console = Console.getInstance();
   }
 
