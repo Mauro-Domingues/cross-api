@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { argv } from 'node:process';
 import { IActionDTO } from '@interfaces/IActionDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Board } from '@tools/board';
@@ -28,7 +29,7 @@ new (class Main {
   private readonly arg: string;
 
   public constructor() {
-    const [, , ...fullComand] = process.argv;
+    const [, , ...fullComand] = argv;
     const [comand, arg, father] = fullComand;
     this.fullComand = fullComand;
     this.comand = comand;

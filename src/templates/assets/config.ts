@@ -5,7 +5,7 @@ export class Config {
   private readonly configBody: string;
 
   public constructor() {
-    this.fileManager = new FileManager();
+    this.fileManager = FileManager.getInstance();
     this.configBody = `import { Messages } ${'from'} './messages.js';
 import { Console } ${'from'} './console.js';
 export class ConfigJson {

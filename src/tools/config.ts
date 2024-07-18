@@ -12,8 +12,8 @@ export class ConfigJson extends ConfigLanguage {
 
   public constructor() {
     super();
+    this.shell = Shell.getInstance();
     this.config = new Config();
-    this.shell = new Shell();
     this.devDependencies = [
       '@swc/cli',
       '@swc/core',

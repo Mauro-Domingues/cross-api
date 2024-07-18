@@ -33,8 +33,8 @@ export class MakeFourthLayer {
     this.createMapAndClone = new CreateMapAndClone();
     this.createConnection = new CreateConnection();
     this.createContainer = new CreateContainer();
+    this.fileManager = FileManager.getInstance();
     this.createAppError = new CreateAppError();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

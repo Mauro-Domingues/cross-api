@@ -1,3 +1,4 @@
+import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
@@ -9,7 +10,7 @@ export class Readline {
 
   public constructor(private readonly suggestions: Array<string>) {
     this.messages = new Messages().execute();
-    this.console = new Console();
+    this.console = Console.getInstance();
   }
 
   public invalidOption(optionChosen: string): void {
@@ -31,8 +32,8 @@ export class Readline {
     callback: (optionChosen: Answer) => void,
   ): void {
     const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
+      input: stdin,
+      output: stdout,
       completer: (word: string): Array<string | Array<string>> => {
         const hits = this.suggestions.filter(suggestion =>
           suggestion.startsWith(word),

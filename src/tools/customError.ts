@@ -4,6 +4,6 @@ import { BuildPayload } from '@tools/buildPayload';
 export class CustomError extends Error {
   public constructor(assets: IInputDTO | Array<IInputDTO>) {
     super();
-    this.message = new BuildPayload().execute(assets);
+    this.message = BuildPayload.getInstance().execute(assets);
   }
 }

@@ -19,7 +19,7 @@ export class CreateProvider {
   ) {
     this.provider = new Provider(this.fatherNames);
     this.messages = new Messages().execute();
-    this.console = new Console();
+    this.console = Console.getInstance();
   }
 
   public execute(): void {

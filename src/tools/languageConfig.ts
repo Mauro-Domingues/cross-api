@@ -23,16 +23,16 @@ export class ConfigLanguage {
   protected messages: IMessageDTO;
 
   public constructor() {
+    this.messages = new Messages().execute();
+    this.languageOptions = Object.freeze(this.messages.language.options);
+    this.readline = new Readline(Object.keys(this.languageOptions));
     this.createDefaultLanguage = new CreateDefaultLanguage();
+    this.fileManager = FileManager.getInstance();
+    this.console = Console.getInstance();
     this.languages = {
       ptBr: new PortugueseMessages(),
       enUs: new EnglishMessages(),
     };
-    this.messages = new Messages().execute();
-    this.languageOptions = Object.freeze(this.messages.language.options);
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.readline = new Readline(Object.keys(this.languageOptions));
   }
 
   private get trace(): string {

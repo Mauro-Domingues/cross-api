@@ -67,8 +67,8 @@ export class MakeDependentUnitTests {
       this.names,
       this.fatherNames,
     );
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

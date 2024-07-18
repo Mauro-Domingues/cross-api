@@ -17,7 +17,7 @@ export class DependentBaseProvider {
   ) {
     this.createContainer = new CreateContainer();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
+    this.fileManager = FileManager.getInstance();
   }
 
   protected constructBase(): void {

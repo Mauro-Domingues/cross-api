@@ -5,8 +5,7 @@ export class BaseRegister {
   protected readonly basePath: string;
 
   public constructor() {
-    this.fileManager = new FileManager();
-
+    this.fileManager = FileManager.getInstance();
     this.basePath = this.fileManager.resolvePath(['.cross']);
     this.constructBase();
   }

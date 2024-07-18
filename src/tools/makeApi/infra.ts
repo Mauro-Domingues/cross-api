@@ -9,9 +9,9 @@ export class MakeInfra {
   private readonly console: Console;
 
   public constructor() {
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
-    this.console = new Console();
+    this.console = Console.getInstance();
   }
 
   public execute(): void {

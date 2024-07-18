@@ -4,7 +4,7 @@ export class MakeSecondLayer {
   private readonly fileManager: FileManager;
 
   public constructor() {
-    this.fileManager = new FileManager();
+    this.fileManager = FileManager.getInstance();
   }
 
   public execute(): void {

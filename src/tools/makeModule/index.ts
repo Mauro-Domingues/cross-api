@@ -16,7 +16,7 @@ export class CreateModule {
   ) {
     this.module = new Module(this.names, this.fatherNames);
     this.messages = new Messages().execute();
-    this.console = new Console();
+    this.console = Console.getInstance();
   }
 
   public execute(): void {

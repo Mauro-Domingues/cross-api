@@ -13,8 +13,8 @@ export class MakeStructure {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'upperModuleName'>
       | undefined,
   ) {
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

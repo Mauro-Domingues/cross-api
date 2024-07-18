@@ -11,7 +11,7 @@ export class Board {
 
   public constructor() {
     this.messages = new Messages().execute();
-    this.console = new Console();
+    this.console = Console.getInstance();
     this.toolOptions = [
       {
         title: 'comands',

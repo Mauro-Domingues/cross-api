@@ -39,8 +39,8 @@ export class MakeUnitTests {
     this.updateSpecService = new UpdateSpecService(this.names);
     this.showSpecService = new ShowSpecService(this.names);
     this.listSpecService = new ListSpecService(this.names);
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

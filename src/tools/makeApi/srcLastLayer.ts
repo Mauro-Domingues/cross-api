@@ -22,7 +22,7 @@ export class MakeLastLayer {
     this.createFakeDataSource = new CreateFakeDataSource();
     this.createBaseRepository = new CreateBaseRepository();
     this.createBaseEntity = new CreateBaseEntity();
-    this.fileManager = new FileManager();
+    this.fileManager = FileManager.getInstance();
   }
 
   public execute(): void {

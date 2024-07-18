@@ -39,8 +39,8 @@ export class MakeFunctionalities {
     this.createService = new CreateService(this.names);
     this.showService = new ShowService(this.names);
     this.listService = new ListService(this.names);
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

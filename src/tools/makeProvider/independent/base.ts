@@ -7,7 +7,7 @@ export class BaseProvider {
 
   public constructor() {
     this.createContainer = new CreateContainer();
-    this.fileManager = new FileManager();
+    this.fileManager = FileManager.getInstance();
   }
 
   protected constructBase(): void {

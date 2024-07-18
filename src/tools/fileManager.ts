@@ -10,12 +10,22 @@ import {
   rm,
 } from 'node:fs';
 import { resolve } from 'node:path';
+import { cwd } from 'node:process';
+import { IFileManagerDTO } from '@interfaces/ISingletonDTO';
 
 export class FileManager {
+  private static instance: IFileManagerDTO;
   private readonly root: string;
 
-  public constructor() {
-    this.root = process.cwd();
+  private constructor() {
+    this.root = cwd();
+  }
+
+  public static getInstance(): IFileManagerDTO {
+    if (!FileManager.instance) {
+      FileManager.instance = new FileManager();
+    }
+    return FileManager.instance;
   }
 
   public resolvePath(path: Array<string>): string {

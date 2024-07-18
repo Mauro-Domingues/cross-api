@@ -16,11 +16,11 @@ export class PackageManager {
     private readonly dependencies: Array<string>,
     private readonly devDependencies: Array<string>,
   ) {
-    this.messages = new Messages().execute();
+    this.fileManager = FileManager.getInstance();
     this.readline = new Readline(['y', 'n']);
-    this.fileManager = new FileManager();
-    this.console = new Console();
-    this.shell = new Shell();
+    this.messages = new Messages().execute();
+    this.console = Console.getInstance();
+    this.shell = Shell.getInstance();
   }
 
   private checkPackage(

@@ -4,14 +4,14 @@ import { Messages } from '@tools/messages';
 import { Provider } from '@tools/provider';
 
 export class ListProvider {
+  private readonly messages: IMessageDTO;
   private readonly provider: Provider;
   private readonly console: Console;
-  protected messages: IMessageDTO;
 
   public constructor() {
     this.messages = new Messages().execute();
     this.provider = new Provider(undefined);
-    this.console = new Console();
+    this.console = Console.getInstance();
   }
 
   private get trace(): string {

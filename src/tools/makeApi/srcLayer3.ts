@@ -81,6 +81,7 @@ export class MakeThirdLayer {
     this.createAuthConfig = new CreateAuthConfig();
     this.createJsonToXml = new CreateJsonToXml();
     this.createICacheDTO = new CreateICacheDTO();
+    this.fileManager = FileManager.getInstance();
     this.createErrorLog = new CreateErrorLog();
     this.createIListDTO = new CreateIListDTO();
     this.createICodeDTO = new CreateICodeDTO();
@@ -88,7 +89,6 @@ export class MakeThirdLayer {
     this.createSlugify = new CreateSlugify();
     this.createRoutes = new CreateRoutes();
     this.createServer = new CreateServer();
-    this.fileManager = new FileManager();
     this.createGuard = new CreateGuard();
     this.createKeys = new CreateKeys();
     this.createApp = new CreateApp();

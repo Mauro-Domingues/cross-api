@@ -38,9 +38,9 @@ export class MakeInfra {
     this.createModuleDTO = new CreateModuleDTO(this.names);
     this.createEntity = new CreateEntity(this.names);
     this.createContainer = new CreateContainer();
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

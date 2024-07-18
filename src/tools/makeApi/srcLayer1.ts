@@ -35,8 +35,8 @@ export class MakeFirstLayer {
     this.createSwcConfig = new CreateSwcConfig();
     this.createDocConfig = new CreateDocConfig();
     this.createGitIgnore = new CreateGitIgnore();
+    this.fileManager = FileManager.getInstance();
     this.createTsConfig = new CreateTsConfig();
-    this.fileManager = new FileManager();
     this.createEnv = new CreateEnv();
   }
 

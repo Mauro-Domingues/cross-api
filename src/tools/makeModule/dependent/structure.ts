@@ -14,8 +14,8 @@ export class MakeDependentStructure {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
-    this.fileManager = new FileManager();
   }
 
   public execute(): void {

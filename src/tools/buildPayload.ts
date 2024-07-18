@@ -1,10 +1,15 @@
 import { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
 import { IInputDTO } from '@interfaces/IInputDTO';
+import { IBuildPayloadDTO } from '@interfaces/ISingletonDTO';
+import { Concat } from '@tools/concat';
 
 export class BuildPayload {
   private readonly colorOptions: IColorOptionDTO;
+  private static instance: IBuildPayloadDTO;
+  private readonly concat: Concat;
 
-  public constructor() {
+  private constructor() {
+    this.concat = Concat.getInstance();
     this.colorOptions = {
       purple: '\x1b[38;2;255;0;255m',
       yellow: '\x1b[38;2;255;255;0m',
@@ -13,6 +18,13 @@ export class BuildPayload {
       white: '\x1b[38;2;0;0;0m',
       red: '\x1b[38;2;255;0;0m',
     };
+  }
+
+  public static getInstance(): IBuildPayloadDTO {
+    if (!BuildPayload.instance) {
+      BuildPayload.instance = new BuildPayload();
+    }
+    return BuildPayload.instance;
   }
 
   private isbreakStart(breakStart?: boolean): '\n' | '' {
@@ -44,7 +56,7 @@ export class BuildPayload {
       this.isBold(bold),
       this.getColor(color),
       this.isbreakStart(breakStart),
-      String.prototype.concat(...message),
+      this.concat.execute(...message),
       this.isbreakEnd(breakEnd),
       '\x1b[0m',
     ];
