@@ -1,8 +1,8 @@
-import { Concat } from './concat';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
 import { PortugueseMessages } from '@templates/assets/ptBr';
+import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
