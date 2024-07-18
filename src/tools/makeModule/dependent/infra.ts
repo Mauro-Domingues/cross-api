@@ -11,6 +11,7 @@ import { CreateIDependentRepository } from '@templates/modules/repositories/IDep
 import { CreateDependentRoute } from '@templates/modules/routes/dependentRoutes';
 import { CreateFullDependentRoute } from '@templates/modules/routes/fullDependentRoutes';
 import { CreateIndexDependentRoute } from '@templates/modules/routes/indexDependentRouter';
+import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
@@ -29,6 +30,7 @@ export class MakeDependentInfra {
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
+  private readonly concat: Concat;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -67,6 +69,7 @@ export class MakeDependentInfra {
     this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -107,17 +110,14 @@ export class MakeDependentInfra {
       !this.fileManager.checkIfExistsSync([
         'src',
         'routes',
-        String.prototype.concat(this.fatherNames.lowerModuleName, 'Router.ts'),
+        this.concat.execute(this.fatherNames.lowerModuleName, 'Router.ts'),
       ])
     ) {
       this.fileManager.createFile(
         [
           'src',
           'routes',
-          String.prototype.concat(
-            this.fatherNames.lowerModuleName,
-            'Router.ts',
-          ),
+          this.concat.execute(this.fatherNames.lowerModuleName, 'Router.ts'),
         ],
         this.createFullDependentRoute.execute(),
       );
@@ -130,10 +130,7 @@ export class MakeDependentInfra {
         [
           'src',
           'routes',
-          String.prototype.concat(
-            this.fatherNames.lowerModuleName,
-            'Router.ts',
-          ),
+          this.concat.execute(this.fatherNames.lowerModuleName, 'Router.ts'),
         ],
         this.createDependentRoute.execute(),
       );
@@ -145,7 +142,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'dtos',
-          String.prototype.concat('I', this.names.upperModuleName, 'DTO.ts'),
+          this.concat.execute('I', this.names.upperModuleName, 'DTO.ts'),
         ],
         this.createModuleDTO,
       ],
@@ -155,7 +152,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'entities',
-          String.prototype.concat(this.names.upperModuleName, '.ts'),
+          this.concat.execute(this.names.upperModuleName, '.ts'),
         ],
         this.createEntity,
       ],
@@ -165,7 +162,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
-          String.prototype.concat(
+          this.concat.execute(
             this.names.pluralUpperModuleName,
             'Repository.ts',
           ),
@@ -178,7 +175,7 @@ export class MakeDependentInfra {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'repositories',
-          String.prototype.concat(
+          this.concat.execute(
             'I',
             this.names.pluralUpperModuleName,
             'Repository.ts',
@@ -193,7 +190,7 @@ export class MakeDependentInfra {
           this.fatherNames.pluralLowerModuleName,
           'repositories',
           'fakes',
-          String.prototype.concat(
+          this.concat.execute(
             'Fake',
             this.names.pluralUpperModuleName,
             'Repository.ts',

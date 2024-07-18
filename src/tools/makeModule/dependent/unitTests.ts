@@ -10,6 +10,7 @@ import { ShowSpecDependentController } from '@templates/modules/services/showDep
 import { ShowSpecDependentService } from '@templates/modules/services/showDependent/showServiceSpec';
 import { UpdateSpecDependentController } from '@templates/modules/services/updateDependent/updateControllerSpec';
 import { UpdateSpecDependentService } from '@templates/modules/services/updateDependent/updateServiceSpec';
+import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
@@ -27,6 +28,7 @@ export class MakeDependentUnitTests {
   private readonly listSpecDependentService: ListSpecDependentService;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
+  private readonly concat: Concat;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -69,6 +71,7 @@ export class MakeDependentUnitTests {
     );
     this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -89,8 +92,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('create', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('create', this.names.upperModuleName),
+          this.concat.execute(
             'Create',
             this.names.upperModuleName,
             'Controller.spec.ts',
@@ -104,8 +107,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('create', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('create', this.names.upperModuleName),
+          this.concat.execute(
             'Create',
             this.names.upperModuleName,
             'Service.spec.ts',
@@ -119,8 +122,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('delete', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('delete', this.names.upperModuleName),
+          this.concat.execute(
             'Delete',
             this.names.upperModuleName,
             'Controller.spec.ts',
@@ -134,8 +137,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('delete', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('delete', this.names.upperModuleName),
+          this.concat.execute(
             'Delete',
             this.names.upperModuleName,
             'Service.spec.ts',
@@ -149,8 +152,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('list', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('list', this.names.upperModuleName),
+          this.concat.execute(
             'List',
             this.names.upperModuleName,
             'Controller.spec.ts',
@@ -164,8 +167,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('list', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('list', this.names.upperModuleName),
+          this.concat.execute(
             'List',
             this.names.upperModuleName,
             'Service.spec.ts',
@@ -179,8 +182,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('show', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('show', this.names.upperModuleName),
+          this.concat.execute(
             'Show',
             this.names.upperModuleName,
             'Controller.spec.ts',
@@ -194,8 +197,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('show', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('show', this.names.upperModuleName),
+          this.concat.execute(
             'Show',
             this.names.upperModuleName,
             'Service.spec.ts',
@@ -209,8 +212,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('update', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('update', this.names.upperModuleName),
+          this.concat.execute(
             'Update',
             this.names.upperModuleName,
             'Controller.spec.ts',
@@ -224,8 +227,8 @@ export class MakeDependentUnitTests {
           'modules',
           this.fatherNames.pluralLowerModuleName,
           'services',
-          String.prototype.concat('update', this.names.upperModuleName),
-          String.prototype.concat(
+          this.concat.execute('update', this.names.upperModuleName),
+          this.concat.execute(
             'Update',
             this.names.upperModuleName,
             'Service.spec.ts',

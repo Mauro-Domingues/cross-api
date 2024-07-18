@@ -1,11 +1,14 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Concat } from '@tools/concat';
 import { Pluralize } from '@tools/pluralize';
 
 export class GetNames {
   private readonly pluralize: Pluralize;
+  private readonly concat: Concat;
 
   public constructor(private readonly name: string | undefined) {
     this.pluralize = new Pluralize(this.name);
+    this.concat = Concat.getInstance();
   }
 
   private getSingularAndPlural(word: string): {
@@ -44,11 +47,11 @@ export class GetNames {
       pluralName.charAt(0).toUpperCase() + pluralName.slice(1);
 
     const dbModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
-      String.prototype.concat('_', letter.toLowerCase()),
+      this.concat.execute('_', letter.toLowerCase()),
     );
 
     const routeModuleName = pluralLowerModuleName.replace(/[A-Z]/g, letter =>
-      String.prototype.concat('-', letter.toLowerCase()),
+      this.concat.execute('-', letter.toLowerCase()),
     );
 
     return {

@@ -1,3 +1,4 @@
+import { Concat } from './concat';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
@@ -20,6 +21,7 @@ export class ConfigLanguage {
     keyof IMessageDTO['language']['options'],
     { execute: () => IMessageDTO }
   >;
+  private readonly concat: Concat;
   protected messages: IMessageDTO;
 
   public constructor() {
@@ -29,6 +31,7 @@ export class ConfigLanguage {
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.fileManager = FileManager.getInstance();
     this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
     this.languages = {
       ptBr: new PortugueseMessages(),
       enUs: new EnglishMessages(),
@@ -103,7 +106,7 @@ export class ConfigLanguage {
         message: [
           '|',
           ' ',
-          String.prototype.concat(this.trace, ' ').repeat(18),
+          this.concat.execute(this.trace, ' ').repeat(18),
           '|',
         ],
         color: 'blue',

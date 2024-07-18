@@ -1,5 +1,6 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
@@ -9,6 +10,7 @@ export class CreateModule {
   private readonly messages: IMessageDTO;
   private readonly console: Console;
   private readonly module: Module;
+  private readonly concat: Concat;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -17,6 +19,7 @@ export class CreateModule {
     this.module = new Module(this.names, this.fatherNames);
     this.messages = new Messages().execute();
     this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -33,7 +36,7 @@ export class CreateModule {
     return this.console.execute({
       message: [
         '- ',
-        String.prototype.concat(this.names.lowerModuleName, 'Module'),
+        this.concat.execute(this.names.lowerModuleName, 'Module'),
         ' ',
         this.messages.comands.description.created,
       ],

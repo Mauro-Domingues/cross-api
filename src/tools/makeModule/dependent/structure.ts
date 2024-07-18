@@ -1,5 +1,6 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
@@ -7,6 +8,7 @@ import { Messages } from '@tools/messages';
 export class MakeDependentStructure {
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
+  private readonly concat: Concat;
 
   public constructor(
     private readonly names: Pick<IModuleNameDTO, 'upperModuleName'> | undefined,
@@ -16,6 +18,7 @@ export class MakeDependentStructure {
   ) {
     this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -47,35 +50,35 @@ export class MakeDependentStructure {
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
-        String.prototype.concat('create', this.names.upperModuleName),
+        this.concat.execute('create', this.names.upperModuleName),
       ],
       [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
-        String.prototype.concat('delete', this.names.upperModuleName),
+        this.concat.execute('delete', this.names.upperModuleName),
       ],
       [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
-        String.prototype.concat('list', this.names.upperModuleName),
+        this.concat.execute('list', this.names.upperModuleName),
       ],
       [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
-        String.prototype.concat('show', this.names.upperModuleName),
+        this.concat.execute('show', this.names.upperModuleName),
       ],
       [
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'services',
-        String.prototype.concat('update', this.names.upperModuleName),
+        this.concat.execute('update', this.names.upperModuleName),
       ],
     ]);
   }

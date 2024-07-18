@@ -1,4 +1,5 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
 import { Provider } from '@tools/provider';
@@ -7,11 +8,13 @@ export class ListProvider {
   private readonly messages: IMessageDTO;
   private readonly provider: Provider;
   private readonly console: Console;
+  private readonly concat: Concat;
 
   public constructor() {
     this.messages = new Messages().execute();
     this.provider = new Provider(undefined);
     this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
   }
 
   private get trace(): string {
@@ -79,11 +82,7 @@ export class ListProvider {
         breakEnd: true,
       },
       {
-        message: [
-          '| ',
-          String.prototype.concat(this.trace, ' ').repeat(27),
-          '|',
-        ],
+        message: ['| ', this.concat.execute(this.trace, ' ').repeat(27), '|'],
         color: 'blue',
         bold: true,
         breakStart: false,

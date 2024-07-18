@@ -2,6 +2,7 @@ import { IAssetDTO } from '@interfaces/IAssetDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IObjDTO } from '@interfaces/IObjDTO';
 import { IWordDTO } from '@interfaces/IWordDTO';
+import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 
@@ -16,9 +17,11 @@ export class Pluralize {
   private readonly irregularPlurals: IObjDTO;
   private readonly irregularSingles: IObjDTO;
   private readonly messages: IMessageDTO;
+  private readonly concat: Concat;
 
   public constructor(private readonly word: string | undefined) {
     this.messages = new Messages().execute();
+    this.concat = Concat.getInstance();
     this.irregularPlurals = {};
     this.irregularSingles = {};
     this.uncontableData = [
@@ -369,7 +372,7 @@ export class Pluralize {
 
   private sanitizeRule(rule: RegExp | string): RegExp {
     if (typeof rule === 'string') {
-      return new RegExp(String.prototype.concat('^', rule, '$'), 'i');
+      return new RegExp(this.concat.execute('^', rule, '$'), 'i');
     }
 
     return rule;

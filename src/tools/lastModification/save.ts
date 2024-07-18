@@ -1,7 +1,10 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Concat } from '@tools/concat';
 import { BaseRegister } from '@tools/lastModification/base';
 
 export class CreateRegister extends BaseRegister {
+  private readonly concat: Concat;
+
   public constructor(
     private readonly comand: Array<string> | undefined,
     private readonly providerName: string | undefined,
@@ -11,6 +14,7 @@ export class CreateRegister extends BaseRegister {
       | undefined,
   ) {
     super();
+    this.concat = Concat.getInstance();
   }
 
   private getRouterBase(lowerModuleName: string): string {
@@ -141,19 +145,13 @@ export { ${lowerModuleName}Router };
         this.fileManager.checkIfExistsSync([
           'src',
           'routes',
-          String.prototype.concat(
-            this.fatherNames.lowerModuleName,
-            'Router.ts',
-          ),
+          this.concat.execute(this.fatherNames.lowerModuleName, 'Router.ts'),
         ])
       ) {
         const routeInjection = this.fileManager.readFileSync([
           'src',
           'routes',
-          String.prototype.concat(
-            this.fatherNames.lowerModuleName,
-            'Router.ts',
-          ),
+          this.concat.execute(this.fatherNames.lowerModuleName, 'Router.ts'),
         ]);
         this.fileManager.createFileSync(
           [this.basePath, 'modules', 'routeInjection.log'],

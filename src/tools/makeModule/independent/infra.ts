@@ -10,6 +10,7 @@ import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';
 import { CreateIndependentRoute } from '@templates/modules/routes/independentRoutes';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
+import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
@@ -27,6 +28,7 @@ export class MakeInfra {
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
+  private readonly concat: Concat;
 
   public constructor(private readonly names: IModuleNameDTO | undefined) {
     this.createIndependentRoute = new CreateIndependentRoute(this.names);
@@ -41,6 +43,7 @@ export class MakeInfra {
     this.fileManager = FileManager.getInstance();
     this.messages = new Messages().execute();
     this.createRoutes = new CreateRoutes();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -88,7 +91,7 @@ export class MakeInfra {
           'modules',
           this.names.pluralLowerModuleName,
           'dtos',
-          String.prototype.concat('I', this.names.upperModuleName, 'DTO.ts'),
+          this.concat.execute('I', this.names.upperModuleName, 'DTO.ts'),
         ],
         this.createModuleDTO,
       ],
@@ -98,7 +101,7 @@ export class MakeInfra {
           'modules',
           this.names.pluralLowerModuleName,
           'entities',
-          String.prototype.concat(this.names.upperModuleName, '.ts'),
+          this.concat.execute(this.names.upperModuleName, '.ts'),
         ],
         this.createEntity,
       ],
@@ -108,7 +111,7 @@ export class MakeInfra {
           'modules',
           this.names.pluralLowerModuleName,
           'repositories',
-          String.prototype.concat(
+          this.concat.execute(
             this.names.pluralUpperModuleName,
             'Repository.ts',
           ),
@@ -121,7 +124,7 @@ export class MakeInfra {
           'modules',
           this.names.pluralLowerModuleName,
           'repositories',
-          String.prototype.concat(
+          this.concat.execute(
             'I',
             this.names.pluralUpperModuleName,
             'Repository.ts',
@@ -136,7 +139,7 @@ export class MakeInfra {
           this.names.pluralLowerModuleName,
           'repositories',
           'fakes',
-          String.prototype.concat(
+          this.concat.execute(
             'Fake',
             this.names.pluralUpperModuleName,
             'Repository.ts',
@@ -148,7 +151,7 @@ export class MakeInfra {
         [
           'src',
           'routes',
-          String.prototype.concat(this.names.lowerModuleName, 'Router.ts'),
+          this.concat.execute(this.names.lowerModuleName, 'Router.ts'),
         ],
         this.createIndependentRoute,
       ],

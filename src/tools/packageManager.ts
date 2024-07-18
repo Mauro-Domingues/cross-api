@@ -1,4 +1,5 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
@@ -10,6 +11,7 @@ export class PackageManager {
   private readonly messages: IMessageDTO;
   private readonly readline: Readline;
   private readonly console: Console;
+  private readonly concat: Concat;
   private readonly shell: Shell;
 
   public constructor(
@@ -20,6 +22,7 @@ export class PackageManager {
     this.readline = new Readline(['y', 'n']);
     this.messages = new Messages().execute();
     this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
     this.shell = Shell.getInstance();
   }
 
@@ -65,7 +68,7 @@ export class PackageManager {
       breakEnd: true,
     });
     this.shell.execute(
-      String.prototype.concat('yarn add ', dependencies.join(' ')),
+      this.concat.execute('yarn add ', dependencies.join(' ')),
     );
     return dependencies.forEach(dependency => {
       return this.console.execute({
@@ -92,7 +95,7 @@ export class PackageManager {
       breakEnd: true,
     });
     this.shell.execute(
-      String.prototype.concat('yarn add ', devDependencies.join(' '), ' -D'),
+      this.concat.execute('yarn add ', devDependencies.join(' '), ' -D'),
     );
     return devDependencies.forEach(devDependency => {
       return this.console.execute({
@@ -128,7 +131,7 @@ export class PackageManager {
           breakEnd: true,
         });
         this.shell.execute(
-          String.prototype.concat('yarn remove ', dependencies.join(' ')),
+          this.concat.execute('yarn remove ', dependencies.join(' ')),
         );
         dependencies.forEach(dependency => {
           return this.console.execute({
