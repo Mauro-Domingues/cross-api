@@ -1,4 +1,4 @@
-import { Config } from '@templates/assets/config';
+import { FinishConfig } from '@tools/finishConfig';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { PackageManager } from '@tools/packageManager';
 import { Shell } from '@tools/shell';
@@ -7,13 +7,13 @@ export class ConfigJson extends ConfigLanguage {
   private readonly devDependencies: Array<string>;
   private readonly packageManager: PackageManager;
   private readonly dependencies: Array<string>;
-  private readonly config: Config;
+  private readonly finishConfig: FinishConfig;
   private readonly shell: Shell;
 
   public constructor() {
     super();
+    this.finishConfig = new FinishConfig();
     this.shell = Shell.getInstance();
-    this.config = new Config();
     this.devDependencies = [
       '@swc/cli',
       '@swc/core',
@@ -169,7 +169,7 @@ export class ConfigJson extends ConfigLanguage {
       this.fileManager.removeFile(['package-lock.json']);
     }
 
-    return this.config.execute();
+    return this.finishConfig.execute();
   }
 
   private configLanguage(): void {
