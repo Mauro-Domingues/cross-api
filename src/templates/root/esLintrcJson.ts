@@ -62,6 +62,14 @@ export class CreateEsLintrcJson {
               "regex": "^I[A-Z]\\\\w*DTO$",
               "match": true
             }
+          },
+          {
+            "selector": "typeAlias",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]\\\\w*DTO$",
+              "match": true
+            }
           }
         ]
       }
@@ -73,6 +81,14 @@ export class CreateEsLintrcJson {
           "error",
           {
             "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]\\\\w*$",
+              "match": true
+            }
+          },
+          {
+            "selector": "typeAlias",
             "format": ["PascalCase"],
             "custom": {
               "regex": "^I[A-Z]\\\\w*$",
