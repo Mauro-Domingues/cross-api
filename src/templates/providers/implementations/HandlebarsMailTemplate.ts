@@ -5,9 +5,7 @@ import { compile } ${'from'} 'handlebars';
 import { IParseMailTemplateDTO } ${'from'} '../dtos/IParseMailTemplateDTO';
 import { IMailTemplateProvider } ${'from'} '../models/IMailTemplateProvider';
 
-export class HandlebarsMailTemplateProvider
-  implements IMailTemplateProvider
-{
+export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
   public parse({ file, variables }: IParseMailTemplateDTO): string {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',

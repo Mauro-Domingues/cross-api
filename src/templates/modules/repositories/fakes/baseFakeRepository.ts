@@ -57,9 +57,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async findBy({
     where,
     withDeleted,
-  }: Parameters<
-    IBaseRepository<Entity>['findBy']
-  >[0]): Promise<Entity | null> {
+  }: Parameters<IBaseRepository<Entity>['findBy']>[0]): Promise<Entity | null> {
     const findEntity: Entity | undefined = this.fakeRepository.find(
       entity =>
         this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
@@ -96,9 +94,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async findIn({
     where,
     withDeleted,
-  }: Parameters<IBaseRepository<Entity>['findIn']>[0]): Promise<
-    Array<Entity>
-  > {
+  }: Parameters<IBaseRepository<Entity>['findIn']>[0]): Promise<Array<Entity>> {
     return this.fakeRepository.filter(
       entity =>
         Object.entries(where).every(([key, values]) =>

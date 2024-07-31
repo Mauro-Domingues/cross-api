@@ -11,7 +11,7 @@ const providers: Record<typeof leadConfig.driver, () => ILeadProvider> = {
 
 container.registerInstance<ILeadProvider>(
   'LeadProvider',
-  providers[leadConfig.driver],
+  providers[leadConfig.driver](),
 );
 `;
   }

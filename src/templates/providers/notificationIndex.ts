@@ -16,7 +16,7 @@ const providers: Record<
 
 container.registerInstance<INotificationProvider>(
   'NotificationProvider',
-  providers[notificationConfig.driver],
+  providers[notificationConfig.driver](),
 );
 `;
   }

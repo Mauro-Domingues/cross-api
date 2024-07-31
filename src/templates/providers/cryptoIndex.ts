@@ -5,10 +5,9 @@ import { cryptoConfig } ${'from'} '@config/crypto';
 import { CryptoProvider } ${'from'} './implementations/CryptoProvider';
 import { ICryptoProvider } ${'from'} './models/ICryptoProvider';
 
-const providers: Record<typeof cryptoConfig.driver, () => ICryptoProvider> =
-  {
-    crypto: () => container.resolve(CryptoProvider),
-  };
+const providers: Record<typeof cryptoConfig.driver, () => ICryptoProvider> = {
+  crypto: () => container.resolve(CryptoProvider),
+};
 
 container.registerInstance<ICryptoProvider>(
   'CryptoProvider',
