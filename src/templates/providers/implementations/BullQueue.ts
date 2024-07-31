@@ -3,11 +3,11 @@ export class CreateBullQueue {
     return `import Bull, { Job, Queue } ${'from'} 'bull';
 import { queueConfig } ${'from'} '@config/queue';
 import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
-export class BullProvider implements IQueueProviderDTO {
+export class BullProvider implements IQueueProvider {
   private queues: IQueueDTO<Queue> = {};
 
   public constructor() {

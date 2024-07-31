@@ -4,10 +4,10 @@ export class CreateRDStationLead {
 import axios, { AxiosInstance, AxiosError } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
-import { ILeadProviderDTO } ${'from'} '../models/ILeadProvider';
+import { ILeadProvider } ${'from'} '../models/ILeadProvider';
 import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
 
-export class RDStationProvider implements ILeadProviderDTO {
+export class RDStationProvider implements ILeadProvider {
   private readonly http: AxiosInstance;
 
   public constructor() {

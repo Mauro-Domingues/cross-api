@@ -1,8 +1,8 @@
 export class CreateFakeCache {
   public execute(): string {
-    return `import { ICacheProviderDTO } ${'from'} '../models/ICacheProvider';
+    return `import { ICacheProvider } ${'from'} '../models/ICacheProvider';
 
-export class FakeCacheProvider implements ICacheProviderDTO {
+export class FakeCacheProvider implements ICacheProvider {
   private readonly cache: Record<string, string> = {};
 
   public async save<T>(key: string, value: T): Promise<void> {

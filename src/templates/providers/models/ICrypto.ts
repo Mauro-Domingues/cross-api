@@ -4,7 +4,7 @@ export class CreateICrypto {
 import { JWK } ${'from'} 'pem-jwk';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 
-export interface ICryptoProviderDTO {
+export interface ICryptoProvider {
   encrypt(text: string): ICryptoDTO;
   decrypt(hash: ICryptoDTO): string;
   generateKeys(): JWK<{

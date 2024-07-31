@@ -26,19 +26,17 @@ export class ListService {
     }
 
     return `import { injectable, inject } ${'from'} 'tsyringe';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { ICacheDTO } ${'from'} '@dtos/ICacheDTO';
 import { IListDTO } ${'from'} '@dtos/IListDTO';
-import { IConnectionDTO } ${'from'} '@shared/typeorm';
+import { IConnection } ${'from'} '@shared/typeorm';
 import { FindOptionsWhere } ${'from'} 'typeorm';
 import { Get, Route, Tags, Query, Inject } ${'from'} 'tsoa';
 
@@ -49,13 +47,13 @@ export class List${this.names.upperModuleName}Service {
     @inject('${this.names.pluralUpperModuleName}Repository')
     private readonly ${this.names.pluralLowerModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO,
+    }Repository,
 
     @inject('CacheProvider')
-    private readonly cacheProvider: ICacheProviderDTO,
+    private readonly cacheProvider: ICacheProvider,
 
     @inject('Connection')
-    private readonly connection: IConnectionDTO,
+    private readonly connection: IConnection,
   ) {}
 
   @Get()

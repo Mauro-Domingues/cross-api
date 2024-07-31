@@ -7,18 +7,18 @@ export class CreateNodemailerMail {
   getTestMessageUrl,
 } ${'from'} 'nodemailer';
 import { injectable, inject } ${'from'} 'tsyringe';
-import { IMailTemplateProviderDTO } ${'from'} '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
+import { IMailTemplateProvider } ${'from'} '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
 import { mailConfig } ${'from'} '@config/mail';
 import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
-import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
+import { IMailProvider } ${'from'} '../models/IMailProvider';
 
 @injectable()
-export class NodemailerMailProvider implements IMailProviderDTO {
+export class NodemailerMailProvider implements IMailProvider {
   private client: Transporter;
 
   public constructor(
     @inject('MailTemplateProvider')
-    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProvider,
   ) {}
 
   private async createClient(): Promise<void> {

@@ -20,9 +20,9 @@ import { JWK, pem2jwk } ${'from'} 'pem-jwk';
 import { cryptoConfig } ${'from'} '@config/crypto';
 import { authConfig } ${'from'} '@config/auth';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
-import { ICryptoProviderDTO } ${'from'} '../models/ICryptoProvider';
+import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
 
-export class CryptoProvider implements ICryptoProviderDTO {
+export class CryptoProvider implements ICryptoProvider {
   private write(path: string, filename: string, data: string): void {
     if (!existsSync(resolve(path))) {
       mkdirSync(resolve(path), { recursive: true });

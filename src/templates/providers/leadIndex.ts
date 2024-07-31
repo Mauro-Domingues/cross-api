@@ -3,13 +3,13 @@ export class CreateLeadIndex {
     return `import { container } ${'from'} 'tsyringe';
 import { leadConfig } ${'from'} '@config/lead';
 import { RDStationProvider } ${'from'} './implementations/RDStationProvider';
-import { ILeadProviderDTO } ${'from'} './models/ILeadProvider';
+import { ILeadProvider } ${'from'} './models/ILeadProvider';
 
-const providers: Record<typeof leadConfig.driver, () => ILeadProviderDTO> = {
+const providers: Record<typeof leadConfig.driver, () => ILeadProvider> = {
   rdstation: () => container.resolve(RDStationProvider),
 };
 
-container.registerInstance<ILeadProviderDTO>(
+container.registerInstance<ILeadProvider>(
   'LeadProvider',
   providers[leadConfig.driver],
 );

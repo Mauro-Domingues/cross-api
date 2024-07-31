@@ -33,14 +33,12 @@ export class ListSpecDependentService {
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
+import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { List${this.names.upperModuleName}Service } ${'from'} './List${
@@ -49,9 +47,9 @@ import { List${this.names.upperModuleName}Service } ${'from'} './List${
 
 let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO;
-let fakeCacheProvider: ICacheProviderDTO;
-let connection: IConnectionDTO;
+    }Repository;
+let fakeCacheProvider: ICacheProvider;
+let connection: IConnection;
 let list${this.names.upperModuleName}Service: List${
       this.names.upperModuleName
     }Service;

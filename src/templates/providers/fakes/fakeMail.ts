@@ -1,9 +1,9 @@
 export class CreateFakeMail {
   public execute(): string {
     return `import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
-import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
+import { IMailProvider } ${'from'} '../models/IMailProvider';
 
-export class FakeMailProvider implements IMailProviderDTO {
+export class FakeMailProvider implements IMailProvider {
   private readonly messages: Array<ISendMailDTO> = [];
 
   public async sendMail(message: ISendMailDTO): Promise<void> {

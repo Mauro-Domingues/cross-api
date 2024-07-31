@@ -1,11 +1,11 @@
 export class CreateFakeQueue {
   public execute(): string {
     return `import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
-export class FakeQueueProvider implements IQueueProviderDTO {
+export class FakeQueueProvider implements IQueueProvider {
   private queues: IQueueDTO<string> = {};
 
   public constructor() {

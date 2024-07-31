@@ -3,7 +3,7 @@ export class CreateSetConnection {
     return `import { Request, Response, NextFunction } ${'from'} 'express';
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { container } ${'from'} 'tsyringe';
-import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
+import { Connection, IConnection } ${'from'} '@shared/typeorm';
 
 /**
  * @description Defaults to the process.env database, but supports multi-tenancy
@@ -21,7 +21,7 @@ export const setConnection = async (
     await mysql.initialize();
   }
 
-  container.register<IConnectionDTO>('Connection', {
+  container.register<IConnection>('Connection', {
     useValue: new Connection(client, mysql),
   });
 

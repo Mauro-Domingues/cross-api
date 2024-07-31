@@ -1,8 +1,8 @@
 export class CreateFakeStorage {
   public execute(): string {
-    return `import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
+    return `import { IStorageProvider } ${'from'} '../models/IStorageProvider';
 
-export class FakeStorageProvider implements IStorageProviderDTO {
+export class FakeStorageProvider implements IStorageProvider {
   private readonly storage: Array<string> = [];
 
   public async saveFile(file: string): Promise<string> {

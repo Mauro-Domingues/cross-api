@@ -3,9 +3,9 @@ export class CreateFirebaseNotification {
     return `import axios, { AxiosError, AxiosInstance } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
-import { INotificationProviderDTO } ${'from'} '../models/INotificationProvider';
+import { INotificationProvider } ${'from'} '../models/INotificationProvider';
 
-export class FirebaseProvider implements INotificationProviderDTO {
+export class FirebaseProvider implements INotificationProvider {
   private readonly http: AxiosInstance;
 
   public constructor() {

@@ -3,11 +3,11 @@ export class CreateBeeQueue {
     return `import Bee, { Job } ${'from'} 'bee-queue';
 import { queueConfig } ${'from'} '@config/queue';
 import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IQueueProviderDTO } ${'from'} '../models/IQueueProvider';
+import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
 
-export class BeeProvider implements IQueueProviderDTO {
+export class BeeProvider implements IQueueProvider {
   private queues: IQueueDTO<Bee> = {};
 
   public constructor() {

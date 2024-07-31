@@ -3,18 +3,18 @@ export class CreateNotificationIndex {
     return `import { container } ${'from'} 'tsyringe';
 import { notificationConfig } ${'from'} '@config/notification';
 import { OneSignalProvider } ${'from'} './implementations/OneSignalProvider';
-import { INotificationProviderDTO } ${'from'} './models/INotificationProvider';
+import { INotificationProvider } ${'from'} './models/INotificationProvider';
 import { FirebaseProvider } ${'from'} './implementations/FirebaseProvider';
 
 const providers: Record<
   typeof notificationConfig.driver,
-  () => INotificationProviderDTO
+  () => INotificationProvider
 > = {
   onesignal: () => container.resolve(OneSignalProvider),
   firebase: () => container.resolve(FirebaseProvider),
 };
 
-container.registerInstance<INotificationProviderDTO>(
+container.registerInstance<INotificationProvider>(
   'NotificationProvider',
   providers[notificationConfig.driver],
 );

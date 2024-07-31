@@ -2,9 +2,9 @@ export class CreateHash {
   public execute(): string {
     return `import { hash, compare } ${'from'} 'bcrypt';
 import { hashConfig } ${'from'} '@config/hash';
-import { IHashProviderDTO } ${'from'} '../models/IHashProvider';
+import { IHashProvider } ${'from'} '../models/IHashProvider';
 
-export class BCryptHashProvider implements IHashProviderDTO {
+export class BCryptHashProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {
     return hash(payload, hashConfig.config.secret);
   }

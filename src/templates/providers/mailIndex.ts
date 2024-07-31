@@ -4,14 +4,14 @@ export class CreateMailIndex {
 import { container } ${'from'} 'tsyringe';
 import { NodemailerMailProvider } ${'from'} './implementations/NodemailerMailProvider';
 import { SESMailProvider } ${'from'} './implementations/SESMailProvider';
-import { IMailProviderDTO } ${'from'} './models/IMailProvider';
+import { IMailProvider } ${'from'} './models/IMailProvider';
 
-const providers: Record<typeof mailConfig.driver, () => IMailProviderDTO> = {
+const providers: Record<typeof mailConfig.driver, () => IMailProvider> = {
   nodemailer: () => container.resolve(NodemailerMailProvider),
   ses: () => container.resolve(SESMailProvider),
 };
 
-container.registerInstance<IMailProviderDTO>(
+container.registerInstance<IMailProvider>(
   'MailProvider',
   providers[mailConfig.driver](),
 );

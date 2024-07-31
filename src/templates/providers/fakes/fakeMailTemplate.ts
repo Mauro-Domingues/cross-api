@@ -1,8 +1,8 @@
 export class CreateFakeMailTemplate {
   public execute(): string {
-    return `import { IMailTemplateProviderDTO } ${'from'} '../models/IMailTemplateProvider';
+    return `import { IMailTemplateProvider } ${'from'} '../models/IMailTemplateProvider';
 
-export class FakeMailTemplateProvider implements IMailTemplateProviderDTO {
+export class FakeMailTemplateProvider implements IMailTemplateProvider {
   public parse(): string {
     return 'Mail content';
   }

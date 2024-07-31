@@ -3,13 +3,13 @@ export class CreateCacheIndex {
     return `import { container } ${'from'} 'tsyringe';
 import { cacheConfig } ${'from'} '@config/cache';
 import { RedisCacheProvider } ${'from'} './implementations/RedisCacheProvider';
-import { ICacheProviderDTO } ${'from'} './models/ICacheProvider';
+import { ICacheProvider } ${'from'} './models/ICacheProvider';
 
-const providers: Record<typeof cacheConfig.driver, () => ICacheProviderDTO> = {
+const providers: Record<typeof cacheConfig.driver, () => ICacheProvider> = {
   redis: () => container.resolve(RedisCacheProvider),
 };
 
-container.registerInstance<ICacheProviderDTO>(
+container.registerInstance<ICacheProvider>(
   'CacheProvider',
   providers[cacheConfig.driver](),
 );

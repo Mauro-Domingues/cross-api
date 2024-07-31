@@ -3,13 +3,13 @@ export class CreateHashIndex {
     return `import { container } ${'from'} 'tsyringe';
 import { hashConfig } ${'from'} '@config/hash';
 import { BCryptHashProvider } ${'from'} './implementations/BCryptHashProvider';
-import { IHashProviderDTO } ${'from'} './models/IHashProvider';
+import { IHashProvider } ${'from'} './models/IHashProvider';
 
-const providers: Record<typeof hashConfig.driver, () => IHashProviderDTO> = {
+const providers: Record<typeof hashConfig.driver, () => IHashProvider> = {
   bcrypt: () => container.resolve(BCryptHashProvider),
 };
 
-container.registerInstance<IHashProviderDTO>(
+container.registerInstance<IHashProvider>(
   'HashProvider',
   providers[hashConfig.driver](),
 );

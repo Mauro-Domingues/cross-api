@@ -34,12 +34,10 @@ import { Fake${
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
+import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
       this.names.upperModuleName
@@ -47,8 +45,8 @@ import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
 
 let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO;
-let connection: IConnectionDTO;
+    }Repository;
+let connection: IConnection;
 let show${this.names.upperModuleName}Service: Show${
       this.names.upperModuleName
     }Service;

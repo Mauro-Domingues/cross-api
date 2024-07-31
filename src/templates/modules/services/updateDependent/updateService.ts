@@ -28,10 +28,8 @@ export class UpdateDependentService {
 
     return `import { injectable, inject } ${'from'} 'tsyringe';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
@@ -43,7 +41,7 @@ import { ${this.names.upperModuleName} } ${'from'} '@modules/${
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { IConnectionDTO } ${'from'} '@shared/typeorm';
+import { IConnection } ${'from'} '@shared/typeorm';
 import { Route, Tags, Put, Body, Path } ${'from'} 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
@@ -53,13 +51,13 @@ export class Update${this.names.upperModuleName}Service {
     @inject('${this.names.pluralUpperModuleName}Repository')
     private readonly ${this.names.pluralLowerModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO,
+    }Repository,
 
     @inject('CacheProvider')
-    private readonly cacheProvider: ICacheProviderDTO,
+    private readonly cacheProvider: ICacheProvider,
 
     @inject('Connection')
-    private readonly connection: IConnectionDTO,
+    private readonly connection: IConnection,
   ) {}
 
   @Put('{id}')

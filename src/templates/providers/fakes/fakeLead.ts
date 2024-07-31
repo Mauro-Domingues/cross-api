@@ -1,9 +1,9 @@
 export class CreateFakeLead {
   public execute(): string {
-    return `import { ILeadProviderDTO } ${'from'} '../models/ILeadProvider';
+    return `import { ILeadProvider } ${'from'} '../models/ILeadProvider';
 import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
 
-export class FakeLeadProvider implements ILeadProviderDTO {
+export class FakeLeadProvider implements ILeadProvider {
   private readonly leads: Array<string> = [];
 
   public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {

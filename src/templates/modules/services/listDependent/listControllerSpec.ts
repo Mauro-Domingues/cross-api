@@ -27,11 +27,11 @@ export class ListSpecDependentController {
 
     return `import request ${'from'} 'supertest';
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
-import { IConnectionDTO } ${'from'} '@shared/typeorm';
+import { IConnection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 import { v4 as uuid } ${'from'} 'uuid';
 
-let connection: IConnectionDTO;
+let connection: IConnection;
 
 describe('List${this.names.upperModuleName}Controller', (): void => {
   beforeAll(async (): Promise<void> => {

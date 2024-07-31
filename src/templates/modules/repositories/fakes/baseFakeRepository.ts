@@ -3,10 +3,10 @@ export class CreateBaseFakeRepository {
     return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
 import { v4 as uuid } ${'from'} 'uuid';
 import { ObjectLiteral } ${'from'} 'typeorm';
-import { IBaseRepositoryDTO } ${'from'} '../IBaseRepository';
+import { IBaseRepository } ${'from'} '../IBaseRepository';
 
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
-  implements IBaseRepositoryDTO<Entity>
+  implements IBaseRepository<Entity>
 {
   protected fakeRepository: Array<Entity> = [];
 
@@ -47,7 +47,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async exists({
     where,
     withDeleted,
-  }: Parameters<IBaseRepositoryDTO<Entity>['exists']>[0]): Promise<boolean> {
+  }: Parameters<IBaseRepository<Entity>['exists']>[0]): Promise<boolean> {
     return this.fakeRepository.some(
       entity =>
         this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
@@ -58,7 +58,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where,
     withDeleted,
   }: Parameters<
-    IBaseRepositoryDTO<Entity>['findBy']
+    IBaseRepository<Entity>['findBy']
   >[0]): Promise<Entity | null> {
     const findEntity: Entity | undefined = this.fakeRepository.find(
       entity =>
@@ -73,7 +73,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     limit,
     where,
     withDeleted,
-  }: Parameters<IBaseRepositoryDTO<Entity>['findAll']>[0]): Promise<{
+  }: Parameters<IBaseRepository<Entity>['findAll']>[0]): Promise<{
     list: Array<Entity>;
     amount: number;
   }> {
@@ -96,7 +96,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async findIn({
     where,
     withDeleted,
-  }: Parameters<IBaseRepositoryDTO<Entity>['findIn']>[0]): Promise<
+  }: Parameters<IBaseRepository<Entity>['findIn']>[0]): Promise<
     Array<Entity>
   > {
     return this.fakeRepository.filter(
@@ -113,7 +113,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   public async findLike({
     where,
     withDeleted,
-  }: Parameters<IBaseRepositoryDTO<Entity>['findLike']>[0]): Promise<
+  }: Parameters<IBaseRepository<Entity>['findLike']>[0]): Promise<
     Array<Entity>
   > {
     return this.fakeRepository.filter(
@@ -130,7 +130,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async create(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['create']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['create']>[0],
   ): Promise<Entity> {
     const base = Object.assign(new this.Entity(), {
       ...baseData,
@@ -146,7 +146,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async createMany(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['createMany']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['createMany']>[0],
   ): Promise<Array<Entity>> {
     return (baseData as Array<Entity>).map(data => {
       const base = Object.assign(new this.Entity(), {
@@ -164,7 +164,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async update(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['update']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['update']>[0],
   ): Promise<Entity> {
     const findEntity: number = this.fakeRepository.findIndex(
       entity => entity.id === baseData.id,
@@ -179,7 +179,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async updateMany(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['updateMany']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['updateMany']>[0],
   ): Promise<Array<Entity>> {
     return (baseData as Array<Entity>).map(data => {
       const findEntity: number = this.fakeRepository.findIndex(
@@ -196,7 +196,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async delete(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['delete']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['delete']>[0],
   ): Promise<{
     raw: string;
     affected: number;
@@ -218,7 +218,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async deleteMany(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['deleteMany']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['deleteMany']>[0],
   ): Promise<{
     raw: string;
     affected: number;
@@ -244,7 +244,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async softDelete(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDelete']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['softDelete']>[0],
   ): Promise<{
     raw: string;
     affected: number;
@@ -266,7 +266,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }
 
   public async softDeleteMany(
-    baseData: Parameters<IBaseRepositoryDTO<Entity>['softDeleteMany']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['softDeleteMany']>[0],
   ): Promise<{
     raw: string;
     affected: number;

@@ -10,7 +10,7 @@ export class CreateIBaseRepository {
   QueryRunner,
 } ${'from'} 'typeorm';
 
-export interface IBaseRepositoryDTO<Entity extends ObjectLiteral> {
+export interface IBaseRepository<Entity extends ObjectLiteral> {
   exists(
     baseData: FindManyOptions<Entity>,
     trx?: QueryRunner,

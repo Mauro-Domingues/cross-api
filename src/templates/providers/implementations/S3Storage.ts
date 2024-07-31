@@ -10,9 +10,9 @@ import { readFileSync, unlinkSync } ${'from'} 'node:fs';
 import { getType } ${'from'} 'mime';
 import { resolve } ${'from'} 'node:path';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { IStorageProviderDTO } ${'from'} '../models/IStorageProvider';
+import { IStorageProvider } ${'from'} '../models/IStorageProvider';
 
-export class S3StorageProvider implements IStorageProviderDTO {
+export class S3StorageProvider implements IStorageProvider {
   private readonly client: S3Client;
 
   public constructor() {

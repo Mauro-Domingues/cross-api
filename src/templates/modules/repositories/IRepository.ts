@@ -31,11 +31,11 @@ export class CreateIRepository {
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
-import { IBaseRepositoryDTO } ${'from'} '@shared/container/modules/repositories/IBaseRepository';
+import { IBaseRepository } ${'from'} '@shared/container/modules/repositories/IBaseRepository';
 
 export interface I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO extends IBaseRepositoryDTO<${this.names.upperModuleName}> {
+    }Repository extends IBaseRepository<${this.names.upperModuleName}> {
   // non-generic methods here
 }
 `;

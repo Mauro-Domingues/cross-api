@@ -1,8 +1,8 @@
 export class CreateFakeHash {
   public execute(): string {
-    return `import { IHashProviderDTO } ${'from'} '../models/IHashProvider';
+    return `import { IHashProvider } ${'from'} '../models/IHashProvider';
 
-export class FakeHashProvider implements IHashProviderDTO {
+export class FakeHashProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {
     return payload;
   }

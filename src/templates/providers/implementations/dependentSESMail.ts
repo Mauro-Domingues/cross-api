@@ -28,19 +28,19 @@ export class CreateDependentSESMail {
     return `import { mailConfig } ${'from'} '@config/mail';
 import { SESClient, SendEmailCommand } ${'from'} '@aws-sdk/client-ses';
 import { injectable, inject } ${'from'} 'tsyringe';
-import { IMailTemplateProviderDTO } ${'from'} '@modules/${
+import { IMailTemplateProvider } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/providers/MailTemplateProvider/models/IMailTemplateProvider';
 import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
-import { IMailProviderDTO } ${'from'} '../models/IMailProvider';
+import { IMailProvider } ${'from'} '../models/IMailProvider';
 
 @injectable()
-export class SESMailProvider implements IMailProviderDTO {
+export class SESMailProvider implements IMailProvider {
   private readonly client: SESClient;
 
   public constructor(
     @inject('MailTemplateProvider')
-    private readonly mailTemplateProvider: IMailTemplateProviderDTO,
+    private readonly mailTemplateProvider: IMailTemplateProvider,
   ) {
     this.client = new SESClient({
       credentials: {

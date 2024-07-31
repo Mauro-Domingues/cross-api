@@ -1,6 +1,6 @@
 export class CreateIQueue {
   public execute(): string {
-    return `export interface IQueueProviderDTO {
+    return `export interface IQueueProvider {
   execute<T extends object>(
     key: Capitalize<string>,
     data: T,

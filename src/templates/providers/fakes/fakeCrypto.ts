@@ -2,9 +2,9 @@ export class CreateFakeCrypto {
   public execute(): string {
     return `import { JWK } ${'from'} 'pem-jwk';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
-import { ICryptoProviderDTO } ${'from'} '../models/ICryptoProvider';
+import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
 
-export class FakeCryptoProvider implements ICryptoProviderDTO {
+export class FakeCryptoProvider implements ICryptoProvider {
   public encrypt(text: string): ICryptoDTO {
     return {
       iv: 'iv',

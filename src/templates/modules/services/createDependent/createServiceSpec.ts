@@ -32,18 +32,16 @@ export class CreateSpecDependentService {
     }
 
     return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
+import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
@@ -52,9 +50,9 @@ import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
 
 let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO;
-let fakeCacheProvider: ICacheProviderDTO;
-let connection: IConnectionDTO;
+    }Repository;
+let fakeCacheProvider: ICacheProvider;
+let connection: IConnection;
 let create${this.names.upperModuleName}Service: Create${
       this.names.upperModuleName
     }Service;

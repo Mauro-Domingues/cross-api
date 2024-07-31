@@ -26,19 +26,17 @@ export class DeleteSpecService {
     }
 
     return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { ICacheProviderDTO } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { I${
-      this.names.pluralUpperModuleName
-    }RepositoryDTO } ${'from'} '@modules/${
+import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.names.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { Connection, IConnectionDTO } ${'from'} '@shared/typeorm';
+import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
       this.names.upperModuleName
@@ -46,9 +44,9 @@ import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
 
 let fake${this.names.pluralUpperModuleName}Repository: I${
       this.names.pluralUpperModuleName
-    }RepositoryDTO;
-let fakeCacheProvider: ICacheProviderDTO;
-let connection: IConnectionDTO;
+    }Repository;
+let fakeCacheProvider: ICacheProvider;
+let connection: IConnection;
 let delete${this.names.upperModuleName}Service: Delete${
       this.names.upperModuleName
     }Service;
