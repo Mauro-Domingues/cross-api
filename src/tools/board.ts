@@ -60,7 +60,7 @@ export class Board {
 
   private renderEmptyLine(): void {
     return this.console.execute({
-      message: ['|', ' '.repeat(115), '|'],
+      message: ['|', ' '.repeat(116), '|'],
       color: 'blue',
       bold: true,
       breakStart: false,
@@ -74,7 +74,7 @@ export class Board {
         ' /',
         '='.repeat(46),
         this.messages.board.headers.title,
-        '='.repeat(46),
+        '='.repeat(47),
         '\\',
       ],
       color: 'blue',
@@ -99,7 +99,7 @@ export class Board {
           ' '.repeat(2),
           this.circle,
           ' ',
-          this.messages.board.headers.tools.padEnd(110, ' '),
+          this.messages.board.headers.tools.padEnd(111, ' '),
         ],
         color: 'green',
         bold: true,
@@ -125,7 +125,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: [' '.repeat(4), '➤ ', tool.title.padEnd(30, ' ')],
+          message: [' '.repeat(4), '➤  ', tool.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
@@ -171,7 +171,7 @@ export class Board {
           ' '.repeat(2),
           this.circle,
           ' ',
-          this.messages.board.headers.structure.padEnd(110, ' '),
+          this.messages.board.headers.structure.padEnd(111, ' '),
         ],
         color: 'green',
         bold: true,
@@ -197,7 +197,7 @@ export class Board {
           breakEnd: false,
         },
         {
-          message: [' '.repeat(4), '➤ ', structure.title.padEnd(30, ' ')],
+          message: [' '.repeat(4), '➤  ', structure.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
           breakStart: false,
@@ -231,7 +231,7 @@ export class Board {
 
   private renderFooter(): void {
     return this.console.execute({
-      message: [' \\', '='.repeat(113), '/'],
+      message: [' \\', '='.repeat(114), '/'],
       color: 'blue',
       bold: true,
       breakStart: false,
