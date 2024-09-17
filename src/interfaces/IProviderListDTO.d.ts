@@ -1,6 +1,6 @@
 import { IProviderOptionDTO } from '@interfaces/IProviderOptionDTO';
 
-export type IProviderListDTO = Record<
+export type IProviderListDTO = readonly Record<
   IProviderOptionDTO,
   {
     readonly independent: { readonly execute: () => void };

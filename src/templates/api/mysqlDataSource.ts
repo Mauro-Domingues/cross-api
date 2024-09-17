@@ -6,7 +6,7 @@ import 'reflect-metadata';
 
 const dataSources: Record<string, DataSource> = {};
 
-export const MysqlDataSource = (database: string) => {
+export const MysqlDataSource = (database: string): DataSource => {
   if (!dataSources[database]) {
     dataSources[database] = new DataSource({
       type: 'mysql',

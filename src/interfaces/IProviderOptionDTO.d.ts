@@ -1,4 +1,4 @@
-export type IProviderOptionDTO =
+export type IProviderOptionDTO = readonly (
   | 'mailTemplate'
   | 'notification'
   | 'storage'
@@ -7,4 +7,5 @@ export type IProviderOptionDTO =
   | 'queue'
   | 'mail'
   | 'lead'
-  | 'hash';
+  | 'hash'
+);

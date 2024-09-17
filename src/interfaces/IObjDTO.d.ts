@@ -1,1 +1,1 @@
-export type IObjDTO = Record<string, string>;
+export type IObjDTO = readonly Record<string, string>;
