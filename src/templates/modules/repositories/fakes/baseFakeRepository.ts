@@ -31,7 +31,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     }
   }
 
-  private parseWhere<Type extends ObjectLiteral>(
+  protected parseWhere<Type extends ObjectLiteral>(
     entity: Type,
     where: unknown,
   ): boolean {

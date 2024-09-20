@@ -4,6 +4,7 @@ export class CreateBaseRepository {
   DeleteResult,
   EntityTarget,
   FindManyOptions,
+  FindOptionsWhere,
   In,
   Like,
   ObjectLiteral,
