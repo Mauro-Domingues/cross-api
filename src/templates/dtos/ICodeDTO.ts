@@ -11,6 +11,7 @@ export type ICodeDTO =
   | 'TOO_MANY_REQUESTS'
   | 'FAILED_TO_CREATE'
   | 'FAILED_TO_LIST'
+  | 'INVALID_CLAUSE'
   | 'FILE_NOT_FOUND'
   | 'NOT_FOUND'
   | 'CREATED'

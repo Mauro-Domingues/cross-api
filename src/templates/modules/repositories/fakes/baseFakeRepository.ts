@@ -2,10 +2,11 @@ export class CreateBaseFakeRepository {
   public execute(): string {
     return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
 import { v4 as uuid } ${'from'} 'uuid';
-import { ObjectLiteral } ${'from'} 'typeorm';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
 import { IBaseRepository } ${'from'} '../IBaseRepository';
 
-export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
+export abstract class FakeBaseRepository<Entity extends IObjectDTO & Base>
   implements IBaseRepository<Entity>
 {
   protected fakeRepository: Array<Entity> = [];
@@ -14,7 +15,22 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     private readonly Entity: new (...args: Array<unknown>) => Entity,
   ) {}
 
-  protected parseWhere<Type extends ObjectLiteral>(
+  protected validateClause(clause?: IObjectDTO | Array<IObjectDTO>): void {
+    const hasValidCondition = (Array.isArray(clause) ? clause : [clause]).some(
+      singleClause =>
+        singleClause &&
+        Object.keys(singleClause).some(key => !!singleClause[key]),
+    );
+
+    if (!hasValidCondition) {
+      throw new AppError(
+        'INVALID_CLAUSE',
+        'At least one valid condition must be provided.',
+      );
+    }
+  }
+
+  private parseWhere<Type extends IObjectDTO>(
     entity: Type,
     where: unknown,
   ): boolean {
@@ -24,7 +40,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
           return (
             Array.isArray(entity[key]) &&
             value.every(subValue =>
-              entity[key].some((subEntity: ObjectLiteral) =>
+              (entity[key] as Array<IObjectDTO>).some((subEntity: IObjectDTO) =>
                 this.parseWhere(subEntity, subValue),
               ),
             )
@@ -35,7 +51,10 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
             typeof entity[key] === 'object' &&
             entity[key] !== null &&
             Object.entries(value).every(([subKey, subValue]) =>
-              this.parseWhere(entity[key][subKey], subValue),
+              this.parseWhere(
+                (entity[key] as IObjectDTO)[subKey] as IObjectDTO,
+                subValue,
+              ),
             )
           );
         }
@@ -48,6 +67,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where,
     withDeleted,
   }: Parameters<IBaseRepository<Entity>['exists']>[0]): Promise<boolean> {
+    this.validateClause(where);
     return this.fakeRepository.some(
       entity =>
         this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
@@ -58,6 +78,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where,
     withDeleted,
   }: Parameters<IBaseRepository<Entity>['findBy']>[0]): Promise<Entity | null> {
+    this.validateClause(where);
     const findEntity: Entity | undefined = this.fakeRepository.find(
       entity =>
         this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),

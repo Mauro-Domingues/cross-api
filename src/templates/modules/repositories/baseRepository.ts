@@ -9,6 +9,7 @@ export class CreateBaseRepository {
   ObjectLiteral,
   QueryRunner,
 } ${'from'} 'typeorm';
+import { AppError } ${'from'} '@shared/errors/AppError';
 import { IBaseRepository } ${'from'} './IBaseRepository';
 
 export abstract class BaseRepository<Entity extends ObjectLiteral>
@@ -16,10 +17,28 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
 {
   public constructor(private readonly target: EntityTarget<Entity>) {}
 
+  protected validateClause(
+    clause?: FindOptionsWhere<Entity> | Array<FindOptionsWhere<Entity>>,
+  ): void {
+    const hasValidCondition = (Array.isArray(clause) ? clause : [clause]).some(
+      singleClause =>
+        singleClause &&
+        Object.keys(singleClause).some(key => !!singleClause[key]),
+    );
+
+    if (!hasValidCondition) {
+      throw new AppError(
+        'INVALID_CLAUSE',
+        'At least one valid condition must be provided.',
+      );
+    }
+  }
+
   public async exists(
     baseData: Parameters<IBaseRepository<Entity>['exists']>[0],
     trx: QueryRunner,
   ): Promise<boolean> {
+    this.validateClause(baseData.where);
     return trx.manager.exists(this.target, baseData);
   }
 
@@ -27,6 +46,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     baseData: Parameters<IBaseRepository<Entity>['findBy']>[0],
     trx: QueryRunner,
   ): Promise<Entity | null> {
+    this.validateClause(baseData.where);
     return trx.manager.findOne(this.target, baseData);
   }
 

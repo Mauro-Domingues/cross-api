@@ -22,18 +22,12 @@ export function createErrorLog(error: {
   const errorBody = {
     TIME_OF_OCCURRENCE: \`\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
     [error.message_code]: error.message,
-    PATH:
-      error.stack
-        ?.split('\\${'n'}')
-        .slice(1)
-        .toString()
-        .trim()
-        .replaceAll(',', '\\${'n'}') ?? 'NOT SET',
+    PATH: error.stack?.split('\\${'n'}').slice(1).join('\\${'n'}').trim() ?? 'NOT SET',
   };
 
   appendFileSync(
     resolve(__dirname, '..', 'assets', 'errors.log'),
-    JSON.stringify(errorBody, null, 2),
+    JSON.stringify(errorBody, null, 2).concat(',\\${'n'}'),
   );
 
   console.log(errorBody);
