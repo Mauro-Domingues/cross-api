@@ -77,6 +77,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     }: Parameters<IBaseRepository<Entity>['findIn']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
+    this.validateClause(where as FindOptionsWhere<Entity>);
     return trx.manager.find(this.target, {
       skip: page && limit && (page - 1) * limit,
       take: limit,
@@ -99,6 +100,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     }: Parameters<IBaseRepository<Entity>['findLike']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
+    this.validateClause(where);
     return trx.manager.find(this.target, {
       skip: page && limit && (page - 1) * limit,
       take: limit,

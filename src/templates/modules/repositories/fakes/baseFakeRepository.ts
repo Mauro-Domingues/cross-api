@@ -114,6 +114,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     where,
     withDeleted,
   }: Parameters<IBaseRepository<Entity>['findIn']>[0]): Promise<Array<Entity>> {
+    this.validateClause(where);
     return this.fakeRepository.filter(
       entity =>
         Object.entries(where).every(([key, values]) =>
@@ -131,6 +132,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }: Parameters<IBaseRepository<Entity>['findLike']>[0]): Promise<
     Array<Entity>
   > {
+    this.validateClause(where);
     return this.fakeRepository.filter(
       entity =>
         (Array.isArray(where) ? where : [where]).some(condition =>
