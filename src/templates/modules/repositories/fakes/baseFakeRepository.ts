@@ -2,11 +2,12 @@ export class CreateBaseFakeRepository {
   public execute(): string {
     return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
 import { v4 as uuid } ${'from'} 'uuid';
+import { ObjectLiteral } ${'from'} 'typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
 import { IBaseRepository } ${'from'} '../IBaseRepository';
 
-export abstract class FakeBaseRepository<Entity extends IObjectDTO & Base>
+export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepository<Entity>
 {
   protected fakeRepository: Array<Entity> = [];
@@ -30,7 +31,7 @@ export abstract class FakeBaseRepository<Entity extends IObjectDTO & Base>
     }
   }
 
-  private parseWhere<Type extends IObjectDTO>(
+  private parseWhere<Type extends ObjectLiteral>(
     entity: Type,
     where: unknown,
   ): boolean {
@@ -40,7 +41,7 @@ export abstract class FakeBaseRepository<Entity extends IObjectDTO & Base>
           return (
             Array.isArray(entity[key]) &&
             value.every(subValue =>
-              (entity[key] as Array<IObjectDTO>).some((subEntity: IObjectDTO) =>
+              entity[key].some((subEntity: ObjectLiteral) =>
                 this.parseWhere(subEntity, subValue),
               ),
             )
@@ -51,10 +52,7 @@ export abstract class FakeBaseRepository<Entity extends IObjectDTO & Base>
             typeof entity[key] === 'object' &&
             entity[key] !== null &&
             Object.entries(value).every(([subKey, subValue]) =>
-              this.parseWhere(
-                (entity[key] as IObjectDTO)[subKey] as IObjectDTO,
-                subValue,
-              ),
+              this.parseWhere(entity[key][subKey], subValue),
             )
           );
         }
