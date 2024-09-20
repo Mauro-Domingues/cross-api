@@ -1,21 +1,14 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
-import { Messages } from '@tools/messages';
 
-export class MakeInfra {
+export class CreateInfra {
   private readonly fileManager: FileManager;
-  private readonly messages: IMessageDTO;
-  private readonly console: Console;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
-    this.console = Console.getInstance();
   }
 
   public execute(): void {
-    this.fileManager.checkAndCreateMultiDirSync([
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', '@types'],
       ['src', 'dtos'],
@@ -32,12 +25,5 @@ export class MakeInfra {
       ['src', 'shared', 'typeorm', 'migrations'],
       ['src', 'shared', 'typeorm', 'seeds'],
     ]);
-    return this.console.execute({
-      message: this.messages.comands.description.apiCreated,
-      color: 'blue',
-      bold: true,
-      breakStart: false,
-      breakEnd: false,
-    });
   }
 }

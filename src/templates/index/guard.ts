@@ -1,4 +1,4 @@
-export class CreateGuard {
+export class CreateGuardIndex {
   public execute(): string {
     return `import { Router } ${'from'} 'express';
 import { ensureAuthenticated } ${'from'} '@middlewares/ensureAuthenticated';

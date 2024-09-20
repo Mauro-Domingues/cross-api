@@ -1,4 +1,4 @@
-export class CreateBaseFakeRepository {
+export class CreateFakeBaseRepository {
   public execute(): string {
     return `import { Base } ${'from'} '@shared/container/modules/entities/Base';
 import { v4 as uuid } ${'from'} 'uuid';

@@ -11,7 +11,7 @@ import { CreateSwcConfig } from '@templates/root/swcConfig';
 import { CreateTsConfig } from '@templates/root/tsConfig';
 import { FileManager } from '@tools/fileManager';
 
-export class MakeFirstLayer {
+export class CreateRoot {
   private readonly createPrettierConfig: CreatePrettierConfig;
   private readonly createDockerCompose: CreateDockerCompose;
   private readonly createEsLintrcJson: CreateEsLintrcJson;

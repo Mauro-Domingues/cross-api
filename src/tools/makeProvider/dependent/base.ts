@@ -1,12 +1,12 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateContainer } from '@templates/index/container';
+import { CreateContainerIndex } from '@templates/index/container';
 import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DependentBaseProvider {
-  private readonly createContainer: CreateContainer;
+  private readonly createContainerIndex: CreateContainerIndex;
   protected readonly fileManager: FileManager;
   protected readonly messages: IMessageDTO;
 
@@ -15,8 +15,8 @@ export class DependentBaseProvider {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
+    this.createContainerIndex = new CreateContainerIndex();
     this.messages = Messages.getInstance().execute();
-    this.createContainer = new CreateContainer();
     this.fileManager = FileManager.getInstance();
   }
 
@@ -46,7 +46,7 @@ export class DependentBaseProvider {
     ) {
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
+        this.createContainerIndex.execute(),
       );
     }
     if (

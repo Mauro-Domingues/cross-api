@@ -1,7 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CreateContainer } from '@templates/index/container';
-import { CreateRoutes } from '@templates/index/routes';
+import { CreateContainerIndex } from '@templates/index/container';
+import { CreateRouteIndex } from '@templates/index/routes';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
 import { CreateEntity } from '@templates/modules/entities/entity';
 import { CreateDependentInjection } from '@templates/modules/inject/dependentInjection';
@@ -24,9 +24,9 @@ export class MakeDependentInfra {
   private readonly createDependentInjection: CreateDependentInjection;
   private readonly createFullDependentRoute: CreateFullDependentRoute;
   private readonly createDependentRoute: CreateDependentRoute;
+  private readonly createContainerIndex: CreateContainerIndex;
+  private readonly createRouteIndex: CreateRouteIndex;
   private readonly createModuleDTO: CreateModuleDTO;
-  private readonly createContainer: CreateContainer;
-  private readonly createRoutes: CreateRoutes;
   private readonly createEntity: CreateEntity;
   private readonly fileManager: FileManager;
   private readonly messages: IMessageDTO;
@@ -63,12 +63,12 @@ export class MakeDependentInfra {
       this.names,
       this.fatherNames,
     );
+    this.createContainerIndex = new CreateContainerIndex();
     this.createModuleDTO = new CreateModuleDTO(this.names);
     this.createEntity = new CreateEntity(this.names);
     this.messages = Messages.getInstance().execute();
-    this.createContainer = new CreateContainer();
+    this.createRouteIndex = new CreateRouteIndex();
     this.fileManager = FileManager.getInstance();
-    this.createRoutes = new CreateRoutes();
     this.concat = Concat.getInstance();
   }
 
@@ -93,13 +93,13 @@ export class MakeDependentInfra {
     ) {
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
+        this.createContainerIndex.execute(),
       );
     }
     if (!this.fileManager.checkIfExistsSync(['src', 'routes', 'index.ts'])) {
       this.fileManager.createFile(
         ['src', 'routes', 'index.ts'],
-        this.createRoutes.execute(),
+        this.createRouteIndex.execute(),
       );
     }
     this.fileManager.createFile(

@@ -1,6 +1,6 @@
 import { FileManager } from '@tools/fileManager';
 
-export class MakeSecondLayer {
+export class CreateDocs {
   private readonly fileManager: FileManager;
 
   public constructor() {

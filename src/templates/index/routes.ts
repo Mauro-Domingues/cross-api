@@ -1,4 +1,4 @@
-export class CreateRoutes {
+export class CreateRouteIndex {
   public execute(): string {
     return `import { Router } ${'from'} 'express';
 // import { guardRouter } ${'from'} './guardRouter';

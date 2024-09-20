@@ -1,25 +1,19 @@
-import { CreateFakeDataSource } from '@templates/api/fakeDataSource';
-import { CreateMysqlDataSource } from '@templates/api/mysqlDataSource';
 import { CreateBaseEntity } from '@templates/modules/entities/baseEntity';
 import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository';
-import { CreateBaseFakeRepository } from '@templates/modules/repositories/fakes/baseFakeRepository';
+import { CreateFakeBaseRepository } from '@templates/modules/repositories/fakes/fakeBaseRepository';
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
 import { FileManager } from '@tools/fileManager';
 
-export class MakeLastLayer {
-  private readonly createBaseFakeRepository: CreateBaseFakeRepository;
-  private readonly createMysqlDataSource: CreateMysqlDataSource;
+export class CreateModules {
+  private readonly createFakeBaseRepository: CreateFakeBaseRepository;
   private readonly createIBaseRepository: CreateIBaseRepository;
-  private readonly createFakeDataSource: CreateFakeDataSource;
   private readonly createBaseRepository: CreateBaseRepository;
   private readonly createBaseEntity: CreateBaseEntity;
   private readonly fileManager: FileManager;
 
   public constructor() {
-    this.createBaseFakeRepository = new CreateBaseFakeRepository();
-    this.createMysqlDataSource = new CreateMysqlDataSource();
+    this.createFakeBaseRepository = new CreateFakeBaseRepository();
     this.createIBaseRepository = new CreateIBaseRepository();
-    this.createFakeDataSource = new CreateFakeDataSource();
     this.createBaseRepository = new CreateBaseRepository();
     this.createBaseEntity = new CreateBaseEntity();
     this.fileManager = FileManager.getInstance();
@@ -63,22 +57,7 @@ export class MakeLastLayer {
           'fakes',
           'FakeBaseRepository.ts',
         ],
-        this.createBaseFakeRepository,
-      ],
-      [
-        ['src', 'shared', 'typeorm', 'dataSources', 'mysqlDataSource.ts'],
-        this.createMysqlDataSource,
-      ],
-      [
-        [
-          'src',
-          'shared',
-          'typeorm',
-          'dataSources',
-          'fakes',
-          'fakeDataSource.ts',
-        ],
-        this.createFakeDataSource,
+        this.createFakeBaseRepository,
       ],
     ]);
   }
