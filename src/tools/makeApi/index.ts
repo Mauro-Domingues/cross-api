@@ -6,7 +6,7 @@ import { CreateInfra } from '@tools/makeApi/infra';
 import { CreateMiddlewares } from '@tools/makeApi/middlewares';
 import { CreateRoot } from '@tools/makeApi/root';
 import { CreateRoutes } from '@tools/makeApi/routes';
-import { CreateShared } from '@tools/makeApi/shared';
+import { CreateShared } from '@tools/makeApi/shared/index';
 import { CreateTypes } from '@tools/makeApi/types';
 import { CreateUtils } from '@tools/makeApi/utils';
 import { Messages } from '@tools/messages';

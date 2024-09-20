@@ -1,7 +1,7 @@
 import { CreateApp } from '@templates/api/app';
 import { CreateServer } from '@templates/api/server';
 import { FileManager } from '@tools/fileManager';
-import { CreateContainer } from '@tools/makeApi/shared/container';
+import { CreateContainer } from '@tools/makeApi/shared/container/index';
 import { CreateErrors } from '@tools/makeApi/shared/errors';
 import { CreateTypeorm } from '@tools/makeApi/shared/typeorm';
 
