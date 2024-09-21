@@ -1,12 +1,12 @@
-import { CreateContainer } from '@templates/index/container';
+import { CreateContainerIndex } from '@templates/index/container';
 import { FileManager } from '@tools/fileManager';
 
 export class BaseProvider {
-  private readonly createContainer: CreateContainer;
+  private readonly createContainerIndex: CreateContainerIndex;
   protected readonly fileManager: FileManager;
 
   public constructor() {
-    this.createContainer = new CreateContainer();
+    this.createContainerIndex = new CreateContainerIndex();
     this.fileManager = FileManager.getInstance();
   }
 
@@ -25,7 +25,7 @@ export class BaseProvider {
     ) {
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
-        this.createContainer.execute(),
+        this.createContainerIndex.execute(),
       );
     }
   }
