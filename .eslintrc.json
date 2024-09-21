@@ -77,6 +77,24 @@
         }
       },
       {
+        "selector": "method",
+        "format": [
+          "camelCase"
+        ],
+        "filter": {
+          "regex": "^[a-z]+:[a-z]+$",
+          "match": false
+        }
+      },
+      {
+        "selector": "method",
+        "format": null,
+        "custom": {
+          "regex": "^[a-z]+:[a-z]+$",
+          "match": true
+        }
+      },
+      {
         "selector": "property",
         "format": null,
         "custom": {

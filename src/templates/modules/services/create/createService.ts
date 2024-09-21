@@ -1,28 +1,11 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class CreateService {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'> | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+  ) {}
 
   public execute(): string {
-    if (!this.names) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { injectable, inject } ${'from'} 'tsyringe';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${

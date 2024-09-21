@@ -1,30 +1,14 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class ShowSpecService {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Omit<IModuleNameDTO, 'dbModuleName' | 'routeModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Omit<
+      IModuleNameDTO,
+      'dbModuleName' | 'routeModuleName'
+    >,
+  ) {}
 
   public execute(): string {
-    if (!this.names) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { AppError } ${'from'} '@shared/errors/AppError';
 import { Fake${
       this.names.pluralUpperModuleName

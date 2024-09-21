@@ -1,33 +1,14 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class CreateSpecController {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Pick<
-          IModuleNameDTO,
-          'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
-        >
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Pick<
+      IModuleNameDTO,
+      'lowerModuleName' | 'upperModuleName' | 'routeModuleName'
+    >,
+  ) {}
 
   public execute(): string {
-    if (!this.names) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import request ${'from'} 'supertest';
 import { app } ${'from'} '@shared/app';
 

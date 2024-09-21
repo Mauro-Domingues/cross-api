@@ -1,33 +1,15 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class UpdateDependentController {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Pick<IModuleNameDTO, 'lowerModuleName' | 'upperModuleName'>
-      | undefined,
-    private readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Pick<
+      IModuleNameDTO,
+      'lowerModuleName' | 'upperModuleName'
+    >,
+    private readonly fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ) {}
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${

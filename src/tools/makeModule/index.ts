@@ -3,26 +3,23 @@ import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
+import { CreateDependentModule } from '@tools/makeModule/dependent/index';
+import { CreateIndependentModule } from '@tools/makeModule/independent/index';
 import { Messages } from '@tools/messages';
-import { Module } from '@tools/module';
 
 export class CreateModule {
+  private readonly createIndependentModule: CreateIndependentModule;
+  private readonly createDependentModule: CreateDependentModule;
   private readonly messages: IMessageDTO;
   private readonly console: Console;
-  private readonly module: Module;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: IModuleNameDTO | undefined,
+    private readonly names: IModuleNameDTO,
     private readonly fatherNames: IModuleNameDTO | undefined,
   ) {
-    this.module = new Module(this.names, this.fatherNames);
     this.messages = Messages.getInstance().execute();
-    this.console = Console.getInstance();
-    this.concat = Concat.getInstance();
-  }
 
-  public execute(): void {
     if (!this.names) {
       throw new CustomError({
         message: this.messages.modules.errors.notFound,
@@ -32,11 +29,21 @@ export class CreateModule {
         breakEnd: true,
       });
     }
-    this.module[this.module.key]();
+
+    this.createIndependentModule = new CreateIndependentModule(this.names);
+    this.createDependentModule = new CreateDependentModule(
+      this.names,
+      this.fatherNames,
+    );
+    this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
+  }
+
+  private createMessage(names: Pick<IModuleNameDTO, 'lowerModuleName'>): void {
     return this.console.execute({
       message: [
         '- ',
-        this.concat.execute(this.names.lowerModuleName, 'Module'),
+        this.concat.execute(names.lowerModuleName, 'Module'),
         ' ',
         this.messages.comands.description.created,
       ],
@@ -45,5 +52,14 @@ export class CreateModule {
       breakStart: false,
       breakEnd: false,
     });
+  }
+
+  public execute(): void {
+    if (this.names && this.fatherNames) {
+      this.createDependentModule.execute();
+      return this.createMessage(this.names);
+    }
+    this.createIndependentModule.execute();
+    return this.createMessage(this.names);
   }
 }

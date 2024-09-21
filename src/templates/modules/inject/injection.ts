@@ -1,30 +1,14 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class CreateInjection {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'pluralUpperModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Pick<
+      IModuleNameDTO,
+      'pluralLowerModuleName' | 'pluralUpperModuleName'
+    >,
+  ) {}
 
   public execute(): string {
-    if (!this.names) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { I${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${

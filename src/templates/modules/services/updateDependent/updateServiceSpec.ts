@@ -1,36 +1,15 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class UpdateSpecDependentService {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Pick<
-          IModuleNameDTO,
-          'lowerModuleName' | 'upperModuleName' | 'pluralUpperModuleName'
-        >
-      | undefined,
-    private readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Pick<
+      IModuleNameDTO,
+      'lowerModuleName' | 'upperModuleName' | 'pluralUpperModuleName'
+    >,
+    private readonly fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ) {}
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } ${'from'} '@shared/errors/AppError';

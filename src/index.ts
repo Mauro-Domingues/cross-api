@@ -3,6 +3,7 @@
 import { argv } from 'node:process';
 import { IActionDTO } from '@interfaces/IActionDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { CustomError } from '@tools/customError';
@@ -46,24 +47,25 @@ new (class Main {
       this.getFatherNames.execute(),
     );
     this.actions = Object.freeze<IActionDTO>({
-      'make:provider': new CreateProvider(
-        this.arg,
-        this.getFatherNames.execute(),
-      ),
-      'list:provider': new ListProvider(),
-      'make:module': new CreateModule(
-        this.getNames.execute(),
-        this.getFatherNames.execute(),
-      ),
-      language: new ConfigLanguage(),
-      'make:api': new CreateApi(),
-      config: new ConfigJson(),
-      comands: new Board(),
-      revert: {
-        execute: (): void => {
-          this.deleteRegister.execute();
-          return this.createRegister.execute();
-        },
+      'make:provider': () =>
+        new CreateProvider(this.arg, this.getFatherNames.execute()),
+      'list:provider': () => new ListProvider(),
+      'make:module': () =>
+        new CreateModule(
+          this.getNames.execute() as IModuleNameDTO,
+          this.getFatherNames.execute(),
+        ),
+      language: () => new ConfigLanguage(),
+      'make:api': () => new CreateApi(),
+      config: () => new ConfigJson(),
+      comands: () => new Board(),
+      revert: () => {
+        return {
+          execute: (): void => {
+            this.deleteRegister.execute();
+            return this.createRegister.execute();
+          },
+        };
       },
     });
   }
@@ -106,6 +108,6 @@ new (class Main {
       this.createRegister.execute();
     }
 
-    return this.actions[this.comand].execute();
+    return this.actions[this.comand]().execute();
   }
 })().execute();

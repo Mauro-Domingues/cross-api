@@ -1,33 +1,18 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class CreateDependentRoute {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Pick<IModuleNameDTO, 'upperModuleName' | 'routeModuleName'>
-      | undefined,
-    private readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Pick<
+      IModuleNameDTO,
+      'upperModuleName' | 'routeModuleName'
+    >,
+    private readonly fatherNames: Pick<
+      IModuleNameDTO,
+      'pluralLowerModuleName' | 'lowerModuleName'
+    >,
+  ) {}
 
   public execute(): string {
-    if (!this.names || !this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import { Create${
       this.names.upperModuleName
     }Controller } ${'from'} '@modules/${

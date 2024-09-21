@@ -1,30 +1,11 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { CustomError } from '@tools/customError';
-import { Messages } from '@tools/messages';
 
 export class ListSpecController {
-  private readonly messages: IMessageDTO;
-
   public constructor(
-    private readonly names:
-      | Omit<IModuleNameDTO, 'pluralUpperModuleName'>
-      | undefined,
-  ) {
-    this.messages = Messages.getInstance().execute();
-  }
+    private readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
+  ) {}
 
   public execute(): string {
-    if (!this.names) {
-      throw new CustomError({
-        message: this.messages.modules.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
     return `import request ${'from'} 'supertest';
 import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { IConnection } ${'from'} '@shared/typeorm';
