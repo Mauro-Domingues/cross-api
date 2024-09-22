@@ -2,7 +2,6 @@ import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateContainerIndex } from '@templates/index/container';
-import { CustomError } from '@tools/customError';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
@@ -32,62 +31,6 @@ export abstract class BaseProvider {
     }
   }
 
-  private constructBase(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
-    this.fileManager.checkAndCreateMultiDirSync([
-      ['src', 'config'],
-      ['src', 'shared', 'container'],
-      ['src', 'modules', this.fatherNames.pluralLowerModuleName, 'providers'],
-    ]);
-    if (
-      !this.fileManager.checkIfExistsSync([
-        'src',
-        'shared',
-        'container',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        ['src', 'shared', 'container', 'index.ts'],
-        this.createContainerIndex.execute(),
-      );
-    }
-    //
-    if (
-      !this.fileManager.checkIfExistsSync([
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFile(
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ],
-        '',
-      );
-    }
-    return this.fileManager.createFile(
-      ['src', 'shared', 'container', 'index.ts'],
-      `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
-    );
-  }
-
   protected abstract createInfra(): void;
 
   protected abstract createConfig(): IMultiFileDTO;
@@ -104,19 +47,67 @@ export abstract class BaseProvider {
 
   protected abstract createInjection(): IMultiFileDTO;
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
+  private createBaseInfra(): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
+      ['src', 'config'],
+      ['src', 'shared', 'container'],
+      this.basePath,
+    ]);
+  }
 
-    this.constructBase();
+  private createBaseIndex(): void {
+    if (
+      !this.fileManager.checkIfExistsSync([
+        'src',
+        'shared',
+        'container',
+        'index.ts',
+      ])
+    ) {
+      this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
+        this.createContainerIndex.execute(),
+      );
+    }
+  }
+
+  private createBaseDependentIndex(): void {
+    if (this.fatherNames) {
+      if (
+        !this.fileManager.checkIfExistsSync([
+          'src',
+          'modules',
+          this.fatherNames.pluralLowerModuleName,
+          'providers',
+          'index.ts',
+        ])
+      ) {
+        this.fileManager.createFile(
+          [
+            'src',
+            'modules',
+            this.fatherNames.pluralLowerModuleName,
+            'providers',
+            'index.ts',
+          ],
+          '',
+        );
+      }
+      this.fileManager.createFile(
+        ['src', 'shared', 'container', 'index.ts'],
+        `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
+      );
+    }
+  }
+
+  public execute(): void {
+    this.createBaseInfra();
     this.createInfra();
+
+    this.createBaseIndex();
+    if (this.fatherNames) {
+      this.createBaseDependentIndex();
+    }
 
     return this.fileManager.checkAndCreateMultiFile([
       this.createConfig(),
