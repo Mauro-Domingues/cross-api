@@ -2,6 +2,7 @@ import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { Console } from '@tools/console';
 import { CreateAssets } from '@tools/makeApi/assets';
 import { CreateConfig } from '@tools/makeApi/config';
+import { CreateDocs } from '@tools/makeApi/docs';
 import { CreateDtos } from '@tools/makeApi/dtos';
 import { CreateInfra } from '@tools/makeApi/infra';
 import { CreateMiddlewares } from '@tools/makeApi/middlewares';
@@ -21,6 +22,7 @@ export class CreateApi {
   private readonly createInfra: CreateInfra;
   private readonly createUtils: CreateUtils;
   private readonly createTypes: CreateTypes;
+  private readonly createDocs: CreateDocs;
   private readonly createRoot: CreateRoot;
   private readonly createDtos: CreateDtos;
   private readonly messages: IMessageDTO;
@@ -37,6 +39,7 @@ export class CreateApi {
     this.createUtils = new CreateUtils();
     this.createTypes = new CreateTypes();
     this.console = Console.getInstance();
+    this.createDocs = new CreateDocs();
     this.createRoot = new CreateRoot();
     this.createDtos = new CreateDtos();
   }
@@ -48,6 +51,7 @@ export class CreateApi {
     this.createAssets.execute();
     this.createConfig.execute();
     this.createDtos.execute();
+    this.createDocs.execute();
     this.createRoutes.execute();
     this.createMiddlewares.execute();
     this.createShared.execute();
