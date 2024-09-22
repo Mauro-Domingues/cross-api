@@ -1,5 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { Concat } from '@tools/concat';
+import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
 import { CreateDependentControllers } from '@tools/makeModule/dependent/controllers';
 import { CreateDependentDtos } from '@tools/makeModule/dependent/dtos';
@@ -25,6 +27,8 @@ export class CreateDependentModule {
   private readonly createDependentInfra: CreateDependentInfra;
   private readonly createDependentDtos: CreateDependentDtos;
   private readonly messages: IMessageDTO;
+  private readonly console: Console;
+  private readonly concat: Concat;
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
@@ -82,6 +86,8 @@ export class CreateDependentModule {
       this.names,
       this.fatherNames,
     );
+    this.console = Console.getInstance();
+    this.concat = Concat.getInstance();
   }
 
   public execute(): void {
@@ -94,6 +100,22 @@ export class CreateDependentModule {
     this.createDependentSpecServices.execute();
     this.createDependentSpecControllers.execute();
     this.createDependentRoutes.execute();
-    return this.createDependentModuleInjection.execute();
+    this.createDependentModuleInjection.execute();
+    return this.console.execute({
+      message: [
+        '- ',
+        this.concat.execute(
+          (this.names as Pick<IModuleNameDTO, 'lowerModuleName'>)
+            .lowerModuleName,
+          'Module',
+        ),
+        ' ',
+        this.messages.comands.description.created,
+      ],
+      color: 'yellow',
+      bold: true,
+      breakStart: false,
+      breakEnd: false,
+    });
   }
 }
