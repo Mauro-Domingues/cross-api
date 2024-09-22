@@ -11,6 +11,7 @@ import {
 } from 'node:fs';
 import { resolve } from 'node:path';
 import { cwd } from 'node:process';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { IFileManagerDTO } from '@interfaces/ISingletonDTO';
 
 export class FileManager {
@@ -119,16 +120,7 @@ export class FileManager {
     });
   }
 
-  public checkAndCreateMultiFile(
-    data: Array<
-      [
-        Array<string>,
-        {
-          execute(): string;
-        },
-      ]
-    >,
-  ): void {
+  public checkAndCreateMultiFile(data: Array<IMultiFileDTO>): void {
     return data.forEach(fileData => this.checkAndCreateFile(...fileData));
   }
 

@@ -33,8 +33,12 @@ export class CreateRoutes {
       );
     }
 
+    this.fileManager.createFile(
+      ['src', 'routes', 'index.ts'],
+      this.createIndexRoute.execute(),
+    );
+
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'routes', 'index.ts'], this.createIndexRoute],
       [
         [
           'src',

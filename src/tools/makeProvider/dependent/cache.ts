@@ -1,4 +1,5 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCacheIndex } from '@templates/providers/cacheIndex';
 import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
@@ -25,6 +26,23 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
     this.createRedisCache = new CreateRedisCache();
     this.createFakeCache = new CreateFakeCache();
     this.createICache = new CreateICache();
+  }
+
+  private createInfra(): void {}
+
+  private createDtos(): IMultiFileDTO {
+    return [
+      [
+        'src',
+        'modules',
+        this.fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'fakes',
+        'FakeCacheProvider.ts',
+      ],
+      this.createFakeCache,
+    ];
   }
 
   public execute(): void {
