@@ -23,7 +23,10 @@ export class CreateProvider {
   }
 
   public execute(): void {
-    if (!this.providerName) {
+    const provider =
+      this.provider.list[this.providerName as keyof typeof this.provider.list];
+
+    if (!provider) {
       throw new CustomError({
         message: this.messages.providers.errors.notFound,
         color: 'red',
@@ -32,9 +35,6 @@ export class CreateProvider {
         breakEnd: true,
       });
     }
-
-    const provider =
-      this.provider.list[this.providerName as keyof typeof this.provider.list];
 
     provider.instance().execute();
 
