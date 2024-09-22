@@ -73,25 +73,8 @@ export abstract class BaseProvider {
 
   private createBaseDependentIndex(): void {
     if (this.fatherNames) {
-      if (
-        !this.fileManager.checkIfExistsSync([
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'index.ts',
-        ])
-      ) {
-        this.fileManager.createFile(
-          [
-            'src',
-            'modules',
-            this.fatherNames.pluralLowerModuleName,
-            'providers',
-            'index.ts',
-          ],
-          '',
-        );
+      if (!this.fileManager.checkIfExistsSync([...this.basePath, 'index.ts'])) {
+        this.fileManager.createFile([...this.basePath, 'index.ts'], '');
       }
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],
