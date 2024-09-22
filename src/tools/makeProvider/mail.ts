@@ -1,29 +1,42 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
+import { CreateDependentNodemailerMail } from '@templates/providers/implementations/dependentNodemailerMail';
+import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail';
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { BaseProvider } from '@tools/makeProvider/independent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeMailProvider extends BaseProvider {
+export class CreateMailProvider extends BaseProvider {
+  private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
+  private readonly createDependentSESMail: CreateDependentSESMail;
   private readonly createNodemailerMail: CreateNodemailerMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
-  private readonly createIMailDTO: CreateIMailDTO;
   private readonly createFakeMail: CreateFakeMail;
+  private readonly createIMailDTO: CreateIMailDTO;
   private readonly createSESMail: CreateSESMail;
   private readonly createIMail: CreateIMail;
 
-  public constructor() {
-    super();
+  public constructor(
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
+    super(fatherNames);
+    this.createDependentSESMail = new CreateDependentSESMail(this.fatherNames);
+    this.createDependentNodemailerMail = new CreateDependentNodemailerMail(
+      this.fatherNames,
+    );
     this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
-    this.createIMailDTO = new CreateIMailDTO();
     this.createFakeMail = new CreateFakeMail();
+    this.createIMailDTO = new CreateIMailDTO();
     this.createSESMail = new CreateSESMail();
     this.createIMail = new CreateIMail();
   }
@@ -32,17 +45,10 @@ export class MakeMailProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      ['src', 'shared', 'container', 'providers', 'MailProvider', 'dtos'],
-      ['src', 'shared', 'container', 'providers', 'MailProvider', 'fakes'],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'implementations',
-      ],
-      ['src', 'shared', 'container', 'providers', 'MailProvider', 'models'],
+      [...this.basePath, 'MailProvider', 'dtos'],
+      [...this.basePath, 'MailProvider', 'fakes'],
+      [...this.basePath, 'MailProvider', 'implementations'],
+      [...this.basePath, 'MailProvider', 'models'],
     ]);
   }
 
@@ -53,15 +59,7 @@ export class MakeMailProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'MailProvider',
-          'dtos',
-          'ISendMailDTO.ts',
-        ],
+        [...this.basePath, 'MailProvider', 'dtos', 'ISendMailDTO.ts'],
         this.createIMailDTO,
       ],
     ];
@@ -69,27 +67,38 @@ export class MakeMailProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'fakes',
-        'FakeMailProvider.ts',
-      ],
+      [...this.basePath, 'MailProvider', 'fakes', 'FakeMailProvider.ts'],
       this.createFakeMail,
     ];
   }
 
   protected createImplementations(): Array<IMultiFileDTO> {
+    if (this.fatherNames) {
+      return [
+        [
+          [
+            ...this.basePath,
+            'MailProvider',
+            'implementations',
+            'NodemailerMailProvider.ts',
+          ],
+          this.createDependentNodemailerMail,
+        ],
+        [
+          [
+            ...this.basePath,
+            'MailProvider',
+            'implementations',
+            'SESMailProvider.ts',
+          ],
+          this.createDependentSESMail,
+        ],
+      ];
+    }
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'MailProvider',
           'implementations',
           'NodemailerMailProvider.ts',
@@ -98,10 +107,7 @@ export class MakeMailProvider extends BaseProvider {
       ],
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'MailProvider',
           'implementations',
           'SESMailProvider.ts',
@@ -113,27 +119,19 @@ export class MakeMailProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailProvider',
-        'models',
-        'IMailProvider.ts',
-      ],
+      [...this.basePath, 'MailProvider', 'models', 'IMailProvider.ts'],
       this.createIMail,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      [...this.basePath, 'index.ts'],
       "import './MailProvider';\n",
     );
 
     return [
-      ['src', 'shared', 'container', 'providers', 'MailProvider', 'index.ts'],
+      [...this.basePath, 'MailProvider', 'index.ts'],
       this.createMailIndex,
     ];
   }

@@ -1,20 +1,25 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCacheIndex } from '@templates/providers/cacheIndex';
 import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { BaseProvider } from '@tools/makeProvider/independent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeCacheProvider extends BaseProvider {
+export class CreateCacheProvider extends BaseProvider {
   private readonly createCacheConfig: CreateCacheConfig;
-  private readonly createRedisCache: CreateRedisCache;
   private readonly createCacheIndex: CreateCacheIndex;
+  private readonly createRedisCache: CreateRedisCache;
   private readonly createFakeCache: CreateFakeCache;
   private readonly createICache: CreateICache;
 
-  public constructor() {
-    super();
+  public constructor(
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
+    super(fatherNames);
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
     this.createRedisCache = new CreateRedisCache();
@@ -28,16 +33,9 @@ export class MakeCacheProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'fakes'],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CacheProvider',
-        'implementations',
-      ],
-      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'models'],
+      [...this.basePath, 'CacheProvider', 'fakes'],
+      [...this.basePath, 'CacheProvider', 'implementations'],
+      [...this.basePath, 'CacheProvider', 'models'],
     ]);
   }
 
@@ -47,15 +45,7 @@ export class MakeCacheProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CacheProvider',
-        'fakes',
-        'FakeCacheProvider.ts',
-      ],
+      [...this.basePath, 'CacheProvider', 'fakes', 'FakeCacheProvider.ts'],
       this.createFakeCache,
     ];
   }
@@ -64,10 +54,7 @@ export class MakeCacheProvider extends BaseProvider {
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'CacheProvider',
           'implementations',
           'RedisCacheProvider.ts',
@@ -79,27 +66,19 @@ export class MakeCacheProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'CacheProvider',
-        'models',
-        'ICacheProvider.ts',
-      ],
+      [...this.basePath, 'CacheProvider', 'models', 'ICacheProvider.ts'],
       this.createICache,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      [...this.basePath, 'index.ts'],
       "import './CacheProvider';\n",
     );
 
     return [
-      ['src', 'shared', 'container', 'providers', 'CacheProvider', 'index.ts'],
+      [...this.basePath, 'CacheProvider', 'index.ts'],
       this.createCacheIndex,
     ];
   }

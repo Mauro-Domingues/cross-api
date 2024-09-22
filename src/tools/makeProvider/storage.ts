@@ -6,9 +6,9 @@ import { CreateDiskStorage } from '@templates/providers/implementations/DiskStor
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeDependentStorageProvider extends DependentBaseProvider {
+export class CreateStorageProvider extends BaseProvider {
   private readonly createStorageConfig: CreateStorageConfig;
   private readonly createStorageIndex: CreateStorageIndex;
   private readonly createDiskStorage: CreateDiskStorage;
@@ -34,34 +34,11 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
 
   protected declare createDtos: () => Array<IMultiFileDTO>;
 
-  protected createInfra(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): void {
+  protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'fakes',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'implementations',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'models',
-      ],
+      [...this.basePath, 'StorageProvider', 'fakes'],
+      [...this.basePath, 'StorageProvider', 'implementations'],
+      [...this.basePath, 'StorageProvider', 'models'],
     ]);
   }
 
@@ -69,33 +46,18 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
     return [['src', 'config', 'storage.ts'], this.createStorageConfig];
   }
 
-  protected createFake(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createFake(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'fakes',
-        'FakeStorageProvider.ts',
-      ],
+      [...this.basePath, 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'],
       this.createFakeStorage,
     ];
   }
 
-  protected createImplementations(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): Array<IMultiFileDTO> {
+  protected createImplementations(): Array<IMultiFileDTO> {
     return [
       [
         [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
+          ...this.basePath,
           'StorageProvider',
           'implementations',
           'DiskStorageProvider.ts',
@@ -104,10 +66,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       ],
       [
         [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
+          ...this.basePath,
           'StorageProvider',
           'implementations',
           'S3StorageProvider.ts',
@@ -117,46 +76,21 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
     ];
   }
 
-  protected createModel(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createModel(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'models',
-        'IStorageProvider.ts',
-      ],
+      [...this.basePath, 'StorageProvider', 'models', 'IStorageProvider.ts'],
       this.createIStorage,
     ];
   }
 
-  protected createInjection(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
+      [...this.basePath, 'index.ts'],
       "import './StorageProvider';\n",
     );
 
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'StorageProvider',
-        'index.ts',
-      ],
+      [...this.basePath, 'StorageProvider', 'index.ts'],
       this.createStorageIndex,
     ];
   }

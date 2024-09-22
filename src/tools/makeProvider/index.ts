@@ -33,16 +33,15 @@ export class CreateProvider {
       });
     }
 
-    this.provider.list[this.providerName as keyof typeof this.provider.list]
-      [this.provider.key]()
-      .execute();
+    const provider =
+      this.provider.list[this.providerName as keyof typeof this.provider.list];
+
+    provider.instance().execute();
 
     this.console.execute({
       message: [
         '- ',
-        this.provider.list[
-          this.providerName as keyof typeof this.provider.list
-        ].description.trimEnd(),
+        provider.description.trimEnd(),
         ' ',
         this.messages.comands.description.created,
       ],
@@ -53,12 +52,8 @@ export class CreateProvider {
     });
 
     return new PackageManager(
-      this.provider.list[
-        this.providerName as keyof typeof this.provider.list
-      ].dependencies,
-      this.provider.list[
-        this.providerName as keyof typeof this.provider.list
-      ].devDependencies,
+      provider.dependencies,
+      provider.devDependencies,
     ).execute('install');
   }
 }

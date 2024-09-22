@@ -10,9 +10,9 @@ import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
 import { CreateIQueue } from '@templates/providers/models/IQueue';
 import { CreateJobIndex } from '@templates/providers/public/jobIndex';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
-import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeDependentQueueProvider extends DependentBaseProvider {
+export class CreateQueueProvider extends BaseProvider {
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
@@ -42,51 +42,14 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     this.createIQueue = new CreateIQueue();
   }
 
-  protected createInfra(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): void {
+  protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'jobs'],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'public',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'dtos',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'fakes',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'implementations',
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'models',
-      ],
+      [...this.basePath, 'QueueProvider', 'public'],
+      [...this.basePath, 'QueueProvider', 'dtos'],
+      [...this.basePath, 'QueueProvider', 'fakes'],
+      [...this.basePath, 'QueueProvider', 'implementations'],
+      [...this.basePath, 'QueueProvider', 'models'],
     ]);
   }
 
@@ -94,72 +57,37 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     return [['src', 'config', 'queue.ts'], this.createQueueConfig];
   }
 
-  protected createJobs(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): Array<IMultiFileDTO> {
+  protected createJobs(): Array<IMultiFileDTO> {
     return [
       [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [
-        [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
-          'QueueProvider',
-          'public',
-          'jobs.ts',
-        ],
+        [...this.basePath, 'QueueProvider', 'public', 'jobs.ts'],
         this.createJobIndex,
       ],
     ];
   }
 
-  protected createDtos(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): Array<IMultiFileDTO> {
+  protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
-          'QueueProvider',
-          'dtos',
-          'IQueueDTO.ts',
-        ],
+        [...this.basePath, 'QueueProvider', 'dtos', 'IQueueDTO.ts'],
         this.createIQueueDTO,
       ],
     ];
   }
 
-  protected createFake(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createFake(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'fakes',
-        'FakeQueueProvider.ts',
-      ],
+      [...this.basePath, 'QueueProvider', 'fakes', 'FakeQueueProvider.ts'],
       this.createFakeQueue,
     ];
   }
 
-  protected createImplementations(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): Array<IMultiFileDTO> {
+  protected createImplementations(): Array<IMultiFileDTO> {
     return [
       [
         [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
+          ...this.basePath,
           'QueueProvider',
           'implementations',
           'KueProvider.ts',
@@ -168,10 +96,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       ],
       [
         [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
+          ...this.basePath,
           'QueueProvider',
           'implementations',
           'BeeProvider.ts',
@@ -180,10 +105,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       ],
       [
         [
-          'src',
-          'modules',
-          fatherNames.pluralLowerModuleName,
-          'providers',
+          ...this.basePath,
           'QueueProvider',
           'implementations',
           'BullProvider.ts',
@@ -193,46 +115,21 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     ];
   }
 
-  protected createModel(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createModel(): IMultiFileDTO {
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'models',
-        'IQueueProvider.ts',
-      ],
+      [...this.basePath, 'QueueProvider', 'models', 'IQueueProvider.ts'],
       this.createIQueue,
     ];
   }
 
-  protected createInjection(
-    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
-  ): IMultiFileDTO {
+  protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
+      [...this.basePath, 'index.ts'],
       "import './QueueProvider';\n",
     );
 
     return [
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'QueueProvider',
-        'index.ts',
-      ],
+      [...this.basePath, 'QueueProvider', 'index.ts'],
       this.createQueueIndex,
     ];
   }

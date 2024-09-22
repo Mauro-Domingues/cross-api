@@ -1,23 +1,14 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IProviderListDTO } from '@interfaces/IProviderListDTO';
-import { MakeDependentCacheProvider } from '@tools/makeProvider/dependent/cache';
-import { MakeDependentCryptoProvider } from '@tools/makeProvider/dependent/crypto';
-import { MakeDependentHashProvider } from '@tools/makeProvider/dependent/hash';
-import { MakeDependentLeadProvider } from '@tools/makeProvider/dependent/lead';
-import { MakeDependentMailProvider } from '@tools/makeProvider/dependent/mail';
-import { MakeDependentMailTemplateProvider } from '@tools/makeProvider/dependent/mailTemplate';
-import { MakeDependentNotificationProvider } from '@tools/makeProvider/dependent/notification';
-import { MakeDependentQueueProvider } from '@tools/makeProvider/dependent/queue';
-import { MakeDependentStorageProvider } from '@tools/makeProvider/dependent/storage';
-import { MakeCacheProvider } from '@tools/makeProvider/independent/cache';
-import { MakeCryptoProvider } from '@tools/makeProvider/independent/crypto';
-import { MakeHashProvider } from '@tools/makeProvider/independent/hash';
-import { MakeLeadProvider } from '@tools/makeProvider/independent/lead';
-import { MakeMailProvider } from '@tools/makeProvider/independent/mail';
-import { MakeMailTemplateProvider } from '@tools/makeProvider/independent/mailTemplate';
-import { MakeNotificationProvider } from '@tools/makeProvider/independent/notification';
-import { MakeQueueProvider } from '@tools/makeProvider/independent/queue';
-import { MakeStorageProvider } from '@tools/makeProvider/independent/storage';
+import { CreateCacheProvider } from '@tools/makeProvider/cache';
+import { CreateCryptoProvider } from '@tools/makeProvider/crypto';
+import { CreateHashProvider } from '@tools/makeProvider/hash';
+import { CreateLeadProvider } from '@tools/makeProvider/lead';
+import { CreateMailProvider } from '@tools/makeProvider/mail';
+import { CreateMailTemplateProvider } from '@tools/makeProvider/mailTemplate';
+import { CreateNotificationProvider } from '@tools/makeProvider/notification';
+import { CreateQueueProvider } from '@tools/makeProvider/queue';
+import { CreateStorageProvider } from '@tools/makeProvider/storage';
 
 export class Provider {
   public readonly key: 'dependent' | 'independent';
@@ -38,48 +29,38 @@ export class Provider {
       cache: {
         name: 'cache',
         description: 'CacheProvider',
-        independent: () => new MakeCacheProvider(),
-        dependent: () => new MakeDependentCacheProvider(this.fatherNames),
+        instance: () => new CreateCacheProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
       },
       crypto: {
         name: 'crypto',
         description: 'CryptoProvider',
-        independent: () => new MakeCryptoProvider(),
-        dependent: () => new MakeDependentCryptoProvider(this.fatherNames),
+        instance: () => new CreateCryptoProvider(this.fatherNames),
         dependencies: ['jsonwebtoken', 'pem-jwk'],
         devDependencies: ['@types/jsonwebtoken', '@types/pem-jwk'],
       },
       hash: {
         name: 'hash',
         description: 'HashProvider',
-        independent: () => new MakeHashProvider(),
-        dependent: () => new MakeDependentHashProvider(this.fatherNames),
+        instance: () => new CreateHashProvider(this.fatherNames),
         dependencies: ['bcrypt'],
         devDependencies: ['@types/bcrypt'],
       },
       lead: {
         name: 'lead',
         description: 'leadProvider',
-        independent: () => new MakeLeadProvider(),
-        dependent: () => new MakeDependentLeadProvider(this.fatherNames),
+        instance: () => new CreateLeadProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
       },
       mail: {
         name: 'mail',
         description: 'MailProvider',
-        independent: () => ({
+        instance: () => ({
           execute: (): void => {
-            new MakeMailTemplateProvider().execute();
-            return new MakeMailProvider().execute();
-          },
-        }),
-        dependent: () => ({
-          execute: (): void => {
-            new MakeDependentMailTemplateProvider(this.fatherNames).execute();
-            return new MakeDependentMailProvider(this.fatherNames).execute();
+            new CreateMailTemplateProvider(this.fatherNames).execute();
+            return new CreateMailProvider(this.fatherNames).execute();
           },
         }),
         dependencies: ['@aws-sdk/client-ses', 'handlebars', 'nodemailer'],
@@ -88,34 +69,28 @@ export class Provider {
       mailTemplate: {
         name: 'mailTemplate',
         description: 'MailTemplateProvider',
-        independent: () => new MakeMailTemplateProvider(),
-        dependent: () =>
-          new MakeDependentMailTemplateProvider(this.fatherNames),
+        instance: () => new CreateMailTemplateProvider(this.fatherNames),
         dependencies: ['handlebars'],
         devDependencies: [],
       },
       queue: {
         name: 'queue',
         description: 'QueueProvider',
-        independent: () => new MakeQueueProvider(),
-        dependent: () => new MakeDependentQueueProvider(this.fatherNames),
+        instance: () => new CreateQueueProvider(this.fatherNames),
         dependencies: ['bee-queue', 'bull', 'kue'],
         devDependencies: ['@types/kue'],
       },
       notification: {
         name: 'notification',
         description: 'NotificationProvider',
-        independent: () => new MakeNotificationProvider(),
-        dependent: () =>
-          new MakeDependentNotificationProvider(this.fatherNames),
+        instance: () => new CreateNotificationProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
       },
       storage: {
         name: 'storage',
         description: 'StorageProvider',
-        independent: () => new MakeStorageProvider(),
-        dependent: () => new MakeDependentStorageProvider(this.fatherNames),
+        instance: () => new CreateStorageProvider(this.fatherNames),
         dependencies: ['@aws-sdk/client-s3', 'mime@^3.0.0', 'multer'],
         devDependencies: ['@types/mime@^3.0.1', '@types/multer'],
       },

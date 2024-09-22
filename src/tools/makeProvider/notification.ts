@@ -1,3 +1,4 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
@@ -6,25 +7,29 @@ import { CreateFirebaseNotification } from '@templates/providers/implementations
 import { CreateOneSignalNotification } from '@templates/providers/implementations/OneSignalNotification';
 import { CreateINotification } from '@templates/providers/models/INotification';
 import { CreateNotificationIndex } from '@templates/providers/notificationIndex';
-import { BaseProvider } from '@tools/makeProvider/independent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeNotificationProvider extends BaseProvider {
+export class CreateNotificationProvider extends BaseProvider {
   private readonly createOneSignalNotification: CreateOneSignalNotification;
   private readonly createFirebaseNotification: CreateFirebaseNotification;
   private readonly createNotificationConfig: CreateNotificationConfig;
   private readonly createNotificationIndex: CreateNotificationIndex;
-  private readonly createFakeNotification: CreateFakeNotification;
   private readonly createINotificationDTO: CreateINotificationDTO;
+  private readonly createFakeNotification: CreateFakeNotification;
   private readonly createINotification: CreateINotification;
 
-  public constructor() {
-    super();
+  public constructor(
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
+    super(fatherNames);
     this.createOneSignalNotification = new CreateOneSignalNotification();
     this.createFirebaseNotification = new CreateFirebaseNotification();
     this.createNotificationConfig = new CreateNotificationConfig();
     this.createNotificationIndex = new CreateNotificationIndex();
-    this.createFakeNotification = new CreateFakeNotification();
     this.createINotificationDTO = new CreateINotificationDTO();
+    this.createFakeNotification = new CreateFakeNotification();
     this.createINotification = new CreateINotification();
   }
 
@@ -32,38 +37,10 @@ export class MakeNotificationProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'dtos',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'fakes',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'implementations',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'models',
-      ],
+      [...this.basePath, 'NotificationProvider', 'dtos'],
+      [...this.basePath, 'NotificationProvider', 'fakes'],
+      [...this.basePath, 'NotificationProvider', 'implementations'],
+      [...this.basePath, 'NotificationProvider', 'models'],
     ]);
   }
 
@@ -78,10 +55,7 @@ export class MakeNotificationProvider extends BaseProvider {
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'NotificationProvider',
           'dtos',
           'ISendNotificationDTO.ts',
@@ -94,10 +68,7 @@ export class MakeNotificationProvider extends BaseProvider {
   protected createFake(): IMultiFileDTO {
     return [
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
+        ...this.basePath,
         'NotificationProvider',
         'fakes',
         'FakeNotificationProvider.ts',
@@ -110,10 +81,7 @@ export class MakeNotificationProvider extends BaseProvider {
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'NotificationProvider',
           'implementations',
           'OneSignalProvider.ts',
@@ -122,10 +90,7 @@ export class MakeNotificationProvider extends BaseProvider {
       ],
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'NotificationProvider',
           'implementations',
           'FirebaseProvider.ts',
@@ -138,10 +103,7 @@ export class MakeNotificationProvider extends BaseProvider {
   protected createModel(): IMultiFileDTO {
     return [
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
+        ...this.basePath,
         'NotificationProvider',
         'models',
         'INotificationProvider.ts',
@@ -152,19 +114,12 @@ export class MakeNotificationProvider extends BaseProvider {
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      [...this.basePath, 'index.ts'],
       "import './NotificationProvider';\n",
     );
 
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'NotificationProvider',
-        'index.ts',
-      ],
+      [...this.basePath, 'NotificationProvider', 'index.ts'],
       this.createNotificationIndex,
     ];
   }

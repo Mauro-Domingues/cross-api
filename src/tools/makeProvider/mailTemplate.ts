@@ -1,3 +1,4 @@
+import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
@@ -5,9 +6,9 @@ import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTempl
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
 import { CreateMailTemplateIndex } from '@templates/providers/mailTemplateIndex';
 import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
-import { BaseProvider } from '@tools/makeProvider/independent/base';
+import { BaseProvider } from '@tools/makeProvider/base';
 
-export class MakeMailTemplateProvider extends BaseProvider {
+export class CreateMailTemplateProvider extends BaseProvider {
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
   private readonly createMailTemplateConfig: CreateMailTemplateConfig;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
@@ -15,13 +16,17 @@ export class MakeMailTemplateProvider extends BaseProvider {
   private readonly createIMailTemplateDTO: CreateIMailTemplateDTO;
   private readonly createIMailTemplate: CreateIMailTemplate;
 
-  public constructor() {
-    super();
+  public constructor(
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
+  ) {
+    super(fatherNames);
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
     this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
-    this.createFakeMailTemplate = new CreateFakeMailTemplate();
     this.createIMailTemplateDTO = new CreateIMailTemplateDTO();
+    this.createFakeMailTemplate = new CreateFakeMailTemplate();
     this.createIMailTemplate = new CreateIMailTemplate();
   }
 
@@ -29,38 +34,10 @@ export class MakeMailTemplateProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'dtos',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'fakes',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'implementations',
-      ],
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'models',
-      ],
+      [...this.basePath, 'MailTemplateProvider', 'dtos'],
+      [...this.basePath, 'MailTemplateProvider', 'fakes'],
+      [...this.basePath, 'MailTemplateProvider', 'implementations'],
+      [...this.basePath, 'MailTemplateProvider', 'models'],
     ]);
   }
 
@@ -75,10 +52,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'MailTemplateProvider',
           'dtos',
           'IParseMailTemplateDTO.ts',
@@ -91,10 +65,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
   protected createFake(): IMultiFileDTO {
     return [
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
+        ...this.basePath,
         'MailTemplateProvider',
         'fakes',
         'FakeMailTemplateProvider.ts',
@@ -107,10 +78,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
     return [
       [
         [
-          'src',
-          'shared',
-          'container',
-          'providers',
+          ...this.basePath,
           'MailTemplateProvider',
           'implementations',
           'HandlebarsMailTemplateProvider.ts',
@@ -123,10 +91,7 @@ export class MakeMailTemplateProvider extends BaseProvider {
   protected createModel(): IMultiFileDTO {
     return [
       [
-        'src',
-        'shared',
-        'container',
-        'providers',
+        ...this.basePath,
         'MailTemplateProvider',
         'models',
         'IMailTemplateProvider.ts',
@@ -137,19 +102,12 @@ export class MakeMailTemplateProvider extends BaseProvider {
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      [...this.basePath, 'index.ts'],
       "import './MailTemplateProvider';\n",
     );
 
     return [
-      [
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'MailTemplateProvider',
-        'index.ts',
-      ],
+      [...this.basePath, 'MailTemplateProvider', 'index.ts'],
       this.createMailTemplateIndex,
     ];
   }

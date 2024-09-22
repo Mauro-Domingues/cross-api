@@ -1,13 +1,13 @@
-import { MakeCacheProvider } from '@tools/makeProvider/independent/cache';
+import { CreateCacheProvider } from '@tools/makeProvider/cache';
 
 export class CreateProviders {
-  private readonly makeCacheProvider: MakeCacheProvider;
+  private readonly createCacheProvider: CreateCacheProvider;
 
   public constructor() {
-    this.makeCacheProvider = new MakeCacheProvider();
+    this.createCacheProvider = new CreateCacheProvider(undefined);
   }
 
   public execute(): void {
-    return this.makeCacheProvider.execute();
+    return this.createCacheProvider.execute();
   }
 }
