@@ -1,3 +1,4 @@
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateHashConfig } from '@templates/providers/config/hashConfig';
 import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';
@@ -21,13 +22,12 @@ export class MakeHashProvider extends BaseProvider {
     this.createHash = new CreateHash();
   }
 
-  public execute(): void {
-    this.constructBase();
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      "import './HashProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
+  protected declare createDtos: () => Array<IMultiFileDTO>;
+
+  protected declare createJobs: () => Array<IMultiFileDTO>;
+
+  protected createInfra(): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'fakes'],
       [
         'src',
@@ -39,20 +39,29 @@ export class MakeHashProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'HashProvider', 'models'],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'hash.ts'], this.createHashConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'hash.ts'], this.createHashConfig];
+  }
+
+  protected createFake(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'fakes',
-          'FakeHashProvider.ts',
-        ],
-        this.createFakeHash,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'fakes',
+        'FakeHashProvider.ts',
       ],
+      this.createFakeHash,
+    ];
+  }
+
+  protected createImplementations(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -65,22 +74,33 @@ export class MakeHashProvider extends BaseProvider {
         ],
         this.createHash,
       ],
+    ];
+  }
+
+  protected createModel(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'HashProvider',
-          'models',
-          'IHashProvider.ts',
-        ],
-        this.createIHash,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'HashProvider',
+        'models',
+        'IHashProvider.ts',
       ],
-      [
-        ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
-        this.createHashIndex,
-      ],
-    ]);
+      this.createIHash,
+    ];
+  }
+
+  protected createInjection(): IMultiFileDTO {
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      "import './HashProvider';\n",
+    );
+
+    return [
+      ['src', 'shared', 'container', 'providers', 'HashProvider', 'index.ts'],
+      this.createHashIndex,
+    ];
   }
 }

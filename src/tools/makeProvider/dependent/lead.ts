@@ -1,4 +1,5 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
@@ -6,7 +7,6 @@ import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
 import { CreateILead } from '@templates/providers/models/ILead';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentLeadProvider extends DependentBaseProvider {
@@ -33,33 +33,16 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
     this.createILead = new CreateILead();
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
+  protected declare createJobs: () => Array<IMultiFileDTO>;
 
-    this.constructBase();
-    this.fileManager.createFile(
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './LeadProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'LeadProvider',
         'dtos',
@@ -67,7 +50,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'LeadProvider',
         'fakes',
@@ -75,7 +58,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'LeadProvider',
         'implementations',
@@ -83,19 +66,27 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'LeadProvider',
         'models',
       ],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'lead.ts'], this.createLeadConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'lead.ts'], this.createLeadConfig];
+  }
+
+  protected createDtos(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'LeadProvider',
           'dtos',
@@ -107,7 +98,7 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'LeadProvider',
           'dtos',
@@ -115,23 +106,35 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
         ],
         this.createIAuthDTO,
       ],
+    ];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ],
-        this.createFakeLead,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'fakes',
+        'FakeLeadProvider.ts',
       ],
+      this.createFakeLead,
+    ];
+  }
+
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'LeadProvider',
           'implementations',
@@ -139,29 +142,50 @@ export class MakeDependentLeadProvider extends DependentBaseProvider {
         ],
         this.createRDStationLead,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ],
-        this.createILead,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'models',
+        'ILeadProvider.ts',
       ],
+      this.createILead,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'LeadProvider',
-          'index.ts',
-        ],
-        this.createLeadIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './LeadProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'LeadProvider',
+        'index.ts',
+      ],
+      this.createLeadIndex,
+    ];
   }
 }

@@ -1,3 +1,4 @@
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
@@ -27,13 +28,10 @@ export class MakeLeadProvider extends BaseProvider {
     this.createILead = new CreateILead();
   }
 
-  public execute(): void {
-    this.constructBase();
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      "import './LeadProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
+  protected declare createJobs: () => Array<IMultiFileDTO>;
+
+  protected createInfra(): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'dtos'],
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'fakes'],
       [
@@ -46,8 +44,14 @@ export class MakeLeadProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'LeadProvider', 'models'],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'lead.ts'], this.createLeadConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'lead.ts'], this.createLeadConfig];
+  }
+
+  protected createDtos(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -72,18 +76,26 @@ export class MakeLeadProvider extends BaseProvider {
         ],
         this.createIAuthDTO,
       ],
+    ];
+  }
+
+  protected createFake(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'fakes',
-          'FakeLeadProvider.ts',
-        ],
-        this.createFakeLead,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'LeadProvider',
+        'fakes',
+        'FakeLeadProvider.ts',
       ],
+      this.createFakeLead,
+    ];
+  }
+
+  protected createImplementations(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -96,22 +108,33 @@ export class MakeLeadProvider extends BaseProvider {
         ],
         this.createRDStationLead,
       ],
+    ];
+  }
+
+  protected createModel(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'LeadProvider',
-          'models',
-          'ILeadProvider.ts',
-        ],
-        this.createILead,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'LeadProvider',
+        'models',
+        'ILeadProvider.ts',
       ],
-      [
-        ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
-        this.createLeadIndex,
-      ],
-    ]);
+      this.createILead,
+    ];
+  }
+
+  protected createInjection(): IMultiFileDTO {
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      "import './LeadProvider';\n",
+    );
+
+    return [
+      ['src', 'shared', 'container', 'providers', 'LeadProvider', 'index.ts'],
+      this.createLeadIndex,
+    ];
   }
 }

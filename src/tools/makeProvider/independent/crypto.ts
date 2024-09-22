@@ -1,3 +1,4 @@
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
@@ -24,13 +25,10 @@ export class MakeCryptoProvider extends BaseProvider {
     this.createCrypto = new CreateCrypto();
   }
 
-  public execute(): void {
-    this.constructBase();
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      "import './CryptoProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
+  protected declare createJobs: () => Array<IMultiFileDTO>;
+
+  protected createInfra(): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'fakes'],
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'dtos'],
       [
@@ -43,20 +41,14 @@ export class MakeCryptoProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'models'],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
-      [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CryptoProvider',
-          'fakes',
-          'FakeCryptoProvider.ts',
-        ],
-        this.createFakeCrypto,
-      ],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'crypto.ts'], this.createCryptoConfig];
+  }
+
+  protected createDtos(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -69,6 +61,26 @@ export class MakeCryptoProvider extends BaseProvider {
         ],
         this.createICryptoDTO,
       ],
+    ];
+  }
+
+  protected createFake(): IMultiFileDTO {
+    return [
+      [
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CryptoProvider',
+        'fakes',
+        'FakeCryptoProvider.ts',
+      ],
+      this.createFakeCrypto,
+    ];
+  }
+
+  protected createImplementations(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -81,29 +93,33 @@ export class MakeCryptoProvider extends BaseProvider {
         ],
         this.createCrypto,
       ],
+    ];
+  }
+
+  protected createModel(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CryptoProvider',
-          'models',
-          'ICryptoProvider.ts',
-        ],
-        this.createICrypto,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'CryptoProvider',
+        'models',
+        'ICryptoProvider.ts',
       ],
-      [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'CryptoProvider',
-          'index.ts',
-        ],
-        this.createCryptoIndex,
-      ],
-    ]);
+      this.createICrypto,
+    ];
+  }
+
+  protected createInjection(): IMultiFileDTO {
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      "import './CryptoProvider';\n",
+    );
+
+    return [
+      ['src', 'shared', 'container', 'providers', 'CryptoProvider', 'index.ts'],
+      this.createCryptoIndex,
+    ];
   }
 }

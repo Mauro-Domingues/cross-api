@@ -5,7 +5,6 @@ import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCacheProvider extends DependentBaseProvider {
@@ -28,14 +27,53 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
     this.createICache = new CreateICache();
   }
 
-  private createInfra(): void {}
+  protected declare createDtos: () => Array<IMultiFileDTO>;
 
-  private createDtos(): IMultiFileDTO {
+  protected declare createJobs: () => Array<IMultiFileDTO>;
+
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'fakes',
+      ],
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'implementations',
+      ],
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'models',
+      ],
+    ]);
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'cache.ts'], this.createCacheConfig];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
     return [
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'CacheProvider',
         'fakes',
@@ -45,73 +83,15 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
     ];
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
-    this.constructBase();
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './CacheProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'fakes',
-      ],
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'implementations',
-      ],
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'CacheProvider',
-        'models',
-      ],
-    ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'cache.ts'], this.createCacheConfig],
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CacheProvider',
-          'fakes',
-          'FakeCacheProvider.ts',
-        ],
-        this.createFakeCache,
-      ],
-      [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'CacheProvider',
           'implementations',
@@ -119,29 +99,50 @@ export class MakeDependentCacheProvider extends DependentBaseProvider {
         ],
         this.createRedisCache,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CacheProvider',
-          'models',
-          'ICacheProvider.ts',
-        ],
-        this.createICache,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'models',
+        'ICacheProvider.ts',
       ],
+      this.createICache,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CacheProvider',
-          'index.ts',
-        ],
-        this.createCacheIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './CacheProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CacheProvider',
+        'index.ts',
+      ],
+      this.createCacheIndex,
+    ];
   }
 }

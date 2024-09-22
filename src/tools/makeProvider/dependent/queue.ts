@@ -1,4 +1,5 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
@@ -7,9 +8,8 @@ import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
 import { CreateBullQueue } from '@templates/providers/implementations/BullQueue';
 import { CreateKueQueue } from '@templates/providers/implementations/KueQueue';
 import { CreateIQueue } from '@templates/providers/models/IQueue';
-import { CreateJobs } from '@templates/providers/public/jobs';
+import { CreateJobIndex } from '@templates/providers/public/jobIndex';
 import { CreateQueueIndex } from '@templates/providers/queueIndex';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentQueueProvider extends DependentBaseProvider {
@@ -21,8 +21,8 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
   private readonly createIQueueDTO: CreateIQueueDTO;
   private readonly createKueQueue: CreateKueQueue;
   private readonly createBeeQueue: CreateBeeQueue;
+  private readonly createJobIndex: CreateJobIndex;
   private readonly createIQueue: CreateIQueue;
-  private readonly createJobs: CreateJobs;
 
   public constructor(
     protected readonly fatherNames:
@@ -38,38 +38,19 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
     this.createFakeQueue = new CreateFakeQueue();
     this.createKueQueue = new CreateKueQueue();
     this.createBeeQueue = new CreateBeeQueue();
+    this.createJobIndex = new CreateJobIndex();
     this.createIQueue = new CreateIQueue();
-    this.createJobs = new CreateJobs();
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
-
-    this.constructBase();
-    this.fileManager.createFile(
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './QueueProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'jobs'],
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'QueueProvider',
         'public',
@@ -77,7 +58,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'QueueProvider',
         'dtos',
@@ -85,7 +66,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'QueueProvider',
         'fakes',
@@ -93,7 +74,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'QueueProvider',
         'implementations',
@@ -101,32 +82,47 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'QueueProvider',
         'models',
       ],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'queue.ts'], this.createQueueConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'queue.ts'], this.createQueueConfig];
+  }
+
+  protected createJobs(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'QueueProvider',
           'public',
           'jobs.ts',
         ],
-        this.createJobs,
+        this.createJobIndex,
       ],
+    ];
+  }
+
+  protected createDtos(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'QueueProvider',
           'dtos',
@@ -134,23 +130,35 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
         ],
         this.createIQueueDTO,
       ],
+    ];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'QueueProvider',
-          'fakes',
-          'FakeQueueProvider.ts',
-        ],
-        this.createFakeQueue,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'fakes',
+        'FakeQueueProvider.ts',
       ],
+      this.createFakeQueue,
+    ];
+  }
+
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'QueueProvider',
           'implementations',
@@ -162,7 +170,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'QueueProvider',
           'implementations',
@@ -174,7 +182,7 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'QueueProvider',
           'implementations',
@@ -182,29 +190,50 @@ export class MakeDependentQueueProvider extends DependentBaseProvider {
         ],
         this.createBullQueue,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'QueueProvider',
-          'models',
-          'IQueueProvider.ts',
-        ],
-        this.createIQueue,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'models',
+        'IQueueProvider.ts',
       ],
+      this.createIQueue,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'QueueProvider',
-          'index.ts',
-        ],
-        this.createQueueIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './QueueProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'QueueProvider',
+        'index.ts',
+      ],
+      this.createQueueIndex,
+    ];
   }
 }

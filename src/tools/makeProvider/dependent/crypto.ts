@@ -1,11 +1,11 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
 import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentCryptoProvider extends DependentBaseProvider {
@@ -30,33 +30,16 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
     this.createCrypto = new CreateCrypto();
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
+  protected declare createJobs: () => Array<IMultiFileDTO>;
 
-    this.constructBase();
-    this.fileManager.createFile(
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './CryptoProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
         'fakes',
@@ -64,7 +47,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
         'dtos',
@@ -72,7 +55,7 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
         'implementations',
@@ -80,31 +63,27 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'CryptoProvider',
         'models',
       ],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'crypto.ts'], this.createCryptoConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'crypto.ts'], this.createCryptoConfig];
+  }
+
+  protected createDtos(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'fakes',
-          'FakeCryptoProvider.ts',
-        ],
-        this.createFakeCrypto,
-      ],
-      [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'CryptoProvider',
           'dtos',
@@ -112,11 +91,35 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
         ],
         this.createICryptoDTO,
       ],
+    ];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'fakes',
+        'FakeCryptoProvider.ts',
+      ],
+      this.createFakeCrypto,
+    ];
+  }
+
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'CryptoProvider',
           'implementations',
@@ -124,29 +127,50 @@ export class MakeDependentCryptoProvider extends DependentBaseProvider {
         ],
         this.createCrypto,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'models',
-          'ICryptoProvider.ts',
-        ],
-        this.createICrypto,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'models',
+        'ICryptoProvider.ts',
       ],
+      this.createICrypto,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'CryptoProvider',
-          'index.ts',
-        ],
-        this.createCryptoIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './CryptoProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'CryptoProvider',
+        'index.ts',
+      ],
+      this.createCryptoIndex,
+    ];
   }
 }

@@ -1,4 +1,5 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
@@ -6,7 +7,6 @@ import { CreateDependentNodemailerMail } from '@templates/providers/implementati
 import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentMailProvider extends DependentBaseProvider {
@@ -35,33 +35,16 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
     this.createIMail = new CreateIMail();
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
+  protected declare createJobs: () => Array<IMultiFileDTO>;
 
-    this.constructBase();
-    this.fileManager.createFile(
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './MailProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'MailProvider',
         'dtos',
@@ -69,7 +52,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'MailProvider',
         'fakes',
@@ -77,7 +60,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'MailProvider',
         'implementations',
@@ -85,19 +68,27 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'MailProvider',
         'models',
       ],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'mail.ts'], this.createMailConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'mail.ts'], this.createMailConfig];
+  }
+
+  protected createDtos(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'MailProvider',
           'dtos',
@@ -105,23 +96,35 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
         ],
         this.createIMailDTO,
       ],
+    ];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'MailProvider',
-          'fakes',
-          'FakeMailProvider.ts',
-        ],
-        this.createFakeMail,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailProvider',
+        'fakes',
+        'FakeMailProvider.ts',
       ],
+      this.createFakeMail,
+    ];
+  }
+
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'MailProvider',
           'implementations',
@@ -133,7 +136,7 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'MailProvider',
           'implementations',
@@ -141,29 +144,50 @@ export class MakeDependentMailProvider extends DependentBaseProvider {
         ],
         this.createDependentSESMail,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'MailProvider',
-          'models',
-          'IMailProvider.ts',
-        ],
-        this.createIMail,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailProvider',
+        'models',
+        'IMailProvider.ts',
       ],
+      this.createIMail,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'MailProvider',
-          'index.ts',
-        ],
-        this.createMailIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './MailProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'MailProvider',
+        'index.ts',
+      ],
+      this.createMailIndex,
+    ];
   }
 }

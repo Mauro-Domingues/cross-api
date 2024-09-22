@@ -1,11 +1,11 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateStorageConfig } from '@templates/providers/config/storageConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
 import { CreateS3Storage } from '@templates/providers/implementations/S3Storage';
 import { CreateIStorage } from '@templates/providers/models/IStorage';
 import { CreateStorageIndex } from '@templates/providers/storageIndex';
-import { CustomError } from '@tools/customError';
 import { DependentBaseProvider } from '@tools/makeProvider/dependent/base';
 
 export class MakeDependentStorageProvider extends DependentBaseProvider {
@@ -30,33 +30,18 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
     this.createIStorage = new CreateIStorage();
   }
 
-  public execute(): void {
-    if (!this.fatherNames) {
-      throw new CustomError({
-        message: this.messages.providers.errors.notFound,
-        color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
-      });
-    }
+  protected declare createJobs: () => Array<IMultiFileDTO>;
 
-    this.constructBase();
-    this.fileManager.createFile(
+  protected declare createDtos: () => Array<IMultiFileDTO>;
+
+  protected createInfra(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      "import './StorageProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
-      [
-        'src',
-        'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'StorageProvider',
         'fakes',
@@ -64,7 +49,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'StorageProvider',
         'implementations',
@@ -72,31 +57,44 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
       [
         'src',
         'modules',
-        this.fatherNames.pluralLowerModuleName,
+        fatherNames.pluralLowerModuleName,
         'providers',
         'StorageProvider',
         'models',
       ],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'storage.ts'], this.createStorageConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'storage.ts'], this.createStorageConfig];
+  }
+
+  protected createFake(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ],
-        this.createFakeStorage,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'fakes',
+        'FakeStorageProvider.ts',
       ],
+      this.createFakeStorage,
+    ];
+  }
+
+  protected createImplementations(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'StorageProvider',
           'implementations',
@@ -108,7 +106,7 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
         [
           'src',
           'modules',
-          this.fatherNames.pluralLowerModuleName,
+          fatherNames.pluralLowerModuleName,
           'providers',
           'StorageProvider',
           'implementations',
@@ -116,29 +114,50 @@ export class MakeDependentStorageProvider extends DependentBaseProvider {
         ],
         this.createS3Storage,
       ],
+    ];
+  }
+
+  protected createModel(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ],
-        this.createIStorage,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'models',
+        'IStorageProvider.ts',
       ],
+      this.createIStorage,
+    ];
+  }
+
+  protected createInjection(
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
+  ): IMultiFileDTO {
+    this.fileManager.createFile(
       [
-        [
-          'src',
-          'modules',
-          this.fatherNames.pluralLowerModuleName,
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ],
-        this.createStorageIndex,
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'index.ts',
       ],
-    ]);
+      "import './StorageProvider';\n",
+    );
+
+    return [
+      [
+        'src',
+        'modules',
+        fatherNames.pluralLowerModuleName,
+        'providers',
+        'StorageProvider',
+        'index.ts',
+      ],
+      this.createStorageIndex,
+    ];
   }
 }

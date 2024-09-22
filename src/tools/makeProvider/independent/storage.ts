@@ -1,3 +1,4 @@
+import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateStorageConfig } from '@templates/providers/config/storageConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';
@@ -24,13 +25,12 @@ export class MakeStorageProvider extends BaseProvider {
     this.createIStorage = new CreateIStorage();
   }
 
-  public execute(): void {
-    this.constructBase();
-    this.fileManager.createFile(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      "import './StorageProvider';\n",
-    );
-    this.fileManager.checkAndCreateMultiDirSync([
+  protected declare createDtos: () => Array<IMultiFileDTO>;
+
+  protected declare createJobs: () => Array<IMultiFileDTO>;
+
+  protected createInfra(): void {
+    return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'fakes'],
       [
         'src',
@@ -42,20 +42,29 @@ export class MakeStorageProvider extends BaseProvider {
       ],
       ['src', 'shared', 'container', 'providers', 'StorageProvider', 'models'],
     ]);
-    return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'config', 'storage.ts'], this.createStorageConfig],
+  }
+
+  protected createConfig(): IMultiFileDTO {
+    return [['src', 'config', 'storage.ts'], this.createStorageConfig];
+  }
+
+  protected createFake(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'fakes',
-          'FakeStorageProvider.ts',
-        ],
-        this.createFakeStorage,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'fakes',
+        'FakeStorageProvider.ts',
       ],
+      this.createFakeStorage,
+    ];
+  }
+
+  protected createImplementations(): Array<IMultiFileDTO> {
+    return [
       [
         [
           'src',
@@ -80,29 +89,40 @@ export class MakeStorageProvider extends BaseProvider {
         ],
         this.createS3Storage,
       ],
+    ];
+  }
+
+  protected createModel(): IMultiFileDTO {
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'models',
-          'IStorageProvider.ts',
-        ],
-        this.createIStorage,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'models',
+        'IStorageProvider.ts',
       ],
+      this.createIStorage,
+    ];
+  }
+
+  protected createInjection(): IMultiFileDTO {
+    this.fileManager.createFile(
+      ['src', 'shared', 'container', 'providers', 'index.ts'],
+      "import './StorageProvider';\n",
+    );
+
+    return [
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'providers',
-          'StorageProvider',
-          'index.ts',
-        ],
-        this.createStorageIndex,
+        'src',
+        'shared',
+        'container',
+        'providers',
+        'StorageProvider',
+        'index.ts',
       ],
-    ]);
+      this.createStorageIndex,
+    ];
   }
 }
