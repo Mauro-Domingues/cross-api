@@ -62,14 +62,12 @@ new (class Main {
       'make:api': () => new CreateApi(),
       config: () => new ConfigJson(),
       comands: () => new Board(),
-      revert: () => {
-        return {
-          execute: (): void => {
-            this.deleteRegister.execute();
-            return this.createRegister.execute();
-          },
-        };
-      },
+      revert: () => ({
+        execute: (): void => {
+          this.deleteRegister.execute();
+          return this.createRegister.execute();
+        },
+      }),
     });
   }
 

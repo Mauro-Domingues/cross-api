@@ -32,9 +32,9 @@ export class CreateProvider {
         breakEnd: true,
       });
     }
-    this.provider.list[this.providerName as keyof typeof this.provider.list][
-      this.provider.key
-    ].execute();
+    this.provider.list[this.providerName as keyof typeof this.provider.list]
+      [this.provider.key]()
+      .execute();
     this.console.execute({
       message: [
         '- ',
