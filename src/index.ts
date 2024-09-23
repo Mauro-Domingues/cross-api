@@ -19,7 +19,6 @@ import { GetNames } from '@tools/names';
 
 new (class Main {
   private readonly fullComand: [keyof IActionDTO, ...Array<string>];
-  private readonly deleteRegister: DeleteRegister;
   private readonly createRegister: CreateRegister;
   private readonly getFatherNames: GetNames;
   private readonly comand: keyof IActionDTO;
@@ -38,7 +37,6 @@ new (class Main {
     this.arg = arg;
     this.messages = Messages.getInstance().execute();
     this.getFatherNames = new GetNames(this.father);
-    this.deleteRegister = new DeleteRegister();
     this.getNames = new GetNames(this.arg);
     this.createRegister = new CreateRegister(
       this.fullComand,
@@ -64,7 +62,7 @@ new (class Main {
       comands: () => new Board(),
       revert: () => ({
         execute: (): void => {
-          this.deleteRegister.execute();
+          new DeleteRegister().execute();
           return this.createRegister.execute();
         },
       }),
