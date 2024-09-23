@@ -11,7 +11,6 @@ import { CreateQueueProvider } from '@tools/makeProvider/queue';
 import { CreateStorageProvider } from '@tools/makeProvider/storage';
 
 export class Provider {
-  public readonly key: 'dependent' | 'independent';
   public readonly list: IProviderListDTO;
 
   public constructor(
@@ -19,12 +18,6 @@ export class Provider {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    if (fatherNames) {
-      this.key = 'dependent';
-    } else {
-      this.key = 'independent';
-    }
-
     this.list = Object.freeze<IProviderListDTO>({
       cache: {
         name: 'cache',
