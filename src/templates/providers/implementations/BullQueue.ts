@@ -20,6 +20,7 @@ export class BullProvider implements IQueueProvider {
       const instance = new Job();
       this.queues[Job.key] = {
         queue: new Bull(Job.key, {
+          prefix: process.env.REDIS_PREFIX,
           redis: queueConfig.config,
         }),
         handle: instance.handle.bind(instance) as ({
