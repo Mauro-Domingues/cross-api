@@ -36,9 +36,9 @@ export class CreateStorageProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'StorageProvider', 'fakes'],
-      [...this.basePath, 'StorageProvider', 'implementations'],
-      [...this.basePath, 'StorageProvider', 'models'],
+      [this.basePath, 'StorageProvider', 'fakes'],
+      [this.basePath, 'StorageProvider', 'implementations'],
+      [this.basePath, 'StorageProvider', 'models'],
     ]);
   }
 
@@ -48,7 +48,7 @@ export class CreateStorageProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'],
+      [this.basePath, 'StorageProvider', 'fakes', 'FakeStorageProvider.ts'],
       this.createFakeStorage,
     ];
   }
@@ -57,7 +57,7 @@ export class CreateStorageProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'StorageProvider',
           'implementations',
           'DiskStorageProvider.ts',
@@ -66,7 +66,7 @@ export class CreateStorageProvider extends BaseProvider {
       ],
       [
         [
-          ...this.basePath,
+          this.basePath,
           'StorageProvider',
           'implementations',
           'S3StorageProvider.ts',
@@ -78,19 +78,19 @@ export class CreateStorageProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'StorageProvider', 'models', 'IStorageProvider.ts'],
+      [this.basePath, 'StorageProvider', 'models', 'IStorageProvider.ts'],
       this.createIStorage,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './StorageProvider';\n",
     );
 
     return [
-      [...this.basePath, 'StorageProvider', 'index.ts'],
+      [this.basePath, 'StorageProvider', 'index.ts'],
       this.createStorageIndex,
     ];
   }

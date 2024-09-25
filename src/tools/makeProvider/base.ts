@@ -8,8 +8,8 @@ import { Messages } from '@tools/messages';
 export abstract class BaseProvider {
   private readonly createContainerIndex: CreateContainerIndex;
   protected readonly fileManager: FileManager;
-  protected readonly basePath: Array<string>;
   protected readonly messages: IMessageDTO;
+  protected readonly basePath: string;
 
   public constructor(
     protected readonly fatherNames:
@@ -20,14 +20,19 @@ export abstract class BaseProvider {
     this.messages = Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
     if (this.fatherNames) {
-      this.basePath = [
+      this.basePath = this.fileManager.resolvePath([
         'src',
         'modules',
         this.fatherNames.pluralLowerModuleName,
         'providers',
-      ];
+      ]);
     } else {
-      this.basePath = ['src', 'shared', 'container', 'providers'];
+      this.basePath = this.fileManager.resolvePath([
+        'src',
+        'shared',
+        'container',
+        'providers',
+      ]);
     }
   }
 
@@ -51,7 +56,7 @@ export abstract class BaseProvider {
     return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', 'shared', 'container'],
-      this.basePath,
+      [this.basePath],
     ]);
   }
 
@@ -73,8 +78,8 @@ export abstract class BaseProvider {
 
   private createBaseDependentIndex(): void {
     if (this.fatherNames) {
-      if (!this.fileManager.checkIfExistsSync([...this.basePath, 'index.ts'])) {
-        this.fileManager.createFile([...this.basePath, 'index.ts'], '');
+      if (!this.fileManager.checkIfExistsSync([this.basePath, 'index.ts'])) {
+        this.fileManager.createFile([this.basePath, 'index.ts'], '');
       }
       this.fileManager.createFile(
         ['src', 'shared', 'container', 'index.ts'],

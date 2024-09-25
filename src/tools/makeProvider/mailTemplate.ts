@@ -34,10 +34,10 @@ export class CreateMailTemplateProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'MailTemplateProvider', 'dtos'],
-      [...this.basePath, 'MailTemplateProvider', 'fakes'],
-      [...this.basePath, 'MailTemplateProvider', 'implementations'],
-      [...this.basePath, 'MailTemplateProvider', 'models'],
+      [this.basePath, 'MailTemplateProvider', 'dtos'],
+      [this.basePath, 'MailTemplateProvider', 'fakes'],
+      [this.basePath, 'MailTemplateProvider', 'implementations'],
+      [this.basePath, 'MailTemplateProvider', 'models'],
     ]);
   }
 
@@ -52,7 +52,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'MailTemplateProvider',
           'dtos',
           'IParseMailTemplateDTO.ts',
@@ -65,7 +65,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
   protected createFake(): IMultiFileDTO {
     return [
       [
-        ...this.basePath,
+        this.basePath,
         'MailTemplateProvider',
         'fakes',
         'FakeMailTemplateProvider.ts',
@@ -78,7 +78,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'MailTemplateProvider',
           'implementations',
           'HandlebarsMailTemplateProvider.ts',
@@ -91,7 +91,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
   protected createModel(): IMultiFileDTO {
     return [
       [
-        ...this.basePath,
+        this.basePath,
         'MailTemplateProvider',
         'models',
         'IMailTemplateProvider.ts',
@@ -102,12 +102,12 @@ export class CreateMailTemplateProvider extends BaseProvider {
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './MailTemplateProvider';\n",
     );
 
     return [
-      [...this.basePath, 'MailTemplateProvider', 'index.ts'],
+      [this.basePath, 'MailTemplateProvider', 'index.ts'],
       this.createMailTemplateIndex,
     ];
   }

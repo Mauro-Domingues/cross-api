@@ -34,10 +34,10 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'CryptoProvider', 'fakes'],
-      [...this.basePath, 'CryptoProvider', 'dtos'],
-      [...this.basePath, 'CryptoProvider', 'implementations'],
-      [...this.basePath, 'CryptoProvider', 'models'],
+      [this.basePath, 'CryptoProvider', 'fakes'],
+      [this.basePath, 'CryptoProvider', 'dtos'],
+      [this.basePath, 'CryptoProvider', 'implementations'],
+      [this.basePath, 'CryptoProvider', 'models'],
     ]);
   }
 
@@ -48,7 +48,7 @@ export class CreateCryptoProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [...this.basePath, 'CryptoProvider', 'dtos', 'ICryptoDTO.ts'],
+        [this.basePath, 'CryptoProvider', 'dtos', 'ICryptoDTO.ts'],
         this.createICryptoDTO,
       ],
     ];
@@ -56,7 +56,7 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'CryptoProvider', 'fakes', 'FakeCryptoProvider.ts'],
+      [this.basePath, 'CryptoProvider', 'fakes', 'FakeCryptoProvider.ts'],
       this.createFakeCrypto,
     ];
   }
@@ -65,7 +65,7 @@ export class CreateCryptoProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'CryptoProvider',
           'implementations',
           'CryptoProvider.ts',
@@ -77,19 +77,19 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'CryptoProvider', 'models', 'ICryptoProvider.ts'],
+      [this.basePath, 'CryptoProvider', 'models', 'ICryptoProvider.ts'],
       this.createICrypto,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './CryptoProvider';\n",
     );
 
     return [
-      [...this.basePath, 'CryptoProvider', 'index.ts'],
+      [this.basePath, 'CryptoProvider', 'index.ts'],
       this.createCryptoIndex,
     ];
   }

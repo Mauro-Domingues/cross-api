@@ -45,11 +45,11 @@ export class CreateQueueProvider extends BaseProvider {
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'jobs'],
-      [...this.basePath, 'QueueProvider', 'public'],
-      [...this.basePath, 'QueueProvider', 'dtos'],
-      [...this.basePath, 'QueueProvider', 'fakes'],
-      [...this.basePath, 'QueueProvider', 'implementations'],
-      [...this.basePath, 'QueueProvider', 'models'],
+      [this.basePath, 'QueueProvider', 'public'],
+      [this.basePath, 'QueueProvider', 'dtos'],
+      [this.basePath, 'QueueProvider', 'fakes'],
+      [this.basePath, 'QueueProvider', 'implementations'],
+      [this.basePath, 'QueueProvider', 'models'],
     ]);
   }
 
@@ -61,7 +61,7 @@ export class CreateQueueProvider extends BaseProvider {
     return [
       [['src', 'jobs', 'Example.ts'], this.createExampleJob],
       [
-        [...this.basePath, 'QueueProvider', 'public', 'jobs.ts'],
+        [this.basePath, 'QueueProvider', 'public', 'jobs.ts'],
         this.createJobIndex,
       ],
     ];
@@ -70,7 +70,7 @@ export class CreateQueueProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [...this.basePath, 'QueueProvider', 'dtos', 'IQueueDTO.ts'],
+        [this.basePath, 'QueueProvider', 'dtos', 'IQueueDTO.ts'],
         this.createIQueueDTO,
       ],
     ];
@@ -78,7 +78,7 @@ export class CreateQueueProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'QueueProvider', 'fakes', 'FakeQueueProvider.ts'],
+      [this.basePath, 'QueueProvider', 'fakes', 'FakeQueueProvider.ts'],
       this.createFakeQueue,
     ];
   }
@@ -86,30 +86,15 @@ export class CreateQueueProvider extends BaseProvider {
   protected createImplementations(): Array<IMultiFileDTO> {
     return [
       [
-        [
-          ...this.basePath,
-          'QueueProvider',
-          'implementations',
-          'KueProvider.ts',
-        ],
+        [this.basePath, 'QueueProvider', 'implementations', 'KueProvider.ts'],
         this.createKueQueue,
       ],
       [
-        [
-          ...this.basePath,
-          'QueueProvider',
-          'implementations',
-          'BeeProvider.ts',
-        ],
+        [this.basePath, 'QueueProvider', 'implementations', 'BeeProvider.ts'],
         this.createBeeQueue,
       ],
       [
-        [
-          ...this.basePath,
-          'QueueProvider',
-          'implementations',
-          'BullProvider.ts',
-        ],
+        [this.basePath, 'QueueProvider', 'implementations', 'BullProvider.ts'],
         this.createBullQueue,
       ],
     ];
@@ -117,19 +102,19 @@ export class CreateQueueProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'QueueProvider', 'models', 'IQueueProvider.ts'],
+      [this.basePath, 'QueueProvider', 'models', 'IQueueProvider.ts'],
       this.createIQueue,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './QueueProvider';\n",
     );
 
     return [
-      [...this.basePath, 'QueueProvider', 'index.ts'],
+      [this.basePath, 'QueueProvider', 'index.ts'],
       this.createQueueIndex,
     ];
   }

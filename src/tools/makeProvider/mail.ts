@@ -45,10 +45,10 @@ export class CreateMailProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'MailProvider', 'dtos'],
-      [...this.basePath, 'MailProvider', 'fakes'],
-      [...this.basePath, 'MailProvider', 'implementations'],
-      [...this.basePath, 'MailProvider', 'models'],
+      [this.basePath, 'MailProvider', 'dtos'],
+      [this.basePath, 'MailProvider', 'fakes'],
+      [this.basePath, 'MailProvider', 'implementations'],
+      [this.basePath, 'MailProvider', 'models'],
     ]);
   }
 
@@ -59,7 +59,7 @@ export class CreateMailProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [...this.basePath, 'MailProvider', 'dtos', 'ISendMailDTO.ts'],
+        [this.basePath, 'MailProvider', 'dtos', 'ISendMailDTO.ts'],
         this.createIMailDTO,
       ],
     ];
@@ -67,7 +67,7 @@ export class CreateMailProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'MailProvider', 'fakes', 'FakeMailProvider.ts'],
+      [this.basePath, 'MailProvider', 'fakes', 'FakeMailProvider.ts'],
       this.createFakeMail,
     ];
   }
@@ -77,7 +77,7 @@ export class CreateMailProvider extends BaseProvider {
       return [
         [
           [
-            ...this.basePath,
+            this.basePath,
             'MailProvider',
             'implementations',
             'NodemailerMailProvider.ts',
@@ -86,7 +86,7 @@ export class CreateMailProvider extends BaseProvider {
         ],
         [
           [
-            ...this.basePath,
+            this.basePath,
             'MailProvider',
             'implementations',
             'SESMailProvider.ts',
@@ -98,7 +98,7 @@ export class CreateMailProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'MailProvider',
           'implementations',
           'NodemailerMailProvider.ts',
@@ -107,7 +107,7 @@ export class CreateMailProvider extends BaseProvider {
       ],
       [
         [
-          ...this.basePath,
+          this.basePath,
           'MailProvider',
           'implementations',
           'SESMailProvider.ts',
@@ -119,20 +119,17 @@ export class CreateMailProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'MailProvider', 'models', 'IMailProvider.ts'],
+      [this.basePath, 'MailProvider', 'models', 'IMailProvider.ts'],
       this.createIMail,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './MailProvider';\n",
     );
 
-    return [
-      [...this.basePath, 'MailProvider', 'index.ts'],
-      this.createMailIndex,
-    ];
+    return [[this.basePath, 'MailProvider', 'index.ts'], this.createMailIndex];
   }
 }

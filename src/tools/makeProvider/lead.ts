@@ -37,10 +37,10 @@ export class CreateLeadProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'LeadProvider', 'dtos'],
-      [...this.basePath, 'LeadProvider', 'fakes'],
-      [...this.basePath, 'LeadProvider', 'implementations'],
-      [...this.basePath, 'LeadProvider', 'models'],
+      [this.basePath, 'LeadProvider', 'dtos'],
+      [this.basePath, 'LeadProvider', 'fakes'],
+      [this.basePath, 'LeadProvider', 'implementations'],
+      [this.basePath, 'LeadProvider', 'models'],
     ]);
   }
 
@@ -51,11 +51,11 @@ export class CreateLeadProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [...this.basePath, 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'],
+        [this.basePath, 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'],
         this.createILeadDTO,
       ],
       [
-        [...this.basePath, 'LeadProvider', 'dtos', 'IAuthDTO.ts'],
+        [this.basePath, 'LeadProvider', 'dtos', 'IAuthDTO.ts'],
         this.createIAuthDTO,
       ],
     ];
@@ -63,7 +63,7 @@ export class CreateLeadProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'],
+      [this.basePath, 'LeadProvider', 'fakes', 'FakeLeadProvider.ts'],
       this.createFakeLead,
     ];
   }
@@ -72,7 +72,7 @@ export class CreateLeadProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'LeadProvider',
           'implementations',
           'RDStationProvider.ts',
@@ -84,20 +84,17 @@ export class CreateLeadProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'LeadProvider', 'models', 'ILeadProvider.ts'],
+      [this.basePath, 'LeadProvider', 'models', 'ILeadProvider.ts'],
       this.createILead,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './LeadProvider';\n",
     );
 
-    return [
-      [...this.basePath, 'LeadProvider', 'index.ts'],
-      this.createLeadIndex,
-    ];
+    return [[this.basePath, 'LeadProvider', 'index.ts'], this.createLeadIndex];
   }
 }

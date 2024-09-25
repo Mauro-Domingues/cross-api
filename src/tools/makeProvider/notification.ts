@@ -37,10 +37,10 @@ export class CreateNotificationProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'NotificationProvider', 'dtos'],
-      [...this.basePath, 'NotificationProvider', 'fakes'],
-      [...this.basePath, 'NotificationProvider', 'implementations'],
-      [...this.basePath, 'NotificationProvider', 'models'],
+      [this.basePath, 'NotificationProvider', 'dtos'],
+      [this.basePath, 'NotificationProvider', 'fakes'],
+      [this.basePath, 'NotificationProvider', 'implementations'],
+      [this.basePath, 'NotificationProvider', 'models'],
     ]);
   }
 
@@ -55,7 +55,7 @@ export class CreateNotificationProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'NotificationProvider',
           'dtos',
           'ISendNotificationDTO.ts',
@@ -68,7 +68,7 @@ export class CreateNotificationProvider extends BaseProvider {
   protected createFake(): IMultiFileDTO {
     return [
       [
-        ...this.basePath,
+        this.basePath,
         'NotificationProvider',
         'fakes',
         'FakeNotificationProvider.ts',
@@ -81,7 +81,7 @@ export class CreateNotificationProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'NotificationProvider',
           'implementations',
           'OneSignalProvider.ts',
@@ -90,7 +90,7 @@ export class CreateNotificationProvider extends BaseProvider {
       ],
       [
         [
-          ...this.basePath,
+          this.basePath,
           'NotificationProvider',
           'implementations',
           'FirebaseProvider.ts',
@@ -103,7 +103,7 @@ export class CreateNotificationProvider extends BaseProvider {
   protected createModel(): IMultiFileDTO {
     return [
       [
-        ...this.basePath,
+        this.basePath,
         'NotificationProvider',
         'models',
         'INotificationProvider.ts',
@@ -114,12 +114,12 @@ export class CreateNotificationProvider extends BaseProvider {
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './NotificationProvider';\n",
     );
 
     return [
-      [...this.basePath, 'NotificationProvider', 'index.ts'],
+      [this.basePath, 'NotificationProvider', 'index.ts'],
       this.createNotificationIndex,
     ];
   }

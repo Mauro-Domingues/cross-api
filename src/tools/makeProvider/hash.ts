@@ -33,9 +33,9 @@ export class CreateHashProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [...this.basePath, 'HashProvider', 'fakes'],
-      [...this.basePath, 'HashProvider', 'implementations'],
-      [...this.basePath, 'HashProvider', 'models'],
+      [this.basePath, 'HashProvider', 'fakes'],
+      [this.basePath, 'HashProvider', 'implementations'],
+      [this.basePath, 'HashProvider', 'models'],
     ]);
   }
 
@@ -45,7 +45,7 @@ export class CreateHashProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [...this.basePath, 'HashProvider', 'fakes', 'FakeHashProvider.ts'],
+      [this.basePath, 'HashProvider', 'fakes', 'FakeHashProvider.ts'],
       this.createFakeHash,
     ];
   }
@@ -54,7 +54,7 @@ export class CreateHashProvider extends BaseProvider {
     return [
       [
         [
-          ...this.basePath,
+          this.basePath,
           'HashProvider',
           'implementations',
           'BCryptHashProvider.ts',
@@ -66,20 +66,17 @@ export class CreateHashProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [...this.basePath, 'HashProvider', 'models', 'IHashProvider.ts'],
+      [this.basePath, 'HashProvider', 'models', 'IHashProvider.ts'],
       this.createIHash,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
-      [...this.basePath, 'index.ts'],
+      [this.basePath, 'index.ts'],
       "import './HashProvider';\n",
     );
 
-    return [
-      [...this.basePath, 'HashProvider', 'index.ts'],
-      this.createHashIndex,
-    ];
+    return [[this.basePath, 'HashProvider', 'index.ts'], this.createHashIndex];
   }
 }
