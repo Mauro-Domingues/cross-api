@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { argv } from 'node:process';
 import { IActionDTO } from '@interfaces/IActionDTO';
 import { IMessageDTO } from '@interfaces/IMessageDTO';
