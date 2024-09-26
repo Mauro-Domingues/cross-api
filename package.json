@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "A CLI which can generate a good, clean and statically typed API structure with typescript and SOLID principles. It's features includes CRUD operations, providers, unit tests and documentation.",
   "main": "src/index.js",
   "type": "module",
@@ -18,6 +18,10 @@
   },
   "bugs": {
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/Mauro-Domingues"
   },
   "keywords": [
     "cross-api",
