@@ -19,10 +19,7 @@
   "bugs": {
     "url": "https://github.com/Mauro-Domingues/cross-api/issues"
   },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/Mauro-Domingues"
-  },
+  "funding": "https://github.com/sponsors/Mauro-Domingues",
   "keywords": [
     "cross-api",
     "cross",
