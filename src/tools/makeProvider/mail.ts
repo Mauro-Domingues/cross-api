@@ -3,8 +3,6 @@ import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
-import { CreateDependentNodemailerMail } from '@templates/providers/implementations/dependentNodemailerMail';
-import { CreateDependentSESMail } from '@templates/providers/implementations/dependentSESMail';
 import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail';
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
@@ -12,8 +10,6 @@ import { CreateIMail } from '@templates/providers/models/IMail';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateMailProvider extends BaseProvider {
-  private readonly createDependentNodemailerMail: CreateDependentNodemailerMail;
-  private readonly createDependentSESMail: CreateDependentSESMail;
   private readonly createNodemailerMail: CreateNodemailerMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
@@ -28,10 +24,6 @@ export class CreateMailProvider extends BaseProvider {
       | undefined,
   ) {
     super(fatherNames);
-    this.createDependentSESMail = new CreateDependentSESMail(this.fatherNames);
-    this.createDependentNodemailerMail = new CreateDependentNodemailerMail(
-      this.fatherNames,
-    );
     this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
@@ -73,28 +65,6 @@ export class CreateMailProvider extends BaseProvider {
   }
 
   protected createImplementations(): Array<IMultiFileDTO> {
-    if (this.fatherNames) {
-      return [
-        [
-          [
-            this.basePath,
-            'MailProvider',
-            'implementations',
-            'NodemailerMailProvider.ts',
-          ],
-          this.createDependentNodemailerMail,
-        ],
-        [
-          [
-            this.basePath,
-            'MailProvider',
-            'implementations',
-            'SESMailProvider.ts',
-          ],
-          this.createDependentSESMail,
-        ],
-      ];
-    }
     return [
       [
         [
