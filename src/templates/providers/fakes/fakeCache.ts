@@ -3,14 +3,14 @@ export class CreateFakeCache {
     return `import { ICacheProvider } ${'from'} '../models/ICacheProvider';
 
 export class FakeCacheProvider implements ICacheProvider {
-  private readonly cache: Record<string, string> = {};
+  private readonly cache: Map<string, string> = new Map<string, string>();
 
   public async save<T>(key: string, value: T): Promise<void> {
-    this.cache[key] = JSON.stringify(value);
+    this.cache.set(key, JSON.stringify(value));
   }
 
   public async recovery<T>(key: string): Promise<T | null> {
-    const data = this.cache[key];
+    const data = this.cache.get(key);
 
     if (!data) {
       return null;
@@ -22,7 +22,7 @@ export class FakeCacheProvider implements ICacheProvider {
   }
 
   public async invalidate(key: string): Promise<void> {
-    delete this.cache[key];
+    this.cache.delete(key);
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
@@ -31,7 +31,7 @@ export class FakeCacheProvider implements ICacheProvider {
     );
 
     keys.forEach(key => {
-      delete this.cache[key];
+      this.cache.delete(key);
     });
   }
 }

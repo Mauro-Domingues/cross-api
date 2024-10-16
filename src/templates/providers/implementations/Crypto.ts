@@ -35,6 +35,10 @@ export class CryptoProvider implements ICryptoProvider {
     appendFileSync(resolve(path, filename), data);
   }
 
+  private generateRefreshToken(ip: string): string {
+    return createHash('sha256').update(ip).digest('hex');
+  }
+
   public encrypt(text: string): ICryptoDTO {
     const iv = randomBytes(16);
 
@@ -65,10 +69,6 @@ export class CryptoProvider implements ICryptoProvider {
     ]);
 
     return decrpyted.toString();
-  }
-
-  public generateRefreshToken(ip: string): string {
-    return createHash('sha256').update(ip).digest('hex');
   }
 
   public generateJwt(

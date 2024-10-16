@@ -10,7 +10,6 @@ export interface ICryptoProvider {
   generateKeys(): JWK<{
     use: string;
   }>;
-  generateRefreshToken(ip: string): string;
   generateJwt(
     payload: object,
     ip: string,

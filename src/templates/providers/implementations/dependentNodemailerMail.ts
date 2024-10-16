@@ -25,12 +25,7 @@ export class CreateDependentNodemailerMail {
       });
     }
 
-    return `import {
-  Transporter,
-  createTestAccount,
-  createTransport,
-  getTestMessageUrl,
-} ${'from'} 'nodemailer';
+    return `import { Transporter, createTransport, getTestMessageUrl } ${'from'} 'nodemailer';
 import { injectable, inject } ${'from'} 'tsyringe';
 import { IMailTemplateProvider } ${'from'} '@modules/${
       this.fatherNames.pluralLowerModuleName
@@ -49,15 +44,13 @@ export class NodemailerMailProvider implements IMailProvider {
   ) {}
 
   private async createClient(): Promise<void> {
-    const account = await createTestAccount();
-
     this.client = createTransport({
-      host: mailConfig.config.host || account.smtp.host,
-      port: mailConfig.config.port || account.smtp.port,
-      secure: mailConfig.config.secure ?? account.smtp.secure,
+      host: mailConfig.config.host,
+      port: mailConfig.config.port,
+      secure: mailConfig.config.secure,
       auth: {
-        user: mailConfig.config.user || account.user,
-        pass: mailConfig.config.password || account.pass,
+        user: mailConfig.config.user,
+        pass: mailConfig.config.password,
       },
     });
   }

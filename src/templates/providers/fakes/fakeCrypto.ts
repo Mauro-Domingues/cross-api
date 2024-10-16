@@ -1,39 +1,53 @@
 export class CreateFakeCrypto {
   public execute(): string {
     return `import { JWK } ${'from'} 'pem-jwk';
+import { cryptoConfig } ${'from'} '@config/crypto';
+import { readFileSync } ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
+import { createHash } ${'from'} 'node:crypto';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
 
 export class FakeCryptoProvider implements ICryptoProvider {
   public encrypt(text: string): ICryptoDTO {
     return {
-      iv: 'iv',
-      content: text,
+      iv: 'base64',
+      content: Buffer.from(text).toString('base64'),
     };
   }
 
   public decrypt({ content }: ICryptoDTO): string {
-    return content;
+    return Buffer.from(content, 'base64').toString('utf-8');
   }
 
-  public generateRefreshToken(ip: string): string {
-    return ip;
-  }
-
-  public generateJwt(): {
+  public generateJwt(
+    payload: object,
+    ip: string,
+  ): {
     jwt_token: string;
     refresh_token: string;
   } {
+    const jwt_token = Buffer.from(
+      JSON.stringify({ ...payload, exp: Date.now() + 3600 * 1000, ip }),
+    ).toString('base64');
+
+    const refresh_token = createHash('sha256').update(ip).digest('hex');
+
     return {
-      jwt_token: 'jwt_token',
-      refresh_token: 'refresh_token',
+      jwt_token,
+      refresh_token,
     };
   }
 
   public generateKeys(): JWK<{ use: string }> {
+    const publicKey = readFileSync(
+      resolve(cryptoConfig.config.keysPath, 'public.pem'),
+      { encoding: 'base64' },
+    );
+
     return {
       kty: 'RSA',
-      n: 'hash',
+      n: publicKey,
       e: 'AQAB',
       use: 'sig',
     };
