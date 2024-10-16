@@ -7,11 +7,19 @@ export class CreateFakeMail {
   getTestMessageUrl,
 } ${'from'} 'nodemailer';
 import { mailConfig } ${'from'} '@config/mail';
+import { inject, injectable } ${'from'} 'tsyringe';
 import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
 import { IMailProvider } ${'from'} '../models/IMailProvider';
+import { IMailTemplateProvider } ${'from'} '../../MailTemplateProvider/models/IMailTemplateProvider';
 
+@injectable()
 export class FakeMailProvider implements IMailProvider {
   private client: Transporter;
+
+  public constructor(
+    @inject('MailTemplateProvider')
+    private readonly mailTemplateProvider: IMailTemplateProvider,
+  ) {}
 
   private async createClient(): Promise<void> {
     const account = await createTestAccount();
@@ -27,22 +35,17 @@ export class FakeMailProvider implements IMailProvider {
     });
   }
 
-  private get content(): string {
-    return \`
-      <html>
-        <body>
-          <h1>Welcome! This is a test email</h1>
-          <p>Thank you for joining us. If you have any questions, let us know.</p>
-          <p>Best regards,<br/>The Team</p>
-        </body>
-      </html>
-    \`;
-  }
-
-  public async sendMail({ to, from, subject }: ISendMailDTO): Promise<void> {
+  public async sendMail({
+    to,
+    from,
+    subject,
+    templateData,
+  }: ISendMailDTO): Promise<void> {
     await this.createClient();
 
     const { email, name } = mailConfig.config.defaults.from;
+
+    const content = this.mailTemplateProvider.parse(templateData);
 
     const message = await this.client.sendMail({
       from: {
@@ -54,7 +57,7 @@ export class FakeMailProvider implements IMailProvider {
         address: to.email,
       },
       subject,
-      html: this.content,
+      html: content,
     });
 
     console.log('Message sent: %s', message.messageId);

@@ -2,8 +2,8 @@ export class CreateNodemailerMail {
   public execute(): string {
     return `import { Transporter, createTransport, getTestMessageUrl } ${'from'} 'nodemailer';
 import { injectable, inject } ${'from'} 'tsyringe';
-import { IMailTemplateProvider } ${'from'} '../../MailTemplateProvider/models/IMailTemplateProvider';
 import { mailConfig } ${'from'} '@config/mail';
+import { IMailTemplateProvider } ${'from'} '../../MailTemplateProvider/models/IMailTemplateProvider';
 import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
 import { IMailProvider } ${'from'} '../models/IMailProvider';
 
