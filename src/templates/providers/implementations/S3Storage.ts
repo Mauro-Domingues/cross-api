@@ -19,7 +19,7 @@ export class S3StorageProvider implements IStorageProvider {
     this.client = new S3Client({
       credentials: {
         accessKeyId: storageConfig.config.aws.user,
-        secretAccessKey: storageConfig.config.aws.user,
+        secretAccessKey: storageConfig.config.aws.password,
       },
       region: storageConfig.config.aws.region,
     });

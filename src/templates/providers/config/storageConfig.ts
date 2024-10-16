@@ -12,7 +12,6 @@ interface IStorageConfigDTO {
   readonly config: {
     readonly tmpFolder: string;
     readonly uploadsFolder: string;
-    readonly disk: object;
     readonly aws: {
       readonly bucket: string;
       readonly user: string;
@@ -30,7 +29,6 @@ export const storageConfig = Object.freeze<IStorageConfigDTO>({
   config: {
     tmpFolder,
     uploadsFolder: resolve(tmpFolder, 'uploads'),
-    disk: {},
     aws: {
       bucket: process.env.STORAGE_BUCKET,
       user: process.env.STORAGE_USER,
