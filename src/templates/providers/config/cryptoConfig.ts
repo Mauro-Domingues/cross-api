@@ -27,7 +27,7 @@ export const cryptoConfig = Object.freeze<ICryptoConfigDTO>({
       bytes: 16,
       algorithm: 'aes-256-ctr',
       encoding: 'hex',
-      secretKey: process.env.CRYPTO_SECRET_KEY ?? '',
+      secretKey: process.env.CRYPTO_SECRET_KEY,
     },
   },
 });

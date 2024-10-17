@@ -66,19 +66,19 @@ export class Provider {
         dependencies: ['handlebars'],
         devDependencies: [],
       },
-      queue: {
-        name: 'queue',
-        description: 'QueueProvider',
-        instance: () => new CreateQueueProvider(this.fatherNames),
-        dependencies: ['bee-queue', 'bull', 'kue'],
-        devDependencies: ['@types/kue'],
-      },
       notification: {
         name: 'notification',
         description: 'NotificationProvider',
         instance: () => new CreateNotificationProvider(this.fatherNames),
         dependencies: [],
         devDependencies: [],
+      },
+      queue: {
+        name: 'queue',
+        description: 'QueueProvider',
+        instance: () => new CreateQueueProvider(this.fatherNames),
+        dependencies: ['bee-queue', 'bull', 'kue'],
+        devDependencies: ['@types/kue'],
       },
       storage: {
         name: 'storage',
