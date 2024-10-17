@@ -21,7 +21,7 @@ export class KueProvider implements IQueueProvider {
       this.queues[Job.key] = {
         queue: createQueue({
           redis: { ...queueConfig.config, auth: queueConfig.config.password },
-          prefix: process.env.REDIS_PREFIX,
+          prefix: queueConfig.config.prefix,
         }),
         handle: instance.handle.bind(instance) as ({
           data,

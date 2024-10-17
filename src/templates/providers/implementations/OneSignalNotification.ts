@@ -2,6 +2,7 @@ export class CreateOneSignalNotification {
   public execute(): string {
     return `import axios, { AxiosError, AxiosInstance } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
+import { notificationConfig } ${'from'} '@config/notification';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
 import { INotificationProvider } ${'from'} '../models/INotificationProvider';
 
@@ -10,17 +11,17 @@ export class OneSignalProvider implements INotificationProvider {
 
   public constructor() {
     this.http = axios.create({
-      baseURL: process.env.OS_API_URL,
+      baseURL: notificationConfig.config.onesignal.api_url,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: \`Basic \${process.env.OS_TOKEN}\`,
+        Authorization: \`Basic \${notificationConfig.config.onesignal.token}\`,
       },
     });
   }
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     const body = {
-      app_id: process.env.OS_APP_ID,
+      app_id: notificationConfig.config.onesignal.app_id,
       headings: { en: data.header },
       contents: { en: data.content },
       include_player_ids: [data.device_id],

@@ -43,28 +43,30 @@ export class CryptoProvider implements ICryptoProvider {
     const iv = randomBytes(16);
 
     const cipher = createCipheriv(
-      cryptoConfig.config.algorithm,
-      cryptoConfig.config.secretKey,
+      cryptoConfig.config.crypto.algorithm,
+      cryptoConfig.config.crypto.secretKey,
       iv,
     );
 
     const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
 
     return {
-      iv: iv.toString(cryptoConfig.config.encoding),
-      content: encrypted.toString(cryptoConfig.config.encoding),
+      iv: iv.toString(cryptoConfig.config.crypto.encoding),
+      content: encrypted.toString(cryptoConfig.config.crypto.encoding),
     };
   }
 
   public decrypt(data: ICryptoDTO): string {
     const decipher = createDecipheriv(
-      cryptoConfig.config.algorithm,
-      cryptoConfig.config.secretKey,
-      Buffer.from(data.iv, cryptoConfig.config.encoding),
+      cryptoConfig.config.crypto.algorithm,
+      cryptoConfig.config.crypto.secretKey,
+      Buffer.from(data.iv, cryptoConfig.config.crypto.encoding),
     );
 
     const decrpyted = Buffer.concat([
-      decipher.update(Buffer.from(data.content, cryptoConfig.config.encoding)),
+      decipher.update(
+        Buffer.from(data.content, cryptoConfig.config.crypto.encoding),
+      ),
       decipher.final(),
     ]);
 

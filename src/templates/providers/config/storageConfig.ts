@@ -12,7 +12,7 @@ interface IStorageConfigDTO {
   readonly config: {
     readonly tmpFolder: string;
     readonly uploadsFolder: string;
-    readonly aws: {
+    readonly s3: {
       readonly bucket: string;
       readonly user: string;
       readonly password: string;
@@ -29,11 +29,11 @@ export const storageConfig = Object.freeze<IStorageConfigDTO>({
   config: {
     tmpFolder,
     uploadsFolder: resolve(tmpFolder, 'uploads'),
-    aws: {
-      bucket: process.env.STORAGE_BUCKET,
-      user: process.env.STORAGE_USER,
-      password: process.env.STORAGE_PASS,
-      region: process.env.STORAGE_REGION,
+    s3: {
+      bucket: process.env.S3_BUCKET,
+      user: process.env.S3_USER,
+      password: process.env.S3_PASS,
+      region: process.env.S3_REGION,
     },
     multer: {
       storage: diskStorage({

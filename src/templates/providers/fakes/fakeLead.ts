@@ -1,6 +1,7 @@
 export class CreateFakeLead {
   public execute(): string {
-    return `import { ILeadProvider } ${'from'} '../models/ILeadProvider';
+    return `import { randomUUID } ${'from'} 'node:crypto';
+import { ILeadProvider } ${'from'} '../models/ILeadProvider';
 import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
 
 export class FakeLeadProvider implements ILeadProvider {
@@ -9,7 +10,7 @@ export class FakeLeadProvider implements ILeadProvider {
   public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {
     this.leads.push(email);
 
-    return { event_uuid: 'test' };
+    return { event_uuid: randomUUID() };
   }
 }
 `;

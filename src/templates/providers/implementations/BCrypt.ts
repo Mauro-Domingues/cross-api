@@ -6,7 +6,7 @@ import { IHashProvider } ${'from'} '../models/IHashProvider';
 
 export class BCryptHashProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {
-    return hash(payload, hashConfig.config.secret);
+    return hash(payload, hashConfig.config.salt);
   }
 
   public async compareHash(payload: string, hashed: string): Promise<boolean> {

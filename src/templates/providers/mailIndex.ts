@@ -2,12 +2,12 @@ export class CreateMailIndex {
   public execute(): string {
     return `import { mailConfig } ${'from'} '@config/mail';
 import { container } ${'from'} 'tsyringe';
-import { NodemailerMailProvider } ${'from'} './implementations/NodemailerMailProvider';
+import { SMTPMailProvider } ${'from'} './implementations/SMTPMailProvider';
 import { SESMailProvider } ${'from'} './implementations/SESMailProvider';
 import { IMailProvider } ${'from'} './models/IMailProvider';
 
 const providers: Record<typeof mailConfig.driver, () => IMailProvider> = {
-  nodemailer: () => container.resolve(NodemailerMailProvider),
+  smtp: () => container.resolve(SMTPMailProvider),
   ses: () => container.resolve(SESMailProvider),
 };
 

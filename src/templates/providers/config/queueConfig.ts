@@ -6,6 +6,7 @@ export class CreateQueueConfig {
     readonly host: string;
     readonly port: number;
     readonly password: string;
+    readonly prefix: string;
   };
 }
 
@@ -15,6 +16,7 @@ export const queueConfig = Object.freeze<IQueueConfigDTO>({
     port: Number(process.env.REDIS_PORT),
     host: process.env.REDIS_HOST,
     password: process.env.REDIS_PASSWORD,
+    prefix: process.env.REDIS_PREFIX,
   },
 });
 `;

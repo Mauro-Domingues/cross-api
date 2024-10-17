@@ -3,16 +3,16 @@ import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
-import { CreateNodemailerMail } from '@templates/providers/implementations/NodemailerMail';
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
+import { CreateSMTPMail } from '@templates/providers/implementations/SMTPMail';
 import { CreateMailIndex } from '@templates/providers/mailIndex';
 import { CreateIMail } from '@templates/providers/models/IMail';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateMailProvider extends BaseProvider {
-  private readonly createNodemailerMail: CreateNodemailerMail;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
+  private readonly createSMTPMail: CreateSMTPMail;
   private readonly createFakeMail: CreateFakeMail;
   private readonly createIMailDTO: CreateIMailDTO;
   private readonly createSESMail: CreateSESMail;
@@ -24,9 +24,9 @@ export class CreateMailProvider extends BaseProvider {
       | undefined,
   ) {
     super(fatherNames);
-    this.createNodemailerMail = new CreateNodemailerMail();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
+    this.createSMTPMail = new CreateSMTPMail();
     this.createFakeMail = new CreateFakeMail();
     this.createIMailDTO = new CreateIMailDTO();
     this.createSESMail = new CreateSESMail();
@@ -71,9 +71,9 @@ export class CreateMailProvider extends BaseProvider {
           this.basePath,
           'MailProvider',
           'implementations',
-          'NodemailerMailProvider.ts',
+          'SMTPMailProvider.ts',
         ],
-        this.createNodemailerMail,
+        this.createSMTPMail,
       ],
       [
         [

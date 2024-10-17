@@ -5,15 +5,6 @@ PORT=3333
 API_URL=http://localhost:3333
 NODE_ENV=development
 
-# Auth
-JWT_LIFETIME=1d
-
-# Crypto
-CRYPTO_SECRET_KEY=
-
-# Hash
-HASH_SECRET_KEY=10
-
 # Mysql
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
@@ -28,47 +19,62 @@ REDIS_PORT=6379
 REDIS_PASSWORD=12345
 REDIS_PREFIX=api
 
-# Storage
+# Auth
+JWT_LIFETIME=1d
+
+# Crypto
+CRYPTO_SECRET_KEY=
+
+# Hash
+HASH_SECRET_KEY=10
+
+# Storage (disk | s3)
 STORAGE_DRIVER=disk
-#STORAGE_DRIVER=s3
-STORAGE_BUCKET=
-STORAGE_USER=
-STORAGE_PASS=
-STORAGE_REGION=us-east-1
 
-# Mail
-MAIL_DRIVER=nodemailer
-#MAIL_DRIVER=ses
-MAIL_PORT=
-MAIL_HOST=
-MAIL_SECURE=
-MAIL_ADRESS=no-reply@admin.com
+# S3
+S3_BUCKET=
+S3_USER=
+S3_PASSWORD=
+S3_REGION=
+
+# Mail (smtp | ses)
+MAIL_DRIVER=smtp
 MAIL_NAME=Administrator
-MAIL_USER=
-MAIL_PASS=
-MAIL_REGION=us-east-1
+MAIL_ADRESS=no-reply@admin.com
 
-# Queue
+# Smtp
+SMTP_HOST=
+SMTP_PORT=
+SMTP_SECURE=
+SMTP_USER=
+SMTP_PASSWORD=
+
+# Ses
+SES_USER=
+SES_PASSWORD=
+SES_REGION=
+
+# Queue (bee | bull | kue)
 QUEUE_DRIVER=bull
 
-# Notification
+# Notification (firebase | onesignal)
 NOTIFICATION_DRIVER=firebase
-# NOTIFICATION_DRIVER=onesignal
 
 # Firebase
 FIREBASE_API_URL=https://fcm.googleapis.com
 FIREBASE_API_KEY=
 
 # One Signal
-OS_API_URL=https://onesignal.com
-OS_APP_ID=
-OS_TOKEN=
+ONESIGNAL_API_URL=https://onesignal.com
+ONESIGNAL_APP_ID=
+ONESIGNAL_TOKEN=
 
 # RDStation
-RD_API_URL=https://api.rd.services
-RD_PUBLIC_API_KEY=
-RD_CLIENT_SECRET=
-RD_CLIENT_ID=
-RD_CODE=`;
+RDSTATION_API_URL=https://api.rd.services
+RDSTATION_PUBLIC_API_KEY=
+RDSTATION_CLIENT_SECRET=
+RDSTATION_CLIENT_ID=
+RDSTATION_CODE=
+`;
   }
 }

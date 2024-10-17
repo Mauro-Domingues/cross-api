@@ -18,10 +18,10 @@ export class S3StorageProvider implements IStorageProvider {
   public constructor() {
     this.client = new S3Client({
       credentials: {
-        accessKeyId: storageConfig.config.aws.user,
-        secretAccessKey: storageConfig.config.aws.password,
+        accessKeyId: storageConfig.config.s3.user,
+        secretAccessKey: storageConfig.config.s3.password,
       },
-      region: storageConfig.config.aws.region,
+      region: storageConfig.config.s3.region,
     });
   }
 
@@ -38,7 +38,7 @@ export class S3StorageProvider implements IStorageProvider {
 
     await this.client.send(
       new PutObjectCommand({
-        Bucket: storageConfig.config.aws.bucket,
+        Bucket: storageConfig.config.s3.bucket,
         Key: file,
         ACL: 'public-read',
         Body: fileContent,
@@ -54,7 +54,7 @@ export class S3StorageProvider implements IStorageProvider {
   public async deleteFile(file: string): Promise<void> {
     await this.client.send(
       new DeleteObjectCommand({
-        Bucket: storageConfig.config.aws.bucket,
+        Bucket: storageConfig.config.s3.bucket,
         Key: file,
       }),
     );

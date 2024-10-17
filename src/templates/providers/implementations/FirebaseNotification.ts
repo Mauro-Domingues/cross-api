@@ -2,6 +2,7 @@ export class CreateFirebaseNotification {
   public execute(): string {
     return `import axios, { AxiosError, AxiosInstance } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
+import { notificationConfig } ${'from'} '@config/notification';
 import { ISendNotificationDTO } ${'from'} '../dtos/ISendNotificationDTO';
 import { INotificationProvider } ${'from'} '../models/INotificationProvider';
 
@@ -10,10 +11,10 @@ export class FirebaseProvider implements INotificationProvider {
 
   public constructor() {
     this.http = axios.create({
-      baseURL: process.env.FIREBASE_API_URL,
+      baseURL: notificationConfig.config.firebase.api_url,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: \`key=\${process.env.FIREBASE_API_KEY}\`,
+        Authorization: \`key=\${notificationConfig.config.firebase.api_key}\`,
       },
     });
   }

@@ -21,7 +21,7 @@ export class FakeMailProvider implements IMailProvider {
     private readonly mailTemplateProvider: IMailTemplateProvider,
   ) {}
 
-  private async createClient(): Promise<void> {
+  private async createFakeClient(): Promise<void> {
     const account = await createTestAccount();
 
     this.client = createTransport({
@@ -41,7 +41,7 @@ export class FakeMailProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    await this.createClient();
+    await this.createFakeClient();
 
     const { email, name } = mailConfig.config.defaults.from;
 

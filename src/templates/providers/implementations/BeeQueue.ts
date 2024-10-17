@@ -20,7 +20,7 @@ export class BeeProvider implements IQueueProvider {
       const instance = new Job();
       this.queues[Job.key] = {
         queue: new Bee(Job.key, {
-          prefix: process.env.REDIS_PREFIX,
+          prefix: queueConfig.config.prefix,
           activateDelayedJobs: true,
           redis: queueConfig.config,
         }),

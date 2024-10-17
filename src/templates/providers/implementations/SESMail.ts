@@ -17,10 +17,10 @@ export class SESMailProvider implements IMailProvider {
   ) {
     this.client = new SESClient({
       credentials: {
-        accessKeyId: mailConfig.config.user,
-        secretAccessKey: mailConfig.config.password,
+        accessKeyId: mailConfig.config.ses.user,
+        secretAccessKey: mailConfig.config.ses.password,
       },
-      region: mailConfig.config.region,
+      region: mailConfig.config.ses.region,
     });
   }
 

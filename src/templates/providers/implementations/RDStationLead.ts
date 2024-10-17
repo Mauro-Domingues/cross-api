@@ -12,6 +12,7 @@ export class RDStationProvider implements ILeadProvider {
 
   public constructor() {
     this.http = axios.create({
+      baseURL: leadConfig.config.rdstation.api_url,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -21,9 +22,9 @@ export class RDStationProvider implements ILeadProvider {
   private async getSession(): Promise<void> {
     try {
       const body = {
-        client_id: leadConfig.config.clientId,
-        client_secret: leadConfig.config.clientSecret,
-        code: leadConfig.config.code,
+        client_id: leadConfig.config.rdstation.client_id,
+        client_secret: leadConfig.config.rdstation.client_secret,
+        code: leadConfig.config.rdstation.code,
       };
 
       const httpResult = await this.http.post<IAuthDTO>('auth/token', body);
@@ -64,7 +65,7 @@ export class RDStationProvider implements ILeadProvider {
         body,
         {
           params: {
-            api_key: leadConfig.config.publicApiKey,
+            api_key: leadConfig.config.rdstation.public_api_key,
           },
         },
       );

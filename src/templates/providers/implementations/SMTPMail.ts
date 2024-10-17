@@ -1,4 +1,4 @@
-export class CreateNodemailerMail {
+export class CreateSMTPMail {
   public execute(): string {
     return `import { Transporter, createTransport, getTestMessageUrl } ${'from'} 'nodemailer';
 import { injectable, inject } ${'from'} 'tsyringe';
@@ -8,7 +8,7 @@ import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
 import { IMailProvider } ${'from'} '../models/IMailProvider';
 
 @injectable()
-export class NodemailerMailProvider implements IMailProvider {
+export class SMTPMailProvider implements IMailProvider {
   private client: Transporter;
 
   public constructor(
@@ -18,12 +18,12 @@ export class NodemailerMailProvider implements IMailProvider {
 
   private async createClient(): Promise<void> {
     this.client = createTransport({
-      host: mailConfig.config.host,
-      port: mailConfig.config.port,
-      secure: mailConfig.config.secure,
+      host: mailConfig.config.smtp.host,
+      port: mailConfig.config.smtp.port,
+      secure: mailConfig.config.smtp.secure,
       auth: {
-        user: mailConfig.config.user,
-        pass: mailConfig.config.password,
+        user: mailConfig.config.smtp.user,
+        pass: mailConfig.config.smtp.password,
       },
     });
   }

@@ -2,12 +2,12 @@ export class CreateHashConfig {
   public execute(): string {
     return `interface IHashConfigDTO {
   readonly driver: 'bcrypt';
-  readonly config: { readonly secret: number };
+  readonly config: { readonly salt: number | string };
 }
 
 export const hashConfig = Object.freeze<IHashConfigDTO>({
   driver: 'bcrypt',
-  config: { secret: Number(process.env.HASH_SECRET_KEY) },
+  config: { salt: Number(process.env.HASH_SECRET_KEY) },
 });
 `;
   }
