@@ -1,5 +1,5 @@
-import { BaseTemplateModule } from '../base';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
 export class CreateIndexRoute extends BaseTemplateModule {
   public constructor(
