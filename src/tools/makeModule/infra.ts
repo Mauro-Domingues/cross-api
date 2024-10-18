@@ -14,7 +14,7 @@ export class CreateInfra extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

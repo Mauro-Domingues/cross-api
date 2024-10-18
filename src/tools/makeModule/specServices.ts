@@ -24,7 +24,7 @@ export class CreateSpecServices extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.deleteSpecService = new DeleteSpecService(
       this.names,
       this.fatherNames,

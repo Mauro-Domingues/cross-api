@@ -20,7 +20,7 @@ export class CreateRepositories extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.createFakeRepository = new CreateFakeRepository(
       this.names,
       this.fatherNames,

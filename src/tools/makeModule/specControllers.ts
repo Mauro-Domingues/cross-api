@@ -21,7 +21,7 @@ export class CreateSpecControllers extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.updateSpecController = new UpdateSpecController(this.names);
     this.createSpecController = new CreateSpecController(this.names);
     this.deleteSpecController = new DeleteSpecController(this.names);

@@ -24,7 +24,7 @@ export class CreateControllers extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.updateController = new UpdateController(this.names, this.fatherNames);
     this.createController = new CreateController(this.names, this.fatherNames);
     this.deleteController = new DeleteController(this.names, this.fatherNames);

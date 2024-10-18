@@ -16,7 +16,7 @@ export class CreateEntities extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.createEntity = new CreateEntity(this.names);
     this.concat = Concat.getInstance();
   }

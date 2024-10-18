@@ -16,7 +16,7 @@ export class CreateDtos extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.createModuleDTO = new CreateModuleDTO(this.names);
     this.concat = Concat.getInstance();
   }

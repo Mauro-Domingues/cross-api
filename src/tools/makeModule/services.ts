@@ -21,7 +21,7 @@ export class CreateServices extends BaseModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
     this.deleteService = new DeleteService(this.names, this.fatherNames);
     this.createService = new CreateService(this.names, this.fatherNames);
     this.updateService = new UpdateService(this.names, this.fatherNames);
