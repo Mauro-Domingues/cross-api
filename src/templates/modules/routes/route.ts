@@ -11,7 +11,7 @@ export class CreateRoute extends BaseTemplateModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    super();
+    super(names, fatherNames);
   }
 
   public execute(): string {
