@@ -1,15 +1,24 @@
+import { BaseTemplateModule } from '../base';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 
-export class CreateIndexRoute {
+export class CreateIndexRoute extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<IModuleNameDTO, 'lowerModuleName'>,
-  ) {}
+    protected readonly names: Pick<
+      IModuleNameDTO,
+      'lowerModuleName' | 'pluralLowerModuleName'
+    >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
-    return `import { ${this.names.lowerModuleName}Router } ${'from'} './${
-      this.names.lowerModuleName
+    return `import { ${this.baseNames.lowerModuleName}Router } ${'from'} './${
+      this.baseNames.lowerModuleName
     }Router';
-routes.use(${this.names.lowerModuleName}Router);
+routes.use(${this.baseNames.lowerModuleName}Router);
 `;
   }
 }

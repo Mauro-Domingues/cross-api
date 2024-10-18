@@ -5,29 +5,31 @@ import { ListController } from '@templates/modules/services/list/listController'
 import { ShowController } from '@templates/modules/services/show/showController';
 import { UpdateController } from '@templates/modules/services/update/updateController';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateControllers {
+export class CreateControllers extends BaseModule {
   private readonly updateController: UpdateController;
   private readonly createController: CreateController;
   private readonly deleteController: DeleteController;
   private readonly showController: ShowController;
   private readonly listController: ListController;
-  private readonly fileManager: FileManager;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Pick<
       IModuleNameDTO,
       'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
     >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
   ) {
-    this.updateController = new UpdateController(this.names);
-    this.createController = new CreateController(this.names);
-    this.deleteController = new DeleteController(this.names);
-    this.showController = new ShowController(this.names);
-    this.listController = new ListController(this.names);
-    this.fileManager = FileManager.getInstance();
+    super();
+    this.updateController = new UpdateController(this.names, this.fatherNames);
+    this.createController = new CreateController(this.names, this.fatherNames);
+    this.deleteController = new DeleteController(this.names, this.fatherNames);
+    this.showController = new ShowController(this.names, this.fatherNames);
+    this.listController = new ListController(this.names, this.fatherNames);
     this.concat = Concat.getInstance();
   }
 
@@ -35,9 +37,7 @@ export class CreateControllers {
     return this.fileManager.checkAndCreateMultiFile([
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('create', this.names.upperModuleName),
           this.concat.execute(
@@ -50,9 +50,7 @@ export class CreateControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('delete', this.names.upperModuleName),
           this.concat.execute(
@@ -65,9 +63,7 @@ export class CreateControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('list', this.names.upperModuleName),
           this.concat.execute(
@@ -80,9 +76,7 @@ export class CreateControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('show', this.names.upperModuleName),
           this.concat.execute(
@@ -95,9 +89,7 @@ export class CreateControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('update', this.names.upperModuleName),
           this.concat.execute(

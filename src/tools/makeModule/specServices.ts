@@ -5,29 +5,40 @@ import { ListSpecService } from '@templates/modules/services/list/listServiceSpe
 import { ShowSpecService } from '@templates/modules/services/show/showServiceSpec';
 import { UpdateSpecService } from '@templates/modules/services/update/updateServiceSpec';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateSpecServices {
+export class CreateSpecServices extends BaseModule {
   private readonly updateSpecService: UpdateSpecService;
   private readonly deleteSpecService: DeleteSpecService;
   private readonly createSpecService: CreateSpecService;
   private readonly showSpecService: ShowSpecService;
   private readonly listSpecService: ListSpecService;
-  private readonly fileManager: FileManager;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Omit<
+    protected readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
   ) {
-    this.deleteSpecService = new DeleteSpecService(this.names);
-    this.updateSpecService = new UpdateSpecService(this.names);
-    this.createSpecService = new CreateSpecService(this.names);
-    this.showSpecService = new ShowSpecService(this.names);
-    this.listSpecService = new ListSpecService(this.names);
-    this.fileManager = FileManager.getInstance();
+    super();
+    this.deleteSpecService = new DeleteSpecService(
+      this.names,
+      this.fatherNames,
+    );
+    this.updateSpecService = new UpdateSpecService(
+      this.names,
+      this.fatherNames,
+    );
+    this.createSpecService = new CreateSpecService(
+      this.names,
+      this.fatherNames,
+    );
+    this.showSpecService = new ShowSpecService(this.names, this.fatherNames);
+    this.listSpecService = new ListSpecService(this.names, this.fatherNames);
     this.concat = Concat.getInstance();
   }
 
@@ -35,9 +46,7 @@ export class CreateSpecServices {
     return this.fileManager.checkAndCreateMultiFile([
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('create', this.names.upperModuleName),
           this.concat.execute(
@@ -50,9 +59,7 @@ export class CreateSpecServices {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('delete', this.names.upperModuleName),
           this.concat.execute(
@@ -65,9 +72,7 @@ export class CreateSpecServices {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('list', this.names.upperModuleName),
           this.concat.execute(
@@ -80,9 +85,7 @@ export class CreateSpecServices {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('show', this.names.upperModuleName),
           this.concat.execute(
@@ -95,9 +98,7 @@ export class CreateSpecServices {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('update', this.names.upperModuleName),
           this.concat.execute(

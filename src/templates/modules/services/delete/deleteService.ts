@@ -1,16 +1,22 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class DeleteService {
+export class DeleteService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
-  ) {}
+    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { injectable, inject } ${'from'} 'tsyringe';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
 import { IConnection } ${'from'} '@shared/typeorm';

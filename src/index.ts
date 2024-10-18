@@ -11,8 +11,7 @@ import { DeleteRegister } from '@tools/lastModification/delete/index';
 import { CreateRegister } from '@tools/lastModification/save/index';
 import { ListProvider } from '@tools/listProvider';
 import { CreateApi } from '@tools/makeApi/index';
-import { CreateDependentModule } from '@tools/makeModule/dependent/index';
-import { CreateIndependentModule } from '@tools/makeModule/independent/index';
+import { CreateModule } from '@tools/makeModule/index';
 import { CreateProvider } from '@tools/makeProvider/index';
 import { Messages } from '@tools/messages';
 import { GetNames } from '@tools/names';
@@ -48,14 +47,11 @@ new (class Main {
       'make:provider': () =>
         new CreateProvider(this.arg, this.getFatherNames.execute()),
       'list:provider': () => new ListProvider(),
-      'make:module': () => {
-        const fatherNames = this.getFatherNames.execute();
-        const names = this.getNames.execute();
-        if (fatherNames) {
-          return new CreateDependentModule(names, fatherNames);
-        }
-        return new CreateIndependentModule(names);
-      },
+      'make:module': () =>
+        new CreateModule(
+          this.getNames.execute(),
+          this.getFatherNames.execute(),
+        ),
       language: () => new ConfigLanguage(),
       'make:api': () => new CreateApi(),
       config: () => new ConfigJson(),

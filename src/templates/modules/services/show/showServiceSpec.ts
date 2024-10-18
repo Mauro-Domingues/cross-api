@@ -1,22 +1,28 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class ShowSpecService {
+export class ShowSpecService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<
+    protected readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { AppError } ${'from'} '@shared/errors/AppError';
 import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';

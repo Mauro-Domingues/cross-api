@@ -1,19 +1,25 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class DeleteController {
+export class DeleteController extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Pick<
       IModuleNameDTO,
       'pluralLowerModuleName' | 'lowerModuleName' | 'upperModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';
 import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
       this.names.upperModuleName

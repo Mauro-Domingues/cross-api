@@ -1,18 +1,20 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateInfra {
-  private readonly fileManager: FileManager;
+export class CreateInfra extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Pick<
       IModuleNameDTO,
       'upperModuleName' | 'pluralLowerModuleName'
     >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
-    this.fileManager = FileManager.getInstance();
+    super();
     this.concat = Concat.getInstance();
   }
 
@@ -21,47 +23,31 @@ export class CreateInfra {
       ['src', 'modules'],
       ['src', 'shared', 'container'],
       ['src', 'routes'],
-      ['src', 'modules', this.names.pluralLowerModuleName, 'dtos'],
-      ['src', 'modules', this.names.pluralLowerModuleName, 'entities'],
+      [this.basePath, 'dtos'],
+      [this.basePath, 'entities'],
+      [this.basePath, 'repositories', 'fakes'],
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
-        'repositories',
-        'fakes',
-      ],
-      [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'services',
         this.concat.execute('create', this.names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'services',
         this.concat.execute('delete', this.names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'services',
         this.concat.execute('list', this.names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'services',
         this.concat.execute('show', this.names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'services',
         this.concat.execute('update', this.names.upperModuleName),
       ],

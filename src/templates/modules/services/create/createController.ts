@@ -1,22 +1,28 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class CreateController {
+export class CreateController extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Pick<
       IModuleNameDTO,
       'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';
 import { Request, Response } ${'from'} 'express';
 import { container } ${'from'} 'tsyringe';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
       this.names.upperModuleName

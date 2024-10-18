@@ -1,30 +1,30 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateDtos {
+export class CreateDtos extends BaseModule {
   private readonly createModuleDTO: CreateModuleDTO;
-  private readonly fileManager: FileManager;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Pick<
       IModuleNameDTO,
       'upperModuleName' | 'pluralLowerModuleName'
     >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
+    super();
     this.createModuleDTO = new CreateModuleDTO(this.names);
-    this.fileManager = FileManager.getInstance();
     this.concat = Concat.getInstance();
   }
 
   public execute(): void {
     return this.fileManager.checkAndCreateFile(
       [
-        'src',
-        'modules',
-        this.names.pluralLowerModuleName,
+        this.basePath,
         'dtos',
         this.concat.execute('I', this.names.upperModuleName, 'DTO.ts'),
       ],

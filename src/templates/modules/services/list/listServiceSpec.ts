@@ -1,21 +1,27 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class ListSpecService {
+export class ListSpecService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<
+    protected readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { Fake${
       this.names.pluralUpperModuleName
     }Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';

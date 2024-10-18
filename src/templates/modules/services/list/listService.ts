@@ -1,21 +1,24 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class ListService {
+export class ListService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<
-      IModuleNameDTO,
-      'lowerModuleName' | 'dbModuleName'
-    >,
-  ) {}
+    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { injectable, inject } ${'from'} 'tsyringe';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { ICacheDTO } ${'from'} '@dtos/ICacheDTO';

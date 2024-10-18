@@ -1,16 +1,22 @@
+import { BaseTemplateModule } from '../base';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 
-export class CreateIRepository {
+export class CreateIRepository extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Omit<
       IModuleNameDTO,
-      'pluralLowerModuleName' | 'pluralUpperModuleName' | 'upperModuleName'
+      'dbModuleName' | 'routeModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { IBaseRepository } ${'from'} '@shared/container/modules/repositories/IBaseRepository';
 

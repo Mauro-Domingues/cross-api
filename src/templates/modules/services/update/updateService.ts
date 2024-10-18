@@ -1,9 +1,15 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class UpdateService {
+export class UpdateService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
-  ) {}
+    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { injectable, inject } ${'from'} 'tsyringe';
@@ -11,14 +17,14 @@ export class UpdateService {
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/dtos/I${this.names.upperModuleName}DTO';
 import { updateAttribute } ${'from'} '@utils/mappers';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';

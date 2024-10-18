@@ -1,18 +1,24 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class ShowService {
+export class ShowService extends BaseTemplateModule {
   public constructor(
-    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
-  ) {}
+    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { injectable, inject } ${'from'} 'tsyringe';
 import { AppError } ${'from'} '@shared/errors/AppError';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { instanceToInstance } ${'from'} 'class-transformer';
 import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';

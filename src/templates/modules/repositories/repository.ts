@@ -1,19 +1,25 @@
+import { BaseTemplateModule } from '../base';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 
-export class CreateRepository {
+export class CreateRepository extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Omit<
       IModuleNameDTO,
-      'pluralLowerModuleName' | 'pluralUpperModuleName' | 'upperModuleName'
+      'dbModuleName' | 'routeModuleName'
     >,
-  ) {}
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super();
+  }
 
   public execute(): string {
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
 import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.names.pluralLowerModuleName
+      this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { BaseRepository } ${'from'} '@shared/container/modules/repositories/BaseRepository';
 

@@ -5,26 +5,28 @@ import { ListSpecController } from '@templates/modules/services/list/listControl
 import { ShowSpecController } from '@templates/modules/services/show/showControllerSpec';
 import { UpdateSpecController } from '@templates/modules/services/update/updateControllerSpec';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateSpecControllers {
+export class CreateSpecControllers extends BaseModule {
   private readonly updateSpecController: UpdateSpecController;
   private readonly deleteSpecController: DeleteSpecController;
   private readonly createSpecController: CreateSpecController;
   private readonly showSpecController: ShowSpecController;
   private readonly listSpecController: ListSpecController;
-  private readonly fileManager: FileManager;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
+    protected readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+      | undefined,
   ) {
+    super();
     this.updateSpecController = new UpdateSpecController(this.names);
     this.createSpecController = new CreateSpecController(this.names);
     this.deleteSpecController = new DeleteSpecController(this.names);
     this.listSpecController = new ListSpecController(this.names);
     this.showSpecController = new ShowSpecController(this.names);
-    this.fileManager = FileManager.getInstance();
     this.concat = Concat.getInstance();
   }
 
@@ -32,9 +34,7 @@ export class CreateSpecControllers {
     return this.fileManager.checkAndCreateMultiFile([
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('create', this.names.upperModuleName),
           this.concat.execute(
@@ -47,9 +47,7 @@ export class CreateSpecControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('delete', this.names.upperModuleName),
           this.concat.execute(
@@ -62,9 +60,7 @@ export class CreateSpecControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('list', this.names.upperModuleName),
           this.concat.execute(
@@ -77,9 +73,7 @@ export class CreateSpecControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('show', this.names.upperModuleName),
           this.concat.execute(
@@ -92,9 +86,7 @@ export class CreateSpecControllers {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'services',
           this.concat.execute('update', this.names.upperModuleName),
           this.concat.execute(

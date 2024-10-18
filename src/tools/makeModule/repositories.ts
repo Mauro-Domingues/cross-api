@@ -3,25 +3,33 @@ import { CreateFakeRepository } from '@templates/modules/repositories/fakes/fake
 import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import { BaseModule } from '@tools/makeModule/base';
 
-export class CreateRepositories {
+export class CreateRepositories extends BaseModule {
   private readonly createFakeRepository: CreateFakeRepository;
   private readonly createIRepository: CreateIRepository;
   private readonly createRepository: CreateRepository;
-  private readonly fileManager: FileManager;
   private readonly concat: Concat;
 
   public constructor(
-    private readonly names: Pick<
+    protected readonly names: Omit<
       IModuleNameDTO,
-      'upperModuleName' | 'pluralUpperModuleName' | 'pluralLowerModuleName'
+      'dbModuleName' | 'routeModuleName'
     >,
+    protected readonly fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
   ) {
-    this.createFakeRepository = new CreateFakeRepository(this.names);
-    this.createIRepository = new CreateIRepository(this.names);
-    this.createRepository = new CreateRepository(this.names);
-    this.fileManager = FileManager.getInstance();
+    super();
+    this.createFakeRepository = new CreateFakeRepository(
+      this.names,
+      this.fatherNames,
+    );
+    this.createIRepository = new CreateIRepository(
+      this.names,
+      this.fatherNames,
+    );
+    this.createRepository = new CreateRepository(this.names, this.fatherNames);
     this.concat = Concat.getInstance();
   }
 
@@ -29,9 +37,7 @@ export class CreateRepositories {
     return this.fileManager.checkAndCreateMultiFile([
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'repositories',
           this.concat.execute(
             this.names.pluralUpperModuleName,
@@ -42,9 +48,7 @@ export class CreateRepositories {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'repositories',
           this.concat.execute(
             'I',
@@ -56,9 +60,7 @@ export class CreateRepositories {
       ],
       [
         [
-          'src',
-          'modules',
-          this.names.pluralLowerModuleName,
+          this.basePath,
           'repositories',
           'fakes',
           this.concat.execute(
