@@ -46,14 +46,14 @@ export class CreateRoutes {
     );
 
     if (this.fileManager.checkIfExistsSync([this.routerPath])) {
-      return this.fileManager.checkAndCreateFile(
+      return this.fileManager.createFile(
         [this.routerPath],
-        this.createRoute,
+        this.createRoute.execute(),
       );
     }
-    return this.fileManager.checkAndCreateFile(
+    return this.fileManager.createFile(
       [this.routerPath],
-      this.createFullRoute,
+      this.createFullRoute.execute(),
     );
   }
 }
