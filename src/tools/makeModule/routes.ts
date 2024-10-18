@@ -41,16 +41,17 @@ export class CreateRoutes {
 
   public execute(): void {
     if (this.fileManager.checkIfExistsSync([this.routerPath])) {
-      this.fileManager.createFile(
-        ['src', 'routes', 'index.ts'],
-        this.createIndexRoute.execute(),
-      );
-
       return this.fileManager.createFile(
         [this.routerPath],
         this.createRoute.execute(),
       );
     }
+
+    this.fileManager.createFile(
+      ['src', 'routes', 'index.ts'],
+      this.createIndexRoute.execute(),
+    );
+
     return this.fileManager.createFile(
       [this.routerPath],
       this.createFullRoute.execute(),
