@@ -2,7 +2,7 @@ export class CreateDockerCompose {
   public execute(): string {
     return `services:
   mysql:
-    image: mysql
+    image: mysql:5.7
     restart: unless-stopped
     container_name: mysql
     command: --default-authentication-plugin=mysql_native_password
