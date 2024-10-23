@@ -34,7 +34,7 @@ export class Update${this.names.upperModuleName}Controller {
       this.names.upperModuleName
     }DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
-  ) {
+  ): Promise<void> {
     const update${this.names.upperModuleName} = container.resolve(Update${
       this.names.upperModuleName
     }Service);
@@ -46,7 +46,7 @@ export class Update${this.names.upperModuleName}Controller {
       this.names.upperModuleName
     }.execute(${this.names.lowerModuleName}Data, id);
 
-    return response.status(${this.names.lowerModuleName}.code).send(${
+    response.status(${this.names.lowerModuleName}.code).send(${
       this.names.lowerModuleName
     });
   }

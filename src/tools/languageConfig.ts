@@ -9,11 +9,9 @@ import { Messages } from '@tools/messages';
 import { Readline } from '@tools/readline';
 
 export class ConfigLanguage {
+  protected declare languageChosen: keyof IMessageDTO['language']['options'];
   protected readonly languageOptions: IMessageDTO['language']['options'];
   private readonly createDefaultLanguage: CreateDefaultLanguage;
-  protected languageChosen:
-    | keyof IMessageDTO['language']['options']
-    | undefined;
   protected readonly fileManager: FileManager;
   protected readonly readline: Readline;
   protected readonly console: Console;
@@ -193,12 +191,12 @@ export class ConfigLanguage {
   }
 
   protected showChosenOption(): void {
-    this.messages = this.languages[this.languageChosen!].execute();
+    this.messages = this.languages[this.languageChosen].execute();
 
     return this.console.execute({
       message: [
         this.messages.language.choice,
-        this.messages.language.options[this.languageChosen!],
+        this.messages.language.options[this.languageChosen],
       ],
       color: 'green',
       bold: true,

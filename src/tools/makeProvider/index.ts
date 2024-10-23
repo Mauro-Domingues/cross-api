@@ -54,6 +54,7 @@ export class CreateProvider {
     return new PackageManager(
       provider.dependencies,
       provider.devDependencies,
+      this.messages,
     ).execute('install');
   }
 }

@@ -17,8 +17,9 @@ export class PackageManager {
   public constructor(
     private readonly dependencies: Array<string>,
     private readonly devDependencies: Array<string>,
+    messages: IMessageDTO | undefined,
   ) {
-    this.messages = Messages.getInstance().execute();
+    this.messages = messages ?? Messages.getInstance().execute();
     this.fileManager = FileManager.getInstance();
     this.readline = new Readline(['y', 'n']);
     this.console = Console.getInstance();

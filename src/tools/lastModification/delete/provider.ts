@@ -184,6 +184,7 @@ export class DeleteProvider {
       this.provider.list[
         names?.lowerModuleName as keyof typeof this.provider.list
       ]?.devDependencies,
+      this.messages,
     );
 
     if (names && fatherNames) {

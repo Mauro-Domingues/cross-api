@@ -5,7 +5,6 @@ import { Shell } from '@tools/shell';
 
 export class ConfigJson extends ConfigLanguage {
   private readonly devDependencies: Array<string>;
-  private readonly packageManager: PackageManager;
   private readonly dependencies: Array<string>;
   private readonly finishConfig: FinishConfig;
   private readonly shell: Shell;
@@ -61,10 +60,6 @@ export class ConfigJson extends ConfigLanguage {
       'typeorm@^0.3.15',
       'uuid',
     ];
-    this.packageManager = new PackageManager(
-      this.dependencies,
-      this.devDependencies,
-    );
   }
 
   private patchPackage(): void {
@@ -162,7 +157,11 @@ export class ConfigJson extends ConfigLanguage {
   private setConfig(): void {
     this.patchPackage();
     this.installYarn();
-    this.packageManager.execute('install');
+    new PackageManager(
+      this.dependencies,
+      this.devDependencies,
+      this.messages,
+    ).execute('install');
     this.renderEnding();
 
     if (this.fileManager.checkIfExistsSync(['package-lock.json'])) {

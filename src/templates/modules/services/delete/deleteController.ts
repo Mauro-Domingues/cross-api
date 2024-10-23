@@ -29,7 +29,7 @@ export class Delete${this.names.upperModuleName}Controller {
   public async handle(
     request: Request<I${this.names.upperModuleName}DTO>,
     response: Response<IResponseDTO<null>>,
-  ) {
+  ): Promise<void> {
     const delete${this.names.upperModuleName} = container.resolve(Delete${
       this.names.upperModuleName
     }Service);
@@ -40,7 +40,7 @@ export class Delete${this.names.upperModuleName}Controller {
       this.names.upperModuleName
     }.execute(id);
 
-    return response.send(${this.names.lowerModuleName});
+    response.send(${this.names.lowerModuleName});
   }
 }
 `;

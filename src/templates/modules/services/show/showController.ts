@@ -32,7 +32,7 @@ export class Show${this.names.upperModuleName}Controller {
   public async handle(
     request: Request<I${this.names.upperModuleName}DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
-  ) {
+  ): Promise<void> {
     const show${this.names.upperModuleName} = container.resolve(Show${
       this.names.upperModuleName
     }Service);
@@ -43,7 +43,7 @@ export class Show${this.names.upperModuleName}Controller {
       this.names.upperModuleName
     }.execute(id);
 
-    return response.status(${this.names.lowerModuleName}.code).send(${
+    response.status(${this.names.lowerModuleName}.code).send(${
       this.names.lowerModuleName
     });
   }

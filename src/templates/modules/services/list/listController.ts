@@ -37,7 +37,7 @@ export class List${this.names.upperModuleName}Controller {
       }>
     >,
     response: Response<IListDTO<${this.names.upperModuleName}>>,
-  ) {
+  ): Promise<void> {
     const list${this.names.upperModuleName} = container.resolve(List${
       this.names.upperModuleName
     }Service);
@@ -48,7 +48,7 @@ export class List${this.names.upperModuleName}Controller {
       this.names.upperModuleName
     }.execute(page, limit, filters);
 
-    return response.status(${this.names.pluralLowerModuleName}.code).send(${
+    response.status(${this.names.pluralLowerModuleName}.code).send(${
       this.names.pluralLowerModuleName
     });
   }
