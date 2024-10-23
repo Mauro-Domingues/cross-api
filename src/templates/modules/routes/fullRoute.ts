@@ -41,6 +41,31 @@ import { Delete${this.names.upperModuleName}Controller } ${'from'} '@modules/${
     }/services/delete${this.names.upperModuleName}/Delete${
       this.names.upperModuleName
     }Controller';
+import { create${this.names.upperModuleName} } from '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/validators/${this.names.pluralLowerModuleName}/create${
+      this.names.upperModuleName
+    }';
+import { list${this.names.upperModuleName} } from '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/validators/${this.names.pluralLowerModuleName}/list${
+      this.names.upperModuleName
+    }';
+import { show${this.names.upperModuleName} } from '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/validators/${this.names.pluralLowerModuleName}/show${
+      this.names.upperModuleName
+    }';
+import { update${this.names.upperModuleName} } from '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/validators/${this.names.pluralLowerModuleName}/update${
+      this.names.upperModuleName
+    }';
+import { delete${this.names.upperModuleName} } from '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/validators/${this.names.pluralLowerModuleName}/delete${
+      this.names.upperModuleName
+    }';
 
 const ${this.baseNames.lowerModuleName}Router = Router();
 const create${this.names.upperModuleName}Controller = new Create${
@@ -61,14 +86,24 @@ const delete${this.names.upperModuleName}Controller = new Delete${
 
 ${this.baseNames.lowerModuleName}Router
   .route('/${this.names.routeModuleName}')
-  .post(create${this.names.upperModuleName}Controller.handle)
-  .get(list${this.names.upperModuleName}Controller.handle);
+  .post(create${this.names.upperModuleName}, create${
+      this.names.upperModuleName
+    }Controller.handle)
+  .get(list${this.names.upperModuleName}, list${
+      this.names.upperModuleName
+    }Controller.handle);
 
 ${this.baseNames.lowerModuleName}Router
   .route('/${this.names.routeModuleName}/:id')
-  .get(show${this.names.upperModuleName}Controller.handle)
-  .put(update${this.names.upperModuleName}Controller.handle)
-  .delete(delete${this.names.upperModuleName}Controller.handle);
+  .get(show${this.names.upperModuleName}, show${
+      this.names.upperModuleName
+    }Controller.handle)
+  .put(update${this.names.upperModuleName}, update${
+      this.names.upperModuleName
+    }Controller.handle)
+  .delete(delete${this.names.upperModuleName}, delete${
+      this.names.upperModuleName
+    }Controller.handle);
 
 export { ${this.baseNames.lowerModuleName}Router };
 `;

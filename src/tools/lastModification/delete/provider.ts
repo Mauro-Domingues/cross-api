@@ -85,7 +85,7 @@ export class DeleteProvider {
       breakStart: false,
       breakEnd: false,
     });
-    packageManager.execute('uninstall');
+    return packageManager.execute('uninstall');
   }
 
   private useFatherNames({
@@ -163,7 +163,7 @@ export class DeleteProvider {
       breakStart: false,
       breakEnd: false,
     });
-    packageManager.execute('uninstall');
+    return packageManager.execute('uninstall');
   }
 
   public execute({

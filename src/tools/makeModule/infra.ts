@@ -51,6 +51,7 @@ export class CreateInfra extends BaseModule {
         'services',
         this.concat.execute('update', this.names.upperModuleName),
       ],
+      [this.basePath, 'validators'],
     ]);
   }
 }

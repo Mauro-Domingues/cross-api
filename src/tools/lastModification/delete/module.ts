@@ -57,7 +57,7 @@ export class DeleteModule {
       ['src', 'routes', 'index.ts'],
       routeInjection,
     );
-    this.console.execute({
+    return this.console.execute({
       message: [
         '- ',
         this.messages.comands.description.reversed,
@@ -85,76 +85,58 @@ export class DeleteModule {
     >;
     comand: string;
   }): void {
+    const basePath = this.fileManager.resolvePath([
+      'src',
+      'modules',
+      fatherNames.pluralLowerModuleName,
+    ]);
     this.fileManager.removeMultiDir([
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'services',
         this.concat.execute('create', names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'services',
         this.concat.execute('delete', names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'services',
         this.concat.execute('list', names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'services',
         this.concat.execute('show', names.upperModuleName),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'services',
         this.concat.execute('update', names.upperModuleName),
       ],
+      [basePath, 'validators', names.pluralLowerModuleName],
     ]);
     this.fileManager.checkAndRemoveMultiFile([
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'dtos',
         this.concat.execute('I', names.upperModuleName, 'DTO.ts'),
       ],
+      [basePath, 'entities', this.concat.execute(names.upperModuleName, '.ts')],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'entities',
-        this.concat.execute(names.upperModuleName, '.ts'),
-      ],
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'repositories',
         this.concat.execute(names.pluralUpperModuleName, 'Repository.ts'),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'repositories',
         this.concat.execute('I', names.pluralUpperModuleName, 'Repository.ts'),
       ],
       [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
+        basePath,
         'repositories',
         'fakes',
         this.concat.execute(
@@ -197,7 +179,7 @@ export class DeleteModule {
       ],
       routeInjection,
     );
-    this.console.execute({
+    return this.console.execute({
       message: [
         '- ',
         this.messages.comands.description.reversed,

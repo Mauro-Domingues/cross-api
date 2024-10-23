@@ -8,17 +8,17 @@ export class CreateBaseEntity {
 } ${'from'} 'typeorm';
 
 export abstract class Base {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
   public readonly id: string;
 
-  @CreateDateColumn({ type: 'datetime' })
-  public readonly created_at: Date;
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
+  public readonly createdAt: Date;
 
-  @UpdateDateColumn({ type: 'datetime' })
-  public readonly updated_at: Date;
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
+  public readonly updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'datetime' })
-  public readonly deleted_at: Date;
+  @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
+  public readonly deletedAt: Date;
 }
 `;
   }

@@ -68,7 +68,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     this.validateClause(where);
     return this.fakeRepository.some(
       entity =>
-        this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
+        this.parseWhere(entity, where) && (withDeleted ?? !entity.deletedAt),
     );
   }
 
@@ -79,7 +79,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     this.validateClause(where);
     const findEntity: Entity | undefined = this.fakeRepository.find(
       entity =>
-        this.parseWhere(entity, where) && (withDeleted ?? !entity.deleted_at),
+        this.parseWhere(entity, where) && (withDeleted ?? !entity.deletedAt),
     );
 
     return findEntity ?? null;
@@ -98,7 +98,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       ? this.fakeRepository.filter(
           entity =>
             this.parseWhere(entity, where) &&
-            (withDeleted ?? !entity.deleted_at),
+            (withDeleted ?? !entity.deletedAt),
         )
       : this.fakeRepository;
 
@@ -122,7 +122,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
             entity[key as keyof Entity],
           ),
         ) &&
-        (withDeleted ?? !entity.deleted_at),
+        (withDeleted ?? !entity.deletedAt),
     );
   }
 
@@ -142,7 +142,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
               ?.includes(value?.toString()?.replace(/^%|%$/g, ''));
           }),
         ) &&
-        (withDeleted ?? !entity.deleted_at),
+        (withDeleted ?? !entity.deletedAt),
     );
   }
 
@@ -152,9 +152,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     const base = Object.assign(new this.Entity(), {
       ...baseData,
       id: uuid(),
-      created_at: new Date(),
-      updated_at: new Date(),
-      deleted_at: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: null,
     });
 
     this.fakeRepository.push(base);
@@ -169,9 +169,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       const base = Object.assign(new this.Entity(), {
         ...data,
         id: uuid(),
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null,
       });
 
       this.fakeRepository.push(base);
@@ -189,7 +189,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
     Object.assign(this.fakeRepository[findEntity], {
       ...baseData,
-      updated_at: new Date(),
+      updatedAt: new Date(),
     });
 
     return this.fakeRepository[findEntity];
@@ -205,7 +205,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
 
       Object.assign(this.fakeRepository[findEntity], {
         ...data,
-        updated_at: new Date(),
+        updatedAt: new Date(),
       });
 
       return this.fakeRepository[findEntity];
@@ -220,7 +220,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }> {
     const deleteEntities: Array<Entity> = this.fakeRepository.filter(entity =>
       Object.entries(baseData).every(
-        ([key, value]) => entity[key] === value && !entity.deleted_at,
+        ([key, value]) => entity[key] === value && !entity.deletedAt,
       ),
     );
 
@@ -244,7 +244,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     baseData.forEach(data => {
       const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
+          ([key, value]) => entity[key] === value && !entity.deletedAt,
         ),
       );
       deleteEntities = [...deleteEntities, ...entitiesToDelete];
@@ -268,12 +268,12 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   }> {
     const deleteEntities: Array<Entity> = this.fakeRepository.filter(entity =>
       Object.entries(baseData).every(
-        ([key, value]) => entity[key] === value && !entity.deleted_at,
+        ([key, value]) => entity[key] === value && !entity.deletedAt,
       ),
     );
 
     deleteEntities.forEach(entity => {
-      Object.assign(entity, { deleted_at: new Date() });
+      Object.assign(entity, { deletedAt: new Date() });
     });
 
     return {
@@ -292,14 +292,14 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     baseData.forEach(data => {
       const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
-          ([key, value]) => entity[key] === value && !entity.deleted_at,
+          ([key, value]) => entity[key] === value && !entity.deletedAt,
         ),
       );
       deleteEntities = [...deleteEntities, ...entitiesToDelete];
     });
 
     deleteEntities.forEach(entity => {
-      Object.assign(entity, { deleted_at: new Date() });
+      Object.assign(entity, { deletedAt: new Date() });
     });
 
     return {
