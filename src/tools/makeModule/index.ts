@@ -13,6 +13,7 @@ import { CreateRoutes } from '@tools/makeModule/routes';
 import { CreateServices } from '@tools/makeModule/services';
 import { CreateSpecControllers } from '@tools/makeModule/specControllers';
 import { CreateSpecServices } from '@tools/makeModule/specServices';
+import { CreateValidators } from '@tools/makeModule/validators';
 import { Messages } from '@tools/messages';
 
 export class CreateModule {
@@ -21,6 +22,7 @@ export class CreateModule {
   private readonly createSpecServices: CreateSpecServices;
   private readonly createRepositories: CreateRepositories;
   private readonly createControllers: CreateControllers;
+  private readonly createValidators: CreateValidators;
   private readonly createEntities: CreateEntities;
   private readonly createServices: CreateServices;
   private readonly createRoutes: CreateRoutes;
@@ -68,6 +70,7 @@ export class CreateModule {
       this.names,
       this.fatherNames,
     );
+    this.createValidators = new CreateValidators(this.names, this.fatherNames);
     this.createEntities = new CreateEntities(this.names, this.fatherNames);
     this.createServices = new CreateServices(this.names, this.fatherNames);
     this.createRoutes = new CreateRoutes(this.names, this.fatherNames);
@@ -86,6 +89,7 @@ export class CreateModule {
     this.createControllers.execute();
     this.createSpecServices.execute();
     this.createSpecControllers.execute();
+    this.createValidators.execute();
     this.createRoutes.execute();
     this.createModuleInjection.execute();
     return this.console.execute({
