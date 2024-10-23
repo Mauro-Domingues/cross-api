@@ -25,7 +25,7 @@ import { ${this.names.lowerModuleName}Schema } ${'from'} './${
 export const create${this.names.upperModuleName} = celebrate({
   [Segments.PARAMS]: Joi.object({}),
   [Segments.QUERY]: Joi.object({}),
-  [Segments.BODY]: Joi.object<${this.names.upperModuleName}>({
+  [Segments.BODY]: Joi.object<I${this.names.upperModuleName}DTO>({
     ...${this.names.lowerModuleName}Schema,
     name: ${this.names.lowerModuleName}Schema.name.required(),
   }),
