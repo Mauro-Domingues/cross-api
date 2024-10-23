@@ -12,25 +12,15 @@ export class CreateProvider {
   ) {}
 
   private constructProviderBase(): void {
-    this.fileManager.checkAndCreateDirSync([
+    const basePath = this.fileManager.resolvePath([
       'src',
       'shared',
       'container',
       'providers',
     ]);
-    if (
-      !this.fileManager.checkIfExistsSync([
-        'src',
-        'shared',
-        'container',
-        'providers',
-        'index.ts',
-      ])
-    ) {
-      this.fileManager.createFileSync(
-        ['src', 'shared', 'container', 'providers', 'index.ts'],
-        '',
-      );
+    this.fileManager.checkAndCreateDirSync([basePath]);
+    if (!this.fileManager.checkIfExistsSync([basePath, 'index.ts'])) {
+      this.fileManager.createFileSync([basePath, 'index.ts'], '');
     }
   }
 

@@ -37,23 +37,16 @@ export class DeleteProvider {
       'providers',
       'providerInjection.log',
     ]);
-
-    this.fileManager.truncateFileSync([
+    const basePath = this.fileManager.resolvePath([
       'src',
       'shared',
       'container',
       'providers',
-      'index.ts',
     ]);
-    this.fileManager.createFileSync(
-      ['src', 'shared', 'container', 'providers', 'index.ts'],
-      oldProviders,
-    );
+    this.fileManager.truncateFileSync([basePath, 'index.ts']);
+    this.fileManager.createFileSync([basePath, 'index.ts'], oldProviders);
     this.fileManager.removeDir([
-      'src',
-      'shared',
-      'container',
-      'providers',
+      basePath,
       this.provider.list[
         names.lowerModuleName as keyof typeof this.provider.list
       ].description.trimEnd(),
@@ -107,29 +100,16 @@ export class DeleteProvider {
       'providers',
       'providerInjection.log',
     ]);
-
-    this.fileManager.truncateFileSync([
+    const basePath = this.fileManager.resolvePath([
       'src',
       'modules',
       fatherNames.pluralLowerModuleName,
       'providers',
-      'index.ts',
     ]);
-    this.fileManager.createFileSync(
-      [
-        'src',
-        'modules',
-        fatherNames.pluralLowerModuleName,
-        'providers',
-        'index.ts',
-      ],
-      oldProviders,
-    );
+    this.fileManager.truncateFileSync([basePath, 'index.ts']);
+    this.fileManager.createFileSync([basePath, 'index.ts'], oldProviders);
     this.fileManager.removeDir([
-      'src',
-      'modules',
-      fatherNames.pluralLowerModuleName,
-      'providers',
+      basePath,
       this.provider.list[
         names.lowerModuleName as keyof typeof this.provider.list
       ].description.trimEnd(),
