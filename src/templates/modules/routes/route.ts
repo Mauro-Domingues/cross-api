@@ -42,27 +42,27 @@ import { Delete${this.names.upperModuleName}Controller } ${'from'} '@modules/${
     }/services/delete${this.names.upperModuleName}/Delete${
       this.names.upperModuleName
     }Controller';
-import { create${this.names.upperModuleName} } from '@modules/${
+import { create${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/validators/${this.names.pluralLowerModuleName}/create${
       this.names.upperModuleName
     }';
-import { list${this.names.upperModuleName} } from '@modules/${
+import { list${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/validators/${this.names.pluralLowerModuleName}/list${
       this.names.upperModuleName
     }';
-import { show${this.names.upperModuleName} } from '@modules/${
+import { show${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/validators/${this.names.pluralLowerModuleName}/show${
       this.names.upperModuleName
     }';
-import { update${this.names.upperModuleName} } from '@modules/${
+import { update${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/validators/${this.names.pluralLowerModuleName}/update${
       this.names.upperModuleName
     }';
-import { delete${this.names.upperModuleName} } from '@modules/${
+import { delete${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/validators/${this.names.pluralLowerModuleName}/delete${
       this.names.upperModuleName
