@@ -86,7 +86,7 @@ export class Update${this.names.upperModuleName}Service {
 
       return {
         code: 200,
-        message_code: 'UPDATED',
+        messageCode: 'UPDATED',
         message: 'Successfully updated ${this.names.lowerModuleName}',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };

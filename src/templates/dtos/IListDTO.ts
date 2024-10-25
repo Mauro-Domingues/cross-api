@@ -4,7 +4,7 @@ export class CreateIListDTO {
 
 export interface IListDTO<T> {
   code: number;
-  message_code: ICodeDTO;
+  messageCode: ICodeDTO;
   message: string;
   pagination: {
     total: number;

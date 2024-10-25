@@ -11,7 +11,7 @@ export class OneSignalProvider implements INotificationProvider {
 
   public constructor() {
     this.http = axios.create({
-      baseURL: notificationConfig.config.onesignal.api_url,
+      baseURL: notificationConfig.config.onesignal.apiUrl,
       headers: {
         'Content-Type': 'application/json',
         Authorization: \`Basic \${notificationConfig.config.onesignal.token}\`,
@@ -21,10 +21,10 @@ export class OneSignalProvider implements INotificationProvider {
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     const body = {
-      app_id: notificationConfig.config.onesignal.app_id,
+      app_id: notificationConfig.config.onesignal.appId,
       headings: { en: data.header },
       contents: { en: data.content },
-      include_player_ids: [data.device_id],
+      include_player_ids: [data.deviceId],
     };
 
     try {

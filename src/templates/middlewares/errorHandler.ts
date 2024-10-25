@@ -25,7 +25,7 @@ export const errorHandler = (
   if (error instanceof CelebrateError) {
     Object.assign(errorBody, {
       code: 400,
-      message_code: toUpperSnakeCase(error.message),
+      messageCode: toUpperSnakeCase(error.message),
       message:
         (
           error?.details.get('body') ||
@@ -39,14 +39,14 @@ export const errorHandler = (
   } else if (error instanceof AppError) {
     Object.assign(errorBody, {
       code: error.code,
-      message_code: error.message_code,
+      messageCode: error.messageCode,
       message: error.message,
       stack: error.stack,
     });
   } else {
     Object.assign(errorBody, {
       code: 500,
-      message_code: toUpperSnakeCase(error.name),
+      messageCode: toUpperSnakeCase(error.name),
       message: error.message,
       stack: error.stack,
     });
@@ -64,7 +64,7 @@ export const errorHandler = (
   return (
     response.status(errorBody.code).send({
       code: errorBody.code,
-      message_code: errorBody.message_code,
+      messageCode: errorBody.messageCode,
       message: errorBody.message,
     }) && next()
   );

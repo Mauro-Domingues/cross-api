@@ -64,7 +64,7 @@ export class Show${this.names.upperModuleName}Service {
 
       return {
         code: 200,
-        message_code: 'FOUND',
+        messageCode: 'FOUND',
         message: '${this.names.upperModuleName} found successfully',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };

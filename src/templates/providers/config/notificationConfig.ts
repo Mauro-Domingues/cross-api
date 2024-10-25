@@ -4,13 +4,13 @@ export class CreateNotificationConfig {
   readonly driver: 'onesignal' | 'firebase';
   readonly config: {
     readonly onesignal: {
-      readonly api_url: string;
-      readonly app_id: string;
+      readonly apiUrl: string;
+      readonly appId: string;
       readonly token: string;
     };
     readonly firebase: {
-      readonly api_url: string;
-      readonly api_key: string;
+      readonly apiUrl: string;
+      readonly apiKey: string;
     };
   };
 }
@@ -19,12 +19,12 @@ export const notificationConfig = Object.freeze<INotificationConfigDTO>({
   driver: process.env.NOTIFICATION_DRIVER,
   config: {
     firebase: {
-      api_url: process.env.FIREBASE_API_URL,
-      api_key: process.env.FIREBASE_API_KEY,
+      apiUrl: process.env.FIREBASE_API_URL,
+      apiKey: process.env.FIREBASE_API_KEY,
     },
     onesignal: {
-      api_url: process.env.ONESIGNAL_API_URL,
-      app_id: process.env.ONESIGNAL_APP_ID,
+      apiUrl: process.env.ONESIGNAL_API_URL,
+      appId: process.env.ONESIGNAL_APP_ID,
       token: process.env.ONESIGNAL_TOKEN,
     },
   },

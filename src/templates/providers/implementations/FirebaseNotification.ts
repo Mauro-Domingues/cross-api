@@ -11,17 +11,17 @@ export class FirebaseProvider implements INotificationProvider {
 
   public constructor() {
     this.http = axios.create({
-      baseURL: notificationConfig.config.firebase.api_url,
+      baseURL: notificationConfig.config.firebase.apiUrl,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: \`key=\${notificationConfig.config.firebase.api_key}\`,
+        Authorization: \`key=\${notificationConfig.config.firebase.apiKey}\`,
       },
     });
   }
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     const body = {
-      to: data.device_id,
+      to: data.deviceId,
       notification: {
         title: data.header,
         body: data.content,

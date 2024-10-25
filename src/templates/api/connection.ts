@@ -28,7 +28,7 @@ export class Connection implements IConnection {
 // @Column({ type: 'varchar', nullable: true })
 // public image: string
 //
-// @Expose({ name: "avatar_url" })
+// @Expose({ name: "avatarUrl" })
 // public getAvatarUrl(): string | null {
 //   if (!this.image) {
 //     return null;
@@ -47,7 +47,7 @@ export class Connection implements IConnection {
 
 // @OneToOne(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
-// @JoinColumn({ name: 'relationEntity_id' })
+// @JoinColumn({ name: 'relation_entity_id' })
 // public relationEntity: EntityClass;
 
 // @OneToMany(() => EntityClass, entityParam => entityParam.entityColumn,
@@ -56,19 +56,19 @@ export class Connection implements IConnection {
 
 // @ManyToOne(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
-// @JoinColumn({ name: "relationEntity_id" })
+// @JoinColumn({ name: "relation_entity_id" })
 // public relationEntity: EntityClass;
 
 // @ManyToMany(() => EntityClass, entityParam => entityParam.entityColumn,
 // { onDelete: 'OPTION', onUpdate: 'OPTION' })
 // @JoinTable({
-//   name: 'thisEntity_relationEntity',
+//   name: 'this_entity_relation_entity',
 //   joinColumn: {
-//       name: 'thisEntity_id',
+//       name: 'this_entity_id',
 //       referencedColumnName: 'id',
 //   },
 //   inverseJoinColumn: {
-//       name: 'relationEntity_id',
+//       name: 'relation_entity_id',
 //       referencedColumnName: 'id',
 //   },
 // })

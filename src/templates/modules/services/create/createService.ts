@@ -66,7 +66,7 @@ export class Create${this.names.upperModuleName}Service {
 
       return {
         code: 201,
-        message_code: 'CREATED',
+        messageCode: 'CREATED',
         message: '${this.names.upperModuleName} successfully created',
         data: instanceToInstance(${this.names.lowerModuleName}),
       };

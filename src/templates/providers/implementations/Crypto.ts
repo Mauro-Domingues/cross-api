@@ -77,15 +77,15 @@ export class CryptoProvider implements ICryptoProvider {
     ip: string,
     options?: Omit<SignOptions, 'algorithm'>,
   ): {
-    jwt_token: string;
-    refresh_token: string;
+    jwtToken: string;
+    refreshToken: string;
   } {
     const secret = readFileSync(
       resolve(cryptoConfig.config.keysPath, 'private.pem'),
     );
 
     const jwtToken = sign(payload, secret, {
-      expiresIn: cryptoConfig.config.crypto.jwt_lifetime,
+      expiresIn: cryptoConfig.config.crypto.jwtLifetime,
       ...options,
       algorithm: 'RS256',
     });
@@ -93,8 +93,8 @@ export class CryptoProvider implements ICryptoProvider {
     const refreshToken = this.generateRefreshToken(ip);
 
     return {
-      jwt_token: jwtToken,
-      refresh_token: refreshToken,
+      jwtToken: jwtToken,
+      refreshToken: refreshToken,
     };
   }
 

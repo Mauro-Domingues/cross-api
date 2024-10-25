@@ -4,7 +4,7 @@ export class CreateIResponseDTO {
 
 export interface IResponseDTO<T> {
   code: number;
-  message_code: ICodeDTO;
+  messageCode: ICodeDTO;
   message: string;
   data: T;
 }

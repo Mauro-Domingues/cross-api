@@ -69,7 +69,7 @@ export class Delete${this.names.upperModuleName}Service {
 
       return {
         code: 204,
-        message_code: 'DELETED',
+        messageCode: 'DELETED',
         message: 'Successfully deleted ${this.names.lowerModuleName}',
         data: null,
       };

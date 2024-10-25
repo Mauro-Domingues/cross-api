@@ -5,7 +5,7 @@ import { resolve } ${'from'} 'node:path';
 
 export function createErrorLog(error: {
   code: number;
-  message_code: string;
+  messageCode: string;
   message: string;
   stack: Error['stack'];
 }): void {
@@ -21,7 +21,7 @@ export function createErrorLog(error: {
 
   const errorBody = {
     TIME_OF_OCCURRENCE: \`\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
-    [error.message_code]: error.message,
+    [error.messageCode]: error.message,
     PATH: error.stack?.split('\\${'n'}').slice(1).join('\\${'n'}').trim() ?? 'NOT SET',
   };
 

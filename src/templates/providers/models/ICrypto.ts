@@ -15,8 +15,8 @@ export interface ICryptoProvider {
     ip: string,
     options?: Omit<SignOptions, 'algorithm'>,
   ): {
-    jwt_token: string;
-    refresh_token: string;
+    jwtToken: string;
+    refreshToken: string;
   };
 }
 `;

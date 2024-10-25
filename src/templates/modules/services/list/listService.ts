@@ -79,7 +79,7 @@ export class List${this.names.upperModuleName}Service {
 
       return {
         code: 200,
-        message_code: 'LISTED',
+        messageCode: 'LISTED',
         message: 'Successfully listed ${this.names.pluralLowerModuleName}',
         pagination: {
           total: cache.total,
