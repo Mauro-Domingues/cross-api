@@ -1,20 +1,12 @@
 export class CreateRateLimiter {
   public execute(): string {
     return `import { Request, Response, NextFunction } ${'from'} 'express';
-import { RateLimiterRedis } ${'from'} 'rate-limiter-flexible';
-import { Redis } ${'from'} 'ioredis';
+import { RateLimiterMemory } ${'from'} 'rate-limiter-flexible';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { cacheConfig } ${'from'} '@config/cache';
 
-const redisClient = new Redis({
-  ...cacheConfig.config.redis,
-  enableOfflineQueue: false,
-});
-
-const limiter = new RateLimiterRedis({
-  storeClient: redisClient,
-  keyPrefix: 'ratelimit',
-  blockDuration: 600,
+const limiter = new RateLimiterMemory({
+  keyPrefix: 'ratelimiter',
+  blockDuration: 5,
   duration: 1,
   points: 5,
 });

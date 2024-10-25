@@ -39,7 +39,6 @@ export class ConfigJson extends ConfigLanguage {
       'typescript',
     ];
     this.dependencies = [
-      'axios',
       'celebrate',
       'class-transformer',
       'cors',
@@ -47,7 +46,6 @@ export class ConfigJson extends ConfigLanguage {
       'express',
       'express-async-errors',
       'express-jwt',
-      'ioredis',
       'jwks-rsa',
       'mysql',
       'rate-limiter-flexible',

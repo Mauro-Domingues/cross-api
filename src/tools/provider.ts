@@ -23,7 +23,7 @@ export class Provider {
         name: 'cache',
         description: 'CacheProvider',
         instance: () => new CreateCacheProvider(this.fatherNames),
-        dependencies: [],
+        dependencies: ['ioredis'],
         devDependencies: [],
       },
       crypto: {
@@ -44,7 +44,7 @@ export class Provider {
         name: 'lead',
         description: 'leadProvider',
         instance: () => new CreateLeadProvider(this.fatherNames),
-        dependencies: [],
+        dependencies: ['axios'],
         devDependencies: [],
       },
       mail: {
@@ -70,7 +70,7 @@ export class Provider {
         name: 'notification',
         description: 'NotificationProvider',
         instance: () => new CreateNotificationProvider(this.fatherNames),
-        dependencies: [],
+        dependencies: ['axios'],
         devDependencies: [],
       },
       queue: {

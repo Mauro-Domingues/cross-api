@@ -18,7 +18,6 @@ import { resolve } ${'from'} 'node:path';
 import { sign, SignOptions } ${'from'} 'jsonwebtoken';
 import { JWK, pem2jwk } ${'from'} 'pem-jwk';
 import { cryptoConfig } ${'from'} '@config/crypto';
-import { authConfig } ${'from'} '@config/auth';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
 
@@ -86,7 +85,7 @@ export class CryptoProvider implements ICryptoProvider {
     );
 
     const jwtToken = sign(payload, secret, {
-      expiresIn: authConfig.config.jwt.expiresIn,
+      expiresIn: cryptoConfig.config.crypto.jwt_lifetime,
       ...options,
       algorithm: 'RS256',
     });

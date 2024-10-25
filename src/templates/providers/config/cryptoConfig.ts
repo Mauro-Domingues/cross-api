@@ -13,6 +13,7 @@ interface ICryptoConfigDTO {
       readonly algorithm: string;
       readonly encoding: BufferEncoding;
       readonly secretKey: string;
+      readonly jwt_lifetime: string;
     };
   };
 }
@@ -28,6 +29,7 @@ export const cryptoConfig = Object.freeze<ICryptoConfigDTO>({
       algorithm: 'aes-256-ctr',
       encoding: 'hex',
       secretKey: process.env.CRYPTO_SECRET_KEY,
+      jwt_lifetime: process.env.JWT_LIFETIME ?? '1d',
     },
   },
 });
