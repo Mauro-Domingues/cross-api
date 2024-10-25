@@ -93,8 +93,8 @@ export class CryptoProvider implements ICryptoProvider {
     const refreshToken = this.generateRefreshToken(ip);
 
     return {
-      jwtToken: jwtToken,
-      refreshToken: refreshToken,
+      jwtToken,
+      refreshToken,
     };
   }
 
