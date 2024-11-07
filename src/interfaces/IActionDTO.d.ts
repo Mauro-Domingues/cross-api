@@ -7,9 +7,9 @@ import { CreateModule } from '@tools/makeModule/index';
 import { CreateProvider } from '@tools/makeProvider/index';
 
 export interface IActionDTO {
-  readonly 'make:module': () => CreateModule;
   readonly 'make:provider': () => CreateProvider;
   readonly 'list:provider': () => ListProvider;
+  readonly 'make:module': () => CreateModule;
   readonly language: () => ConfigLanguage;
   readonly 'make:api': () => CreateApi;
   readonly config: () => ConfigJson;
