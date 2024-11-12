@@ -8,7 +8,7 @@ const allowedDomains: Array<string> = ['https://example.com'];
 export const corsConfig = Object.freeze<CorsOptions>({
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   origin(origin, callback) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'production') {
       if (origin && allowedDomains.includes(origin)) {
         return callback(null, true);
       }
