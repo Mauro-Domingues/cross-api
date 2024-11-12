@@ -2,7 +2,6 @@ import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
-import { CreateILeadDTO } from '@templates/providers/dtos/ILeadDTO';
 import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';
 import { CreateRDStationLead } from '@templates/providers/implementations/RDStationLead';
 import { CreateLeadIndex } from '@templates/providers/leadIndex';
@@ -13,7 +12,6 @@ export class CreateLeadProvider extends BaseProvider {
   private readonly createRDStationLead: CreateRDStationLead;
   private readonly createLeadConfig: CreateLeadConfig;
   private readonly createLeadIndex: CreateLeadIndex;
-  private readonly createILeadDTO: CreateILeadDTO;
   private readonly createIAuthDTO: CreateIAuthDTO;
   private readonly createFakeLead: CreateFakeLead;
   private readonly createILead: CreateILead;
@@ -27,7 +25,6 @@ export class CreateLeadProvider extends BaseProvider {
     this.createRDStationLead = new CreateRDStationLead();
     this.createLeadConfig = new CreateLeadConfig();
     this.createLeadIndex = new CreateLeadIndex();
-    this.createILeadDTO = new CreateILeadDTO();
     this.createIAuthDTO = new CreateIAuthDTO();
     this.createFakeLead = new CreateFakeLead();
     this.createILead = new CreateILead();
@@ -50,10 +47,6 @@ export class CreateLeadProvider extends BaseProvider {
 
   protected createDtos(): Array<IMultiFileDTO> {
     return [
-      [
-        [this.basePath, 'LeadProvider', 'dtos', 'ICreateLeadDTO.ts'],
-        this.createILeadDTO,
-      ],
       [
         [this.basePath, 'LeadProvider', 'dtos', 'IAuthDTO.ts'],
         this.createIAuthDTO,

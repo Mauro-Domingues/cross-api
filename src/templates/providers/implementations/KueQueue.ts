@@ -1,6 +1,6 @@
 export class CreateKueQueue {
   public execute(): string {
-    return `import { Job, Queue, createQueue } ${'from'} 'kue';
+    return `import { Job, Queue, createQueue, DoneCallback } ${'from'} 'kue';
 import { queueConfig } ${'from'} '@config/queue';
 import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
 import { IQueueProvider } ${'from'} '../models/IQueueProvider';
@@ -61,7 +61,17 @@ export class KueProvider implements IQueueProvider {
     return jobs.forEach(job => {
       const { queue, handle } = this.queues[job.key];
 
-      queue.process(job.key, handle);
+      queue.process(
+        job.key,
+        async (job: { data: unknown }, done: DoneCallback) => {
+          try {
+            await handle(job);
+            done();
+          } catch (error) {
+            done(error);
+          }
+        },
+      );
       queue.on('error', error => {
         throw error;
       });

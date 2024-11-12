@@ -40,7 +40,7 @@ export class SMTPMailProvider implements IMailProvider {
 
     const content = this.mailTemplateProvider.parse(templateData);
 
-    const message = await this.client.sendMail({
+    await this.client.sendMail({
       from: {
         name: from?.name ?? name,
         address: from?.email ?? email,
@@ -52,9 +52,6 @@ export class SMTPMailProvider implements IMailProvider {
       subject,
       html: content,
     });
-
-    console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', getTestMessageUrl(message));
   }
 }
 `;

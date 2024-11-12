@@ -3,7 +3,6 @@ export class CreateRDStationLead {
     return `import { leadConfig } ${'from'} '@config/lead';
 import axios, { AxiosInstance, AxiosError } ${'from'} 'axios';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { ICreateLeadDTO } ${'from'} '../dtos/ICreateLeadDTO';
 import { ILeadProvider } ${'from'} '../models/ILeadProvider';
 import { IAuthDTO } ${'from'} '../dtos/IAuthDTO';
 
@@ -46,7 +45,7 @@ export class RDStationProvider implements ILeadProvider {
     }
   }
 
-  public async createLead(email: string): Promise<ICreateLeadDTO | undefined> {
+  public async createLead(email: string): Promise<void> {
     try {
       await this.getSession();
 
@@ -60,7 +59,7 @@ export class RDStationProvider implements ILeadProvider {
         },
       };
 
-      const httpResult = await this.http.post<ICreateLeadDTO>(
+      await this.http.post(
         'platform/conversions',
         body,
         {
@@ -69,8 +68,6 @@ export class RDStationProvider implements ILeadProvider {
           },
         },
       );
-
-      return httpResult.data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(

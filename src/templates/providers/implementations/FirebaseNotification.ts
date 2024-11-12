@@ -29,9 +29,7 @@ export class FirebaseProvider implements INotificationProvider {
     };
 
     try {
-      const httpResult = await this.http.post('fcm/send', body);
-
-      return console.log(httpResult.data);
+      await this.http.post('fcm/send', body);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(
