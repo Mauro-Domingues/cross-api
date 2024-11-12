@@ -1,7 +1,6 @@
 import { CreateCombinations } from '@templates/utils/combinations';
 import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
 import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust';
-import { CreateDomainsManager } from '@templates/utils/domains';
 import { CreateErrorLog } from '@templates/utils/errorLog';
 import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
@@ -20,7 +19,6 @@ export class CreateUtils {
   private readonly createNormalizeQueryLink: CreateNormalizeQueryLink;
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
-  private readonly createDomainsManager: CreateDomainsManager;
   private readonly createDecimaAdjust: CreateDecimaAdjust;
   private readonly createCombinations: CreateCombinations;
   private readonly createMapAndUpdate: CreateMapAndUpdate;
@@ -39,7 +37,6 @@ export class CreateUtils {
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndPatchString = new CreateMapAndPatchString();
-    this.createDomainsManager = new CreateDomainsManager();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createCombinations = new CreateCombinations();
     this.createMapAndUpdate = new CreateMapAndUpdate();
@@ -80,7 +77,6 @@ export class CreateUtils {
         this.createMapAndUpdateString,
       ],
       [['src', 'utils', 'decimalAdjust.ts'], this.createDecimaAdjust],
-      [['src', 'utils', 'domainsManager.ts'], this.createDomainsManager],
       [
         ['src', 'utils', 'convertToMilliseconds.ts'],
         this.createConvertToMilliseconds,

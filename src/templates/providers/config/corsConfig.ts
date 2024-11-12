@@ -1,20 +1,20 @@
 export class CreateCorsConfig {
   public execute(): string {
-    return `import { readDomain } ${'from'} '@utils/domainsManager';
-import { CorsOptions } ${'from'} 'cors';
+    return `import { CorsOptions } from 'cors';
+
+const allowedDomains: Array<string> = ['https://example.com'];
 
 export const corsConfig = Object.freeze<CorsOptions>({
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   origin(origin, callback) {
-    if (origin && readDomain().indexOf(origin) !== -1) {
-      callback(null, true);
-    } else if (
-      process.env.NODE_ENV === 'test' ||
-      process.env.NODE_ENV === 'development'
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error(\`\${origin} not allowed by CORS\`));
+    if (process.env.NODE_ENV === 'production') {
+      if (origin && allowedDomains.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(\`\${origin} not allowed by CORS\`));
+      }
     }
+    callback(null, true);
   },
 });
 `;

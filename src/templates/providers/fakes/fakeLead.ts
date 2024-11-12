@@ -8,7 +8,7 @@ export class FakeLeadProvider implements ILeadProvider {
   public async createLead(email: string): Promise<void> {
     this.leads.push(email);
 
-    console.log(Lead created);
+    console.log('Lead created');
   }
 }
 `;

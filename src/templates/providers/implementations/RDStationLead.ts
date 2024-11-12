@@ -59,15 +59,11 @@ export class RDStationProvider implements ILeadProvider {
         },
       };
 
-      await this.http.post(
-        'platform/conversions',
-        body,
-        {
-          params: {
-            api_key: leadConfig.config.rdstation.publicApiKey,
-          },
+      await this.http.post('platform/conversions', body, {
+        params: {
+          api_key: leadConfig.config.rdstation.publicApiKey,
         },
-      );
+      });
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(
