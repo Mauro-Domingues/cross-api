@@ -34,10 +34,6 @@ export class CryptoProvider implements ICryptoProvider {
     appendFileSync(resolve(path, filename), data);
   }
 
-  private generateRefreshToken(ip: string): string {
-    return createHash('sha256').update(ip).digest('hex');
-  }
-
   public encrypt(text: string): ICryptoDTO {
     const iv = randomBytes(16);
 
@@ -72,11 +68,19 @@ export class CryptoProvider implements ICryptoProvider {
     return decrpyted.toString();
   }
 
-  public generateJwt(
-    payload: object,
-    ip: string,
-    options?: Omit<SignOptions, 'algorithm'>,
-  ): {
+  public generateRefreshToken(id: string): string {
+    return createHash('sha256').update(id).digest('hex');
+  }
+
+  public generateJwt({
+    id,
+    payload,
+    options,
+  }: {
+    payload: object;
+    id: string;
+    options?: Omit<SignOptions, 'algorithm'>;
+  }): {
     jwtToken: string;
     refreshToken: string;
   } {
@@ -90,7 +94,7 @@ export class CryptoProvider implements ICryptoProvider {
       algorithm: 'RS256',
     });
 
-    const refreshToken = this.generateRefreshToken(ip);
+    const refreshToken = this.generateRefreshToken(id);
 
     return {
       jwtToken,

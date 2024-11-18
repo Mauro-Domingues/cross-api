@@ -4,17 +4,18 @@ export class CreateICrypto {
 import { JWK } ${'from'} 'pem-jwk';
 import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
 
-export interface ICryptoProvider {
+export interface ICryptoProviderDTO {
   encrypt(text: string): ICryptoDTO;
   decrypt(hash: ICryptoDTO): string;
   generateKeys(): JWK<{
     use: string;
   }>;
-  generateJwt(
-    payload: object,
-    ip: string,
-    options?: Omit<SignOptions, 'algorithm'>,
-  ): {
+  generateRefreshToken(id: string): string;
+  generateJwt(data: {
+    payload: object;
+    id: string;
+    options?: Omit<SignOptions, 'algorithm'>;
+  }): {
     jwtToken: string;
     refreshToken: string;
   };

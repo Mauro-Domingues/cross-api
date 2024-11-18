@@ -20,18 +20,19 @@ export class FakeCryptoProvider implements ICryptoProvider {
     return Buffer.from(content, 'base64').toString('utf-8');
   }
 
-  public generateJwt(
-    payload: object,
-    ip: string,
-  ): {
+  public generateRefreshToken(id: string): string {
+    return createHash('sha256').update(id).digest('hex');
+  }
+
+  public generateJwt({ id, payload }: { payload: object; id: string }): {
     jwtToken: string;
     refreshToken: string;
   } {
     const jwtToken = Buffer.from(
-      JSON.stringify({ ...payload, exp: Date.now() + 3600 * 1000, ip }),
+      JSON.stringify({ ...payload, exp: Date.now() + 3600 * 1000, id }),
     ).toString('base64');
 
-    const refreshToken = createHash('sha256').update(ip).digest('hex');
+    const refreshToken = this.generateRefreshToken(id);
 
     return {
       jwtToken,
