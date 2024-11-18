@@ -141,7 +141,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
   }
 
   public async update(
-    baseData: Parameters<IBaseRepository<Entity>['create']>[0],
+    baseData: Parameters<IBaseRepository<Entity>['update']>[0],
     trx: QueryRunner,
   ): Promise<Entity> {
     return trx.manager.save(this.target, baseData);

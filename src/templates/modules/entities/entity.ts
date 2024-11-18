@@ -15,10 +15,10 @@ import { Base } ${'from'} '@shared/container/modules/entities/Base';
 @Entity('${this.names.dbModuleName}')
 export class ${this.names.upperModuleName} extends Base {
   @Column({ name: 'name', type: 'varchar', unique: false })
-  public name: string;
+  public declare name: string;
 
   @Column({ name: 'description', type: 'varchar', nullable: true })
-  public description: string;
+  public declare description: string;
 }
 `;
   }
