@@ -1,10 +1,9 @@
 export class CreateConvertToMilliseconds {
   public execute(): string {
-    return `import { AppError } ${'from'} '@shared/errors/AppError';
+    return `import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
+import { AppError } ${'from'} '@shared/errors/AppError';
 
-export function convertToMilliseconds(
-  delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
-): number {
+export function convertToMilliseconds(delay: IIntervalDTO): number {
   const match = delay.match(/\\d+/);
   if (match === null) {
     throw new AppError('INVALID_DELAY_FORMAT', 'Invalid delay format');
