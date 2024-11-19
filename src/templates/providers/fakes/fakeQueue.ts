@@ -27,19 +27,30 @@ export class FakeQueueProvider implements IQueueProvider {
     });
   }
 
+  private async try<T>({
+    attempts,
+    data,
+    key,
+  }: {
+    key: Capitalize<string>;
+    attempts: number;
+    data: T;
+  }): Promise<void> {
+    try {
+      await this.queues[key].handle({ data });
+    } catch {
+      if (attempts > 1) {
+        await this.try({ attempts: attempts - 1, data, key });
+      }
+    }
+  }
+
   public async execute<T extends object>(
     key: Capitalize<string>,
     data: T,
     attempts = 1,
   ): Promise<void> {
-    while (attempts > 0) {
-      try {
-        this.queues[key].handle({ data });
-        break;
-      } catch {
-        attempts -= 1;
-      }
-    }
+    return this.try({ attempts, data, key });
   }
 
   public async schedule<T extends object>(
@@ -49,15 +60,8 @@ export class FakeQueueProvider implements IQueueProvider {
     attempts = 1,
   ): Promise<void> {
     const parsedDelay = convertToMilliseconds(delay);
-    setTimeout(() => {
-      while (attempts > 0) {
-        try {
-          this.queues[key].handle({ data });
-          break;
-        } catch {
-          attempts -= 1;
-        }
-      }
+    setTimeout(async () => {
+      return this.try({ attempts, data, key });
     }, parsedDelay);
   }
 }
