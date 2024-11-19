@@ -3,6 +3,7 @@ export class CreateBeeQueue {
     return `import Bee, { Job } ${'from'} 'bee-queue';
 import { queueConfig } ${'from'} '@config/queue';
 import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
+import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
 import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
@@ -44,7 +45,7 @@ export class BeeProvider implements IQueueProvider {
   public async schedule<T extends object>(
     key: Capitalize<string>,
     data: T,
-    delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
+    delay: IIntervalDTO,
     attempts = 1,
   ): Promise<Job<T>> {
     const parsedDelay = convertToMilliseconds(delay);

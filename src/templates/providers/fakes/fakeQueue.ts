@@ -1,6 +1,7 @@
 export class CreateFakeQueue {
   public execute(): string {
     return `import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
+import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
 import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
@@ -44,7 +45,7 @@ export class FakeQueueProvider implements IQueueProvider {
   public async schedule<T extends object>(
     key: Capitalize<string>,
     data: T,
-    delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
+    delay: IIntervalDTO,
     attempts = 1,
   ): Promise<void> {
     const parsedDelay = convertToMilliseconds(delay);

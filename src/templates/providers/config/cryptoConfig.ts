@@ -1,6 +1,7 @@
 export class CreateCryptoConfig {
   public execute(): string {
-    return `import { resolve } ${'from'} 'node:path';
+    return `import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
+import { resolve } ${'from'} 'node:path';
 
 interface ICryptoConfigDTO {
   readonly driver: 'crypto';
@@ -13,7 +14,7 @@ interface ICryptoConfigDTO {
       readonly algorithm: string;
       readonly encoding: BufferEncoding;
       readonly secretKey: string;
-      readonly jwtLifetime: string;
+      readonly jwtLifetime: IIntervalDTO;
     };
   };
 }

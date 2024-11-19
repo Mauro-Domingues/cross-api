@@ -3,6 +3,7 @@ export class CreateKueQueue {
     return `import { Job, Queue, createQueue, DoneCallback } ${'from'} 'kue';
 import { queueConfig } ${'from'} '@config/queue';
 import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
+import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
 import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
@@ -46,7 +47,7 @@ export class KueProvider implements IQueueProvider {
   public async schedule<T extends object>(
     key: Capitalize<string>,
     data: T,
-    delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
+    delay: IIntervalDTO,
     attempts = 1,
   ): Promise<Job> {
     const parsedDelay = convertToMilliseconds(delay);

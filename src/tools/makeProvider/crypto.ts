@@ -2,17 +2,21 @@ import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
-import { CreateICryptoDTO } from '@templates/providers/dtos/ICryptoDTO';
+import { CreateIEncryptedDTO } from '@templates/providers/dtos/IEncryptedDTO';
+import { CreateIJwtTokenDTO } from '@templates/providers/dtos/IJwtTokenDTO';
+import { CreateIRefreshTokenDTO } from '@templates/providers/dtos/IRefreshTokenDTO';
 import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
 import { CreateCrypto } from '@templates/providers/implementations/Crypto';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateCryptoProvider extends BaseProvider {
+  private readonly createIRefreshTokenDTO: CreateIRefreshTokenDTO;
+  private readonly createIEncryptedDTO: CreateIEncryptedDTO;
+  private readonly createIJwtTokenDTO: CreateIJwtTokenDTO;
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
   private readonly createFakeCrypto: CreateFakeCrypto;
-  private readonly createICryptoDTO: CreateICryptoDTO;
   private readonly createICrypto: CreateICrypto;
   private readonly createCrypto: CreateCrypto;
 
@@ -22,10 +26,12 @@ export class CreateCryptoProvider extends BaseProvider {
       | undefined,
   ) {
     super(fatherNames);
+    this.createIRefreshTokenDTO = new CreateIRefreshTokenDTO();
+    this.createIEncryptedDTO = new CreateIEncryptedDTO();
+    this.createIJwtTokenDTO = new CreateIJwtTokenDTO();
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
     this.createFakeCrypto = new CreateFakeCrypto();
-    this.createICryptoDTO = new CreateICryptoDTO();
     this.createICrypto = new CreateICrypto();
     this.createCrypto = new CreateCrypto();
   }
@@ -48,8 +54,16 @@ export class CreateCryptoProvider extends BaseProvider {
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [this.basePath, 'CryptoProvider', 'dtos', 'ICryptoDTO.ts'],
-        this.createICryptoDTO,
+        [this.basePath, 'CryptoProvider', 'dtos', 'IEncryptedDTO.ts'],
+        this.createIEncryptedDTO,
+      ],
+      [
+        [this.basePath, 'CryptoProvider', 'dtos', 'IRefreshTokenDTO.ts'],
+        this.createIRefreshTokenDTO,
+      ],
+      [
+        [this.basePath, 'CryptoProvider', 'dtos', 'IJwtTokenDTO.ts'],
+        this.createIJwtTokenDTO,
       ],
     ];
   }

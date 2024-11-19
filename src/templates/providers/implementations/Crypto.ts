@@ -18,8 +18,11 @@ import { resolve } ${'from'} 'node:path';
 import { sign, SignOptions } ${'from'} 'jsonwebtoken';
 import { JWK, pem2jwk } ${'from'} 'pem-jwk';
 import { cryptoConfig } ${'from'} '@config/crypto';
-import { ICryptoDTO } ${'from'} '../dtos/ICryptoDTO';
+import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
+import { IEncryptedDTO } ${'from'} '../dtos/IEncryptedDTO';
 import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
+import { IRefreshTokenDTO } ${'from'} '../dtos/IRefreshTokenDTO';
+import { IJwtTokenDTO } ${'from'} '../dtos/IJwtTokenDTO';
 
 export class CryptoProvider implements ICryptoProvider {
   private write(path: string, filename: string, data: string): void {
@@ -34,7 +37,7 @@ export class CryptoProvider implements ICryptoProvider {
     appendFileSync(resolve(path, filename), data);
   }
 
-  public encrypt(text: string): ICryptoDTO {
+  public encrypt(text: string): IEncryptedDTO {
     const iv = randomBytes(16);
 
     const cipher = createCipheriv(
@@ -51,7 +54,7 @@ export class CryptoProvider implements ICryptoProvider {
     };
   }
 
-  public decrypt(data: ICryptoDTO): string {
+  public decrypt(data: IEncryptedDTO): string {
     const decipher = createDecipheriv(
       cryptoConfig.config.crypto.algorithm,
       cryptoConfig.config.crypto.secretKey,
@@ -68,8 +71,10 @@ export class CryptoProvider implements ICryptoProvider {
     return decrpyted.toString();
   }
 
-  public generateRefreshToken(id: string): string {
-    return createHash('sha256').update(id).digest('hex');
+  public generateRefreshToken(id: string): IRefreshTokenDTO {
+    const token = createHash('sha256').update(id).digest('hex');
+
+    return { type: 'sha256', token };
   }
 
   public generateJwt({
@@ -81,23 +86,27 @@ export class CryptoProvider implements ICryptoProvider {
     id: string;
     options?: Omit<SignOptions, 'algorithm'>;
   }): {
-    jwtToken: string;
-    refreshToken: string;
+    jwtToken: IJwtTokenDTO;
+    refreshToken: IRefreshTokenDTO;
   } {
     const secret = readFileSync(
       resolve(cryptoConfig.config.keysPath, 'private.pem'),
     );
 
-    const jwtToken = sign(payload, secret, {
+    const token = sign(payload, secret, {
       expiresIn: cryptoConfig.config.crypto.jwtLifetime,
       ...options,
       algorithm: 'RS256',
     });
 
+    const expiresIn = convertToMilliseconds(
+      cryptoConfig.config.crypto.jwtLifetime,
+    );
+
     const refreshToken = this.generateRefreshToken(id);
 
     return {
-      jwtToken,
+      jwtToken: { token, type: 'Bearer', expiresIn },
       refreshToken,
     };
   }

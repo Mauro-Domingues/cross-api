@@ -1,6 +1,8 @@
 export class CreateIQueue {
   public execute(): string {
-    return `export interface IQueueProvider {
+    return `import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
+
+export interface IQueueProvider {
   execute<T extends object>(
     key: Capitalize<string>,
     data: T,
@@ -9,7 +11,7 @@ export class CreateIQueue {
   schedule<T extends object>(
     key: Capitalize<string>,
     data: T,
-    delay: \`\${number}\${'d' | 'h' | 'min' | 's' | 'ms'}\`,
+    delay: IIntervalDTO,
     attempts?: number,
   ): Promise<unknown>;
 }
