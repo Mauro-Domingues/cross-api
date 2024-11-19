@@ -15,8 +15,8 @@ export class CreateEnvNamespace {
     readonly REDIS_PORT: string;
     readonly REDIS_PASSWORD: string;
     readonly REDIS_PREFIX: string;
-    readonly JWT_LIFETIME: import('@dtos/IIntervalDTO').IIntervalDTO;
     readonly CRYPTO_SECRET_KEY: string;
+    readonly JWT_LIFETIME: import('@dtos/IIntervalDTO').IIntervalDTO;
     readonly HASH_SECRET_KEY: string;
     readonly STORAGE_DRIVER: 'disk' | 's3';
     readonly S3_BUCKET: string;
