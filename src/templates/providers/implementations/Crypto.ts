@@ -77,38 +77,25 @@ export class CryptoProvider implements ICryptoProvider {
     return { type: 'sha256', token };
   }
 
-  public generateJwt({
-    id,
-    payload,
-    options,
-  }: {
-    payload: object;
-    id: string;
-    options?: Omit<SignOptions, 'algorithm'>;
-  }): {
-    jwtToken: IJwtTokenDTO;
-    refreshToken: IRefreshTokenDTO;
-  } {
+  public generateJwtToken<T extends object>(
+    payload: T,
+    options?: Omit<SignOptions, 'algorithm' | 'expiresIn'>,
+  ): IJwtTokenDTO {
     const secret = readFileSync(
       resolve(cryptoConfig.config.keysPath, 'private.pem'),
     );
-
-    const token = sign(payload, secret, {
-      expiresIn: cryptoConfig.config.crypto.jwtLifetime,
-      ...options,
-      algorithm: 'RS256',
-    });
 
     const expiresIn = convertToMilliseconds(
       cryptoConfig.config.crypto.jwtLifetime,
     );
 
-    const refreshToken = this.generateRefreshToken(id);
+    const token = sign(payload, secret, {
+      ...options,
+      expiresIn: expiresIn / 1000,
+      algorithm: 'RS256',
+    });
 
-    return {
-      jwtToken: { token, type: 'Bearer', expiresIn },
-      refreshToken,
-    };
+    return { token, type: 'Bearer', expiresIn };
   }
 
   public generateKeys(): JWK<{ use: string }> {

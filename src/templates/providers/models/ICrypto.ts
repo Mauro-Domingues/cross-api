@@ -13,14 +13,10 @@ export interface ICryptoProvider {
     use: string;
   }>;
   generateRefreshToken(id: string): IRefreshTokenDTO;
-  generateJwt(data: {
-    payload: object;
-    id: string;
-    options?: Omit<SignOptions, 'algorithm'>;
-  }): {
-    jwtToken: IJwtTokenDTO;
-    refreshToken: IRefreshTokenDTO;
-  };
+  generateJwtToken<T extends object>(
+    payload: T,
+    options?: Omit<SignOptions, 'algorithm' | 'expiresIn'>,
+  ): IJwtTokenDTO;
 }
 `;
   }

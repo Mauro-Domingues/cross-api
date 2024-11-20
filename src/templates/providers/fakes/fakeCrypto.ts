@@ -29,10 +29,7 @@ export class FakeCryptoProvider implements ICryptoProvider {
     return { type: 'sha256', token };
   }
 
-  public generateJwt({ id, payload }: { payload: object; id: string }): {
-    jwtToken: IJwtTokenDTO;
-    refreshToken: IRefreshTokenDTO;
-  } {
+  public generateJwtToken<T extends object>(payload: T): IJwtTokenDTO {
     const expiresIn = convertToMilliseconds(
       cryptoConfig.config.crypto.jwtLifetime,
     );
@@ -41,16 +38,10 @@ export class FakeCryptoProvider implements ICryptoProvider {
       JSON.stringify({
         exp: Math.floor((Date.now() + expiresIn) / 1000),
         ...payload,
-        id,
       }),
     ).toString('base64');
 
-    const refreshToken = this.generateRefreshToken(id);
-
-    return {
-      jwtToken: { token, type: 'Bearer', expiresIn },
-      refreshToken,
-    };
+    return { token, type: 'Bearer', expiresIn };
   }
 
   public generateKeys(): JWK<{ use: string }> {
