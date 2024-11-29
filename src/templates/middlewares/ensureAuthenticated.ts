@@ -4,11 +4,10 @@ export class CreateEnsureAuthenticated {
 // import { resolve } ${'from'} 'node:path';
 import { expressjwt, GetVerificationKey } ${'from'} 'express-jwt';
 import { expressJwtSecret } ${'from'} 'jwks-rsa';
-import { Secret } ${'from'} 'jsonwebtoken';
 // import { cryptoConfig } ${'from'} '@config/crypto';
 
 export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
-  secret: ((): Secret | GetVerificationKey => {
+  secret: ((): Buffer | GetVerificationKey => {
     // if (process.env.NODE_ENV === 'test') {
     //   return readFileSync(resolve(cryptoConfig.config.keysPath, 'public.pem'));
     // }
