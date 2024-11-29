@@ -37,7 +37,7 @@ export class Connection implements IConnection {
 //     case "disk":
 //       return \`\${process.env.API_URL}/uploads/\${this.image}\`;
 //     case "s3":
-//       return \`https://\${storageConfig.config.aws.bucket}.s3.amazonaws.com/\${this.image}\`;
+//       return \`https://\${storageConfig.config.s3.bucket}.s3.amazonaws.com/\${this.image}\`;
 //     default:
 //       return null;
 //   }

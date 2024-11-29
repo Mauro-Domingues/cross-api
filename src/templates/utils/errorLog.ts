@@ -1,6 +1,6 @@
 export class CreateErrorLog {
   public execute(): string {
-    return `import { appendFileSync } ${'from'} 'node:fs';
+    return `import { appendFileSync, existsSync, mkdirSync } ${'from'} 'node:fs';
 import { resolve } ${'from'} 'node:path';
 
 export function createErrorLog(error: {
@@ -25,12 +25,18 @@ export function createErrorLog(error: {
     PATH: error.stack?.split('\\${'n'}').slice(1).join('\\${'n'}').trim() ?? 'NOT SET',
   };
 
+  const assetsFolder = resolve(__dirname, '..', 'assets');
+
+  if (!existsSync(assetsFolder)) {
+    mkdirSync(assetsFolder);
+  }
+
   appendFileSync(
-    resolve(__dirname, '..', 'assets', 'errors.log'),
+    resolve(assetsFolder, 'errors.log'),
     JSON.stringify(errorBody, null, 2).concat(',\\${'n'}'),
   );
 
-  console.log(errorBody);
+  console.error(errorBody);
 }
 `;
   }
