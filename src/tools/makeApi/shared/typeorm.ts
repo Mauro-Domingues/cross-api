@@ -17,23 +17,18 @@ export class CreateTypeorm {
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath(['src', 'shared', 'typeorm']);
+
     return this.fileManager.checkAndCreateMultiFile([
       [
-        ['src', 'shared', 'typeorm', 'dataSources', 'mysqlDataSource.ts'],
+        [basePath, 'dataSources', 'mysqlDataSource.ts'],
         this.createMysqlDataSource,
       ],
       [
-        [
-          'src',
-          'shared',
-          'typeorm',
-          'dataSources',
-          'fakes',
-          'fakeDataSource.ts',
-        ],
+        [basePath, 'dataSources', 'fakes', 'fakeDataSource.ts'],
         this.createFakeDataSource,
       ],
-      [['src', 'shared', 'typeorm', 'index.ts'], this.createConnection],
+      [[basePath, 'index.ts'], this.createConnection],
     ]);
   }
 }

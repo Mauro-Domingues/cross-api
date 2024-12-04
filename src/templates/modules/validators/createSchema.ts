@@ -17,17 +17,15 @@ export class CreateSchema extends BaseTemplateModule {
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/entities/${this.names.upperModuleName}';
+import { baseSchema } ${'from'} '@shared/container/modules/validators/baseSchema';
 import { Joi } ${'from'} 'celebrate';
 
 export const ${this.names.lowerModuleName}Schema: Record<keyof ${
       this.names.upperModuleName
     }, Joi.Schema> = {
-  id: Joi.string().uuid({ separator: '-', version: 'uuidv4' }).length(36),
+  ...baseSchema,
   name: Joi.string().max(255),
   description: Joi.string().max(255),
-  createdAt: Joi.date().iso(),
-  updatedAt: Joi.date().iso(),
-  deletedAt: Joi.date().iso(),
 };
 `;
   }

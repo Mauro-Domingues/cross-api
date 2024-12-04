@@ -50,45 +50,27 @@ export class CreateUtils {
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath(['src', 'utils']);
+    const mappersPath = this.fileManager.resolvePath([basePath, 'mappers']);
+
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'utils', 'mappers', 'index.ts'], this.createIndexMapper],
+      [[mappersPath, 'index.ts'], this.createIndexMapper],
+      [[mappersPath, 'mapAndCloneAttribute.ts'], this.createMapAndClone],
+      [[mappersPath, 'mapAndInsertAttribute.ts'], this.createMapAndInsert],
+      [[mappersPath, 'mapAndPatchAttribute.ts'], this.createMapAndPatch],
+      [[mappersPath, 'mapAndPatchString.ts'], this.createMapAndPatchString],
+      [[mappersPath, 'mapAndUpdateAttribute.ts'], this.createMapAndUpdate],
+      [[mappersPath, 'mapAndUpdateString.ts'], this.createMapAndUpdateString],
+      [[basePath, 'decimalAdjust.ts'], this.createDecimaAdjust],
       [
-        ['src', 'utils', 'mappers', 'mapAndCloneAttribute.ts'],
-        this.createMapAndClone,
-      ],
-      [
-        ['src', 'utils', 'mappers', 'mapAndInsertAttribute.ts'],
-        this.createMapAndInsert,
-      ],
-      [
-        ['src', 'utils', 'mappers', 'mapAndPatchAttribute.ts'],
-        this.createMapAndPatch,
-      ],
-      [
-        ['src', 'utils', 'mappers', 'mapAndPatchString.ts'],
-        this.createMapAndPatchString,
-      ],
-      [
-        ['src', 'utils', 'mappers', 'mapAndUpdateAttribute.ts'],
-        this.createMapAndUpdate,
-      ],
-      [
-        ['src', 'utils', 'mappers', 'mapAndUpdateString.ts'],
-        this.createMapAndUpdateString,
-      ],
-      [['src', 'utils', 'decimalAdjust.ts'], this.createDecimaAdjust],
-      [
-        ['src', 'utils', 'convertToMilliseconds.ts'],
+        [basePath, 'convertToMilliseconds.ts'],
         this.createConvertToMilliseconds,
       ],
-      [['src', 'utils', 'combinations.ts'], this.createCombinations],
-      [['src', 'utils', 'errorLog.ts'], this.createErrorLog],
-      [['src', 'utils', 'jsonToXml.ts'], this.createJsonToXml],
-      [
-        ['src', 'utils', 'normalizeQueryLink.ts'],
-        this.createNormalizeQueryLink,
-      ],
-      [['src', 'utils', 'slugify.ts'], this.createSlugify],
+      [[basePath, 'combinations.ts'], this.createCombinations],
+      [[basePath, 'errorLog.ts'], this.createErrorLog],
+      [[basePath, 'jsonToXml.ts'], this.createJsonToXml],
+      [[basePath, 'normalizeQueryLink.ts'], this.createNormalizeQueryLink],
+      [[basePath, 'slugify.ts'], this.createSlugify],
     ]);
   }
 }

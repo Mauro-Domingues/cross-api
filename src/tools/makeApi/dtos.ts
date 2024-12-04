@@ -29,14 +29,16 @@ export class CreateDtos {
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath(['src', 'dtos']);
+
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'dtos', 'IExceptionDTO.ts'], this.createIExceptionDTO],
-      [['src', 'dtos', 'ICacheDTO.ts'], this.createICacheDTO],
-      [['src', 'dtos', 'ICodeDTO.ts'], this.createICodeDTO],
-      [['src', 'dtos', 'IIntervalDTO.ts'], this.createIIntervalDTO],
-      [['src', 'dtos', 'IListDTO.ts'], this.createIListDTO],
-      [['src', 'dtos', 'IObjectDTO.ts'], this.createIObjectDTO],
-      [['src', 'dtos', 'IResponseDTO.ts'], this.createIResponseDTO],
+      [[basePath, 'IExceptionDTO.ts'], this.createIExceptionDTO],
+      [[basePath, 'ICacheDTO.ts'], this.createICacheDTO],
+      [[basePath, 'ICodeDTO.ts'], this.createICodeDTO],
+      [[basePath, 'IIntervalDTO.ts'], this.createIIntervalDTO],
+      [[basePath, 'IListDTO.ts'], this.createIListDTO],
+      [[basePath, 'IObjectDTO.ts'], this.createIObjectDTO],
+      [[basePath, 'IResponseDTO.ts'], this.createIResponseDTO],
     ]);
   }
 }

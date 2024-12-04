@@ -8,6 +8,18 @@ export class CreateInfra {
   }
 
   public execute(): void {
+    const modulePath = this.fileManager.resolvePath([
+      'src',
+      'shared',
+      'container',
+      'modules',
+    ]);
+    const typeormPath = this.fileManager.resolvePath([
+      'src',
+      'shared',
+      'typeorm',
+    ]);
+
     return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'config'],
       ['src', '@types'],
@@ -17,13 +29,14 @@ export class CreateInfra {
       ['src', 'modules'],
       ['src', 'routes'],
       ['src', 'utils', 'mappers'],
-      ['src', 'shared', 'container', 'modules', 'entities'],
-      ['src', 'shared', 'container', 'modules', 'repositories', 'fakes'],
+      [modulePath, 'entities'],
+      [modulePath, 'repositories', 'fakes'],
+      [modulePath, 'validators'],
       ['src', 'shared', 'errors'],
       ['src', 'shared', 'container', 'providers'],
-      ['src', 'shared', 'typeorm', 'dataSources', 'fakes'],
-      ['src', 'shared', 'typeorm', 'migrations'],
-      ['src', 'shared', 'typeorm', 'seeds'],
+      [typeormPath, 'dataSources', 'fakes'],
+      [typeormPath, 'migrations'],
+      [typeormPath, 'seeds'],
     ]);
   }
 }

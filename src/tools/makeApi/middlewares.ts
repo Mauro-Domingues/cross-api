@@ -23,15 +23,14 @@ export class CreateMiddlewares {
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath(['src', 'middlewares']);
+
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', 'middlewares', 'rateLimiter.ts'], this.createRateLimiter],
-      [
-        ['src', 'middlewares', 'ensureAuthenticated.ts'],
-        this.createEnsureAuthenticated,
-      ],
-      [['src', 'middlewares', 'setConnection.ts'], this.createSetConnection],
-      [['src', 'middlewares', 'errorHandler.ts'], this.createErrorHandler],
-      [['src', 'middlewares', 'parseParam.ts'], this.createParseParam],
+      [[basePath, 'rateLimiter.ts'], this.createRateLimiter],
+      [[basePath, 'ensureAuthenticated.ts'], this.createEnsureAuthenticated],
+      [[basePath, 'setConnection.ts'], this.createSetConnection],
+      [[basePath, 'errorHandler.ts'], this.createErrorHandler],
+      [[basePath, 'parseParam.ts'], this.createParseParam],
     ]);
   }
 }

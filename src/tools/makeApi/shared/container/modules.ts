@@ -2,12 +2,14 @@ import { CreateBaseEntity } from '@templates/modules/entities/baseEntity';
 import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository';
 import { CreateFakeBaseRepository } from '@templates/modules/repositories/fakes/fakeBaseRepository';
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
+import { CreateBaseSchema } from '@templates/modules/validators/createBaseSchema';
 import { FileManager } from '@tools/fileManager';
 
 export class CreateModules {
   private readonly createFakeBaseRepository: CreateFakeBaseRepository;
   private readonly createIBaseRepository: CreateIBaseRepository;
   private readonly createBaseRepository: CreateBaseRepository;
+  private readonly createBaseSchema: CreateBaseSchema;
   private readonly createBaseEntity: CreateBaseEntity;
   private readonly fileManager: FileManager;
 
@@ -15,50 +17,34 @@ export class CreateModules {
     this.createFakeBaseRepository = new CreateFakeBaseRepository();
     this.createIBaseRepository = new CreateIBaseRepository();
     this.createBaseRepository = new CreateBaseRepository();
+    this.createBaseSchema = new CreateBaseSchema();
     this.createBaseEntity = new CreateBaseEntity();
     this.fileManager = FileManager.getInstance();
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath([
+      'src',
+      'shared',
+      'container',
+      'modules',
+    ]);
+
     return this.fileManager.checkAndCreateMultiFile([
+      [[basePath, 'entities', 'Base.ts'], this.createBaseEntity],
       [
-        ['src', 'shared', 'container', 'modules', 'entities', 'Base.ts'],
-        this.createBaseEntity,
-      ],
-      [
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'BaseRepository.ts',
-        ],
+        [basePath, 'repositories', 'BaseRepository.ts'],
         this.createBaseRepository,
       ],
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'IBaseRepository.ts',
-        ],
+        [basePath, 'repositories', 'IBaseRepository.ts'],
         this.createIBaseRepository,
       ],
       [
-        [
-          'src',
-          'shared',
-          'container',
-          'modules',
-          'repositories',
-          'fakes',
-          'FakeBaseRepository.ts',
-        ],
+        [basePath, 'repositories', 'fakes', 'FakeBaseRepository.ts'],
         this.createFakeBaseRepository,
       ],
+      [[basePath, 'validators', 'baseSchema.ts'], this.createBaseSchema],
     ]);
   }
 }

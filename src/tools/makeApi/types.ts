@@ -17,10 +17,12 @@ export class CreateTypes {
   }
 
   public execute(): void {
+    const basePath = this.fileManager.resolvePath(['src', '@types']);
+
     return this.fileManager.checkAndCreateMultiFile([
-      [['src', '@types', 'express.d.ts'], this.createExpressNamespace],
-      [['src', '@types', 'env.d.ts'], this.createEnvNamespace],
-      [['src', '@types', 'keys.d.ts'], this.createKeys],
+      [[basePath, 'express.d.ts'], this.createExpressNamespace],
+      [[basePath, 'env.d.ts'], this.createEnvNamespace],
+      [[basePath, 'keys.d.ts'], this.createKeys],
     ]);
   }
 }
