@@ -31,6 +31,7 @@ class App {
     this.server.use(cors(corsConfig));
     this.server.use(rateLimiter);
     this.server.use(express.json());
+    this.server.use(express.urlencoded({ extended: true }));
     this.server.use(parseParam);
   }
 
