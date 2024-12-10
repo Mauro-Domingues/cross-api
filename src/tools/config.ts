@@ -108,6 +108,27 @@ export class ConfigJson extends ConfigLanguage {
   private renderEnding(): void {
     return this.console.execute([
       {
+        message: this.messages.comands.description.attempt.action,
+        color: 'blue',
+        bold: true,
+        breakStart: true,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.comands.description.attempt.comand,
+        color: 'yellow',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
+        message: this.messages.comands.description.attempt.info,
+        color: 'blue',
+        bold: true,
+        breakStart: false,
+        breakEnd: false,
+      },
+      {
         message: this.messages.documentation.description.action,
         color: 'blue',
         bold: true,
@@ -127,27 +148,6 @@ export class ConfigJson extends ConfigLanguage {
         bold: true,
         breakStart: false,
         breakEnd: false,
-      },
-      {
-        message: this.messages.comands.description.attempt.action,
-        color: 'blue',
-        bold: true,
-        breakStart: true,
-        breakEnd: false,
-      },
-      {
-        message: this.messages.comands.description.attempt.comand,
-        color: 'yellow',
-        bold: true,
-        breakStart: false,
-        breakEnd: false,
-      },
-      {
-        message: this.messages.comands.description.attempt.info,
-        color: 'blue',
-        bold: true,
-        breakStart: false,
-        breakEnd: true,
       },
     ]);
   }
