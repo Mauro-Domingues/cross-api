@@ -57,8 +57,8 @@ export class PortugueseMessages {
         },
         question: 'Você quer desinstalar as dependências? (y/n)',
       },
-      marketplaceTool: {
-        description: { action: 'Instale ', info: ' para te ajudar' },
+      documentation: {
+        description: { action: 'Visite ', info: ' para mais informações' },
       },
       comands: {
         description: {

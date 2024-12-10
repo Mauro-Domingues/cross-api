@@ -108,22 +108,21 @@ export class ConfigJson extends ConfigLanguage {
   private renderEnding(): void {
     return this.console.execute([
       {
-        message: this.messages.marketplaceTool.description.action,
+        message: this.messages.documentation.description.action,
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: false,
       },
       {
-        message:
-          'https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig',
+        message: 'https://cross-packages.gitbook.io/cross-api',
         color: 'purple',
         bold: true,
         breakStart: false,
         breakEnd: false,
       },
       {
-        message: this.messages.marketplaceTool.description.info,
+        message: this.messages.documentation.description.info,
         color: 'blue',
         bold: true,
         breakStart: false,

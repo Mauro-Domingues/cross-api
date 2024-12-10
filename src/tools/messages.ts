@@ -59,8 +59,8 @@ export class Messages {
         },
         question: 'Do you want to uninstall dependencies? (y/n)',
       },
-      marketplaceTool: {
-        description: { action: 'Download ', info: ' to help you' },
+      documentation: {
+        description: { action: 'Visit ', info: ' for more info' },
       },
       comands: {
         description: {

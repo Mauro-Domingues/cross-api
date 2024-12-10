@@ -1,14 +1,14 @@
 import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
 import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { IMApperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
-import { IMarketplaceToolDTO } from '@interfaces/IMessageDTO/IMarketplaceToolDTO';
 import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
 import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 
 export interface IMessageDTO {
-  readonly marketplaceTool: IMarketplaceToolDTO;
+  readonly documentation: IDocumentationDTO;
   readonly dependencies: IDependencyDTO;
   readonly providers: IProviderDTO;
   readonly language: ILanguageDTO;
