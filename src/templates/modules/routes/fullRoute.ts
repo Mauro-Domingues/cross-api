@@ -16,6 +16,7 @@ export class CreateFullRoute extends BaseTemplateModule {
 
   public execute(): string {
     return `import { Router } ${'from'} 'express';
+import { celebrate } ${'from'} 'celebrate';
 import { Create${this.names.upperModuleName}Controller } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/services/create${this.names.upperModuleName}/Create${
@@ -89,7 +90,7 @@ ${this.baseNames.lowerModuleName}Router
   .post(create${this.names.upperModuleName}, create${
       this.names.upperModuleName
     }Controller.handle)
-  .get(list${this.names.upperModuleName}, list${
+  .get(list${this.names.upperModuleName} as ReturnType<typeof celebrate>, list${
       this.names.upperModuleName
     }Controller.handle);
 

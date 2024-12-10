@@ -124,20 +124,16 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     baseData: Parameters<IBaseRepository<Entity>['create']>[0],
     trx: QueryRunner,
   ): Promise<Entity> {
-    return trx.manager.save(
-      this.target,
-      trx.manager.create(this.target, baseData),
-    );
+    const entity = trx.manager.create(this.target, baseData);
+    return trx.manager.save(this.target, entity);
   }
 
   public async createMany(
     baseData: Parameters<IBaseRepository<Entity>['createMany']>[0],
     trx: QueryRunner,
   ): Promise<Array<Entity>> {
-    return trx.manager.save(
-      this.target,
-      trx.manager.create(this.target, baseData),
-    );
+    const entities = trx.manager.create(this.target, baseData);
+    return trx.manager.save(this.target, entities);
   }
 
   public async update(

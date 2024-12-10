@@ -32,7 +32,7 @@ export const list${this.names.upperModuleName} = celebrate({
     limit: Joi.number().integer().optional(),
   }),
   [Segments.BODY]: Joi.object({}),
-}) as ReturnType<typeof celebrate>;
+});
 `;
   }
 }
