@@ -16,6 +16,58 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     private readonly Entity: new (...args: Array<unknown>) => Entity,
   ) {}
 
+  private checkArray(
+    entity: Array<ObjectLiteral>,
+    value: Array<Partial<ObjectLiteral>>,
+  ): boolean {
+    return (
+      Array.isArray(entity) &&
+      value.every(subValue =>
+        entity.some(subEntity => this.parseWhere(subEntity, subValue)),
+      )
+    );
+  }
+
+  private checkObject(
+    entity: ObjectLiteral,
+    value: Partial<ObjectLiteral>,
+  ): boolean {
+    return (
+      typeof entity === 'object' &&
+      entity !== null &&
+      Object.entries(value).every(([subKey, subValue]) =>
+        this.parseWhere(entity[subKey], subValue),
+      )
+    );
+  }
+
+  private checkProperty<Type extends ObjectLiteral>(
+    entity: Type,
+    property: keyof Type,
+  ): boolean {
+    return Object.entries(property).every(([key, value]) => {
+      if (Array.isArray(value)) {
+        return this.checkArray(entity[key], value);
+      }
+      if (typeof value === 'object' && value !== null) {
+        return this.checkObject(entity[key], value);
+      }
+      return entity[key] === value;
+    });
+  }
+
+  protected parseWhere<Type extends ObjectLiteral>(
+    entity: Type,
+    where: unknown,
+  ): boolean {
+    if (!where) {
+      return true;
+    }
+    return (Array.isArray(where) ? where : [where]).some(property =>
+      this.checkProperty(entity, property),
+    );
+  }
+
   protected validateClause(clause?: IObjectDTO | Array<IObjectDTO>): void {
     const hasValidCondition = (Array.isArray(clause) ? clause : [clause]).some(
       singleClause =>
@@ -29,36 +81,6 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
         'At least one valid condition must be provided.',
       );
     }
-  }
-
-  protected parseWhere<Type extends ObjectLiteral>(
-    entity: Type,
-    where: unknown,
-  ): boolean {
-    return (Array.isArray(where) ? where : [where]).some(property =>
-      Object.entries(property as Entity).every(([key, value]) => {
-        if (Array.isArray(value)) {
-          return (
-            Array.isArray(entity[key]) &&
-            value.every(subValue =>
-              entity[key].some((subEntity: ObjectLiteral) =>
-                this.parseWhere(subEntity, subValue),
-              ),
-            )
-          );
-        }
-        if (typeof value === 'object' && value !== null) {
-          return (
-            typeof entity[key] === 'object' &&
-            entity[key] !== null &&
-            Object.entries(value).every(([subKey, subValue]) =>
-              this.parseWhere(entity[key][subKey], subValue),
-            )
-          );
-        }
-        return entity[key] === value;
-      }),
-    );
   }
 
   public async exists({
@@ -136,11 +158,11 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     return this.fakeRepository.filter(
       entity =>
         (Array.isArray(where) ? where : [where]).some(condition =>
-          Object.entries(condition).every(([key, value]) => {
-            return entity[key as keyof Entity]
+          Object.entries(condition).every(([key, value]) =>
+            entity[key as keyof Entity]
               ?.toString()
-              ?.includes(value?.toString()?.replace(/^%|%$/g, ''));
-          }),
+              ?.includes(value?.toString()?.replace(/(^%)|(%$)/g, '')),
+          ),
         ) &&
         (withDeleted ?? !entity.deletedAt),
     );
@@ -224,9 +246,9 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
       ),
     );
 
-    this.fakeRepository = this.fakeRepository.filter(
-      entity => !deleteEntities.includes(entity),
-    );
+    deleteEntities.forEach(deleteEntity => {
+      this.fakeRepository.splice(this.fakeRepository.indexOf(deleteEntity), 1);
+    });
 
     return {
       raw: 'query to delete an Entity',
@@ -240,19 +262,19 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     raw: string;
     affected: number;
   }> {
-    let deleteEntities: Array<Entity> = [];
-    baseData.forEach(data => {
+    const deleteEntities = baseData.reduce<Array<Entity>>((acc, data) => {
       const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
           ([key, value]) => entity[key] === value && !entity.deletedAt,
         ),
       );
-      deleteEntities = [...deleteEntities, ...entitiesToDelete];
-    });
 
-    this.fakeRepository = this.fakeRepository.filter(
-      entity => !deleteEntities.includes(entity),
-    );
+      return acc.concat(entitiesToDelete);
+    }, []);
+
+    deleteEntities.forEach(deleteEntity => {
+      this.fakeRepository.splice(this.fakeRepository.indexOf(deleteEntity), 1);
+    });
 
     return {
       raw: 'query to delete multiple Entities',
@@ -288,15 +310,15 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     raw: string;
     affected: number;
   }> {
-    let deleteEntities: Array<Entity> = [];
-    baseData.forEach(data => {
+    const deleteEntities = baseData.reduce<Array<Entity>>((acc, data) => {
       const entitiesToDelete = this.fakeRepository.filter(entity =>
         Object.entries(data).every(
           ([key, value]) => entity[key] === value && !entity.deletedAt,
         ),
       );
-      deleteEntities = [...deleteEntities, ...entitiesToDelete];
-    });
+
+      return acc.concat(entitiesToDelete);
+    }, []);
 
     deleteEntities.forEach(entity => {
       Object.assign(entity, { deletedAt: new Date() });

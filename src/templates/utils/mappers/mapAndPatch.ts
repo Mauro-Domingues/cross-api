@@ -24,7 +24,7 @@ export function mapAndPatchAttribute<
   const isValid = (field: unknown) => field && field !== '';
   Object.keys(newAttributes).forEach(attribute => {
     if (
-      Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
+      Object.hasOwn(oldAttributes, attribute) &&
       (oldAttributes as IObjectDTO)[attribute] !== undefined
     ) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
@@ -36,10 +36,7 @@ export function mapAndPatchAttribute<
           let oldItem = (oldAttributes as Record<string, Array<IObjectDTO>>)[
             attribute
           ][index];
-          if (
-            Object.prototype.hasOwnProperty.call(item, 'id') &&
-            !isValid(item.id)
-          ) {
+          if (Object.hasOwn(item, 'id') && !isValid(item.id)) {
             const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
               attribute
             ].find(oldItem => oldItem.id === item.id);

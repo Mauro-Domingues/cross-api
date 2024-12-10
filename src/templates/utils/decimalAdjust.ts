@@ -13,15 +13,15 @@ export class CreateDecimaAdjust {
   const absoluteValue = isNegative ? value * -1 : value;
 
   if (!\`\${absoluteValue}\`.includes('e')) {
-    const adjustedValue =
-      +\`\${Math.round(+\`\${absoluteValue}e+\${exponent}\`)}e-\${exponent}\`;
+    const adjustedString = \`\${absoluteValue}e+\${exponent}\`;
+    const adjustedValue = +\`\${Math.round(+adjustedString)}e-\${exponent}\`;
     return isNegative ? adjustedValue * -1 : adjustedValue;
   }
 
   const [base, exp] = \`\${absoluteValue}\`.split('e');
   const sign = +exp + exponent > 0 ? '+' : '';
-  const adjustedValue =
-    +\`\${Math.round(+\`\${+base}e\${sign}\${+exp + exponent}\`)}e-\${exponent}\`;
+  const exponentiatedString = \`\${+base}e\${sign}\${+exp + exponent}\`;
+  const adjustedValue = +\`\${Math.round(+exponentiatedString)}e-\${exponent}\`;
 
   return isNegative ? adjustedValue * -1 : adjustedValue;
 }

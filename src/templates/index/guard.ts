@@ -17,7 +17,7 @@ const exceptions: IExceptionDTO = {
       methods: ['GET'],
     },
     {
-      url: /^\\/api-docs([\\/?].*)?/, // expose public doc feature, let this route opened
+      url: /^\\/doc([/?].*)?/, // expose public doc feature, let this route opened
       methods: ['GET'],
     },
     {
@@ -29,11 +29,11 @@ const exceptions: IExceptionDTO = {
       methods: ['GET', 'POST', 'PUT'],
     },
     {
-      url: /^\\/third-example([\\/?].*)/,
+      url: /^\\/third-example([/?].*)/,
       methods: ['GET', 'POST', 'PUT', 'PATCH'],
     },
     {
-      url: /^\\/last-example([\\/?].*)?/,
+      url: /^\\/last-example([/?].*)?/,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     },
   ],

@@ -23,7 +23,7 @@ export function mapAndUpdateAttribute<
 >(oldAttributes: Entity, newAttributes: DTO): Entity {
   Object.keys(newAttributes).forEach(attribute => {
     if (
-      Object.prototype.hasOwnProperty.call(oldAttributes, attribute) &&
+      Object.hasOwn(oldAttributes, attribute) &&
       (oldAttributes as IObjectDTO)[attribute] !== undefined
     ) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
@@ -32,7 +32,7 @@ export function mapAndUpdateAttribute<
           let oldItem = (oldAttributes as Record<string, Array<IObjectDTO>>)[
             attribute
           ][index];
-          if (Object.prototype.hasOwnProperty.call(item, 'id')) {
+          if (Object.hasOwn(item, 'id')) {
             const exists = (oldAttributes as Record<string, Array<IObjectDTO>>)[
               attribute
             ].find(oldItem => oldItem.id === item.id);
@@ -44,10 +44,7 @@ export function mapAndUpdateAttribute<
               !Array.isArray(item)) ||
             (Array.isArray(item) && item.some(Array.isArray))
           ) {
-            return mapAndUpdateAttribute(
-              oldItem as IObjectDTO,
-              item as IObjectDTO,
-            );
+            return mapAndUpdateAttribute(oldItem, item as IObjectDTO);
           }
           return item;
         });

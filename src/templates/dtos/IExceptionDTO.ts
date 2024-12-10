@@ -25,12 +25,12 @@ export class CreateIExceptionDTO {
      * Example: /example\\/.+/
      * Matches: '/example/anything' but not '/example/' by itself
      * @example
-     * '([\\/?].*)' matches all after '/' or '?' in a route.
-     * Example: /example([\\/?].*)/
+     * '([/?].*)' matches all after '/' or '?' in a route.
+     * Example: /example([/?].*)/
      * Matches: '/example/123' and 'example?page=1'
      * @example
-     * '([\\/?].*)' + '?' matches all after '/' or '?' in a route and the route by itself
-     * Example: /example([\\/?].*)?/
+     * '([/?].*)' + '?' matches all after '/' or '?' in a route and the route by itself
+     * Example: /example([/?].*)?/
      * Matches: '/example/123' and 'example?page=1' and '/example' but not '/example-other-path'
      *
      */
