@@ -10,7 +10,7 @@ import { IBaseRepository } ${'from'} '../IBaseRepository';
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
   implements IBaseRepository<Entity>
 {
-  protected fakeRepository: Array<Entity> = [];
+  protected readonly fakeRepository: Array<Entity> = [];
 
   public constructor(
     private readonly Entity: new (...args: Array<unknown>) => Entity,

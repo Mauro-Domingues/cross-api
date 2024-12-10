@@ -5,13 +5,24 @@ import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 
 export class Shell {
+  private readonly npmInstallYarn: RegExp;
+  private readonly packageVersion: RegExp;
   private readonly allowedPattern: RegExp;
+  private readonly yarnAddRemove: RegExp;
   private readonly messages: IMessageDTO;
+  private readonly yarnPattern: RegExp;
   private static instance: IShellDTO;
 
   private constructor() {
-    this.allowedPattern =
-      /^(npm install yarn --location=global|yarn (add|remove)( -D)? ((@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?)+)$/;
+    this.packageVersion = /(@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?/;
+    this.npmInstallYarn = /npm install yarn --location=global/;
+    this.yarnAddRemove = /yarn (add|remove)( -D)?/;
+    this.yarnPattern = new RegExp(
+      `${this.yarnAddRemove.source} (${this.packageVersion.source})+`,
+    );
+    this.allowedPattern = new RegExp(
+      `^(${this.npmInstallYarn.source}|${this.yarnPattern.source})$`,
+    );
     this.messages = Messages.getInstance().execute();
   }
 

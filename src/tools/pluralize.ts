@@ -225,7 +225,7 @@ export class Pluralize {
     this.pluralRules = [];
     this.pluralData = [
       [/s?$/i, 's'],
-      [/[^\u0000-\u007F]$/i, '$0'],
+      [/[^ -~]+$/i, '$0'],
       [/([^aeiou]ese)$/i, '$1'],
       [/(ax|test)is$/i, '$1es'],
       [/(alias|[^aou]us|t[lm]as|gas|ris)$/i, '$1es'],
@@ -263,10 +263,10 @@ export class Pluralize {
   }
 
   private addRules(): void {
-    this.uncontableData.map(data => this.addUncountableRule(data));
-    this.irregularData.map(data => this.addIrregularRule(data));
-    this.singularData.map(data => this.addSingularRule(data));
-    this.pluralData.map(data => this.addPluralRule(data));
+    this.uncontableData.forEach(data => this.addUncountableRule(data));
+    this.irregularData.forEach(data => this.addIrregularRule(data));
+    this.singularData.forEach(data => this.addSingularRule(data));
+    this.pluralData.forEach(data => this.addPluralRule(data));
   }
 
   private replace(word: string, [rule, replacement]: IAssetDTO): string {
@@ -288,7 +288,7 @@ export class Pluralize {
 
     if (word === word.toUpperCase()) return token.toUpperCase();
 
-    if (word[0] === word[0].toUpperCase()) {
+    if (word.startsWith(word[0].toUpperCase())) {
       return token.charAt(0).toUpperCase() + token.slice(1);
     }
 
@@ -311,7 +311,7 @@ export class Pluralize {
 
       const asset = assets[len];
 
-      if (asset && asset[0].test(word)) {
+      if (asset[0]?.test(word)) {
         return this.replace(word, asset);
       }
     }

@@ -18,7 +18,7 @@ export const rateLimiter = async (
 ): Promise<void> => {
   try {
     if (
-      !['/api-docs', '/uploads', '/keys'].some(route =>
+      !['/doc', '/uploads', '/keys'].some(route =>
         request.path.startsWith(route),
       )
     ) {
