@@ -1,6 +1,6 @@
 export class CreateMysqlDataSource {
   public execute(): string {
-    return `import { DataSource } from 'typeorm';
+    return `import { DataSource } ${'from'} 'typeorm';
 import 'dotenv/config';
 import 'reflect-metadata';
 
