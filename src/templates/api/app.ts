@@ -1,6 +1,8 @@
 export class CreateApp {
   public execute(): string {
     return `import 'express-async-errors';
+import cluster ${'from'} 'node:cluster';
+import { cpus } ${'from'} 'node:os';
 import { setConnection } ${'from'} '@middlewares/setConnection';
 // import { storageConfig } ${'from'} '@config/storage'; // storageProvider
 // import { cryptoConfig } ${'from'} '@config/crypto'; // cryptoProvider
@@ -15,7 +17,7 @@ import swaggerDocs ${'from'} '../swagger.json';
 import { routes } ${'from'} '../routes';
 import '@shared/container';
 
-class App {
+export const app = new (class App {
   public readonly server: Express;
 
   public constructor() {
@@ -50,13 +52,23 @@ class App {
   }
 
   public init(): void {
-    this.server.listen(process.env.PORT, () => {
-      console.log(\`🚀 Server started on port \${process.env.PORT}!\`);
-    });
-  }
-}
+    if (process.env.NODE_ENV === 'production' && cluster.isPrimary) {
+      const numCPUs = cpus().length;
 
-export const app = new App();
+      Array.from({ length: numCPUs }).forEach(() => {
+        cluster.fork();
+      });
+
+      cluster.on('exit', () => {
+        cluster.fork();
+      });
+    } else {
+      this.server.listen(process.env.PORT, () => {
+        console.log('🚀 Server started on port %s!' process.env.PORT);
+      });
+    }
+  }
+})();
 `;
   }
 }
