@@ -1,14 +1,14 @@
 export class CreateMysqlDataSource {
   public execute(): string {
-    return `import { DataSource } ${'from'} 'typeorm';
+    return `import { DataSource } from 'typeorm';
 import 'dotenv/config';
 import 'reflect-metadata';
 
-const dataSources: Record<string, DataSource> = {};
+const dataSources = new Map<string, DataSource>();
 
 export const MysqlDataSource = (database: string): DataSource => {
-  if (!dataSources[database]) {
-    dataSources[database] = new DataSource({
+  if (!dataSources.has(database)) {
+    const dataSource = new DataSource({
       type: 'mysql',
       name: database,
       host: process.env.MYSQL_HOST,
@@ -21,9 +21,11 @@ export const MysqlDataSource = (database: string): DataSource => {
       migrations: [\`\${__dirname}/../migrations/*.{js,ts}\`],
       // logging: true,
     });
+
+    dataSources.set(database, dataSource);
   }
 
-  return dataSources[database];
+  return dataSources.get(database)!;
 };
 `;
   }
