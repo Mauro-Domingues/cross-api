@@ -70,8 +70,8 @@ export const app = new (class App {
     if (process.env.NODE_ENV === 'production' && cluster.isPrimary) {
       this.setupWorkers();
     } else {
-      this.server.listen(process.env.PORT, () => {
-        console.log('🚀 Server started on port %s!', process.env.PORT);
+      this.server.listen(process.env.API_PORT, () => {
+        console.log('🚀 Server started on port %s!', process.env.API_PORT);
       });
     }
   }
