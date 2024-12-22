@@ -5,6 +5,7 @@ export class CreateEnvNamespace {
     readonly API_PORT: number;
     readonly API_URL: string;
     readonly NODE_ENV: 'development' | 'production' | 'test';
+    readonly ALLOWED_DOMAINS: string;
     readonly MYSQL_HOST: string;
     readonly MYSQL_PORT: number;
     readonly MYSQL_USER: string;

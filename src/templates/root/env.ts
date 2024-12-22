@@ -3,6 +3,7 @@ export class CreateEnv {
     return `# Api
 API_PORT=3333
 API_URL=http://localhost:3333
+ALLOWED_DOMAINS=[https://example.com]
 NODE_ENV=development
 
 # Mysql
