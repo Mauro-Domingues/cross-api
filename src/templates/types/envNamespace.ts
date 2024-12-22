@@ -2,22 +2,21 @@ export class CreateEnvNamespace {
   public execute(): string {
     return `declare namespace NodeJS {
   export interface ProcessEnv {
-    readonly PORT: string;
+    readonly API_PORT: number;
     readonly API_URL: string;
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly MYSQL_HOST: string;
-    readonly MYSQL_PORT: string;
+    readonly MYSQL_PORT: number;
     readonly MYSQL_USER: string;
     readonly MYSQL_PASSWORD: string;
-    readonly MYSQL_ROOT_PASSWORD: string;
     readonly MYSQL_DATABASE: string;
     readonly REDIS_HOST: string;
-    readonly REDIS_PORT: string;
+    readonly REDIS_PORT: number;
     readonly REDIS_PASSWORD: string;
     readonly REDIS_PREFIX: string;
     readonly CRYPTO_SECRET_KEY: string;
     readonly JWT_LIFETIME: import('@dtos/IIntervalDTO').IIntervalDTO;
-    readonly HASH_SECRET_KEY: string;
+    readonly HASH_SECRET_KEY: number;
     readonly STORAGE_DRIVER: 'disk' | 's3';
     readonly S3_BUCKET: string;
     readonly S3_USER: string;
@@ -27,7 +26,7 @@ export class CreateEnvNamespace {
     readonly MAIL_NAME: string;
     readonly MAIL_ADRESS: string;
     readonly SMTP_HOST: string;
-    readonly SMTP_PORT: string;
+    readonly SMTP_PORT: number;
     readonly SMTP_SECURE: 'true' | 'false';
     readonly SMTP_USER: string;
     readonly SMTP_PASSWORD: string;

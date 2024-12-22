@@ -1,3 +1,4 @@
+import { CreateDockerFile } from '@templates/root/createDockerFile';
 import { CreateDocConfig } from '@templates/root/docConfig';
 import { CreateDockerCompose } from '@templates/root/dockerCompose';
 import { CreateEditorConfig } from '@templates/root/editorConfig';
@@ -18,6 +19,7 @@ export class CreateRoot {
   private readonly createEsLintIgnore: CreateEsLintIgnore;
   private readonly createEditorConfig: CreateEditorConfig;
   private readonly createJestConfig: CreateJestConfig;
+  private readonly createDockerFile: CreateDockerFile;
   private readonly createSwcConfig: CreateSwcConfig;
   private readonly createDocConfig: CreateDocConfig;
   private readonly createGitIgnore: CreateGitIgnore;
@@ -31,6 +33,7 @@ export class CreateRoot {
     this.createEsLintrcJson = new CreateEsLintrcJson();
     this.createEsLintIgnore = new CreateEsLintIgnore();
     this.createEditorConfig = new CreateEditorConfig();
+    this.createDockerFile = new CreateDockerFile();
     this.createJestConfig = new CreateJestConfig();
     this.createSwcConfig = new CreateSwcConfig();
     this.createDocConfig = new CreateDocConfig();
@@ -51,6 +54,7 @@ export class CreateRoot {
       [['.swcrc'], this.createSwcConfig],
       [['doc.config.ts'], this.createDocConfig],
       [['docker-compose.yml'], this.createDockerCompose],
+      [['Dockerfile'], this.createDockerFile],
       [['jest.config.ts'], this.createJestConfig],
       [['prettier.config.cjs'], this.createPrettierConfig],
       [['tsconfig.json'], this.createTsConfig],

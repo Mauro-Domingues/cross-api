@@ -30,6 +30,7 @@ export class DeleteApi {
       ['.gitignore'],
       ['.swcrc'],
       ['docker-compose.yml'],
+      ['Dockerfile'],
       ['doc.config.ts'],
       ['jest.config.ts'],
       ['prettier.config.cjs'],
