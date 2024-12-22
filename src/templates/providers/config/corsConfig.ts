@@ -3,7 +3,7 @@ export class CreateCorsConfig {
     return `import { AppError } from '@shared/errors/AppError';
 import { CorsOptions } from 'cors';
 
-const allowedDomains = process.env.ALLOWED_DOMAINS?.replace(/[[\\]]/g, '').split(
+const allowedDomains = process.env.ALLOWED_DOMAINS?.replace(/[[]]/g, '').split(
   ',',
 );
 

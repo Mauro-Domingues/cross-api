@@ -4,7 +4,7 @@ export class CreateDockerCompose {
   app:
     build: .
     ports:
-      - \${API_PORT}:3333
+      - 3333:\${API_PORT}
     env_file:
       - .env
     environment:
@@ -23,7 +23,7 @@ export class CreateDockerCompose {
     container_name: mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - \${MYSQL_PORT}:3306
+      - 3306:\${MYSQL_PORT}
     env_file:
       - .env
     environment:
@@ -38,7 +38,7 @@ export class CreateDockerCompose {
     restart: unless-stopped
     container_name: redis
     ports:
-      - \${REDIS_PORT}:6379
+      - 6379\${REDIS_PORT}
     env_file:
       - .env
     networks:
