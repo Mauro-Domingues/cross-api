@@ -1,7 +1,6 @@
 export class CreateDockerFile {
   public execute(): string {
-    return `# Build
-FROM node:lts AS build
+    return `FROM node:lts AS build
 
 WORKDIR /app
 
@@ -13,14 +12,13 @@ COPY . .
 
 RUN npm run build
 
-# Run
-FROM node:lts
+FROM node:lts AS run
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --omit=dev --legacy-peer-deps
+RUN npm prune --omit=dev --legacy-peer-deps
 
 COPY --from=build /app/dist ./dist
 
