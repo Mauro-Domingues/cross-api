@@ -38,7 +38,7 @@ export class CreateDockerCompose {
     restart: unless-stopped
     container_name: redis
     ports:
-      - 6379\${REDIS_PORT}
+      - 6379:\${REDIS_PORT}
     env_file:
       - .env
     networks:
