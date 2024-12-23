@@ -16,7 +16,7 @@ export const MysqlDataSource = (database: string): DataSource => {
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.NODE_ENV === 'test' ? 'database_test' : database,
-      synchronize: process.env.NODE_ENV !== 'production',
+      synchronize: process.env.NODE_ENV === 'development',
       entities: [\`\${__dirname}/../../../modules/**/entities/*.{js,ts}\`],
       migrations: [\`\${__dirname}/../migrations/*.{js,ts}\`],
       // logging: true,
