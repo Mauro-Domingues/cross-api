@@ -30,6 +30,7 @@ export class CreateInfra {
       ['src', 'routes'],
       ['src', 'utils', 'mappers'],
       [modulePath, 'entities'],
+      [modulePath, 'migrations'],
       [modulePath, 'repositories', 'fakes'],
       [modulePath, 'validators'],
       ['src', 'shared', 'errors'],
