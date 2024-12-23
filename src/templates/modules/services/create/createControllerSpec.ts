@@ -10,9 +10,9 @@ export class CreateSpecController {
 
   public execute(): string {
     return `import request ${'from'} 'supertest';
-    import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
-    import { IConnection } ${'from'} '@shared/typeorm';
-    import { app } ${'from'} '@shared/app';
+import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
+import { IConnection } ${'from'} '@shared/typeorm';
+import { app } ${'from'} '@shared/app';
 
 let connection: IConnection;
 
