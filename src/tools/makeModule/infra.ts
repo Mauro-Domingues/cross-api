@@ -22,6 +22,7 @@ export class CreateInfra extends BaseModule {
     return this.fileManager.checkAndCreateMultiDirSync([
       ['src', 'modules'],
       ['src', 'shared', 'container'],
+      ['src', 'shared', 'typeorm', 'migrations'],
       ['src', 'routes'],
       [this.basePath, 'dtos'],
       [this.basePath, 'entities'],
