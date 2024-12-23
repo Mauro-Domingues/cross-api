@@ -31,7 +31,7 @@ export class CreateTypeorm {
         [basePath, 'dataSources', 'fakes', 'fakeDataSource.ts'],
         this.createFakeDataSource,
       ],
-      [[basePath, 'migrations', 'index.ts'], this.createMigrationIndex],
+      [[basePath, 'runMigrations.ts'], this.createMigrationIndex],
       [[basePath, 'index.ts'], this.createConnection],
     ]);
   }
