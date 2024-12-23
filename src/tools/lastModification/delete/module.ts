@@ -19,6 +19,17 @@ export class DeleteModule {
     this.concat = Concat.getInstance();
   }
 
+  private deleteMigrations(
+    names: Pick<IModuleNameDTO, 'lowerModuleName'>,
+  ): void {
+    const files = this.fileManager.filterPathSync(
+      ['src', 'shared', 'typeorm', 'migrations'],
+      names.lowerModuleName,
+    );
+
+    return this.fileManager.checkAndRemoveMultiFile(files);
+  }
+
   private useNames({
     comand,
     names,
@@ -57,6 +68,7 @@ export class DeleteModule {
       ['src', 'routes', 'index.ts'],
       routeInjection,
     );
+    this.deleteMigrations(names);
     return this.console.execute({
       message: [
         '- ',
@@ -179,6 +191,7 @@ export class DeleteModule {
       ],
       routeInjection,
     );
+    this.deleteMigrations(names);
     return this.console.execute({
       message: [
         '- ',

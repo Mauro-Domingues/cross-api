@@ -7,6 +7,7 @@ import {
   appendFile,
   appendFileSync,
   truncateSync,
+  readdirSync,
   rm,
 } from 'node:fs';
 import { resolve } from 'node:path';
@@ -35,6 +36,17 @@ export class FileManager {
 
   public checkIfExistsSync(path: Array<string>): boolean {
     return existsSync(this.resolvePath(path));
+  }
+
+  public filterPathSync(
+    path: Array<string>,
+    fileName: string,
+  ): Array<Array<string>> {
+    const files = readdirSync(this.resolvePath(path));
+
+    return files
+      .filter(file => new RegExp(`^\\d+-${fileName}\\.ts$`).exec(file) !== null)
+      .map(filtredFile => path.concat([filtredFile]));
   }
 
   public createDirSync(path: Array<string>): string | undefined {
