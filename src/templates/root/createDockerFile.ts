@@ -24,6 +24,8 @@ COPY --from=build /app/dist ./dist
 
 EXPOSE 3333
 
+CMD ["npm", "run", "migration:run"]
+
 CMD ["npm", "run", "start"]
 `;
   }

@@ -1,4 +1,5 @@
 import { CreateBaseEntity } from '@templates/modules/entities/baseEntity';
+import { CreateBaseMigration } from '@templates/modules/migrations/baseMigration';
 import { CreateBaseRepository } from '@templates/modules/repositories/baseRepository';
 import { CreateFakeBaseRepository } from '@templates/modules/repositories/fakes/fakeBaseRepository';
 import { CreateIBaseRepository } from '@templates/modules/repositories/IBaseRepository';
@@ -9,6 +10,7 @@ export class CreateModules {
   private readonly createFakeBaseRepository: CreateFakeBaseRepository;
   private readonly createIBaseRepository: CreateIBaseRepository;
   private readonly createBaseRepository: CreateBaseRepository;
+  private readonly createBaseMigration: CreateBaseMigration;
   private readonly createBaseSchema: CreateBaseSchema;
   private readonly createBaseEntity: CreateBaseEntity;
   private readonly fileManager: FileManager;
@@ -17,6 +19,8 @@ export class CreateModules {
     this.createFakeBaseRepository = new CreateFakeBaseRepository();
     this.createIBaseRepository = new CreateIBaseRepository();
     this.createBaseRepository = new CreateBaseRepository();
+    this.createBaseRepository = new CreateBaseRepository();
+    this.createBaseMigration = new CreateBaseMigration();
     this.createBaseSchema = new CreateBaseSchema();
     this.createBaseEntity = new CreateBaseEntity();
     this.fileManager = FileManager.getInstance();
@@ -32,6 +36,7 @@ export class CreateModules {
 
     return this.fileManager.checkAndCreateMultiFile([
       [[basePath, 'entities', 'Base.ts'], this.createBaseEntity],
+      [[basePath, 'migrations', 'BaseMigration.ts'], this.createBaseMigration],
       [
         [basePath, 'repositories', 'BaseRepository.ts'],
         this.createBaseRepository,

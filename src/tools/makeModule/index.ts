@@ -8,6 +8,7 @@ import { CreateDtos } from '@tools/makeModule/dtos';
 import { CreateEntities } from '@tools/makeModule/entities';
 import { CreateInfra } from '@tools/makeModule/infra';
 import { CreateModuleInjection } from '@tools/makeModule/injection';
+import { CreateMigrations } from '@tools/makeModule/migrations';
 import { CreateRepositories } from '@tools/makeModule/repositories';
 import { CreateRoutes } from '@tools/makeModule/routes';
 import { CreateServices } from '@tools/makeModule/services';
@@ -22,6 +23,7 @@ export class CreateModule {
   private readonly createSpecServices: CreateSpecServices;
   private readonly createRepositories: CreateRepositories;
   private readonly createControllers: CreateControllers;
+  private readonly createMigrations: CreateMigrations;
   private readonly createValidators: CreateValidators;
   private readonly createEntities: CreateEntities;
   private readonly createServices: CreateServices;
@@ -76,6 +78,7 @@ export class CreateModule {
     this.createRoutes = new CreateRoutes(this.names, this.fatherNames);
     this.createInfra = new CreateInfra(this.names, this.fatherNames);
     this.createDtos = new CreateDtos(this.names, this.fatherNames);
+    this.createMigrations = new CreateMigrations(this.names);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
   }
@@ -91,6 +94,7 @@ export class CreateModule {
     this.createSpecControllers.execute();
     this.createValidators.execute();
     this.createRoutes.execute();
+    this.createMigrations.execute();
     this.createModuleInjection.execute();
     return this.console.execute({
       message: [
