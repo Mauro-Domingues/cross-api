@@ -25,7 +25,7 @@ export class S3StorageProvider implements IStorageProvider {
     });
   }
 
-  public async saveFile(file: string): Promise<string> {
+  public async saveFile(file: string): Promise<void> {
     const originalPath = resolve(storageConfig.config.tmpFolder, file);
 
     const ContentType = getType(originalPath);
@@ -36,19 +36,19 @@ export class S3StorageProvider implements IStorageProvider {
 
     const fileContent = readFileSync(originalPath);
 
-    await this.client.send(
-      new PutObjectCommand({
-        Bucket: storageConfig.config.s3.bucket,
-        Key: file,
-        ACL: 'public-read',
-        Body: fileContent,
-        ContentType,
-      }),
-    );
-
-    unlinkSync(originalPath);
-
-    return file;
+    try {
+      await this.client.send(
+        new PutObjectCommand({
+          Bucket: storageConfig.config.aws.bucket,
+          Key: file,
+          ACL: 'public-read',
+          Body: fileContent,
+          ContentType,
+        }),
+      );
+    } finally {
+      unlinkSync(originalPath);
+    }
   }
 
   public async deleteFile(file: string): Promise<void> {

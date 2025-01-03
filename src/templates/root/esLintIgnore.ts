@@ -3,7 +3,6 @@ export class CreateEsLintIgnore {
     return `/*.js
 node_modules
 dist
-src/@types
 `;
   }
 }

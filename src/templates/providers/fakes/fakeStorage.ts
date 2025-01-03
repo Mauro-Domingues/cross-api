@@ -5,10 +5,8 @@ export class CreateFakeStorage {
 export class FakeStorageProvider implements IStorageProvider {
   private readonly storage: Array<string> = [];
 
-  public async saveFile(file: string): Promise<string> {
+  public async saveFile(file: string): Promise<void> {
     this.storage.push(file);
-
-    return file;
   }
 
   public async deleteFile(file: string): Promise<void> {

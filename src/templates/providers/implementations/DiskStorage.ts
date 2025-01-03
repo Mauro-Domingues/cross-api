@@ -16,13 +16,11 @@ export class DiskStorageProvider implements IStorageProvider {
     }
   }
 
-  public async saveFile(file: string): Promise<string> {
+  public async saveFile(file: string): Promise<void> {
     renameSync(
       resolve(storageConfig.config.tmpFolder, file),
       resolve(storageConfig.config.uploadsFolder, file),
     );
-
-    return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
