@@ -2,7 +2,7 @@ export class CreateMigrationIndex {
   public execute(): string {
     return `import { MysqlDataSource } ${'from'} './dataSources/mysqlDataSource';
 
-(async function runMigrations(): Promise<void> {
+async function mysqlMigrations(): Promise<void> {
   const mysql = MysqlDataSource(process.env.MYSQL_DATABASE);
 
   if (!mysql.isInitialized) {
@@ -11,6 +11,10 @@ export class CreateMigrationIndex {
 
   await mysql.runMigrations();
   return mysql.destroy();
+}
+
+(async function runMigrations(): Promise<void> {
+  return mysqlMigrations();
 })();
 `;
   }
