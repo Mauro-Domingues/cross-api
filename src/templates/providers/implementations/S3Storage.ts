@@ -39,7 +39,7 @@ export class S3StorageProvider implements IStorageProvider {
     try {
       await this.client.send(
         new PutObjectCommand({
-          Bucket: storageConfig.config.aws.bucket,
+          Bucket: storageConfig.config.s3.bucket,
           Key: file,
           ACL: 'public-read',
           Body: fileContent,
