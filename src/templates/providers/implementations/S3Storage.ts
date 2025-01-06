@@ -6,7 +6,7 @@ import {
   PutObjectCommand,
   DeleteObjectCommand,
 } ${'from'} '@aws-sdk/client-s3';
-import { readFileSync, unlinkSync } ${'from'} 'node:fs';
+import { createReadStream, unlinkSync } ${'from'} 'node:fs';
 import { getType } ${'from'} 'mime';
 import { resolve } ${'from'} 'node:path';
 import { AppError } ${'from'} '@shared/errors/AppError';
@@ -34,7 +34,7 @@ export class S3StorageProvider implements IStorageProvider {
       throw new AppError('FILE_NOT_FOUND', 'File not found', 404);
     }
 
-    const fileContent = readFileSync(originalPath);
+    const fileStream = createReadStream(originalPath);
 
     try {
       await this.client.send(
@@ -42,7 +42,7 @@ export class S3StorageProvider implements IStorageProvider {
           Bucket: storageConfig.config.s3.bucket,
           Key: file,
           ACL: 'public-read',
-          Body: fileContent,
+          Body: fileStream,
           ContentType,
         }),
       );
