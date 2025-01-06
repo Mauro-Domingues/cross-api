@@ -66,7 +66,7 @@ new (class Main {
   }
 
   public execute(): void {
-    if (!Object.keys(this.actions).includes(this.comand)) {
+    if (!Object.hasOwn(this.actions, this.comand)) {
       throw new CustomError([
         {
           message: this.messages.comands.errors.notFound,
