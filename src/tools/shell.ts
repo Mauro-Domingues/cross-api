@@ -5,23 +5,23 @@ import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 
 export class Shell {
-  private readonly npmInstallYarn: RegExp;
-  private readonly packageVersion: RegExp;
+  private readonly packageVersionPattern: RegExp;
+  private readonly installationPattern: RegExp;
+  private readonly addRemovePattern: RegExp;
   private readonly allowedPattern: RegExp;
-  private readonly yarnAddRemove: RegExp;
   private readonly messages: IMessageDTO;
   private readonly yarnPattern: RegExp;
   private static instance: IShellDTO;
 
   private constructor() {
-    this.packageVersion = /(@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?/;
-    this.npmInstallYarn = /npm install yarn --location=global/;
-    this.yarnAddRemove = /yarn (add|remove)( -D)?/;
+    this.packageVersionPattern = /(@[\w-]+\/[\w-]+|[\w-]+)(@\^?[\d.]+)? ?/;
+    this.installationPattern = /npm install yarn --location=global/;
+    this.addRemovePattern = /yarn (add|remove)( -D)?/;
     this.yarnPattern = new RegExp(
-      `${this.yarnAddRemove.source} (${this.packageVersion.source})+`,
+      `${this.addRemovePattern.source} (${this.packageVersionPattern.source})+`,
     );
     this.allowedPattern = new RegExp(
-      `^(${this.npmInstallYarn.source}|${this.yarnPattern.source})$`,
+      `^(${this.installationPattern.source}|${this.yarnPattern.source})$`,
     );
     this.messages = Messages.getInstance().execute();
   }
