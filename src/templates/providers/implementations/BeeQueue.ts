@@ -22,8 +22,9 @@ export class BeeProvider implements IQueueProvider {
       this.queues[Job.key] = {
         queue: new Bee(Job.key, {
           prefix: queueConfig.config.redis.prefix,
-          activateDelayedJobs: true,
           redis: queueConfig.config.redis,
+          activateDelayedJobs: true,
+          removeOnSuccess: true,
         }),
         handle: instance.handle.bind(instance) as ({
           data,

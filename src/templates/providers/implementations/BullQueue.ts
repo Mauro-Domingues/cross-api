@@ -23,6 +23,9 @@ export class BullProvider implements IQueueProvider {
         queue: new Bull(Job.key, {
           prefix: queueConfig.config.redis.prefix,
           redis: queueConfig.config.redis,
+          defaultJobOptions: {
+            removeOnComplete: true,
+          },
         }),
         handle: instance.handle.bind(instance) as ({
           data,

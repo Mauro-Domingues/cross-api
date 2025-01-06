@@ -41,7 +41,11 @@ export class KueProvider implements IQueueProvider {
     data: T,
     attempts = 1,
   ): Promise<Job> {
-    return this.queues[key].queue.create(key, data).attempts(attempts).save();
+    return this.queues[key].queue
+      .create(key, data)
+      .attempts(attempts)
+      .removeOnComplete(true)
+      .save();
   }
 
   public async schedule<T extends object>(
@@ -55,6 +59,7 @@ export class KueProvider implements IQueueProvider {
       .create(key, data)
       .attempts(attempts)
       .delay(parsedDelay)
+      .removeOnComplete(true)
       .save();
   }
 
