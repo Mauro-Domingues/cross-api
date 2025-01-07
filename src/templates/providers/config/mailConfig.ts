@@ -30,7 +30,7 @@ export const mailConfig = Object.freeze<IMailConfigDTO>({
     defaults: {
       from: {
         name: process.env.MAIL_NAME,
-        email: process.env.MAIL_ADRESS,
+        email: process.env.MAIL_ADDRESS,
       },
     },
     smtp: {

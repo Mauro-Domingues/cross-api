@@ -25,7 +25,7 @@ export class CreateEnvNamespace {
     readonly S3_REGION: string;
     readonly MAIL_DRIVER: 'smtp' | 'ses';
     readonly MAIL_NAME: string;
-    readonly MAIL_ADRESS: string;
+    readonly MAIL_ADDRESS: string;
     readonly SMTP_HOST: string;
     readonly SMTP_PORT: number;
     readonly SMTP_SECURE: 'true' | 'false';

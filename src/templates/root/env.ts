@@ -3,21 +3,21 @@ export class CreateEnv {
     return `# Api
 API_PORT=3333
 API_URL=http://localhost:3333
-ALLOWED_DOMAINS=[https://example.com]
+ALLOWED_DOMAINS=[https://example.com,https://other-example.com]
 NODE_ENV=development
 
 # Mysql
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=root
-MYSQL_PASSWORD=12345
-MYSQL_ROOT_PASSWORD=12345
+MYSQL_PASSWORD=
+MYSQL_ROOT_PASSWORD=
 MYSQL_DATABASE=database
 
 # Redis
 REDIS_HOST=localhost
 REDIS_PORT=6379
-REDIS_PASSWORD=12345
+REDIS_PASSWORD=
 REDIS_PREFIX=api
 
 # Crypto
@@ -39,7 +39,7 @@ S3_REGION=
 # Mail (smtp | ses)
 MAIL_DRIVER=smtp
 MAIL_NAME=Administrator
-MAIL_ADRESS=no-reply@admin.com
+MAIL_ADDRESS=no-reply@admin.com
 
 # Smtp
 SMTP_HOST=
