@@ -1,6 +1,6 @@
 {
   "name": "cross-api",
-  "version": "6.2.5",
+  "version": "6.2.6",
   "description": "A CLI which can generate a good, clean and statically typed API structure with typescript and SOLID principles. It's features includes CRUD operations, providers, unit tests and documentation.",
   "main": "src/index.js",
   "type": "module",
