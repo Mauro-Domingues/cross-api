@@ -92,7 +92,7 @@ export class ListProvider {
   }
 
   private renderProviderOptions(): void {
-    Object.values(this.provider.list).flatMap(provider => {
+    Object.values(this.provider.list).forEach(provider => {
       this.console.execute([
         {
           message: '|',

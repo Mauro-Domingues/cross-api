@@ -64,8 +64,7 @@ export class BuildPayload {
 
   public execute(assets: IInputDTO | Array<IInputDTO>): string {
     const payload = (Array.isArray(assets) ? assets : [assets])
-      .map(asset => this.stringifyPayload(asset))
-      .flat()
+      .flatMap(asset => this.stringifyPayload(asset))
       .join('');
 
     return payload;
