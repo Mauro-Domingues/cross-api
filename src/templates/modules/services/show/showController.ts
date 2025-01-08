@@ -30,7 +30,7 @@ import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
 
 export class Show${this.names.upperModuleName}Controller {
   public async handle(
-    request: Request<I${this.names.upperModuleName}DTO>,
+    request: Request<Required<I${this.names.upperModuleName}DTO>>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
     const show${this.names.upperModuleName} = container.resolve(Show${

@@ -40,7 +40,7 @@ export class Show${this.names.upperModuleName}Service {
 
   @Get('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id?: string): Promise<IResponseDTO<${
+  public async execute(@Path() id: string): Promise<IResponseDTO<${
     this.names.upperModuleName
   }>> {
     const trx = this.connection.mysql.createQueryRunner();

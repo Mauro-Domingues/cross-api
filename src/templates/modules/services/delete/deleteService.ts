@@ -40,7 +40,7 @@ export class Delete${this.names.upperModuleName}Service {
 
   @Delete('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id?: string): Promise<IResponseDTO<null>> {
+  public async execute(@Path() id: string): Promise<IResponseDTO<null>> {
     const trx = this.connection.mysql.createQueryRunner();
 
     await trx.startTransaction();

@@ -30,7 +30,7 @@ import { Update${this.names.upperModuleName}Service } ${'from'} './Update${
 
 export class Update${this.names.upperModuleName}Controller {
   public async handle(
-    request: Request<I${this.names.upperModuleName}DTO, never, I${
+    request: Request<Required<I${this.names.upperModuleName}DTO>, never, I${
       this.names.upperModuleName
     }DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,

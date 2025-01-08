@@ -53,7 +53,7 @@ export class Update${this.names.upperModuleName}Service {
     @Body() ${this.names.lowerModuleName}Data: I${
       this.names.upperModuleName
     }DTO,
-    @Path() id?: string,
+    @Path() id: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = this.connection.mysql.createQueryRunner();
 
