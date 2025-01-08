@@ -82,7 +82,7 @@ export class PortugueseMessages {
       mappers: {
         description: {
           mapAndClone:
-            'CLONE VALUES -> Recebe como parâmetro um array de chaves e outro objeto do tipo { [key: string]: unknown }, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
+            'CLONE VALUES -> Recebe como parâmetro um array de chaves e outro objeto do tipo unknown, retorna um array de objetos com o mesmo valor, é útil para consultas find WHERE + OR.',
           mapAndPatch:
             'PATCH OBJECT -> Recebe como parâmetro uma entidade e um objeto, mapeia o objeto e retorna a entidade com as propriedades corrigidas. Propriedades vazias ou não pertencentes ao tipo da entidade são descartadas.',
           patchAndInsert:

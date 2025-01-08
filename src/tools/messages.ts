@@ -84,7 +84,7 @@ export class Messages {
       mappers: {
         description: {
           mapAndClone:
-            'CLONE VALUES -> Receives as parameter a key array and another object of type { [key: string]: unknown }, returns an array of objects with the same value, is useful for queries find WHERE + OR.',
+            'CLONE VALUES -> Receives as parameter a key array and another object of type unknown, returns an array of objects with the same value, is useful for queries find WHERE + OR.',
           mapAndPatch:
             'PATCH OBJECT -> Takes as parameter an entity and an object, maps the object, and returns the entity with the patched properties. Empty or non-entity-type properties are discarded.',
           patchAndInsert:

@@ -95,13 +95,17 @@ ${this.baseNames.lowerModuleName}Router
 
 ${this.baseNames.lowerModuleName}Router
   .route('/${this.names.routeModuleName}/:id')
-  .get(show${this.names.upperModuleName}, show${
+  .get(show${this.names.upperModuleName} as ReturnType<typeof celebrate>, show${
       this.names.upperModuleName
     }Controller.handle)
-  .put(update${this.names.upperModuleName}, update${
+  .put(update${
+    this.names.upperModuleName
+  } as ReturnType<typeof celebrate>, update${
       this.names.upperModuleName
     }Controller.handle)
-  .delete(delete${this.names.upperModuleName}, delete${
+  .delete(delete${
+    this.names.upperModuleName
+  } as ReturnType<typeof celebrate>, delete${
       this.names.upperModuleName
     }Controller.handle);
 `;
