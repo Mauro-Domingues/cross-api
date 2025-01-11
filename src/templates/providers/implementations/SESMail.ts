@@ -32,7 +32,7 @@ export class SESMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     const { email } = mailConfig.config.defaults.from;
 
-    const content = this.mailTemplateProvider.parse(templateData);
+    const content = this.mailTemplateProvider.compile(templateData);
 
     await this.client.send(
       new SendEmailCommand({

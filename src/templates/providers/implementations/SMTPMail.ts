@@ -38,7 +38,7 @@ export class SMTPMailProvider implements IMailProvider {
 
     const { email, name } = mailConfig.config.defaults.from;
 
-    const content = this.mailTemplateProvider.parse(templateData);
+    const content = this.mailTemplateProvider.compile(templateData);
 
     await this.client.sendMail({
       from: {

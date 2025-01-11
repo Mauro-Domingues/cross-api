@@ -16,12 +16,12 @@ export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
     });
 
     const partialTemplate = Handlebars.compile(templateFileContent);
-    const parsedPartialTemplate = partialTemplate(variables);
+    const compiledPartialTemplate = partialTemplate(variables);
 
-    Handlebars.registerPartial(name, parsedPartialTemplate);
+    Handlebars.registerPartial(name, compiledPartialTemplate);
   }
 
-  public parse({
+  public compile({
     file,
     variables,
   }: Omit<IParseMailTemplateDTO, 'name'>): string {
@@ -29,11 +29,11 @@ export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
       encoding: 'utf-8',
     });
 
-    const parseTemplate = Handlebars.compile(templateFileContent, {
+    const compiledTemplate = Handlebars.compile(templateFileContent, {
       compat: true,
     });
 
-    return parseTemplate(variables);
+    return compiledTemplate(variables);
   }
 }
 `;

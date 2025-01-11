@@ -45,7 +45,7 @@ export class FakeMailProvider implements IMailProvider {
 
     const { email, name } = mailConfig.config.defaults.from;
 
-    const content = this.mailTemplateProvider.parse(templateData);
+    const content = this.mailTemplateProvider.compile(templateData);
 
     const message = await this.client.sendMail({
       from: {

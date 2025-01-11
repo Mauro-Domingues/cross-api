@@ -4,7 +4,7 @@ export class CreateIMailTemplate {
 
 export interface IMailTemplateProvider {
   registerPartial(data: IParseMailTemplateDTO): void;
-  parse(data: Omit<IParseMailTemplateDTO, 'name'>): string;
+  compile(data: Omit<IParseMailTemplateDTO, 'name'>): string;
 }
 `;
   }
