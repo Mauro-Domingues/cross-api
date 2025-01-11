@@ -15,10 +15,10 @@ export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
       encoding: 'utf-8',
     });
 
-    const partialTemplate = Handlebars.compile(templateFileContent);
-    const compiledPartialTemplate = partialTemplate(variables);
+    const compiledPartialTemplate = Handlebars.compile(templateFileContent);
+    const partialTemplate = compiledPartialTemplate(variables);
 
-    Handlebars.registerPartial(name, compiledPartialTemplate);
+    Handlebars.registerPartial(name, partialTemplate);
   }
 
   public compile({
