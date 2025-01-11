@@ -44,7 +44,7 @@ export class Update${this.names.upperModuleName}Controller {
 
     const ${this.names.lowerModuleName} = await update${
       this.names.upperModuleName
-    }.execute(${this.names.lowerModuleName}Data, id);
+    }.execute(id, ${this.names.lowerModuleName}Data);
 
     response.status(${this.names.lowerModuleName}.code).send(${
       this.names.lowerModuleName

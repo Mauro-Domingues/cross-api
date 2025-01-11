@@ -73,10 +73,10 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     const updated${this.names.upperModuleName} = await update${
       this.names.upperModuleName
     }Service.execute(
+      ${this.names.lowerModuleName}.id,
       { ...${this.names.lowerModuleName}, name: 'updated${
       this.names.upperModuleName
     }' },
-      ${this.names.lowerModuleName}.id,
     );
 
     expect(updated${this.names.upperModuleName}.data.name).toEqual('updated${
@@ -88,9 +88,9 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     this.names.lowerModuleName
   } with a non-existing id', async (): Promise<void> => {
     await expect(
-      update${this.names.upperModuleName}Service.execute({}, 'non-existing-${
+      update${this.names.upperModuleName}Service.execute('non-existing-${
       this.names.lowerModuleName
-    }-id'),
+    }-id', {}),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

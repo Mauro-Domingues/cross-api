@@ -50,10 +50,10 @@ export class Update${this.names.upperModuleName}Service {
   @Put('{id}')
   @Tags('${this.names.upperModuleName}')
   public async execute(
+    @Path() id: string,
     @Body() ${this.names.lowerModuleName}Data: I${
       this.names.upperModuleName
     }DTO,
-    @Path() id: string,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = this.connection.mysql.createQueryRunner();
 
