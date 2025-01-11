@@ -21,7 +21,7 @@ export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
     Handlebars.registerPartial(name, parsedPartialTemplate);
   }
 
-  public parse({ file, variables }: IParseMailTemplateDTO): string {
+  public parse({ file, variables }: Omit<IParseMailTemplateDTO, 'name'>): string {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',
     });

@@ -3,8 +3,8 @@ export class CreateIMailTemplate {
     return `import { IParseMailTemplateDTO } ${'from'} '../dtos/IParseMailTemplateDTO';
 
 export interface IMailTemplateProvider {
-  registerPartial(data: IParseMailTemplateDTO & { name: string }): void;
-  parse(data: IParseMailTemplateDTO): string;
+  registerPartial(data: IParseMailTemplateDTO): void;
+  parse(data: Omit<IParseMailTemplateDTO, 'name'>): string;
 }
 `;
   }

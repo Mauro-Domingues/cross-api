@@ -8,7 +8,7 @@ export class FakeMailTemplateProvider implements IMailTemplateProvider {
     return console.log('Partial registered');
   }
 
-  public parse({ variables }: IParseMailTemplateDTO): string {
+  public parse({ variables }: Omit<IParseMailTemplateDTO, 'name'>): string {
     return \`
         <html>
           <body>
