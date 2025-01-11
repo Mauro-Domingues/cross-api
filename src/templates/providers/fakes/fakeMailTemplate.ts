@@ -4,6 +4,10 @@ export class CreateFakeMailTemplate {
 import { IMailTemplateProvider } ${'from'} '../models/IMailTemplateProvider';
 
 export class FakeMailTemplateProvider implements IMailTemplateProvider {
+  public registerPartial(): void {
+    return console.log('Partial registered');
+  }
+
   public parse({ variables }: IParseMailTemplateDTO): string {
     return \`
         <html>
