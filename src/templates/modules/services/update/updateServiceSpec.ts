@@ -73,10 +73,9 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     const updated${this.names.upperModuleName} = await update${
       this.names.upperModuleName
     }Service.execute(${this.names.lowerModuleName}.id, {
-      ...${this.names.lowerModuleName}, name: 'updated${
-      this.names.upperModuleName
-    }' },
-    );
+      ...${this.names.lowerModuleName},
+      name: 'updated${this.names.upperModuleName}',
+    });
 
     expect(updated${this.names.upperModuleName}.data.name).toEqual('updated${
       this.names.upperModuleName
