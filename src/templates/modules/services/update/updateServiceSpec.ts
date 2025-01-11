@@ -72,9 +72,8 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
 
     const updated${this.names.upperModuleName} = await update${
       this.names.upperModuleName
-    }Service.execute(
-      ${this.names.lowerModuleName}.id,
-      { ...${this.names.lowerModuleName}, name: 'updated${
+    }Service.execute(${this.names.lowerModuleName}.id, {
+      ...${this.names.lowerModuleName}, name: 'updated${
       this.names.upperModuleName
     }' },
     );
