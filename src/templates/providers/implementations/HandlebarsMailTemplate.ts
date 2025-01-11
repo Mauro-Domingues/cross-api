@@ -10,7 +10,7 @@ export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
     name,
     file,
     variables,
-  }: IParseMailTemplateDTO & { name: string }): void {
+  }: IParseMailTemplateDTO): void {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',
     });
