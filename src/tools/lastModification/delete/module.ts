@@ -80,8 +80,6 @@ export class DeleteModule {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 
@@ -205,8 +203,6 @@ export class DeleteModule {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 

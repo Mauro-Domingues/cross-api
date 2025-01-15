@@ -80,9 +80,7 @@ export class PackageManager {
           this.messages.dependencies.description.installed,
         ],
         color: 'yellow',
-        bold: false,
-        breakStart: false,
-        breakEnd: !this.devDependencies.length,
+        ...(!this.devDependencies.length && { breakEnd: true }),
       });
     });
   }
@@ -107,9 +105,6 @@ export class PackageManager {
           this.messages.dependencies.description.installed,
         ],
         color: 'yellow',
-        bold: false,
-        breakStart: false,
-        breakEnd: false,
       });
     });
   }
@@ -143,9 +138,6 @@ export class PackageManager {
               this.messages.dependencies.description.uninstalled,
             ],
             color: 'red',
-            bold: false,
-            breakStart: false,
-            breakEnd: false,
           });
         });
       }

@@ -75,8 +75,6 @@ export class DeleteProvider {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
     return packageManager.execute('uninstall');
   }
@@ -140,8 +138,6 @@ export class DeleteProvider {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
     return packageManager.execute('uninstall');
   }

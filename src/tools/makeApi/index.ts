@@ -56,8 +56,6 @@ export class CreateApi {
       message: this.messages.comands.description.apiCreated,
       color: 'blue',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 }

@@ -63,8 +63,6 @@ export class Board {
       message: ['|', ' '.repeat(116), '|'],
       color: 'blue',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 
@@ -80,7 +78,6 @@ export class Board {
       color: 'blue',
       bold: true,
       breakStart: true,
-      breakEnd: false,
     });
   }
 
@@ -91,8 +88,6 @@ export class Board {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -103,15 +98,11 @@ export class Board {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
     ]);
     this.renderEmptyLine();
@@ -121,36 +112,25 @@ export class Board {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' '.repeat(4), '➤  ', tool.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' ', tool.description.padEnd(77, ' ')],
           color: 'white',
-          bold: false,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
       ]);
       return this.renderEmptyLine();
@@ -163,8 +143,6 @@ export class Board {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -175,15 +153,11 @@ export class Board {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
     ]);
     this.renderEmptyLine();
@@ -193,36 +167,25 @@ export class Board {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' '.repeat(4), '➤  ', structure.title.padEnd(30, ' ')],
           color: 'yellow',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' ', structure.description.padEnd(77, ' ')],
           color: 'white',
-          bold: false,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
       ]);
       return this.renderEmptyLine();
@@ -234,7 +197,6 @@ export class Board {
       message: [' \\', '='.repeat(114), '/'],
       color: 'blue',
       bold: true,
-      breakStart: false,
       breakEnd: true,
     });
   }

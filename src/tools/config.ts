@@ -99,9 +99,7 @@ export class ConfigJson extends ConfigLanguage {
       {
         message: ['- yarn ', this.messages.dependencies.description.installed],
         color: 'yellow',
-        bold: false,
         breakStart: true,
-        breakEnd: false,
       },
     ]);
     return this.shell.execute('npm install yarn --location=global');
@@ -114,42 +112,32 @@ export class ConfigJson extends ConfigLanguage {
         color: 'blue',
         bold: true,
         breakStart: true,
-        breakEnd: false,
       },
       {
         message: this.messages.comands.description.attempt.comand,
         color: 'yellow',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: this.messages.comands.description.attempt.info,
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: this.messages.documentation.description.action,
         color: 'blue',
         bold: true,
         breakStart: true,
-        breakEnd: false,
       },
       {
         message: 'https://cross-packages.gitbook.io/cross-api',
         color: 'purple',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: this.messages.documentation.description.info,
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
     ]);
   }

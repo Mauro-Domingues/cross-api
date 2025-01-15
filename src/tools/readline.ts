@@ -24,7 +24,6 @@ export class Readline {
       color: 'red',
       bold: true,
       breakStart: true,
-      breakEnd: false,
     });
   }
 

@@ -26,8 +26,6 @@ export class ListProvider {
       message: ['|', ' '.repeat(55), '|'],
       color: 'blue',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 
@@ -44,8 +42,6 @@ export class ListProvider {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -54,15 +50,11 @@ export class ListProvider {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -71,22 +63,17 @@ export class ListProvider {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|'.padStart(12, ' '),
         color: 'blue',
         bold: true,
-        breakStart: false,
         breakEnd: true,
       },
       {
         message: ['| ', this.concat.execute(this.trace, ' ').repeat(27), '|'],
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
     ]);
   }
@@ -98,36 +85,25 @@ export class ListProvider {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: ['  ➤  ', provider.name.padEnd(16, ' ')],
           color: 'yellow',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' '.repeat(2), provider.description.padEnd(31, ' ')],
           color: 'white',
-          bold: false,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
       ]);
       return this.renderEmptyLine();
@@ -139,7 +115,6 @@ export class ListProvider {
       message: [' \\', '='.repeat(53), '/'],
       color: 'blue',
       bold: true,
-      breakStart: false,
       breakEnd: true,
     });
   }

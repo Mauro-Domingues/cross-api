@@ -79,21 +79,16 @@ new (class Main {
           message: this.messages.comands.description.attempt.action,
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: this.messages.comands.description.attempt.comand,
           color: 'yellow',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: this.messages.comands.description.attempt.info,
           color: 'blue',
           bold: true,
-          breakStart: false,
           breakEnd: true,
         },
       ]);

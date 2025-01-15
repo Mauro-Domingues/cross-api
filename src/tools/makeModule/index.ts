@@ -109,8 +109,6 @@ export class CreateModule {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 }

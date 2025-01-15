@@ -41,8 +41,6 @@ export class DeleteApi {
       message: ['- ', this.messages.comands.description.reversed, ': ', comand],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 }

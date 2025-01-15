@@ -47,8 +47,6 @@ export class CreateProvider {
       ],
       color: 'yellow',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
 
     return new PackageManager(

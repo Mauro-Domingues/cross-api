@@ -45,8 +45,6 @@ export class ConfigLanguage {
       message: ['|', ' '.repeat(37), '|'],
       color: 'blue',
       bold: true,
-      breakStart: false,
-      breakEnd: false,
     });
   }
 
@@ -63,8 +61,6 @@ export class ConfigLanguage {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -73,15 +69,11 @@ export class ConfigLanguage {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: [
@@ -90,14 +82,11 @@ export class ConfigLanguage {
         ],
         color: 'green',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
       {
         message: '|',
         color: 'blue',
         bold: true,
-        breakStart: false,
         breakEnd: true,
       },
       {
@@ -109,8 +98,6 @@ export class ConfigLanguage {
         ],
         color: 'blue',
         bold: true,
-        breakStart: false,
-        breakEnd: false,
       },
     ]);
   }
@@ -122,36 +109,25 @@ export class ConfigLanguage {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: ['  ➤  ', key.padEnd(12, ' ')],
           color: 'yellow',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: [' '.repeat(2), value.padEnd(17, ' ')],
           color: 'white',
-          bold: false,
-          breakStart: false,
-          breakEnd: false,
         },
         {
           message: '|',
           color: 'blue',
           bold: true,
-          breakStart: false,
-          breakEnd: false,
         },
       ]);
       return this.renderEmptyLine();
@@ -163,7 +139,6 @@ export class ConfigLanguage {
       message: [' \\', '='.repeat(35), '/'],
       color: 'blue',
       bold: true,
-      breakStart: false,
       breakEnd: true,
     });
   }
