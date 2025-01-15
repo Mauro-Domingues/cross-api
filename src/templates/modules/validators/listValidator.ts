@@ -13,6 +13,7 @@ export class ListValidator extends BaseTemplateModule {
   ) {
     super(names, fatherNames);
   }
+
   public execute(): string {
     return `import { celebrate, Segments, Joi } ${'from'} 'celebrate';
 import { ${this.names.upperModuleName} } ${'from'} '@modules/${

@@ -12,7 +12,6 @@ import { Readline } from '@tools/readline';
 export class ConfigLanguage {
   protected declare languageChosen: keyof IMessageDTO['language']['options'];
   protected readonly languageOptions: IMessageDTO['language']['options'];
-  private readonly createDefaultLanguage: CreateDefaultLanguage;
   protected readonly fileManager: FileManager;
   protected declare messages: IMessageDTO;
   private languageMessages: ILanguageDTO;
@@ -28,7 +27,6 @@ export class ConfigLanguage {
     this.languageMessages = Messages.getInstance().language;
     this.languageOptions = Object.freeze(this.languageMessages.options);
     this.readline = new Readline(Object.keys(this.languageOptions));
-    this.createDefaultLanguage = new CreateDefaultLanguage();
     this.fileManager = FileManager.getInstance();
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
@@ -192,9 +190,9 @@ export class ConfigLanguage {
     ]);
     return this.fileManager.createFile(
       ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
-      this.createDefaultLanguage.execute(
+      new CreateDefaultLanguage(
         JSON.stringify(this.messages, null, 2),
-      ),
+      ).execute(),
     );
   }
 

@@ -13,6 +13,7 @@ export class CreateValidator extends BaseTemplateModule {
   ) {
     super(names, fatherNames);
   }
+
   public execute(): string {
     return `import { celebrate, Segments, Joi } ${'from'} 'celebrate';
 import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${

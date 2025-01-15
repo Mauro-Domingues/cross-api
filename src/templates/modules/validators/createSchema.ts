@@ -13,6 +13,7 @@ export class CreateSchema extends BaseTemplateModule {
   ) {
     super(names, fatherNames);
   }
+
   public execute(): string {
     return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName

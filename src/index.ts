@@ -65,7 +65,7 @@ new (class Main {
     });
   }
 
-  public execute(): void {
+  private validateComand(): void {
     if (!Object.hasOwn(this.actions, this.comand)) {
       throw new CustomError([
         {
@@ -97,6 +97,10 @@ new (class Main {
     if (this.comand !== 'revert') {
       this.createRegister.execute();
     }
+  }
+
+  public execute(): void {
+    this.validateComand();
 
     return this.actions[this.comand]().execute();
   }

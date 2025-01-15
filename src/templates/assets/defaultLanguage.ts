@@ -1,8 +1,10 @@
 export class CreateDefaultLanguage {
-  public execute(languageData: string): string {
+  public constructor(private readonly languageData: string) {}
+
+  public execute(): string {
     return `export class Messages {
   constructor() {
-    this.messages = ${languageData};
+    this.messages = ${this.languageData};
   }
   static getInstance() {
     if (!Messages.instance) {
