@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IShellDTO } from '@interfaces/ISingletonDTO/IShellDTO';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
@@ -7,9 +7,9 @@ import { Messages } from '@tools/messages';
 export class Shell {
   private readonly packageVersionPattern: RegExp;
   private readonly installationPattern: RegExp;
+  private readonly comandMessages: IComandDTO;
   private readonly addRemovePattern: RegExp;
   private readonly allowedPattern: RegExp;
-  private readonly messages: IMessageDTO;
   private readonly yarnPattern: RegExp;
   private static instance: IShellDTO;
 
@@ -23,7 +23,7 @@ export class Shell {
     this.allowedPattern = new RegExp(
       `^(${this.installationPattern.source}|${this.yarnPattern.source})$`,
     );
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
   }
 
   public static getInstance(): IShellDTO {
@@ -38,7 +38,7 @@ export class Shell {
       return execSync(command, { encoding: 'utf-8' });
     }
     throw new CustomError({
-      message: ['"', command, '"', this.messages.comands.errors.invalidOption],
+      message: ['"', command, '"', this.comandMessages.errors.invalidOption],
       color: 'red',
       bold: true,
       breakStart: true,

@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { Console } from '@tools/console';
 import { CreateConfig } from '@tools/makeApi/config';
 import { CreateDocs } from '@tools/makeApi/docs';
@@ -14,6 +14,7 @@ import { Messages } from '@tools/messages';
 
 export class CreateApi {
   private readonly createMiddlewares: CreateMiddlewares;
+  private readonly comandMessages: IComandDTO;
   private readonly createShared: CreateShared;
   private readonly createRoutes: CreateRoutes;
   private readonly createConfig: CreateConfig;
@@ -23,12 +24,11 @@ export class CreateApi {
   private readonly createDocs: CreateDocs;
   private readonly createRoot: CreateRoot;
   private readonly createDtos: CreateDtos;
-  private readonly messages: IMessageDTO;
   private readonly console: Console;
 
   public constructor() {
+    this.comandMessages = Messages.getInstance().comands;
     this.createMiddlewares = new CreateMiddlewares();
-    this.messages = Messages.getInstance().execute();
     this.createShared = new CreateShared();
     this.createRoutes = new CreateRoutes();
     this.createConfig = new CreateConfig();
@@ -53,7 +53,7 @@ export class CreateApi {
     this.createShared.execute();
     this.createUtils.execute();
     return this.console.execute({
-      message: this.messages.comands.description.apiCreated,
+      message: this.comandMessages.description.apiCreated,
       color: 'blue',
       bold: true,
     });

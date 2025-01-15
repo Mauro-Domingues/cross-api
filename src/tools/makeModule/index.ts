@@ -1,4 +1,5 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -27,10 +28,12 @@ export class CreateModule {
   private readonly createValidators: CreateValidators;
   private readonly createEntities: CreateEntities;
   private readonly createServices: CreateServices;
+  private readonly comandMessages: IComandDTO;
+  private readonly moduleMessages: IModuleDTO;
   private readonly createRoutes: CreateRoutes;
   private readonly createInfra: CreateInfra;
   private readonly createDtos: CreateDtos;
-  private readonly messages: IMessageDTO;
+  private readonly messages: Messages;
   private readonly console: Console;
   private readonly concat: Concat;
 
@@ -40,11 +43,13 @@ export class CreateModule {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
-    this.messages = Messages.getInstance().execute();
+    this.messages = Messages.getInstance();
+    this.comandMessages = this.messages.comands;
+    this.moduleMessages = this.messages.modules;
 
     if (!this.names) {
       throw new CustomError({
-        message: this.messages.modules.errors.notFound,
+        message: this.moduleMessages.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -105,7 +110,7 @@ export class CreateModule {
           'Module',
         ),
         ' ',
-        this.messages.comands.description.created,
+        this.comandMessages.description.created,
       ],
       color: 'yellow',
       bold: true,

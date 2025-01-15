@@ -1,15 +1,15 @@
 import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
 
 export class Readline {
-  private readonly messages: IMessageDTO;
+  private readonly comandMessages: IComandDTO;
   private readonly console: Console;
 
   public constructor(private readonly suggestions: Array<string>) {
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
     this.console = Console.getInstance();
   }
 
@@ -19,7 +19,7 @@ export class Readline {
         '"',
         optionChosen,
         '"',
-        this.messages.comands.errors.invalidOption,
+        this.comandMessages.errors.invalidOption,
       ],
       color: 'red',
       bold: true,
@@ -42,7 +42,7 @@ export class Readline {
     });
 
     return rl.question<Answer>(
-      this.messages.comands.answer,
+      this.comandMessages.answer,
       (optionChosen: Answer): void => {
         rl.close();
         callback(optionChosen);

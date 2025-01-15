@@ -1,17 +1,17 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
 import { Provider } from '@tools/provider';
 
 export class ListProvider {
-  private readonly messages: IMessageDTO;
+  private readonly providerMessages: IProviderDTO;
   private readonly provider: Provider;
   private readonly console: Console;
   private readonly concat: Concat;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
+    this.providerMessages = Messages.getInstance().providers;
     this.provider = new Provider(undefined);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
@@ -46,7 +46,7 @@ export class ListProvider {
       {
         message: [
           ' '.repeat(8),
-          this.messages.providers.headers.title.padEnd(13, ' '),
+          this.providerMessages.headers.title.padEnd(13, ' '),
         ],
         color: 'green',
         bold: true,
@@ -59,7 +59,7 @@ export class ListProvider {
       {
         message: [
           ' '.repeat(10),
-          this.messages.providers.headers.description.padEnd(12, ' '),
+          this.providerMessages.headers.description.padEnd(12, ' '),
         ],
         color: 'green',
         bold: true,

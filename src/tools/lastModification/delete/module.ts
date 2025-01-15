@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -6,7 +6,7 @@ import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteModule {
-  private readonly messages: IMessageDTO;
+  private readonly comandMessages: IComandDTO;
   private readonly console: Console;
   private readonly concat: Concat;
 
@@ -14,7 +14,7 @@ export class DeleteModule {
     private readonly fileManager: FileManager,
     private readonly basePath: string,
   ) {
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
   }
@@ -72,7 +72,7 @@ export class DeleteModule {
     return this.console.execute({
       message: [
         '- ',
-        this.messages.comands.description.reversed,
+        this.comandMessages.description.reversed,
         ': ',
         comand,
         ' ',
@@ -193,7 +193,7 @@ export class DeleteModule {
     return this.console.execute({
       message: [
         '- ',
-        this.messages.comands.description.reversed,
+        this.comandMessages.description.reversed,
         ': ',
         comand,
         ' ',

@@ -1,18 +1,18 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
 import { Messages } from '@tools/messages';
 
 export class CreateMapAndPatch {
-  private readonly messages: IMessageDTO;
+  private readonly mapperMessages: IMapperDTO;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
+    this.mapperMessages = Messages.getInstance().mappers;
   }
 
   public execute(): string {
     return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
 
 /**
- * ${this.messages.mappers.description.mapAndPatch}
+ * ${this.mapperMessages.description.mapAndPatch}
  * @param oldAttributes Entity
  * @param newAttributes Object
  * @returns Entity

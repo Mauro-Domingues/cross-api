@@ -1,16 +1,25 @@
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import { FinishConfig } from '@tools/finishConfig';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { PackageManager } from '@tools/packageManager';
 import { Shell } from '@tools/shell';
 
 export class ConfigJson extends ConfigLanguage {
+  private readonly documentationMessages: IDocumentationDTO;
+  private readonly dependencyMessages: IDependencyDTO;
   private readonly devDependencies: Array<string>;
   private readonly dependencies: Array<string>;
+  private readonly comandMessages: IComandDTO;
   private readonly finishConfig: FinishConfig;
   private readonly shell: Shell;
 
   public constructor() {
     super();
+    this.documentationMessages = this.messages.documentation;
+    this.dependencyMessages = this.messages.dependencies;
+    this.comandMessages = this.messages.comands;
     this.finishConfig = new FinishConfig();
     this.shell = Shell.getInstance();
     this.devDependencies = [
@@ -90,14 +99,14 @@ export class ConfigJson extends ConfigLanguage {
   private installYarn(): string {
     this.console.execute([
       {
-        message: this.messages.dependencies.headers.yarn,
+        message: this.dependencyMessages.headers.yarn,
         color: 'blue',
         bold: true,
         breakStart: true,
         breakEnd: true,
       },
       {
-        message: ['- yarn ', this.messages.dependencies.description.installed],
+        message: ['- yarn ', this.dependencyMessages.description.installed],
         color: 'yellow',
         breakStart: true,
       },
@@ -108,23 +117,23 @@ export class ConfigJson extends ConfigLanguage {
   private renderEnding(): void {
     return this.console.execute([
       {
-        message: this.messages.comands.description.attempt.action,
+        message: this.comandMessages.description.attempt.action,
         color: 'blue',
         bold: true,
         breakStart: true,
       },
       {
-        message: this.messages.comands.description.attempt.comand,
+        message: this.comandMessages.description.attempt.comand,
         color: 'yellow',
         bold: true,
       },
       {
-        message: this.messages.comands.description.attempt.info,
+        message: this.comandMessages.description.attempt.info,
         color: 'blue',
         bold: true,
       },
       {
-        message: this.messages.documentation.description.action,
+        message: this.documentationMessages.description.action,
         color: 'blue',
         bold: true,
         breakStart: true,
@@ -135,7 +144,7 @@ export class ConfigJson extends ConfigLanguage {
         bold: true,
       },
       {
-        message: this.messages.documentation.description.info,
+        message: this.documentationMessages.description.info,
         color: 'blue',
         bold: true,
       },
@@ -148,7 +157,7 @@ export class ConfigJson extends ConfigLanguage {
     new PackageManager(
       this.dependencies,
       this.devDependencies,
-      this.messages,
+      this.dependencyMessages,
     ).execute('install');
     this.renderEnding();
 

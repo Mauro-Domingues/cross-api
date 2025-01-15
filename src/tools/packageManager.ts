@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
@@ -7,8 +7,8 @@ import { Readline } from '@tools/readline';
 import { Shell } from '@tools/shell';
 
 export class PackageManager {
+  private readonly dependencyMessages: IDependencyDTO;
   private readonly fileManager: FileManager;
-  private readonly messages: IMessageDTO;
   private readonly readline: Readline;
   private readonly console: Console;
   private readonly concat: Concat;
@@ -17,9 +17,10 @@ export class PackageManager {
   public constructor(
     private readonly dependencies: Array<string>,
     private readonly devDependencies: Array<string>,
-    messages: IMessageDTO | undefined,
+    dependencyMessages?: IDependencyDTO,
   ) {
-    this.messages = messages ?? Messages.getInstance().execute();
+    this.dependencyMessages =
+      dependencyMessages ?? Messages.getInstance().dependencies;
     this.fileManager = FileManager.getInstance();
     this.readline = new Readline(['y', 'n']);
     this.console = Console.getInstance();
@@ -62,7 +63,7 @@ export class PackageManager {
 
   private installDependencies(dependencies: Array<string>): void {
     this.console.execute({
-      message: this.messages.dependencies.headers.dependencies,
+      message: this.dependencyMessages.headers.dependencies,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -77,7 +78,7 @@ export class PackageManager {
           '- ',
           dependency.replace(/@\^.*/, ''),
           ' ',
-          this.messages.dependencies.description.installed,
+          this.dependencyMessages.description.installed,
         ],
         color: 'yellow',
         ...(!this.devDependencies.length && { breakEnd: true }),
@@ -87,7 +88,7 @@ export class PackageManager {
 
   private installDevDependencies(devDependencies: Array<string>): void {
     this.console.execute({
-      message: this.messages.dependencies.headers.devDependencies,
+      message: this.dependencyMessages.headers.devDependencies,
       color: 'blue',
       bold: true,
       breakStart: true,
@@ -102,7 +103,7 @@ export class PackageManager {
           '- ',
           devDependency.replace(/@\^.*/, ''),
           ' ',
-          this.messages.dependencies.description.installed,
+          this.dependencyMessages.description.installed,
         ],
         color: 'yellow',
       });
@@ -111,7 +112,7 @@ export class PackageManager {
 
   private uninstallDependencies(dependencies: Array<string>): void {
     this.console.execute({
-      message: this.messages.dependencies.question,
+      message: this.dependencyMessages.question,
       color: 'green',
       bold: true,
       breakStart: true,
@@ -120,7 +121,7 @@ export class PackageManager {
     this.readline.execute((optionChosen: 'y' | 'n'): void => {
       if (optionChosen === 'y') {
         this.console.execute({
-          message: this.messages.dependencies.headers.uninstalling,
+          message: this.dependencyMessages.headers.uninstalling,
           color: 'blue',
           bold: true,
           breakStart: true,
@@ -135,7 +136,7 @@ export class PackageManager {
               '- ',
               dependency.replace(/@\^.*/, ''),
               ' ',
-              this.messages.dependencies.description.uninstalled,
+              this.dependencyMessages.description.uninstalled,
             ],
             color: 'red',
           });

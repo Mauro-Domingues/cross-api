@@ -1,4 +1,5 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -8,7 +9,9 @@ import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class DeleteProvider {
-  private readonly messages: IMessageDTO;
+  private readonly dependencyMessages: IDependencyDTO;
+  private readonly comandMessages: IComandDTO;
+  private readonly messages: Messages;
   private readonly provider: Provider;
   private readonly console: Console;
   private readonly concat: Concat;
@@ -17,7 +20,9 @@ export class DeleteProvider {
     private readonly fileManager: FileManager,
     private readonly basePath: string,
   ) {
-    this.messages = Messages.getInstance().execute();
+    this.messages = Messages.getInstance();
+    this.dependencyMessages = this.messages.dependencies;
+    this.comandMessages = this.messages.comands;
     this.provider = new Provider(undefined);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
@@ -67,7 +72,7 @@ export class DeleteProvider {
     this.console.execute({
       message: [
         '- ',
-        this.messages.comands.description.reversed,
+        this.comandMessages.description.reversed,
         ': ',
         comand,
         ' ',
@@ -128,7 +133,7 @@ export class DeleteProvider {
     this.console.execute({
       message: [
         '- ',
-        this.messages.comands.description.reversed,
+        this.comandMessages.description.reversed,
         ': ',
         comand,
         ' ',
@@ -160,7 +165,7 @@ export class DeleteProvider {
       this.provider.list[
         names?.lowerModuleName as keyof typeof this.provider.list
       ]?.devDependencies,
-      this.messages,
+      this.dependencyMessages,
     );
 
     if (names && fatherNames) {

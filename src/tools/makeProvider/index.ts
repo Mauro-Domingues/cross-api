@@ -1,4 +1,6 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
@@ -7,7 +9,10 @@ import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class CreateProvider {
-  private readonly messages: IMessageDTO;
+  private readonly dependencyMessages: IDependencyDTO;
+  private readonly providerMessages: IProviderDTO;
+  private readonly comandsMessages: IComandDTO;
+  private readonly messages: Messages;
   private readonly provider: Provider;
   private readonly console: Console;
 
@@ -17,7 +22,10 @@ export class CreateProvider {
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {
-    this.messages = Messages.getInstance().execute();
+    this.messages = Messages.getInstance();
+    this.dependencyMessages = this.messages.dependencies;
+    this.providerMessages = this.messages.providers;
+    this.comandsMessages = this.messages.comands;
     this.provider = new Provider(this.fatherNames);
     this.console = Console.getInstance();
   }
@@ -28,7 +36,7 @@ export class CreateProvider {
 
     if (!provider) {
       throw new CustomError({
-        message: this.messages.providers.errors.notFound,
+        message: this.providerMessages.errors.notFound,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -43,7 +51,7 @@ export class CreateProvider {
         '- ',
         provider.description.trimEnd(),
         ' ',
-        this.messages.comands.description.created,
+        this.comandsMessages.description.created,
       ],
       color: 'yellow',
       bold: true,
@@ -52,7 +60,7 @@ export class CreateProvider {
     return new PackageManager(
       provider.dependencies,
       provider.devDependencies,
-      this.messages,
+      this.dependencyMessages,
     ).execute('install');
   }
 }

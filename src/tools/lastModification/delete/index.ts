@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { CustomError } from '@tools/customError';
 import { BaseRegister } from '@tools/lastModification/base';
 import { DeleteApi } from '@tools/lastModification/delete/api';
@@ -9,16 +9,16 @@ import { GetNames } from '@tools/names';
 
 export class DeleteRegister extends BaseRegister {
   private readonly deleteProvider: DeleteProvider;
+  private readonly comandMessages: IComandDTO;
   private readonly deleteModule: DeleteModule;
-  private readonly messages: IMessageDTO;
   private readonly deleteApi: DeleteApi;
 
   public constructor() {
     super();
     this.deleteProvider = new DeleteProvider(this.fileManager, this.basePath);
     this.deleteModule = new DeleteModule(this.fileManager, this.basePath);
+    this.comandMessages = Messages.getInstance().comands;
     this.deleteApi = new DeleteApi(this.fileManager);
-    this.messages = Messages.getInstance().execute();
   }
 
   public execute(): void {
@@ -41,7 +41,7 @@ export class DeleteRegister extends BaseRegister {
         return this.deleteApi.execute({ comand });
       default:
         throw new CustomError({
-          message: this.messages.comands.errors.notReversed,
+          message: this.comandMessages.errors.notReversed,
           color: 'red',
           bold: true,
           breakStart: true,

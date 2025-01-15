@@ -1,11 +1,11 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
 import { Messages } from '@tools/messages';
 
 export class CreateMapAndUpdateString {
-  private readonly messages: IMessageDTO;
+  private readonly mapperMessages: IMapperDTO;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
+    this.mapperMessages = Messages.getInstance().mappers;
   }
 
   public execute(): string {
@@ -13,7 +13,7 @@ export class CreateMapAndUpdateString {
 import { mapAndUpdateAttribute } ${'from'} './mapAndUpdateAttribute';
 
 /**
- * ${this.messages.mappers.description.mapAndUpdateString}
+ * ${this.mapperMessages.description.mapAndUpdateString}
  * @param oldAttributes string
  * @param newAttributes Object
  * @returns string

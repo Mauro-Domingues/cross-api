@@ -1,4 +1,5 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
 import { PortugueseMessages } from '@templates/assets/ptBr';
@@ -13,6 +14,8 @@ export class ConfigLanguage {
   protected readonly languageOptions: IMessageDTO['language']['options'];
   private readonly createDefaultLanguage: CreateDefaultLanguage;
   protected readonly fileManager: FileManager;
+  protected declare messages: IMessageDTO;
+  private languageMessages: ILanguageDTO;
   protected readonly readline: Readline;
   protected readonly console: Console;
   private readonly languages: Record<
@@ -20,11 +23,10 @@ export class ConfigLanguage {
     { execute: () => IMessageDTO }
   >;
   private readonly concat: Concat;
-  protected messages: IMessageDTO;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
-    this.languageOptions = Object.freeze(this.messages.language.options);
+    this.languageMessages = Messages.getInstance().language;
+    this.languageOptions = Object.freeze(this.languageMessages.options);
     this.readline = new Readline(Object.keys(this.languageOptions));
     this.createDefaultLanguage = new CreateDefaultLanguage();
     this.fileManager = FileManager.getInstance();
@@ -65,7 +67,7 @@ export class ConfigLanguage {
       {
         message: [
           ' '.repeat(6),
-          this.messages.language.headers.title.padEnd(11, ' '),
+          this.languageMessages.headers.title.padEnd(11, ' '),
         ],
         color: 'green',
         bold: true,
@@ -78,7 +80,7 @@ export class ConfigLanguage {
       {
         message: [
           ' '.repeat(6),
-          this.messages.language.headers.description.padEnd(13, ' '),
+          this.languageMessages.headers.description.padEnd(13, ' '),
         ],
         color: 'green',
         bold: true,
@@ -156,22 +158,22 @@ export class ConfigLanguage {
         if (this.languageOptions[optionChosen]) {
           this.languageChosen = optionChosen;
           this.showChosenOption();
-          this.setLanguageOption();
-        } else {
-          this.readline.invalidOption(optionChosen);
-          this.execute();
+          return this.setLanguageOption();
         }
+        this.readline.invalidOption(optionChosen);
+        return this.execute();
       },
     );
   }
 
   protected showChosenOption(): void {
     this.messages = this.languages[this.languageChosen].execute();
+    this.languageMessages = this.messages.language;
 
     return this.console.execute({
       message: [
-        this.messages.language.choice,
-        this.messages.language.options[this.languageChosen],
+        this.languageMessages.choice,
+        this.languageMessages.options[this.languageChosen],
       ],
       color: 'green',
       bold: true,

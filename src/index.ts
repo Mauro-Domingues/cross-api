@@ -2,7 +2,7 @@
 
 import { argv } from 'node:process';
 import { IActionDTO } from '@interfaces/IActionDTO';
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { CustomError } from '@tools/customError';
@@ -19,9 +19,9 @@ import { GetNames } from '@tools/names';
 new (class Main {
   private readonly fullComand: [keyof IActionDTO, ...Array<string>];
   private readonly createRegister: CreateRegister;
+  private readonly comandMessages: IComandDTO;
   private readonly getFatherNames: GetNames;
   private readonly comand: keyof IActionDTO;
-  private readonly messages: IMessageDTO;
   private readonly actions: IActionDTO;
   private readonly getNames: GetNames;
   private readonly father: string;
@@ -34,7 +34,7 @@ new (class Main {
     this.comand = comand;
     this.father = father;
     this.arg = arg;
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
     this.getFatherNames = new GetNames(this.father);
     this.getNames = new GetNames(this.arg);
     this.createRegister = new CreateRegister(
@@ -69,24 +69,24 @@ new (class Main {
     if (!Object.hasOwn(this.actions, this.comand)) {
       throw new CustomError([
         {
-          message: this.messages.comands.errors.notFound,
+          message: this.comandMessages.errors.notFound,
           color: 'red',
           bold: true,
           breakStart: true,
           breakEnd: true,
         },
         {
-          message: this.messages.comands.description.attempt.action,
+          message: this.comandMessages.description.attempt.action,
           color: 'blue',
           bold: true,
         },
         {
-          message: this.messages.comands.description.attempt.comand,
+          message: this.comandMessages.description.attempt.comand,
           color: 'yellow',
           bold: true,
         },
         {
-          message: this.messages.comands.description.attempt.info,
+          message: this.comandMessages.description.attempt.info,
           color: 'blue',
           bold: true,
           breakEnd: true,

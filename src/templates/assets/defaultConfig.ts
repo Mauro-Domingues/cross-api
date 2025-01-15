@@ -4,12 +4,12 @@ export class CreateDefaultConfig {
 import { Console } ${'from'} './console.js';
 export class ConfigJson {
   constructor() {
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
     this.console = Console.getInstance();
   }
   execute() {
     this.console.execute({
-      message: this.messages.comands.description.configured,
+      message: this.comandMessages.description.configured,
       color: 'green',
       bold: true,
       breakStart: true,

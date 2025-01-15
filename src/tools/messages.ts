@@ -1,4 +1,12 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
+import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
+import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
+import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { IMessagesDTO } from '@interfaces/ISingletonDTO';
 
 export class Messages {
@@ -107,7 +115,35 @@ export class Messages {
     return Messages.instance;
   }
 
-  public execute(): IMessageDTO {
-    return this.messages;
+  public get board(): IBoardDTO {
+    return this.messages.board;
+  }
+
+  public get language(): ILanguageDTO {
+    return this.messages.language;
+  }
+
+  public get providers(): IProviderDTO {
+    return this.messages.providers;
+  }
+
+  public get modules(): IModuleDTO {
+    return this.messages.modules;
+  }
+
+  public get dependencies(): IDependencyDTO {
+    return this.messages.dependencies;
+  }
+
+  public get documentation(): IDocumentationDTO {
+    return this.messages.documentation;
+  }
+
+  public get comands(): IComandDTO {
+    return this.messages.comands;
+  }
+
+  public get mappers(): IMapperDTO {
+    return this.messages.mappers;
   }
 }

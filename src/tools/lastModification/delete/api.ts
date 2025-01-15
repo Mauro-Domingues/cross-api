@@ -1,14 +1,14 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteApi {
-  private readonly messages: IMessageDTO;
+  private readonly comandMessages: IComandDTO;
   private readonly console: Console;
 
   public constructor(private readonly fileManager: FileManager) {
-    this.messages = Messages.getInstance().execute();
+    this.comandMessages = Messages.getInstance().comands;
     this.console = Console.getInstance();
   }
 
@@ -38,7 +38,7 @@ export class DeleteApi {
       ['tsconfig.tsbuildinfo'],
     ]);
     return this.console.execute({
-      message: ['- ', this.messages.comands.description.reversed, ': ', comand],
+      message: ['- ', this.comandMessages.description.reversed, ': ', comand],
       color: 'yellow',
       bold: true,
     });

@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
 import { IOptionDTO } from '@interfaces/IOptionDTO';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
@@ -6,50 +6,50 @@ import { Messages } from '@tools/messages';
 export class Board {
   private readonly structureOptions: Array<IOptionDTO>;
   private readonly toolOptions: Array<IOptionDTO>;
-  private readonly messages: IMessageDTO;
+  private readonly boardMessages: IBoardDTO;
   private readonly console: Console;
 
   public constructor() {
-    this.messages = Messages.getInstance().execute();
+    this.boardMessages = Messages.getInstance().board;
     this.console = Console.getInstance();
     this.toolOptions = [
       {
         title: 'comands',
-        description: this.messages.board.description.comands,
+        description: this.boardMessages.description.comands,
       },
       {
         title: 'language',
-        description: this.messages.board.description.language,
+        description: this.boardMessages.description.language,
       },
       {
         title: 'list:provider',
-        description: this.messages.board.description['list:provider'],
+        description: this.boardMessages.description['list:provider'],
       },
     ];
     this.structureOptions = [
       {
         title: 'make:api',
-        description: this.messages.board.description['make:api'],
+        description: this.boardMessages.description['make:api'],
       },
       {
         title: 'make:module [name]',
-        description: this.messages.board.description['make:module'],
+        description: this.boardMessages.description['make:module'],
       },
       {
         title: 'make:module [name] [father]',
-        description: this.messages.board.description['make:dependent:module'],
+        description: this.boardMessages.description['make:dependent:module'],
       },
       {
         title: 'make:provider [name]',
-        description: this.messages.board.description['make:provider'],
+        description: this.boardMessages.description['make:provider'],
       },
       {
         title: 'make:provider [name] [father]',
-        description: this.messages.board.description['make:dependent:provider'],
+        description: this.boardMessages.description['make:dependent:provider'],
       },
       {
         title: 'revert',
-        description: this.messages.board.description.revert,
+        description: this.boardMessages.description.revert,
       },
     ];
   }
@@ -71,7 +71,7 @@ export class Board {
       message: [
         ' /',
         '='.repeat(46),
-        this.messages.board.headers.title,
+        this.boardMessages.headers.title,
         '='.repeat(47),
         '\\',
       ],
@@ -94,7 +94,7 @@ export class Board {
           ' '.repeat(2),
           this.circle,
           ' ',
-          this.messages.board.headers.tools.padEnd(111, ' '),
+          this.boardMessages.headers.tools.padEnd(111, ' '),
         ],
         color: 'green',
         bold: true,
@@ -149,7 +149,7 @@ export class Board {
           ' '.repeat(2),
           this.circle,
           ' ',
-          this.messages.board.headers.structure.padEnd(111, ' '),
+          this.boardMessages.headers.structure.padEnd(111, ' '),
         ],
         color: 'green',
         bold: true,

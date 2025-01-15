@@ -1,4 +1,4 @@
-export interface IMApperDTO {
+export interface IMapperDTO {
   readonly description: {
     readonly mapAndUpdateString: string;
     readonly mapAndPatchString: string;
