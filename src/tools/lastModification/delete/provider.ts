@@ -1,5 +1,4 @@
 import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -9,7 +8,6 @@ import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class DeleteProvider {
-  private readonly dependencyMessages: IDependencyDTO;
   private readonly comandMessages: IComandDTO;
   private readonly messages: Messages;
   private readonly provider: Provider;
@@ -21,11 +19,10 @@ export class DeleteProvider {
     private readonly basePath: string,
   ) {
     this.messages = Messages.getInstance();
-    this.dependencyMessages = this.messages.dependencies;
     this.comandMessages = this.messages.comands;
-    this.provider = new Provider(undefined);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
+    this.provider = new Provider();
   }
 
   private useNames({
@@ -165,7 +162,6 @@ export class DeleteProvider {
       this.provider.list[
         names?.lowerModuleName as keyof typeof this.provider.list
       ]?.devDependencies,
-      this.dependencyMessages,
     );
 
     if (names && fatherNames) {

@@ -1,5 +1,4 @@
 import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
@@ -9,7 +8,6 @@ import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class CreateProvider {
-  private readonly dependencyMessages: IDependencyDTO;
   private readonly providerMessages: IProviderDTO;
   private readonly comandsMessages: IComandDTO;
   private readonly messages: Messages;
@@ -23,10 +21,9 @@ export class CreateProvider {
       | undefined,
   ) {
     this.messages = Messages.getInstance();
-    this.dependencyMessages = this.messages.dependencies;
     this.providerMessages = this.messages.providers;
-    this.comandsMessages = this.messages.comands;
     this.provider = new Provider(this.fatherNames);
+    this.comandsMessages = this.messages.comands;
     this.console = Console.getInstance();
   }
 
@@ -60,7 +57,6 @@ export class CreateProvider {
     return new PackageManager(
       provider.dependencies,
       provider.devDependencies,
-      this.dependencyMessages,
     ).execute('install');
   }
 }

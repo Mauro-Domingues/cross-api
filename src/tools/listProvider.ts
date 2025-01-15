@@ -12,9 +12,9 @@ export class ListProvider {
 
   public constructor() {
     this.providerMessages = Messages.getInstance().providers;
-    this.provider = new Provider(undefined);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
+    this.provider = new Provider();
   }
 
   private get trace(): string {

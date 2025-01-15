@@ -14,9 +14,10 @@ export class Provider {
   public readonly list: IProviderListDTO;
 
   public constructor(
-    private readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    private readonly fatherNames?: Pick<
+      IModuleNameDTO,
+      'pluralLowerModuleName'
+    >,
   ) {
     this.list = Object.freeze<IProviderListDTO>({
       cache: {
