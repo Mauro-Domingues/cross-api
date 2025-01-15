@@ -1,4 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
+import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
@@ -12,6 +15,9 @@ import { Readline } from '@tools/readline';
 export class ConfigLanguage {
   protected declare languageChosen: keyof IMessageDTO['language']['options'];
   protected readonly languageOptions: IMessageDTO['language']['options'];
+  protected declare documentationMessages: IDocumentationDTO;
+  protected declare dependencyMessages: IDependencyDTO;
+  protected declare comandMessages: IComandDTO;
   protected readonly fileManager: FileManager;
   protected declare messages: IMessageDTO;
   private languageMessages: ILanguageDTO;
@@ -166,7 +172,10 @@ export class ConfigLanguage {
 
   protected showChosenOption(): void {
     this.messages = this.languages[this.languageChosen].execute();
+    this.documentationMessages = this.messages.documentation;
+    this.dependencyMessages = this.messages.dependencies;
     this.languageMessages = this.messages.language;
+    this.comandMessages = this.messages.comands;
 
     return this.console.execute({
       message: [

@@ -1,25 +1,16 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
-import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import { FinishConfig } from '@tools/finishConfig';
 import { ConfigLanguage } from '@tools/languageConfig';
 import { PackageManager } from '@tools/packageManager';
 import { Shell } from '@tools/shell';
 
 export class ConfigJson extends ConfigLanguage {
-  private readonly documentationMessages: IDocumentationDTO;
-  private readonly dependencyMessages: IDependencyDTO;
   private readonly devDependencies: Array<string>;
   private readonly dependencies: Array<string>;
-  private readonly comandMessages: IComandDTO;
   private readonly finishConfig: FinishConfig;
   private readonly shell: Shell;
 
   public constructor() {
     super();
-    this.documentationMessages = this.messages.documentation;
-    this.dependencyMessages = this.messages.dependencies;
-    this.comandMessages = this.messages.comands;
     this.finishConfig = new FinishConfig();
     this.shell = Shell.getInstance();
     this.devDependencies = [
