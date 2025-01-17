@@ -3,57 +3,37 @@ export class CreateGuardIndex {
     return `import { Router } ${'from'} 'express';
 import { ensureAuthenticated } ${'from'} '@middlewares/ensureAuthenticated';
 import { IExceptionDTO } ${'from'} '@dtos/IExceptionDTO';
-import { getRouteRegex } ${'from'} '@utils/getRouteRegex';
+import { getExceptionOptions } ${'from'} '@utils/getExceptionOptions';
 
 const guardRouter = Router();
 
-const exceptions: IExceptionDTO = {
-  path: [
-    {
-      url: getRouteRegex({ url: '/jwks' }),
-      methods: ['GET'], // expose public key feature, let this route opened
-    },
-    {
-      url: getRouteRegex({ url: '/uploads', allowParams: true }),
-      methods: ['GET'], // expose public folder feature, let this route opened
-    },
-    {
-      url: getRouteRegex({
-        url: '/doc',
-        allowParams: true,
-        allowRawRoute: true,
-      }),
-      methods: ['GET'], // expose public doc feature, let this route opened
-    },
-    {
-      url: getRouteRegex({ url: '/first-example', allowParams: true }),
-      methods: ['GET', 'PUT', 'DELETE'],
-    },
-    {
-      url: getRouteRegex({ url: '/second-example', allowQueries: true }),
-      methods: ['GET'],
-    },
-    {
-      url: getRouteRegex({
-        url: '/third-example',
-        allowParams: true,
-        allowQueries: true,
-      }),
-      methods: ['GET', 'POST', 'PUT', 'PATCH'],
-    },
-    {
-      url: getRouteRegex({
-        url: '/last-example',
-        allowParams: true,
-        allowQueries: true,
-        allowRawRoute: true,
-      }),
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    },
-  ],
-};
+const paths: Array<IExceptionDTO> = [
+  {
+    url: '/first-example',
+    methods: ['GET', 'PUT', 'DELETE'],
+    allowParams: true,
+  },
+  {
+    url: '/second-example',
+    methods: ['GET'],
+    allowQueries: true,
+  },
+  {
+    url: '/third-example',
+    methods: ['GET', 'POST', 'PUT', 'PATCH'],
+    allowParams: true,
+    allowQueries: true,
+  },
+  {
+    url: '/last-example',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowParams: true,
+    allowQueries: true,
+    allowRawRoute: true,
+  },
+];
 
-guardRouter.use(ensureAuthenticated.unless(exceptions));
+guardRouter.use(ensureAuthenticated.unless(getExceptionOptions({ paths })));
 
 export { guardRouter };
 `;
