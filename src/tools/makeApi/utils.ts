@@ -2,6 +2,7 @@ import { CreateCombinations } from '@templates/utils/combinations';
 import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
 import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust';
 import { CreateErrorLog } from '@templates/utils/errorLog';
+import { CreateGetRouteRegex } from '@templates/utils/getRouteRegex';
 import { CreateJsonToXml } from '@templates/utils/jsonToXml';
 import { CreateIndexMapper } from '@templates/utils/mappers/indexMapper';
 import { CreateMapAndClone } from '@templates/utils/mappers/mapAndClone';
@@ -19,6 +20,7 @@ export class CreateUtils {
   private readonly createNormalizeQueryLink: CreateNormalizeQueryLink;
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
+  private readonly createGetRouteRegex: CreateGetRouteRegex;
   private readonly createDecimaAdjust: CreateDecimaAdjust;
   private readonly createCombinations: CreateCombinations;
   private readonly createMapAndUpdate: CreateMapAndUpdate;
@@ -37,6 +39,7 @@ export class CreateUtils {
     this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndPatchString = new CreateMapAndPatchString();
+    this.createGetRouteRegex = new CreateGetRouteRegex();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createCombinations = new CreateCombinations();
     this.createMapAndUpdate = new CreateMapAndUpdate();
@@ -68,6 +71,7 @@ export class CreateUtils {
       ],
       [[basePath, 'combinations.ts'], this.createCombinations],
       [[basePath, 'errorLog.ts'], this.createErrorLog],
+      [[basePath, 'getRouteRegex.ts'], this.createGetRouteRegex],
       [[basePath, 'jsonToXml.ts'], this.createJsonToXml],
       [[basePath, 'normalizeQueryLink.ts'], this.createNormalizeQueryLink],
       [[basePath, 'slugify.ts'], this.createSlugify],
