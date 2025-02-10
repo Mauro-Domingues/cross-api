@@ -11,14 +11,12 @@ import { CreateMapAndPatch } from '@templates/utils/mappers/mapAndPatch';
 import { CreateMapAndPatchString } from '@templates/utils/mappers/mapAndPatchString';
 import { CreateMapAndUpdate } from '@templates/utils/mappers/mapAndUpdate';
 import { CreateMapAndUpdateString } from '@templates/utils/mappers/mapAndUpdateString';
-import { CreateNormalizeQueryLink } from '@templates/utils/normalizeQueryLink';
 import { CreateSlugify } from '@templates/utils/slugify';
 import { FileManager } from '@tools/fileManager';
 
 export class CreateUtils {
   private readonly createConvertToMilliseconds: CreateConvertToMilliseconds;
   private readonly createGetExceptionOptions: CreateGetExceptionOptions;
-  private readonly createNormalizeQueryLink: CreateNormalizeQueryLink;
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
   private readonly createDecimaAdjust: CreateDecimaAdjust;
@@ -36,7 +34,6 @@ export class CreateUtils {
   public constructor() {
     this.fileManager = FileManager.getInstance();
     this.createConvertToMilliseconds = new CreateConvertToMilliseconds();
-    this.createNormalizeQueryLink = new CreateNormalizeQueryLink();
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndPatchString = new CreateMapAndPatchString();
     this.createGetExceptionOptions = new CreateGetExceptionOptions();
@@ -73,7 +70,6 @@ export class CreateUtils {
       [[basePath, 'errorLog.ts'], this.createErrorLog],
       [[basePath, 'getExceptionOptions.ts'], this.createGetExceptionOptions],
       [[basePath, 'jsonToXml.ts'], this.createJsonToXml],
-      [[basePath, 'normalizeQueryLink.ts'], this.createNormalizeQueryLink],
       [[basePath, 'slugify.ts'], this.createSlugify],
     ]);
   }
