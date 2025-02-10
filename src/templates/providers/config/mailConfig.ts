@@ -3,7 +3,7 @@ export class CreateMailConfig {
     return `interface IMailConfigDTO {
   readonly driver: 'smtp' | 'ses';
   readonly config: {
-    readonly defaults: {
+    readonly default: {
       readonly from: {
         readonly name: string;
         readonly email: string;
@@ -27,7 +27,7 @@ export class CreateMailConfig {
 export const mailConfig = Object.freeze<IMailConfigDTO>({
   driver: process.env.MAIL_DRIVER,
   config: {
-    defaults: {
+    default: {
       from: {
         name: process.env.MAIL_NAME,
         email: process.env.MAIL_ADDRESS,

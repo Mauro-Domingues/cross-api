@@ -36,7 +36,7 @@ export class SMTPMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     await this.createClient();
 
-    const { email, name } = mailConfig.config.defaults.from;
+    const { email, name } = mailConfig.config.default.from;
 
     const content = this.mailTemplateProvider.compile(templateData);
 

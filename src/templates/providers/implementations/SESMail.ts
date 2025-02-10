@@ -30,7 +30,7 @@ export class SESMailProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    const { email } = mailConfig.config.defaults.from;
+    const { email } = mailConfig.config.default.from;
 
     const content = this.mailTemplateProvider.compile(templateData);
 
