@@ -4,6 +4,8 @@ export class CreateApp {
 import 'reflect-metadata';
 import 'express-async-errors';
 import cluster ${'from'} 'node:cluster';
+import { truncateSync, existsSync } ${'from'} 'node:fs';
+import { resolve } ${'from'} 'node:path';
 import { cpus } ${'from'} 'node:os';
 import express, {
   Express,
@@ -16,6 +18,7 @@ import { setConnection } ${'from'} '@middlewares/setConnection';
 import { errorHandler } ${'from'} '@middlewares/errorHandler';
 import { parseParam } ${'from'} '@middlewares/parseParam';
 import { rateLimiter } ${'from'} '@middlewares/rateLimiter';
+import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
 import cors ${'from'} 'cors';
 import { appConfig } ${'from'} '@config/app';
 import { corsConfig } ${'from'} '@config/cors';
@@ -34,6 +37,7 @@ export const app = new (class App {
     this.staticRoutes();
     this.routes();
     this.errorHandlers();
+    this.clearErrorLogs();
   }
 
   private middlewares(): void {
@@ -53,6 +57,17 @@ export const app = new (class App {
 
   private errorHandlers(): void {
     this.server.use(errorHandler);
+  }
+
+  private clearErrorLogs(): void {
+    const errorsPath = resolve(__dirname, '..', 'assets', 'errors.log');
+
+    setTimeout(() => {
+      if (existsSync(errorsPath)) {
+        truncateSync(errorsPath);
+      }
+      this.clearErrorLogs();
+    }, convertToMilliseconds('30d'));
   }
 
   private routes(): void {

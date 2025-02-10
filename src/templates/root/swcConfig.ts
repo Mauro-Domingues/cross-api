@@ -1,7 +1,7 @@
 export class CreateSwcConfig {
   public execute(): string {
     return `{
-  "$schema": "https://json.schemastore.org/swcrc",
+  "$schema": "https://swc.rs/schema.json",
   "isModule": true,
   "exclude": ["src/@types"],
   "minify": true,

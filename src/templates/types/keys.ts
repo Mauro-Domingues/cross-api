@@ -8,8 +8,8 @@ export class CreateKeys {
     ? \`\${L}.\${R}\`
     : L
   : R extends string | number
-  ? R
-  : undefined;
+    ? R
+    : undefined;
 
 type Union<
   L extends unknown | undefined,
@@ -19,8 +19,8 @@ type Union<
     ? undefined
     : R
   : R extends undefined
-  ? L
-  : L | R;
+    ? L
+    : L | R;
 
 type ValidObject<T> = T extends object
   ? T extends
@@ -44,24 +44,24 @@ type DotPath<
         [K in keyof T]: T[K] extends PrevTypes | T
           ? Union<Union<Prev, Path>, Join<Path, K>>
           : Required<T>[K] extends ValidObject<Required<T>[K]>
-          ? DotPath<
-              Required<T>[K],
-              Union<Prev, Path>,
-              Join<Path, K>,
-              PrevTypes | T,
-              Visited | T
-            >
-          : Required<T>[K] extends Array<infer U>
-          ? U extends ValidObject<U>
             ? DotPath<
-                U,
+                Required<T>[K],
                 Union<Prev, Path>,
                 Join<Path, K>,
                 PrevTypes | T,
                 Visited | T
               >
-            : Union<Union<Prev, Path>, Join<Path, K>>
-          : Union<Union<Prev, Path>, Join<Path, K>>;
+            : Required<T>[K] extends Array<infer U>
+              ? U extends ValidObject<U>
+                ? DotPath<
+                    U,
+                    Union<Prev, Path>,
+                    Join<Path, K>,
+                    PrevTypes | T,
+                    Visited | T
+                  >
+                : Union<Union<Prev, Path>, Join<Path, K>>
+              : Union<Union<Prev, Path>, Join<Path, K>>;
       }[keyof T];
 
 declare type keysOfEntity<Entity extends object> = Array<DotPath<Entity>>;
