@@ -1,6 +1,8 @@
 export class CreateApp {
   public execute(): string {
-    return `import 'express-async-errors';
+    return `import 'dotenv/config';
+import 'reflect-metadata';
+import 'express-async-errors';
 import cluster ${'from'} 'node:cluster';
 import { cpus } ${'from'} 'node:os';
 import express, {
@@ -15,6 +17,7 @@ import { errorHandler } ${'from'} '@middlewares/errorHandler';
 import { parseParam } ${'from'} '@middlewares/parseParam';
 import { rateLimiter } ${'from'} '@middlewares/rateLimiter';
 import cors ${'from'} 'cors';
+import { appConfig } ${'from'} '@config/app';
 import { corsConfig } ${'from'} '@config/cors';
 // import { cryptoConfig } ${'from'} '@config/crypto'; // cryptoProvider
 // import { storageConfig } ${'from'} '@config/storage'; // storageProvider
@@ -67,11 +70,11 @@ export const app = new (class App {
   }
 
   public init(): void {
-    if (process.env.NODE_ENV === 'production' && cluster.isPrimary) {
+    if (appConfig.config.apiMode === 'production' && cluster.isPrimary) {
       this.setupWorkers();
     } else {
-      this.server.listen(process.env.API_PORT, () => {
-        console.log('🚀 Server started on port %s!', process.env.API_PORT);
+      this.server.listen(appConfig.config.apiPort, () => {
+        console.log('🚀 Server started on port %s!', appConfig.config.apiPort);
       });
     }
   }

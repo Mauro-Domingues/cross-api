@@ -1,8 +1,6 @@
 export class CreateFakeDataSource {
   public execute(): string {
     return `import { DataSource } ${'from'} 'typeorm';
-import 'dotenv/config';
-import 'reflect-metadata';
 
 export const FakeDataSource = {
   isInitialized: true,

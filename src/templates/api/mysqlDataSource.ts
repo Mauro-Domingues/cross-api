@@ -1,8 +1,7 @@
 export class CreateMysqlDataSource {
   public execute(): string {
-    return `import { DataSource } ${'from'} 'typeorm';
-import 'dotenv/config';
-import 'reflect-metadata';
+    return `import { appConfig } from '@config/app';
+import { DataSource } ${'from'} 'typeorm';
 
 const dataSources = new Map<string, DataSource>();
 
@@ -15,8 +14,9 @@ export const MysqlDataSource = (database: string): DataSource => {
       port: Number(process.env.MYSQL_PORT),
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
-      database: process.env.NODE_ENV === 'test' ? 'database_test' : database,
-      synchronize: process.env.NODE_ENV === 'development',
+      database:
+        appConfig.config.apiMode === 'test' ? 'database_test' : database,
+      synchronize: appConfig.config.apiMode === 'development',
       entities: [\`\${__dirname}/../../../modules/**/entities/*.{js,ts}\`],
       migrations: [\`\${__dirname}/../migrations/*.{js,ts}\`],
       // logging: true,

@@ -29,8 +29,8 @@ export const list${this.names.upperModuleName} = celebrate({
     this.names.upperModuleName
   } & { page: number; limit: number }>({
     ...${this.names.lowerModuleName}Schema,
-    page: Joi.number().integer().optional(),
-    limit: Joi.number().integer().optional(),
+    page: Joi.number().integer().positive().optional(),
+    limit: Joi.number().integer().positive().optional(),
   }),
   [Segments.BODY]: Joi.object({}),
 });

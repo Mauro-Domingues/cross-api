@@ -1,6 +1,7 @@
 export class CreateErrorHandler {
   public execute(): string {
-    return `import { AppError } ${'from'} '@shared/errors/AppError';
+    return `import { appConfig } ${'from'} '@config/app';
+import { AppError } ${'from'} '@shared/errors/AppError';
 import { createErrorLog } ${'from'} '@utils/errorLog';
 import { CelebrateError } ${'from'} 'celebrate';
 import { Request, Response, NextFunction } ${'from'} 'express';
@@ -54,7 +55,7 @@ export const errorHandler = (
 
   createErrorLog(errorBody);
 
-  if (process.env.NODE_ENV === 'production') {
+  if (appConfig.config.apiMode === 'production') {
     Object.assign(errorBody, {
       message: 'Internal Server Error',
       code: 500,

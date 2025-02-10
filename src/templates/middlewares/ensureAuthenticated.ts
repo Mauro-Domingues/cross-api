@@ -5,14 +5,15 @@ export class CreateEnsureAuthenticated {
 import { expressjwt, GetVerificationKey } ${'from'} 'express-jwt';
 import { expressJwtSecret } ${'from'} 'jwks-rsa';
 // import { cryptoConfig } ${'from'} '@config/crypto';
+import { appConfig } ${'from'} '@config/app';
 
 export const ensureAuthenticated: ReturnType<typeof expressjwt> = expressjwt({
   secret: ((): Buffer | GetVerificationKey => {
-    // if (process.env.NODE_ENV === 'test') {
+    // if (appConfig.config.apiMode === 'test') {
     //   return readFileSync(resolve(cryptoConfig.config.keysPath, 'public.pem'));
     // }
     return expressJwtSecret({
-      jwksUri: \`\${process.env.API_URL}/jwks\`,
+      jwksUri: \`\${appConfig.config.apiUrl}/jwks\`,
       cache: true,
       rateLimit: true,
     }) as unknown as GetVerificationKey;
