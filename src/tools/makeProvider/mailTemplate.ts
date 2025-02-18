@@ -1,6 +1,7 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
+import { CreateIMailTemplateFragmentDTO } from '@templates/providers/dtos/IMailTemplateFragmentDTO';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';
 import { CreateFakeMailTemplate } from '@templates/providers/fakes/fakeMailTemplate';
 import { CreateHandlebarsMailTemplate } from '@templates/providers/implementations/HandlebarsMailTemplate';
@@ -9,6 +10,7 @@ import { CreateIMailTemplate } from '@templates/providers/models/IMailTemplate';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateMailTemplateProvider extends BaseProvider {
+  private readonly createIMailTemplateFragmentDTO: CreateIMailTemplateFragmentDTO;
   private readonly createHandlebarsMailTemplate: CreateHandlebarsMailTemplate;
   private readonly createMailTemplateConfig: CreateMailTemplateConfig;
   private readonly createMailTemplateIndex: CreateMailTemplateIndex;
@@ -22,6 +24,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
       | undefined,
   ) {
     super(fatherNames);
+    this.createIMailTemplateFragmentDTO = new CreateIMailTemplateFragmentDTO();
     this.createHandlebarsMailTemplate = new CreateHandlebarsMailTemplate();
     this.createMailTemplateConfig = new CreateMailTemplateConfig();
     this.createMailTemplateIndex = new CreateMailTemplateIndex();
@@ -58,6 +61,15 @@ export class CreateMailTemplateProvider extends BaseProvider {
           'IParseMailTemplateDTO.ts',
         ],
         this.createIMailTemplateDTO,
+      ],
+      [
+        [
+          this.basePath,
+          'MailTemplateProvider',
+          'dtos',
+          'IParseMailTemplateFragmentDTO.ts',
+        ],
+        this.createIMailTemplateFragmentDTO,
       ],
     ];
   }

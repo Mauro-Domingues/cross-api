@@ -1,9 +1,9 @@
 export class CreateIMailTemplateDTO {
   public execute(): string {
-    return `export interface IParseMailTemplateDTO {
-  name: string;
-  file: string;
-  variables: Record<string, unknown>;
+    return `import { IMailTemplateFragmentDTO } ${'from'} './IMailTemplateFragmentDTO';
+
+export interface IParseMailTemplateDTO extends IMailTemplateFragmentDTO {
+  partials: Array<IMailTemplateFragmentDTO & { name: string }>;
 }
 `;
   }
