@@ -67,7 +67,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
           this.basePath,
           'MailTemplateProvider',
           'dtos',
-          'IParseMailTemplateFragmentDTO.ts',
+          'IMailTemplateFragmentDTO.ts',
         ],
         this.createIMailTemplateFragmentDTO,
       ],
