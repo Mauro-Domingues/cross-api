@@ -28,6 +28,7 @@ export abstract class BaseMigration {
       {
         name: 'deleted_at',
         type: 'datetime',
+        length: '6',
         isNullable: true,
       },
     ];
