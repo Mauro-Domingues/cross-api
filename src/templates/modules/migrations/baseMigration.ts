@@ -16,12 +16,14 @@ export abstract class BaseMigration {
       {
         name: 'created_at',
         type: 'datetime',
-        default: 'CURRENT_TIMESTAMP',
+        length: '6',
+        default: 'CURRENT_TIMESTAMP(6)',
       },
       {
         name: 'updated_at',
         type: 'datetime',
-        default: 'CURRENT_TIMESTAMP',
+        length: '6',
+        default: 'CURRENT_TIMESTAMP(6)',
       },
       {
         name: 'deleted_at',
