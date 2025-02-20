@@ -27,7 +27,6 @@ export class ${this.names.upperModuleName}${this.timestamp}
             name: 'name',
             type: 'varchar',
             isNullable: false,
-            isUnique: false,
           },
           {
             name: 'description',

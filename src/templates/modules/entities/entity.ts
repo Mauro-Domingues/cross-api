@@ -14,7 +14,7 @@ import { Base } ${'from'} '@shared/container/modules/entities/Base';
 
 @Entity('${this.names.dbModuleName}')
 export class ${this.names.upperModuleName} extends Base {
-  @Column({ name: 'name', type: 'varchar', unique: false })
+  @Column({ name: 'name', type: 'varchar', nullable: false })
   declare public name: string;
 
   @Column({ name: 'description', type: 'varchar', nullable: true })
