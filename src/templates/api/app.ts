@@ -67,7 +67,7 @@ export const app = new (class App {
         truncateSync(errorsPath);
       }
       this.clearErrorLogs();
-    }, convertToMilliseconds('30d'));
+    }, convertToMilliseconds('15d'));
   }
 
   private routes(): void {
