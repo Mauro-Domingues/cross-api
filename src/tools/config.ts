@@ -48,7 +48,7 @@ export class ConfigJson extends ConfigLanguage {
       'express-jwt',
       'ioredis',
       'jwks-rsa',
-      'mysql',
+      'mysql2',
       'rate-limiter-flexible',
       'reflect-metadata',
       'supertest',
