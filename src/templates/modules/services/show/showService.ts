@@ -55,9 +55,9 @@ export class Show${this.names.upperModuleName}Service {
       );
 
       if (!${this.names.lowerModuleName}) {
-        throw new AppError('NOT_FOUND', '${
+        throw new AppError('NOT_FOUND', \`${
           this.names.upperModuleName
-        } not found', 404);
+        } not found with id: "\${id}"\`, 404);
       }
 
       if (trx.isTransactionActive) await trx.commitTransaction();

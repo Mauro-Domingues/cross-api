@@ -27,7 +27,7 @@ export const rateLimiter = async (
 
     return next();
   } catch {
-    throw new AppError('TOO_MANY_REQUESTS', 'Too many requests', 429);
+    throw new AppError('TOO_MANY_REQUESTS', \`Too many requests with ip: "\${request.ip}"\`, 429);
   }
 };
 `;
