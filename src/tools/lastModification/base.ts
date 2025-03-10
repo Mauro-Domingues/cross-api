@@ -12,12 +12,12 @@ export class BaseRegister {
 
   private constructBase(): void {
     this.fileManager.checkAndCreateMultiDirSync([
-      [this.basePath, 'comands'],
+      [this.basePath, 'commands'],
       [this.basePath, 'modules'],
       [this.basePath, 'providers'],
     ]);
     return [
-      [this.basePath, 'comands', 'comands.log'],
+      [this.basePath, 'commands', 'commands.log'],
       [this.basePath, 'modules', 'moduleInjection.log'],
       [this.basePath, 'modules', 'routeInjection.log'],
       [this.basePath, 'providers', 'providerInjection.log'],

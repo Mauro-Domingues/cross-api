@@ -7,12 +7,12 @@ export class EnglishMessages {
     this.messages = {
       board: {
         headers: {
-          title: '=={ COMANDS LIST }===',
+          title: '=={ COMMANDS LIST }==',
           structure: 'STRUCTURE CREATION',
           tools: 'TOOLS',
         },
         description: {
-          comands: 'It is used to view the available commands',
+          help: 'It is used to view the available commands',
           language: 'It is used to change the language',
           'list:provider': 'It is used to list the available providers',
           'make:api': 'It is used to generate the structure of your API',
@@ -60,7 +60,7 @@ export class EnglishMessages {
       documentation: {
         description: { action: 'Visit ', info: ' for more info' },
       },
-      comands: {
+      help: {
         description: {
           created: 'created',
           apiCreated: '➤  Api structure created',
@@ -68,7 +68,7 @@ export class EnglishMessages {
           configured: 'Already configured',
           attempt: {
             action: '➤  Execute ',
-            comand: 'yarn cross comands ',
+            command: 'yarn cross help ',
             info: 'to see available commands',
           },
         },

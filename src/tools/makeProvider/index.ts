@@ -1,4 +1,4 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
@@ -9,7 +9,7 @@ import { Provider } from '@tools/provider';
 
 export class CreateProvider {
   private readonly providerMessages: IProviderDTO;
-  private readonly comandsMessages: IComandDTO;
+  private readonly helpMessages: IHelpDTO;
   private readonly messages: Messages;
   private readonly provider: Provider;
   private readonly console: Console;
@@ -23,7 +23,7 @@ export class CreateProvider {
     this.messages = Messages.getInstance();
     this.providerMessages = this.messages.providers;
     this.provider = new Provider(this.fatherNames);
-    this.comandsMessages = this.messages.comands;
+    this.helpMessages = this.messages.help;
     this.console = Console.getInstance();
   }
 
@@ -48,7 +48,7 @@ export class CreateProvider {
         '- ',
         provider.description.trimEnd(),
         ' ',
-        this.comandsMessages.description.created,
+        this.helpMessages.description.created,
       ],
       color: 'yellow',
       bold: true,

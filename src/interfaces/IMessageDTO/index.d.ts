@@ -1,5 +1,5 @@
+import { IHelpDTO } from './IHelpDTO';
 import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
@@ -13,7 +13,7 @@ export interface IMessageDTO {
   readonly providers: IProviderDTO;
   readonly language: ILanguageDTO;
   readonly modules: IModuleDTO;
-  readonly comands: IComandDTO;
   readonly mappers: IMapperDTO;
+  readonly help: IHelpDTO;
   readonly board: IBoardDTO;
 }

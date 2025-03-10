@@ -14,8 +14,8 @@ export class Board {
     this.console = Console.getInstance();
     this.toolOptions = [
       {
-        title: 'comands',
-        description: this.boardMessages.description.comands,
+        title: 'help',
+        description: this.boardMessages.description.help,
       },
       {
         title: 'language',

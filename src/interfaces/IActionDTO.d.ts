@@ -13,8 +13,8 @@ export interface IActionDTO {
   readonly language: () => ConfigLanguage;
   readonly 'make:api': () => CreateApi;
   readonly config: () => ConfigJson;
-  readonly comands: () => Board;
   readonly revert: () => {
     readonly execute: () => void;
   };
+  readonly help: () => Board;
 }

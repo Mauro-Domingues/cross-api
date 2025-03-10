@@ -12,7 +12,7 @@ export class PortugueseMessages {
           tools: 'FERRAMENTAS',
         },
         description: {
-          comands: 'É usado para visualizar os comandos disponíveis',
+          help: 'É usado para visualizar os comandos disponíveis',
           language: 'É usado para alterar o idioma',
           'list:provider': 'É utilizado para listar os provedores disponíveis',
           'make:api': 'É utilizado para gerar a estrutura da sua API',
@@ -60,7 +60,7 @@ export class PortugueseMessages {
       documentation: {
         description: { action: 'Visite ', info: ' para mais informações' },
       },
-      comands: {
+      help: {
         description: {
           created: 'criado',
           apiCreated: '➤  Estrutura da api criada',
@@ -68,7 +68,7 @@ export class PortugueseMessages {
           configured: 'Já configurado',
           attempt: {
             action: '➤  Execute ',
-            comand: 'yarn cross comands ',
+            command: 'yarn cross help ',
             info: 'para ver os comandos disponíveis ',
           },
         },

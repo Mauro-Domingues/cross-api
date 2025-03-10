@@ -108,18 +108,18 @@ export class ConfigJson extends ConfigLanguage {
   private renderEnding(): void {
     return this.console.execute([
       {
-        message: this.comandMessages.description.attempt.action,
+        message: this.helpMessages.description.attempt.action,
         color: 'blue',
         bold: true,
         breakStart: true,
       },
       {
-        message: this.comandMessages.description.attempt.comand,
+        message: this.helpMessages.description.attempt.command,
         color: 'yellow',
         bold: true,
       },
       {
-        message: this.comandMessages.description.attempt.info,
+        message: this.helpMessages.description.attempt.info,
         color: 'blue',
         bold: true,
       },

@@ -30,8 +30,8 @@ export class CreateDefaultLanguage {
   get documentation() {
     return this.messages.documentation;
   }
-  get comands() {
-    return this.messages.comands;
+  get help() {
+    return this.messages.help;
   }
   get mappers() {
     return this.messages.mappers;

@@ -1,4 +1,4 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -6,7 +6,7 @@ import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteModule {
-  private readonly comandMessages: IComandDTO;
+  private readonly helpMessages: IHelpDTO;
   private readonly console: Console;
   private readonly concat: Concat;
 
@@ -14,7 +14,7 @@ export class DeleteModule {
     private readonly fileManager: FileManager,
     private readonly basePath: string,
   ) {
-    this.comandMessages = Messages.getInstance().comands;
+    this.helpMessages = Messages.getInstance().help;
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
   }
@@ -31,11 +31,11 @@ export class DeleteModule {
   }
 
   private useNames({
-    comand,
+    command,
     names,
   }: {
     names: Omit<IModuleNameDTO, 'dbModuleName' | 'routeModuleName'>;
-    comand: string;
+    command: string;
   }): void {
     this.fileManager.removeDir(['src', 'modules', names.pluralLowerModuleName]);
     this.fileManager.removeFile([
@@ -72,9 +72,9 @@ export class DeleteModule {
     return this.console.execute({
       message: [
         '- ',
-        this.comandMessages.description.reversed,
+        this.helpMessages.description.reversed,
         ': ',
-        comand,
+        command,
         ' ',
         names.lowerModuleName,
       ],
@@ -84,7 +84,7 @@ export class DeleteModule {
   }
 
   private useFatherNames({
-    comand,
+    command,
     fatherNames,
     names,
   }: {
@@ -93,7 +93,7 @@ export class DeleteModule {
       IModuleNameDTO,
       'lowerModuleName' | 'pluralLowerModuleName'
     >;
-    comand: string;
+    command: string;
   }): void {
     const basePath = this.fileManager.resolvePath([
       'src',
@@ -193,9 +193,9 @@ export class DeleteModule {
     return this.console.execute({
       message: [
         '- ',
-        this.comandMessages.description.reversed,
+        this.helpMessages.description.reversed,
         ': ',
-        comand,
+        command,
         ' ',
         names.lowerModuleName,
         ' ',
@@ -207,20 +207,20 @@ export class DeleteModule {
   }
 
   public execute({
-    comand,
+    command,
     fatherNames,
     names,
   }: {
-    comand: string;
+    command: string;
     names: Omit<IModuleNameDTO, 'dbModuleName' | 'routeModuleName'> | undefined;
     fatherNames:
       | Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined;
   }): void {
     if (names && fatherNames) {
-      this.useFatherNames({ comand, fatherNames, names });
+      this.useFatherNames({ command, fatherNames, names });
     } else if (names) {
-      this.useNames({ comand, names });
+      this.useNames({ command, names });
     }
   }
 }

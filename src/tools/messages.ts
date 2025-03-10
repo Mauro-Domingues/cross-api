@@ -1,8 +1,8 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
 import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
 import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
@@ -17,12 +17,12 @@ export class Messages {
     this.messages = {
       board: {
         headers: {
-          title: '=={ COMANDS LIST }===',
+          title: '=={ COMMANDS LIST }==',
           structure: 'STRUCTURE CREATION',
           tools: 'TOOLS',
         },
         description: {
-          comands: 'It is used to view the available commands',
+          help: 'It is used to view the available commands',
           language: 'It is used to change the language',
           'list:provider': 'It is used to list the available providers',
           'make:api': 'It is used to generate the structure of your API',
@@ -70,7 +70,7 @@ export class Messages {
       documentation: {
         description: { action: 'Visit ', info: ' for more info' },
       },
-      comands: {
+      help: {
         description: {
           created: 'created',
           apiCreated: '➤  Api structure created',
@@ -78,7 +78,7 @@ export class Messages {
           configured: 'Already configured',
           attempt: {
             action: '➤  Execute ',
-            comand: 'yarn cross comands ',
+            command: 'yarn cross help ',
             info: 'to see available commands',
           },
         },
@@ -139,8 +139,8 @@ export class Messages {
     return this.messages.documentation;
   }
 
-  public get comands(): IComandDTO {
-    return this.messages.comands;
+  public get help(): IHelpDTO {
+    return this.messages.help;
   }
 
   public get mappers(): IMapperDTO {

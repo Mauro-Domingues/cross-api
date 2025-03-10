@@ -1,5 +1,5 @@
 import { IAssetDTO } from '@interfaces/IAssetDTO';
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { IObjDTO } from '@interfaces/IObjDTO';
 import { IWordDTO } from '@interfaces/IWordDTO';
 import { Concat } from '@tools/concat';
@@ -14,13 +14,13 @@ export class Pluralize {
   private readonly singularData: Array<IAssetDTO>;
   private readonly pluralRules: Array<IAssetDTO>;
   private readonly pluralData: Array<IAssetDTO>;
-  private readonly comandMessages: IComandDTO;
   private readonly irregularPlurals: IObjDTO;
   private readonly irregularSingles: IObjDTO;
+  private readonly helpMessages: IHelpDTO;
   private readonly concat: Concat;
 
   public constructor(private readonly word: string | undefined) {
-    this.comandMessages = Messages.getInstance().comands;
+    this.helpMessages = Messages.getInstance().help;
     this.concat = Concat.getInstance();
     this.irregularPlurals = {};
     this.irregularSingles = {};
@@ -326,7 +326,7 @@ export class Pluralize {
   ): string {
     if (!this.word) {
       throw new CustomError({
-        message: this.comandMessages.errors.invalidOption,
+        message: this.helpMessages.errors.invalidOption,
         color: 'red',
         bold: true,
         breakStart: true,
@@ -354,7 +354,7 @@ export class Pluralize {
   ): boolean {
     if (!this.word) {
       throw new CustomError({
-        message: this.comandMessages.errors.invalidOption,
+        message: this.helpMessages.errors.invalidOption,
         color: 'red',
         bold: true,
         breakStart: true,

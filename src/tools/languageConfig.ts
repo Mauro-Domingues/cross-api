@@ -1,7 +1,7 @@
 import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
 import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
@@ -17,8 +17,8 @@ export class ConfigLanguage {
   protected readonly languageOptions: IMessageDTO['language']['options'];
   protected declare documentationMessages: IDocumentationDTO;
   protected declare dependencyMessages: IDependencyDTO;
-  protected declare comandMessages: IComandDTO;
   protected readonly fileManager: FileManager;
+  protected declare helpMessages: IHelpDTO;
   protected declare messages: IMessageDTO;
   private languageMessages: ILanguageDTO;
   protected readonly readline: Readline;
@@ -175,7 +175,7 @@ export class ConfigLanguage {
     this.documentationMessages = this.messages.documentation;
     this.dependencyMessages = this.messages.dependencies;
     this.languageMessages = this.messages.language;
-    this.comandMessages = this.messages.comands;
+    this.helpMessages = this.messages.help;
 
     return this.console.execute({
       message: [

@@ -1,4 +1,4 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { CustomError } from '@tools/customError';
 import { BaseRegister } from '@tools/lastModification/base';
 import { DeleteApi } from '@tools/lastModification/delete/api';
@@ -9,39 +9,39 @@ import { GetNames } from '@tools/names';
 
 export class DeleteRegister extends BaseRegister {
   private readonly deleteProvider: DeleteProvider;
-  private readonly comandMessages: IComandDTO;
   private readonly deleteModule: DeleteModule;
+  private readonly helpMessages: IHelpDTO;
   private readonly deleteApi: DeleteApi;
 
   public constructor() {
     super();
     this.deleteProvider = new DeleteProvider(this.fileManager, this.basePath);
     this.deleteModule = new DeleteModule(this.fileManager, this.basePath);
-    this.comandMessages = Messages.getInstance().comands;
     this.deleteApi = new DeleteApi(this.fileManager);
+    this.helpMessages = Messages.getInstance().help;
   }
 
   public execute(): void {
     const register = this.fileManager.readFileSync([
       this.basePath,
-      'comands',
-      'comands.log',
+      'commands',
+      'commands.log',
     ]);
 
-    const [comand, name, fatherName] = register.split(',');
+    const [command, name, fatherName] = register.split(',');
     const names = new GetNames(name).execute();
     const fatherNames = new GetNames(fatherName).execute();
 
-    switch (comand) {
+    switch (command) {
       case 'make:provider':
-        return this.deleteProvider.execute({ comand, fatherNames, names });
+        return this.deleteProvider.execute({ command, fatherNames, names });
       case 'make:module':
-        return this.deleteModule.execute({ comand, fatherNames, names });
+        return this.deleteModule.execute({ command, fatherNames, names });
       case 'make:api':
-        return this.deleteApi.execute({ comand });
+        return this.deleteApi.execute({ command });
       default:
         throw new CustomError({
-          message: this.comandMessages.errors.notReversed,
+          message: this.helpMessages.errors.notReversed,
           color: 'red',
           bold: true,
           breakStart: true,

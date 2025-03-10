@@ -1,4 +1,4 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
@@ -8,7 +8,7 @@ import { PackageManager } from '@tools/packageManager';
 import { Provider } from '@tools/provider';
 
 export class DeleteProvider {
-  private readonly comandMessages: IComandDTO;
+  private readonly helpMessages: IHelpDTO;
   private readonly messages: Messages;
   private readonly provider: Provider;
   private readonly console: Console;
@@ -19,20 +19,20 @@ export class DeleteProvider {
     private readonly basePath: string,
   ) {
     this.messages = Messages.getInstance();
-    this.comandMessages = this.messages.comands;
+    this.helpMessages = this.messages.help;
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
     this.provider = new Provider();
   }
 
   private useNames({
-    comand,
+    command,
     names,
     packageManager,
   }: {
     names: Pick<IModuleNameDTO, 'lowerModuleName'>;
     packageManager: PackageManager;
-    comand: string;
+    command: string;
   }): void {
     const oldProviders = this.fileManager.readFileSync([
       this.basePath,
@@ -69,9 +69,9 @@ export class DeleteProvider {
     this.console.execute({
       message: [
         '- ',
-        this.comandMessages.description.reversed,
+        this.helpMessages.description.reversed,
         ': ',
-        comand,
+        command,
         ' ',
         names.lowerModuleName,
       ],
@@ -82,7 +82,7 @@ export class DeleteProvider {
   }
 
   private useFatherNames({
-    comand,
+    command,
     fatherNames,
     names,
     packageManager,
@@ -93,7 +93,7 @@ export class DeleteProvider {
       'pluralLowerModuleName' | 'lowerModuleName'
     >;
     packageManager: PackageManager;
-    comand: string;
+    command: string;
   }): void {
     const oldProviders = this.fileManager.readFileSync([
       this.basePath,
@@ -130,9 +130,9 @@ export class DeleteProvider {
     this.console.execute({
       message: [
         '- ',
-        this.comandMessages.description.reversed,
+        this.helpMessages.description.reversed,
         ': ',
-        comand,
+        command,
         ' ',
         names.lowerModuleName,
         ' ',
@@ -145,11 +145,11 @@ export class DeleteProvider {
   }
 
   public execute({
-    comand,
+    command,
     fatherNames,
     names,
   }: {
-    comand: string;
+    command: string;
     names: Pick<IModuleNameDTO, 'lowerModuleName'> | undefined;
     fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
@@ -165,9 +165,9 @@ export class DeleteProvider {
     );
 
     if (names && fatherNames) {
-      this.useFatherNames({ comand, fatherNames, names, packageManager });
+      this.useFatherNames({ command, fatherNames, names, packageManager });
     } else if (names) {
-      this.useNames({ comand, names, packageManager });
+      this.useNames({ command, names, packageManager });
     }
   }
 }

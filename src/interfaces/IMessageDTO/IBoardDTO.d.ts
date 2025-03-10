@@ -7,8 +7,8 @@ export interface IBoardDTO {
     readonly 'make:module': string;
     readonly 'make:api': string;
     readonly language: string;
-    readonly comands: string;
     readonly revert: string;
+    readonly help: string;
   };
   readonly headers: {
     readonly structure: string;

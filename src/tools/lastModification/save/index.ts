@@ -8,7 +8,7 @@ export class CreateRegister extends BaseRegister {
   private readonly createModule: CreateModule;
 
   public constructor(
-    private readonly comand: Array<string> | undefined,
+    private readonly command: Array<string> | undefined,
     private readonly providerName: string | undefined,
     private readonly names: IModuleNameDTO | undefined,
     private readonly fatherNames:
@@ -31,31 +31,33 @@ export class CreateRegister extends BaseRegister {
   }
 
   public execute(): void {
-    if (this.comand && this.comand[0] === 'make:provider') {
+    if (this.command && this.command[0] === 'make:provider') {
       this.createProvider.execute();
-    } else if (this.comand && this.comand[0] === 'make:module') {
+    } else if (this.command && this.command[0] === 'make:module') {
       this.createModule.execute();
     }
 
     if (
       this.fileManager.checkIfExistsSync([
         this.basePath,
-        'comands',
-        'comands.log',
+        'commands',
+        'commands.log',
       ])
     ) {
       this.fileManager.truncateFileSync([
         this.basePath,
-        'comands',
-        'comands.log',
+        'commands',
+        'commands.log',
       ]);
     } else {
-      this.fileManager.checkAndCreateMultiDirSync([[this.basePath, 'comands']]);
+      this.fileManager.checkAndCreateMultiDirSync([
+        [this.basePath, 'commands'],
+      ]);
     }
 
     return this.fileManager.createFileSync(
-      [this.basePath, 'comands', 'comands.log'],
-      String(this.comand),
+      [this.basePath, 'commands', 'commands.log'],
+      String(this.command),
     );
   }
 }

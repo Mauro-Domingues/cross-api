@@ -1,18 +1,18 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteApi {
-  private readonly comandMessages: IComandDTO;
+  private readonly helpMessages: IHelpDTO;
   private readonly console: Console;
 
   public constructor(private readonly fileManager: FileManager) {
-    this.comandMessages = Messages.getInstance().comands;
+    this.helpMessages = Messages.getInstance().help;
     this.console = Console.getInstance();
   }
 
-  public execute({ comand }: { comand: string }) {
+  public execute({ command }: { command: string }) {
     this.fileManager.removeMultiDir([
       ['.cross'],
       ['.swc'],
@@ -38,7 +38,7 @@ export class DeleteApi {
       ['tsconfig.tsbuildinfo'],
     ]);
     return this.console.execute({
-      message: ['- ', this.comandMessages.description.reversed, ': ', comand],
+      message: ['- ', this.helpMessages.description.reversed, ': ', command],
       color: 'yellow',
       bold: true,
     });

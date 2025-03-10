@@ -1,4 +1,4 @@
-export interface IComandDTO {
+export interface IHelpDTO {
   readonly description: {
     readonly apiCreated: string;
     readonly configured: string;
@@ -6,7 +6,7 @@ export interface IComandDTO {
     readonly created: string;
     readonly attempt: {
       readonly action: string;
-      readonly comand: string;
+      readonly command: string;
       readonly info: string;
     };
   };

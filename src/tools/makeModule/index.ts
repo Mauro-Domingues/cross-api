@@ -1,4 +1,4 @@
-import { IComandDTO } from '@interfaces/IMessageDTO/IComandDTO';
+import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
@@ -28,10 +28,10 @@ export class CreateModule {
   private readonly createValidators: CreateValidators;
   private readonly createEntities: CreateEntities;
   private readonly createServices: CreateServices;
-  private readonly comandMessages: IComandDTO;
   private readonly moduleMessages: IModuleDTO;
   private readonly createRoutes: CreateRoutes;
   private readonly createInfra: CreateInfra;
+  private readonly helpMessages: IHelpDTO;
   private readonly createDtos: CreateDtos;
   private readonly messages: Messages;
   private readonly console: Console;
@@ -44,8 +44,8 @@ export class CreateModule {
       | undefined,
   ) {
     this.messages = Messages.getInstance();
-    this.comandMessages = this.messages.comands;
     this.moduleMessages = this.messages.modules;
+    this.helpMessages = this.messages.help;
 
     if (!this.names) {
       throw new CustomError({
@@ -110,7 +110,7 @@ export class CreateModule {
           'Module',
         ),
         ' ',
-        this.comandMessages.description.created,
+        this.helpMessages.description.created,
       ],
       color: 'yellow',
       bold: true,
