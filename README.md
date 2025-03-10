@@ -29,7 +29,7 @@ npx cross config
 ### It will install yarn globally so to see the available commands type:
 
 ```bash
-yarn cross comands
+yarn cross help
 ```
 
 ---
