@@ -2,21 +2,18 @@ export class CreateMigrationIndex {
   public execute(): string {
     return `import 'dotenv/config';
 import 'reflect-metadata';
-import { MysqlDataSource } ${'from'} './dataSources/mysqlDataSource';
+import { Connection, IConnection } ${'from'} './index';
 
-async function mysqlMigrations(): Promise<void> {
-  const mysql = MysqlDataSource(process.argv[2] ?? process.env.MYSQL_DATABASE);
-
-  if (!mysql.isInitialized) {
-    await mysql.initialize();
-  }
-
-  await mysql.runMigrations();
-  return mysql.destroy();
+async function mysqlMigrations(connection: IConnection): Promise<void> {
+  await connection.mysql.runMigrations();
+  return connection.mysql.destroy();
 }
 
 (async function runMigrations(): Promise<void> {
-  return mysqlMigrations();
+  const connection = new Connection(process.argv[2]);
+  await connection.connect();
+
+  return mysqlMigrations(connection);
 })();
 `;
   }

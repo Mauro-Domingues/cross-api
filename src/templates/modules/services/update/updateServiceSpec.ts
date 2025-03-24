@@ -27,7 +27,6 @@ import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
       this.baseNames.pluralLowerModuleName
     }/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { Connection, IConnection } ${'from'} '@shared/typeorm';
-import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { Update${this.names.upperModuleName}Service } ${'from'} './Update${
       this.names.upperModuleName
     }Service';
@@ -43,7 +42,8 @@ let update${this.names.upperModuleName}Service: Update${
 
 describe('Update${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
-    connection = new Connection('database_test', FakeDataSource);
+    connection = new Connection();
+    connection.fakeConnect();
   });
 
   beforeEach((): void => {

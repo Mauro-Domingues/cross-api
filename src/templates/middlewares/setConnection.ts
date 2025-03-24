@@ -1,7 +1,6 @@
 export class CreateSetConnection {
   public execute(): string {
     return `import { Request, Response, NextFunction } ${'from'} 'express';
-import { MysqlDataSource } ${'from'} '@shared/typeorm/dataSources/mysqlDataSource';
 import { container } ${'from'} 'tsyringe';
 import { Connection, IConnection } ${'from'} '@shared/typeorm';
 
@@ -13,16 +12,14 @@ export const setConnection = async (
   _response: Response,
   next: NextFunction,
 ): Promise<void> => {
-  const client =
-    (request.headers.['tenant-id'] as string) ?? process.env.MYSQL_DATABASE;
-  const mysql = MysqlDataSource(client);
+  const client = request.headers['tenant-id'] as string;
 
-  if (!mysql.isInitialized) {
-    await mysql.initialize();
-  }
+  const connection = new Connection(client);
+
+  await connection.connect();
 
   container.register<IConnection>('Connection', {
-    useValue: new Connection(client, mysql),
+    useValue: connection,
   });
 
   return next();

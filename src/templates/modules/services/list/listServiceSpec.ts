@@ -27,7 +27,6 @@ import { FakeCacheProvider } ${'from'} '@shared/container/providers/CacheProvide
 import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { AppError } ${'from'} '@shared/errors/AppError';
-import { FakeDataSource } ${'from'} '@shared/typeorm/dataSources/fakes/fakeDataSource';
 import { List${this.names.upperModuleName}Service } ${'from'} './List${
       this.names.upperModuleName
     }Service';
@@ -43,7 +42,8 @@ let list${this.names.upperModuleName}Service: List${
 
 describe('List${this.names.upperModuleName}Service', (): void => {
   beforeAll((): void => {
-    connection = new Connection('database_test', FakeDataSource);
+    connection = new Connection();
+    connection.fakeConnect();
   });
 
   beforeEach((): void => {
