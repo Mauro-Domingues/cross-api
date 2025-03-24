@@ -28,7 +28,7 @@ export class Connection implements IConnection {
 
   private setFakeDataSources(): void {
     Object.assign(this, {
-      mysql: FakeDataSource,
+      mysql: FakeDataSource(this.client),
     });
   }
 
