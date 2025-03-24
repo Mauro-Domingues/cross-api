@@ -14,7 +14,7 @@ export const setConnection = async (
   next: NextFunction,
 ): Promise<void> => {
   const client =
-    (request.headers.tenantId as string) ?? process.env.MYSQL_DATABASE;
+    (request.headers.['tenant-id'] as string) ?? process.env.MYSQL_DATABASE;
   const mysql = MysqlDataSource(client);
 
   if (!mysql.isInitialized) {
