@@ -3,7 +3,7 @@ export class CreateSwcConfig {
     return `{
   "$schema": "https://swc.rs/schema.json",
   "isModule": true,
-  "exclude": ["src/@types"],
+  "exclude": ["src/@types", ".*\\\\.spec\\\\.ts$"],
   "minify": true,
   "module": {
     "type": "commonjs",

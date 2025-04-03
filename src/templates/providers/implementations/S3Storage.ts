@@ -28,9 +28,9 @@ export class S3StorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<void> {
     const originalPath = resolve(storageConfig.config.tmpFolder, file);
 
-    const ContentType = getType(originalPath);
+    const contentType = getType(originalPath);
 
-    if (!ContentType) {
+    if (!contentType) {
       throw new AppError('FILE_NOT_FOUND', 'File not found', 404);
     }
 
@@ -43,7 +43,7 @@ export class S3StorageProvider implements IStorageProvider {
           Key: file,
           ACL: 'public-read',
           Body: fileStream,
-          ContentType,
+          ContentType: contentType,
         }),
       );
     } finally {

@@ -50,7 +50,10 @@ export class Show${this.names.upperModuleName}Service {
       const ${this.names.lowerModuleName} = await this.${
       this.names.pluralLowerModuleName
     }Repository.findBy(
-        { where: { id } },
+        {
+          where: { id },
+          select: { id: true, name: true, description: true },
+        },
         trx,
       );
 

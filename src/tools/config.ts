@@ -56,7 +56,7 @@ export class ConfigJson extends ConfigLanguage {
       'ts-jest',
       'tsoa',
       'tsyringe',
-      'typeorm@^0.3.15',
+      'typeorm',
       'uuid',
     ];
   }
@@ -71,8 +71,7 @@ export class ConfigJson extends ConfigLanguage {
       ...jsonPackage.scripts,
       dev: 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only src/shared/server.ts',
       doc: 'ts-node-dev doc.config.ts',
-      build:
-        'swc src --out-dir dist --copy-files --strip-leading-paths --ignore **/*.spec.ts',
+      build: 'npx swc src --out-dir dist --copy-files --strip-leading-paths',
       runMigrations:
         'set NODE_ENV=production&& ts-node-dev -r tsconfig-paths/register --transpile-only src/shared/typeorm/runMigrations.ts',
       typeCheck: 'npx tsc --noEmit',

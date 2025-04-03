@@ -68,7 +68,12 @@ export class List${this.names.upperModuleName}Service {
         const { list, amount } = await this.${
           this.names.pluralLowerModuleName
         }Repository.findAll(
-          { where: filters, page, limit },
+          {
+            where: filters,
+            page,
+            limit,
+            select: { id: true, name: true },
+          },
           trx,
         );
         cache = { data: instanceToInstance(list), total: amount };
