@@ -3,6 +3,8 @@ export class CreateDockerCompose {
     return `services:
   app:
     build: .
+    restart: unless-stopped
+    container_name: app
     ports:
       - 3333:\${API_PORT}
     env_file:
@@ -14,6 +16,10 @@ export class CreateDockerCompose {
     depends_on:
       - mysql
       - redis
+    volumes:
+      - jwks:/app/dist/assets/.well-known
+      - keys:/app/dist/keys
+      - tmp:/app/tmp
     networks:
       - cross-network
 
@@ -50,6 +56,9 @@ networks:
 
 volumes:
   mysql: {}
+  keys: {}
+  jwks: {}
+  tmp: {}
 `;
   }
 }
