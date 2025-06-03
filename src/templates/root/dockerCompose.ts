@@ -24,16 +24,13 @@ export class CreateDockerCompose {
       - cross-network
 
   mysql:
-    image: mysql:5.7
+    image: mysql:latest
     restart: unless-stopped
     container_name: mysql
-    command: --default-authentication-plugin=mysql_native_password
     ports:
       - 3306:\${MYSQL_PORT}
     env_file:
       - .env
-    environment:
-      - MYSQL_USER=username
     volumes:
       - mysql:/var/lib/mysql
     networks:

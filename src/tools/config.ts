@@ -17,7 +17,7 @@ export class ConfigJson extends ConfigLanguage {
       '@swc/cli@^0.7.7',
       '@swc/core@^1.11.29',
       '@types/cors@^2.8.18',
-      '@types/express@^4.17.21',
+      '@types/express@^5.0.0',
       '@types/jest@^29.5.14',
       '@types/supertest@^6.0.3',
       '@types/swagger-ui-express@^4.1.8',
