@@ -34,7 +34,7 @@ export class CryptoProvider implements ICryptoProvider {
       truncateSync(resolve(path, filename));
     }
 
-    appendFileSync(resolve(path, filename), data);
+    return appendFileSync(resolve(path, filename), data);
   }
 
   public encrypt(text: string): IEncryptedDTO {

@@ -9,14 +9,12 @@ import { IMailProvider } ${'from'} '../models/IMailProvider';
 
 @injectable()
 export class SMTPMailProvider implements IMailProvider {
-  private client: Transporter;
+  private readonly client: Transporter;
 
   public constructor(
     @inject('MailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProvider,
-  ) {}
-
-  private async createClient(): Promise<void> {
+  ) {
     this.client = createTransport({
       host: mailConfig.config.smtp.host,
       port: mailConfig.config.smtp.port,
@@ -34,8 +32,6 @@ export class SMTPMailProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    await this.createClient();
-
     const { email, name } = mailConfig.config.default.from;
 
     const content = this.mailTemplateProvider.compile(templateData);

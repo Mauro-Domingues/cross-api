@@ -7,9 +7,11 @@ import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
 import { IQueueProvider } ${'from'} '../models/IQueueProvider';
 import { jobs } ${'from'} '../public/jobs';
 import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
+import { IHandleDTO } ${'from'} '../dtos/IHandleDTO';
+import { IHandleDataDTO } ${'from'} '../dtos/IHandleDataDTO';
 
 export class BullProvider implements IQueueProvider {
-  private queues: IQueueDTO<Queue> = {};
+  private readonly queues: IQueueDTO<Queue> = {};
 
   public constructor() {
     this.init();
@@ -27,31 +29,39 @@ export class BullProvider implements IQueueProvider {
             removeOnComplete: true,
           },
         }),
-        handle: instance.handle.bind(instance) as ({
-          data,
-        }: {
-          data: unknown;
-        }) => Promise<void>,
+        handle: instance.handle.bind(instance),
       };
     });
   }
 
-  public async execute<T extends object>(
-    key: Capitalize<string>,
-    data: T,
+  public async execute<T extends IHandleDTO>({
     attempts = 1,
-  ): Promise<Job<T>> {
-    return this.queues[key].queue.add(data, { attempts });
+    job,
+    data,
+  }: {
+    data: IHandleDataDTO<T>;
+    attempts: number;
+    job: T;
+  }): Promise<Job<IHandleDataDTO<T>>> {
+    return this.queues[job.key].queue.add(data, { attempts });
   }
 
-  public async schedule<T extends object>(
-    key: Capitalize<string>,
-    data: T,
-    delay: IIntervalDTO,
+  public async schedule<T extends IHandleDTO>({
     attempts = 1,
-  ): Promise<Job<T>> {
+    delay,
+    data,
+    job,
+  }: {
+    data: IHandleDataDTO<T>;
+    delay: IIntervalDTO;
+    attempts: number;
+    job: T;
+  }): Promise<Job<IHandleDataDTO<T>>> {
     const parsedDelay = convertToMilliseconds(delay);
-    return this.queues[key].queue.add(data, { delay: parsedDelay, attempts });
+    return this.queues[job.key].queue.add(data, {
+      delay: parsedDelay,
+      attempts,
+    });
   }
 
   private processQueue(): void {

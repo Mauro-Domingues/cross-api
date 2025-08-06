@@ -23,10 +23,7 @@ export function mapAndPatchAttribute<
 >(oldAttributes: Entity, newAttributes: DTO): Entity {
   const isValid = (field: unknown) => field && field !== '';
   Object.keys(newAttributes).forEach(attribute => {
-    if (
-      Object.hasOwn(oldAttributes, attribute) &&
-      (oldAttributes as IObjectDTO)[attribute] !== undefined
-    ) {
+    if (Object.hasOwn(oldAttributes, attribute)) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (!isValid(newValue)) {
         return;
@@ -43,10 +40,10 @@ export function mapAndPatchAttribute<
             if (exists) oldItem = exists;
           }
           if (
-            (typeof item === 'object' &&
-              item !== null &&
-              !Array.isArray(item)) ||
-            (Array.isArray(item) && item.some(Array.isArray))
+            oldItem &&
+            typeof item === 'object' &&
+            item !== null &&
+            !Array.isArray(item)
           ) {
             return mapAndPatchAttribute(oldItem, item as IObjectDTO);
           }
@@ -56,7 +53,11 @@ export function mapAndPatchAttribute<
           return item;
         });
         Object.assign(oldAttributes, { [attribute]: newValue });
-      } else if (typeof newValue === 'object' && newValue !== null) {
+      } else if (
+        typeof newValue === 'object' &&
+        !(newValue instanceof Date) &&
+        newValue !== null
+      ) {
         (oldAttributes as IObjectDTO)[attribute] = mapAndPatchAttribute(
           (oldAttributes as IObjectDTO)[attribute] as IObjectDTO,
           newValue as IObjectDTO,

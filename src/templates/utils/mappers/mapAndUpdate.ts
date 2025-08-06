@@ -22,10 +22,7 @@ export function mapAndUpdateAttribute<
   DTO extends Partial<Entity>,
 >(oldAttributes: Entity, newAttributes: DTO): Entity {
   Object.keys(newAttributes).forEach(attribute => {
-    if (
-      Object.hasOwn(oldAttributes, attribute) &&
-      (oldAttributes as IObjectDTO)[attribute] !== undefined
-    ) {
+    if (Object.hasOwn(oldAttributes, attribute)) {
       let newValue = (newAttributes as IObjectDTO)[attribute];
       if (Array.isArray(newValue)) {
         newValue = newValue.map((item, index) => {
@@ -39,17 +36,21 @@ export function mapAndUpdateAttribute<
             if (exists) oldItem = exists;
           }
           if (
-            (typeof item === 'object' &&
-              item !== null &&
-              !Array.isArray(item)) ||
-            (Array.isArray(item) && item.some(Array.isArray))
+            oldItem &&
+            typeof item === 'object' &&
+            item !== null &&
+            !Array.isArray(item)
           ) {
             return mapAndUpdateAttribute(oldItem, item as IObjectDTO);
           }
           return item;
         });
         Object.assign(oldAttributes, { [attribute]: newValue });
-      } else if (typeof newValue === 'object' && newValue !== null) {
+      } else if (
+        typeof newValue === 'object' &&
+        !(newValue instanceof Date) &&
+        newValue !== null
+      ) {
         (oldAttributes as IObjectDTO)[attribute] = mapAndUpdateAttribute(
           (oldAttributes as IObjectDTO)[attribute] as IObjectDTO,
           newValue as IObjectDTO,

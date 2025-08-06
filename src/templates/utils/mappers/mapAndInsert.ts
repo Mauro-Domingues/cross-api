@@ -59,7 +59,11 @@ export function mapAndInsertAttribute<
         }
         return item;
       });
-    } else if (typeof newValue === 'object' && newValue !== null) {
+    } else if (
+      typeof newValue === 'object' &&
+      !(newValue instanceof Date) &&
+      newValue !== null
+    ) {
       newValue = (oldAttributes as IObjectDTO)[attribute]
         ? mapAndInsertAttribute(
             (oldAttributes as IObjectDTO)[attribute] as IObjectDTO,

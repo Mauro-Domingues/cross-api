@@ -41,7 +41,7 @@ export class FakeMailProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    await this.createFakeClient();
+    if (!this.client) await this.createFakeClient();
 
     const { email, name } = mailConfig.config.default.from;
 

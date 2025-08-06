@@ -1,10 +1,11 @@
 export class CreateIQueueDTO {
   public execute(): string {
-    return `export type IQueueDTO<T> = Record<
+    return `import { IHandleDTO } ${'from'} './IHandleDTO';
+
+export type IQueueDTO<T> = Record<
   Capitalize<string>,
-  {
+  InstanceType<IHandleDTO> & {
     queue: T;
-    handle: ({ data }: { data: unknown }) => Promise<void>;
   }
 >;
 `;

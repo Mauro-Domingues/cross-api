@@ -2,6 +2,8 @@ import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
+import { CreateIHandleDataDTO } from '@templates/providers/dtos/IHandleDataDTO';
+import { CreateIHandleDTO } from '@templates/providers/dtos/IHandleDTO';
 import { CreateIQueueDTO } from '@templates/providers/dtos/IQueueDTO';
 import { CreateFakeQueue } from '@templates/providers/fakes/fakeQueue';
 import { CreateBeeQueue } from '@templates/providers/implementations/BeeQueue';
@@ -13,9 +15,11 @@ import { CreateQueueIndex } from '@templates/providers/queueIndex';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateQueueProvider extends BaseProvider {
+  private readonly createIHandleDataDTO: CreateIHandleDataDTO;
   private readonly createQueueConfig: CreateQueueConfig;
   private readonly createQueueIndex: CreateQueueIndex;
   private readonly createExampleJob: CreateExampleJob;
+  private readonly createIHandleDTO: CreateIHandleDTO;
   private readonly createBullQueue: CreateBullQueue;
   private readonly createFakeQueue: CreateFakeQueue;
   private readonly createIQueueDTO: CreateIQueueDTO;
@@ -30,9 +34,11 @@ export class CreateQueueProvider extends BaseProvider {
       | undefined,
   ) {
     super(fatherNames);
+    this.createIHandleDataDTO = new CreateIHandleDataDTO();
     this.createQueueConfig = new CreateQueueConfig();
     this.createExampleJob = new CreateExampleJob();
     this.createQueueIndex = new CreateQueueIndex();
+    this.createIHandleDTO = new CreateIHandleDTO();
     this.createIQueueDTO = new CreateIQueueDTO();
     this.createBullQueue = new CreateBullQueue();
     this.createFakeQueue = new CreateFakeQueue();
@@ -69,6 +75,14 @@ export class CreateQueueProvider extends BaseProvider {
 
   protected createDtos(): Array<IMultiFileDTO> {
     return [
+      [
+        [this.basePath, 'QueueProvider', 'dtos', 'IHandleDTO.ts'],
+        this.createIHandleDTO,
+      ],
+      [
+        [this.basePath, 'QueueProvider', 'dtos', 'IHandleDataDTO.ts'],
+        this.createIHandleDataDTO,
+      ],
       [
         [this.basePath, 'QueueProvider', 'dtos', 'IQueueDTO.ts'],
         this.createIQueueDTO,
