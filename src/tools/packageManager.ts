@@ -8,6 +8,7 @@ import { Shell } from '@tools/shell';
 
 export class PackageManager {
   private readonly dependencyMessages: IDependencyDTO;
+  private readonly directivePattern: RegExp;
   private readonly fileManager: FileManager;
   private readonly readline: Readline;
   private readonly console: Console;
@@ -26,6 +27,7 @@ export class PackageManager {
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
     this.shell = Shell.getInstance();
+    this.directivePattern = /@\^.*/;
   }
 
   private checkPackage(
@@ -43,15 +45,13 @@ export class PackageManager {
       return action === 'install' ? this[field] : [];
     }
 
-    const existingDependencies = Object.keys(jsonPackage[field]);
+    const existingDependencies = new Set(Object.keys(jsonPackage[field]));
 
     this[field].forEach(dependency => {
-      const dependencyName = dependency.replace(/@\^.*/, '');
+      const dependencyName = dependency.replace(this.directivePattern, '');
       const shouldAddDependency =
-        (action === 'install' &&
-          !existingDependencies.includes(dependencyName)) ||
-        (action === 'uninstall' &&
-          existingDependencies.includes(dependencyName));
+        (action === 'install' && !existingDependencies.has(dependencyName)) ||
+        (action === 'uninstall' && existingDependencies.has(dependencyName));
 
       if (shouldAddDependency) {
         dependencies.add(dependency);
@@ -76,7 +76,7 @@ export class PackageManager {
       return this.console.execute({
         message: [
           '- ',
-          dependency.replace(/@\^.*/, ''),
+          dependency.replace(this.directivePattern, ''),
           ' ',
           this.dependencyMessages.description.installed,
         ],
@@ -101,7 +101,7 @@ export class PackageManager {
       return this.console.execute({
         message: [
           '- ',
-          devDependency.replace(/@\^.*/, ''),
+          devDependency.replace(this.directivePattern, ''),
           ' ',
           this.dependencyMessages.description.installed,
         ],
@@ -134,7 +134,7 @@ export class PackageManager {
           return this.console.execute({
             message: [
               '- ',
-              dependency.replace(/@\^.*/, ''),
+              dependency.replace(this.directivePattern, ''),
               ' ',
               this.dependencyMessages.description.uninstalled,
             ],

@@ -14,6 +14,7 @@ export class Pluralize {
   private readonly singularData: Array<IAssetDTO>;
   private readonly pluralRules: Array<IAssetDTO>;
   private readonly pluralData: Array<IAssetDTO>;
+  private readonly iterpolationPattern: RegExp;
   private readonly irregularPlurals: IObjDTO;
   private readonly irregularSingles: IObjDTO;
   private readonly helpMessages: IHelpDTO;
@@ -21,6 +22,7 @@ export class Pluralize {
 
   public constructor(private readonly word: string | undefined) {
     this.helpMessages = Messages.getInstance().help;
+    this.iterpolationPattern = /\$(\d{1,2})/g;
     this.concat = Concat.getInstance();
     this.irregularPlurals = {};
     this.irregularSingles = {};
@@ -379,7 +381,7 @@ export class Pluralize {
   }
 
   private interpolate(str: string, args: Array<string>): string {
-    return str.replace(/\$(\d{1,2})/g, (_match, index) => {
+    return str.replace(this.iterpolationPattern, (_match, index) => {
       return args[index];
     });
   }
