@@ -10,8 +10,8 @@ const toUpperSnakeCase = (message: string): string => {
   return message
     .trim()
     .replace(/\\${'s+'}/g, '_')
-    .replace(/[A-Z]/g, letter => \`_\${letter}\`)
-    .replace(/^_/, '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
     .toUpperCase();
 };
 
@@ -25,7 +25,7 @@ export const errorHandler = (
 
   if (error instanceof CelebrateError) {
     Object.assign(errorBody, {
-      code: 400,
+      code: 422,
       messageCode: toUpperSnakeCase(error.message),
       message:
         (
@@ -40,7 +40,7 @@ export const errorHandler = (
   } else if (error instanceof AppError) {
     Object.assign(errorBody, {
       code: error.code,
-      messageCode: error.messageCode,
+      messageCode: toUpperSnakeCase(error.messageCode),
       message: error.message,
       stack: error.stack,
     });
