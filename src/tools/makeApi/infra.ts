@@ -25,7 +25,7 @@ export class CreateInfra {
       ['src', '@types'],
       ['src', 'dtos'],
       ['src', 'assets'],
-      ['src', 'middlewares'],
+      ['src', 'middlewares', 'strategies'],
       ['src', 'modules'],
       ['src', 'routes'],
       ['src', 'utils', 'mappers'],

@@ -7,7 +7,7 @@ export class CreateHashConfig {
 
 export const hashConfig = Object.freeze<IHashConfigDTO>({
   driver: 'bcrypt',
-  config: { salt: process.env.HASH_SECRET_KEY },
+  config: { salt: Number(process.env.HASH_SECRET_KEY) },
 });
 `;
   }

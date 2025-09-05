@@ -1,4 +1,5 @@
-import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated';
+import { CreateEnsureAuthenticated } from '@templates/middlewares/ensureAuthenticated/index';
+import { CreateJwtStrategy } from '@templates/middlewares/ensureAuthenticated/strategies/jwtStrategy';
 import { CreateErrorHandler } from '@templates/middlewares/errorHandler';
 import { CreateparseParam } from '@templates/middlewares/parseParam';
 import { CreateRateLimiter } from '@templates/middlewares/rateLimiter';
@@ -10,6 +11,7 @@ export class CreateMiddlewares {
   private readonly createSetConnection: CreateSetConnection;
   private readonly createErrorHandler: CreateErrorHandler;
   private readonly createRateLimiter: CreateRateLimiter;
+  private readonly createJwtStrategy: CreateJwtStrategy;
   private readonly createParseParam: CreateparseParam;
   private readonly fileManager: FileManager;
 
@@ -18,6 +20,7 @@ export class CreateMiddlewares {
     this.createSetConnection = new CreateSetConnection();
     this.createErrorHandler = new CreateErrorHandler();
     this.createRateLimiter = new CreateRateLimiter();
+    this.createJwtStrategy = new CreateJwtStrategy();
     this.createParseParam = new CreateparseParam();
     this.fileManager = FileManager.getInstance();
   }
@@ -31,6 +34,7 @@ export class CreateMiddlewares {
       [[basePath, 'setConnection.ts'], this.createSetConnection],
       [[basePath, 'errorHandler.ts'], this.createErrorHandler],
       [[basePath, 'parseParam.ts'], this.createParseParam],
+      [[basePath, 'strategies', 'jwtStrategy.ts'], this.createJwtStrategy],
     ]);
   }
 }
