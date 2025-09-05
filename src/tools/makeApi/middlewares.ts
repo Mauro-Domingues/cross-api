@@ -30,11 +30,17 @@ export class CreateMiddlewares {
 
     return this.fileManager.checkAndCreateMultiFile([
       [[basePath, 'rateLimiter.ts'], this.createRateLimiter],
-      [[basePath, 'ensureAuthenticated.ts'], this.createEnsureAuthenticated],
       [[basePath, 'setConnection.ts'], this.createSetConnection],
       [[basePath, 'errorHandler.ts'], this.createErrorHandler],
       [[basePath, 'parseParam.ts'], this.createParseParam],
-      [[basePath, 'strategies', 'jwtStrategy.ts'], this.createJwtStrategy],
+      [
+        [basePath, 'ensureAuthenticated', 'index.ts'],
+        this.createEnsureAuthenticated,
+      ],
+      [
+        [basePath, 'ensureAuthenticated', 'strategies', 'jwtStrategy.ts'],
+        this.createJwtStrategy,
+      ],
     ]);
   }
 }
