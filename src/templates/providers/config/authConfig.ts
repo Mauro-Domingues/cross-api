@@ -19,7 +19,7 @@ export const authConfig = Object.freeze<IAuthConfigDTO>({
   config: {
     jwt: {
       ...(() => {
-        if (appConfig.config.apiMode === 'development') {
+        if (appConfig.config.apiMode === 'test') {
           return {
             secretOrKey: readFileSync(
               resolve(__dirname, '..', 'keys', 'public.pem'),
