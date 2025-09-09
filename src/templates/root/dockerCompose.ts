@@ -2,9 +2,9 @@ export class CreateDockerCompose {
   public execute(): string {
     return `services:
   app:
+    container_name: app
     build: .
     restart: unless-stopped
-    container_name: app
     ports:
       - 3333:\${API_PORT}
     env_file:
@@ -14,8 +14,10 @@ export class CreateDockerCompose {
       - MYSQL_HOST=mysql
       - REDIS_HOST=redis
     depends_on:
-      - mysql
-      - redis
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - jwks:/app/dist/assets/.well-known
       - keys:/app/dist/keys
@@ -24,9 +26,9 @@ export class CreateDockerCompose {
       - cross-network
 
   mysql:
+    container_name: mysql
     image: mysql:latest
     restart: unless-stopped
-    container_name: mysql
     ports:
       - 3306:\${MYSQL_PORT}
     env_file:
@@ -35,17 +37,35 @@ export class CreateDockerCompose {
       - mysql:/var/lib/mysql
     networks:
       - cross-network
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - '-p\${MYSQL_ROOT_PASSWORD}'
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   redis:
+    container_name: redis
     image: bitnami/redis
     restart: unless-stopped
-    container_name: redis
     ports:
       - 6379:\${REDIS_PORT}
     env_file:
       - .env
     networks:
       - cross-network
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+        - '-p\${REDIS_PASSWORD}'
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   cross-network:
