@@ -28,7 +28,7 @@ export class FirebaseProvider implements INotificationProvider {
           'utf-8',
         ),
       },
-    projectId: notificationConfig.config.firebase.projectId,
+      projectId: notificationConfig.config.firebase.projectId,
       scopes: notificationConfig.config.firebase.scopes,
     });
   }
