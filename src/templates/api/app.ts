@@ -75,7 +75,9 @@ export const app = new (class App {
   }
 
   private setupWorkers(): void {
-    Array.from({ length: cpus().length }).forEach(() => {
+    Array.from({
+      length: Math.min(appConfig.config.apiWorkers, cpus().length),
+    }).forEach(() => {
       cluster.fork();
     });
 

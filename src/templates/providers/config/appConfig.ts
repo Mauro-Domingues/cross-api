@@ -5,6 +5,7 @@ export class CreateAppConfig {
     readonly apiMode: 'development' | 'production' | 'test';
     readonly apiUrl: string;
     readonly apiPort: number;
+    readonly apiWorkers: number;
     readonly allowedDomains: Array<string>;
   };
 }
@@ -14,6 +15,7 @@ export const appConfig = Object.freeze<IAppConfigDTO>({
     apiMode: process.env.NODE_ENV,
     apiUrl: process.env.API_URL,
     apiPort: process.env.API_PORT,
+    apiWorkers: process.env.API_WORKERS,
     allowedDomains: process.env.ALLOWED_DOMAINS?.replace(/[[\\]]/g, '')
       .split(/\\s*,\\s*/)
       .map(domain => domain.trim()),
