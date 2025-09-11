@@ -29,7 +29,7 @@ export class OneSignalProvider implements INotificationProvider {
         data: data.variables,
       };
 
-      await this.http.post('api/v1/notifications', body);
+      await this.http.post('notifications', body);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
         throw new AppError(

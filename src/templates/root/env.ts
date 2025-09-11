@@ -65,7 +65,7 @@ FIREBASE_PROJECT_ID=
 FIREBASE_CLIENT_EMAIL=
 
 # One Signal
-ONESIGNAL_API_URL=https://onesignal.com
+ONESIGNAL_API_URL=https://onesignal.com/api/v1
 ONESIGNAL_APP_ID=
 ONESIGNAL_TOKEN=
 
