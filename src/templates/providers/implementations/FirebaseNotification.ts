@@ -28,7 +28,7 @@ export class FirebaseProvider implements INotificationProvider {
           'utf-8',
         ),
       },
-      projectId: notificationConfig.config.firebase.appId,
+      projectId: notificationConfig.config.firebase.projectId,
       scopes: notificationConfig.config.firebase.scopes,
     });
   }
@@ -70,7 +70,7 @@ export class FirebaseProvider implements INotificationProvider {
       };
 
       await this.http.post(
-        \`/projects/\${notificationConfig.config.firebase.appId}/messages:send\`,
+        \`/projects/\${notificationConfig.config.firebase.projectId}/messages:send\`,
         body,
       );
     } catch (error: unknown) {

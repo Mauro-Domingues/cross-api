@@ -12,7 +12,7 @@ interface INotificationConfigDTO {
     };
     readonly firebase: {
       readonly apiUrl: string;
-      readonly appId: string;
+      readonly projectId: string;
       readonly clientEmail: string;
       readonly certPath: string;
       readonly scopes: string;
@@ -25,9 +25,9 @@ export const notificationConfig = Object.freeze<INotificationConfigDTO>({
   config: {
     firebase: {
       apiUrl: process.env.FIREBASE_API_URL,
-      appId: process.env.FIREBASE_APP_ID,
+      projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      certPath: resolve(__dirname, '..', 'keys', 'firebase.pem'),
+      certPath: resolve(__dirname, '..', 'keys', 'firebase-private.pem'),
       scopes: 'https://www.googleapis.com/auth/firebase.messaging',
     },
     onesignal: {

@@ -37,7 +37,7 @@ export class CreateEnvNamespace {
     readonly QUEUE_DRIVER: 'kue' | 'bull' | 'bee';
     readonly NOTIFICATION_DRIVER: 'firebase' | 'onesignal';
     readonly FIREBASE_API_URL: string;
-    readonly FIREBASE_APP_ID: string;
+    readonly FIREBASE_PROJECT_ID: string;
     readonly FIREBASE_CLIENT_EMAIL: string;
     readonly ONESIGNAL_API_URL: string;
     readonly ONESIGNAL_APP_ID: string;
