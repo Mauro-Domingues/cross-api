@@ -78,7 +78,7 @@ export class Provider {
         name: 'notification',
         description: 'NotificationProvider',
         instance: () => new CreateNotificationProvider(this.fatherNames),
-        dependencies: ['axios@^1.9.0'],
+        dependencies: ['axios@^1.9.0', 'google-auth-library@^10.3.0'],
         devDependencies: [],
       },
       queue: {

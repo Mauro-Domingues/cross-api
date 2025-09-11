@@ -1,7 +1,9 @@
 export class CreateNotificationConfig {
   public execute(): string {
-    return `interface INotificationConfigDTO {
-  readonly driver: 'onesignal' | 'firebase';
+    return `import { resolve } ${'from'} 'node:path';
+
+interface INotificationConfigDTO {
+  readonly driver: 'firebase' | 'onesignal';
   readonly config: {
     readonly onesignal: {
       readonly apiUrl: string;
@@ -10,7 +12,10 @@ export class CreateNotificationConfig {
     };
     readonly firebase: {
       readonly apiUrl: string;
-      readonly apiKey: string;
+      readonly appId: string;
+      readonly clientEmail: string;
+      readonly certPath: string;
+      readonly scopes: string;
     };
   };
 }
@@ -20,7 +25,10 @@ export const notificationConfig = Object.freeze<INotificationConfigDTO>({
   config: {
     firebase: {
       apiUrl: process.env.FIREBASE_API_URL,
-      apiKey: process.env.FIREBASE_API_KEY,
+      appId: process.env.FIREBASE_APP_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      certPath: resolve(__dirname, '..', 'keys', 'firebase.pem'),
+      scopes: 'https://www.googleapis.com/auth/firebase.messaging',
     },
     onesignal: {
       apiUrl: process.env.ONESIGNAL_API_URL,

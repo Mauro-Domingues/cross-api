@@ -60,8 +60,9 @@ QUEUE_DRIVER=bull
 NOTIFICATION_DRIVER=firebase
 
 # Firebase
-FIREBASE_API_URL=https://fcm.googleapis.com
-FIREBASE_API_KEY=
+FIREBASE_API_URL=https://fcm.googleapis.com/v1
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_APP_ID=
 
 # One Signal
 ONESIGNAL_API_URL=https://onesignal.com

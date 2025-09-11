@@ -20,14 +20,15 @@ export class OneSignalProvider implements INotificationProvider {
   }
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
-    const body = {
-      app_id: notificationConfig.config.onesignal.appId,
-      headings: { en: data.header },
-      contents: { en: data.content },
-      include_player_ids: [data.deviceId],
-    };
-
     try {
+      const body = {
+        app_id: notificationConfig.config.onesignal.appId,
+        headings: { en: data.header },
+        contents: { en: data.content },
+        include_player_ids: [data.deviceId],
+        data: data.variables,
+      };
+
       await this.http.post('api/v1/notifications', body);
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {

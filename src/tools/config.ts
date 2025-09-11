@@ -26,7 +26,7 @@ export class ConfigJson extends ConfigLanguage {
       '@typescript-eslint/parser@^8.33.0',
       '@types/passport@^1.0.17',
       '@types/passport-jwt@^4.0.1',
-      'eslint@8.57.0',
+      'eslint@^8.57.0',
       'eslint-config-airbnb-base@^15.0.0',
       'eslint-config-prettier@^10.1.5',
       'eslint-import-resolver-typescript@^4.4.1',
