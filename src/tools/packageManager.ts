@@ -124,7 +124,7 @@ export class PackageManager {
         this.shell.execute(
           this.concat.execute('yarn remove ', dependencies.join(' ')),
         );
-        dependencies.forEach(dependency => {
+        dependencies.forEach((dependency, index) => {
           return this.console.execute({
             message: [
               '- ',
@@ -133,6 +133,9 @@ export class PackageManager {
               this.dependencyMessages.description.uninstalled,
             ],
             color: 'red',
+            ...(dependencies.length - 1 === index && {
+              options: ['breakEnd'],
+            }),
           });
         });
       }
