@@ -71,25 +71,22 @@ new (class Main {
         {
           message: this.helpMessages.errors.notFound,
           color: 'red',
-          bold: true,
-          breakStart: true,
-          breakEnd: true,
+          options: ['bold', 'breakStart', 'breakEnd'],
         },
         {
           message: this.helpMessages.description.attempt.action,
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: this.helpMessages.description.attempt.command,
           color: 'yellow',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: this.helpMessages.description.attempt.info,
           color: 'blue',
-          bold: true,
-          breakEnd: true,
+          options: ['bold', 'breakEnd'],
         },
       ]);
     }
