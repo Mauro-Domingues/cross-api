@@ -3,7 +3,9 @@ export class CreateDockerCompose {
     return `services:
   app:
     container_name: app
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
     networks:
       - cross-network
@@ -29,7 +31,7 @@ export class CreateDockerCompose {
     healthcheck:
       test:
         - CMD-SHELL
-        - curl -s -o /dev/null $API_URL || exit 1
+        - curl -s -o /dev/null http://localhost:$API_PORT || exit 1
       start_period: 10s
       interval: 10s
       timeout: 5s
