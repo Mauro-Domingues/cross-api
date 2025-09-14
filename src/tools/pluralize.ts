@@ -330,9 +330,7 @@ export class Pluralize {
       throw new CustomError({
         message: this.helpMessages.errors.invalidOption,
         color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       });
     }
 

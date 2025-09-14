@@ -43,9 +43,7 @@ export class DeleteRegister extends BaseRegister {
         throw new CustomError({
           message: this.helpMessages.errors.notReversed,
           color: 'red',
-          bold: true,
-          breakStart: true,
-          breakEnd: true,
+          options: ['bold', 'breakStart', 'breakEnd'],
         });
     }
   }
