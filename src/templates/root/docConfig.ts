@@ -13,7 +13,7 @@ generateSpec(
     name: 'Awesome API',
     description: 'An awesome API created using cross-api',
     schemes: ['http', 'https'],
-    host: 'localhost:3333',
+    host: 'localhost:8080',
     basePath: '/',
     rootSecurity: [{ guardRouter: [] }],
     useTitleTagsForInlineObjects: true,

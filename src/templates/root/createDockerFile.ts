@@ -22,8 +22,6 @@ RUN npm prune --omit=dev --legacy-peer-deps
 
 COPY --from=build /app/dist ./dist
 
-EXPOSE 3333
-
 CMD ["npm", "run", "start", "--", "--bind", "0.0.0.0"]
 `;
   }
