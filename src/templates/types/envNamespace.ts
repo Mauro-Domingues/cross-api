@@ -3,6 +3,7 @@ export class CreateEnvNamespace {
     return `declare namespace NodeJS {
   export interface ProcessEnv {
     readonly API_PORT: number;
+    readonly EXTERNAL_API_PORT: number;
     readonly API_URL: string;
     readonly API_WORKERS: number;
     readonly NODE_ENV: 'development' | 'production' | 'test';

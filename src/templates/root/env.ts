@@ -1,8 +1,9 @@
 export class CreateEnv {
   public execute(): string {
     return `# Api
-API_PORT=3333
-API_URL=http://localhost:3333
+API_PORT=8080
+API_URL=http://localhost:8080
+EXTERNAL_API_PORT=8080
 API_WORKERS=1
 ALLOWED_DOMAINS=[https://example.com, https://other-example.com]
 NODE_ENV=development
