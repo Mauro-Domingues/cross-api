@@ -23,7 +23,7 @@ export class CreateEnvNamespace {
     readonly STORAGE_DRIVER: 'disk' | 's3';
     readonly S3_BUCKET: string;
     readonly S3_USER: string;
-    readonly S3_PASS: string;
+    readonly S3_PASSWORD: string;
     readonly S3_REGION: string;
     readonly MAIL_DRIVER: 'smtp' | 'ses';
     readonly MAIL_NAME: string;

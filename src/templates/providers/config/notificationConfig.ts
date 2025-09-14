@@ -1,6 +1,7 @@
 export class CreateNotificationConfig {
   public execute(): string {
-    return `import { resolve } ${'from'} 'node:path';
+    return `import { Joi } ${'from'} 'celebrate';
+import { resolve } ${'from'} 'node:path';
 
 interface INotificationConfigDTO {
   readonly driver: 'firebase' | 'onesignal';
@@ -20,6 +21,24 @@ interface INotificationConfigDTO {
   };
 }
 
+const notificationValidator = Joi.object<INotificationConfigDTO>({
+  driver: Joi.string().valid('firebase', 'onesignal').required(),
+  config: Joi.object<INotificationConfigDTO['config']>({
+    firebase: Joi.object<INotificationConfigDTO['config']['firebase']>({
+      apiUrl: Joi.string().uri().required(),
+      projectId: Joi.string().allow('').required(),
+      clientEmail: Joi.string().allow('').email().required(),
+      certPath: Joi.string().required(),
+      scopes: Joi.string().required(),
+    }).required(),
+    onesignal: Joi.object<INotificationConfigDTO['config']['onesignal']>({
+      apiUrl: Joi.string().uri().required(),
+      appId: Joi.string().allow('').required(),
+      token: Joi.string().allow('').required(),
+    }).required(),
+  }).required(),
+});
+
 export const notificationConfig = Object.freeze<INotificationConfigDTO>({
   driver: process.env.NOTIFICATION_DRIVER,
   config: {
@@ -37,6 +56,8 @@ export const notificationConfig = Object.freeze<INotificationConfigDTO>({
     },
   },
 });
+
+notificationValidator.validateAsync(notificationConfig);
 `;
   }
 }

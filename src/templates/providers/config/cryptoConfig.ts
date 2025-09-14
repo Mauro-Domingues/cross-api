@@ -1,7 +1,9 @@
 export class CreateCryptoConfig {
   public execute(): string {
-    return `import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
+    return `import { Joi } ${'from'} 'celebrate';
 import { resolve } ${'from'} 'node:path';
+import { getCiphers } ${'from'} 'node:crypto';
+import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
 
 interface ICryptoConfigDTO {
   readonly driver: 'crypto';
@@ -19,6 +21,49 @@ interface ICryptoConfigDTO {
   };
 }
 
+const cryptoValidator = Joi.object<ICryptoConfigDTO>({
+  driver: Joi.string().valid('crypto').required(),
+  config: Joi.object<ICryptoConfigDTO['config']>({
+    assetsPath: Joi.string().required(),
+    keysPath: Joi.string().required(),
+    jwksPath: Joi.string().required(),
+    crypto: Joi.object<ICryptoConfigDTO['config']['crypto']>({
+      bytes: Joi.number().integer().min(1).required(),
+      algorithm: Joi.string()
+        .valid(...getCiphers())
+        .required(),
+      encoding: Joi.string()
+        .valid(
+          'ascii',
+          'utf8',
+          'utf-8',
+          'utf16le',
+          'utf-16le',
+          'ucs2',
+          'ucs-2',
+          'base64',
+          'base64url',
+          'latin1',
+          'binary',
+          'hex',
+        )
+        .required(),
+      secretKey: Joi.string()
+        .length(
+          Joi.ref('bytes', {
+            adjust: value => value * 2,
+          }),
+        )
+        .required()
+        .allow('')
+        .required(),
+      jwtLifetime: Joi.string()
+        .pattern(/^\\d+(d|h|min|s|ms)$/)
+        .required(),
+    }).required(),
+  }).required(),
+});
+
 export const cryptoConfig = Object.freeze<ICryptoConfigDTO>({
   driver: 'crypto',
   config: {
@@ -34,6 +79,8 @@ export const cryptoConfig = Object.freeze<ICryptoConfigDTO>({
     },
   },
 });
+
+cryptoValidator.validateAsync(cryptoConfig);
 `;
   }
 }

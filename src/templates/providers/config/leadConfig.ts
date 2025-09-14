@@ -1,6 +1,8 @@
 export class CreateLeadConfig {
   public execute(): string {
-    return `interface ILeadConfigDTO {
+    return `import { Joi } ${'from'} 'celebrate';
+
+interface ILeadConfigDTO {
   readonly driver: 'rdstation';
   readonly config: {
     readonly rdstation: {
@@ -12,6 +14,19 @@ export class CreateLeadConfig {
     };
   };
 }
+
+const leadValidator = Joi.object<ILeadConfigDTO>({
+  driver: Joi.string().valid('rdstation').required(),
+  config: Joi.object<ILeadConfigDTO['config']>({
+    rdstation: Joi.object<ILeadConfigDTO['config']['rdstation']>({
+      apiUrl: Joi.string().uri().required(),
+      clientId: Joi.string().allow('').required(),
+      clientSecret: Joi.string().allow('').required(),
+      code: Joi.string().allow('').required(),
+      publicApiKey: Joi.string().allow('').required(),
+    }).required(),
+  }).required(),
+});
 
 export const leadConfig = Object.freeze<ILeadConfigDTO>({
   driver: 'rdstation',
@@ -25,6 +40,8 @@ export const leadConfig = Object.freeze<ILeadConfigDTO>({
     },
   },
 });
+
+leadValidator.validateAsync(leadConfig);
 `;
   }
 }

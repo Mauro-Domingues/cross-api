@@ -50,13 +50,13 @@ export class BuildPayload {
     color,
     options,
   }: IInputDTO): Array<string> {
-    const opt = new Set(options);
+    const optionsSet = new Set(options);
     return [
-      this.isBold(opt.has('bold')),
+      this.isBold(optionsSet.has('bold')),
       this.getColor(color),
-      this.isbreakStart(opt.has('breakStart')),
+      this.isbreakStart(optionsSet.has('breakStart')),
       this.concat.execute(...message),
-      this.isbreakEnd(opt.has('breakEnd')),
+      this.isbreakEnd(optionsSet.has('breakEnd')),
       '\x1b[0m',
     ];
   }

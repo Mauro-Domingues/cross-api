@@ -1,6 +1,7 @@
 export class CreateCacheConfig {
   public execute(): string {
-    return `import { RedisOptions } ${'from'} 'ioredis';
+    return `import { Joi } ${'from'} 'celebrate';
+import { RedisOptions } ${'from'} 'ioredis';
 
 interface ICacheConfigDTO {
   readonly driver: 'redis';
@@ -8,6 +9,18 @@ interface ICacheConfigDTO {
     readonly redis: RedisOptions & { readonly keyPrefix: string };
   };
 }
+
+const cacheValidator = Joi.object<ICacheConfigDTO>({
+  driver: Joi.string().valid('redis').required(),
+  config: Joi.object<ICacheConfigDTO['config']>({
+    redis: Joi.object<ICacheConfigDTO['config']['redis']>({
+      port: Joi.number().integer().positive().min(1).max(65535).required(),
+      host: Joi.string().hostname().required(),
+      password: Joi.string().allow('').required(),
+      keyPrefix: Joi.string().required(),
+    }).required(),
+  }).required(),
+});
 
 export const cacheConfig = Object.freeze<ICacheConfigDTO>({
   driver: 'redis',
@@ -20,6 +33,8 @@ export const cacheConfig = Object.freeze<ICacheConfigDTO>({
     },
   },
 });
+
+cacheValidator.validateAsync(cacheConfig);
 `;
   }
 }

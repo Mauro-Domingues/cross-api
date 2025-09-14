@@ -1,10 +1,19 @@
 export class CreateCorsConfig {
   public execute(): string {
-    return `import { AppError } ${'from'} '@shared/errors/AppError';
-import { CorsOptions } ${'from'} 'cors';
+    return `import { Joi } ${'from'} 'celebrate';
+import { AppError } ${'from'} '@shared/errors/AppError';
+import { CorsOptions as ICorsConfigDTO } ${'from'} 'cors';
 import { appConfig } ${'from'} './app';
 
-export const corsConfig = Object.freeze<CorsOptions>({
+const corsValidator = Joi.object<ICorsConfigDTO>({
+  methods: Joi.array()
+    .items(Joi.string().valid('GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'))
+    .min(1)
+    .required(),
+  origin: Joi.function().arity(2).required(),
+});
+
+export const corsConfig = Object.freeze<ICorsConfigDTO>({
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   origin(origin, callback) {
     if (appConfig.config.apiMode === 'production') {
@@ -18,6 +27,8 @@ export const corsConfig = Object.freeze<CorsOptions>({
     return callback(null, true);
   },
 });
+
+corsValidator.validateAsync(corsConfig);
 `;
   }
 }

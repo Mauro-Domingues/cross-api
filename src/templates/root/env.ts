@@ -59,7 +59,7 @@ SES_REGION=
 QUEUE_DRIVER=bull
 
 # Notification (firebase | onesignal)
-NOTIFICATION_DRIVER=firebase
+NOTIFICATION_DRIVER=onesignal
 
 # Firebase
 FIREBASE_API_URL=https://fcm.googleapis.com/v1

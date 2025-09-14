@@ -21,7 +21,7 @@ const paths: Array<IExceptionDTO> = [
     allowParams: true,
   },
   {
-    // matches /first-example and matches /first-example/param
+    // matches /first-example and /first-example/param
     url: '/last-example',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowParams: true,
