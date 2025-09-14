@@ -39,7 +39,7 @@ export class CreateDockerCompose {
       options:
         max-size: 10m
         max-file: 3
-    
+
   mysql:
     container_name: mysql
     image: mysql:latest
