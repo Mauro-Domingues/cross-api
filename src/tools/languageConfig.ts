@@ -50,7 +50,7 @@ export class ConfigLanguage {
     return this.console.execute({
       message: ['|', ' '.repeat(37), '|'],
       color: 'blue',
-      bold: true,
+      options: ['bold'],
     });
   }
 
@@ -59,14 +59,12 @@ export class ConfigLanguage {
       {
         message: [' /', '='.repeat(35), '\\'],
         color: 'blue',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -74,12 +72,12 @@ export class ConfigLanguage {
           this.languageMessages.headers.title.padEnd(11, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -87,13 +85,12 @@ export class ConfigLanguage {
           this.languageMessages.headers.description.padEnd(13, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
-        breakEnd: true,
+        options: ['bold', 'breakEnd'],
       },
       {
         message: [
@@ -103,7 +100,7 @@ export class ConfigLanguage {
           '|',
         ],
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
     ]);
   }
@@ -114,17 +111,17 @@ export class ConfigLanguage {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: ['  ➤  ', key.padEnd(12, ' ')],
           color: 'yellow',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: [' '.repeat(2), value.padEnd(17, ' ')],
@@ -133,7 +130,7 @@ export class ConfigLanguage {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
       ]);
       return this.renderEmptyLine();
@@ -144,8 +141,7 @@ export class ConfigLanguage {
     return this.console.execute({
       message: [' \\', '='.repeat(35), '/'],
       color: 'blue',
-      bold: true,
-      breakEnd: true,
+      options: ['bold', 'breakEnd'],
     });
   }
 
@@ -183,9 +179,7 @@ export class ConfigLanguage {
         this.languageMessages.options[this.languageChosen],
       ],
       color: 'green',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
+      options: ['bold', 'breakEnd', 'breakStart'],
     });
   }
 

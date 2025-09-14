@@ -48,16 +48,15 @@ export class BuildPayload {
   private stringifyPayload({
     message,
     color,
-    bold,
-    breakStart,
-    breakEnd,
+    options,
   }: IInputDTO): Array<string> {
+    const opt = new Set(options);
     return [
-      this.isBold(bold),
+      this.isBold(opt.has('bold')),
       this.getColor(color),
-      this.isbreakStart(breakStart),
+      this.isbreakStart(opt.has('breakStart')),
       this.concat.execute(...message),
-      this.isbreakEnd(breakEnd),
+      this.isbreakEnd(opt.has('breakEnd')),
       '\x1b[0m',
     ];
   }

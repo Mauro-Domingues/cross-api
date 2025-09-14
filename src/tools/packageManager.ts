@@ -65,14 +65,12 @@ export class PackageManager {
     this.console.execute({
       message: this.dependencyMessages.headers.dependencies,
       color: 'blue',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
+      options: ['bold', 'breakStart', 'breakEnd'],
     });
     this.shell.execute(
       this.concat.execute('yarn add ', dependencies.join(' ')),
     );
-    return dependencies.forEach(dependency => {
+    return dependencies.forEach((dependency, index) => {
       return this.console.execute({
         message: [
           '- ',
@@ -81,7 +79,8 @@ export class PackageManager {
           this.dependencyMessages.description.installed,
         ],
         color: 'yellow',
-        ...(!this.devDependencies.length && { breakEnd: true }),
+        ...(!this.devDependencies.length &&
+          dependencies.length - 1 === index && { options: ['breakEnd'] }),
       });
     });
   }
@@ -90,14 +89,12 @@ export class PackageManager {
     this.console.execute({
       message: this.dependencyMessages.headers.devDependencies,
       color: 'blue',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
+      options: ['bold', 'breakStart', 'breakEnd'],
     });
     this.shell.execute(
       this.concat.execute('yarn add ', devDependencies.join(' '), ' -D'),
     );
-    return devDependencies.forEach(devDependency => {
+    return devDependencies.forEach((devDependency, index) => {
       return this.console.execute({
         message: [
           '- ',
@@ -106,6 +103,7 @@ export class PackageManager {
           this.dependencyMessages.description.installed,
         ],
         color: 'yellow',
+        ...(devDependencies.length - 1 === index && { options: ['breakEnd'] }),
       });
     });
   }
@@ -114,18 +112,14 @@ export class PackageManager {
     this.console.execute({
       message: this.dependencyMessages.question,
       color: 'green',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
+      options: ['bold', 'breakStart', 'breakEnd'],
     });
     this.readline.execute((optionChosen: 'y' | 'n'): void => {
       if (optionChosen === 'y') {
         this.console.execute({
           message: this.dependencyMessages.headers.uninstalling,
           color: 'blue',
-          bold: true,
-          breakStart: true,
-          breakEnd: true,
+          options: ['bold', 'breakStart', 'breakEnd'],
         });
         this.shell.execute(
           this.concat.execute('yarn remove ', dependencies.join(' ')),
@@ -159,7 +153,7 @@ export class PackageManager {
     const dependenciesToUninstall = [
       ...(dependencies || []),
       ...(devDependencies || []),
-    ];
+    ].map(dependency => dependency.replace(this.directivePattern, ''));
 
     if (dependenciesToUninstall.length) {
       this.uninstallDependencies(dependenciesToUninstall);

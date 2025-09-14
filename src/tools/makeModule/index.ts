@@ -51,9 +51,7 @@ export class CreateModule {
       throw new CustomError({
         message: this.moduleMessages.errors.notFound,
         color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       });
     }
 
@@ -113,7 +111,7 @@ export class CreateModule {
         this.helpMessages.description.created,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
   }
 }

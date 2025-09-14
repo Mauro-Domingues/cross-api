@@ -17,8 +17,7 @@ export class Readline {
     return this.console.execute({
       message: ['"', optionChosen, '"', this.helpMessages.errors.invalidOption],
       color: 'red',
-      bold: true,
-      breakStart: true,
+      options: ['bold', 'breakStart'],
     });
   }
 

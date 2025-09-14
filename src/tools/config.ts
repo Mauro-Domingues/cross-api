@@ -95,14 +95,15 @@ export class ConfigJson extends ConfigLanguage {
       {
         message: this.dependencyMessages.headers.yarn,
         color: 'blue',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       },
       {
-        message: ['- yarn ', this.dependencyMessages.description.installed],
+        message: [
+          '- yarn'.padEnd(7, ' '),
+          this.dependencyMessages.description.installed,
+        ],
         color: 'yellow',
-        breakStart: true,
+        options: ['breakStart'],
       },
     ]);
     return this.shell.execute('npm install yarn --location=global');
@@ -113,34 +114,32 @@ export class ConfigJson extends ConfigLanguage {
       {
         message: this.helpMessages.description.attempt.action,
         color: 'blue',
-        bold: true,
-        breakStart: true,
+        options: ['bold'],
       },
       {
         message: this.helpMessages.description.attempt.command,
         color: 'yellow',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: this.helpMessages.description.attempt.info,
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: this.documentationMessages.description.action,
         color: 'blue',
-        bold: true,
-        breakStart: true,
+        options: ['bold', 'breakStart'],
       },
       {
         message: 'https://cross-packages.gitbook.io/cross-api',
         color: 'purple',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: this.documentationMessages.description.info,
         color: 'blue',
-        bold: true,
+        options: ['bold', 'breakEnd'],
       },
     ]);
   }

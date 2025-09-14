@@ -35,9 +35,7 @@ export class CreateProvider {
       throw new CustomError({
         message: this.providerMessages.errors.notFound,
         color: 'red',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       });
     }
 
@@ -51,7 +49,7 @@ export class CreateProvider {
         this.helpMessages.description.created,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
 
     return new PackageManager(

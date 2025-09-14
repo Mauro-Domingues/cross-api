@@ -62,7 +62,7 @@ export class Board {
     return this.console.execute({
       message: ['|', ' '.repeat(116), '|'],
       color: 'blue',
-      bold: true,
+      options: ['bold'],
     });
   }
 
@@ -76,8 +76,7 @@ export class Board {
         '\\',
       ],
       color: 'blue',
-      bold: true,
-      breakStart: true,
+      options: ['bold', 'breakStart'],
     });
   }
 
@@ -87,7 +86,7 @@ export class Board {
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -97,12 +96,12 @@ export class Board {
           this.boardMessages.headers.tools.padEnd(111, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
     ]);
     this.renderEmptyLine();
@@ -111,17 +110,21 @@ export class Board {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
-          message: [' '.repeat(4), '➤  ', tool.title.padEnd(30, ' ')],
+          message: [
+            ' '.repeat(4),
+            '➤'.padEnd(3, ' '),
+            tool.title.padEnd(30, ' '),
+          ],
           color: 'yellow',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: [' ', tool.description.padEnd(77, ' ')],
@@ -130,7 +133,7 @@ export class Board {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
       ]);
       return this.renderEmptyLine();
@@ -142,7 +145,7 @@ export class Board {
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -152,12 +155,12 @@ export class Board {
           this.boardMessages.headers.structure.padEnd(111, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
     ]);
     this.renderEmptyLine();
@@ -166,17 +169,21 @@ export class Board {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
-          message: [' '.repeat(4), '➤  ', structure.title.padEnd(30, ' ')],
+          message: [
+            ' '.repeat(4),
+            '➤'.padEnd(3, ' '),
+            structure.title.padEnd(30, ' '),
+          ],
           color: 'yellow',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: [' ', structure.description.padEnd(77, ' ')],
@@ -185,7 +192,7 @@ export class Board {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
       ]);
       return this.renderEmptyLine();
@@ -196,8 +203,7 @@ export class Board {
     return this.console.execute({
       message: [' \\', '='.repeat(114), '/'],
       color: 'blue',
-      bold: true,
-      breakEnd: true,
+      options: ['bold', 'breakEnd'],
     });
   }
 

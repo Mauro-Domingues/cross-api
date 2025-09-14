@@ -79,7 +79,7 @@ export class DeleteModule {
         names.lowerModuleName,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
   }
 
@@ -202,7 +202,7 @@ export class DeleteModule {
         fatherNames.lowerModuleName,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
   }
 

@@ -11,9 +11,7 @@ export class ConfigJson {
     this.console.execute({
       message: this.helpMessages.description.configured,
       color: 'green',
-      bold: true,
-      breakStart: true,
-      breakEnd: true,
+      options: ['bold','breakStart','breakEnd'],
     });
   }
 }

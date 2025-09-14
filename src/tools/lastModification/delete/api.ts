@@ -40,7 +40,7 @@ export class DeleteApi {
     return this.console.execute({
       message: ['- ', this.helpMessages.description.reversed, ': ', command],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
   }
 }

@@ -25,7 +25,7 @@ export class ListProvider {
     return this.console.execute({
       message: ['|', ' '.repeat(55), '|'],
       color: 'blue',
-      bold: true,
+      options: ['bold'],
     });
   }
 
@@ -34,14 +34,12 @@ export class ListProvider {
       {
         message: [' /', '='.repeat(53), '\\'],
         color: 'blue',
-        bold: true,
-        breakStart: true,
-        breakEnd: true,
+        options: ['bold', 'breakStart', 'breakEnd'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -49,12 +47,12 @@ export class ListProvider {
           this.providerMessages.headers.title.padEnd(13, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|',
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: [
@@ -62,18 +60,17 @@ export class ListProvider {
           this.providerMessages.headers.description.padEnd(12, ' '),
         ],
         color: 'green',
-        bold: true,
+        options: ['bold'],
       },
       {
         message: '|'.padStart(12, ' '),
         color: 'blue',
-        bold: true,
-        breakEnd: true,
+        options: ['bold', 'breakEnd'],
       },
       {
         message: ['| ', this.concat.execute(this.trace, ' ').repeat(27), '|'],
         color: 'blue',
-        bold: true,
+        options: ['bold'],
       },
     ]);
   }
@@ -84,17 +81,17 @@ export class ListProvider {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: ['  ➤  ', provider.name.padEnd(16, ' ')],
           color: 'yellow',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
         {
           message: [' '.repeat(2), provider.description.padEnd(31, ' ')],
@@ -103,7 +100,7 @@ export class ListProvider {
         {
           message: '|',
           color: 'blue',
-          bold: true,
+          options: ['bold'],
         },
       ]);
       return this.renderEmptyLine();
@@ -114,8 +111,7 @@ export class ListProvider {
     return this.console.execute({
       message: [' \\', '='.repeat(53), '/'],
       color: 'blue',
-      bold: true,
-      breakEnd: true,
+      options: ['bold', 'breakEnd'],
     });
   }
 

@@ -76,7 +76,7 @@ export class DeleteProvider {
         names.lowerModuleName,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
     return packageManager.execute('uninstall');
   }
@@ -139,7 +139,7 @@ export class DeleteProvider {
         fatherNames.lowerModuleName,
       ],
       color: 'yellow',
-      bold: true,
+      options: ['bold'],
     });
     return packageManager.execute('uninstall');
   }

@@ -55,7 +55,7 @@ export class CreateApi {
     return this.console.execute({
       message: this.helpMessages.description.apiCreated,
       color: 'blue',
-      bold: true,
+      options: ['bold'],
     });
   }
 }
