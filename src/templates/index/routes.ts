@@ -1,23 +1,15 @@
 export class CreateRouteIndex {
   public execute(): string {
-    return `import { Router, Request, Response } from 'express';
-import { celebrate, Segments, Joi } from 'celebrate';
+    return `import { Router } ${'from'} 'express';
+import { healthRouter } ${'from'} './healthRouter';
+// import { guardRouter } ${'from'} './guardRouter';
 
-const healthRouter = Router();
+const routes = Router();
 
-healthRouter.get(
-  '/health',
-  celebrate({
-    [Segments.PARAMS]: Joi.object({}),
-    [Segments.QUERY]: Joi.object({}),
-    [Segments.BODY]: Joi.object({}),
-  }),
-  (_request: Request, response: Response): void => {
-    response.sendStatus(204);
-  },
-);
+// routes.use(guardRouter); // Use this before all routes to protect using jwt and set open routes/methods at guardRouter.ts
+routes.use(healthRouter);
 
-export { healthRouter };
+export { routes };
 `;
   }
 }
