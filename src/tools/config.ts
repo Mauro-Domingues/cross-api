@@ -77,7 +77,7 @@ export class ConfigJson extends ConfigLanguage {
       doc: 'ts-node-dev doc.config.ts',
       build: 'npx swc src --out-dir dist --copy-files --strip-leading-paths',
       runMigrations:
-        'set NODE_ENV=production&& ts-node-dev -r tsconfig-paths/register --transpile-only src/shared/typeorm/runMigrations.ts',
+        'npm run build && node dist/shared/typeorm/runMigrations.ts',
       typeCheck: 'npx tsc --noEmit',
       test: 'set NODE_ENV=test&& jest --runInBand',
       start: 'node dist/shared/server.js',
