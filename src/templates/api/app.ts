@@ -42,8 +42,8 @@ export const app = new (class App {
 
   private middlewares(): void {
     this.server.use(setConnection);
-    this.server.use(cors(corsConfig));
     this.server.use(rateLimiter);
+    this.server.use(cors(corsConfig));
     this.server.use(json());
     this.server.use(urlencoded({ extended: true }));
     this.server.use(parseParam);

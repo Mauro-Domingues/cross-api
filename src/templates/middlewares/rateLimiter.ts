@@ -6,7 +6,7 @@ import { AppError } ${'from'} '@shared/errors/AppError';
 
 const limiter = new RateLimiterMemory({
   keyPrefix: 'ratelimiter',
-  blockDuration: 5,
+  blockDuration: 30,
   duration: 1,
   points: 5,
 });
