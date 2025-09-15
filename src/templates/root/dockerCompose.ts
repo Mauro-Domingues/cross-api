@@ -39,7 +39,10 @@ services:
     healthcheck:
       test:
         - CMD-SHELL
-        - curl -s -o /dev/null http://localhost:$API_PORT || exit 1
+        - >
+          curl --fail -s
+          -H "Origin: $(echo $ALLOWED_DOMAINS | tr -d '[] ' | cut -d',' -f1)"
+          http://localhost:$API_PORT/health || exit 1
       start_period: 10s
       interval: 10s
       timeout: 5s
