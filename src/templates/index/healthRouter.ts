@@ -1,4 +1,4 @@
-export class CreateRouteIndex {
+export class CreateHealthRouter {
   public execute(): string {
     return `import { Router } ${'from'} 'express';
 import { healthRouter } ${'from'} './healthRouter';

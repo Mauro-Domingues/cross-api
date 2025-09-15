@@ -1,21 +1,29 @@
 export class CreateDockerCompose {
   public execute(): string {
-    return `services:
+    return `x-base: &base
+  restart: unless-stopped
+  networks:
+    - cross-network
+  env_file:
+    - .env
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: 3
+
+services:
   app:
+    <<: *base
     container_name: app
     build:
       context: .
       dockerfile: Dockerfile
-    restart: unless-stopped
-    networks:
-      - cross-network
     depends_on:
       mysql:
         condition: service_healthy
       redis:
         condition: service_healthy
-    env_file:
-      - .env
     environment:
       - NODE_ENV=production
       - MYSQL_HOST=mysql
@@ -36,20 +44,11 @@ export class CreateDockerCompose {
       interval: 10s
       timeout: 5s
       retries: 5
-    logging:
-      driver: json-file
-      options:
-        max-size: 10m
-        max-file: 3
 
   mysql:
+    <<: *base
     container_name: mysql
     image: mysql:latest
-    restart: unless-stopped
-    networks:
-      - cross-network
-    env_file:
-      - .env
     volumes:
       - mysql:/var/lib/mysql
     ports:
@@ -63,20 +62,11 @@ export class CreateDockerCompose {
       interval: 10s
       timeout: 5s
       retries: 3
-    logging:
-      driver: json-file
-      options:
-        max-size: 10m
-        max-file: 3
 
   redis:
+    <<: *base
     container_name: redis
     image: bitnami/redis
-    restart: unless-stopped
-    networks:
-      - cross-network
-    env_file:
-      - .env
     ports:
       - \${REDIS_PORT}:6379
     healthcheck:
@@ -89,11 +79,6 @@ export class CreateDockerCompose {
       interval: 10s
       timeout: 5s
       retries: 3
-    logging:
-      driver: json-file
-      options:
-        max-size: 10m
-        max-file: 3
 
 volumes:
   mysql:

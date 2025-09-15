@@ -22,7 +22,7 @@ RUN npm prune --omit=dev --legacy-peer-deps
 
 COPY --from=build /app/dist ./dist
 
-CMD ["npm", "run", "start", "--", "--bind", "0.0.0.0"]
+CMD ["sh", "-c", "node /app/dist/shared/typeorm/runMigrations.js && npm run start -- --bind 0.0.0.0"]
 `;
   }
 }

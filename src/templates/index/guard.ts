@@ -10,14 +10,15 @@ const guardRouter = Router();
 
 const paths: Array<IExceptionDTO> = [
   {
-    // matches /first-example
-    url: '/first-example',
-    methods: ['GET', 'PUT', 'DELETE'],
+    // matches /health
+    // keep this one
+    url: '/health',
+    methods: ['GET'],
   },
   {
     // matches /first-example/param
     url: '/second-example',
-    methods: ['GET'],
+    methods: ['GET', 'PUT', 'PATCH', 'DELETE'],
     allowParams: true,
   },
   {
