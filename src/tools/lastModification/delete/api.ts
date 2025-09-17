@@ -22,6 +22,7 @@ export class DeleteApi {
       ['tmp'],
     ]);
     this.fileManager.checkAndRemoveMultiFile([
+      ['.dockerignore'],
       ['.editorconfig'],
       ['.env'],
       ['.env.template'],
