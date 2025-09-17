@@ -42,7 +42,7 @@ services:
         - >
           curl --fail -s
           -H "Origin: $(echo $ALLOWED_DOMAINS | tr -d '[] ' | cut -d',' -f1)"
-          http://localhost:$API_PORT/health || exit 1
+          http://localhost:$API_PORT/health > /dev/null || exit 1
       start_period: 10s
       interval: 10s
       timeout: 5s
@@ -58,30 +58,26 @@ services:
       - \${MYSQL_PORT}:3306
     healthcheck:
       test:
-        - CMD
-        - mysqladmin
-        - ping
-        - -p\${MYSQL_ROOT_PASSWORD}
+        - CMD-SHELL
+        - MYSQL_PWD=$MYSQL_ROOT_PASSWORD mysqladmin ping -h localhost
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 5
 
   redis:
     <<: *base
     container_name: redis
-    image: bitnami/redis
+    image: redis:latest
+    command: redis-server --requirepass $REDIS_PASSWORD
     ports:
       - \${REDIS_PORT}:6379
     healthcheck:
       test:
-        - CMD
-        - redis-cli
-        - -a
-        - \${REDIS_PASSWORD}
-        - ping
+        - CMD-SHELL
+        - REDISCLI_AUTH=$REDIS_PASSWORD redis-cli ping
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 5
 
 volumes:
   mysql:
