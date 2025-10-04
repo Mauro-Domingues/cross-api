@@ -44,7 +44,7 @@ async function runSeeds({
   );
 }
 
-(async function seed(): Promise<void> {
+(async function main(): Promise<void> {
   const connection = new Connection(process.argv[2]);
   await connection.connect();
 
