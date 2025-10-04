@@ -35,6 +35,7 @@ export class CreateInfra {
       [modulePath, 'validators'],
       ['src', 'shared', 'errors'],
       ['src', 'shared', 'container', 'providers'],
+      [typeormPath, 'cli'],
       [typeormPath, 'dataSources', 'fakes'],
       [typeormPath, 'migrations'],
       [typeormPath, 'seeds'],
