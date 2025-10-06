@@ -3,11 +3,11 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class CreateFakeRepository extends BaseTemplateModule {
   public constructor(
-    protected readonly names: Omit<
+    private readonly names: Omit<
       IModuleNameDTO,
       'routeModuleName' | 'dbModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {

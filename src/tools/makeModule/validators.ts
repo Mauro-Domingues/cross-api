@@ -18,21 +18,21 @@ export class CreateValidators extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
-    this.updateValidator = new UpdateValidator(this.names, this.fatherNames);
-    this.createValidator = new CreateValidator(this.names, this.fatherNames);
-    this.deleteValidator = new DeleteValidator(this.names, this.fatherNames);
-    this.showValidator = new ShowValidator(this.names, this.fatherNames);
-    this.listValidator = new ListValidator(this.names, this.fatherNames);
-    this.createSchema = new CreateSchema(this.names, this.fatherNames);
+    this.updateValidator = new UpdateValidator(this.names, fatherNames);
+    this.createValidator = new CreateValidator(this.names, fatherNames);
+    this.deleteValidator = new DeleteValidator(this.names, fatherNames);
+    this.showValidator = new ShowValidator(this.names, fatherNames);
+    this.listValidator = new ListValidator(this.names, fatherNames);
+    this.createSchema = new CreateSchema(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

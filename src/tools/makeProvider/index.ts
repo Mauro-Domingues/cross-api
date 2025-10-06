@@ -16,13 +16,11 @@ export class CreateProvider {
 
   public constructor(
     private readonly providerName: string | undefined,
-    private readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     this.messages = Messages.getInstance();
     this.providerMessages = this.messages.providers;
-    this.provider = new Provider(this.fatherNames);
+    this.provider = new Provider(fatherNames);
     this.helpMessages = this.messages.help;
     this.console = Console.getInstance();
   }

@@ -3,11 +3,11 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class CreateController extends BaseTemplateModule {
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {

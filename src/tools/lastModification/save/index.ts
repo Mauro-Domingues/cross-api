@@ -11,7 +11,7 @@ export class CreateRegister extends BaseRegister {
     private readonly command: Array<string> | undefined,
     private readonly providerName: string | undefined,
     private readonly names: IModuleNameDTO | undefined,
-    private readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
@@ -20,13 +20,13 @@ export class CreateRegister extends BaseRegister {
       this.fileManager,
       this.basePath,
       this.providerName,
-      this.fatherNames,
+      fatherNames,
     );
     this.createModule = new CreateModule(
       this.fileManager,
       this.basePath,
       this.names,
-      this.fatherNames,
+      fatherNames,
     );
   }
 

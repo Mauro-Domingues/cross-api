@@ -3,11 +3,11 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class ListController extends BaseTemplateModule {
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'upperModuleName' | 'pluralLowerModuleName' | 'lowerModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {

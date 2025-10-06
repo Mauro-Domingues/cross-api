@@ -17,9 +17,7 @@ export class CreateStorageProvider extends BaseProvider {
   private readonly createIStorage: CreateIStorage;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createStorageConfig = new CreateStorageConfig();

@@ -21,9 +21,7 @@ export class CreateCryptoProvider extends BaseProvider {
   private readonly createCrypto: CreateCrypto;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createIRefreshTokenDTO = new CreateIRefreshTokenDTO();

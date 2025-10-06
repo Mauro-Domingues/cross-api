@@ -13,12 +13,12 @@ export class CreateModuleInjection {
       IModuleNameDTO,
       'pluralUpperModuleName' | 'pluralLowerModuleName' | 'lowerModuleName'
     >,
-    private readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     this.createContainerIndex = new CreateContainerIndex();
-    this.createInjection = new CreateInjection(this.names, this.fatherNames);
+    this.createInjection = new CreateInjection(this.names, fatherNames);
     this.fileManager = FileManager.getInstance();
   }
 

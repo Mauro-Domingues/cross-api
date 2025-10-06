@@ -9,7 +9,7 @@ export abstract class BaseProvider {
   protected readonly basePath: string;
 
   public constructor(
-    protected readonly fatherNames:
+    private readonly fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
       | undefined,
   ) {

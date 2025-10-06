@@ -3,8 +3,8 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class UpdateService extends BaseTemplateModule {
   public constructor(
-    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
-    protected readonly fatherNames:
+    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {

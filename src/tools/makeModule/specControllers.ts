@@ -16,17 +16,23 @@ export class CreateSpecControllers extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
+    private readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
+    fatherNames:
+      | Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
-    this.updateSpecController = new UpdateSpecController(this.names);
+    this.updateSpecController = new UpdateSpecController(
+      this.names,
+      fatherNames,
+    );
     this.createSpecController = new CreateSpecController(this.names);
-    this.deleteSpecController = new DeleteSpecController(this.names);
-    this.listSpecController = new ListSpecController(this.names);
-    this.showSpecController = new ShowSpecController(this.names);
+    this.deleteSpecController = new DeleteSpecController(
+      this.names,
+      fatherNames,
+    );
+    this.listSpecController = new ListSpecController(this.names, fatherNames);
+    this.showSpecController = new ShowSpecController(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

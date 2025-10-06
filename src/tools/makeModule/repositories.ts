@@ -12,24 +12,21 @@ export class CreateRepositories extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Omit<
+    private readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
     this.createFakeRepository = new CreateFakeRepository(
       this.names,
-      this.fatherNames,
+      fatherNames,
     );
-    this.createIRepository = new CreateIRepository(
-      this.names,
-      this.fatherNames,
-    );
-    this.createRepository = new CreateRepository(this.names, this.fatherNames);
+    this.createIRepository = new CreateIRepository(this.names, fatherNames);
+    this.createRepository = new CreateRepository(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

@@ -16,29 +16,20 @@ export class CreateSpecServices extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Omit<
+    private readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
-    this.deleteSpecService = new DeleteSpecService(
-      this.names,
-      this.fatherNames,
-    );
-    this.updateSpecService = new UpdateSpecService(
-      this.names,
-      this.fatherNames,
-    );
-    this.createSpecService = new CreateSpecService(
-      this.names,
-      this.fatherNames,
-    );
-    this.showSpecService = new ShowSpecService(this.names, this.fatherNames);
-    this.listSpecService = new ListSpecService(this.names, this.fatherNames);
+    this.deleteSpecService = new DeleteSpecService(this.names, fatherNames);
+    this.updateSpecService = new UpdateSpecService(this.names, fatherNames);
+    this.createSpecService = new CreateSpecService(this.names, fatherNames);
+    this.showSpecService = new ShowSpecService(this.names, fatherNames);
+    this.listSpecService = new ListSpecService(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

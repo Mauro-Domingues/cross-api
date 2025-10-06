@@ -5,12 +5,12 @@ import { FileManager } from '@tools/fileManager';
 
 export class CreateMigrations {
   private readonly createMigration: CreateMigration;
-  protected readonly fileManager: FileManager;
+  private readonly fileManager: FileManager;
   private readonly timestamp: number;
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'upperModuleName' | 'dbModuleName' | 'lowerModuleName'
     >,

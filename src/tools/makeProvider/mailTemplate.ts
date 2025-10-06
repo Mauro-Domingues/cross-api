@@ -19,9 +19,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
   private readonly createIMailTemplate: CreateIMailTemplate;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createIMailTemplateFragmentDTO = new CreateIMailTemplateFragmentDTO();

@@ -14,23 +14,20 @@ export class Provider {
   public readonly list: IProviderListDTO;
 
   public constructor(
-    private readonly fatherNames?: Pick<
-      IModuleNameDTO,
-      'pluralLowerModuleName'
-    >,
+    fatherNames?: Pick<IModuleNameDTO, 'pluralLowerModuleName'>,
   ) {
     this.list = Object.freeze<IProviderListDTO>({
       cache: {
         name: 'cache',
         description: 'CacheProvider',
-        instance: () => new CreateCacheProvider(this.fatherNames),
+        instance: () => new CreateCacheProvider(fatherNames),
         dependencies: ['ioredis@^5.6.1'],
         devDependencies: [],
       },
       crypto: {
         name: 'crypto',
         description: 'CryptoProvider',
-        instance: () => new CreateCryptoProvider(this.fatherNames),
+        instance: () => new CreateCryptoProvider(fatherNames),
         dependencies: ['jsonwebtoken@^9.0.2', 'pem-jwk@^2.0.0'],
         devDependencies: [
           '@types/jsonwebtoken@^9.0.9',
@@ -40,14 +37,14 @@ export class Provider {
       hash: {
         name: 'hash',
         description: 'HashProvider',
-        instance: () => new CreateHashProvider(this.fatherNames),
+        instance: () => new CreateHashProvider(fatherNames),
         dependencies: ['bcrypt@^6.0.0'],
         devDependencies: ['@types/bcrypt@^5.0.2'],
       },
       lead: {
         name: 'lead',
         description: 'leadProvider',
-        instance: () => new CreateLeadProvider(this.fatherNames),
+        instance: () => new CreateLeadProvider(fatherNames),
         dependencies: ['axios@^1.9.0'],
         devDependencies: [],
       },
@@ -56,8 +53,8 @@ export class Provider {
         description: 'MailProvider',
         instance: () => ({
           execute: (): void => {
-            new CreateMailTemplateProvider(this.fatherNames).execute();
-            return new CreateMailProvider(this.fatherNames).execute();
+            new CreateMailTemplateProvider(fatherNames).execute();
+            return new CreateMailProvider(fatherNames).execute();
           },
         }),
         dependencies: [
@@ -70,28 +67,28 @@ export class Provider {
       mailTemplate: {
         name: 'mailTemplate',
         description: 'MailTemplateProvider',
-        instance: () => new CreateMailTemplateProvider(this.fatherNames),
+        instance: () => new CreateMailTemplateProvider(fatherNames),
         dependencies: ['handlebars@^4.7.8'],
         devDependencies: [],
       },
       notification: {
         name: 'notification',
         description: 'NotificationProvider',
-        instance: () => new CreateNotificationProvider(this.fatherNames),
+        instance: () => new CreateNotificationProvider(fatherNames),
         dependencies: ['axios@^1.9.0', 'google-auth-library@^10.3.0'],
         devDependencies: [],
       },
       queue: {
         name: 'queue',
         description: 'QueueProvider',
-        instance: () => new CreateQueueProvider(this.fatherNames),
+        instance: () => new CreateQueueProvider(fatherNames),
         dependencies: ['bee-queue@^1.7.1', 'bull@^4.16.5', 'kue@^0.11.6'],
         devDependencies: ['@types/kue@^0.11.17'],
       },
       storage: {
         name: 'storage',
         description: 'StorageProvider',
-        instance: () => new CreateStorageProvider(this.fatherNames),
+        instance: () => new CreateStorageProvider(fatherNames),
         dependencies: [
           '@aws-sdk/client-s3@^3.821.0',
           'mime@^3.0.0',

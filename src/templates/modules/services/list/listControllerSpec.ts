@@ -1,15 +1,24 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { BaseTemplateModule } from '@templates/modules/base';
 
-export class ListSpecController {
+export class ListSpecController extends BaseTemplateModule {
   public constructor(
     private readonly names: Omit<IModuleNameDTO, 'pluralUpperModuleName'>,
-  ) {}
+    fatherNames:
+      | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
+      | undefined,
+  ) {
+    super(names, fatherNames);
+  }
 
   public execute(): string {
     return `import request ${'from'} 'supertest';
 import { Connection, IConnection } ${'from'} '@shared/typeorm';
 import { app } ${'from'} '@shared/app';
 import { v4 as uuid } ${'from'} 'uuid';
+import { ${this.names.upperModuleName} } ${'from'} '@modules/${
+      this.baseNames.pluralLowerModuleName
+    }/entities/${this.names.upperModuleName}';
 
 let connection: IConnection;
 
@@ -19,13 +28,12 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
     await connection.connect();
     await connection.mysql.runMigrations();
 
-    return connection.mysql.query(
-      'INSERT INTO ${
-        this.names.dbModuleName
-      } (id, name, description) VALUES (?, ?, ?);',
-      [uuid(), '${this.names.lowerModuleName}', 'This is a ${
-      this.names.lowerModuleName
-    }'],
+    await connection.mysql.manager.save(
+      connection.mysql.manager.create(${this.names.upperModuleName}, {
+        id,
+        name: '${this.names.lowerModuleName}',
+        description: 'This is a ${this.names.lowerModuleName}',
+      }),
     );
   });
 

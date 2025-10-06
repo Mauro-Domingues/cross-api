@@ -16,17 +16,17 @@ export class CreateServices extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
-    protected readonly fatherNames:
+    private readonly names: Omit<IModuleNameDTO, 'dbModuleName'>,
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
-    this.deleteService = new DeleteService(this.names, this.fatherNames);
-    this.createService = new CreateService(this.names, this.fatherNames);
-    this.updateService = new UpdateService(this.names, this.fatherNames);
-    this.showService = new ShowService(this.names, this.fatherNames);
-    this.listService = new ListService(this.names, this.fatherNames);
+    this.deleteService = new DeleteService(this.names, fatherNames);
+    this.createService = new CreateService(this.names, fatherNames);
+    this.updateService = new UpdateService(this.names, fatherNames);
+    this.showService = new ShowService(this.names, fatherNames);
+    this.listService = new ListService(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

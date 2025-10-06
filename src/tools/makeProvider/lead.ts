@@ -17,9 +17,7 @@ export class CreateLeadProvider extends BaseProvider {
   private readonly createILead: CreateILead;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createRDStationLead = new CreateRDStationLead();

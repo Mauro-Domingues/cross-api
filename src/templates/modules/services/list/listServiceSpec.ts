@@ -3,11 +3,11 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class ListSpecService extends BaseTemplateModule {
   public constructor(
-    protected readonly names: Omit<
+    private readonly names: Omit<
       IModuleNameDTO,
       'dbModuleName' | 'routeModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {

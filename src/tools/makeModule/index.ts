@@ -39,7 +39,7 @@ export class CreateModule {
 
   public constructor(
     private readonly names: IModuleNameDTO | undefined,
-    private readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
@@ -57,30 +57,21 @@ export class CreateModule {
 
     this.createSpecControllers = new CreateSpecControllers(
       this.names,
-      this.fatherNames,
+      fatherNames,
     );
     this.createModuleInjection = new CreateModuleInjection(
       this.names,
-      this.fatherNames,
+      fatherNames,
     );
-    this.createSpecServices = new CreateSpecServices(
-      this.names,
-      this.fatherNames,
-    );
-    this.createRepositories = new CreateRepositories(
-      this.names,
-      this.fatherNames,
-    );
-    this.createControllers = new CreateControllers(
-      this.names,
-      this.fatherNames,
-    );
-    this.createValidators = new CreateValidators(this.names, this.fatherNames);
-    this.createEntities = new CreateEntities(this.names, this.fatherNames);
-    this.createServices = new CreateServices(this.names, this.fatherNames);
-    this.createRoutes = new CreateRoutes(this.names, this.fatherNames);
-    this.createInfra = new CreateInfra(this.names, this.fatherNames);
-    this.createDtos = new CreateDtos(this.names, this.fatherNames);
+    this.createSpecServices = new CreateSpecServices(this.names, fatherNames);
+    this.createRepositories = new CreateRepositories(this.names, fatherNames);
+    this.createControllers = new CreateControllers(this.names, fatherNames);
+    this.createValidators = new CreateValidators(this.names, fatherNames);
+    this.createEntities = new CreateEntities(this.names, fatherNames);
+    this.createServices = new CreateServices(this.names, fatherNames);
+    this.createRoutes = new CreateRoutes(this.names, fatherNames);
+    this.createInfra = new CreateInfra(this.names, fatherNames);
+    this.createDtos = new CreateDtos(this.names, fatherNames);
     this.createMigrations = new CreateMigrations(this.names);
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();

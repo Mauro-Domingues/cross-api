@@ -16,20 +16,20 @@ export class CreateControllers extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'lowerModuleName' | 'upperModuleName' | 'pluralLowerModuleName'
     >,
-    protected readonly fatherNames:
+    fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,
   ) {
     super(names, fatherNames);
-    this.updateController = new UpdateController(this.names, this.fatherNames);
-    this.createController = new CreateController(this.names, this.fatherNames);
-    this.deleteController = new DeleteController(this.names, this.fatherNames);
-    this.showController = new ShowController(this.names, this.fatherNames);
-    this.listController = new ListController(this.names, this.fatherNames);
+    this.updateController = new UpdateController(this.names, fatherNames);
+    this.createController = new CreateController(this.names, fatherNames);
+    this.deleteController = new DeleteController(this.names, fatherNames);
+    this.showController = new ShowController(this.names, fatherNames);
+    this.listController = new ListController(this.names, fatherNames);
     this.concat = Concat.getInstance();
   }
 

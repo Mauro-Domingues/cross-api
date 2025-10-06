@@ -8,13 +8,11 @@ export class CreateEntities extends BaseModule {
   private readonly concat: Concat;
 
   public constructor(
-    protected readonly names: Pick<
+    private readonly names: Pick<
       IModuleNameDTO,
       'upperModuleName' | 'dbModuleName' | 'pluralLowerModuleName'
     >,
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(names, fatherNames);
     this.createEntity = new CreateEntity(this.names);

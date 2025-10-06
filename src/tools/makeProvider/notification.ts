@@ -19,9 +19,7 @@ export class CreateNotificationProvider extends BaseProvider {
   private readonly createINotification: CreateINotification;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createOneSignalNotification = new CreateOneSignalNotification();

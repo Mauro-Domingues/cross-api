@@ -29,9 +29,7 @@ export class CreateQueueProvider extends BaseProvider {
   private readonly createIQueue: CreateIQueue;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createIHandleDataDTO = new CreateIHandleDataDTO();

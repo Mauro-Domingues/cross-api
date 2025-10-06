@@ -15,9 +15,7 @@ export class CreateHashProvider extends BaseProvider {
   private readonly createHash: CreateHash;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createHashConfig = new CreateHashConfig();

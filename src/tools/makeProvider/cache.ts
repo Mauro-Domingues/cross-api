@@ -15,9 +15,7 @@ export class CreateCacheProvider extends BaseProvider {
   private readonly createICache: CreateICache;
 
   public constructor(
-    protected readonly fatherNames:
-      | Pick<IModuleNameDTO, 'pluralLowerModuleName'>
-      | undefined,
+    fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createCacheConfig = new CreateCacheConfig();
