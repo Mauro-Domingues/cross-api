@@ -9,9 +9,9 @@ export class CreateSpecController {
   ) {}
 
   public execute(): string {
-    return `import request ${'from'} 'supertest';
-import { Connection, IConnection } ${'from'} '@shared/typeorm';
-import { app } ${'from'} '@shared/app';
+    return `import request fr\om 'supertest';
+import { Connection, IConnection } fr\om '@shared/typeorm';
+import { app } fr\om '@shared/app';
 
 let connection: IConnection;
 
@@ -27,12 +27,8 @@ describe('Create${this.names.upperModuleName}Controller', (): void => {
     return connection.mysql.destroy();
   });
 
-  it('Should be able to create a new ${
-    this.names.lowerModuleName
-  }', async (): Promise<void> => {
-    const response = await request(app.server).post('/${
-      this.names.routeModuleName
-    }').send({
+  it('Should be able to create a new ${this.names.lowerModuleName}', async (): Promise<void> => {
+    const response = await request(app.server).post('/${this.names.routeModuleName}').send({
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });

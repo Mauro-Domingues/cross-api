@@ -15,30 +15,22 @@ export class DeleteController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Request, Response } ${'from'} 'express';
-import { container } ${'from'} 'tsyringe';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/dtos/I${this.names.upperModuleName}DTO';
-import { Delete${this.names.upperModuleName}Service } ${'from'} './Delete${
-      this.names.upperModuleName
-    }Service';
+    return `import { Request, Response } fr\om 'express';
+import { container } fr\om 'tsyringe';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { Delete${this.names.upperModuleName}Service } fr\om './Delete${this.names.upperModuleName}Service';
 
 export class Delete${this.names.upperModuleName}Controller {
   public async handle(
     request: Request<Required<I${this.names.upperModuleName}DTO>>,
     response: Response<IResponseDTO<null>>,
   ): Promise<void> {
-    const delete${this.names.upperModuleName} = container.resolve(Delete${
-      this.names.upperModuleName
-    }Service);
+    const delete${this.names.upperModuleName} = container.resolve(Delete${this.names.upperModuleName}Service);
 
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await delete${
-      this.names.upperModuleName
-    }.execute(id);
+    const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(id);
 
     response.send(${this.names.lowerModuleName});
   }

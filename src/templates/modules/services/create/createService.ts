@@ -12,30 +12,22 @@ export class CreateService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } ${'from'} 'tsyringe';
-import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/dtos/I${this.names.upperModuleName}DTO';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { instanceToInstance } ${'from'} 'class-transformer';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { IConnection } ${'from'} '@shared/typeorm';
-import { Route, Tags, Post, Body } ${'from'} 'tsoa';
+    return `import { injectable, inject } fr\om 'tsyringe';
+import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { instanceToInstance } fr\om 'class-transformer';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { IConnection } fr\om '@shared/typeorm';
+import { Route, Tags, Post, Body } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Create${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${
-      this.names.pluralUpperModuleName
-    }Repository,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
@@ -47,17 +39,13 @@ export class Create${this.names.upperModuleName}Service {
   @Post()
   @Tags('${this.names.upperModuleName}')
   public async execute(
-    @Body() ${this.names.lowerModuleName}Data: I${
-      this.names.upperModuleName
-    }DTO,
+    @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = this.connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${
-      this.names.pluralLowerModuleName
-    }Repository.create(${this.names.lowerModuleName}Data, trx);
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(${this.names.lowerModuleName}Data, trx);
 
       await this.cacheProvider.invalidatePrefix(
         \`\${this.connection.client}:${this.names.pluralLowerModuleName}\`,

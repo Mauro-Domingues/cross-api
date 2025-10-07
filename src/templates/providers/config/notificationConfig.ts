@@ -1,7 +1,7 @@
 export class CreateNotificationConfig {
   public execute(): string {
-    return `import { Joi } ${'from'} 'celebrate';
-import { resolve } ${'from'} 'node:path';
+    return `import { Joi } fr\om 'celebrate';
+import { resolve } fr\om 'node:path';
 
 interface INotificationConfigDTO {
   readonly driver: 'firebase' | 'onesignal';

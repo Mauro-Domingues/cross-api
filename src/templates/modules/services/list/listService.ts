@@ -12,29 +12,23 @@ export class ListService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } ${'from'} 'tsyringe';
-import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { instanceToInstance } ${'from'} 'class-transformer';
-import { ICacheDTO } ${'from'} '@dtos/ICacheDTO';
-import { IListDTO } ${'from'} '@dtos/IListDTO';
-import { IConnection } ${'from'} '@shared/typeorm';
-import { FindOptionsWhere } ${'from'} 'typeorm';
-import { Get, Route, Tags, Query, Inject } ${'from'} 'tsoa';
+    return `import { injectable, inject } fr\om 'tsyringe';
+import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { instanceToInstance } fr\om 'class-transformer';
+import { ICacheDTO } fr\om '@dtos/ICacheDTO';
+import { IListDTO } fr\om '@dtos/IListDTO';
+import { IConnection } fr\om '@shared/typeorm';
+import { FindOptionsWhere } fr\om 'typeorm';
+import { Get, Route, Tags, Query, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class List${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${
-      this.names.pluralUpperModuleName
-    }Repository,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
@@ -56,18 +50,12 @@ export class List${this.names.upperModuleName}Service {
     try {
       const cacheKey = \`\${
         this.connection.client
-      }:${
-        this.names.pluralLowerModuleName
-      }:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
+      }:${this.names.pluralLowerModuleName}:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
 
-      let cache = await this.cacheProvider.recovery<ICacheDTO<${
-        this.names.upperModuleName
-      }>>(cacheKey);
+      let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
 
       if (!cache) {
-        const { list, amount } = await this.${
-          this.names.pluralLowerModuleName
-        }Repository.findAll(
+        const { list, amount } = await this.${this.names.pluralLowerModuleName}Repository.findAll(
           {
             where: filters,
             page,

@@ -15,14 +15,10 @@ export class CreateIRepository extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { IBaseRepository } ${'from'} '@shared/container/modules/repositories/IBaseRepository';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { IBaseRepository } fr\om '@shared/container/modules/repositories/IBaseRepository';
 
-export interface I${
-      this.names.pluralUpperModuleName
-    }Repository extends IBaseRepository<${this.names.upperModuleName}> {
+export interface I${this.names.pluralUpperModuleName}Repository extends IBaseRepository<${this.names.upperModuleName}> {
   // non-generic methods here
 }
 `;

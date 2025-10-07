@@ -15,13 +15,11 @@ export class DeleteSpecController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import request ${'from'} 'supertest';
-import { Connection, IConnection } ${'from'} '@shared/typeorm';
-import { app } ${'from'} '@shared/app';
-import { v4 as uuid } ${'from'} 'uuid';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
+    return `import request fr\om 'supertest';
+import { Connection, IConnection } fr\om '@shared/typeorm';
+import { app } fr\om '@shared/app';
+import { v4 as uuid } fr\om 'uuid';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 
 const id = uuid();
 let connection: IConnection;
@@ -46,12 +44,8 @@ describe('Delete${this.names.upperModuleName}Controller', (): void => {
     return connection.mysql.destroy();
   });
 
-  it('Should be able to delete a ${
-    this.names.lowerModuleName
-  }', async (): Promise<void> => {
-    const response = await request(app.server).delete(\`/${
-      this.names.routeModuleName
-    }/\${id}\`);
+  it('Should be able to delete a ${this.names.lowerModuleName}', async (): Promise<void> => {
+    const response = await request(app.server).delete(\`/${this.names.routeModuleName}/\${id}\`);
 
     expect(response.status).toBe(200);
   });

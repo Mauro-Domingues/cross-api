@@ -5,12 +5,12 @@ export class CreateFakeMail {
   createTestAccount,
   createTransport,
   getTestMessageUrl,
-} ${'from'} 'nodemailer';
-import { mailConfig } ${'from'} '@config/mail';
-import { inject, injectable } ${'from'} 'tsyringe';
-import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
-import { IMailProvider } ${'from'} '../models/IMailProvider';
-import { IMailTemplateProvider } ${'from'} '../../MailTemplateProvider/models/IMailTemplateProvider';
+} fr\om 'nodemailer';
+import { mailConfig } fr\om '@config/mail';
+import { inject, injectable } fr\om 'tsyringe';
+import { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
+import { IMailProvider } fr\om '../models/IMailProvider';
+import { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
 
 @injectable()
 export class FakeMailProvider implements IMailProvider {

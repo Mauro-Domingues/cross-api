@@ -1,6 +1,6 @@
 export class CreateBaseMigration {
   public execute(): string {
-    return `import { TableColumnOptions } ${'from'} 'typeorm';
+    return `import { TableColumnOptions } fr\om 'typeorm';
 
 export abstract class BaseMigration {
   public get baseColumns(): Array<TableColumnOptions> {

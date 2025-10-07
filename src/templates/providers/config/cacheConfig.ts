@@ -1,7 +1,7 @@
 export class CreateCacheConfig {
   public execute(): string {
-    return `import { Joi } ${'from'} 'celebrate';
-import { RedisOptions } ${'from'} 'ioredis';
+    return `import { Joi } fr\om 'celebrate';
+import { RedisOptions } fr\om 'ioredis';
 
 interface ICacheConfigDTO {
   readonly driver: 'redis';

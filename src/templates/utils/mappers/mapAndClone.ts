@@ -9,7 +9,7 @@ export class CreateMapAndClone {
   }
 
   public execute(): string {
-    return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
+    return `import { IObjectDTO } fr\om '@dtos/IObjectDTO';
 
 /**
  * ${this.mapperMessages.description.mapAndClone}

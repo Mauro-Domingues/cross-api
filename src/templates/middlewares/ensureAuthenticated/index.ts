@@ -1,10 +1,10 @@
 export class CreateEnsureAuthenticated {
   public execute(): string {
-    return `import passport, { AuthenticateOptions } ${'from'} 'passport';
-import { unless } ${'from'} 'express-unless';
-import { Request, Response, NextFunction } ${'from'} 'express';
-import { authConfig } ${'from'} '@config/auth';
-import { jwtStrategy } ${'from'} './strategies/jwtStrategy';
+    return `import passport, { AuthenticateOptions } fr\om 'passport';
+import { unless } fr\om 'express-unless';
+import { Request, Response, NextFunction } fr\om 'express';
+import { authConfig } fr\om '@config/auth';
+import { jwtStrategy } fr\om './strategies/jwtStrategy';
 
 jwtStrategy();
 

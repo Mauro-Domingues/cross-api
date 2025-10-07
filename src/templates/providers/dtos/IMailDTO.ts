@@ -1,6 +1,6 @@
 export class CreateIMailDTO {
   public execute(): string {
-    return `import { IParseMailTemplateDTO } ${'from'} '../../MailTemplateProvider/dtos/IParseMailTemplateDTO';
+    return `import { IParseMailTemplateDTO } fr\om '../../MailTemplateProvider/dtos/IParseMailTemplateDTO';
 
 interface IMailContactDTO {
   name: string;

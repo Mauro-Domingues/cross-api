@@ -9,8 +9,8 @@ export class CreateMapAndPatchString {
   }
 
   public execute(): string {
-    return `import { IObjectDTO } ${'from'} '@dtos/IObjectDTO';
-import { mapAndInsertAttribute } ${'from'} './mapAndInsertAttribute';
+    return `import { IObjectDTO } fr\om '@dtos/IObjectDTO';
+import { mapAndInsertAttribute } fr\om './mapAndInsertAttribute';
 
 /**
  * ${this.mapperMessages.description.patchAndInsert}

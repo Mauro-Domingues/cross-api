@@ -1,7 +1,7 @@
 export class CreateConvertToMilliseconds {
   public execute(): string {
-    return `import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
-import { AppError } ${'from'} '@shared/errors/AppError';
+    return `import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+import { AppError } fr\om '@shared/errors/AppError';
 
 export function convertToMilliseconds(delay: IIntervalDTO): number {
   const match = delay.match(/\\d+/);

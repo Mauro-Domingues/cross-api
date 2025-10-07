@@ -1,16 +1,16 @@
 export class CreateS3Storage {
   public execute(): string {
-    return `import { storageConfig } ${'from'} '@config/storage';
+    return `import { storageConfig } fr\om '@config/storage';
 import {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
-} ${'from'} '@aws-sdk/client-s3';
-import { createReadStream, unlinkSync } ${'from'} 'node:fs';
-import { getType } ${'from'} 'mime';
-import { resolve } ${'from'} 'node:path';
-import { AppError } ${'from'} '@shared/errors/AppError';
-import { IStorageProvider } ${'from'} '../models/IStorageProvider';
+} fr\om '@aws-sdk/client-s3';
+import { createReadStream, unlinkSync } fr\om 'node:fs';
+import { getType } fr\om 'mime';
+import { resolve } fr\om 'node:path';
+import { AppError } fr\om '@shared/errors/AppError';
+import { IStorageProvider } fr\om '../models/IStorageProvider';
 
 export class S3StorageProvider implements IStorageProvider {
   private readonly client: S3Client;

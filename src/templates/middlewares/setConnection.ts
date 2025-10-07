@@ -1,8 +1,8 @@
 export class CreateSetConnection {
   public execute(): string {
-    return `import { Request, Response, NextFunction } ${'from'} 'express';
-import { container } ${'from'} 'tsyringe';
-import { Connection, IConnection } ${'from'} '@shared/typeorm';
+    return `import { Request, Response, NextFunction } fr\om 'express';
+import { container } fr\om 'tsyringe';
+import { Connection, IConnection } fr\om '@shared/typeorm';
 
 /**
  * @description Defaults to the process.env database, but supports multi-tenancy

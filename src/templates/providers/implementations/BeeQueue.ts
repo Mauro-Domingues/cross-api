@@ -1,14 +1,14 @@
 export class CreateBeeQueue {
   public execute(): string {
-    return `import Bee, { Job } ${'from'} 'bee-queue';
-import { queueConfig } ${'from'} '@config/queue';
-import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
-import { IQueueProvider } ${'from'} '../models/IQueueProvider';
-import { jobs } ${'from'} '../public/jobs';
-import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
-import { IHandleDTO } ${'from'} '../dtos/IHandleDTO';
-import { IHandleDataDTO } ${'from'} '../dtos/IHandleDataDTO';
+    return `import Bee, { Job } fr\om 'bee-queue';
+import { queueConfig } fr\om '@config/queue';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+import { IQueueProvider } fr\om '../models/IQueueProvider';
+import { jobs } fr\om '../public/jobs';
+import { IQueueDTO } fr\om '../dtos/IQueueDTO';
+import { IHandleDTO } fr\om '../dtos/IHandleDTO';
+import { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
 
 export class BeeProvider implements IQueueProvider {
   private readonly queues: IQueueDTO<Bee> = {};

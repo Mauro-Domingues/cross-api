@@ -1,6 +1,6 @@
 export class CreateFakeCache {
   public execute(): string {
-    return `import { ICacheProvider } ${'from'} '../models/ICacheProvider';
+    return `import { ICacheProvider } fr\om '../models/ICacheProvider';
 
 export class FakeCacheProvider implements ICacheProvider {
   private readonly cache: Map<string, string> = new Map<string, string>();

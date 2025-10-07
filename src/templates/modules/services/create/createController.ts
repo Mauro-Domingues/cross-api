@@ -15,18 +15,12 @@ export class CreateController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/dtos/I${this.names.upperModuleName}DTO';
-import { Request, Response } ${'from'} 'express';
-import { container } ${'from'} 'tsyringe';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { Create${this.names.upperModuleName}Service } ${'from'} './Create${
-      this.names.upperModuleName
-    }Service';
+    return `import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { Request, Response } fr\om 'express';
+import { container } fr\om 'tsyringe';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { Create${this.names.upperModuleName}Service } fr\om './Create${this.names.upperModuleName}Service';
 
 export class Create${this.names.upperModuleName}Controller {
   public async handle(
@@ -35,17 +29,11 @@ export class Create${this.names.upperModuleName}Controller {
   ): Promise<void> {
     const ${this.names.lowerModuleName}Data = request.body;
 
-    const create${this.names.upperModuleName} = container.resolve(Create${
-      this.names.upperModuleName
-    }Service);
+    const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName} = await create${
-      this.names.upperModuleName
-    }.execute(${this.names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Data);
 
-    response.status(${this.names.lowerModuleName}.code).send(${
-      this.names.lowerModuleName
-    });
+    response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }
 }
 `;

@@ -1,11 +1,11 @@
 export class CreateSMTPMail {
   public execute(): string {
-    return `import { Transporter, createTransport } ${'from'} 'nodemailer';
-import { injectable, inject } ${'from'} 'tsyringe';
-import { mailConfig } ${'from'} '@config/mail';
-import { IMailTemplateProvider } ${'from'} '../../MailTemplateProvider/models/IMailTemplateProvider';
-import { ISendMailDTO } ${'from'} '../dtos/ISendMailDTO';
-import { IMailProvider } ${'from'} '../models/IMailProvider';
+    return `import { Transporter, createTransport } fr\om 'nodemailer';
+import { injectable, inject } fr\om 'tsyringe';
+import { mailConfig } fr\om '@config/mail';
+import { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
+import { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
+import { IMailProvider } fr\om '../models/IMailProvider';
 
 @injectable()
 export class SMTPMailProvider implements IMailProvider {

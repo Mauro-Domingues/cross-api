@@ -12,13 +12,11 @@ export class ListSpecController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import request ${'from'} 'supertest';
-import { Connection, IConnection } ${'from'} '@shared/typeorm';
-import { app } ${'from'} '@shared/app';
-import { v4 as uuid } ${'from'} 'uuid';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
+    return `import request fr\om 'supertest';
+import { Connection, IConnection } fr\om '@shared/typeorm';
+import { app } fr\om '@shared/app';
+import { v4 as uuid } fr\om 'uuid';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 
 let connection: IConnection;
 
@@ -42,12 +40,8 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
     return connection.mysql.destroy();
   });
 
-  it('Should be able to list all ${
-    this.names.pluralLowerModuleName
-  }', async (): Promise<void> => {
-    const response = await request(app.server).get('/${
-      this.names.routeModuleName
-    }');
+  it('Should be able to list all ${this.names.pluralLowerModuleName}', async (): Promise<void> => {
+    const response = await request(app.server).get('/${this.names.routeModuleName}');
 
     expect(response.status).toBe(200);
     expect(response.body.data[0]).toHaveProperty('id');

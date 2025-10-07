@@ -12,27 +12,21 @@ export class ShowService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } ${'from'} 'tsyringe';
-import { AppError } ${'from'} '@shared/errors/AppError';
-import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { instanceToInstance } ${'from'} 'class-transformer';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { IConnection } ${'from'} '@shared/typeorm';
-import { Get, Route, Tags, Path } ${'from'} 'tsoa';
+    return `import { injectable, inject } fr\om 'tsyringe';
+import { AppError } fr\om '@shared/errors/AppError';
+import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { instanceToInstance } fr\om 'class-transformer';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { IConnection } fr\om '@shared/typeorm';
+import { Get, Route, Tags, Path } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Show${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${
-      this.names.pluralUpperModuleName
-    }Repository,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
 
     @inject('Connection')
     private readonly connection: IConnection,
@@ -40,16 +34,12 @@ export class Show${this.names.upperModuleName}Service {
 
   @Get('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id: string): Promise<IResponseDTO<${
-    this.names.upperModuleName
-  }>> {
+  public async execute(@Path() id: string): Promise<IResponseDTO<${this.names.upperModuleName}>> {
     const trx = this.connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${
-      this.names.pluralLowerModuleName
-    }Repository.findBy(
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(
         {
           where: { id },
           select: { id: true, name: true, description: true },

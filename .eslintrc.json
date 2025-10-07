@@ -141,6 +141,14 @@
     "@typescript-eslint/no-empty-function": "off",
     "prettier/prettier": "error"
   },
+  "overrides": [
+    {
+      "files": ["src/templates/**/*.ts"],
+      "rules": {
+        "no-useless-escape": "off"
+      }
+    }
+  ],
   "settings": {
     "import/resolver": {
       "typescript": {}

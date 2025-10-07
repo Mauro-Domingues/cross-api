@@ -15,13 +15,9 @@ export class CreateFakeRepository extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { FakeBaseRepository } ${'from'} '@shared/container/modules/repositories/fakes/FakeBaseRepository';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { FakeBaseRepository } fr\om '@shared/container/modules/repositories/fakes/FakeBaseRepository';
 
 export class Fake${this.names.pluralUpperModuleName}Repository
   extends FakeBaseRepository<${this.names.upperModuleName}>

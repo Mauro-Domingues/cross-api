@@ -6,23 +6,23 @@ export class CreateCrypto {
   createDecipheriv,
   createHash,
   generateKeyPairSync,
-} ${'from'} 'node:crypto';
+} fr\om 'node:crypto';
 import {
   readFileSync,
   appendFileSync,
   truncateSync,
   existsSync,
   mkdirSync,
-} ${'from'} 'node:fs';
-import { resolve } ${'from'} 'node:path';
-import { sign, SignOptions } ${'from'} 'jsonwebtoken';
-import { JWK, pem2jwk } ${'from'} 'pem-jwk';
-import { cryptoConfig } ${'from'} '@config/crypto';
-import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IEncryptedDTO } ${'from'} '../dtos/IEncryptedDTO';
-import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
-import { IRefreshTokenDTO } ${'from'} '../dtos/IRefreshTokenDTO';
-import { IJwtTokenDTO } ${'from'} '../dtos/IJwtTokenDTO';
+} fr\om 'node:fs';
+import { resolve } fr\om 'node:path';
+import { sign, SignOptions } fr\om 'jsonwebtoken';
+import { JWK, pem2jwk } fr\om 'pem-jwk';
+import { cryptoConfig } fr\om '@config/crypto';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
+import { ICryptoProvider } fr\om '../models/ICryptoProvider';
+import { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+import { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 
 export class CryptoProvider implements ICryptoProvider {
   private write(path: string, filename: string, data: string): void {

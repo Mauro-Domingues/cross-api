@@ -1,7 +1,7 @@
 export class CreateHealthRouter {
   public execute(): string {
-    return `import { Router, Request, Response } ${'from'} 'express';
-import { celebrate, Segments, Joi } ${'from'} 'celebrate';
+    return `import { Router, Request, Response } fr\om 'express';
+import { celebrate, Segments, Joi } fr\om 'celebrate';
 
 const healthRouter = Router();
 

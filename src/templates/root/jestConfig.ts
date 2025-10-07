@@ -1,7 +1,7 @@
 export class CreateJestConfig {
   public execute(): string {
-    return `import { pathsToModuleNameMapper, JestConfigWithTsJest } ${'from'} 'ts-jest';
-import { compilerOptions } ${'from'} './tsconfig.json';
+    return `import { pathsToModuleNameMapper, JestConfigWithTsJest } fr\om 'ts-jest';
+import { compilerOptions } fr\om './tsconfig.json';
 
 export default {
   testTimeout: 20000,

@@ -9,9 +9,9 @@ export class CreateBaseRepository {
   Like,
   ObjectLiteral,
   QueryRunner,
-} ${'from'} 'typeorm';
-import { AppError } ${'from'} '@shared/errors/AppError';
-import { IBaseRepository } ${'from'} './IBaseRepository';
+} fr\om 'typeorm';
+import { AppError } fr\om '@shared/errors/AppError';
+import { IBaseRepository } fr\om './IBaseRepository';
 
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepository<Entity>

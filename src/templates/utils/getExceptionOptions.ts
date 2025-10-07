@@ -1,7 +1,7 @@
 export class CreateGetExceptionOptions {
   public execute(): string {
-    return `import { IExceptionDTO } ${'from'} '@dtos/IExceptionDTO';
-import { Params } ${'from'} 'express-unless';
+    return `import { IExceptionDTO } fr\om '@dtos/IExceptionDTO';
+import { Params } fr\om 'express-unless';
 
 function serializePath({
   allowRawRoute,

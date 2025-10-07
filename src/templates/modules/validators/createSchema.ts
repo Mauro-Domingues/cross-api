@@ -15,15 +15,11 @@ export class CreateSchema extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { baseSchema } ${'from'} '@shared/container/modules/validators/baseSchema';
-import { Joi } ${'from'} 'celebrate';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { baseSchema } fr\om '@shared/container/modules/validators/baseSchema';
+import { Joi } fr\om 'celebrate';
 
-export const ${this.names.lowerModuleName}Schema: Record<keyof ${
-      this.names.upperModuleName
-    }, Joi.Schema> = {
+export const ${this.names.lowerModuleName}Schema: Record<keyof ${this.names.upperModuleName}, Joi.Schema> = {
   ...baseSchema,
   name: Joi.string().max(255),
   description: Joi.string().max(255),

@@ -1,15 +1,15 @@
 export class CreateFakeCrypto {
   public execute(): string {
-    return `import { JWK } ${'from'} 'pem-jwk';
-import { cryptoConfig } ${'from'} '@config/crypto';
-import { readFileSync } ${'from'} 'node:fs';
-import { resolve } ${'from'} 'node:path';
-import { createHash } ${'from'} 'node:crypto';
-import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IEncryptedDTO } ${'from'} '../dtos/IEncryptedDTO';
-import { ICryptoProvider } ${'from'} '../models/ICryptoProvider';
-import { IRefreshTokenDTO } ${'from'} '../dtos/IRefreshTokenDTO';
-import { IJwtTokenDTO } ${'from'} '../dtos/IJwtTokenDTO';
+    return `import { JWK } fr\om 'pem-jwk';
+import { cryptoConfig } fr\om '@config/crypto';
+import { readFileSync } fr\om 'node:fs';
+import { resolve } fr\om 'node:path';
+import { createHash } fr\om 'node:crypto';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
+import { ICryptoProvider } fr\om '../models/ICryptoProvider';
+import { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+import { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 
 export class FakeCryptoProvider implements ICryptoProvider {
   public encrypt(text: string): IEncryptedDTO {

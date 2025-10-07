@@ -15,37 +15,25 @@ export class ShowController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/entities/${this.names.upperModuleName}';
-import { Request, Response } ${'from'} 'express';
-import { container } ${'from'} 'tsyringe';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/dtos/I${this.names.upperModuleName}DTO';
-import { Show${this.names.upperModuleName}Service } ${'from'} './Show${
-      this.names.upperModuleName
-    }Service';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { Request, Response } fr\om 'express';
+import { container } fr\om 'tsyringe';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { Show${this.names.upperModuleName}Service } fr\om './Show${this.names.upperModuleName}Service';
 
 export class Show${this.names.upperModuleName}Controller {
   public async handle(
     request: Request<Required<I${this.names.upperModuleName}DTO>>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
-    const show${this.names.upperModuleName} = container.resolve(Show${
-      this.names.upperModuleName
-    }Service);
+    const show${this.names.upperModuleName} = container.resolve(Show${this.names.upperModuleName}Service);
 
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await show${
-      this.names.upperModuleName
-    }.execute(id);
+    const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(id);
 
-    response.status(${this.names.lowerModuleName}.code).send(${
-      this.names.lowerModuleName
-    });
+    response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }
 }
 `;

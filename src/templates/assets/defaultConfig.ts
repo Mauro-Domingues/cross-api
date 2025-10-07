@@ -1,7 +1,7 @@
 export class CreateDefaultConfig {
   public execute(): string {
-    return `import { Messages } ${'from'} './messages.js';
-import { Console } ${'from'} './console.js';
+    return `import { Messages } fr\om './messages.js';
+import { Console } fr\om './console.js';
 export class ConfigJson {
   constructor() {
     this.helpMessages = Messages.getInstance().help;

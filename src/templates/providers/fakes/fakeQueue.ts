@@ -1,12 +1,12 @@
 export class CreateFakeQueue {
   public execute(): string {
-    return `import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
-import { IQueueProvider } ${'from'} '../models/IQueueProvider';
-import { jobs } ${'from'} '../public/jobs';
-import { IQueueDTO } ${'from'} '../dtos/IQueueDTO';
-import { IHandleDTO } ${'from'} '../dtos/IHandleDTO';
-import { IHandleDataDTO } ${'from'} '../dtos/IHandleDataDTO';
+    return `import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+import { IQueueProvider } fr\om '../models/IQueueProvider';
+import { jobs } fr\om '../public/jobs';
+import { IQueueDTO } fr\om '../dtos/IQueueDTO';
+import { IHandleDTO } fr\om '../dtos/IHandleDTO';
+import { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
 
 export class FakeQueueProvider implements IQueueProvider {
   private readonly queues: IQueueDTO<string> = {};

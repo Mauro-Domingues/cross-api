@@ -1,10 +1,10 @@
 export class CreateStorageConfig {
   public execute(): string {
-    return `import { Joi } ${'from'} 'celebrate';
-import { randomBytes } ${'from'} 'node:crypto';
-import { StorageEngine, diskStorage } ${'from'} 'multer';
-import { resolve, extname } ${'from'} 'node:path';
-import { slugify } ${'from'} '@utils/slugify';
+    return `import { Joi } fr\om 'celebrate';
+import { randomBytes } fr\om 'node:crypto';
+import { StorageEngine, diskStorage } fr\om 'multer';
+import { resolve, extname } fr\om 'node:path';
+import { slugify } fr\om '@utils/slugify';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 

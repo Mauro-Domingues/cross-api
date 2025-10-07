@@ -1,9 +1,9 @@
 export class CreateCryptoConfig {
   public execute(): string {
-    return `import { Joi } ${'from'} 'celebrate';
-import { resolve } ${'from'} 'node:path';
-import { getCiphers } ${'from'} 'node:crypto';
-import { IIntervalDTO } ${'from'} '@dtos/IIntervalDTO';
+    return `import { Joi } fr\om 'celebrate';
+import { resolve } fr\om 'node:path';
+import { getCiphers } fr\om 'node:crypto';
+import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 
 interface ICryptoConfigDTO {
   readonly driver: 'crypto';

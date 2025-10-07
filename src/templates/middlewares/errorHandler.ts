@@ -1,10 +1,10 @@
 export class CreateErrorHandler {
   public execute(): string {
-    return `import { appConfig } ${'from'} '@config/app';
-import { AppError } ${'from'} '@shared/errors/AppError';
-import { createErrorLog } ${'from'} '@utils/errorLog';
-import { CelebrateError } ${'from'} 'celebrate';
-import { Request, Response, NextFunction } ${'from'} 'express';
+    return `import { appConfig } fr\om '@config/app';
+import { AppError } fr\om '@shared/errors/AppError';
+import { createErrorLog } fr\om '@utils/errorLog';
+import { CelebrateError } fr\om 'celebrate';
+import { Request, Response, NextFunction } fr\om 'express';
 
 const toUpperSnakeCase = (message: string): string => {
   return message

@@ -1,9 +1,9 @@
 export class CreateHashIndex {
   public execute(): string {
-    return `import { container } ${'from'} 'tsyringe';
-import { hashConfig } ${'from'} '@config/hash';
-import { BCryptHashProvider } ${'from'} './implementations/BCryptHashProvider';
-import { IHashProvider } ${'from'} './models/IHashProvider';
+    return `import { container } fr\om 'tsyringe';
+import { hashConfig } fr\om '@config/hash';
+import { BCryptHashProvider } fr\om './implementations/BCryptHashProvider';
+import { IHashProvider } fr\om './models/IHashProvider';
 
 const providers: Record<typeof hashConfig.driver, () => IHashProvider> = {
   bcrypt: () => container.resolve(BCryptHashProvider),

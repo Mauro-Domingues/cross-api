@@ -1,8 +1,8 @@
 export class CreateRouteIndex {
   public execute(): string {
-    return `import { Router } ${'from'} 'express';
-import { healthRouter } ${'from'} './healthRouter';
-// import { guardRouter } ${'from'} './guardRouter';
+    return `import { Router } fr\om 'express';
+import { healthRouter } fr\om './healthRouter';
+// import { guardRouter } fr\om './guardRouter';
 
 const routes = Router();
 

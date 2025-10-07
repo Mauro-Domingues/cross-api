@@ -1,9 +1,9 @@
 export class CreateCryptoIndex {
   public execute(): string {
-    return `import { container } ${'from'} 'tsyringe';
-import { cryptoConfig } ${'from'} '@config/crypto';
-import { CryptoProvider } ${'from'} './implementations/CryptoProvider';
-import { ICryptoProvider } ${'from'} './models/ICryptoProvider';
+    return `import { container } fr\om 'tsyringe';
+import { cryptoConfig } fr\om '@config/crypto';
+import { CryptoProvider } fr\om './implementations/CryptoProvider';
+import { ICryptoProvider } fr\om './models/ICryptoProvider';
 
 const providers: Record<typeof cryptoConfig.driver, () => ICryptoProvider> = {
   crypto: () => container.resolve(CryptoProvider),

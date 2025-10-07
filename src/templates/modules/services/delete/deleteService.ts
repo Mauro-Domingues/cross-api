@@ -12,24 +12,20 @@ export class DeleteService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } ${'from'} 'tsyringe';
-import { AppError } ${'from'} '@shared/errors/AppError';
-import { ICacheProvider } ${'from'} '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { I${this.names.pluralUpperModuleName}Repository } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { IResponseDTO } ${'from'} '@dtos/IResponseDTO';
-import { IConnection } ${'from'} '@shared/typeorm';
-import { Route, Tags, Delete, Path } ${'from'} 'tsoa';
+    return `import { injectable, inject } fr\om 'tsyringe';
+import { AppError } fr\om '@shared/errors/AppError';
+import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import { IConnection } fr\om '@shared/typeorm';
+import { Route, Tags, Delete, Path } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
 export class Delete${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
-    private readonly ${this.names.pluralLowerModuleName}Repository: I${
-      this.names.pluralUpperModuleName
-    }Repository,
+    private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
@@ -45,9 +41,7 @@ export class Delete${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${
-      this.names.pluralLowerModuleName
-    }Repository.exists(
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists(
         { where: { id } },
         trx,
       );
@@ -60,9 +54,7 @@ export class Delete${this.names.upperModuleName}Service {
         );
       }
 
-      await this.${
-        this.names.pluralLowerModuleName
-      }Repository.delete({ id }, trx);
+      await this.${this.names.pluralLowerModuleName}Repository.delete({ id }, trx);
 
       await this.cacheProvider.invalidatePrefix(
         \`\${this.connection.client}:${this.names.pluralLowerModuleName}\`,

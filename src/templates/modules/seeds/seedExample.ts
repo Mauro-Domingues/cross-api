@@ -1,8 +1,8 @@
 export class CreateSeedExample {
   public execute(): string {
-    return `// import { Example } ${'from'} '@modules/examples/entities/Example';
-import { v4 as uuid } ${'from'} 'uuid';
-import { QueryRunner } ${'from'} 'typeorm';
+    return `// import { Example } fr\om '@modules/examples/entities/Example';
+import { v4 as uuid } fr\om 'uuid';
+import { QueryRunner } fr\om 'typeorm';
 
 class Example {}
 

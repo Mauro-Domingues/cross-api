@@ -1,6 +1,6 @@
 export class CreateLeadConfig {
   public execute(): string {
-    return `import { Joi } ${'from'} 'celebrate';
+    return `import { Joi } fr\om 'celebrate';
 
 interface ILeadConfigDTO {
   readonly driver: 'rdstation';

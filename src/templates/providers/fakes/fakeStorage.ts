@@ -1,6 +1,6 @@
 export class CreateFakeStorage {
   public execute(): string {
-    return `import { IStorageProvider } ${'from'} '../models/IStorageProvider';
+    return `import { IStorageProvider } fr\om '../models/IStorageProvider';
 
 export class FakeStorageProvider implements IStorageProvider {
   private readonly storage: Array<string> = [];

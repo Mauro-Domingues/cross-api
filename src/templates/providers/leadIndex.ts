@@ -1,9 +1,9 @@
 export class CreateLeadIndex {
   public execute(): string {
-    return `import { container } ${'from'} 'tsyringe';
-import { leadConfig } ${'from'} '@config/lead';
-import { RDStationProvider } ${'from'} './implementations/RDStationProvider';
-import { ILeadProvider } ${'from'} './models/ILeadProvider';
+    return `import { container } fr\om 'tsyringe';
+import { leadConfig } fr\om '@config/lead';
+import { RDStationProvider } fr\om './implementations/RDStationProvider';
+import { ILeadProvider } fr\om './models/ILeadProvider';
 
 const providers: Record<typeof leadConfig.driver, () => ILeadProvider> = {
   rdstation: () => container.resolve(RDStationProvider),

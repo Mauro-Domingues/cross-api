@@ -3,29 +3,29 @@ export class CreateApp {
     return `import 'dotenv/config';
 import 'reflect-metadata';
 import 'express-async-errors';
-import cluster ${'from'} 'node:cluster';
-import { truncateSync, existsSync } ${'from'} 'node:fs';
-import { resolve } ${'from'} 'node:path';
-import { cpus } ${'from'} 'node:os';
+import cluster fr\om 'node:cluster';
+import { truncateSync, existsSync } fr\om 'node:fs';
+import { resolve } fr\om 'node:path';
+import { cpus } fr\om 'node:os';
 import express, {
   Express,
   json,
   urlencoded,
   // static as staticPath,
-} ${'from'} 'express';
-import { serve, setup } ${'from'} 'swagger-ui-express';
-import { setConnection } ${'from'} '@middlewares/setConnection';
-import { errorHandler } ${'from'} '@middlewares/errorHandler';
-import { parseParam } ${'from'} '@middlewares/parseParam';
-import { rateLimiter } ${'from'} '@middlewares/rateLimiter';
-import { convertToMilliseconds } ${'from'} '@utils/convertToMilliseconds';
-import cors ${'from'} 'cors';
-import { appConfig } ${'from'} '@config/app';
-import { corsConfig } ${'from'} '@config/cors';
-// import { cryptoConfig } ${'from'} '@config/crypto'; // cryptoProvider
-// import { storageConfig } ${'from'} '@config/storage'; // storageProvider
-import { routes } ${'from'} '../routes';
-import swaggerDocs ${'from'} '../swagger.json';
+} fr\om 'express';
+import { serve, setup } fr\om 'swagger-ui-express';
+import { setConnection } fr\om '@middlewares/setConnection';
+import { errorHandler } fr\om '@middlewares/errorHandler';
+import { parseParam } fr\om '@middlewares/parseParam';
+import { rateLimiter } fr\om '@middlewares/rateLimiter';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import cors fr\om 'cors';
+import { appConfig } fr\om '@config/app';
+import { corsConfig } fr\om '@config/cors';
+// import { cryptoConfig } fr\om '@config/crypto'; // cryptoProvider
+// import { storageConfig } fr\om '@config/storage'; // storageProvider
+import { routes } fr\om '../routes';
+import swaggerDocs fr\om '../swagger.json';
 import '@shared/container';
 
 export const app = new (class App {

@@ -15,13 +15,9 @@ export class CreateValidator extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { celebrate, Segments, Joi } ${'from'} 'celebrate';
-import { I${this.names.upperModuleName}DTO } ${'from'} '@modules/${
-      this.baseNames.pluralLowerModuleName
-    }/dtos/I${this.names.upperModuleName}DTO';
-import { ${this.names.lowerModuleName}Schema } ${'from'} './${
-      this.names.lowerModuleName
-    }Schema';
+    return `import { celebrate, Segments, Joi } fr\om 'celebrate';
+import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
 export const create${this.names.upperModuleName} = celebrate({
   [Segments.PARAMS]: Joi.object({}),
