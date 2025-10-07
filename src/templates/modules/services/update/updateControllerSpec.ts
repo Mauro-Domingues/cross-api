@@ -30,13 +30,16 @@ describe('Update${this.names.upperModuleName}Controller', (): void => {
     await connection.connect();
     await connection.mysql.runMigrations();
 
-    await connection.mysql.manager.save(
-      connection.mysql.manager.create(${this.names.upperModuleName}, {
+    await connection.mysql
+      .createQueryBuilder()
+      .insert()
+      .into(${this.names.upperModuleName})
+      .values({
         id,
         name: '${this.names.lowerModuleName}',
         description: 'This is a ${this.names.lowerModuleName}',
-      }),
-    );
+      })
+      .execute();
   });
 
   afterAll(async (): Promise<void> => {
