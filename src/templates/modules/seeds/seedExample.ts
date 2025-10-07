@@ -1,8 +1,10 @@
 export class CreateSeedExample {
   public execute(): string {
-    return `import { Example } ${'from'} '@modules/examples/entities/Example';
+    return `// import { Example } ${'from'} '@modules/examples/entities/Example';
 import { v4 as uuid } ${'from'} 'uuid';
 import { QueryRunner } ${'from'} 'typeorm';
+
+class Example {}
 
 export async function seedExample(trx: QueryRunner): Promise<void> {
   return trx.manager

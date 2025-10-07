@@ -30,7 +30,7 @@ describe('List${this.names.upperModuleName}Controller', (): void => {
 
     await connection.mysql.manager.save(
       connection.mysql.manager.create(${this.names.upperModuleName}, {
-        id,
+        id: uuid(),
         name: '${this.names.lowerModuleName}',
         description: 'This is a ${this.names.lowerModuleName}',
       }),
