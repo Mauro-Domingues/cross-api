@@ -31,7 +31,7 @@ export class Show${this.names.upperModuleName}Controller {
 
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(id);
+    const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(request.dbConnection, id);
 
     response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }

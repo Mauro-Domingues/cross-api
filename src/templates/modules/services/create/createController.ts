@@ -31,7 +31,7 @@ export class Create${this.names.upperModuleName}Controller {
 
     const create${this.names.upperModuleName} = container.resolve(Create${this.names.upperModuleName}Service);
 
-    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(${this.names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(request.dbConnection, ${this.names.lowerModuleName}Data);
 
     response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }

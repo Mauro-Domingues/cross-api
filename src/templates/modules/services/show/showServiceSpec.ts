@@ -35,7 +35,6 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
     show${this.names.upperModuleName}Service = new Show${this.names.upperModuleName}Service(
       fake${this.names.pluralUpperModuleName}Repository,
-      connection,
     );
   });
 
@@ -45,7 +44,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}Service.execute(${this.names.lowerModuleName}.id);
+    const get${this.names.upperModuleName} = await show${this.names.upperModuleName}Service.execute(connection, ${this.names.lowerModuleName}.id);
 
     expect(get${this.names.upperModuleName}.data).toHaveProperty('id');
     expect(get${this.names.upperModuleName}.data).toEqual(${this.names.lowerModuleName});
@@ -53,7 +52,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
 
   it('Should not be able to show a ${this.names.lowerModuleName} with a non-existing id', async (): Promise<void> => {
     await expect(
-      show${this.names.upperModuleName}Service.execute('non-existing-${this.names.lowerModuleName}-id'),
+      show${this.names.upperModuleName}Service.execute(connection, 'non-existing-${this.names.lowerModuleName}-id'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

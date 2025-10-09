@@ -40,12 +40,11 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
     create${this.names.upperModuleName}Service = new Create${this.names.upperModuleName}Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
-      connection,
     );
   });
 
   it('Should be able to create a new ${this.names.lowerModuleName}', async (): Promise<void> => {
-    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}Service.execute({
+    const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}Service.execute(connection, {
       name: '${this.names.lowerModuleName}',
       description: 'This is a ${this.names.lowerModuleName}',
     });
@@ -58,7 +57,9 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
       throw new AppError('FAILED_TO_CREATE', 'Failed to create a ${this.names.lowerModuleName}');
     });
 
-    await expect(create${this.names.upperModuleName}Service.execute({})).rejects.toBeInstanceOf(
+    await expect(
+      create${this.names.upperModuleName}Service.execute(connection, {}),
+    ).rejects.toBeInstanceOf(
       AppError,
     );
   });

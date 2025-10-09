@@ -40,7 +40,6 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
     update${this.names.upperModuleName}Service = new Update${this.names.upperModuleName}Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
-      connection,
     );
   });
 
@@ -50,7 +49,7 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const updated${this.names.upperModuleName} = await update${this.names.upperModuleName}Service.execute(${this.names.lowerModuleName}.id, {
+    const updated${this.names.upperModuleName} = await update${this.names.upperModuleName}Service.execute(connection, ${this.names.lowerModuleName}.id, {
       ...${this.names.lowerModuleName},
       name: 'updated${this.names.upperModuleName}',
     });
@@ -60,7 +59,7 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
 
   it('Should not be able to update a ${this.names.lowerModuleName} with a non-existing id', async (): Promise<void> => {
     await expect(
-      update${this.names.upperModuleName}Service.execute('non-existing-${this.names.lowerModuleName}-id', {}),
+      update${this.names.upperModuleName}Service.execute(connection, 'non-existing-${this.names.lowerModuleName}-id', {}),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

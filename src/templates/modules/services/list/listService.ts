@@ -32,24 +32,22 @@ export class List${this.names.upperModuleName}Service {
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
-
-    @inject('Connection')
-    private readonly connection: IConnection,
   ) {}
 
   @Get()
   @Tags('${this.names.upperModuleName}')
   public async execute(
+    @Inject() connection: IConnection,
     @Query() page: number,
     @Query() limit: number,
     @Inject() filters: FindOptionsWhere<${this.names.upperModuleName}>,
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
-    const trx = this.connection.mysql.createQueryRunner();
+    const trx = connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
       const cacheKey = \`\${
-        this.connection.client
+        connection.client
       }:${this.names.pluralLowerModuleName}:\${page}:\${limit}:\${JSON.stringify(filters)}\`;
 
       let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);

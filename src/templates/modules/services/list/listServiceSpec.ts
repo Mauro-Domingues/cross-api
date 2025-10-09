@@ -40,7 +40,6 @@ describe('List${this.names.upperModuleName}Service', (): void => {
     list${this.names.upperModuleName}Service = new List${this.names.upperModuleName}Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
-      connection,
     );
   });
 
@@ -56,7 +55,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       },
     ]);
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}Service.execute(1, 2, {});
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}Service.execute(connection, 1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
@@ -73,9 +72,9 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       },
     ]);
 
-    await list${this.names.upperModuleName}Service.execute(1, 2, {});
+    await list${this.names.upperModuleName}Service.execute(connection, 1, 2, {});
 
-    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}Service.execute(1, 2, {});
+    const ${this.names.lowerModuleName}List = await list${this.names.upperModuleName}Service.execute(connection, 1, 2, {});
 
     expect(${this.names.lowerModuleName}List.data).toEqual(
       JSON.parse(JSON.stringify([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02])),
@@ -98,11 +97,11 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       },
     ]);
 
-    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}Service.execute(1, 1, {});
+    const ${this.names.lowerModuleName}List01 = await list${this.names.upperModuleName}Service.execute(connection, 1, 1, {});
 
     expect(${this.names.lowerModuleName}List01.data).toEqual([${this.names.lowerModuleName}01]);
 
-    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}Service.execute(1, 2, {});
+    const ${this.names.lowerModuleName}List02 = await list${this.names.upperModuleName}Service.execute(connection, 1, 2, {});
 
     expect(${this.names.lowerModuleName}List02.data).toEqual([${this.names.lowerModuleName}01, ${this.names.lowerModuleName}02]);
   });
@@ -112,7 +111,9 @@ describe('List${this.names.upperModuleName}Service', (): void => {
       throw new AppError('FAILED_TO_LIST', 'Failed to list ${this.names.pluralLowerModuleName}');
     });
 
-    await expect(list${this.names.upperModuleName}Service.execute(1, 2, {})).rejects.toBeInstanceOf(
+    await expect(
+      list${this.names.upperModuleName}Service.execute(connection, 1, 2, {}),
+    ).rejects.toBeInstanceOf(
       AppError,
     );
   });

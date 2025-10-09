@@ -18,7 +18,7 @@ import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/model
 import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import { IConnection } fr\om '@shared/typeorm';
-import { Route, Tags, Delete, Path } fr\om 'tsoa';
+import { Route, Tags, Delete, Path, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
@@ -29,15 +29,15 @@ export class Delete${this.names.upperModuleName}Service {
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
-
-    @inject('Connection')
-    private readonly connection: IConnection,
   ) {}
 
   @Delete('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id: string): Promise<IResponseDTO<null>> {
-    const trx = this.connection.mysql.createQueryRunner();
+  public async execute(
+    @Inject() connection: IConnection,
+    @Path() id: string,
+  ): Promise<IResponseDTO<null>> {
+    const trx = connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
@@ -56,9 +56,7 @@ export class Delete${this.names.upperModuleName}Service {
 
       await this.${this.names.pluralLowerModuleName}Repository.delete({ id }, trx);
 
-      await this.cacheProvider.invalidatePrefix(
-        \`\${this.connection.client}:${this.names.pluralLowerModuleName}\`,
-      );
+      await this.cacheProvider.invalidatePrefix(\`\${connection.client}:${this.names.pluralLowerModuleName}\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {

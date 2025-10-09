@@ -20,7 +20,7 @@ import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.plural
 import { instanceToInstance } fr\om 'class-transformer';
 import { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import { IConnection } fr\om '@shared/typeorm';
-import { Route, Tags, Post, Body } fr\om 'tsoa';
+import { Route, Tags, Post, Body, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
@@ -31,25 +31,21 @@ export class Create${this.names.upperModuleName}Service {
 
     @inject('CacheProvider')
     private readonly cacheProvider: ICacheProvider,
-
-    @inject('Connection')
-    private readonly connection: IConnection,
   ) {}
 
   @Post()
   @Tags('${this.names.upperModuleName}')
   public async execute(
+    @Inject() connection: IConnection,
     @Body() ${this.names.lowerModuleName}Data: I${this.names.upperModuleName}DTO,
   ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
-    const trx = this.connection.mysql.createQueryRunner();
+    const trx = connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {
       const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.create(${this.names.lowerModuleName}Data, trx);
 
-      await this.cacheProvider.invalidatePrefix(
-        \`\${this.connection.client}:${this.names.pluralLowerModuleName}\`,
-      );
+      await this.cacheProvider.invalidatePrefix(\`\${connection.client}:${this.names.pluralLowerModuleName}\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
 
       return {

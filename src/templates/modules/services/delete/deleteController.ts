@@ -30,7 +30,7 @@ export class Delete${this.names.upperModuleName}Controller {
 
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(id);
+    const ${this.names.lowerModuleName} = await delete${this.names.upperModuleName}.execute(request.dbConnection, id);
 
     response.send(${this.names.lowerModuleName});
   }

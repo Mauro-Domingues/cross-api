@@ -40,7 +40,6 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
     delete${this.names.upperModuleName}Service = new Delete${this.names.upperModuleName}Service(
       fake${this.names.pluralUpperModuleName}Repository,
       fakeCacheProvider,
-      connection,
     );
   });
 
@@ -50,7 +49,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    await delete${this.names.upperModuleName}Service.execute(${this.names.lowerModuleName}.id);
+    await delete${this.names.upperModuleName}Service.execute(connection, ${this.names.lowerModuleName}.id);
 
     const deleted${this.names.upperModuleName} = await fake${this.names.pluralUpperModuleName}Repository.findBy({
       where: {
@@ -63,7 +62,7 @@ describe('Delete${this.names.upperModuleName}Service', (): void => {
 
   it('Should not be able to delete a ${this.names.lowerModuleName} with a non-existing id', async (): Promise<void> => {
     await expect(
-      delete${this.names.upperModuleName}Service.execute('non-existing-${this.names.lowerModuleName}-id'),
+      delete${this.names.upperModuleName}Service.execute(connection, 'non-existing-${this.names.lowerModuleName}-id'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

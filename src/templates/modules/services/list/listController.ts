@@ -36,7 +36,12 @@ export class List${this.names.upperModuleName}Controller {
 
     const { page = 1, limit = 20, ...filters } = request.query;
 
-    const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(page, limit, filters);
+    const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(
+      request.dbConnection,
+      page,
+      limit,
+      filters,
+    );
 
     response.status(${this.names.pluralLowerModuleName}.code).send(${this.names.pluralLowerModuleName});
   }

@@ -19,7 +19,7 @@ import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.plural
 import { instanceToInstance } fr\om 'class-transformer';
 import { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import { IConnection } fr\om '@shared/typeorm';
-import { Get, Route, Tags, Path } fr\om 'tsoa';
+import { Get, Route, Tags, Path, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
@@ -27,15 +27,15 @@ export class Show${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
     private readonly ${this.names.pluralLowerModuleName}Repository: I${this.names.pluralUpperModuleName}Repository,
-
-    @inject('Connection')
-    private readonly connection: IConnection,
   ) {}
 
   @Get('{id}')
   @Tags('${this.names.upperModuleName}')
-  public async execute(@Path() id: string): Promise<IResponseDTO<${this.names.upperModuleName}>> {
-    const trx = this.connection.mysql.createQueryRunner();
+  public async execute(
+    @Inject() connection: IConnection,
+    @Path() id: string,
+  ): Promise<IResponseDTO<${this.names.upperModuleName}>> {
+    const trx = connection.mysql.createQueryRunner();
 
     await trx.startTransaction();
     try {

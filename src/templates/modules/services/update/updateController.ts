@@ -32,7 +32,7 @@ export class Update${this.names.upperModuleName}Controller {
     const { id } = request.params;
     const ${this.names.lowerModuleName}Data = request.body;
 
-    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(id, ${this.names.lowerModuleName}Data);
+    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(request.dbConnection, id, ${this.names.lowerModuleName}Data);
 
     response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
   }
