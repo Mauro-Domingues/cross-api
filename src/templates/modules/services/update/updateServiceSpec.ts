@@ -49,10 +49,14 @@ describe('Update${this.names.upperModuleName}Service', (): void => {
       description: 'This is a ${this.names.lowerModuleName}',
     });
 
-    const updated${this.names.upperModuleName} = await update${this.names.upperModuleName}Service.execute(connection, ${this.names.lowerModuleName}.id, {
-      ...${this.names.lowerModuleName},
-      name: 'updated${this.names.upperModuleName}',
-    });
+    const updated${this.names.upperModuleName} = await update${this.names.upperModuleName}Service.execute(
+      connection,
+      ${this.names.lowerModuleName}.id,
+      {
+        ...${this.names.lowerModuleName},
+        name: 'updated${this.names.upperModuleName}',
+      },
+    );
 
     expect(updated${this.names.upperModuleName}.data.name).toEqual('updated${this.names.upperModuleName}');
   });

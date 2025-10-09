@@ -113,9 +113,7 @@ describe('List${this.names.upperModuleName}Service', (): void => {
 
     await expect(
       list${this.names.upperModuleName}Service.execute(connection, 1, 2, {}),
-    ).rejects.toBeInstanceOf(
-      AppError,
-    );
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
 `;

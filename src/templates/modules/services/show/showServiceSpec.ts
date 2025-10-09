@@ -33,9 +33,7 @@ describe('Show${this.names.upperModuleName}Service', (): void => {
 
   beforeEach((): void => {
     fake${this.names.pluralUpperModuleName}Repository = new Fake${this.names.pluralUpperModuleName}Repository();
-    show${this.names.upperModuleName}Service = new Show${this.names.upperModuleName}Service(
-      fake${this.names.pluralUpperModuleName}Repository,
-    );
+    show${this.names.upperModuleName}Service = new Show${this.names.upperModuleName}Service(fake${this.names.pluralUpperModuleName}Repository);
   });
 
   it('Should be able to show a ${this.names.lowerModuleName}', async (): Promise<void> => {

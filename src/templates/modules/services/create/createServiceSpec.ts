@@ -59,9 +59,7 @@ describe('Create${this.names.upperModuleName}Service', (): void => {
 
     await expect(
       create${this.names.upperModuleName}Service.execute(connection, {}),
-    ).rejects.toBeInstanceOf(
-      AppError,
-    );
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
 `;
