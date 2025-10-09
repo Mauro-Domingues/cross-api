@@ -2,6 +2,7 @@ export class CreateApp {
   public execute(): string {
     return `import 'dotenv/config';
 import 'reflect-metadata';
+import '@shared/container';
 import 'express-async-errors';
 import cluster fr\om 'node:cluster';
 import { truncateSync, existsSync } fr\om 'node:fs';
@@ -26,7 +27,6 @@ import { corsConfig } fr\om '@config/cors';
 // import { storageConfig } fr\om '@config/storage'; // storageProvider
 import { routes } fr\om '../routes';
 import swaggerDocs fr\om '../swagger.json';
-import '@shared/container';
 
 export const app = new (class App {
   public readonly server: Express;
