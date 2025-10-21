@@ -50,7 +50,7 @@ describe('Delete${this.names.upperModuleName}Controller', (): void => {
   it('Should be able to delete a ${this.names.lowerModuleName}', async (): Promise<void> => {
     const response = await request(app.server).delete(\`/${this.names.routeModuleName}/\${id}\`);
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(204);
   });
 });
 `;
