@@ -16,9 +16,7 @@ export class FakeCacheProvider implements ICacheProvider {
       return null;
     }
 
-    const parsedData = JSON.parse(data) as T;
-
-    return parsedData;
+    return JSON.parse(data);
   }
 
   public async invalidate(key: string): Promise<void> {
@@ -26,7 +24,7 @@ export class FakeCacheProvider implements ICacheProvider {
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const keys = Object.keys(this.cache).filter(key =>
+    const keys = Array.from(this.cache.keys()).filter(key =>
       key.startsWith(\`\${prefix}:\`),
     );
 

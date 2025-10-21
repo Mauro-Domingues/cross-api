@@ -43,7 +43,7 @@ export class List${this.names.upperModuleName}Controller {
       filters,
     );
 
-    response.status(${this.names.pluralLowerModuleName}.code).send(${this.names.pluralLowerModuleName});
+    response.status(${this.names.pluralLowerModuleName}.code).json(${this.names.pluralLowerModuleName});
   }
 }
 `;

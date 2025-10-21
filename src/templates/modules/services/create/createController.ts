@@ -33,7 +33,7 @@ export class Create${this.names.upperModuleName}Controller {
 
     const ${this.names.lowerModuleName} = await create${this.names.upperModuleName}.execute(request.dbConnection, ${this.names.lowerModuleName}Data);
 
-    response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
+    response.status(${this.names.lowerModuleName}.code).json(${this.names.lowerModuleName});
   }
 }
 `;

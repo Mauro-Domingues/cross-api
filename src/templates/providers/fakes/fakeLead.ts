@@ -3,10 +3,10 @@ export class CreateFakeLead {
     return `import { ILeadProvider } fr\om '../models/ILeadProvider';
 
 export class FakeLeadProvider implements ILeadProvider {
-  private readonly leads: Array<string> = [];
+  private readonly leads = new Set<string>();
 
   public async createLead(email: string): Promise<void> {
-    this.leads.push(email);
+    this.leads.add(email);
 
     console.log('Lead created');
   }

@@ -4,10 +4,10 @@ export class CreateFakeNotification {
 import { INotificationProvider } fr\om '../models/INotificationProvider';
 
 export class FakeNotificationProvider implements INotificationProvider {
-  private readonly notification: Array<ISendNotificationDTO> = [];
+  private readonly notification = new Set<ISendNotificationDTO>();
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
-    this.notification.push(data);
+    this.notification.add(data);
   }
 }
 `;

@@ -38,7 +38,7 @@ export class Update${this.names.upperModuleName}Controller {
       ${this.names.lowerModuleName}Data,
     );
 
-    response.status(${this.names.lowerModuleName}.code).send(${this.names.lowerModuleName});
+    response.status(${this.names.lowerModuleName}.code).json(${this.names.lowerModuleName});
   }
 }
 `;

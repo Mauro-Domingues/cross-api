@@ -22,27 +22,42 @@ export class RedisCacheProvider implements ICacheProvider {
       return null;
     }
 
-    const parsedData = JSON.parse(data) as T;
-
-    return parsedData;
+    return JSON.parse(data);
   }
 
   public async invalidate(key: string): Promise<void> {
-    await this.client.del(key);
+    await this.client.unlink(key);
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const keys = await this.client.keys(
-      \`\${cacheConfig.config.redis.keyPrefix}\${prefix}:*\`,
-    );
-
-    const pipeline = this.client.pipeline();
-
-    keys.forEach(key => {
-      pipeline.del(key.replace(cacheConfig.config.redis.keyPrefix, ''));
+    const execPromises: Array<Promise<unknown>> = [];
+    const scanStream = this.client.scanStream({
+      match: \`\${cacheConfig.config.redis.keyPrefix}\${prefix}:*\`,
+      count: 500,
     });
 
-    await pipeline.exec();
+    scanStream.on('data', (keys: Array<string>) => {
+      if (!keys.length) return;
+
+      const pipeline = this.client.pipeline();
+
+      keys.forEach(key => {
+        pipeline.unlink(key.replace(cacheConfig.config.redis.keyPrefix, ''));
+      });
+
+      execPromises.push(pipeline.exec());
+    });
+
+    const endPromise = new Promise<void>((resolve, reject) => {
+      scanStream.on('end', () =>
+        Promise.all(execPromises)
+          .then(() => resolve())
+          .catch(reject),
+      );
+      scanStream.on('error', reject);
+    });
+
+    return endPromise;
   }
 }
 `;

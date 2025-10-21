@@ -62,13 +62,11 @@ export const errorHandler = (
     });
   }
 
-  return (
-    response.status(errorBody.code).send({
-      code: errorBody.code,
-      messageCode: errorBody.messageCode,
-      message: errorBody.message,
-    }) && next()
-  );
+  response.status(errorBody.code).json({
+    code: errorBody.code,
+    messageCode: errorBody.messageCode,
+    message: errorBody.message,
+  });
 };
 `;
   }
