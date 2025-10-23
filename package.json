@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc && npx tsc-alias",
-    "clear": "npx tsc --build --clean"
+    "clean": "npx tsc --build --clean"
   },
   "bin": {
     "cross": "./src/index.js"

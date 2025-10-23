@@ -22,7 +22,7 @@ export function createErrorLog(error: {
   const errorBody = {
     TIME_OF_OCCURRENCE: \`\${currentTime.toLocaleDateString()} \${currentTime.toLocaleTimeString()} \${timeZoneString}\`,
     [error.messageCode]: error.message,
-    PATH: error.stack?.split('\\${'n'}').slice(1).join('\\${'n'}').trim() ?? 'NOT SET',
+    PATH: error.stack?.split('\\n').slice(1).join('\\n').trim() ?? 'NOT SET',
   };
 
   const assetsFolder = resolve(__dirname, '..', 'assets');
@@ -33,7 +33,7 @@ export function createErrorLog(error: {
 
   appendFileSync(
     resolve(assetsFolder, 'errors.log'),
-    JSON.stringify(errorBody, null, 2).concat(',\\${'n'}'),
+    JSON.stringify(errorBody, null, 2).concat(',\\n'),
   );
 
   console.error(errorBody);

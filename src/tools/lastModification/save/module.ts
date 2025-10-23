@@ -17,7 +17,7 @@ export class CreateModule {
   }
 
   private getRouterBase(lowerModuleName: string): string {
-    return `import { Router } ${'from'} 'express';
+    return `import { Router } from 'express';
 
 const ${lowerModuleName}Router = Router();
 
