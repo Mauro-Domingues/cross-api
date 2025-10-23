@@ -3,10 +3,7 @@ import { BaseTemplateModule } from '@templates/modules/base';
 
 export class CreateIndexRoute extends BaseTemplateModule {
   public constructor(
-    private readonly names: Pick<
-      IModuleNameDTO,
-      'lowerModuleName' | 'pluralLowerModuleName'
-    >,
+    names: Pick<IModuleNameDTO, 'lowerModuleName' | 'pluralLowerModuleName'>,
     fatherNames:
       | Pick<IModuleNameDTO, 'pluralLowerModuleName' | 'lowerModuleName'>
       | undefined,

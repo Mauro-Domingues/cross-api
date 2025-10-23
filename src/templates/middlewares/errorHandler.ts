@@ -4,7 +4,7 @@ export class CreateErrorHandler {
 import { AppError } fr\om '@shared/errors/AppError';
 import { createErrorLog } fr\om '@utils/errorLog';
 import { CelebrateError } fr\om 'celebrate';
-import { Request, Response, NextFunction } fr\om 'express';
+import { Request, Response } fr\om 'express';
 
 const toUpperSnakeCase = (message: string): string => {
   return message
@@ -19,7 +19,6 @@ export const errorHandler = (
   error: Error,
   _request: Request,
   response: Response,
-  next: NextFunction,
 ): void => {
   const errorBody = {} as Parameters<typeof createErrorLog>[0];
 

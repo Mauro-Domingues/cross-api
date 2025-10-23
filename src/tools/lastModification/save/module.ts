@@ -1,4 +1,5 @@
 import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import { CreateNakedRoute } from '@templates/modules/routes/nakedRouter';
 import { Concat } from '@tools/concat';
 import { FileManager } from '@tools/fileManager';
 
@@ -14,15 +15,6 @@ export class CreateModule {
       | undefined,
   ) {
     this.concat = Concat.getInstance();
-  }
-
-  private getRouterBase(lowerModuleName: string): string {
-    return `import { Router } from 'express';
-
-const ${lowerModuleName}Router = Router();
-
-export { ${lowerModuleName}Router };
-`;
   }
 
   private constructModuleBase(): void {
@@ -118,7 +110,7 @@ export { ${lowerModuleName}Router };
         routeInjection,
       );
     } else {
-      const routeInjection = this.getRouterBase(fatherNames.lowerModuleName);
+      const routeInjection = new CreateNakedRoute(fatherNames).execute();
       this.fileManager.createFileSync(
         [this.basePath, 'modules', 'routeInjection.log'],
         routeInjection,
