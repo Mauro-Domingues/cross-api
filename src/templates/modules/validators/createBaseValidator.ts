@@ -4,11 +4,11 @@ export class CreateBaseValidator {
 import { RequestHandler } fr\om 'express';
 
 export const baseValidator = (
-  rulesOrBuilder: (ctx: typeof Joi) => SchemaOptions,
+  requestRules: (ctx: typeof Joi) => SchemaOptions,
   joiOpts?: Joi.ValidationOptions,
   celebrateOpts?: CelebrateOptions,
 ): RequestHandler<never, never, never, never> => {
-  return celebrate(rulesOrBuilder(Joi), joiOpts, celebrateOpts);
+  return celebrate(requestRules(Joi), joiOpts, celebrateOpts);
 };
 `;
   }

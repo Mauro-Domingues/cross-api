@@ -19,11 +19,10 @@ export class CreateSchema extends BaseTemplateModule {
 import { baseSchema } fr\om '@shared/container/modules/validators/baseSchema';
 import { Joi } fr\om 'celebrate';
 
-export const ${this.names.lowerModuleName}Schema: Record<keyof ${this.names.upperModuleName}, Joi.Schema> = {
-  ...baseSchema,
+export const ${this.names.lowerModuleName}Schema = baseSchema<${this.names.upperModuleName}>(ctx => ({
   name: Joi.string().max(255),
   description: Joi.string().max(255),
-};
+});
 `;
   }
 }
