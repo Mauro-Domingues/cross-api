@@ -15,15 +15,15 @@ export class DeleteValidator extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { celebrate, Segments, Joi } fr\om 'celebrate';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
-export const delete${this.names.upperModuleName} = celebrate({
-  [Segments.PARAMS]: Joi.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}Schema.id.required() }),
-  [Segments.QUERY]: Joi.object({}),
-  [Segments.BODY]: Joi.object({}),
-});
+export const delete${this.names.upperModuleName} = baseValidator(ctx => ({
+  params: ctx.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}Schema.id.required() }),
+  query: ctx.object({}),
+  body: ctx.object({}),
+}));
 `;
   }
 }

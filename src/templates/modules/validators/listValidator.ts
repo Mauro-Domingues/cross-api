@@ -15,19 +15,19 @@ export class ListValidator extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { celebrate, Segments, Joi } fr\om 'celebrate';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
-export const list${this.names.upperModuleName} = celebrate({
-  [Segments.PARAMS]: Joi.object({}),
-  [Segments.QUERY]: Joi.object<${this.names.upperModuleName} & { page: number; limit: number }>({
+export const list${this.names.upperModuleName} = baseValidator(ctx => ({
+  params: ctx.object({}),
+  query: ctx.object<${this.names.upperModuleName} & { page: number; limit: number }>({
     ...${this.names.lowerModuleName}Schema,
-    page: Joi.number().integer().positive().optional(),
-    limit: Joi.number().integer().positive().optional(),
+    page: ctx.number().integer().positive().optional(),
+    limit: ctx.number().integer().positive().optional(),
   }),
-  [Segments.BODY]: Joi.object({}),
-});
+  body: ctx.object({}),
+}));
 `;
   }
 }
