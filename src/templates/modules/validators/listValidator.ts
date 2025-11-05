@@ -15,8 +15,7 @@ export class ListValidator extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
+    return `import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
 export const list${this.names.upperModuleName} = baseValidator(ctx => {
@@ -24,10 +23,11 @@ export const list${this.names.upperModuleName} = baseValidator(ctx => {
 
   return {
     params: ctx.object({}),
-    query: ctx.object<${this.names.upperModuleName} & { page: number; limit: number }>({
-      ...${this.names.lowerModuleName}Fields,
-      page: ctx.number().integer().positive().optional(),
-      limit: ctx.number().integer().positive().optional(),
+    query: ${this.names.lowerModuleName}Fields.concat(
+      ctx.object({
+        page: ctx.number().integer().positive().optional(),
+        limit: ctx.number().integer().positive().optional(),
+      }),
     }),
     body: ctx.object({}),
   };

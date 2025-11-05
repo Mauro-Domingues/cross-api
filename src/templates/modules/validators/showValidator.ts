@@ -23,7 +23,7 @@ export const show${this.names.upperModuleName} = baseValidator(ctx => {
   const ${this.names.lowerModuleName}Fields = ${this.names.lowerModuleName}Schema(ctx);
 
   return {
-    params: ctx.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}Fields.id.required() }),
+    params: ctx.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}Fields.extract('id').required() }),
     query: ctx.object({}),
     body: ctx.object({}),
   };
