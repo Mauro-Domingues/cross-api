@@ -28,7 +28,7 @@ export const list${this.names.upperModuleName} = baseValidator(ctx => {
         page: ctx.number().integer().positive().optional(),
         limit: ctx.number().integer().positive().optional(),
       }),
-    }),
+    ),
     body: ctx.object({}),
   };
 });
