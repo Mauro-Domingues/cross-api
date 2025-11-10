@@ -39,7 +39,7 @@ export class List${this.names.upperModuleName}Service {
     @Inject() connection: IConnection,
     @Query() page: number,
     @Query() limit: number,
-    @Inject() filters: ${this.names.upperModuleName},
+    @Inject() filters: Partial<${this.names.upperModuleName}>,
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
     const trx = connection.mysql.createQueryRunner();
 

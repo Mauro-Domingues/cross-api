@@ -27,7 +27,7 @@ export class List${this.names.upperModuleName}Controller {
       never,
       never,
       never,
-      { page: number; limit: number } & ${this.names.upperModuleName}
+      { page: number; limit: number } & Partial<${this.names.upperModuleName}>
     >,
     response: Response<IListDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
