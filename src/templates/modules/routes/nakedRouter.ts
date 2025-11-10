@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 
 export class CreateNakedRoute {
   public constructor(

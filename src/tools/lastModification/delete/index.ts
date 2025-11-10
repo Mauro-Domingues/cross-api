@@ -1,4 +1,4 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { CustomError } from '@tools/customError';
 import { BaseRegister } from '@tools/lastModification/base';
 import { DeleteApi } from '@tools/lastModification/delete/api';

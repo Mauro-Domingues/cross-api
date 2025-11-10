@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
 import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateIEncryptedDTO } from '@templates/providers/dtos/IEncryptedDTO';

@@ -1,6 +1,6 @@
 import { log } from 'node:console';
-import { IInputDTO } from '@interfaces/IInputDTO';
-import { IConsoleDTO } from '@interfaces/ISingletonDTO';
+import type { IInputDTO } from '@interfaces/IInputDTO';
+import type { IConsoleDTO } from '@interfaces/ISingletonDTO';
 import { BuildPayload } from '@tools/buildPayload';
 
 export class Console {

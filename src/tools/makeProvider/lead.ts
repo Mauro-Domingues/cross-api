@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateLeadConfig } from '@templates/providers/config/leadConfig';
 import { CreateIAuthDTO } from '@templates/providers/dtos/IAuthDTO';
 import { CreateFakeLead } from '@templates/providers/fakes/fakeLead';

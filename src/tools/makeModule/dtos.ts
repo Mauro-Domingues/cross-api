@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateModuleDTO } from '@templates/modules/dtos/moduleDTO';
 import { Concat } from '@tools/concat';
 import { BaseModule } from '@tools/makeModule/base';

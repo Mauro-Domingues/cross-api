@@ -1,4 +1,4 @@
-import { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
+import type { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
 
 export interface IInputDTO {
   readonly options?: Array<'breakStart' | 'breakEnd' | 'bold'>;

@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateFullRoute } from '@templates/modules/routes/fullRoute';
 import { CreateIndexRoute } from '@templates/modules/routes/indexRouter';
 import { CreateRoute } from '@templates/modules/routes/route';

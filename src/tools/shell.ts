@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { IShellDTO } from '@interfaces/ISingletonDTO/IShellDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IShellDTO } from '@interfaces/ISingletonDTO/IShellDTO';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';
 

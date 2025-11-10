@@ -1,4 +1,4 @@
-import { IInputDTO } from '@interfaces/IInputDTO';
+import type { IInputDTO } from '@interfaces/IInputDTO';
 import { BuildPayload } from '@tools/buildPayload';
 
 export class CustomError extends Error {

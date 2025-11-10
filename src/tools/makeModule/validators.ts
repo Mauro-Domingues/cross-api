@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateSchema } from '@templates/modules/validators/createSchema';
 import { CreateValidator } from '@templates/modules/validators/createValidator';
 import { DeleteValidator } from '@templates/modules/validators/deleteValidator';

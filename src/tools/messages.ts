@@ -1,13 +1,13 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
-import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
-import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
-import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
-import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
-import { IMessagesDTO } from '@interfaces/ISingletonDTO';
+import type { IMessageDTO } from '@interfaces/IMessageDTO';
+import type { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
+import type { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import type { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
+import type { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
+import type { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
+import type { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
+import type { IMessagesDTO } from '@interfaces/ISingletonDTO';
 
 export class Messages {
   private readonly messages: IMessageDTO;

@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateContainerIndex } from '@templates/index/container';
 import { FileManager } from '@tools/fileManager';
 

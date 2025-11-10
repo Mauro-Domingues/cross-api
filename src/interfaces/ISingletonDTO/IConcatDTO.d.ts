@@ -1,3 +1,3 @@
-import { Concat } from '@tools/concat';
+import type { Concat } from '@tools/concat';
 
 export type IConcatDTO = readonly Concat;

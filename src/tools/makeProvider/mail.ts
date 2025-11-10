@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';

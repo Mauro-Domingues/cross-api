@@ -1,7 +1,7 @@
-import { IAssetDTO } from '@interfaces/IAssetDTO';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { IObjDTO } from '@interfaces/IObjDTO';
-import { IWordDTO } from '@interfaces/IWordDTO';
+import type { IAssetDTO } from '@interfaces/IAssetDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IObjDTO } from '@interfaces/IObjDTO';
+import type { IWordDTO } from '@interfaces/IWordDTO';
 import { Concat } from '@tools/concat';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';

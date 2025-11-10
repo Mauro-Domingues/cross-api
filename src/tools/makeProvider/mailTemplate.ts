@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailTemplateConfig } from '@templates/providers/config/mailTemplateConfig';
 import { CreateIMailTemplateFragmentDTO } from '@templates/providers/dtos/IMailTemplateFragmentDTO';
 import { CreateIMailTemplateDTO } from '@templates/providers/dtos/IParseMailTemplateDTO';

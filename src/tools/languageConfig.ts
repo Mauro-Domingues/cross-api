@@ -1,8 +1,8 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
-import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
+import type { IMessageDTO } from '@interfaces/IMessageDTO';
+import type { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import type { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
 import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
 import { PortugueseMessages } from '@templates/assets/ptBr';

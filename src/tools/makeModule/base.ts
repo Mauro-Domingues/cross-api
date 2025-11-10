@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { FileManager } from '@tools/fileManager';
 
 export abstract class BaseModule {

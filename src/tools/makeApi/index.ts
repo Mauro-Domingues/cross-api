@@ -1,4 +1,4 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { Console } from '@tools/console';
 import { CreateConfig } from '@tools/makeApi/config';
 import { CreateDocs } from '@tools/makeApi/docs';

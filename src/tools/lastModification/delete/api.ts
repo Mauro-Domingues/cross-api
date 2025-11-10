@@ -1,6 +1,6 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
+import type { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteApi {

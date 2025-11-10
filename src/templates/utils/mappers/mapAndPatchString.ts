@@ -1,4 +1,4 @@
-import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
+import type { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
 import { Messages } from '@tools/messages';
 
 export class CreateMapAndPatchString {

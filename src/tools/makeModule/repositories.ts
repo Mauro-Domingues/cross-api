@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateFakeRepository } from '@templates/modules/repositories/fakes/fakeRepository';
 import { CreateIRepository } from '@templates/modules/repositories/IRepository';
 import { CreateRepository } from '@templates/modules/repositories/repository';

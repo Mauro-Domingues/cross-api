@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateController } from '@templates/modules/services/create/createController';
 import { DeleteController } from '@templates/modules/services/delete/deleteController';
 import { ListController } from '@templates/modules/services/list/listController';

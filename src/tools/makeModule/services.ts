@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateService } from '@templates/modules/services/create/createService';
 import { DeleteService } from '@templates/modules/services/delete/deleteService';
 import { ListService } from '@templates/modules/services/list/listService';

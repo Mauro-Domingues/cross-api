@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { FileManager } from '@tools/fileManager';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { FileManager } from '@tools/fileManager';
 
 export class CreateProvider {
   public constructor(

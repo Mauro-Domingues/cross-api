@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { argv } from 'node:process';
-import { IActionDTO } from '@interfaces/IActionDTO';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IActionDTO } from '@interfaces/IActionDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { Board } from '@tools/board';
 import { ConfigJson } from '@tools/config';
 import { CustomError } from '@tools/customError';

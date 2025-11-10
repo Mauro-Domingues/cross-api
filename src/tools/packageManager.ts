@@ -1,4 +1,4 @@
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import type { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { FileManager } from '@tools/fileManager';

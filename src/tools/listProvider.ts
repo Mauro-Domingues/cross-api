@@ -1,4 +1,4 @@
-import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
+import type { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';

@@ -1,3 +1,3 @@
-import { FileManager } from '@tools/fileManager';
+import type { FileManager } from '@tools/fileManager';
 
 export type IFileManagerDTO = readonly FileManager;

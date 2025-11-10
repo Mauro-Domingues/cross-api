@@ -1,8 +1,8 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
+import type { FileManager } from '@tools/fileManager';
 import { Messages } from '@tools/messages';
 
 export class DeleteModule {

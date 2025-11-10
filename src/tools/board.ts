@@ -1,5 +1,5 @@
-import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
-import { IOptionDTO } from '@interfaces/IOptionDTO';
+import type { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
+import type { IOptionDTO } from '@interfaces/IOptionDTO';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
 

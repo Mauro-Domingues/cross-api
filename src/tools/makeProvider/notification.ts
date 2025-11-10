@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateNotificationConfig } from '@templates/providers/config/notificationConfig';
 import { CreateINotificationDTO } from '@templates/providers/dtos/INotificationDTO';
 import { CreateFakeNotification } from '@templates/providers/fakes/fakeNotification';

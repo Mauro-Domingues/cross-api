@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateSpecController } from '@templates/modules/services/create/createControllerSpec';
 import { DeleteSpecController } from '@templates/modules/services/delete/deleteControllerSpec';
 import { ListSpecController } from '@templates/modules/services/list/listControllerSpec';

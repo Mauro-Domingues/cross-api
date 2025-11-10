@@ -1,6 +1,6 @@
-import { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
-import { IInputDTO } from '@interfaces/IInputDTO';
-import { IBuildPayloadDTO } from '@interfaces/ISingletonDTO';
+import type { IColorOptionDTO } from '@interfaces/IColorOptionDTO';
+import type { IInputDTO } from '@interfaces/IInputDTO';
+import type { IBuildPayloadDTO } from '@interfaces/ISingletonDTO';
 import { Concat } from '@tools/concat';
 
 export class BuildPayload {

@@ -1,4 +1,4 @@
-import { IMessageDTO } from '@interfaces/IMessageDTO';
+import type { IMessageDTO } from '@interfaces/IMessageDTO';
 
 export class PortugueseMessages {
   private readonly messages: IMessageDTO;

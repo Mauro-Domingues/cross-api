@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { BaseTemplateModule } from '@templates/modules/base';
 
 export class UpdateValidator extends BaseTemplateModule {

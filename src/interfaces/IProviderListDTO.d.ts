@@ -1,4 +1,4 @@
-import { IProviderOptionDTO } from '@interfaces/IProviderOptionDTO';
+import type { IProviderOptionDTO } from '@interfaces/IProviderOptionDTO';
 
 export type IProviderListDTO = readonly Record<
   IProviderOptionDTO,

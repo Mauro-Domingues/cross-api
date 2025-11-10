@@ -1,7 +1,7 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateNakedRoute } from '@templates/modules/routes/nakedRouter';
 import { Concat } from '@tools/concat';
-import { FileManager } from '@tools/fileManager';
+import type { FileManager } from '@tools/fileManager';
 
 export class CreateModule {
   private readonly concat: Concat;

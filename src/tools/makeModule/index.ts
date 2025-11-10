@@ -1,6 +1,6 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';

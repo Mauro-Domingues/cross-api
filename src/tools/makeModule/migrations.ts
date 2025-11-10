@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateMigration } from '@templates/modules/migrations/migration';
 import { Concat } from '@tools/concat';
 import { FileManager } from '@tools/fileManager';

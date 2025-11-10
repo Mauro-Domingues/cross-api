@@ -1,11 +1,11 @@
-import { IHelpDTO } from './IHelpDTO';
-import { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
-import { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
-import { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
-import { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
-import { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
-import { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
-import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
+import type { IHelpDTO } from './IHelpDTO';
+import type { IBoardDTO } from '@interfaces/IMessageDTO/IBoardDTO';
+import type { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
+import type { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
+import type { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
+import type { IMapperDTO } from '@interfaces/IMessageDTO/IMapperDTO';
+import type { IModuleDTO } from '@interfaces/IMessageDTO/IModuleDTO';
+import type { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
 
 export interface IMessageDTO {
   readonly documentation: IDocumentationDTO;

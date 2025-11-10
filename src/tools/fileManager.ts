@@ -12,8 +12,8 @@ import {
 } from 'node:fs';
 import { resolve } from 'node:path';
 import { cwd } from 'node:process';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
-import { IFileManagerDTO } from '@interfaces/ISingletonDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IFileManagerDTO } from '@interfaces/ISingletonDTO';
 
 export class FileManager {
   private static instance: IFileManagerDTO;

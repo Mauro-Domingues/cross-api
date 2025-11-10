@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateHashConfig } from '@templates/providers/config/hashConfig';
 import { CreateFakeHash } from '@templates/providers/fakes/fakeHash';
 import { CreateHashIndex } from '@templates/providers/hashIndex';

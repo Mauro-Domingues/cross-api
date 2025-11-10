@@ -1,4 +1,4 @@
-import { IConcatDTO } from '@interfaces/ISingletonDTO';
+import type { IConcatDTO } from '@interfaces/ISingletonDTO';
 
 export class Concat {
   private static instance: IConcatDTO;

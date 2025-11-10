@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateStorageConfig } from '@templates/providers/config/storageConfig';
 import { CreateFakeStorage } from '@templates/providers/fakes/fakeStorage';
 import { CreateDiskStorage } from '@templates/providers/implementations/DiskStorage';

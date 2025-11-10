@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateExampleJob } from '@templates/jobs/ExampleJob';
 import { CreateQueueConfig } from '@templates/providers/config/queueConfig';
 import { CreateIHandleDataDTO } from '@templates/providers/dtos/IHandleDataDTO';

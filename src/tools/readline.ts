@@ -1,6 +1,6 @@
 import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline';
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import { Console } from '@tools/console';
 import { Messages } from '@tools/messages';
 

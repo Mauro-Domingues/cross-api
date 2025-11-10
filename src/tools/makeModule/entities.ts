@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateEntity } from '@templates/modules/entities/entity';
 import { Concat } from '@tools/concat';
 import { BaseModule } from '@tools/makeModule/base';

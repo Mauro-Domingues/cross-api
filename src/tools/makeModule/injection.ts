@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { CreateContainerIndex } from '@templates/index/container';
 import { CreateInjection } from '@templates/modules/inject/injection';
 import { FileManager } from '@tools/fileManager';

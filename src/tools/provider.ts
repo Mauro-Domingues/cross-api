@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IProviderListDTO } from '@interfaces/IProviderListDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IProviderListDTO } from '@interfaces/IProviderListDTO';
 import { CreateCacheProvider } from '@tools/makeProvider/cache';
 import { CreateCryptoProvider } from '@tools/makeProvider/crypto';
 import { CreateHashProvider } from '@tools/makeProvider/hash';

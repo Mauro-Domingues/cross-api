@@ -1,6 +1,6 @@
-import { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
-import { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
+import type { IProviderDTO } from '@interfaces/IMessageDTO/IProviderDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { Console } from '@tools/console';
 import { CustomError } from '@tools/customError';
 import { Messages } from '@tools/messages';

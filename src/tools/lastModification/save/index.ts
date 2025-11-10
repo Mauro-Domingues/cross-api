@@ -1,4 +1,4 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import { BaseRegister } from '@tools/lastModification/base';
 import { CreateModule } from '@tools/lastModification/save/module';
 import { CreateProvider } from '@tools/lastModification/save/provider';

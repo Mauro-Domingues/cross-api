@@ -1,10 +1,10 @@
-import { Board } from '@tools/board';
-import { ConfigJson } from '@tools/config';
-import { ConfigLanguage } from '@tools/languageConfig';
-import { ListProvider } from '@tools/listProvider';
-import { CreateApi } from '@tools/makeApi/index';
-import { CreateModule } from '@tools/makeModule/index';
-import { CreateProvider } from '@tools/makeProvider/index';
+import type { Board } from '@tools/board';
+import type { ConfigJson } from '@tools/config';
+import type { ConfigLanguage } from '@tools/languageConfig';
+import type { ListProvider } from '@tools/listProvider';
+import type { CreateApi } from '@tools/makeApi/index';
+import type { CreateModule } from '@tools/makeModule/index';
+import type { CreateProvider } from '@tools/makeProvider/index';
 
 export interface IActionDTO {
   readonly 'make:provider': () => CreateProvider;

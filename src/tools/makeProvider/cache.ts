@@ -1,5 +1,5 @@
-import { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
-import { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
+import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
+import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCacheIndex } from '@templates/providers/cacheIndex';
 import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
