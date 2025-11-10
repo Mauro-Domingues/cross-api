@@ -4,7 +4,7 @@ export class CreateErrorHandler {
 import { AppError } fr\om '@shared/errors/AppError';
 import { createErrorLog } fr\om '@utils/errorLog';
 import { CelebrateError } fr\om 'celebrate';
-import { Request, Response, NextFunction } fr\om 'express';
+import type { Request, Response, NextFunction } fr\om 'express';
 
 const toUpperSnakeCase = (message: string): string => {
   return message

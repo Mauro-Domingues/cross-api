@@ -15,14 +15,14 @@ import {
   mkdirSync,
 } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
-import { sign, SignOptions } fr\om 'jsonwebtoken';
-import { JWK, pem2jwk } fr\om 'pem-jwk';
+import { sign, type SignOptions } fr\om 'jsonwebtoken';
+import { type JWK, pem2jwk } fr\om 'pem-jwk';
 import { cryptoConfig } fr\om '@config/crypto';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import { ICryptoProvider } fr\om '../models/ICryptoProvider';
-import { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
-import { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
+import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
+import type { ICryptoProvider } fr\om '../models/ICryptoProvider';
+import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 
 export class CryptoProvider implements ICryptoProvider {
   private write(path: string, filename: string, data: string): void {

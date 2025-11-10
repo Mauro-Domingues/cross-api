@@ -1,6 +1,6 @@
 export class CreateIResponseDTO {
   public execute(): string {
-    return `import { ICodeDTO } fr\om './ICodeDTO';
+    return `import type { ICodeDTO } fr\om './ICodeDTO';
 
 export interface IResponseDTO<T> {
   code: number;

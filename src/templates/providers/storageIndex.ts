@@ -4,7 +4,7 @@ export class CreateStorageIndex {
 import { container } fr\om 'tsyringe';
 import { DiskStorageProvider } fr\om './implementations/DiskStorageProvider';
 import { S3StorageProvider } fr\om './implementations/S3StorageProvider';
-import { IStorageProvider } fr\om './models/IStorageProvider';
+import type { IStorageProvider } fr\om './models/IStorageProvider';
 
 const providers: Record<typeof storageConfig.driver, () => IStorageProvider> = {
   disk: () => container.resolve(DiskStorageProvider),

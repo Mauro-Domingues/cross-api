@@ -1,7 +1,7 @@
 export class CreateOrmConfig {
   public execute(): string {
     return `import { Joi } fr\om 'celebrate';
-import { DataSourceOptions } fr\om 'typeorm';
+import type { DataSourceOptions } fr\om 'typeorm';
 import { appConfig } fr\om './app';
 
 interface IOrmConfigDTO {

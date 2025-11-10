@@ -1,10 +1,10 @@
 export class CreateOneSignalNotification {
   public execute(): string {
-    return `import axios, { AxiosError, AxiosInstance } fr\om 'axios';
+    return `import axios, { AxiosError, type AxiosInstance } fr\om 'axios';
 import { AppError } fr\om '@shared/errors/AppError';
 import { notificationConfig } fr\om '@config/notification';
-import { ISendNotificationDTO } fr\om '../dtos/ISendNotificationDTO';
-import { INotificationProvider } fr\om '../models/INotificationProvider';
+import type { ISendNotificationDTO } fr\om '../dtos/ISendNotificationDTO';
+import type { INotificationProvider } fr\om '../models/INotificationProvider';
 
 export class OneSignalProvider implements INotificationProvider {
   private readonly http: AxiosInstance;

@@ -1,6 +1,6 @@
 export class CreateAppError {
   public execute(): string {
-    return `import { ICodeDTO } fr\om '@dtos/ICodeDTO';
+    return `import type { ICodeDTO } fr\om '@dtos/ICodeDTO';
 
 export class AppError extends Error {
   public constructor(

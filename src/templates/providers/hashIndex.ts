@@ -3,7 +3,7 @@ export class CreateHashIndex {
     return `import { container } fr\om 'tsyringe';
 import { hashConfig } fr\om '@config/hash';
 import { BCryptHashProvider } fr\om './implementations/BCryptHashProvider';
-import { IHashProvider } fr\om './models/IHashProvider';
+import type { IHashProvider } fr\om './models/IHashProvider';
 
 const providers: Record<typeof hashConfig.driver, () => IHashProvider> = {
   bcrypt: () => container.resolve(BCryptHashProvider),

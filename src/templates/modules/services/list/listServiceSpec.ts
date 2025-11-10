@@ -16,10 +16,10 @@ export class ListSpecService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } fr\om '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { Connection, IConnection } fr\om '@shared/typeorm';
+import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { Connection, type IConnection } fr\om '@shared/typeorm';
 import { AppError } fr\om '@shared/errors/AppError';
 import { List${this.names.upperModuleName}Service } fr\om './List${this.names.upperModuleName}Service';
 

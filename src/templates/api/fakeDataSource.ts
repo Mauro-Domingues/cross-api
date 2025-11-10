@@ -1,6 +1,6 @@
 export class CreateFakeDataSource {
   public execute(): string {
-    return `import { DataSource } fr\om 'typeorm';
+    return `import type { DataSource } fr\om 'typeorm';
 
 const dataSources = new Map<string, DataSource>();
 

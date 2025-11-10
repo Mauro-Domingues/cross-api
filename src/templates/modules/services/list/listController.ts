@@ -15,11 +15,10 @@ export class ListController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Request, Response } fr\om 'express';
+    return `import type { Request, Response } fr\om 'express';
 import { container } fr\om 'tsyringe';
-import { FindOptionsWhere } fr\om 'typeorm';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { IListDTO } fr\om '@dtos/IListDTO';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { IListDTO } fr\om '@dtos/IListDTO';
 import { List${this.names.upperModuleName}Service } fr\om './List${this.names.upperModuleName}Service';
 
 export class List${this.names.upperModuleName}Controller {
@@ -28,7 +27,7 @@ export class List${this.names.upperModuleName}Controller {
       never,
       never,
       never,
-      { page: number; limit: number } & FindOptionsWhere<${this.names.upperModuleName}>
+      { page: number; limit: number } & ${this.names.upperModuleName}
     >,
     response: Response<IListDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {

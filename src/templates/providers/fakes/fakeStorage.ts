@@ -1,6 +1,6 @@
 export class CreateFakeStorage {
   public execute(): string {
-    return `import { IStorageProvider } fr\om '../models/IStorageProvider';
+    return `import type { IStorageProvider } fr\om '../models/IStorageProvider';
 
 export class FakeStorageProvider implements IStorageProvider {
   private readonly storage = new Set<string>();

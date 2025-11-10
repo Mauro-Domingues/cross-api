@@ -1,6 +1,6 @@
 export class CreateIBaseRepository {
   public execute(): string {
-    return `import {
+    return `import type {
   DeepPartial,
   DeleteResult,
   FindManyOptions,

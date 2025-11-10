@@ -15,11 +15,11 @@ export class ShowController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { Request, Response } fr\om 'express';
+    return `import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { Request, Response } fr\om 'express';
 import { container } fr\om 'tsyringe';
-import { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { Show${this.names.upperModuleName}Service } fr\om './Show${this.names.upperModuleName}Service';
 
 export class Show${this.names.upperModuleName}Controller {

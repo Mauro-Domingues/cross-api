@@ -1,6 +1,6 @@
 export class CreateIQueueDTO {
   public execute(): string {
-    return `import { IHandleDTO } fr\om './IHandleDTO';
+    return `import type { IHandleDTO } fr\om './IHandleDTO';
 
 export type IQueueDTO<T> = Record<
   Capitalize<string>,

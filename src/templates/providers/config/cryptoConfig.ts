@@ -3,7 +3,7 @@ export class CreateCryptoConfig {
     return `import { Joi } fr\om 'celebrate';
 import { resolve } fr\om 'node:path';
 import { getCiphers } fr\om 'node:crypto';
-import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 
 interface ICryptoConfigDTO {
   readonly driver: 'crypto';

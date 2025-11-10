@@ -13,14 +13,13 @@ export class ListService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { injectable, inject } fr\om 'tsyringe';
-import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } fr\om 'class-transformer';
-import { ICacheDTO } fr\om '@dtos/ICacheDTO';
-import { IListDTO } fr\om '@dtos/IListDTO';
-import { IConnection } fr\om '@shared/typeorm';
-import { FindOptionsWhere } fr\om 'typeorm';
+import type { ICacheDTO } fr\om '@dtos/ICacheDTO';
+import type { IListDTO } fr\om '@dtos/IListDTO';
+import type { IConnection } fr\om '@shared/typeorm';
 import { Get, Route, Tags, Query, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
@@ -40,7 +39,7 @@ export class List${this.names.upperModuleName}Service {
     @Inject() connection: IConnection,
     @Query() page: number,
     @Query() limit: number,
-    @Inject() filters: FindOptionsWhere<${this.names.upperModuleName}>,
+    @Inject() filters: ${this.names.upperModuleName},
   ): Promise<IListDTO<${this.names.upperModuleName}>> {
     const trx = connection.mysql.createQueryRunner();
 

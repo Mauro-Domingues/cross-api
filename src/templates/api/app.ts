@@ -9,7 +9,7 @@ import { truncateSync, existsSync } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
 import { cpus } fr\om 'node:os';
 import express, {
-  Express,
+  type Express,
   json,
   urlencoded,
   // static as staticPath,

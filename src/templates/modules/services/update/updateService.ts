@@ -13,16 +13,15 @@ export class UpdateService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { injectable, inject } fr\om 'tsyringe';
-
 import { AppError } fr\om '@shared/errors/AppError';
-import { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import { updateAttribute } fr\om '@utils/mappers';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { instanceToInstance } fr\om 'class-transformer';
-import { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import { IConnection } fr\om '@shared/typeorm';
+import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import type { IConnection } fr\om '@shared/typeorm';
 import { Route, Tags, Put, Body, Path, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')

@@ -1,6 +1,6 @@
 export class CreateJestConfig {
   public execute(): string {
-    return `import { pathsToModuleNameMapper, JestConfigWithTsJest } fr\om 'ts-jest';
+    return `import { pathsToModuleNameMapper, type JestConfigWithTsJest } fr\om 'ts-jest';
 import { compilerOptions } fr\om './tsconfig.json';
 
 export default {

@@ -1,6 +1,6 @@
 export class CreateConnection {
   public execute(): string {
-    return `import { DataSource } fr\om 'typeorm';
+    return `import type { DataSource } fr\om 'typeorm';
 import { ormConfig } fr\om '@config/orm';
 import { appConfig } fr\om '@config/app';
 import { MysqlDataSource } fr\om './dataSources/mysqlDataSource';

@@ -10,7 +10,7 @@ import { createReadStream, unlinkSync } fr\om 'node:fs';
 import { getType } fr\om 'mime';
 import { resolve } fr\om 'node:path';
 import { AppError } fr\om '@shared/errors/AppError';
-import { IStorageProvider } fr\om '../models/IStorageProvider';
+import type { IStorageProvider } fr\om '../models/IStorageProvider';
 
 export class S3StorageProvider implements IStorageProvider {
   private readonly client: S3Client;

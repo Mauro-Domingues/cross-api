@@ -1,6 +1,6 @@
 export class CreateConvertToMilliseconds {
   public execute(): string {
-    return `import { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+    return `import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 import { AppError } fr\om '@shared/errors/AppError';
 
 export function convertToMilliseconds(delay: IIntervalDTO): number {

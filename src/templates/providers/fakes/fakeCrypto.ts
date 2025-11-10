@@ -1,15 +1,15 @@
 export class CreateFakeCrypto {
   public execute(): string {
-    return `import { JWK } fr\om 'pem-jwk';
+    return `import type { JWK } fr\om 'pem-jwk';
 import { cryptoConfig } fr\om '@config/crypto';
 import { readFileSync } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
 import { createHash } fr\om 'node:crypto';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import { ICryptoProvider } fr\om '../models/ICryptoProvider';
-import { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
-import { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
+import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
+import type { ICryptoProvider } fr\om '../models/ICryptoProvider';
+import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 
 export class FakeCryptoProvider implements ICryptoProvider {
   public encrypt(text: string): IEncryptedDTO {

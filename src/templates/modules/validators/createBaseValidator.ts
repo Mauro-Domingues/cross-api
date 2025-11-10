@@ -1,8 +1,13 @@
 export class CreateBaseValidator {
   public execute(): string {
-    return `import { celebrate, Joi, CelebrateOptions, SchemaOptions } fr\om 'celebrate';
+    return `import {
+  celebrate,
+  Joi,
+  type CelebrateOptions,
+  type SchemaOptions,
+} fr\om 'celebrate';
 import type { Root, ValidationOptions } fr\om 'joi';
-import { RequestHandler } fr\om 'express';
+import type { RequestHandler } fr\om 'express';
 
 export const baseValidator = (
   requestRules: (ctx: Root) => SchemaOptions,

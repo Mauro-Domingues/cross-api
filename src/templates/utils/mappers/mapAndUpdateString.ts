@@ -9,7 +9,7 @@ export class CreateMapAndUpdateString {
   }
 
   public execute(): string {
-    return `import { IObjectDTO } fr\om '@dtos/IObjectDTO';
+    return `import type { IObjectDTO } fr\om '@dtos/IObjectDTO';
 import { mapAndUpdateAttribute } fr\om './mapAndUpdateAttribute';
 
 /**

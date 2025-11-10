@@ -2,7 +2,7 @@ export class CreateRedisCache {
   public execute(): string {
     return `import { cacheConfig } fr\om '@config/cache';
 import { Redis } fr\om 'ioredis';
-import { ICacheProvider } fr\om '../models/ICacheProvider';
+import type { ICacheProvider } fr\om '../models/ICacheProvider';
 
 export class RedisCacheProvider implements ICacheProvider {
   private readonly client: Redis;

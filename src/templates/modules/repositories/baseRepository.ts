@@ -1,17 +1,17 @@
 export class CreateBaseRepository {
   public execute(): string {
     return `import {
-  DeleteResult,
-  EntityTarget,
-  FindManyOptions,
-  FindOptionsWhere,
   In,
   Like,
-  ObjectLiteral,
-  QueryRunner,
+  type DeleteResult,
+  type EntityTarget,
+  type FindManyOptions,
+  type FindOptionsWhere,
+  type ObjectLiteral,
+  type QueryRunner,
 } fr\om 'typeorm';
 import { AppError } fr\om '@shared/errors/AppError';
-import { IBaseRepository } fr\om './IBaseRepository';
+import type { IBaseRepository } fr\om './IBaseRepository';
 
 export abstract class BaseRepository<Entity extends ObjectLiteral>
   implements IBaseRepository<Entity>

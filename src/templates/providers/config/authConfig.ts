@@ -6,7 +6,7 @@ import { resolve } fr\om 'node:path';
 import { passportJwtSecret } fr\om 'jwks-rsa';
 import {
   ExtractJwt,
-  StrategyOptionsWithoutRequest as JwtStrategyOptions,
+  type StrategyOptionsWithoutRequest as JwtStrategyOptions,
 } fr\om 'passport-jwt';
 import { appConfig } fr\om './app';
 

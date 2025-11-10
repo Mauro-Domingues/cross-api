@@ -1,6 +1,6 @@
 export class CreateSetConnection {
   public execute(): string {
-    return `import { Request, Response, NextFunction } fr\om 'express';
+    return `import type { Request, Response, NextFunction } fr\om 'express';
 import { Connection } fr\om '@shared/typeorm';
 
 /**

@@ -4,7 +4,7 @@ export class CreateMailIndex {
 import { container } fr\om 'tsyringe';
 import { SMTPMailProvider } fr\om './implementations/SMTPMailProvider';
 import { SESMailProvider } fr\om './implementations/SESMailProvider';
-import { IMailProvider } fr\om './models/IMailProvider';
+import type { IMailProvider } fr\om './models/IMailProvider';
 
 const providers: Record<typeof mailConfig.driver, () => IMailProvider> = {
   smtp: () => container.resolve(SMTPMailProvider),

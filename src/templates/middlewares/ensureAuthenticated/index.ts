@@ -1,8 +1,8 @@
 export class CreateEnsureAuthenticated {
   public execute(): string {
-    return `import passport, { AuthenticateOptions } fr\om 'passport';
+    return `import passport, { type AuthenticateOptions } fr\om 'passport';
 import { unless } fr\om 'express-unless';
-import { Request, Response, NextFunction } fr\om 'express';
+import type { Request, Response, NextFunction } fr\om 'express';
 import { authConfig } fr\om '@config/auth';
 import { jwtStrategy } fr\om './strategies/jwtStrategy';
 
