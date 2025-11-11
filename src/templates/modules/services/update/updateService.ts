@@ -12,17 +12,17 @@ export class UpdateService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } fr\om 'tsyringe';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import { updateAttribute } fr\om '@utils/mappers';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { instanceToInstance } fr\om 'class-transformer';
-import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import type { IConnection } fr\om '@shared/typeorm';
+    return `import { instanceToInstance } fr\om 'class-transformer';
 import { Route, Tags, Put, Body, Path, Inject } fr\om 'tsoa';
+import { injectable, inject } fr\om 'tsyringe';
+import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { AppError } fr\om '@shared/errors/AppError';
+import type { IConnection } fr\om '@shared/typeorm';
+import { updateAttribute } fr\om '@utils/mappers';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()

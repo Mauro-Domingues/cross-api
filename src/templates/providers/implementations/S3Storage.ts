@@ -1,14 +1,14 @@
 export class CreateS3Storage {
   public execute(): string {
-    return `import { storageConfig } fr\om '@config/storage';
-import {
-  S3Client,
-  PutObjectCommand,
+    return `import {
   DeleteObjectCommand,
+  PutObjectCommand,
+  S3Client,
 } fr\om '@aws-sdk/client-s3';
-import { createReadStream, unlinkSync } fr\om 'node:fs';
 import { getType } fr\om 'mime';
+import { createReadStream, unlinkSync } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
+import { storageConfig } fr\om '@config/storage';
 import { AppError } fr\om '@shared/errors/AppError';
 import type { IStorageProvider } fr\om '../models/IStorageProvider';
 

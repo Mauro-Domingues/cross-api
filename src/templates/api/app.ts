@@ -4,27 +4,27 @@ export class CreateApp {
 import 'reflect-metadata';
 import '@shared/container';
 import 'express-async-errors';
-import cluster fr\om 'node:cluster';
-import { truncateSync, existsSync } fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
-import { cpus } fr\om 'node:os';
+import cors fr\om 'cors';
 import type { Express } fr\om 'express';
 import express, {
   json,
-  urlencoded,
   // static as staticPath,
+  urlencoded,
 } fr\om 'express';
 import { serve, setup } fr\om 'swagger-ui-express';
-import { setConnection } fr\om '@middlewares/setConnection';
-import { errorHandler } fr\om '@middlewares/errorHandler';
-import { parseParam } fr\om '@middlewares/parseParam';
-import { rateLimiter } fr\om '@middlewares/rateLimiter';
-import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import cors fr\om 'cors';
+import cluster fr\om 'node:cluster';
+import { existsSync, truncateSync } fr\om 'node:fs';
+import { cpus } fr\om 'node:os';
+import { resolve } fr\om 'node:path';
 import { appConfig } fr\om '@config/app';
 import { corsConfig } fr\om '@config/cors';
 // import { cryptoConfig } fr\om '@config/crypto'; // cryptoProvider
 // import { storageConfig } fr\om '@config/storage'; // storageProvider
+import { errorHandler } fr\om '@middlewares/errorHandler';
+import { parseParam } fr\om '@middlewares/parseParam';
+import { rateLimiter } fr\om '@middlewares/rateLimiter';
+import { setConnection } fr\om '@middlewares/setConnection';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import { routes } fr\om '../routes';
 import swaggerDocs fr\om '../swagger.json';
 

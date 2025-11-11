@@ -19,9 +19,9 @@ export class ListSpecService extends BaseTemplateModule {
 import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import { FakeCacheProvider } fr\om '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { AppError } fr\om '@shared/errors/AppError';
 import type { IConnection } fr\om '@shared/typeorm';
 import { Connection } fr\om '@shared/typeorm';
-import { AppError } fr\om '@shared/errors/AppError';
 import { List${this.names.upperModuleName}Service } fr\om './List${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: I${this.names.pluralUpperModuleName}Repository;

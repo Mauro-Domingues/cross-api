@@ -1,8 +1,8 @@
 export class CreateCorsConfig {
   public execute(): string {
     return `import { Joi } fr\om 'celebrate';
-import { AppError } fr\om '@shared/errors/AppError';
 import type { CorsOptions as ICorsConfigDTO } fr\om 'cors';
+import { AppError } fr\om '@shared/errors/AppError';
 import { appConfig } fr\om './app';
 
 const corsValidator = Joi.object<ICorsConfigDTO>({

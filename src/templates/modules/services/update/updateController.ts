@@ -17,9 +17,9 @@ export class UpdateController extends BaseTemplateModule {
   public execute(): string {
     return `import type { Request, Response } fr\om 'express';
 import { container } fr\om 'tsyringe';
+import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import { Update${this.names.upperModuleName}Service } fr\om './Update${this.names.upperModuleName}Service';
 
 export class Update${this.names.upperModuleName}Controller {

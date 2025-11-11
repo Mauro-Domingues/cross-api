@@ -9,7 +9,7 @@ export class CreateEntity {
   ) {}
 
   public execute(): string {
-    return `import { Entity, Column } fr\om 'typeorm';
+    return `import { Column, Entity } fr\om 'typeorm';
 import { Base } fr\om '@shared/container/modules/entities/Base';
 
 @Entity('${this.names.dbModuleName}')

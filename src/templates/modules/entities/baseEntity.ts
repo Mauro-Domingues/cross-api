@@ -1,10 +1,10 @@
 export class CreateBaseEntity {
   public execute(): string {
     return `import {
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } fr\om 'typeorm';
 
 export abstract class Base {

@@ -1,6 +1,6 @@
 export class CreateRateLimiter {
   public execute(): string {
-    return `import type { Request, Response, NextFunction } fr\om 'express';
+    return `import type { NextFunction, Request, Response } fr\om 'express';
 import { RateLimiterMemory } fr\om 'rate-limiter-flexible';
 import { AppError } fr\om '@shared/errors/AppError';
 

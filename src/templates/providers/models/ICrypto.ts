@@ -3,8 +3,8 @@ export class CreateICrypto {
     return `import type { SignOptions } fr\om 'jsonwebtoken';
 import type { JWK } fr\om 'pem-jwk';
 import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
 import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
+import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
 
 export interface ICryptoProvider {
   encrypt(text: string): IEncryptedDTO;

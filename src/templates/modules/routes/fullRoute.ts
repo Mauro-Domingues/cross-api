@@ -17,15 +17,15 @@ export class CreateFullRoute extends BaseTemplateModule {
   public execute(): string {
     return `import { Router } fr\om 'express';
 import { Create${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
-import { Show${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
-import { List${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller';
-import { Update${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller';
 import { Delete${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller';
+import { List${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller';
+import { Show${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/show${this.names.upperModuleName}/Show${this.names.upperModuleName}Controller';
+import { Update${this.names.upperModuleName}Controller } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/services/update${this.names.upperModuleName}/Update${this.names.upperModuleName}Controller';
 import { create${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/create${this.names.upperModuleName}';
+import { delete${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/delete${this.names.upperModuleName}';
 import { list${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/list${this.names.upperModuleName}';
 import { show${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/show${this.names.upperModuleName}';
 import { update${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/update${this.names.upperModuleName}';
-import { delete${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/delete${this.names.upperModuleName}';
 
 const ${this.baseNames.lowerModuleName}Router = Router();
 const create${this.names.upperModuleName}Controller = new Create${this.names.upperModuleName}Controller();

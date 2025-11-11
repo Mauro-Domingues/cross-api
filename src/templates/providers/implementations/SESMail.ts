@@ -1,8 +1,8 @@
 export class CreateSESMail {
   public execute(): string {
-    return `import { mailConfig } fr\om '@config/mail';
-import { SESClient, SendEmailCommand } fr\om '@aws-sdk/client-ses';
-import { injectable, inject } fr\om 'tsyringe';
+    return `import { SendEmailCommand, SESClient } fr\om '@aws-sdk/client-ses';
+import { inject, injectable } fr\om 'tsyringe';
+import { mailConfig } fr\om '@config/mail';
 import type { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
 import type { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
 import type { IMailProvider } fr\om '../models/IMailProvider';

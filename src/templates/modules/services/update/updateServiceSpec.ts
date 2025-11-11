@@ -15,11 +15,11 @@ export class UpdateSpecService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { FakeCacheProvider } fr\om '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+    return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { FakeCacheProvider } fr\om '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } fr\om '@shared/errors/AppError';
-import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import type { IConnection } fr\om '@shared/typeorm';
 import { Connection } fr\om '@shared/typeorm';
 import { Update${this.names.upperModuleName}Service } fr\om './Update${this.names.upperModuleName}Service';

@@ -53,9 +53,9 @@ export class CreateEsLintrcJson {
       {
         "groups": [
           [
-            "^\\\\u0000", "^@?\\\\w",
+            "^\\\\u0000", "^@?\\\\w", "^node:",
             "^@config", "^@dtos", "^@jobs", "^@middlewares", "^@modules", "^@routes", "^@shared", "^@utils",
-            "^\\\\.\\\\./", "^\\\\./(?=.*/)", "^\\\\./?$"
+            "^\\\\.\\\\./", "^\\\\./", "^\\\\./(?=.*/)", "^\\\\./?$"
           ]
         ]
       }

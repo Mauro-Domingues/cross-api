@@ -1,9 +1,9 @@
 export class CreateMailIndex {
   public execute(): string {
-    return `import { mailConfig } fr\om '@config/mail';
-import { container } fr\om 'tsyringe';
-import { SMTPMailProvider } fr\om './implementations/SMTPMailProvider';
+    return `import { container } fr\om 'tsyringe';
+import { mailConfig } fr\om '@config/mail';
 import { SESMailProvider } fr\om './implementations/SESMailProvider';
+import { SMTPMailProvider } fr\om './implementations/SMTPMailProvider';
 import type { IMailProvider } fr\om './models/IMailProvider';
 
 const providers: Record<typeof mailConfig.driver, () => IMailProvider> = {

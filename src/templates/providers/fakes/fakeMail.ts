@@ -6,11 +6,11 @@ import {
   createTransport,
   getTestMessageUrl,
 } fr\om 'nodemailer';
-import { mailConfig } fr\om '@config/mail';
 import { inject, injectable } fr\om 'tsyringe';
+import { mailConfig } fr\om '@config/mail';
+import type { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
 import type { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
 import type { IMailProvider } fr\om '../models/IMailProvider';
-import type { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
 
 @injectable()
 export class FakeMailProvider implements IMailProvider {

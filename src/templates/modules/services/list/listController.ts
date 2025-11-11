@@ -17,8 +17,8 @@ export class ListController extends BaseTemplateModule {
   public execute(): string {
     return `import type { Request, Response } fr\om 'express';
 import { container } fr\om 'tsyringe';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import type { IListDTO } fr\om '@dtos/IListDTO';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { List${this.names.upperModuleName}Service } fr\om './List${this.names.upperModuleName}Service';
 
 export class List${this.names.upperModuleName}Controller {

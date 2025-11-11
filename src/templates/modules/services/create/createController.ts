@@ -15,10 +15,10 @@ export class CreateController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import type { Request, Response } fr\om 'express';
+    return `import type { Request, Response } fr\om 'express';
 import { container } fr\om 'tsyringe';
 import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
+import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Create${this.names.upperModuleName}Service } fr\om './Create${this.names.upperModuleName}Service';
 

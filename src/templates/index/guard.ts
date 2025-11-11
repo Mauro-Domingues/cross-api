@@ -1,9 +1,9 @@
 export class CreateGuardIndex {
   public execute(): string {
-    return `import passport fr\om 'passport';
-import { Router } fr\om 'express';
-import { ensureAuthenticated } fr\om '@middlewares/ensureAuthenticated';
+    return `import { Router } fr\om 'express';
+import passport fr\om 'passport';
 import type { IExceptionDTO } fr\om '@dtos/IExceptionDTO';
+import { ensureAuthenticated } fr\om '@middlewares/ensureAuthenticated';
 import { getExceptionOptions } fr\om '@utils/getExceptionOptions';
 
 const guardRouter = Router();

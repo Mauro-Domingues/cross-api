@@ -1,6 +1,6 @@
 export class CreateBaseSchema {
   public execute(): string {
-    return `import type { Root, Schema, ObjectSchema } fr\om 'joi';
+    return `import type { ObjectSchema, Root, Schema } fr\om 'joi';
 import type { Base } fr\om '../entities/Base';
 
 export const baseSchema =

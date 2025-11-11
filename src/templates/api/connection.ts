@@ -1,10 +1,10 @@
 export class CreateConnection {
   public execute(): string {
     return `import type { DataSource } fr\om 'typeorm';
-import { ormConfig } fr\om '@config/orm';
 import { appConfig } fr\om '@config/app';
-import { MysqlDataSource } fr\om './dataSources/mysqlDataSource';
+import { ormConfig } fr\om '@config/orm';
 import { FakeDataSource } fr\om './dataSources/fakes/fakeDataSource';
+import { MysqlDataSource } fr\om './dataSources/mysqlDataSource';
 
 export interface IConnection {
   connect(): Promise<void>;

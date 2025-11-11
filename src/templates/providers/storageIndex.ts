@@ -1,7 +1,7 @@
 export class CreateStorageIndex {
   public execute(): string {
-    return `import { storageConfig } fr\om '@config/storage';
-import { container } fr\om 'tsyringe';
+    return `import { container } fr\om 'tsyringe';
+import { storageConfig } fr\om '@config/storage';
 import { DiskStorageProvider } fr\om './implementations/DiskStorageProvider';
 import { S3StorageProvider } fr\om './implementations/S3StorageProvider';
 import type { IStorageProvider } fr\om './models/IStorageProvider';

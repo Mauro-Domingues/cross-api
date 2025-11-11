@@ -1,8 +1,8 @@
 export class CreateSeedExample {
   public execute(): string {
-    return `// import { Example } fr\om '@modules/examples/entities/Example';
+    return `import type { QueryRunner } fr\om 'typeorm';
 import { v4 as uuid } fr\om 'uuid';
-import type { QueryRunner } fr\om 'typeorm';
+// import { Example } fr\om '@modules/examples/entities/Example';
 
 class Example {} // Fake entity
 

@@ -12,15 +12,15 @@ export class ListService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { injectable, inject } fr\om 'tsyringe';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { instanceToInstance } fr\om 'class-transformer';
+    return `import { instanceToInstance } fr\om 'class-transformer';
+import { Get, Route, Tags, Query, Inject } fr\om 'tsoa';
+import { injectable, inject } fr\om 'tsyringe';
 import type { ICacheDTO } fr\om '@dtos/ICacheDTO';
 import type { IListDTO } fr\om '@dtos/IListDTO';
+import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import type { IConnection } fr\om '@shared/typeorm';
-import { Get, Route, Tags, Query, Inject } fr\om 'tsoa';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()

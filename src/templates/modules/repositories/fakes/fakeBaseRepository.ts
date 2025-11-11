@@ -1,10 +1,10 @@
 export class CreateFakeBaseRepository {
   public execute(): string {
-    return `import type { Base } fr\om '@shared/container/modules/entities/Base';
+    return `import type { ObjectLiteral } fr\om 'typeorm';
 import { v4 as uuid } fr\om 'uuid';
-import type { ObjectLiteral } fr\om 'typeorm';
-import { AppError } fr\om '@shared/errors/AppError';
 import type { IObjectDTO } fr\om '@dtos/IObjectDTO';
+import type { Base } fr\om '@shared/container/modules/entities/Base';
+import { AppError } fr\om '@shared/errors/AppError';
 import type { IBaseRepository } fr\om '../IBaseRepository';
 
 export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>

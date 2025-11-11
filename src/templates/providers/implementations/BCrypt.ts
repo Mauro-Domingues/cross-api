@@ -1,6 +1,6 @@
 export class CreateHash {
   public execute(): string {
-    return `import { hash, compare } fr\om 'bcrypt';
+    return `import { compare, hash } fr\om 'bcrypt';
 import { hashConfig } fr\om '@config/hash';
 import type { IHashProvider } fr\om '../models/IHashProvider';
 

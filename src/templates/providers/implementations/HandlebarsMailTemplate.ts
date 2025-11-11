@@ -1,10 +1,10 @@
 export class CreateHandlebarsMailTemplate {
   public execute(): string {
-    return `import { readFileSync } fr\om 'node:fs';
-import Handlebars fr\om 'handlebars';
+    return `import Handlebars fr\om 'handlebars';
+import { readFileSync } fr\om 'node:fs';
+import type { IMailTemplateFragmentDTO } fr\om '../dtos/IMailTemplateFragmentDTO';
 import type { IParseMailTemplateDTO } fr\om '../dtos/IParseMailTemplateDTO';
 import type { IMailTemplateProvider } fr\om '../models/IMailTemplateProvider';
-import type { IMailTemplateFragmentDTO } fr\om '../dtos/IMailTemplateFragmentDTO';
 
 export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
   private parseTemplate({ file, variables }: IMailTemplateFragmentDTO): string {

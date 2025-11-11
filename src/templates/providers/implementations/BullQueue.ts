@@ -3,13 +3,13 @@ export class CreateBullQueue {
     return `import type { Job, Queue } fr\om 'bull';
 import Bull fr\om 'bull';
 import { queueConfig } fr\om '@config/queue';
-import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
+import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
+import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
+import type { IQueueDTO } fr\om '../dtos/IQueueDTO';
 import type { IQueueProvider } fr\om '../models/IQueueProvider';
 import { jobs } fr\om '../public/jobs';
-import type { IQueueDTO } fr\om '../dtos/IQueueDTO';
-import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
-import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
 
 export class BullProvider implements IQueueProvider {
   private readonly queues: IQueueDTO<Queue> = {};

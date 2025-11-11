@@ -1,30 +1,30 @@
 export class CreateCrypto {
   public execute(): string {
-    return `import {
-  randomBytes,
+    return `import type { SignOptions } fr\om 'jsonwebtoken';
+import { sign } fr\om 'jsonwebtoken';
+import type { JWK } fr\om 'pem-jwk';
+import { pem2jwk } fr\om 'pem-jwk';
+import {
   createCipheriv,
   createDecipheriv,
   createHash,
   generateKeyPairSync,
+  randomBytes,
 } fr\om 'node:crypto';
 import {
-  readFileSync,
   appendFileSync,
-  truncateSync,
   existsSync,
   mkdirSync,
+  readFileSync,
+  truncateSync,
 } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
-import type { SignOptions } fr\om 'jsonwebtoken';
-import { sign } fr\om 'jsonwebtoken';
-import type { JWK } fr\om 'pem-jwk';
-import { pem2jwk } fr\om 'pem-jwk';
 import { cryptoConfig } fr\om '@config/crypto';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import type { ICryptoProvider } fr\om '../models/ICryptoProvider';
-import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
 import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
+import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+import type { ICryptoProvider } fr\om '../models/ICryptoProvider';
 
 export class CryptoProvider implements ICryptoProvider {
   private write(path: string, filename: string, data: string): void {

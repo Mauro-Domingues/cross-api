@@ -1,11 +1,11 @@
 export class CreateRDStationLead {
   public execute(): string {
-    return `import { leadConfig } fr\om '@config/lead';
-import type { AxiosInstance } fr\om 'axios';
+    return `import type { AxiosInstance } fr\om 'axios';
 import axios, { AxiosError } fr\om 'axios';
+import { leadConfig } fr\om '@config/lead';
 import { AppError } fr\om '@shared/errors/AppError';
-import type { ILeadProvider } fr\om '../models/ILeadProvider';
 import type { IAuthDTO } fr\om '../dtos/IAuthDTO';
+import type { ILeadProvider } fr\om '../models/ILeadProvider';
 
 export class RDStationProvider implements ILeadProvider {
   private readonly http: AxiosInstance;

@@ -10,9 +10,9 @@ export class CreateSpecController {
 
   public execute(): string {
     return `import request fr\om 'supertest';
+  import { app } fr\om '@shared/app';
 import type { IConnection } fr\om '@shared/typeorm';
 import { Connection } fr\om '@shared/typeorm';
-import { app } fr\om '@shared/app';
 
 let connection: IConnection;
 
