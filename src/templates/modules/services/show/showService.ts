@@ -13,12 +13,12 @@ export class ShowService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { instanceToInstance } fr\om 'class-transformer';
-import { Get, Route, Tags, Path, Inject } fr\om 'tsoa';
-import { injectable, inject } fr\om 'tsyringe';
+import { Get, Inject, Path, Route, Tags } fr\om 'tsoa';
+import { inject, injectable } fr\om 'tsyringe';
 import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import { AppError } fr\om '@shared/errors/AppError';
 import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { AppError } fr\om '@shared/errors/AppError';
 import type { IConnection } fr\om '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')

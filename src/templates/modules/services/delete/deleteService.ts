@@ -12,8 +12,8 @@ export class DeleteService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Route, Tags, Delete, Path, Inject } fr\om 'tsoa';
-import { injectable, inject } fr\om 'tsyringe';
+    return `import { Delete, Inject, Path, Route, Tags } fr\om 'tsoa';
+import { inject, injectable } fr\om 'tsyringe';
 import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
 import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';

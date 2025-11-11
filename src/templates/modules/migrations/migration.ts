@@ -10,9 +10,9 @@ export class CreateMigration {
   ) {}
 
   public execute(): string {
-    return `import { BaseMigration } fr\om '@shared/container/modules/migrations/BaseMigration';
-import type { MigrationInterface, QueryRunner } fr\om 'typeorm';
+    return `import type { MigrationInterface, QueryRunner } fr\om 'typeorm';
 import { Table } fr\om 'typeorm';
+import { BaseMigration } fr\om '@shared/container/modules/migrations/BaseMigration';
 
 export class ${this.names.upperModuleName}${this.timestamp}
   extends BaseMigration

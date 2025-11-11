@@ -13,8 +13,8 @@ export class UpdateService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { instanceToInstance } fr\om 'class-transformer';
-import { Route, Tags, Put, Body, Path, Inject } fr\om 'tsoa';
-import { injectable, inject } fr\om 'tsyringe';
+import { Body, Inject, Path, Put, Route, Tags } fr\om 'tsoa';
+import { inject, injectable } fr\om 'tsyringe';
 import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
 import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';

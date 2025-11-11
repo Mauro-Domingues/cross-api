@@ -1,8 +1,8 @@
 export class CreateCryptoConfig {
   public execute(): string {
     return `import { Joi } fr\om 'celebrate';
-import { resolve } fr\om 'node:path';
 import { getCiphers } fr\om 'node:crypto';
+import { resolve } fr\om 'node:path';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 
 interface ICryptoConfigDTO {

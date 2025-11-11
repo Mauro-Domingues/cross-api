@@ -13,8 +13,8 @@ export class ListService extends BaseTemplateModule {
 
   public execute(): string {
     return `import { instanceToInstance } fr\om 'class-transformer';
-import { Get, Route, Tags, Query, Inject } fr\om 'tsoa';
-import { injectable, inject } fr\om 'tsyringe';
+import { Get, Inject, Query, Route, Tags } fr\om 'tsoa';
+import { inject, injectable } fr\om 'tsyringe';
 import type { ICacheDTO } fr\om '@dtos/ICacheDTO';
 import type { IListDTO } fr\om '@dtos/IListDTO';
 import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
