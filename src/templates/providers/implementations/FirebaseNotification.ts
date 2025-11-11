@@ -1,6 +1,7 @@
 export class CreateFirebaseNotification {
   public execute(): string {
-    return `import axios, { AxiosError, type AxiosInstance } fr\om 'axios';
+    return `import type { AxiosInstance } fr\om 'axios';
+import axios, { AxiosError } fr\om 'axios';
 import { GoogleAuth } fr\om 'google-auth-library';
 import { AppError } fr\om '@shared/errors/AppError';
 import { notificationConfig } fr\om '@config/notification';

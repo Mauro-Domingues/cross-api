@@ -1,6 +1,7 @@
 export class CreateBullQueue {
   public execute(): string {
-    return `import Bull, { type Job, type Queue } fr\om 'bull';
+    return `import type { Job, Queue } fr\om 'bull';
+import Bull fr\om 'bull';
 import { queueConfig } fr\om '@config/queue';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';

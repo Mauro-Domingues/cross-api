@@ -1,6 +1,7 @@
 export class CreateSMTPMail {
   public execute(): string {
-    return `import { type Transporter, createTransport } fr\om 'nodemailer';
+    return `import type { Transporter } fr\om 'nodemailer';
+import { createTransport } fr\om 'nodemailer';
 import { injectable, inject } fr\om 'tsyringe';
 import { mailConfig } fr\om '@config/mail';
 import type { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';

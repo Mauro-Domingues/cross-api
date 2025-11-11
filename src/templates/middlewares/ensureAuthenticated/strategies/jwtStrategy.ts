@@ -1,6 +1,7 @@
 export class CreateJwtStrategy {
   public execute(): string {
-    return `import passport, { type PassportStatic } fr\om 'passport';
+    return `import type { PassportStatic } fr\om 'passport';
+import passport fr\om 'passport';
 import { Strategy as JwtStrategy } fr\om 'passport-jwt';
 import { authConfig } fr\om '@config/auth';
 

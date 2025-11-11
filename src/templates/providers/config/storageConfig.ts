@@ -2,7 +2,8 @@ export class CreateStorageConfig {
   public execute(): string {
     return `import { Joi } fr\om 'celebrate';
 import { randomBytes } fr\om 'node:crypto';
-import { type StorageEngine, diskStorage } fr\om 'multer';
+import type { StorageEngine } fr\om 'multer';
+import { diskStorage } fr\om 'multer';
 import { resolve, extname } fr\om 'node:path';
 import { slugify } fr\om '@utils/slugify';
 

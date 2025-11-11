@@ -1,6 +1,7 @@
 export class CreateBeeQueue {
   public execute(): string {
-    return `import Bee, { type Job } fr\om 'bee-queue';
+    return `import type { Job } fr\om 'bee-queue';
+import Bee fr\om 'bee-queue';
 import { queueConfig } fr\om '@config/queue';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';

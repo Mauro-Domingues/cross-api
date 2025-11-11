@@ -4,10 +4,8 @@ export class CreateAuthConfig {
 import { readFileSync } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
 import { passportJwtSecret } fr\om 'jwks-rsa';
-import {
-  ExtractJwt,
-  type StrategyOptionsWithoutRequest as JwtStrategyOptions,
-} fr\om 'passport-jwt';
+import type { StrategyOptionsWithoutRequest as JwtStrategyOptions } fr\om 'passport-jwt';
+import { ExtractJwt } fr\om 'passport-jwt';
 import { appConfig } fr\om './app';
 
 interface IAuthConfigDTO {

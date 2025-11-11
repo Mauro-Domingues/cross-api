@@ -19,7 +19,8 @@ export class CreateSpecService extends BaseTemplateModule {
 import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { Connection, type IConnection } fr\om '@shared/typeorm';
+import type { IConnection } fr\om '@shared/typeorm';
+import { Connection } fr\om '@shared/typeorm';
 import { AppError } fr\om '@shared/errors/AppError';
 import { Create${this.names.upperModuleName}Service } fr\om './Create${this.names.upperModuleName}Service';
 

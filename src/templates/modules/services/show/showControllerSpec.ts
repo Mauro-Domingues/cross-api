@@ -16,7 +16,8 @@ export class ShowSpecController extends BaseTemplateModule {
 
   public execute(): string {
     return `import request fr\om 'supertest';
-import { Connection, type IConnection } fr\om '@shared/typeorm';
+import type { IConnection } fr\om '@shared/typeorm';
+import { Connection } fr\om '@shared/typeorm';
 import { app } fr\om '@shared/app';
 import { v4 as uuid } fr\om 'uuid';
 import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';

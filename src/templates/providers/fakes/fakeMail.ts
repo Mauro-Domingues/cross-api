@@ -1,7 +1,7 @@
 export class CreateFakeMail {
   public execute(): string {
-    return `import {
-  type Transporter,
+    return `import type { Transporter } fr\om 'nodemailer';
+import {
   createTestAccount,
   createTransport,
   getTestMessageUrl,

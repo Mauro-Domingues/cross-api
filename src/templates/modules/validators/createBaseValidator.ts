@@ -1,11 +1,7 @@
 export class CreateBaseValidator {
   public execute(): string {
-    return `import {
-  celebrate,
-  Joi,
-  type CelebrateOptions,
-  type SchemaOptions,
-} fr\om 'celebrate';
+    return `import type { CelebrateOptions, SchemaOptions } fr\om 'celebrate';
+import { celebrate, Joi } fr\om 'celebrate';
 import type { Root, ValidationOptions } fr\om 'joi';
 import type { RequestHandler } fr\om 'express';
 

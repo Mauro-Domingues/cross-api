@@ -8,8 +8,8 @@ import cluster fr\om 'node:cluster';
 import { truncateSync, existsSync } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
 import { cpus } fr\om 'node:os';
+import type { Express } fr\om 'express';
 import express, {
-  type Express,
   json,
   urlencoded,
   // static as staticPath,

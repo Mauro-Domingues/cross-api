@@ -15,8 +15,10 @@ import {
   mkdirSync,
 } fr\om 'node:fs';
 import { resolve } fr\om 'node:path';
-import { sign, type SignOptions } fr\om 'jsonwebtoken';
-import { type JWK, pem2jwk } fr\om 'pem-jwk';
+import type { SignOptions } fr\om 'jsonwebtoken';
+import { sign } fr\om 'jsonwebtoken';
+import type { JWK } fr\om 'pem-jwk';
+import { pem2jwk } fr\om 'pem-jwk';
 import { cryptoConfig } fr\om '@config/crypto';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';

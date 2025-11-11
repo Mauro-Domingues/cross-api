@@ -1,6 +1,7 @@
 export class CreateKueQueue {
   public execute(): string {
-    return `import { type Job, type Queue, createQueue, type DoneCallback } fr\om 'kue';
+    return `import type { Job, Queue, DoneCallback } fr\om 'kue';
+import { createQueue } fr\om 'kue';
 import { queueConfig } fr\om '@config/queue';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';

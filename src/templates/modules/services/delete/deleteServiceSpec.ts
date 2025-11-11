@@ -20,7 +20,8 @@ import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/
 import { AppError } fr\om '@shared/errors/AppError';
 import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
 import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { Connection, type IConnection } fr\om '@shared/typeorm';
+import type { IConnection } fr\om '@shared/typeorm';
+import { Connection } fr\om '@shared/typeorm';
 import { Delete${this.names.upperModuleName}Service } fr\om './Delete${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: I${this.names.pluralUpperModuleName}Repository;

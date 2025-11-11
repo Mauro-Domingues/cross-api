@@ -1,15 +1,14 @@
 export class CreateBaseRepository {
   public execute(): string {
-    return `import {
-  In,
-  Like,
-  type DeleteResult,
-  type EntityTarget,
-  type FindManyOptions,
-  type FindOptionsWhere,
-  type ObjectLiteral,
-  type QueryRunner,
+    return `import type {
+  DeleteResult,
+  EntityTarget,
+  FindManyOptions,
+  FindOptionsWhere,
+  ObjectLiteral,
+  QueryRunner,
 } fr\om 'typeorm';
+import { In, Like } from 'typeorm';
 import { AppError } fr\om '@shared/errors/AppError';
 import type { IBaseRepository } fr\om './IBaseRepository';
 

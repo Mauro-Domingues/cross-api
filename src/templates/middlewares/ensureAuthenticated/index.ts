@@ -1,6 +1,7 @@
 export class CreateEnsureAuthenticated {
   public execute(): string {
-    return `import passport, { type AuthenticateOptions } fr\om 'passport';
+    return `import type { AuthenticateOptions } fr\om 'passport';
+import passport fr\om 'passport';
 import { unless } fr\om 'express-unless';
 import type { Request, Response, NextFunction } fr\om 'express';
 import { authConfig } fr\om '@config/auth';
