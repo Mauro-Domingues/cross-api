@@ -19,7 +19,7 @@ export class CreateEsLintrcJson {
   },
   "plugins": [
     "@typescript-eslint",
-    "eslint-plugin-import-helpers",
+    "simple-import-sort",
     "prettier"
   ],
   "rules": {
@@ -47,7 +47,21 @@ export class CreateEsLintrcJson {
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/*.spec.js"] }
-    ]
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^\\\\u0000", "^@?\\\\w",
+            "^@config", "^@dtos", "^@jobs", "^@middlewares", "^@modules", "^@routes", "^@shared", "^@utils",
+            "^\\\\.\\\\./", "^\\\\./(?=.*/)", "^\\\\./?$"
+          ]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "import/order": "off"
   },
   "overrides": [
     {
