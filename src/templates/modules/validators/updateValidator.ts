@@ -20,12 +20,12 @@ import { baseValidator } fr\om '@shared/container/modules/validators/baseValidat
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
 export const update${this.names.upperModuleName} = baseValidator(ctx => {
-  const ${this.names.lowerModuleName}Fields = ${this.names.lowerModuleName}Schema(ctx);
+  const ${this.names.lowerModuleName}ValidationSchema = ${this.names.lowerModuleName}Schema(ctx);
 
   return {
-    params: ctx.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}Fields.extract('id').required() }),
+    params: ctx.object<${this.names.upperModuleName}>({ id: ${this.names.lowerModuleName}ValidationSchema.extract('id').required() }),
     query: ctx.object({}),
-    body: ${this.names.lowerModuleName}Fields,
+    body: ${this.names.lowerModuleName}ValidationSchema,
   };
 });
 `;

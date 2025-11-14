@@ -19,13 +19,13 @@ export class CreateValidator extends BaseTemplateModule {
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
 export const create${this.names.upperModuleName} = baseValidator(ctx => {
-  const ${this.names.lowerModuleName}Fields = ${this.names.lowerModuleName}Schema(ctx);
+  const ${this.names.lowerModuleName}ValidationSchema = ${this.names.lowerModuleName}Schema(ctx);
 
   return {
     params: ctx.object({}),
     query: ctx.object({}),
-    body: ${this.names.lowerModuleName}Fields.keys({
-      name: ${this.names.lowerModuleName}Fields.extract('name').required(),
+    body: ${this.names.lowerModuleName}ValidationSchema.keys({
+      name: ${this.names.lowerModuleName}ValidationSchema.extract('name').required(),
     }),
   };
 });

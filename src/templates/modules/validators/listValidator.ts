@@ -19,11 +19,11 @@ export class ListValidator extends BaseTemplateModule {
 import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
 
 export const list${this.names.upperModuleName} = baseValidator(ctx => {
-  const ${this.names.lowerModuleName}Fields = ${this.names.lowerModuleName}Schema(ctx);
+  const ${this.names.lowerModuleName}ValidationSchema = ${this.names.lowerModuleName}Schema(ctx);
 
   return {
     params: ctx.object({}),
-    query: ${this.names.lowerModuleName}Fields.concat(
+    query: ${this.names.lowerModuleName}ValidationSchema.concat(
       ctx.object({
         page: ctx.number().integer().positive().optional(),
         limit: ctx.number().integer().positive().optional(),
