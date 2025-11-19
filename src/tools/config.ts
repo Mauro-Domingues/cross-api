@@ -50,7 +50,7 @@ export class ConfigJson extends ConfigLanguage {
       'express-unless@^2.1.3',
       'ioredis@^5.6.1',
       'jwks-rsa@^3.2.0',
-      'mysql2@^3.14.1',
+      'mysql2@^3.15.3',
       'rate-limiter-flexible@^7.1.1',
       'reflect-metadata@^0.2.2',
       'passport@^0.7.0',
@@ -60,7 +60,7 @@ export class ConfigJson extends ConfigLanguage {
       'ts-jest@^29.3.4',
       'tsoa@^6.6.0',
       'tsyringe@^4.10.0',
-      'typeorm@^0.3.24',
+      'typeorm@^0.3.27',
       'uuid@^11.1.0',
     ];
   }
