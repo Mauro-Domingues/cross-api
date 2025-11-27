@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "npx tsc && npx tsc-alias",
+    "build": "npx tsc && npx tsc-alias && node postbuild.js && npx prettier --write \"src/**/*.js\" >nul 2>&1",
     "clean": "npx tsc --build --clean"
   },
   "bin": {

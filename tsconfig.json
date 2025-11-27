@@ -22,7 +22,12 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "listFiles": false,
+    "listEmittedFiles": false,
+    "newLine": "lf",
+    "importsNotUsedAsValues": "remove",
+    "lib": ["ES2022"]
   },
   "include": ["src"],
   "exclude": ["node_modules"],
