@@ -23,7 +23,7 @@ export abstract class BaseMigration {
         name: 'updated_at',
         type: 'datetime',
         length: '6',
-        default: 'CURRENT_TIMESTAMP(6)',
+        default: 'CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)',
       },
       {
         name: 'deleted_at',
