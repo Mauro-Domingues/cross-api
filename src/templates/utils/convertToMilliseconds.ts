@@ -9,8 +9,8 @@ export function convertToMilliseconds(delay: IIntervalDTO): number {
     throw new AppError('INVALID_DELAY_FORMAT', 'Invalid delay format');
   }
 
-  const miliseconds = parseInt(match[0], 10);
-  const timeUnit = delay.replace(/\\d/g, '');
+  const miliseconds = Number.parseInt(match[0], 10);
+  const timeUnit = delay.replaceAll(/\\d/g, '');
 
   switch (timeUnit) {
     case 'd':

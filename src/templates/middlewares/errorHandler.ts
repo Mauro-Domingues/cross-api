@@ -9,9 +9,9 @@ import { createErrorLog } fr\om '@utils/errorLog';
 const toUpperSnakeCase = (message: string): string => {
   return message
     .trim()
-    .replace(/\\s+/g, '_')
-    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
+    .replaceAll(/\\s+/g, '_')
+    .replaceAll(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replaceAll(/([A-Z])([A-Z][a-z])/g, '$1_$2')
     .toUpperCase();
 };
 

@@ -161,7 +161,7 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
           Object.entries(condition).every(([key, value]) =>
             entity[key as keyof Entity]
               ?.toString()
-              ?.includes(value?.toString()?.replace(/(^%)|(%$)/g, '')),
+              ?.includes(value?.toString()?.replaceAll(/(^%)|(%$)/g, '')),
           ),
         ) &&
         (withDeleted ?? !entity.deletedAt),

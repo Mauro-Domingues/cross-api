@@ -5,7 +5,7 @@ import type { Base } fr\om '../entities/Base';
 
 export const baseSchema =
   <T extends Base>(
-    target: { new (...args: Array<unknown>): T },
+    target: new (...args: Array<unknown>) => T,
     rest: (
       ctx: Root,
       baseFields: Record<keyof Base, Schema>,

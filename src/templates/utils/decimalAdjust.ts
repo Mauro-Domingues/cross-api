@@ -1,12 +1,8 @@
 export class CreateDecimaAdjust {
   public execute(): string {
     return `export function decimalAdjust(value: number, exponent: number): number {
-  if (
-    typeof exponent === 'undefined' ||
-    Number.isNaN(value) ||
-    exponent % 1 !== 0
-  ) {
-    return NaN;
+  if (exponent === undefined || Number.isNaN(value) || exponent % 1 !== 0) {
+    return Number.NaN;
   }
 
   const isNegative = Math.sign(value) === -1;
