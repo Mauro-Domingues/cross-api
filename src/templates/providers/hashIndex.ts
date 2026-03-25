@@ -2,11 +2,11 @@ export class CreateHashIndex {
   public execute(): string {
     return `import { container } fr\om 'tsyringe';
 import { hashConfig } fr\om '@config/hash';
-import { BCryptHashProvider } fr\om './implementations/BCryptHashProvider';
+import { BcryptProvider } fr\om './implementations/BcryptProvider';
 import type { IHashProvider } fr\om './models/IHashProvider';
 
 const providers: Record<typeof hashConfig.driver, () => IHashProvider> = {
-  bcrypt: () => container.resolve(BCryptHashProvider),
+  bcrypt: () => container.resolve(BcryptProvider),
 };
 
 container.registerInstance<IHashProvider>(

@@ -5,33 +5,33 @@ import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
 import { CreateIEncryptedDTO } from '@templates/providers/dtos/IEncryptedDTO';
 import { CreateIJwtTokenDTO } from '@templates/providers/dtos/IJwtTokenDTO';
 import { CreateIRefreshTokenDTO } from '@templates/providers/dtos/IRefreshTokenDTO';
-import { CreateFakeCrypto } from '@templates/providers/fakes/fakeCrypto';
-import { CreateCrypto } from '@templates/providers/implementations/Crypto';
+import { CreateFakeEncryption } from '@templates/providers/fakes/fakeEncryption';
+import { CreateCryptoEncryption } from '@templates/providers/implementations/CryptoEncryption';
 import { CreateICrypto } from '@templates/providers/models/ICrypto';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateCryptoProvider extends BaseProvider {
   private readonly createIRefreshTokenDTO: CreateIRefreshTokenDTO;
+  private readonly createCryptoEncryption: CreateCryptoEncryption;
+  private readonly createFakeEncryption: CreateFakeEncryption;
   private readonly createIEncryptedDTO: CreateIEncryptedDTO;
   private readonly createIJwtTokenDTO: CreateIJwtTokenDTO;
   private readonly createCryptoConfig: CreateCryptoConfig;
   private readonly createCryptoIndex: CreateCryptoIndex;
-  private readonly createFakeCrypto: CreateFakeCrypto;
   private readonly createICrypto: CreateICrypto;
-  private readonly createCrypto: CreateCrypto;
 
   public constructor(
     fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
     this.createIRefreshTokenDTO = new CreateIRefreshTokenDTO();
+    this.createCryptoEncryption = new CreateCryptoEncryption();
+    this.createFakeEncryption = new CreateFakeEncryption();
     this.createIEncryptedDTO = new CreateIEncryptedDTO();
     this.createIJwtTokenDTO = new CreateIJwtTokenDTO();
     this.createCryptoConfig = new CreateCryptoConfig();
     this.createCryptoIndex = new CreateCryptoIndex();
-    this.createFakeCrypto = new CreateFakeCrypto();
     this.createICrypto = new CreateICrypto();
-    this.createCrypto = new CreateCrypto();
   }
 
   protected declare createJobs: () => Array<IMultiFileDTO>;
@@ -68,8 +68,8 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [this.basePath, 'CryptoProvider', 'fakes', 'FakeCryptoProvider.ts'],
-      this.createFakeCrypto,
+      [this.basePath, 'CryptoProvider', 'fakes', 'FakeEncryptionProvider.ts'],
+      this.createFakeEncryption,
     ];
   }
 
@@ -82,7 +82,7 @@ export class CreateCryptoProvider extends BaseProvider {
           'implementations',
           'CryptoProvider.ts',
         ],
-        this.createCrypto,
+        this.createCryptoEncryption,
       ],
     ];
   }

@@ -65,21 +65,11 @@ export class CreateMailProvider extends BaseProvider {
   protected createImplementations(): Array<IMultiFileDTO> {
     return [
       [
-        [
-          this.basePath,
-          'MailProvider',
-          'implementations',
-          'SMTPMailProvider.ts',
-        ],
+        [this.basePath, 'MailProvider', 'implementations', 'SMTPProvider.ts'],
         this.createSMTPMail,
       ],
       [
-        [
-          this.basePath,
-          'MailProvider',
-          'implementations',
-          'SESMailProvider.ts',
-        ],
+        [this.basePath, 'MailProvider', 'implementations', 'SESProvider.ts'],
         this.createSESMail,
       ],
     ];

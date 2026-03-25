@@ -6,6 +6,7 @@ import { CreateHashProvider } from '@tools/makeProvider/hash';
 import { CreateLeadProvider } from '@tools/makeProvider/lead';
 import { CreateMailProvider } from '@tools/makeProvider/mail';
 import { CreateMailTemplateProvider } from '@tools/makeProvider/mailTemplate';
+import { CreateMessagingProvider } from '@tools/makeProvider/messaging';
 import { CreateNotificationProvider } from '@tools/makeProvider/notification';
 import { CreateQueueProvider } from '@tools/makeProvider/queue';
 import { CreateStorageProvider } from '@tools/makeProvider/storage';
@@ -69,6 +70,13 @@ export class Provider {
         description: 'MailTemplateProvider',
         instance: () => new CreateMailTemplateProvider(fatherNames),
         dependencies: ['handlebars@^4.7.8'],
+        devDependencies: [],
+      },
+      messaging: {
+        name: 'messaging',
+        description: 'MessagingProvider',
+        instance: () => new CreateMessagingProvider(fatherNames),
+        dependencies: ['cross-kafka@^1.0.5'],
         devDependencies: [],
       },
       notification: {

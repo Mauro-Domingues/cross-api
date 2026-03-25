@@ -13,6 +13,7 @@ export type ICodeDTO =
   | 'FAILED_TO_LIST'
   | 'INVALID_CLAUSE'
   | 'FILE_NOT_FOUND'
+  | 'NOT_SUBSCRIBED'
   | 'FORBIDDEN'
   | 'NOT_FOUND'
   | 'CREATED'

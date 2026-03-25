@@ -1,10 +1,10 @@
-export class CreateHash {
+export class CreateBcryptHash {
   public execute(): string {
     return `import { compare, hash } fr\om 'bcrypt';
 import { hashConfig } fr\om '@config/hash';
 import type { IHashProvider } fr\om '../models/IHashProvider';
 
-export class BCryptHashProvider implements IHashProvider {
+export class BcryptProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {
     return hash(payload, hashConfig.config.salt);
   }

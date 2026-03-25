@@ -1,4 +1,4 @@
-export class CreateFakeCrypto {
+export class CreateFakeEncryption {
   public execute(): string {
     return `import type { JWK } fr\om 'pem-jwk';
 import { createHash } fr\om 'node:crypto';
@@ -11,7 +11,7 @@ import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
 import type { ICryptoProvider } fr\om '../models/ICryptoProvider';
 
-export class FakeCryptoProvider implements ICryptoProvider {
+export class FakeEncryptionProvider implements ICryptoProvider {
   public encrypt(text: string): IEncryptedDTO {
     return {
       iv: 'base64',

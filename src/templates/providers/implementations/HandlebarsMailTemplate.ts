@@ -6,7 +6,7 @@ import type { IMailTemplateFragmentDTO } fr\om '../dtos/IMailTemplateFragmentDTO
 import type { IParseMailTemplateDTO } fr\om '../dtos/IParseMailTemplateDTO';
 import type { IMailTemplateProvider } fr\om '../models/IMailTemplateProvider';
 
-export class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
+export class HandlebarsProvider implements IMailTemplateProvider {
   private parseTemplate({ file, variables }: IMailTemplateFragmentDTO): string {
     const templateFileContent = readFileSync(file, {
       encoding: 'utf-8',

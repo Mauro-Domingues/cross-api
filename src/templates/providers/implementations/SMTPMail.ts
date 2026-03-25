@@ -9,7 +9,7 @@ import type { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
 import type { IMailProvider } fr\om '../models/IMailProvider';
 
 @injectable()
-export class SMTPMailProvider implements IMailProvider {
+export class SMTPProvider implements IMailProvider {
   private readonly client: Transporter;
 
   public constructor(

@@ -12,7 +12,7 @@ import { storageConfig } fr\om '@config/storage';
 import { AppError } fr\om '@shared/errors/AppError';
 import type { IStorageProvider } fr\om '../models/IStorageProvider';
 
-export class S3StorageProvider implements IStorageProvider {
+export class S3Provider implements IStorageProvider {
   private readonly client: S3Client;
 
   public constructor() {

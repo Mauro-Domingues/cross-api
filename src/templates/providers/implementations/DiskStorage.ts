@@ -5,7 +5,7 @@ import { resolve } fr\om 'node:path';
 import { storageConfig } fr\om '@config/storage';
 import type { IStorageProvider } fr\om '../models/IStorageProvider';
 
-export class DiskStorageProvider implements IStorageProvider {
+export class DiskProvider implements IStorageProvider {
   public constructor() {
     if (!existsSync(storageConfig.config.tmpFolder)) {
       mkdirSync(storageConfig.config.tmpFolder);

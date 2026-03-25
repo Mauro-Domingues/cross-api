@@ -91,7 +91,7 @@ export class CreateMailTemplateProvider extends BaseProvider {
           this.basePath,
           'MailTemplateProvider',
           'implementations',
-          'HandlebarsMailTemplateProvider.ts',
+          'HandlebarsProvider.ts',
         ],
         this.createHandlebarsMailTemplate,
       ],

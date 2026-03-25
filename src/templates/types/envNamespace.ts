@@ -49,6 +49,7 @@ export class CreateEnvNamespace {
     readonly RDSTATION_CLIENT_SECRET: string;
     readonly RDSTATION_CODE: string;
     readonly RDSTATION_PUBLIC_API_KEY: string;
+    readonly MESSAGING_DRIVER: 'kafka';
   }
 }
 `;

@@ -4,7 +4,7 @@ export class CreateRedisCache {
 import { cacheConfig } fr\om '@config/cache';
 import type { ICacheProvider } fr\om '../models/ICacheProvider';
 
-export class RedisCacheProvider implements ICacheProvider {
+export class RedisProvider implements ICacheProvider {
   private readonly client: Redis;
 
   public constructor() {

@@ -1,4 +1,4 @@
-export class CreateCrypto {
+export class CreateCryptoEncryption {
   public execute(): string {
     return `import type { SignOptions } fr\om 'jsonwebtoken';
 import { sign } fr\om 'jsonwebtoken';

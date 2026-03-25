@@ -58,17 +58,12 @@ export class CreateStorageProvider extends BaseProvider {
           this.basePath,
           'StorageProvider',
           'implementations',
-          'DiskStorageProvider.ts',
+          'DiskProvider.ts',
         ],
         this.createDiskStorage,
       ],
       [
-        [
-          this.basePath,
-          'StorageProvider',
-          'implementations',
-          'S3StorageProvider.ts',
-        ],
+        [this.basePath, 'StorageProvider', 'implementations', 'S3Provider.ts'],
         this.createS3Storage,
       ],
     ];
