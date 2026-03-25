@@ -37,13 +37,13 @@ export const messagingConfig = Object.freeze<IMessagingConfigDTO>({
     kafka: {
       observerTimeout: 40000,
       client: {
-        brokers: ['localhost:9092'],
+        brokers: [process.env.KAFKA_BROKERS],
         requestTimeout: 30000,
         logLevel: logLevel.NOTHING,
-        clientId: 'my-receiver',
+        clientId: process.env.KAFKA_CLIENT_ID,
       },
       consumer: {
-        groupId: 'my-group',
+        groupId: process.env.KAFKA_GROUP_ID,
       },
     },
   },

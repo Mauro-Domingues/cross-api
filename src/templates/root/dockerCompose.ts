@@ -24,12 +24,15 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      # kafka:
+      #   condition: service_healthy
     environment:
       - NODE_ENV=production
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      # - KAFKA_BROKERS=kafka:9092
     volumes:
       - jwks:/app/dist/assets/.well-known
       - keys:/app/dist/keys
@@ -79,9 +82,27 @@ services:
       timeout: 5s
       retries: 5
 
+  # kafka:
+  #   <<: *base
+  #   container_name: kafka
+  #   image: apache/kafka:latest
+  #   ports:
+  #     - \${KAFKA_PORT}:9092
+  #   volumes:
+  #     - kafka:/var/lib/kafka/data
+  #   healthcheck:
+  #     test:
+  #       - CMD-SHELL
+  #       - /opt/kafka/bin/kafka-topics.sh --bootstrap-server $KAFKA_BROKERS --list
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
 volumes:
   mysql:
     driver: local
+  # kafka:
+    #   driver: local
   keys:
     driver: local
   jwks:

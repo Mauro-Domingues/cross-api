@@ -49,6 +49,9 @@ export class CreateEnvNamespace {
     readonly RDSTATION_CLIENT_SECRET: string;
     readonly RDSTATION_CODE: string;
     readonly RDSTATION_PUBLIC_API_KEY: string;
+    readonly KAFKA_BROKERS: string;
+    readonly KAFKA_CLIENT_ID: string;
+    readonly KAFKA_GROUP_ID: string;
   }
 }
 `;
