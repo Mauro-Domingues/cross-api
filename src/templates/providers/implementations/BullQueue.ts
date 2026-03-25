@@ -2,6 +2,8 @@ export class CreateBullQueue {
   public execute(): string {
     return `import type { Job, Queue } fr\om 'bull';
 import Bull fr\om 'bull';
+import type { InjectionToken } fr\om 'tsyringe';
+import { container } fr\om 'tsyringe';
 import { queueConfig } fr\om '@config/queue';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
@@ -21,7 +23,6 @@ export class BullProvider implements IQueueProvider {
 
   private init(): void {
     return jobs.forEach(Job => {
-      const instance = new Job();
       this.queues[Job.key] = {
         queue: new Bull(Job.key, {
           prefix: queueConfig.config.redis.prefix,
@@ -30,7 +31,14 @@ export class BullProvider implements IQueueProvider {
             removeOnComplete: true,
           },
         }),
-        handle: instance.handle.bind(instance),
+        handle: async (data: unknown) => {
+          const instance = container.resolve(
+            Job as unknown as InjectionToken<unknown>,
+          ) as {
+            handle: (data: unknown) => Promise<void>;
+          };
+          return instance.handle(data);
+        },
       };
     });
   }
@@ -70,7 +78,7 @@ export class BullProvider implements IQueueProvider {
       const { queue, handle } = this.queues[job.key];
 
       queue.process(handle);
-      queue.on('error', error => {
+      queue.on('error', (error: Error) => {
         throw error;
       });
     });

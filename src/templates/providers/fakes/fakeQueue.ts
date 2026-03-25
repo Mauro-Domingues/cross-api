@@ -1,6 +1,8 @@
 export class CreateFakeQueue {
   public execute(): string {
-    return `import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+    return `import type { InjectionToken } fr\om 'tsyringe';
+import { container } fr\om 'tsyringe';
+import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
 import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
 import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
@@ -17,10 +19,16 @@ export class FakeQueueProvider implements IQueueProvider {
 
   private init(): void {
     return jobs.forEach(Job => {
-      const instance = new Job();
       this.queues[Job.key] = {
         queue: Job.key,
-        handle: instance.handle.bind(instance),
+        handle: async (jobData: unknown) => {
+          const instance = container.resolve(
+            Job as unknown as InjectionToken<unknown>,
+          ) as {
+            handle: (data: unknown) => Promise<void>;
+          };
+          return instance.handle(jobData);
+        },
       };
     });
   }

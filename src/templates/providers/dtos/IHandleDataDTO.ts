@@ -1,10 +1,11 @@
 export class CreateIHandleDataDTO {
   public execute(): string {
-    return `import type { IHandleDTO } fr\om './IHandleDTO';
+    return `import type { IHandleDTO } fr\om './IHandleDTO.js';
 
-export type IHandleDataDTO<T extends IHandleDTO> = Parameters<
-  InstanceType<T>['handle']
->[0]['data'];
+export type IHandleDataDTO<T extends IHandleDTO> =
+  InstanceType<T> extends { handle(args: { data: infer Data }): unknown }
+    ? Data
+    : never;
 `;
   }
 }

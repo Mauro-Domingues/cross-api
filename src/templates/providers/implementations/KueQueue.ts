@@ -2,12 +2,14 @@ export class CreateKueQueue {
   public execute(): string {
     return `import type { DoneCallback, Job, Queue } fr\om 'kue';
 import { createQueue } fr\om 'kue';
+import type { InjectionToken } fr\om 'tsyringe';
+import { container } fr\om 'tsyringe';
 import { queueConfig } fr\om '@config/queue';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
-import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
-import type { IQueueDTO } fr\om '../dtos/IQueueDTO';
+import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO.js';
+import type { IHandleDTO } fr\om '../dtos/IHandleDTO.js';
+import type { IQueueDTO } fr\om '../dtos/IQueueDTO.js';
 import type { IQueueProvider } fr\om '../models/IQueueProvider';
 import { jobs } fr\om '../public/jobs';
 
@@ -21,7 +23,6 @@ export class KueProvider implements IQueueProvider {
 
   private init(): void {
     return jobs.forEach(Job => {
-      const instance = new Job();
       this.queues[Job.key] = {
         queue: createQueue({
           redis: {
@@ -30,7 +31,14 @@ export class KueProvider implements IQueueProvider {
           },
           prefix: queueConfig.config.redis.prefix,
         }),
-        handle: instance.handle.bind(instance),
+        handle: async (data: unknown) => {
+          const instance = container.resolve(
+            Job as unknown as InjectionToken<unknown>,
+          ) as {
+            handle: (data: unknown) => Promise<void>;
+          };
+          return instance.handle(data);
+        },
       };
     });
   }
@@ -86,7 +94,7 @@ export class KueProvider implements IQueueProvider {
           }
         },
       );
-      queue.on('error', error => {
+      queue.on('error', (error: Error) => {
         throw error;
       });
     });

@@ -2,6 +2,8 @@ export class CreateBeeQueue {
   public execute(): string {
     return `import type { Job } fr\om 'bee-queue';
 import Bee fr\om 'bee-queue';
+import type { InjectionToken } fr\om 'tsyringe';
+import { container } fr\om 'tsyringe';
 import { queueConfig } fr\om '@config/queue';
 import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
@@ -21,7 +23,6 @@ export class BeeProvider implements IQueueProvider {
 
   private init(): void {
     return jobs.forEach(Job => {
-      const instance = new Job();
       this.queues[Job.key] = {
         queue: new Bee(Job.key, {
           prefix: queueConfig.config.redis.prefix,
@@ -29,7 +30,14 @@ export class BeeProvider implements IQueueProvider {
           activateDelayedJobs: true,
           removeOnSuccess: true,
         }),
-        handle: instance.handle.bind(instance),
+        handle: async (data: unknown) => {
+          const instance = container.resolve(
+            Job as unknown as InjectionToken<unknown>,
+          ) as {
+            handle: (data: unknown) => Promise<void>;
+          };
+          return instance.handle(data);
+        },
       };
     });
   }
@@ -70,7 +78,7 @@ export class BeeProvider implements IQueueProvider {
       const { queue, handle } = this.queues[job.key];
 
       queue.process(handle);
-      queue.on('error', error => {
+      queue.on('error', (error: Error) => {
         throw error;
       });
     });
