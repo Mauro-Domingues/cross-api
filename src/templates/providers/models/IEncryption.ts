@@ -1,4 +1,4 @@
-export class CreateICrypto {
+export class CreateIEncryption {
   public execute(): string {
     return `import type { SignOptions } fr\om 'jsonwebtoken';
 import type { JWK } fr\om 'pem-jwk';
@@ -6,7 +6,7 @@ import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
 import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
 import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
 
-export interface ICryptoProvider {
+export interface IEncryptionProvider {
   encrypt(text: string): IEncryptedDTO;
   decrypt(hash: IEncryptedDTO): string;
   generateKeys(): JWK<{

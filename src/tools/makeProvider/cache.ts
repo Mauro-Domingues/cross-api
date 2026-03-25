@@ -51,12 +51,7 @@ export class CreateCacheProvider extends BaseProvider {
   protected createImplementations(): Array<IMultiFileDTO> {
     return [
       [
-        [
-          this.basePath,
-          'CacheProvider',
-          'implementations',
-          'RedisCacheProvider.ts',
-        ],
+        [this.basePath, 'CacheProvider', 'implementations', 'RedisProvider.ts'],
         this.createRedisCache,
       ],
     ];

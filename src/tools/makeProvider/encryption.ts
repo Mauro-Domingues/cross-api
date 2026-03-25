@@ -1,24 +1,24 @@
 import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
-import { CreateCryptoConfig } from '@templates/providers/config/cryptoConfig';
-import { CreateCryptoIndex } from '@templates/providers/cryptoIndex';
+import { CreateEncryptionConfig } from '@templates/providers/config/encryptionConfig';
 import { CreateIEncryptedDTO } from '@templates/providers/dtos/IEncryptedDTO';
 import { CreateIJwtTokenDTO } from '@templates/providers/dtos/IJwtTokenDTO';
 import { CreateIRefreshTokenDTO } from '@templates/providers/dtos/IRefreshTokenDTO';
+import { CreateEncryptionIndex } from '@templates/providers/encryptionIndex';
 import { CreateFakeEncryption } from '@templates/providers/fakes/fakeEncryption';
 import { CreateCryptoEncryption } from '@templates/providers/implementations/CryptoEncryption';
-import { CreateICrypto } from '@templates/providers/models/ICrypto';
+import { CreateIEncryption } from '@templates/providers/models/IEncryption';
 import { BaseProvider } from '@tools/makeProvider/base';
 
-export class CreateCryptoProvider extends BaseProvider {
+export class CreateEncryptionProvider extends BaseProvider {
   private readonly createIRefreshTokenDTO: CreateIRefreshTokenDTO;
   private readonly createCryptoEncryption: CreateCryptoEncryption;
+  private readonly createEncryptionConfig: CreateEncryptionConfig;
+  private readonly createEncryptionIndex: CreateEncryptionIndex;
   private readonly createFakeEncryption: CreateFakeEncryption;
   private readonly createIEncryptedDTO: CreateIEncryptedDTO;
   private readonly createIJwtTokenDTO: CreateIJwtTokenDTO;
-  private readonly createCryptoConfig: CreateCryptoConfig;
-  private readonly createCryptoIndex: CreateCryptoIndex;
-  private readonly createICrypto: CreateICrypto;
+  private readonly createIEncryption: CreateIEncryption;
 
   public constructor(
     fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
@@ -26,41 +26,41 @@ export class CreateCryptoProvider extends BaseProvider {
     super(fatherNames);
     this.createIRefreshTokenDTO = new CreateIRefreshTokenDTO();
     this.createCryptoEncryption = new CreateCryptoEncryption();
+    this.createEncryptionConfig = new CreateEncryptionConfig();
+    this.createEncryptionIndex = new CreateEncryptionIndex();
     this.createFakeEncryption = new CreateFakeEncryption();
     this.createIEncryptedDTO = new CreateIEncryptedDTO();
     this.createIJwtTokenDTO = new CreateIJwtTokenDTO();
-    this.createCryptoConfig = new CreateCryptoConfig();
-    this.createCryptoIndex = new CreateCryptoIndex();
-    this.createICrypto = new CreateICrypto();
+    this.createIEncryption = new CreateIEncryption();
   }
 
   protected declare createJobs: () => Array<IMultiFileDTO>;
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
-      [this.basePath, 'CryptoProvider', 'fakes'],
-      [this.basePath, 'CryptoProvider', 'dtos'],
-      [this.basePath, 'CryptoProvider', 'implementations'],
-      [this.basePath, 'CryptoProvider', 'models'],
+      [this.basePath, 'EncryptionProvider', 'fakes'],
+      [this.basePath, 'EncryptionProvider', 'dtos'],
+      [this.basePath, 'EncryptionProvider', 'implementations'],
+      [this.basePath, 'EncryptionProvider', 'models'],
     ]);
   }
 
   protected createConfig(): IMultiFileDTO {
-    return [['src', 'config', 'crypto.ts'], this.createCryptoConfig];
+    return [['src', 'config', 'encryption.ts'], this.createEncryptionConfig];
   }
 
   protected createDtos(): Array<IMultiFileDTO> {
     return [
       [
-        [this.basePath, 'CryptoProvider', 'dtos', 'IEncryptedDTO.ts'],
+        [this.basePath, 'EncryptionProvider', 'dtos', 'IEncryptedDTO.ts'],
         this.createIEncryptedDTO,
       ],
       [
-        [this.basePath, 'CryptoProvider', 'dtos', 'IRefreshTokenDTO.ts'],
+        [this.basePath, 'EncryptionProvider', 'dtos', 'IRefreshTokenDTO.ts'],
         this.createIRefreshTokenDTO,
       ],
       [
-        [this.basePath, 'CryptoProvider', 'dtos', 'IJwtTokenDTO.ts'],
+        [this.basePath, 'EncryptionProvider', 'dtos', 'IJwtTokenDTO.ts'],
         this.createIJwtTokenDTO,
       ],
     ];
@@ -68,7 +68,12 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createFake(): IMultiFileDTO {
     return [
-      [this.basePath, 'CryptoProvider', 'fakes', 'FakeEncryptionProvider.ts'],
+      [
+        this.basePath,
+        'EncryptionProvider',
+        'fakes',
+        'FakeEncryptionProvider.ts',
+      ],
       this.createFakeEncryption,
     ];
   }
@@ -78,7 +83,7 @@ export class CreateCryptoProvider extends BaseProvider {
       [
         [
           this.basePath,
-          'CryptoProvider',
+          'EncryptionProvider',
           'implementations',
           'CryptoProvider.ts',
         ],
@@ -89,20 +94,20 @@ export class CreateCryptoProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [this.basePath, 'CryptoProvider', 'models', 'ICryptoProvider.ts'],
-      this.createICrypto,
+      [this.basePath, 'CryptoProvider', 'models', 'IEncryptionProvider.ts'],
+      this.createIEncryption,
     ];
   }
 
   protected createInjection(): IMultiFileDTO {
     this.fileManager.createFile(
       [this.basePath, 'index.ts'],
-      "import './CryptoProvider';\n",
+      "import './EncryptionProvider';\n",
     );
 
     return [
-      [this.basePath, 'CryptoProvider', 'index.ts'],
-      this.createCryptoIndex,
+      [this.basePath, 'EncryptionProvider', 'index.ts'],
+      this.createEncryptionIndex,
     ];
   }
 }

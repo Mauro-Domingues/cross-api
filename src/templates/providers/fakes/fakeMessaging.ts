@@ -71,7 +71,7 @@ export class FakeMessagingProvider implements IMessagingProvider {
         this.events.off(replyTopic, onReply);
 
         if (packet.error) {
-          reject(packet.error);
+          reject((packet as { error: Error }).error);
           return;
         }
 
