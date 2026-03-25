@@ -1,9 +1,9 @@
 export type IProviderOptionDTO = readonly (
   | 'mailTemplate'
   | 'notification'
+  | 'encryption'
   | 'messaging'
   | 'storage'
-  | 'crypto'
   | 'cache'
   | 'queue'
   | 'mail'

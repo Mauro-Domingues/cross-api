@@ -1,7 +1,7 @@
 import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import type { IProviderListDTO } from '@interfaces/IProviderListDTO';
 import { CreateCacheProvider } from '@tools/makeProvider/cache';
-import { CreateCryptoProvider } from '@tools/makeProvider/crypto';
+import { CreateEncryptionProvider } from '@tools/makeProvider/encryption';
 import { CreateHashProvider } from '@tools/makeProvider/hash';
 import { CreateLeadProvider } from '@tools/makeProvider/lead';
 import { CreateMailProvider } from '@tools/makeProvider/mail';
@@ -25,10 +25,10 @@ export class Provider {
         dependencies: ['ioredis@^5.6.1'],
         devDependencies: [],
       },
-      crypto: {
-        name: 'crypto',
-        description: 'CryptoProvider',
-        instance: () => new CreateCryptoProvider(fatherNames),
+      encryption: {
+        name: 'encryption',
+        description: 'EncryptionProvider',
+        instance: () => new CreateEncryptionProvider(fatherNames),
         dependencies: ['jsonwebtoken@^9.0.2', 'pem-jwk@^2.0.0'],
         devDependencies: [
           '@types/jsonwebtoken@^9.0.9',
