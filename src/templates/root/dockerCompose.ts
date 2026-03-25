@@ -87,7 +87,7 @@ services:
   #   container_name: kafka
   #   image: apache/kafka:latest
   #   ports:
-  #     - \${KAFKA_PORT}:9092
+  #     - \${KAFKA_PORT}:\${KAFKA_PORT}
   #   volumes:
   #     - kafka:/var/lib/kafka/data
   #   healthcheck:
@@ -102,7 +102,7 @@ volumes:
   mysql:
     driver: local
   # kafka:
-    #   driver: local
+    # driver: local
   keys:
     driver: local
   jwks:

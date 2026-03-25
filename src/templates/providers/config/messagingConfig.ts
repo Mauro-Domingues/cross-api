@@ -26,6 +26,7 @@ const mailValidator = Joi.object<IMessagingConfigDTO>({
       }),
       consumer: Joi.object<IMessagingConfigDTO['config']['kafka']['consumer']>({
         groupId: Joi.string().required(),
+        allowAutoTopicCreation: Joi.boolean().required(),
       }),
     }).required(),
   }).required(),
@@ -44,6 +45,7 @@ export const messagingConfig = Object.freeze<IMessagingConfigDTO>({
       },
       consumer: {
         groupId: process.env.KAFKA_GROUP_ID,
+        allowAutoTopicCreation: true,
       },
     },
   },
