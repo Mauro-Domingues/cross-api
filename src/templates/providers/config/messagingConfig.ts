@@ -32,7 +32,7 @@ const mailValidator = Joi.object<IMessagingConfigDTO>({
 });
 
 export const messagingConfig = Object.freeze<IMessagingConfigDTO>({
-  driver: process.env.MESSAGING_DRIVER,
+  driver: 'kafka',
   config: {
     kafka: {
       observerTimeout: 40000,
