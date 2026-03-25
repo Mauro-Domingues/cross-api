@@ -94,7 +94,7 @@ export class CreateEncryptionProvider extends BaseProvider {
 
   protected createModel(): IMultiFileDTO {
     return [
-      [this.basePath, 'CryptoProvider', 'models', 'IEncryptionProvider.ts'],
+      [this.basePath, 'EncryptionProvider', 'models', 'IEncryptionProvider.ts'],
       this.createIEncryption,
     ];
   }
