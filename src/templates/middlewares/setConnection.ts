@@ -4,7 +4,7 @@ export class CreateSetConnection {
 import { Connection } fr\om '@shared/typeorm';
 
 /**
- * @description Defaults to the process.env database, but supports multi-tenancy
+ * @description Defaults to the env database, but supports multi-tenancy
  */
 export const setConnection = async (
   request: Request,

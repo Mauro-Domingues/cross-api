@@ -5,7 +5,7 @@ export class CreateFakeMessaging {
   IPatternDTO,
   IWritePacketDTO,
 } fr\om 'cross-proxy';
-import type { Observable } fr\om 'rxjs/internal/Observable';
+import type { Observable } fr\om' 'rxjs/internal/Observable';
 import { randomUUID } fr\om 'node:crypto';
 import { EventEmitter } fr\om 'node:events';
 import { AppError } fr\om '@shared/errors/AppError';
