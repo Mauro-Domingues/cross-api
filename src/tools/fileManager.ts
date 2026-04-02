@@ -110,7 +110,7 @@ export class FileManager {
       execute(): string;
     },
   ): void {
-    if (!this.checkIfExistsSync(path)) {
+    if (this.checkIfExistsSync(path)) {
       this.truncateFileSync(path);
     }
     return this.createFile(path, instance.execute());
