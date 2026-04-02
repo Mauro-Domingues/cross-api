@@ -65,7 +65,7 @@ export abstract class BaseProvider {
         'index.ts',
       ])
     ) {
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainerIndex.execute(),
       );
@@ -75,9 +75,9 @@ export abstract class BaseProvider {
   private createBaseDependentIndex(): void {
     if (this.fatherNames) {
       if (!this.fileManager.checkIfExistsSync([this.basePath, 'index.ts'])) {
-        this.fileManager.createFile([this.basePath, 'index.ts'], '');
+        this.fileManager.createFileSync([this.basePath, 'index.ts'], '');
       }
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'index.ts'],
         `import '@modules/${this.fatherNames.pluralLowerModuleName}/providers';`,
       );

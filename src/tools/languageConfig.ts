@@ -43,7 +43,7 @@ export class ConfigLanguage {
   }
 
   private get trace(): string {
-    return String.fromCharCode(0x2013);
+    return String.fromCodePoint(0x2013);
   }
 
   private renderEmptyLine(): void {

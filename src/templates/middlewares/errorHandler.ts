@@ -1,6 +1,6 @@
 export class CreateErrorHandler {
   public execute(): string {
-    return `import { CelebrateError } fr\u006Fm 'celebrate';
+    return String.raw`import { CelebrateError } fr\u006Fm 'celebrate';
 import type { NextFunction, Request, Response } fr\u006Fm 'express';
 import { appConfig } fr\u006Fm '@config/app';
 import { AppError } fr\u006Fm '@shared/errors/AppError';
@@ -9,7 +9,7 @@ import { createErrorLog } fr\u006Fm '@utils/errorLog';
 const toUpperSnakeCase = (message: string): string => {
   return message
     .trim()
-    .replaceAll(/\\s+/g, '_')
+    .replaceAll(/\s+/g, '_')
     .replaceAll(/([a-z0-9])([A-Z])/g, '$1_$2')
     .replaceAll(/([A-Z])([A-Z][a-z])/g, '$1_$2')
     .toUpperCase();

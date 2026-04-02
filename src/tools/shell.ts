@@ -35,7 +35,7 @@ export class Shell {
 
   public execute(command: string): string {
     if (this.allowedPattern.test(command)) {
-      return execSync(command, { encoding: 'utf-8' });
+      return execSync(command, { encoding: 'utf-8', stdio: 'inherit' });
     }
     throw new CustomError({
       message: ['"', command, '"', this.helpMessages.errors.invalidOption],

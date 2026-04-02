@@ -45,7 +45,10 @@ export class FileManager {
     const files = readdirSync(this.resolvePath(path));
 
     return files
-      .filter(file => new RegExp(`^\\d+-${fileName}\\.ts$`).exec(file) !== null)
+      .filter(
+        file =>
+          new RegExp(String.raw`^\d+-${fileName}\.ts$`).exec(file) !== null,
+      )
       .map(filtredFile => path.concat([filtredFile]));
   }
 
@@ -108,9 +111,8 @@ export class FileManager {
     },
   ): void {
     if (!this.checkIfExistsSync(path)) {
-      return this.createFile(path, instance.execute());
+      this.truncateFileSync(path);
     }
-    this.truncateFileSync(path);
     return this.createFile(path, instance.execute());
   }
 

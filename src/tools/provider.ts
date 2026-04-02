@@ -44,7 +44,7 @@ export class Provider {
       },
       lead: {
         name: 'lead',
-        description: 'leadProvider',
+        description: 'LeadProvider',
         instance: () => new CreateLeadProvider(fatherNames),
         dependencies: ['axios@^1.9.0'],
         devDependencies: [],

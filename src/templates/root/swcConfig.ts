@@ -1,9 +1,9 @@
 export class CreateSwcConfig {
   public execute(): string {
-    return `{
+    return String.raw`{
   "$schema": "https://swc.rs/schema.json",
   "isModule": true,
-  "exclude": ["src/@types", ".*dtos.*", ".*models.*", ".*repositories.*I.*\\\\.ts$", ".*\\\\.spec\\\\.ts$"],
+  "exclude": ["src/@types", ".*dtos.*", ".*models.*", ".*repositories.*I.*\\.ts$", ".*\\.spec\\.ts$"],
   "minify": true,
   "module": {
     "type": "commonjs",

@@ -1,6 +1,6 @@
 export class CreateEncryptionConfig {
   public execute(): string {
-    return `import { Joi } fr\u006Fm 'celebrate';
+    return String.raw`import { Joi } fr\u006Fm 'celebrate';
 import { getCiphers } fr\u006Fm 'node:crypto';
 import { resolve } fr\u006Fm 'node:path';
 import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
@@ -58,7 +58,7 @@ const encryptionValidator = Joi.object<IEncryptionConfigDTO>({
         .allow('')
         .required(),
       jwtLifetime: Joi.string()
-        .pattern(/^\\d+(d|h|min|s|ms)$/)
+        .pattern(/^\d+(d|h|min|s|ms)$/)
         .required(),
     }).required(),
   }).required(),

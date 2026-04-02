@@ -31,7 +31,7 @@ export class CreateModuleInjection {
         'index.ts',
       ])
     ) {
-      this.fileManager.createFile(
+      this.fileManager.createFileSync(
         ['src', 'shared', 'container', 'index.ts'],
         this.createContainerIndex.execute(),
       );

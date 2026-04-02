@@ -2,8 +2,14 @@ import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 new (class PostBuild {
-  #emptyDeclRegex = /\s{2,4}(static\s+)?(?!return|break)(\w+)\s*;\n?/g;
-  #fromEscapedRegex = /\\u006F/g;
+  #fromEscapedRegex;
+  #emptyDeclRegex;
+
+  constructor() {
+    this.#emptyDeclRegex = /\s{2,4}(static\s+)?(?!return|break)(\w+)\s*;\n?/g;
+    this.#fromEscapedRegex = /\\u006F/g;
+  }
+
 
   #findJsFiles(directory, files = []) {
     const entries = readdirSync(directory);

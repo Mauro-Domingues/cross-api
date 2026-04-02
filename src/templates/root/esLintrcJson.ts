@@ -1,6 +1,6 @@
 export class CreateEsLintrcJson {
   public execute(): string {
-    return `{
+    return String.raw`{
   "env": {
     "es6": true,
     "node": true,
@@ -53,9 +53,9 @@ export class CreateEsLintrcJson {
       {
         "groups": [
           [
-            "^\\\\u0000", "^@?\\\\w", "^node:",
+            "^\\u0000", "^@?\\w", "^node:",
             "^@config", "^@dtos", "^@jobs", "^@middlewares", "^@modules", "^@routes", "^@shared", "^@utils",
-            "^\\\\.\\\\./", "^\\\\./", "^\\\\./(?=.*/)", "^\\\\./?$"
+            "^\\.\\./", "^\\./", "^\\./(?=.*/)", "^\\./?$"
           ]
         ]
       }
@@ -73,7 +73,7 @@ export class CreateEsLintrcJson {
             "selector": "interface",
             "format": ["PascalCase"],
             "custom": {
-              "regex": "^I[A-Z]\\\\w*DTO$",
+              "regex": "^I[A-Z]\\w*DTO$",
               "match": true
             }
           },
@@ -81,7 +81,7 @@ export class CreateEsLintrcJson {
             "selector": "typeAlias",
             "format": ["PascalCase"],
             "custom": {
-              "regex": "^I[A-Z]\\\\w*DTO$",
+              "regex": "^I[A-Z]\\w*DTO$",
               "match": true
             }
           }
@@ -97,7 +97,7 @@ export class CreateEsLintrcJson {
             "selector": "interface",
             "format": ["PascalCase"],
             "custom": {
-              "regex": "^I[A-Z]\\\\w*$",
+              "regex": "^I[A-Z]\\w*$",
               "match": true
             }
           },
@@ -105,7 +105,7 @@ export class CreateEsLintrcJson {
             "selector": "typeAlias",
             "format": ["PascalCase"],
             "custom": {
-              "regex": "^I[A-Z]\\\\w*$",
+              "regex": "^I[A-Z]\\w*$",
               "match": true
             }
           }

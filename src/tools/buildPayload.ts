@@ -11,11 +11,11 @@ export class BuildPayload {
   private constructor() {
     this.concat = Concat.getInstance();
     this.colorOptions = {
+      white: '\x1b[38;2;255;255;255m',
       purple: '\x1b[38;2;255;0;255m',
       yellow: '\x1b[38;2;255;255;0m',
       green: '\x1b[38;2;0;255;155m',
       blue: '\x1b[38;2;0;155;255m',
-      white: '\x1b[38;2;0;0;0m',
       red: '\x1b[38;2;255;0;0m',
     };
   }

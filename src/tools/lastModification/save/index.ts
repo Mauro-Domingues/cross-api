@@ -31,9 +31,9 @@ export class CreateRegister extends BaseRegister {
   }
 
   public execute(): void {
-    if (this.command && this.command[0] === 'make:provider') {
+    if (this.command?.[0] === 'make:provider') {
       this.createProvider.execute();
-    } else if (this.command && this.command[0] === 'make:module') {
+    } else if (this.command?.[0] === 'make:module') {
       this.createModule.execute();
     }
 

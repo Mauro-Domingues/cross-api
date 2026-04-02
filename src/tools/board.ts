@@ -55,7 +55,7 @@ export class Board {
   }
 
   private get circle(): string {
-    return String.fromCharCode(0x3007);
+    return String.fromCodePoint(0x3007);
   }
 
   private renderEmptyLine(): void {
