@@ -15,9 +15,9 @@ export class CreateRepository extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { BaseRepository } fr\om '@shared/container/modules/repositories/BaseRepository';
+    return `import { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { BaseRepository } fr\u006Fm '@shared/container/modules/repositories/BaseRepository';
 
 export class ${this.names.pluralUpperModuleName}Repository
   extends BaseRepository<${this.names.upperModuleName}>

@@ -15,8 +15,8 @@ export class CreateIRepository extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import type { IBaseRepository } fr\om '@shared/container/modules/repositories/IBaseRepository';
+    return `import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { IBaseRepository } fr\u006Fm '@shared/container/modules/repositories/IBaseRepository';
 
 export interface I${this.names.pluralUpperModuleName}Repository extends IBaseRepository<${this.names.upperModuleName}> {
   // non-generic methods here

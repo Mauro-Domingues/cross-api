@@ -1,9 +1,9 @@
 export class CreateMailTemplateIndex {
   public execute(): string {
-    return `import { container } fr\om 'tsyringe';
-import { mailTemplateConfig } fr\om '@config/mailTemplate';
-import { HandlebarsProvider } fr\om './implementations/HandlebarsProvider';
-import type { IMailTemplateProvider } fr\om './models/IMailTemplateProvider';
+    return `import { container } fr\u006Fm 'tsyringe';
+import { mailTemplateConfig } fr\u006Fm '@config/mailTemplate';
+import { HandlebarsProvider } fr\u006Fm './implementations/HandlebarsProvider';
+import type { IMailTemplateProvider } fr\u006Fm './models/IMailTemplateProvider';
 
 const providers: Record<
   typeof mailTemplateConfig.driver,

@@ -1,8 +1,8 @@
 export class CreateDocConfig {
   public execute(): string {
-    return `import { generateSpec } fr\om 'tsoa';
-import { resolve } fr\om 'node:path';
-import { compilerOptions } fr\om './tsconfig.json';
+    return `import { generateSpec } fr\u006Fm 'tsoa';
+import { resolve } fr\u006Fm 'node:path';
+import { compilerOptions } fr\u006Fm './tsconfig.json';
 
 generateSpec(
   {

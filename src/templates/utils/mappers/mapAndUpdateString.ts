@@ -9,8 +9,8 @@ export class CreateMapAndUpdateString {
   }
 
   public execute(): string {
-    return `import type { IObjectDTO } fr\om '@dtos/IObjectDTO';
-import { mapAndUpdateAttribute } fr\om './mapAndUpdateAttribute';
+    return `import type { IObjectDTO } fr\u006Fm '@dtos/IObjectDTO';
+import { mapAndUpdateAttribute } fr\u006Fm './mapAndUpdateAttribute';
 
 /**
  * ${this.mapperMessages.description.mapAndUpdateString}

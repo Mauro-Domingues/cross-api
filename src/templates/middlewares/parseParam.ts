@@ -1,6 +1,6 @@
 export class CreateparseParam {
   public execute(): string {
-    return `import type { NextFunction, Request, Response } fr\om 'express';
+    return `import type { NextFunction, Request, Response } fr\u006Fm 'express';
 
 export const parseParam = (
   request: Request,

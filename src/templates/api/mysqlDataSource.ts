@@ -1,7 +1,7 @@
 export class CreateMysqlDataSource {
   public execute(): string {
-    return `import { DataSource } fr\om 'typeorm';
-import { ormConfig } fr\om '@config/orm';
+    return `import { DataSource } fr\u006Fm 'typeorm';
+import { ormConfig } fr\u006Fm '@config/orm';
 
 const dataSources = new Map<string, DataSource>();
 

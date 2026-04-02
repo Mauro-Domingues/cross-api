@@ -15,12 +15,12 @@ export class ShowSpecService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { IConnection } fr\om '@shared/typeorm';
-import { Connection } fr\om '@shared/typeorm';
-import { Show${this.names.upperModuleName}Service } fr\om './Show${this.names.upperModuleName}Service';
+    return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
+import { Connection } fr\u006Fm '@shared/typeorm';
+import { Show${this.names.upperModuleName}Service } fr\u006Fm './Show${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: I${this.names.pluralUpperModuleName}Repository;
 let connection: IConnection;

@@ -1,9 +1,9 @@
 export class CreateEncryptionConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
-import { getCiphers } fr\om 'node:crypto';
-import { resolve } fr\om 'node:path';
-import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
+    return `import { Joi } fr\u006Fm 'celebrate';
+import { getCiphers } fr\u006Fm 'node:crypto';
+import { resolve } fr\u006Fm 'node:path';
+import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
 
 interface IEncryptionConfigDTO {
   readonly driver: 'encryption';

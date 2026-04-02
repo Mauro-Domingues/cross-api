@@ -1,6 +1,6 @@
 export class CreateMailTemplateConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
+    return `import { Joi } fr\u006Fm 'celebrate';
 
 interface IMailTemplateConfigDTO {
   readonly driver: 'handlebars';

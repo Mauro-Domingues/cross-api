@@ -15,8 +15,8 @@ export class CreateSchema extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { baseSchema } fr\om '@shared/container/modules/validators/baseSchema';
+    return `import { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { baseSchema } fr\u006Fm '@shared/container/modules/validators/baseSchema';
 
 export const ${this.names.lowerModuleName}Schema = baseSchema(${this.names.upperModuleName}, ctx => ({
   name: ctx.string().max(255),

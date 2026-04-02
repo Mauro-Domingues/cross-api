@@ -15,12 +15,12 @@ export class ShowController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import type { Request, Response } fr\om 'express';
-import { container } fr\om 'tsyringe';
-import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { Show${this.names.upperModuleName}Service } fr\om './Show${this.names.upperModuleName}Service';
+    return `import type { Request, Response } fr\u006Fm 'express';
+import { container } fr\u006Fm 'tsyringe';
+import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
+import type { I${this.names.upperModuleName}DTO } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { Show${this.names.upperModuleName}Service } fr\u006Fm './Show${this.names.upperModuleName}Service';
 
 export class Show${this.names.upperModuleName}Controller {
   public async handle(

@@ -1,12 +1,12 @@
 export class CreateAuthConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
-import { passportJwtSecret } fr\om 'jwks-rsa';
-import type { StrategyOptionsWithoutRequest as JwtStrategyOptions } fr\om 'passport-jwt';
-import { ExtractJwt } fr\om 'passport-jwt';
-import { readFileSync } fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
-import { appConfig } fr\om './app';
+    return `import { Joi } fr\u006Fm 'celebrate';
+import { passportJwtSecret } fr\u006Fm 'jwks-rsa';
+import type { StrategyOptionsWithoutRequest as JwtStrategyOptions } fr\u006Fm 'passport-jwt';
+import { ExtractJwt } fr\u006Fm 'passport-jwt';
+import { readFileSync } fr\u006Fm 'node:fs';
+import { resolve } fr\u006Fm 'node:path';
+import { appConfig } fr\u006Fm './app';
 
 interface IAuthConfigDTO {
   readonly config: {

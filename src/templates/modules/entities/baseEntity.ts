@@ -5,7 +5,7 @@ export class CreateBaseEntity {
   DeleteDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} fr\om 'typeorm';
+} fr\u006Fm 'typeorm';
 
 export abstract class Base {
   @PrimaryGeneratedColumn('uuid', { name: 'id' })

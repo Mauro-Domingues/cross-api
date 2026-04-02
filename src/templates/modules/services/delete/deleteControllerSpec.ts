@@ -15,12 +15,12 @@ export class DeleteSpecController extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import request fr\om 'supertest';
-import { v4 as uuid } fr\om 'uuid';
-import { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { app } fr\om '@shared/app';
-import type { IConnection } fr\om '@shared/typeorm';
-import { Connection } fr\om '@shared/typeorm';
+    return `import request fr\u006Fm 'supertest';
+import { v4 as uuid } fr\u006Fm 'uuid';
+import { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { app } fr\u006Fm '@shared/app';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
+import { Connection } fr\u006Fm '@shared/typeorm';
 
 const id = uuid();
 let connection: IConnection;

@@ -1,7 +1,7 @@
 export class CreateAppConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
-import { cpus } fr\om 'node:os';
+    return `import { Joi } fr\u006Fm 'celebrate';
+import { cpus } fr\u006Fm 'node:os';
 
 interface IAppConfigDTO {
   readonly config: {

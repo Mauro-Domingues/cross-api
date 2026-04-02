@@ -1,8 +1,8 @@
 export class CreateMessagingConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
-import type { IKafkaConfigDTO } fr\om 'cross-kafka';
-import { logLevel } fr\om 'cross-kafka';
+    return `import { Joi } fr\u006Fm 'celebrate';
+import type { IKafkaConfigDTO } fr\u006Fm 'cross-kafka';
+import { logLevel } fr\u006Fm 'cross-kafka';
 
 interface IMessagingConfigDTO {
   readonly driver: 'kafka';

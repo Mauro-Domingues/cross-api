@@ -1,8 +1,8 @@
 export class CreateSeedIndex {
   public execute(): string {
-    return `import type { QueryRunner } fr\om 'typeorm';
-import { Connection } fr\om '../index';
-import { seedExample } fr\om '../seeds/example';
+    return `import type { QueryRunner } fr\u006Fm 'typeorm';
+import { Connection } fr\u006Fm '../index';
+import { seedExample } fr\u006Fm '../seeds/example';
 
 const available = {
   example: seedExample,

@@ -1,6 +1,6 @@
 export class CreateFakeLead {
   public execute(): string {
-    return `import type { ILeadProvider } fr\om '../models/ILeadProvider';
+    return `import type { ILeadProvider } fr\u006Fm '../models/ILeadProvider';
 
 export class FakeLeadProvider implements ILeadProvider {
   private readonly leads = new Set<string>();

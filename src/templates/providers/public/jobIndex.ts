@@ -1,6 +1,6 @@
 export class CreateJobIndex {
   public execute(): string {
-    return `import { Example } fr\om '@jobs/Example';
+    return `import { Example } fr\u006Fm '@jobs/Example';
 
 export const jobs = [Example];
 `;

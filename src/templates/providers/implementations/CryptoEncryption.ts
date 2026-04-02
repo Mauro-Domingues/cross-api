@@ -1,30 +1,30 @@
 export class CreateCryptoEncryption {
   public execute(): string {
-    return `import type { SignOptions } fr\om 'jsonwebtoken';
-import { sign } fr\om 'jsonwebtoken';
-import type { JWK } fr\om 'pem-jwk';
-import { pem2jwk } fr\om 'pem-jwk';
+    return `import type { SignOptions } fr\u006Fm 'jsonwebtoken';
+import { sign } fr\u006Fm 'jsonwebtoken';
+import type { JWK } fr\u006Fm 'pem-jwk';
+import { pem2jwk } fr\u006Fm 'pem-jwk';
 import {
   createCipheriv,
   createDecipheriv,
   createHash,
   generateKeyPairSync,
   randomBytes,
-} fr\om 'node:crypto';
+} fr\u006Fm 'node:crypto';
 import {
   appendFileSync,
   existsSync,
   mkdirSync,
   readFileSync,
   truncateSync,
-} fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
-import { encryptionConfig } fr\om '@config/encryption';
-import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
-import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
-import type { IEncryptionProvider } fr\om '../models/IEncryptionProvider';
+} fr\u006Fm 'node:fs';
+import { resolve } fr\u006Fm 'node:path';
+import { encryptionConfig } fr\u006Fm '@config/encryption';
+import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import type { IEncryptedDTO } fr\u006Fm '../dtos/IEncryptedDTO';
+import type { IJwtTokenDTO } fr\u006Fm '../dtos/IJwtTokenDTO';
+import type { IRefreshTokenDTO } fr\u006Fm '../dtos/IRefreshTokenDTO';
+import type { IEncryptionProvider } fr\u006Fm '../models/IEncryptionProvider';
 
 export class CryptoProvider implements IEncryptionProvider {
   private write(path: string, filename: string, data: string): void {

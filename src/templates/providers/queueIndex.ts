@@ -1,11 +1,11 @@
 export class CreateQueueIndex {
   public execute(): string {
-    return `import { container } fr\om 'tsyringe';
-import { queueConfig } fr\om '@config/queue';
-import { BeeProvider } fr\om './implementations/BeeProvider';
-import { BullProvider } fr\om './implementations/BullProvider';
-import { KueProvider } fr\om './implementations/KueProvider';
-import type { IQueueProvider } fr\om './models/IQueueProvider';
+    return `import { container } fr\u006Fm 'tsyringe';
+import { queueConfig } fr\u006Fm '@config/queue';
+import { BeeProvider } fr\u006Fm './implementations/BeeProvider';
+import { BullProvider } fr\u006Fm './implementations/BullProvider';
+import { KueProvider } fr\u006Fm './implementations/KueProvider';
+import type { IQueueProvider } fr\u006Fm './models/IQueueProvider';
 
 const providers: Record<typeof queueConfig.driver, () => IQueueProvider> = {
   kue: () => container.resolve(KueProvider),

@@ -9,8 +9,8 @@ export class CreateEntity {
   ) {}
 
   public execute(): string {
-    return `import { Column, Entity } fr\om 'typeorm';
-import { Base } fr\om '@shared/container/modules/entities/Base';
+    return `import { Column, Entity } fr\u006Fm 'typeorm';
+import { Base } fr\u006Fm '@shared/container/modules/entities/Base';
 
 @Entity('${this.names.dbModuleName}')
 export class ${this.names.upperModuleName} extends Base {

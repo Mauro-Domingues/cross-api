@@ -1,17 +1,17 @@
 export class CreateBullQueue {
   public execute(): string {
-    return `import type { Job, Queue } fr\om 'bull';
-import Bull fr\om 'bull';
-import type { InjectionToken } fr\om 'tsyringe';
-import { container } fr\om 'tsyringe';
-import { queueConfig } fr\om '@config/queue';
-import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
-import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
-import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
-import type { IQueueDTO } fr\om '../dtos/IQueueDTO';
-import type { IQueueProvider } fr\om '../models/IQueueProvider';
-import { jobs } fr\om '../public/jobs';
+    return `import type { Job, Queue } fr\u006Fm 'bull';
+import Bull fr\u006Fm 'bull';
+import type { InjectionToken } fr\u006Fm 'tsyringe';
+import { container } fr\u006Fm 'tsyringe';
+import { queueConfig } fr\u006Fm '@config/queue';
+import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
+import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO';
+import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO';
+import type { IQueueDTO } fr\u006Fm '../dtos/IQueueDTO';
+import type { IQueueProvider } fr\u006Fm '../models/IQueueProvider';
+import { jobs } fr\u006Fm '../public/jobs';
 
 export class BullProvider implements IQueueProvider {
   private readonly queues: IQueueDTO<Queue> = {};

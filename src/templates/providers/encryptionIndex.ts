@@ -1,9 +1,9 @@
 export class CreateEncryptionIndex {
   public execute(): string {
-    return `import { container } fr\om 'tsyringe';
-import { encryptionConfig } fr\om '@config/encryption';
-import { CryptoProvider } fr\om './implementations/CryptoProvider';
-import type { IEncryptionProvider } fr\om './models/IEncryptionProvider';
+    return `import { container } fr\u006Fm 'tsyringe';
+import { encryptionConfig } fr\u006Fm '@config/encryption';
+import { CryptoProvider } fr\u006Fm './implementations/CryptoProvider';
+import type { IEncryptionProvider } fr\u006Fm './models/IEncryptionProvider';
 
 const providers: Record<
   typeof encryptionConfig.driver,

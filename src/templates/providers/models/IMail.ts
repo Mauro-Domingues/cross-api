@@ -1,6 +1,6 @@
 export class CreateIMail {
   public execute(): string {
-    return `import type { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
+    return `import type { ISendMailDTO } fr\u006Fm '../dtos/ISendMailDTO';
 
 export interface IMailProvider {
   sendMail(data: ISendMailDTO): Promise<void>;

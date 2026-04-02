@@ -12,15 +12,15 @@ export class CreateService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { instanceToInstance } fr\om 'class-transformer';
-import { Body, Inject, Post, Route, Tags } fr\om 'tsoa';
-import { inject, injectable } fr\om 'tsyringe';
-import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import type { I${this.names.upperModuleName}DTO } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import type { IConnection } fr\om '@shared/typeorm';
+    return `import { instanceToInstance } fr\u006Fm 'class-transformer';
+import { Body, Inject, Post, Route, Tags } fr\u006Fm 'tsoa';
+import { inject, injectable } fr\u006Fm 'tsyringe';
+import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
+import type { I${this.names.upperModuleName}DTO } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
+import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()

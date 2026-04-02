@@ -1,16 +1,16 @@
 export class CreateFakeMail {
   public execute(): string {
-    return `import type { Transporter } fr\om 'nodemailer';
+    return `import type { Transporter } fr\u006Fm 'nodemailer';
 import {
   createTestAccount,
   createTransport,
   getTestMessageUrl,
-} fr\om 'nodemailer';
-import { inject, injectable } fr\om 'tsyringe';
-import { mailConfig } fr\om '@config/mail';
-import type { IMailTemplateProvider } fr\om '../../MailTemplateProvider/models/IMailTemplateProvider';
-import type { ISendMailDTO } fr\om '../dtos/ISendMailDTO';
-import type { IMailProvider } fr\om '../models/IMailProvider';
+} fr\u006Fm 'nodemailer';
+import { inject, injectable } fr\u006Fm 'tsyringe';
+import { mailConfig } fr\u006Fm '@config/mail';
+import type { IMailTemplateProvider } fr\u006Fm '../../MailTemplateProvider/models/IMailTemplateProvider';
+import type { ISendMailDTO } fr\u006Fm '../dtos/ISendMailDTO';
+import type { IMailProvider } fr\u006Fm '../models/IMailProvider';
 
 @injectable()
 export class FakeMailProvider implements IMailProvider {

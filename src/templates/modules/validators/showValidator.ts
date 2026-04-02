@@ -15,9 +15,9 @@ export class ShowValidator extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
-import { ${this.names.lowerModuleName}Schema } fr\om './${this.names.lowerModuleName}Schema';
+    return `import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import { baseValidator } fr\u006Fm '@shared/container/modules/validators/baseValidator';
+import { ${this.names.lowerModuleName}Schema } fr\u006Fm './${this.names.lowerModuleName}Schema';
 
 export const show${this.names.upperModuleName} = baseValidator(ctx => {
   const ${this.names.lowerModuleName}ValidationSchema = ${this.names.lowerModuleName}Schema(ctx);

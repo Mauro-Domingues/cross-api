@@ -15,14 +15,14 @@ export class ListSpecService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import { FakeCacheProvider } fr\om '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { IConnection } fr\om '@shared/typeorm';
-import { Connection } fr\om '@shared/typeorm';
-import { List${this.names.upperModuleName}Service } fr\om './List${this.names.upperModuleName}Service';
+    return `import { Fake${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/fakes/Fake${this.names.pluralUpperModuleName}Repository';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import { FakeCacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
+import { Connection } fr\u006Fm '@shared/typeorm';
+import { List${this.names.upperModuleName}Service } fr\u006Fm './List${this.names.upperModuleName}Service';
 
 let fake${this.names.pluralUpperModuleName}Repository: I${this.names.pluralUpperModuleName}Repository;
 let fakeCacheProvider: ICacheProvider;

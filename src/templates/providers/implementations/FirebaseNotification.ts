@@ -1,13 +1,13 @@
 export class CreateFirebaseNotification {
   public execute(): string {
-    return `import type { AxiosInstance } fr\om 'axios';
-import axios, { AxiosError } fr\om 'axios';
-import { GoogleAuth } fr\om 'google-auth-library';
-import { readFileSync } fr\om 'node:fs';
-import { notificationConfig } fr\om '@config/notification';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { ISendNotificationDTO } fr\om '../dtos/ISendNotificationDTO';
-import type { INotificationProvider } fr\om '../models/INotificationProvider';
+    return `import type { AxiosInstance } fr\u006Fm 'axios';
+import axios, { AxiosError } fr\u006Fm 'axios';
+import { GoogleAuth } fr\u006Fm 'google-auth-library';
+import { readFileSync } fr\u006Fm 'node:fs';
+import { notificationConfig } fr\u006Fm '@config/notification';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
+import type { ISendNotificationDTO } fr\u006Fm '../dtos/ISendNotificationDTO';
+import type { INotificationProvider } fr\u006Fm '../models/INotificationProvider';
 
 export class FirebaseProvider implements INotificationProvider {
   private readonly http: AxiosInstance;

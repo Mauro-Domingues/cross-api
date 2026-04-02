@@ -9,7 +9,7 @@ export class CreateMapAndInsert {
   }
 
   public execute(): string {
-    return `import type { IObjectDTO } fr\om '@dtos/IObjectDTO';
+    return `import type { IObjectDTO } fr\u006Fm '@dtos/IObjectDTO';
 
 /**
  * ${this.mapperMessages.description.patchAndInsert}

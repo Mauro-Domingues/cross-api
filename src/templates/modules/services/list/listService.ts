@@ -12,15 +12,15 @@ export class ListService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { instanceToInstance } fr\om 'class-transformer';
-import { Get, Inject, Query, Route, Tags } fr\om 'tsoa';
-import { inject, injectable } fr\om 'tsyringe';
-import type { ICacheDTO } fr\om '@dtos/ICacheDTO';
-import type { IListDTO } fr\om '@dtos/IListDTO';
-import type { ${this.names.upperModuleName} } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import type { IConnection } fr\om '@shared/typeorm';
+    return `import { instanceToInstance } fr\u006Fm 'class-transformer';
+import { Get, Inject, Query, Route, Tags } fr\u006Fm 'tsoa';
+import { inject, injectable } fr\u006Fm 'tsyringe';
+import type { ICacheDTO } fr\u006Fm '@dtos/ICacheDTO';
+import type { IListDTO } fr\u006Fm '@dtos/IListDTO';
+import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()

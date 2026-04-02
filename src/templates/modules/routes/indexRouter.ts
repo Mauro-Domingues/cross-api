@@ -12,7 +12,7 @@ export class CreateIndexRoute extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { ${this.baseNames.lowerModuleName}Router } fr\om './${this.baseNames.lowerModuleName}Router';
+    return `import { ${this.baseNames.lowerModuleName}Router } fr\u006Fm './${this.baseNames.lowerModuleName}Router';
 routes.use(${this.baseNames.lowerModuleName}Router);
 `;
   }

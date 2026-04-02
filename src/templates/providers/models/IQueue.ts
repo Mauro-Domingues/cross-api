@@ -1,8 +1,8 @@
 export class CreateIQueue {
   public execute(): string {
-    return `import type { IIntervalDTO } fr\om '@dtos/IIntervalDTO';
-import type { IHandleDataDTO } fr\om '../dtos/IHandleDataDTO';
-import type { IHandleDTO } fr\om '../dtos/IHandleDTO';
+    return `import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
+import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO';
+import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO';
 
 export interface IQueueProvider {
   execute<T extends IHandleDTO>(data: {

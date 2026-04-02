@@ -1,8 +1,8 @@
 export class CreateHealthRouter {
   public execute(): string {
-    return `import type { Request, Response } fr\om 'express';
-import { Router } fr\om 'express';
-import { baseValidator } fr\om '@shared/container/modules/validators/baseValidator';
+    return `import type { Request, Response } fr\u006Fm 'express';
+import { Router } fr\u006Fm 'express';
+import { baseValidator } fr\u006Fm '@shared/container/modules/validators/baseValidator';
 
 const healthRouter = Router();
 

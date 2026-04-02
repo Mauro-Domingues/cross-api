@@ -1,11 +1,11 @@
 export class CreateStorageConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
-import type { StorageEngine } fr\om 'multer';
-import { diskStorage } fr\om 'multer';
-import { randomBytes } fr\om 'node:crypto';
-import { extname, resolve } fr\om 'node:path';
-import { slugify } fr\om '@utils/slugify';
+    return `import { Joi } fr\u006Fm 'celebrate';
+import type { StorageEngine } fr\u006Fm 'multer';
+import { diskStorage } fr\u006Fm 'multer';
+import { randomBytes } fr\u006Fm 'node:crypto';
+import { extname, resolve } fr\u006Fm 'node:path';
+import { slugify } fr\u006Fm '@utils/slugify';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 

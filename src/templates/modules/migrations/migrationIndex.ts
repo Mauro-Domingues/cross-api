@@ -1,7 +1,7 @@
 export class CreateMigrationIndex {
   public execute(): string {
-    return `import type { DataSource } fr\om 'typeorm';
-import { Connection } fr\om '../index';
+    return `import type { DataSource } fr\u006Fm 'typeorm';
+import { Connection } fr\u006Fm '../index';
 
 async function mysqlMigrations(mysql: DataSource): Promise<void> {
   await mysql.runMigrations();

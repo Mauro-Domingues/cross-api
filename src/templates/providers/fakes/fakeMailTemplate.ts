@@ -1,7 +1,7 @@
 export class CreateFakeMailTemplate {
   public execute(): string {
-    return `import type { IParseMailTemplateDTO } fr\om '../dtos/IParseMailTemplateDTO';
-import type { IMailTemplateProvider } fr\om '../models/IMailTemplateProvider';
+    return `import type { IParseMailTemplateDTO } fr\u006Fm '../dtos/IParseMailTemplateDTO';
+import type { IMailTemplateProvider } fr\u006Fm '../models/IMailTemplateProvider';
 
 export class FakeMailTemplateProvider implements IMailTemplateProvider {
   public compile({ variables }: IParseMailTemplateDTO): string {

@@ -1,10 +1,10 @@
 export class CreateNotificationIndex {
   public execute(): string {
-    return `import { container } fr\om 'tsyringe';
-import { notificationConfig } fr\om '@config/notification';
-import { FirebaseProvider } fr\om './implementations/FirebaseProvider';
-import { OneSignalProvider } fr\om './implementations/OneSignalProvider';
-import type { INotificationProvider } fr\om './models/INotificationProvider';
+    return `import { container } fr\u006Fm 'tsyringe';
+import { notificationConfig } fr\u006Fm '@config/notification';
+import { FirebaseProvider } fr\u006Fm './implementations/FirebaseProvider';
+import { OneSignalProvider } fr\u006Fm './implementations/OneSignalProvider';
+import type { INotificationProvider } fr\u006Fm './models/INotificationProvider';
 
 const providers: Record<
   typeof notificationConfig.driver,

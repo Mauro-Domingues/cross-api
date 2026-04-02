@@ -1,6 +1,6 @@
 export class CreateQueueConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
+    return `import { Joi } fr\u006Fm 'celebrate';
 
 interface IQueueConfigDTO {
   readonly driver: 'kue' | 'bull' | 'bee';

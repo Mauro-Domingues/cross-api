@@ -1,8 +1,8 @@
 export class CreateFakeHash {
   public execute(): string {
-    return `import { createHmac } fr\om 'node:crypto';
-import { hashConfig } fr\om '@config/hash';
-import type { IHashProvider } fr\om '../models/IHashProvider';
+    return `import { createHmac } fr\u006Fm 'node:crypto';
+import { hashConfig } fr\u006Fm '@config/hash';
+import type { IHashProvider } fr\u006Fm '../models/IHashProvider';
 
 export class FakeHashProvider implements IHashProvider {
   public async generateHash(payload: string): Promise<string> {

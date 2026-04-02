@@ -1,10 +1,10 @@
 export class CreateIEncryption {
   public execute(): string {
-    return `import type { SignOptions } fr\om 'jsonwebtoken';
-import type { JWK } fr\om 'pem-jwk';
-import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
-import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
+    return `import type { SignOptions } fr\u006Fm 'jsonwebtoken';
+import type { JWK } fr\u006Fm 'pem-jwk';
+import type { IEncryptedDTO } fr\u006Fm '../dtos/IEncryptedDTO';
+import type { IJwtTokenDTO } fr\u006Fm '../dtos/IJwtTokenDTO';
+import type { IRefreshTokenDTO } fr\u006Fm '../dtos/IRefreshTokenDTO';
 
 export interface IEncryptionProvider {
   encrypt(text: string): IEncryptedDTO;

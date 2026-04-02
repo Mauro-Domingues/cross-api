@@ -1,8 +1,8 @@
 export class CreateRateLimiter {
   public execute(): string {
-    return `import type { NextFunction, Request, Response } fr\om 'express';
-import { RateLimiterMemory } fr\om 'rate-limiter-flexible';
-import { AppError } fr\om '@shared/errors/AppError';
+    return `import type { NextFunction, Request, Response } fr\u006Fm 'express';
+import { RateLimiterMemory } fr\u006Fm 'rate-limiter-flexible';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
 
 const limiter = new RateLimiterMemory({
   keyPrefix: 'ratelimiter',

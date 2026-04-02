@@ -1,15 +1,15 @@
 export class CreateFakeEncryption {
   public execute(): string {
-    return `import type { JWK } fr\om 'pem-jwk';
-import { createHash } fr\om 'node:crypto';
-import { readFileSync } fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
-import { encryptionConfig } fr\om '@config/encryption';
-import { convertToMilliseconds } fr\om '@utils/convertToMilliseconds';
-import type { IEncryptedDTO } fr\om '../dtos/IEncryptedDTO';
-import type { IJwtTokenDTO } fr\om '../dtos/IJwtTokenDTO';
-import type { IRefreshTokenDTO } fr\om '../dtos/IRefreshTokenDTO';
-import type { IEncryptionProvider } fr\om '../models/IEncryptionProvider';
+    return `import type { JWK } fr\u006Fm 'pem-jwk';
+import { createHash } fr\u006Fm 'node:crypto';
+import { readFileSync } fr\u006Fm 'node:fs';
+import { resolve } fr\u006Fm 'node:path';
+import { encryptionConfig } fr\u006Fm '@config/encryption';
+import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import type { IEncryptedDTO } fr\u006Fm '../dtos/IEncryptedDTO';
+import type { IJwtTokenDTO } fr\u006Fm '../dtos/IJwtTokenDTO';
+import type { IRefreshTokenDTO } fr\u006Fm '../dtos/IRefreshTokenDTO';
+import type { IEncryptionProvider } fr\u006Fm '../models/IEncryptionProvider';
 
 export class FakeEncryptionProvider implements IEncryptionProvider {
   public encrypt(text: string): IEncryptedDTO {

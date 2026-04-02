@@ -1,7 +1,7 @@
 export class CreateSetConnection {
   public execute(): string {
-    return `import type { NextFunction, Request, Response } fr\om 'express';
-import { Connection } fr\om '@shared/typeorm';
+    return `import type { NextFunction, Request, Response } fr\u006Fm 'express';
+import { Connection } fr\u006Fm '@shared/typeorm';
 
 /**
  * @description Defaults to the env database, but supports multi-tenancy

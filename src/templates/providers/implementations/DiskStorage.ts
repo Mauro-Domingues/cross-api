@@ -1,9 +1,9 @@
 export class CreateDiskStorage {
   public execute(): string {
-    return `import { existsSync, mkdirSync, renameSync, unlinkSync } fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
-import { storageConfig } fr\om '@config/storage';
-import type { IStorageProvider } fr\om '../models/IStorageProvider';
+    return `import { existsSync, mkdirSync, renameSync, unlinkSync } fr\u006Fm 'node:fs';
+import { resolve } fr\u006Fm 'node:path';
+import { storageConfig } fr\u006Fm '@config/storage';
+import type { IStorageProvider } fr\u006Fm '../models/IStorageProvider';
 
 export class DiskProvider implements IStorageProvider {
   public constructor() {

@@ -4,12 +4,12 @@ export class CreateFakeMessaging {
   IMessageOptionsDTO,
   IPatternDTO,
   IWritePacketDTO,
-} fr\om 'cross-proxy';
-import type { Observable } fr\om' 'rxjs/internal/Observable';
-import { randomUUID } fr\om 'node:crypto';
-import { EventEmitter } fr\om 'node:events';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { IMessagingProvider } fr\om '../models/IMessagingProvider';
+} fr\u006Fm 'cross-proxy';
+import type { Observable } fr\u006Fm' 'rxjs/internal/Observable';
+import { randomUUID } fr\u006Fm 'node:crypto';
+import { EventEmitter } fr\u006Fm 'node:events';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
+import type { IMessagingProvider } fr\u006Fm '../models/IMessagingProvider';
 
 export class FakeMessagingProvider implements IMessagingProvider {
   private readonly subscribedReplyTopics: Set<string> = new Set<string>();

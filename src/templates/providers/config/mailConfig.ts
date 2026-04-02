@@ -1,6 +1,6 @@
 export class CreateMailConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
+    return `import { Joi } fr\u006Fm 'celebrate';
 
 interface IMailConfigDTO {
   readonly driver: 'smtp' | 'ses';

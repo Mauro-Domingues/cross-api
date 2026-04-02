@@ -12,13 +12,13 @@ export class DeleteService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { Delete, Inject, Path, Route, Tags } fr\om 'tsoa';
-import { inject, injectable } fr\om 'tsyringe';
-import type { IResponseDTO } fr\om '@dtos/IResponseDTO';
-import type { I${this.names.pluralUpperModuleName}Repository } fr\om '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
-import type { ICacheProvider } fr\om '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import { AppError } fr\om '@shared/errors/AppError';
-import type { IConnection } fr\om '@shared/typeorm';
+    return `import { Delete, Inject, Path, Route, Tags } fr\u006Fm 'tsoa';
+import { inject, injectable } fr\u006Fm 'tsyringe';
+import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
+import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/repositories/I${this.names.pluralUpperModuleName}Repository';
+import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { AppError } fr\u006Fm '@shared/errors/AppError';
+import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()

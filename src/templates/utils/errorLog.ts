@@ -1,7 +1,7 @@
 export class CreateErrorLog {
   public execute(): string {
-    return `import { appendFileSync, existsSync, mkdirSync } fr\om 'node:fs';
-import { resolve } fr\om 'node:path';
+    return `import { appendFileSync, existsSync, mkdirSync } fr\u006Fm 'node:fs';
+import { resolve } fr\u006Fm 'node:path';
 
 export function createErrorLog(error: {
   code: number;

@@ -1,6 +1,6 @@
 export class CreateHashConfig {
   public execute(): string {
-    return `import { Joi } fr\om 'celebrate';
+    return `import { Joi } fr\u006Fm 'celebrate';
 
 interface IHashConfigDTO {
   readonly driver: 'bcrypt';
