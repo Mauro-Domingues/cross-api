@@ -3,21 +3,19 @@ import type { IDependencyDTO } from '@interfaces/IMessageDTO/IDependencyDTO';
 import type { IDocumentationDTO } from '@interfaces/IMessageDTO/IDocumentationDTO';
 import type { IHelpDTO } from '@interfaces/IMessageDTO/IHelpDTO';
 import type { ILanguageDTO } from '@interfaces/IMessageDTO/ILanguageDTO';
-import { CreateDefaultLanguage } from '@templates/assets/defaultLanguage';
 import { EnglishMessages } from '@templates/assets/enUs';
 import { PortugueseMessages } from '@templates/assets/ptBr';
 import { Concat } from '@tools/concat';
 import { Console } from '@tools/console';
-import { FileManager } from '@tools/fileManager';
+import { BaseRegister } from '@tools/lastModification/base';
 import { Messages } from '@tools/messages';
 import { Readline } from '@tools/readline';
 
-export class ConfigLanguage {
+export class ConfigLanguage extends BaseRegister {
   protected declare languageChosen: keyof IMessageDTO['language']['options'];
   protected readonly languageOptions: IMessageDTO['language']['options'];
   protected declare documentationMessages: IDocumentationDTO;
   protected declare dependencyMessages: IDependencyDTO;
-  protected readonly fileManager: FileManager;
   protected declare helpMessages: IHelpDTO;
   protected declare messages: IMessageDTO;
   private languageMessages: ILanguageDTO;
@@ -30,10 +28,10 @@ export class ConfigLanguage {
   private readonly concat: Concat;
 
   public constructor() {
+    super();
     this.languageMessages = Messages.getInstance().language;
     this.languageOptions = Object.freeze(this.languageMessages.options);
     this.readline = new Readline(Object.keys(this.languageOptions));
-    this.fileManager = FileManager.getInstance();
     this.console = Console.getInstance();
     this.concat = Concat.getInstance();
     this.languages = {
@@ -185,17 +183,13 @@ export class ConfigLanguage {
 
   protected setLanguageOption(): void {
     this.fileManager.truncateFileSync([
-      'node_modules',
-      'cross-api',
-      'src',
-      'tools',
-      'messages.js',
+      this.basePath,
+      'messages',
+      'messages.json',
     ]);
     return this.fileManager.createFile(
-      ['node_modules', 'cross-api', 'src', 'tools', 'messages.js'],
-      new CreateDefaultLanguage(
-        JSON.stringify(this.messages, null, 2),
-      ).execute(),
+      [this.basePath, 'messages', 'messages.json'],
+      JSON.stringify(this.messages, null, 2),
     );
   }
 

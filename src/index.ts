@@ -34,7 +34,6 @@ new (class Main {
     this.command = command;
     this.father = father;
     this.arg = arg;
-    this.helpMessages = Messages.getInstance().help;
     this.getFatherNames = new GetNames(this.father);
     this.getNames = new GetNames(this.arg);
     this.createRegister = new CreateRegister(
@@ -43,6 +42,7 @@ new (class Main {
       this.getNames.execute(),
       this.getFatherNames.execute(),
     );
+    this.helpMessages = Messages.getInstance().help;
     this.actions = Object.freeze<IActionDTO>({
       'make:provider': () =>
         new CreateProvider(this.arg, this.getFatherNames.execute()),
