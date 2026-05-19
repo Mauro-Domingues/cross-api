@@ -44,7 +44,6 @@ services:
         - CMD-SHELL
         - >
           curl --fail -s
-          -H "Origin: $(echo $ALLOWED_DOMAINS | tr -d '[] ' | cut -d',' -f1)"
           http://localhost:$API_PORT/health > /dev/null || exit 1
       start_period: 10s
       interval: 10s

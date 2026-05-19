@@ -7,9 +7,9 @@ import { container } fr\u006Fm 'tsyringe';
 import { queueConfig } fr\u006Fm '@config/queue';
 import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
-import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO.js';
-import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO.js';
-import type { IQueueDTO } fr\u006Fm '../dtos/IQueueDTO.js';
+import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO';
+import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO';
+import type { IQueueDTO } fr\u006Fm '../dtos/IQueueDTO';
 import type { IQueueProvider } fr\u006Fm '../models/IQueueProvider';
 import { jobs } fr\u006Fm '../public/jobs';
 
@@ -53,7 +53,7 @@ export class KueProvider implements IQueueProvider {
     job: T;
   }): Promise<Job> {
     return this.queues[job.key].queue
-      .create(job.key, data as object)
+      .create(job.key, data)
       .attempts(attempts)
       .removeOnComplete(true)
       .save();

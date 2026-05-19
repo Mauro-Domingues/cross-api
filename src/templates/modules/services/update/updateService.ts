@@ -12,8 +12,7 @@ export class UpdateService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { instanceToInstance } fr\u006Fm 'class-transformer';
-import { Body, Inject, Path, Put, Route, Tags } fr\u006Fm 'tsoa';
+    return `import { Body, Inject, Path, Put, Route, Tags } fr\u006Fm 'tsoa';
 import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
 import type { I${this.names.upperModuleName}DTO } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
@@ -74,7 +73,7 @@ export class Update${this.names.upperModuleName}Service {
         code: 200,
         messageCode: 'UPDATED',
         message: 'Successfully updated ${this.names.lowerModuleName}',
-        data: instanceToInstance(${this.names.lowerModuleName}),
+        data: ${this.names.lowerModuleName},
       };
     } catch (error: unknown) {
       if (trx.isTransactionActive) await trx.rollbackTransaction();

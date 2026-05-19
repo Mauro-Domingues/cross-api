@@ -12,8 +12,7 @@ export class ShowService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { instanceToInstance } fr\u006Fm 'class-transformer';
-import { Get, Inject, Path, Route, Tags } fr\u006Fm 'tsoa';
+    return `import { Get, Inject, Path, Route, Tags } fr\u006Fm 'tsoa';
 import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
 import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
@@ -61,7 +60,7 @@ export class Show${this.names.upperModuleName}Service {
         code: 200,
         messageCode: 'FOUND',
         message: '${this.names.upperModuleName} found successfully',
-        data: instanceToInstance(${this.names.lowerModuleName}),
+        data: ${this.names.lowerModuleName},
       };
     } catch (error: unknown) {
       if (trx.isTransactionActive) await trx.rollbackTransaction();

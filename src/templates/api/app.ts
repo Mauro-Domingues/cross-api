@@ -4,7 +4,6 @@ export class CreateApp {
 import 'reflect-metadata';
 import '@shared/container';
 import 'express-async-errors';
-import cors fr\u006Fm 'cors';
 import type { Express } fr\u006Fm 'express';
 import express, {
   json,
@@ -17,9 +16,9 @@ import { existsSync, truncateSync } fr\u006Fm 'node:fs';
 import { cpus } fr\u006Fm 'node:os';
 import { resolve } fr\u006Fm 'node:path';
 import { appConfig } fr\u006Fm '@config/app';
-import { corsConfig } fr\u006Fm '@config/cors';
 // import { encryptionConfig } fr\u006Fm '@config/encryption'; // encryptionProvider
 // import { storageConfig } fr\u006Fm '@config/storage'; // storageProvider
+import { corsHandler } fr\u006Fm '@middlewares/corsHandler';
 import { errorHandler } fr\u006Fm '@middlewares/errorHandler';
 import { parseParam } fr\u006Fm '@middlewares/parseParam';
 import { rateLimiter } fr\u006Fm '@middlewares/rateLimiter';
@@ -43,7 +42,7 @@ export const app = new (class App {
   private middlewares(): void {
     this.server.use(setConnection);
     this.server.use(rateLimiter);
-    this.server.use(cors(corsConfig));
+    this.server.use(corsHandler);
     this.server.use(json());
     this.server.use(urlencoded({ extended: true }));
     this.server.use(parseParam);

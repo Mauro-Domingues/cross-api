@@ -1,19 +1,7 @@
 export class CreateErrorHandler {
   public execute(): string {
-    return String.raw`import { CelebrateError } fr\u006Fm 'celebrate';
-import type { NextFunction, Request, Response } fr\u006Fm 'express';
-import { appConfig } fr\u006Fm '@config/app';
-import { AppError } fr\u006Fm '@shared/errors/AppError';
-import { createErrorLog } fr\u006Fm '@utils/errorLog';
-
-const toUpperSnakeCase = (message: string): string => {
-  return message
-    .trim()
-    .replaceAll(/\s+/g, '_')
-    .replaceAll(/([a-z0-9])([A-Z])/g, '$1_$2')
-    .replaceAll(/([A-Z])([A-Z][a-z])/g, '$1_$2')
-    .toUpperCase();
-};
+    return `import type { NextFunction, Request, Response } fr\u006Fm 'express';
+import { createErrorResponse } fr\u006Fm '@utils/createErrorResponse';
 
 export const errorHandler = (
   error: Error,
@@ -21,51 +9,12 @@ export const errorHandler = (
   response: Response,
   next: NextFunction,
 ): void => {
-  const errorBody = {} as Parameters<typeof createErrorLog>[0];
+  const errorResponse = createErrorResponse(error);
 
-  if (error instanceof CelebrateError) {
-    Object.assign(errorBody, {
-      code: 422,
-      messageCode: toUpperSnakeCase(error.message),
-      message:
-        (
-          error?.details.get('body') ||
-          error?.details.get('query') ||
-          error?.details.get('params')
-        )?.details
-          ?.map(detail => detail.message)
-          .join('. ') ?? 'CelebrateError',
-      stack: error.stack,
-    });
-  } else if (error instanceof AppError) {
-    Object.assign(errorBody, {
-      code: error.code,
-      messageCode: toUpperSnakeCase(error.messageCode),
-      message: error.message,
-      stack: error.stack,
-    });
-  } else {
-    Object.assign(errorBody, {
-      code: 500,
-      messageCode: toUpperSnakeCase(error.name),
-      message: error.message,
-      stack: error.stack,
-    });
-  }
-
-  createErrorLog(errorBody);
-
-  if (appConfig.config.apiMode === 'production') {
-    Object.assign(errorBody, {
-      message: 'Internal Server Error',
-      code: 500,
-    });
-  }
-
-  response.status(errorBody.code).json({
-    code: errorBody.code,
-    messageCode: errorBody.messageCode,
-    message: errorBody.message,
+  response.status(errorResponse.code).json({
+    code: errorResponse.code,
+    messageCode: errorResponse.messageCode,
+    message: errorResponse.message,
   });
 
   return next();

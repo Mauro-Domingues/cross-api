@@ -30,7 +30,6 @@ export class CreateEnvNamespace {
     readonly MAIL_ADDRESS: string;
     readonly SMTP_HOST: string;
     readonly SMTP_PORT: number;
-    readonly SMTP_SECURE: 'true' | 'false';
     readonly SMTP_USER: string;
     readonly SMTP_PASSWORD: string;
     readonly SES_USER: string;

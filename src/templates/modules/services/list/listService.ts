@@ -12,8 +12,7 @@ export class ListService extends BaseTemplateModule {
   }
 
   public execute(): string {
-    return `import { instanceToInstance } fr\u006Fm 'class-transformer';
-import { Get, Inject, Query, Route, Tags } fr\u006Fm 'tsoa';
+    return `import { Get, Inject, Query, Route, Tags } fr\u006Fm 'tsoa';
 import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { ICacheDTO } fr\u006Fm '@dtos/ICacheDTO';
 import type { IListDTO } fr\u006Fm '@dtos/IListDTO';
@@ -61,7 +60,7 @@ export class List${this.names.upperModuleName}Service {
           },
           trx,
         );
-        cache = { data: instanceToInstance(list), total: amount };
+        cache = { data: list, total: amount };
         await this.cacheProvider.save(cacheKey, cache);
       }
 

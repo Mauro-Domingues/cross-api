@@ -4,7 +4,8 @@ export class CreateFakeNotification {
 import type { INotificationProvider } fr\u006Fm '../models/INotificationProvider';
 
 export class FakeNotificationProvider implements INotificationProvider {
-  private readonly notification = new Set<ISendNotificationDTO>();
+  private readonly notification: Set<ISendNotificationDTO> =
+    new Set<ISendNotificationDTO>();
 
   public async sendNotification(data: ISendNotificationDTO): Promise<void> {
     this.notification.add(data);

@@ -39,7 +39,6 @@ export class ConfigJson extends ConfigLanguage {
     ];
     this.dependencies = [
       'celebrate@^15.0.3',
-      'class-transformer@^0.5.1',
       'cors@^2.8.5',
       'dotenv@^16.5.0',
       'express@^4.21.2',

@@ -30,14 +30,16 @@ export class SESProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    const { email } = mailConfig.config.default.from;
+    const { name, email } = mailConfig.config.default.from;
 
     const content = this.mailTemplateProvider.compile(templateData);
+
+    const source = from?.name ? \`"\${from.name}" <\${from?.email}>\` : from?.email;
 
     await this.client.send(
       new SendEmailCommand({
         Destination: {
-          ToAddresses: [to.email],
+          ToAddresses: [to.name ? \`"\${to.name}" <\${to.email}>\` : to.email],
         },
         Message: {
           Body: {
@@ -48,7 +50,7 @@ export class SESProvider implements IMailProvider {
           },
           Subject: { Charset: 'UTF-8', Data: subject },
         },
-        Source: from?.email ?? email,
+        Source: source ?? \`\${name}<\${email}>\`,
         ReturnPath: email,
       }),
     );
