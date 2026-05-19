@@ -21,7 +21,6 @@ import type { I${this.names.pluralUpperModuleName}Repository } fr\u006Fm '@modul
 import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { AppError } fr\u006Fm '@shared/errors/AppError';
 import type { IConnection } fr\u006Fm '@shared/typeorm';
-import { updateAttribute } fr\u006Fm '@utils/mappers';
 
 @Route('/${this.names.routeModuleName}')
 @injectable()
@@ -45,13 +44,7 @@ export class Update${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.findBy(
-        {
-          where: { id },
-          select: { id: true, name: true, description: true },
-        },
-        trx,
-      );
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError(
@@ -62,7 +55,7 @@ export class Update${this.names.upperModuleName}Service {
       }
 
       await this.${this.names.pluralLowerModuleName}Repository.update(
-        updateAttribute(${this.names.lowerModuleName}, ${this.names.lowerModuleName}Data),
+        { id, ...${this.names.lowerModuleName}Data },
         trx,
       );
 
