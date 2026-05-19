@@ -54,7 +54,10 @@ export class Update${this.names.upperModuleName}Service {
         );
       }
 
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.update({ id, ...${this.names.lowerModuleName}Data }, trx);
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.update(
+        {id, ...${this.names.lowerModuleName}Data },
+        trx,
+      );
 
       await this.cacheProvider.invalidatePrefix(\`\${connection.client}:${this.names.pluralLowerModuleName}\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
