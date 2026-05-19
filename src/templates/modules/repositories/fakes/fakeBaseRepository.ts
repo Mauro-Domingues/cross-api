@@ -83,14 +83,12 @@ export abstract class FakeBaseRepository<Entity extends ObjectLiteral & Base>
     }
   }
 
-  public async exists({
-    where,
-    withDeleted,
-  }: Parameters<IBaseRepository<Entity>['exists']>[0]): Promise<boolean> {
+  public async exists(
+    where: Parameters<IBaseRepository<Entity>['exists']>[0],
+  ): Promise<boolean> {
     this.validateClause(where);
     return this.fakeRepository.some(
-      entity =>
-        this.parseWhere(entity, where) && (withDeleted ?? !entity.deletedAt),
+      entity => this.parseWhere(entity, where) && !entity.deletedAt,
     );
   }
 

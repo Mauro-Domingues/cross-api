@@ -12,7 +12,7 @@ export class CreateIBaseRepository {
 
 export interface IBaseRepository<Entity extends ObjectLiteral> {
   exists(
-    baseData: FindManyOptions<Entity>,
+    baseData: FindOptionsWhere<Entity>,
     trx?: QueryRunner,
   ): Promise<boolean>;
   findAll(

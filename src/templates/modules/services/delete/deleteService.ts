@@ -41,10 +41,7 @@ export class Delete${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists(
-        { where: { id } },
-        trx,
-      );
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
 
       if (!${this.names.lowerModuleName}) {
         throw new AppError(

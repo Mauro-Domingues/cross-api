@@ -1,7 +1,7 @@
 export class CreateErrorHandler {
   public execute(): string {
     return `import type { NextFunction, Request, Response } fr\u006Fm 'express';
-import { createErrorResponse } fr\u006Fm '@utils/createErrorResponse';
+import { createErrorResponse } fr\u006Fm '@utils/errorResponse';
 
 export const errorHandler = (
   error: Error,

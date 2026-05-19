@@ -39,7 +39,7 @@ export abstract class BaseRepository<Entity extends ObjectLiteral>
     trx: QueryRunner,
   ): Promise<boolean> {
     this.validateClause(baseData.where);
-    return trx.manager.exists(this.target, baseData);
+    return trx.manager.exists(this.target, { where: baseData });
   }
 
   public async findBy(
