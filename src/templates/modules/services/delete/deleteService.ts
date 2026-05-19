@@ -41,9 +41,9 @@ export class Delete${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
+      const existing${this.names.upperModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
 
-      if (!${this.names.lowerModuleName}) {
+      if (!existing${this.names.upperModuleName}) {
         throw new AppError(
           'NOT_FOUND',
           \`${this.names.upperModuleName} not found with id: "\${id}"\`,

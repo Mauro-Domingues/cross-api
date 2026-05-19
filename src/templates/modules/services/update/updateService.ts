@@ -44,9 +44,9 @@ export class Update${this.names.upperModuleName}Service {
 
     await trx.startTransaction();
     try {
-      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
+      const existing${this.names.upperModuleName} = await this.${this.names.pluralLowerModuleName}Repository.exists({ id }, trx);
 
-      if (!${this.names.lowerModuleName}) {
+      if (!existing${this.names.upperModuleName}) {
         throw new AppError(
           'NOT_FOUND',
           \`${this.names.upperModuleName} not found with id: "\${id}"\`,
@@ -54,10 +54,7 @@ export class Update${this.names.upperModuleName}Service {
         );
       }
 
-      await this.${this.names.pluralLowerModuleName}Repository.update(
-        { id, ...${this.names.lowerModuleName}Data },
-        trx,
-      );
+      const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.update({ id, ...${this.names.lowerModuleName}Data }, trx);
 
       await this.cacheProvider.invalidatePrefix(\`\${connection.client}:${this.names.pluralLowerModuleName}\`);
       if (trx.isTransactionActive) await trx.commitTransaction();
