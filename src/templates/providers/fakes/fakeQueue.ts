@@ -22,11 +22,9 @@ export class FakeQueueProvider implements IQueueProvider {
       this.queues[Job.key] = {
         queue: Job.key,
         handle: async (jobData: unknown) => {
-          const instance = container.resolve(
-            Job as unknown as InjectionToken<unknown>,
-          ) as {
+          const instance = container.resolve<{
             handle: (data: unknown) => Promise<void>;
-          };
+          }>(Job as InjectionToken);
           return instance.handle(jobData);
         },
       };

@@ -31,11 +31,9 @@ export class BeeProvider implements IQueueProvider {
           removeOnSuccess: true,
         }),
         handle: async (data: unknown) => {
-          const instance = container.resolve(
-            Job as unknown as InjectionToken<unknown>,
-          ) as {
+          const instance = container.resolve<{
             handle: (data: unknown) => Promise<void>;
-          };
+          }>(Job as InjectionToken);
           return instance.handle(data);
         },
       };

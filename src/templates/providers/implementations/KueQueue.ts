@@ -32,11 +32,9 @@ export class KueProvider implements IQueueProvider {
           prefix: queueConfig.config.redis.prefix,
         }),
         handle: async (data: unknown) => {
-          const instance = container.resolve(
-            Job as unknown as InjectionToken<unknown>,
-          ) as {
+          const instance = container.resolve<{
             handle: (data: unknown) => Promise<void>;
-          };
+          }>(Job as InjectionToken);
           return instance.handle(data);
         },
       };
