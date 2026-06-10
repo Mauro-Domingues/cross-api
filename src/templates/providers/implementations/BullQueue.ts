@@ -29,6 +29,7 @@ export class BullProvider implements IQueueProvider {
           redis: queueConfig.config.redis,
           defaultJobOptions: {
             removeOnComplete: true,
+            removeOnFail: true,
           },
         }),
         handle: async (data: unknown) => {

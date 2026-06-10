@@ -4,7 +4,7 @@ export class CreateIQueueDTO {
 
 export type IQueueDTO<T> = Record<
   Capitalize<string>,
-  InstanceType<IHandleDTO> & {
+  InstanceType<IHandleDTO<unknown>> & {
     queue: T;
   }
 >;

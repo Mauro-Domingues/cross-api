@@ -29,6 +29,7 @@ export class BeeProvider implements IQueueProvider {
           redis: queueConfig.config.redis,
           activateDelayedJobs: true,
           removeOnSuccess: true,
+          removeOnFailure: true,
         }),
         handle: async (data: unknown) => {
           const instance = container.resolve<{
