@@ -5,6 +5,7 @@ export class CreateICache {
   recovery<T>(key: string): Promise<T | null>;
   invalidate(key: string): Promise<void>;
   invalidatePrefix(prefix: string): Promise<void>;
+  close(): void;
 }
 `;
   }

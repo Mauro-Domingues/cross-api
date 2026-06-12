@@ -1,3 +1,4 @@
+import { CreateWebSocketProvider } from './makeProvider/webSocket';
 import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import type { IProviderListDTO } from '@interfaces/IProviderListDTO';
 import { CreateCacheProvider } from '@tools/makeProvider/cache';
@@ -103,6 +104,13 @@ export class Provider {
           'multer@^2.0.0',
         ],
         devDependencies: ['@types/mime@^3.0.1', '@types/multer@^1.4.12'],
+      },
+      webSocket: {
+        name: 'webSocket',
+        description: 'WebSocketProvider',
+        instance: () => new CreateWebSocketProvider(fatherNames),
+        dependencies: ['ws@^8.20.0'],
+        devDependencies: ['@types/ws@^8.18.1'],
       },
     });
   }

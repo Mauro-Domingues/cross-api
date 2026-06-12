@@ -16,6 +16,7 @@ export interface IQueueProvider {
     delay: IIntervalDTO;
     attempts?: number;
   }): Promise<unknown>;
+  close(): Promise<void>;
 }
 `;
   }

@@ -13,6 +13,7 @@ import express, {
 import { serve, setup } fr\u006Fm 'swagger-ui-express';
 import cluster fr\u006Fm 'node:cluster';
 import { existsSync, truncateSync } fr\u006Fm 'node:fs';
+import { Server } fr\u006Fm 'node:http';
 import { cpus } fr\u006Fm 'node:os';
 import { resolve } fr\u006Fm 'node:path';
 import { appConfig } fr\u006Fm '@config/app';
@@ -28,10 +29,13 @@ import { routes } fr\u006Fm '../routes';
 import swaggerDocs fr\u006Fm '../swagger.json';
 
 export const app = new (class App {
-  public readonly server: Express;
+  private readonly express: Express;
+
+  public readonly server: Server;
 
   public constructor() {
-    this.server = express();
+    this.express = express();
+    this.server = new Server(this.express);
     this.middlewares();
     this.staticRoutes();
     this.routes();
@@ -40,37 +44,39 @@ export const app = new (class App {
   }
 
   private middlewares(): void {
-    this.server.use(setConnection);
-    this.server.use(rateLimiter);
-    this.server.use(corsHandler);
-    this.server.use(json());
-    this.server.use(urlencoded({ extended: true }));
-    this.server.use(parseParam);
+    this.express.use(setConnection);
+    this.express.use(rateLimiter);
+    this.express.use(corsHandler);
+    this.express.use(json());
+    this.express.use(urlencoded({ extended: true }));
+    this.express.use(parseParam);
   }
 
   private staticRoutes(): void {
-    this.server.use('/doc', serve, setup(swaggerDocs));
-    // this.server.use('/uploads', staticPath(storageConfig.config.uploadsFolder)); // storageProvider
-    // this.server.use('/jwks', staticPath(encryptionConfig.config.jwksPath)); // expose public key feature
+    this.express.use('/doc', serve, setup(swaggerDocs));
+    // this.express.use('/uploads', staticPath(storageConfig.config.uploadsFolder)); // storageProvider
+    // this.express.use('/jwks', staticPath(encryptionConfig.config.jwksPath)); // expose public key feature
   }
 
   private errorHandlers(): void {
-    this.server.use(errorHandler);
+    this.express.use(errorHandler);
   }
 
   private clearErrorLogs(): void {
     const errorsPath = resolve(__dirname, '..', 'assets', 'errors.log');
 
-    setTimeout(() => {
+    const cleanerTimeout = setTimeout(() => {
       if (existsSync(errorsPath)) {
         truncateSync(errorsPath);
       }
       this.clearErrorLogs();
     }, convertToMilliseconds('15d'));
+
+    this.server.on('close', () => clearInterval(cleanerTimeout));
   }
 
   private routes(): void {
-    this.server.use(routes);
+    this.express.use(routes);
   }
 
   private setupWorkers(): void {

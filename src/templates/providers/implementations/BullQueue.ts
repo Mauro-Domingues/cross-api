@@ -6,7 +6,9 @@ import type { InjectionToken } fr\u006Fm 'tsyringe';
 import { container } fr\u006Fm 'tsyringe';
 import { queueConfig } fr\u006Fm '@config/queue';
 import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
+import { convertToCron } fr\u006Fm '@utils/convertToCron';
 import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import { createErrorResponse } fr\u006Fm '@utils/createErrorResponse';
 import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO';
 import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO';
 import type { IQueueDTO } fr\u006Fm '../dtos/IQueueDTO';
@@ -72,15 +74,42 @@ export class BullProvider implements IQueueProvider {
     });
   }
 
+  public async repeat<T extends IHandleDTO>({
+    attempts = 1,
+    interval,
+    client,
+    job,
+    data,
+  }: {
+    data: IHandleDataDTO<T>;
+    interval: IIntervalDTO;
+    attempts: number;
+    client: string;
+    job: T;
+  }): Promise<Job<IHandleDataDTO<T>>> {
+    return this.queues[job.key].queue.add(data, {
+      attempts,
+      repeat: { cron: convertToCron(interval) },
+      jobId: \`\${job.key}:\${client}\`,
+    });
+  }
+
   private processQueue(): void {
     return jobs.forEach(job => {
       const { queue, handle } = this.queues[job.key];
 
       queue.process(handle);
       queue.on('error', (error: Error) => {
+        createErrorResponse(error);
         throw error;
       });
     });
+  }
+
+  public async close(): Promise<void> {
+    await Promise.all(
+      Object.values(this.queues).map(async ({ queue }) => queue.close()),
+    );
   }
 }
 `;

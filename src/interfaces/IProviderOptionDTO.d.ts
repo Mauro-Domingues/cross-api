@@ -3,6 +3,7 @@ export type IProviderOptionDTO = readonly (
   | 'notification'
   | 'encryption'
   | 'messaging'
+  | 'webSocket'
   | 'storage'
   | 'cache'
   | 'queue'

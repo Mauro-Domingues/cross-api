@@ -32,6 +32,8 @@ export class FakeCacheProvider implements ICacheProvider {
       this.cache.delete(key);
     });
   }
+
+  declare public close: () => void;
 }
 `;
   }

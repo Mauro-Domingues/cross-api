@@ -7,6 +7,7 @@ import { container } fr\u006Fm 'tsyringe';
 import { queueConfig } fr\u006Fm '@config/queue';
 import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import { createErrorResponse } fr\u006Fm '@utils/createErrorResponse';
 import type { IHandleDataDTO } fr\u006Fm '../dtos/IHandleDataDTO';
 import type { IHandleDTO } fr\u006Fm '../dtos/IHandleDTO';
 import type { IQueueDTO } fr\u006Fm '../dtos/IQueueDTO';
@@ -14,6 +15,11 @@ import type { IQueueProvider } fr\u006Fm '../models/IQueueProvider';
 import { jobs } fr\u006Fm '../public/jobs';
 
 export class BeeProvider implements IQueueProvider {
+  private readonly intervals: Map<string, NodeJS.Timeout> = new Map<
+    string,
+    NodeJS.Timeout
+  >();
+
   private readonly queues: IQueueDTO<Bee> = {};
 
   public constructor() {
@@ -39,6 +45,23 @@ export class BeeProvider implements IQueueProvider {
         },
       };
     });
+  }
+
+  private scheduleInterval(
+    interval: number,
+    callback: () => Promise<unknown>,
+  ): NodeJS.Timeout {
+    const MAX_DELAY = 2147483647;
+
+    if (interval > MAX_DELAY) {
+      return setTimeout(() => {
+        this.scheduleInterval(interval - MAX_DELAY, callback);
+      }, MAX_DELAY);
+    }
+
+    return setInterval(() => {
+      callback();
+    }, interval);
   }
 
   public async execute<T extends IHandleDTO>({
@@ -72,15 +95,55 @@ export class BeeProvider implements IQueueProvider {
       .save();
   }
 
+  public async repeat<T extends IHandleDTO>({
+    attempts = 1,
+    interval,
+    client,
+    job,
+    data,
+  }: {
+    data: IHandleDataDTO<T>;
+    interval: IIntervalDTO;
+    attempts: number;
+    client: string;
+    job: T;
+  }): Promise<void> {
+    const parsedInterval = convertToMilliseconds(interval);
+    const jobId = \`\${job.key}:\${client}\`;
+    const existingInterval = this.intervals.get(jobId);
+
+    if (existingInterval) {
+      clearInterval(existingInterval);
+    }
+
+    const newInterval = this.scheduleInterval(parsedInterval, async () =>
+      this.queues[job.key].queue.createJob(data).retries(attempts).save(),
+    );
+
+    this.intervals.set(jobId, newInterval);
+  }
+
   private processQueue(): void {
     return jobs.forEach(job => {
       const { queue, handle } = this.queues[job.key];
 
       queue.process(handle);
       queue.on('error', (error: Error) => {
+        createErrorResponse(error);
         throw error;
       });
     });
+  }
+
+  public async close(): Promise<void> {
+    this.intervals.forEach(interval => {
+      clearInterval(interval);
+      clearTimeout(interval);
+    });
+
+    await Promise.all(
+      Object.values(this.queues).map(async ({ queue }) => queue.close()),
+    );
   }
 }
 `;
