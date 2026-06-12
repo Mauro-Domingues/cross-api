@@ -73,7 +73,7 @@ export class CreateWebSocketProvider extends BaseProvider {
           this.basePath,
           'WebSocketProvider',
           'implementations',
-          'DiskProvider.ts',
+          'WSProvider.ts',
         ],
         this.createWSWebSocket,
       ],
