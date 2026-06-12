@@ -1,4 +1,5 @@
 import { CreateCombinations } from '@templates/utils/combinations';
+import { CreateConvertToCron } from '@templates/utils/convertToCron';
 import { CreateConvertToMilliseconds } from '@templates/utils/convertToMilliseconds';
 import { CreateDecimaAdjust } from '@templates/utils/decimalAdjust';
 import { CreateErrorLog } from '@templates/utils/errorLog';
@@ -21,6 +22,7 @@ export class CreateUtils {
   private readonly createMapAndUpdateString: CreateMapAndUpdateString;
   private readonly createMapAndPatchString: CreateMapAndPatchString;
   private readonly createErrorResponse: CreateErrorResponse;
+  private readonly createConvertToCron: CreateConvertToCron;
   private readonly createDecimaAdjust: CreateDecimaAdjust;
   private readonly createCombinations: CreateCombinations;
   private readonly createMapAndUpdate: CreateMapAndUpdate;
@@ -39,6 +41,7 @@ export class CreateUtils {
     this.createMapAndUpdateString = new CreateMapAndUpdateString();
     this.createMapAndPatchString = new CreateMapAndPatchString();
     this.createGetExceptionOptions = new CreateGetExceptionOptions();
+    this.createConvertToCron = new CreateConvertToCron();
     this.createErrorResponse = new CreateErrorResponse();
     this.createDecimaAdjust = new CreateDecimaAdjust();
     this.createCombinations = new CreateCombinations();
@@ -69,9 +72,10 @@ export class CreateUtils {
         [basePath, 'convertToMilliseconds.ts'],
         this.createConvertToMilliseconds,
       ],
+      [[basePath, 'convertToCron.ts'], this.createConvertToCron],
       [[basePath, 'combinations.ts'], this.createCombinations],
       [[basePath, 'errorLog.ts'], this.createErrorLog],
-      [[basePath, 'errorResponse.ts'], this.createErrorResponse],
+      [[basePath, 'createErrorResponse.ts'], this.createErrorResponse],
       [[basePath, 'getExceptionOptions.ts'], this.createGetExceptionOptions],
       [[basePath, 'jsonToXml.ts'], this.createJsonToXml],
       [[basePath, 'slugify.ts'], this.createSlugify],
