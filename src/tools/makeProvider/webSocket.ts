@@ -35,6 +35,7 @@ export class CreateWebSocketProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
+      [this.basePath, 'WebSocketProvider', 'dtos'],
       [this.basePath, 'WebSocketProvider', 'fakes'],
       [this.basePath, 'WebSocketProvider', 'implementations'],
       [this.basePath, 'WebSocketProvider', 'models'],
