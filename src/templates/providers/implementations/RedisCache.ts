@@ -2,21 +2,79 @@ export class CreateRedisCache {
   public execute(): string {
     return `import { Redis } fr\u006Fm 'ioredis';
 import { cacheConfig } fr\u006Fm '@config/cache';
+import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
+import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
 import type { ICacheProvider } fr\u006Fm '../models/ICacheProvider';
 
 export class RedisProvider implements ICacheProvider {
+  private readonly versions: Map<string, number> = new Map<string, number>();
+
   private readonly client: Redis;
 
   public constructor() {
     this.client = new Redis(cacheConfig.config.redis);
   }
 
+  private splitKey(key: string): { namespace: string; remainder: string } {
+    const segments = key.split(':');
+
+    if (segments.length === 1) {
+      return { namespace: segments[0], remainder: '' };
+    }
+
+    const namespace = segments.slice(0, 2).join(':');
+    const remainder = segments.slice(2).join(':');
+
+    return { namespace, remainder };
+  }
+
+  private async buildKeyWithVersion(baseKey: string): Promise<string> {
+    const { namespace, remainder } = this.splitKey(baseKey);
+
+    let currentVersion = this.versions.get(namespace) ?? 0;
+
+    if (!currentVersion) {
+      const versionLookupKey = \`\${namespace}:version\`;
+      const storedVersion = await this.client.get(versionLookupKey);
+
+      if (
+        storedVersion &&
+        !Number.isNaN(Number(storedVersion)) &&
+        Number(storedVersion) >= 1
+      ) {
+        currentVersion = Number(storedVersion);
+      } else {
+        currentVersion = 1;
+      }
+
+      this.versions.set(namespace, currentVersion);
+    }
+
+    return \`\${namespace}:\${currentVersion}:\${remainder}\`;
+  }
+
   public async save<T>(key: string, value: T): Promise<void> {
-    await this.client.set(key, JSON.stringify(value));
+    const finalKey = await this.buildKeyWithVersion(key);
+    await this.client.set(finalKey, JSON.stringify(value));
+  }
+
+  public async saveTemporary<T>(
+    key: string,
+    value: T,
+    ttl: IIntervalDTO,
+  ): Promise<void> {
+    const finalKey = await this.buildKeyWithVersion(key);
+    await this.client.set(
+      finalKey,
+      JSON.stringify(value),
+      'PX',
+      convertToMilliseconds(ttl),
+    );
   }
 
   public async recovery<T>(key: string): Promise<T | null> {
-    const data = await this.client.get(key);
+    const finalKey = await this.buildKeyWithVersion(key);
+    const data = await this.client.get(finalKey);
 
     if (!data) {
       return null;
@@ -26,38 +84,13 @@ export class RedisProvider implements ICacheProvider {
   }
 
   public async invalidate(key: string): Promise<void> {
-    await this.client.unlink(key);
+    const finalKey = await this.buildKeyWithVersion(key);
+    await this.client.unlink(finalKey);
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const execPromises: Array<Promise<unknown>> = [];
-    const scanStream = this.client.scanStream({
-      match: \`\${cacheConfig.config.redis.keyPrefix}\${prefix}:*\`,
-      count: 500,
-    });
-
-    scanStream.on('data', (keys: Array<string>) => {
-      if (!keys.length) return;
-
-      const pipeline = this.client.pipeline();
-
-      keys.forEach(key => {
-        pipeline.unlink(key.replace(cacheConfig.config.redis.keyPrefix, ''));
-      });
-
-      execPromises.push(pipeline.exec());
-    });
-
-    const endPromise = new Promise<void>((resolve, reject) => {
-      scanStream.on('end', () =>
-        Promise.all(execPromises)
-          .then(() => resolve())
-          .catch(reject),
-      );
-      scanStream.on('error', reject);
-    });
-
-    return endPromise;
+    await this.client.incr(\`\${prefix}:version\`);
+    this.versions.set(prefix, 0);
   }
 
   public close(): void {

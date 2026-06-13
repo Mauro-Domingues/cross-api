@@ -1,12 +1,26 @@
 export class CreateFakeCache {
   public execute(): string {
-    return `import type { ICacheProvider } fr\u006Fm '../models/ICacheProvider';
+    return `import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
+import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import type { ICacheProvider } fr\u006Fm '../models/ICacheProvider';
 
 export class FakeCacheProvider implements ICacheProvider {
   private readonly cache: Map<string, string> = new Map<string, string>();
 
   public async save<T>(key: string, value: T): Promise<void> {
     this.cache.set(key, JSON.stringify(value));
+  }
+
+  public async saveTemporary<T>(
+    key: string,
+    value: T,
+    ttl: IIntervalDTO,
+  ): Promise<void> {
+    this.cache.set(key, JSON.stringify(value));
+
+    setTimeout(() => {
+      this.cache.delete(key);
+    }, convertToMilliseconds(ttl));
   }
 
   public async recovery<T>(key: string): Promise<T | null> {

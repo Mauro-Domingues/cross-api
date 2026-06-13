@@ -16,6 +16,13 @@ export interface IQueueProvider {
     delay: IIntervalDTO;
     attempts?: number;
   }): Promise<unknown>;
+  repeat<T extends IHandleDTO>(data: {
+    client: string;
+    data: IHandleDataDTO<T>;
+    interval: IIntervalDTO;
+    attempts?: number;
+    job: T;
+  }): Promise<unknown>;
   close(): Promise<void>;
 }
 `;
