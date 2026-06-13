@@ -5,7 +5,7 @@ export class CreateFakeMessaging {
   IPatternDTO,
   IWritePacketDTO,
 } fr\u006Fm 'cross-proxy';
-import type { Observable } fr\u006Fm' 'rxjs/internal/Observable';
+import type { Observable } fr\u006Fm 'rxjs/internal/Observable';
 import { randomUUID } fr\u006Fm 'node:crypto';
 import { EventEmitter } fr\u006Fm 'node:events';
 import { AppError } fr\u006Fm '@shared/errors/AppError';
@@ -33,12 +33,6 @@ export class FakeMessagingProvider implements IMessagingProvider {
 
   private getReplyTopic(pattern: string): string {
     return \`\${pattern}.reply\`;
-  }
-
-  public close(): Promise<unknown> {
-    this.events.removeAllListeners();
-    this.subscribedReplyTopics.clear();
-    return Promise.resolve();
   }
 
   public subscribeFrom(pattern: IPatternDTO): void {
@@ -142,6 +136,8 @@ export class FakeMessagingProvider implements IMessagingProvider {
       await Promise.all(handlers.map(handler => handler(packet)));
     });
   }
+
+  declare public close: () => Promise<unknown>;
 }
 `;
   }

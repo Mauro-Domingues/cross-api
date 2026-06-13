@@ -16,9 +16,11 @@ export class ShowSpecController extends BaseTemplateModule {
 
   public execute(): string {
     return `import request fr\u006Fm 'supertest';
+import { container } fr\u006Fm 'tsyringe';
 import { v4 as uuid } fr\u006Fm 'uuid';
 import { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { app } fr\u006Fm '@shared/app';
+import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import type { IConnection } fr\u006Fm '@shared/typeorm';
 import { Connection } fr\u006Fm '@shared/typeorm';
 
@@ -45,7 +47,9 @@ describe('Show${this.names.upperModuleName}Controller', (): void => {
 
   afterAll(async (): Promise<void> => {
     await connection.mysql.dropDatabase();
-    return connection.mysql.destroy();
+    await connection.mysql.destroy();
+    container.resolve<ICacheProvider>('CacheProvider').close();
+    app.server.close();
   });
 
   it('Should be able to show a ${this.names.lowerModuleName}', async (): Promise<void> => {

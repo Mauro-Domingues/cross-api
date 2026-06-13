@@ -100,7 +100,7 @@ export const mailConfig = Object.freeze<IMailConfigDTO>({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
       user: process.env.SMTP_USER,
-      secure: secure: Number(process.env.SMTP_PORT) === 465,
+      secure: Number(process.env.SMTP_PORT) === 465,
       password: process.env.SMTP_PASSWORD,
     },
     ses: {

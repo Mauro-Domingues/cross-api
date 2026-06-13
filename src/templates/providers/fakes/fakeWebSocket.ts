@@ -65,9 +65,7 @@ export class FakeWebSocketProvider implements IWebSocketProvider {
     });
   }
 
-  public close(): void {
-    this.socket.removeAllListeners();
-  }
+  declare public close: () => void;
 }
 `;
   }

@@ -59,6 +59,10 @@ export class RedisProvider implements ICacheProvider {
 
     return endPromise;
   }
+
+  public close(): void {
+    this.client.disconnect();
+  }
 }
 `;
   }
