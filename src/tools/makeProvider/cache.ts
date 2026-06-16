@@ -2,12 +2,14 @@ import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateCacheIndex } from '@templates/providers/cacheIndex';
 import { CreateCacheConfig } from '@templates/providers/config/cacheConfig';
+import { CreateICacheKeyDTO } from '@templates/providers/dtos/ICacheKeyDTO';
 import { CreateFakeCache } from '@templates/providers/fakes/fakeCache';
 import { CreateRedisCache } from '@templates/providers/implementations/RedisCache';
 import { CreateICache } from '@templates/providers/models/ICache';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateCacheProvider extends BaseProvider {
+  private readonly createICacheKeyDTO: CreateICacheKeyDTO;
   private readonly createCacheConfig: CreateCacheConfig;
   private readonly createCacheIndex: CreateCacheIndex;
   private readonly createRedisCache: CreateRedisCache;
@@ -18,14 +20,13 @@ export class CreateCacheProvider extends BaseProvider {
     fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
+    this.createICacheKeyDTO = new CreateICacheKeyDTO();
     this.createCacheConfig = new CreateCacheConfig();
     this.createCacheIndex = new CreateCacheIndex();
     this.createRedisCache = new CreateRedisCache();
     this.createFakeCache = new CreateFakeCache();
     this.createICache = new CreateICache();
   }
-
-  protected declare createDtos: () => Array<IMultiFileDTO>;
 
   protected declare createJobs: () => Array<IMultiFileDTO>;
 
@@ -39,6 +40,15 @@ export class CreateCacheProvider extends BaseProvider {
 
   protected createConfig(): IMultiFileDTO {
     return [['src', 'config', 'cache.ts'], this.createCacheConfig];
+  }
+
+  protected createDtos(): Array<IMultiFileDTO> {
+    return [
+      [
+        [this.basePath, 'CacheProvider', 'dtos', 'ICacheKeyDTO.ts'],
+        this.createICacheKeyDTO,
+      ],
+    ];
   }
 
   protected createFake(): IMultiFileDTO {

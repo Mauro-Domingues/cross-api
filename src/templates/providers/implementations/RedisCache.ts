@@ -4,6 +4,7 @@ export class CreateRedisCache {
 import { cacheConfig } fr\u006Fm '@config/cache';
 import type { IIntervalDTO } fr\u006Fm '@dtos/IIntervalDTO';
 import { convertToMilliseconds } fr\u006Fm '@utils/convertToMilliseconds';
+import type { ICacheKeyDTO } fr\u006Fm '../dtos/ICacheKeyDTO';
 import type { ICacheProvider } fr\u006Fm '../models/ICacheProvider';
 
 export class RedisProvider implements ICacheProvider {
@@ -15,26 +16,14 @@ export class RedisProvider implements ICacheProvider {
     this.client = new Redis(cacheConfig.config.redis);
   }
 
-  private splitKey(key: string): { namespace: string; remainder: string } {
-    const segments = key.split(':');
-
-    if (segments.length === 1) {
-      return { namespace: segments[0], remainder: '' };
-    }
-
-    const namespace = segments.slice(0, 2).join(':');
-    const remainder = segments.slice(2).join(':');
-
-    return { namespace, remainder };
-  }
-
-  private async buildKeyWithVersion(baseKey: string): Promise<string> {
-    const { namespace, remainder } = this.splitKey(baseKey);
-
-    let currentVersion = this.versions.get(namespace) ?? 0;
+  private async buildKeyWithVersion({
+    prefix,
+    suffix,
+  }: ICacheKeyDTO): Promise<string> {
+    let currentVersion = this.versions.get(prefix) ?? 0;
 
     if (!currentVersion) {
-      const versionLookupKey = \`\${namespace}:version\`;
+      const versionLookupKey = \`\${prefix}:version\`;
       const storedVersion = await this.client.get(versionLookupKey);
 
       if (
@@ -47,19 +36,23 @@ export class RedisProvider implements ICacheProvider {
         currentVersion = 1;
       }
 
-      this.versions.set(namespace, currentVersion);
+      this.versions.set(prefix, currentVersion);
     }
 
-    return \`\${namespace}:\${currentVersion}:\${remainder}\`;
+    if (!suffix) {
+      return \`\${prefix}:\${currentVersion}\`;
+    }
+
+    return \`\${prefix}:\${currentVersion}:\${suffix}\`;
   }
 
-  public async save<T>(key: string, value: T): Promise<void> {
+  public async save<T>(key: ICacheKeyDTO, value: T): Promise<void> {
     const finalKey = await this.buildKeyWithVersion(key);
     await this.client.set(finalKey, JSON.stringify(value));
   }
 
   public async saveTemporary<T>(
-    key: string,
+    key: ICacheKeyDTO,
     value: T,
     ttl: IIntervalDTO,
   ): Promise<void> {
@@ -72,7 +65,7 @@ export class RedisProvider implements ICacheProvider {
     );
   }
 
-  public async recovery<T>(key: string): Promise<T | null> {
+  public async recovery<T>(key: ICacheKeyDTO): Promise<T | null> {
     const finalKey = await this.buildKeyWithVersion(key);
     const data = await this.client.get(finalKey);
 
@@ -83,7 +76,7 @@ export class RedisProvider implements ICacheProvider {
     return JSON.parse(data);
   }
 
-  public async invalidate(key: string): Promise<void> {
+  public async invalidate(key: ICacheKeyDTO): Promise<void> {
     const finalKey = await this.buildKeyWithVersion(key);
     await this.client.unlink(finalKey);
   }
