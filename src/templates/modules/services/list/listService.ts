@@ -45,9 +45,7 @@ export class List${this.names.upperModuleName}Service {
     await trx.startTransaction();
     try {
       const cacheKey = {
-        prefix: \`\${
-        connection.client
-      }:\${this.names.pluralLowerModuleName}\`,
+        prefix: \`\${connection.client}:${this.names.pluralLowerModuleName}\`,
         suffix: \`\${page}:\${limit}:\${JSON.stringify(filters)}\`
       };
 
