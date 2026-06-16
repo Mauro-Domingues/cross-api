@@ -46,7 +46,7 @@ export class List${this.names.upperModuleName}Service {
     try {
       const cacheKey = {
         prefix: \`\${connection.client}:${this.names.pluralLowerModuleName}\`,
-        suffix: \`\${page}:\${limit}:\${JSON.stringify(filters)}\`
+        suffix: \`\${page}:\${limit}:\${JSON.stringify(filters)}\`,
       };
 
       let cache = await this.cacheProvider.recovery<ICacheDTO<${this.names.upperModuleName}>>(cacheKey);
