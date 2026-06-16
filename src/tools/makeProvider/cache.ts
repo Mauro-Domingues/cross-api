@@ -32,6 +32,7 @@ export class CreateCacheProvider extends BaseProvider {
 
   protected createInfra(): void {
     return this.fileManager.checkAndCreateMultiDirSync([
+      [this.basePath, 'CacheProvider', 'dtos'],
       [this.basePath, 'CacheProvider', 'fakes'],
       [this.basePath, 'CacheProvider', 'implementations'],
       [this.basePath, 'CacheProvider', 'models'],
