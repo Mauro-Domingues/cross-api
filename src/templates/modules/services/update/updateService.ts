@@ -55,7 +55,7 @@ export class Update${this.names.upperModuleName}Service {
       }
 
       const ${this.names.lowerModuleName} = await this.${this.names.pluralLowerModuleName}Repository.update(
-        {id, ...${this.names.lowerModuleName}Data },
+        { id, ...${this.names.lowerModuleName}Data },
         trx,
       );
 

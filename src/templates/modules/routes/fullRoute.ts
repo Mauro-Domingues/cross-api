@@ -16,7 +16,7 @@ export class CreateFullRoute extends BaseTemplateModule {
 
   public execute(): string {
     return `import { Router } fr\u006Fm 'express';
-import { resolve } fr\u006Fm 'tsyringe';
+import { container } fr\u006Fm 'tsyringe';
 import { Create${this.names.upperModuleName}Controller } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/services/create${this.names.upperModuleName}/Create${this.names.upperModuleName}Controller';
 import { Delete${this.names.upperModuleName}Controller } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/services/delete${this.names.upperModuleName}/Delete${this.names.upperModuleName}Controller';
 import { List${this.names.upperModuleName}Controller } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/services/list${this.names.upperModuleName}/List${this.names.upperModuleName}Controller';

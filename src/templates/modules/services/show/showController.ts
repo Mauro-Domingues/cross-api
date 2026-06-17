@@ -35,10 +35,7 @@ export class Show${this.names.upperModuleName}Controller {
   ): Promise<void> {
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await this.show${this.names.upperModuleName}Service.execute(
-      request.dbConnection,
-      id,
-    );
+    const ${this.names.lowerModuleName} = await this.show${this.names.upperModuleName}Service.execute(request.dbConnection, id);
 
     response.status(${this.names.lowerModuleName}.code).json(${this.names.lowerModuleName});
   }

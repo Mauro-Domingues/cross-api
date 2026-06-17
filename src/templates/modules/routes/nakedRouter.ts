@@ -7,7 +7,7 @@ export class CreateNakedRoute {
 
   public execute(): string {
     return `import { Router } fr\u006Fm 'express';
-import { resolve } fr\u006Fm 'tsyringe';
+import { container } fr\u006Fm 'tsyringe';
 
 const ${this.names.lowerModuleName}Router = Router();
 
