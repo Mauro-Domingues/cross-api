@@ -21,7 +21,7 @@ import { AppError } fr\u006Fm '@shared/errors/AppError';
 import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
-@injectable()
+@injectable({ token: 'Delete${this.names.upperModuleName}Service' })
 export class Delete${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')

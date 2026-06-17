@@ -26,22 +26,22 @@ import { list${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseName
 import { show${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/show${this.names.upperModuleName}';
 import { update${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/validators/${this.names.pluralLowerModuleName}/update${this.names.upperModuleName}';
 
-const create${this.names.upperModuleName}Controller = new Create${this.names.upperModuleName}Controller();
-const list${this.names.upperModuleName}Controller = new List${this.names.upperModuleName}Controller();
-const show${this.names.upperModuleName}Controller = new Show${this.names.upperModuleName}Controller();
-const update${this.names.upperModuleName}Controller = new Update${this.names.upperModuleName}Controller();
-const delete${this.names.upperModuleName}Controller = new Delete${this.names.upperModuleName}Controller();
+const create${this.names.upperModuleName}Controller = container.resolve(Create${this.names.upperModuleName}Controller);
+const list${this.names.upperModuleName}Controller = container.resolve(List${this.names.upperModuleName}Controller);
+const show${this.names.upperModuleName}Controller = container.resolve(Show${this.names.upperModuleName}Controller);
+const update${this.names.upperModuleName}Controller = container.resolve(Update${this.names.upperModuleName}Controller);
+const delete${this.names.upperModuleName}Controller = container.resolve(Delete${this.names.upperModuleName}Controller);
 
 ${this.baseNames.lowerModuleName}Router
   .route('/${this.names.routeModuleName}')
-  .post(create${this.names.upperModuleName}, create${this.names.upperModuleName}Controller.handle)
-  .get(list${this.names.upperModuleName}, list${this.names.upperModuleName}Controller.handle);
+  .post(create${this.names.upperModuleName}, create${this.names.upperModuleName}Controller.handle.bind(create${this.names.upperModuleName}Controller))
+  .get(list${this.names.upperModuleName}, list${this.names.upperModuleName}Controller.handle.bind(list${this.names.upperModuleName}Controller));
 
 ${this.baseNames.lowerModuleName}Router
   .route('/${this.names.routeModuleName}/:id')
-  .get(show${this.names.upperModuleName}, show${this.names.upperModuleName}Controller.handle)
-  .put(update${this.names.upperModuleName}, update${this.names.upperModuleName}Controller.handle)
-  .delete(delete${this.names.upperModuleName}, delete${this.names.upperModuleName}Controller.handle);
+  .get(show${this.names.upperModuleName}, show${this.names.upperModuleName}Controller.handle.bind(show${this.names.upperModuleName}Controller))
+  .put(update${this.names.upperModuleName}, update${this.names.upperModuleName}Controller.handle.bind(update${this.names.upperModuleName}Controller))
+  .delete(delete${this.names.upperModuleName}, delete${this.names.upperModuleName}Controller.handle.bind(delete${this.names.upperModuleName}Controller));
 `;
   }
 }

@@ -23,7 +23,7 @@ import { AppError } fr\u006Fm '@shared/errors/AppError';
 import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
-@injectable()
+@injectable({ token: 'Update${this.names.upperModuleName}Service' })
 export class Update${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')

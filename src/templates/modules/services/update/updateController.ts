@@ -16,23 +16,27 @@ export class UpdateController extends BaseTemplateModule {
 
   public execute(): string {
     return `import type { Request, Response } fr\u006Fm 'express';
-import { container } fr\u006Fm 'tsyringe';
+import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
 import type { I${this.names.upperModuleName}DTO } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Update${this.names.upperModuleName}Service } fr\u006Fm './Update${this.names.upperModuleName}Service';
 
+@injectable()
 export class Update${this.names.upperModuleName}Controller {
+  public constructor(
+    @inject('Update${this.names.upperModuleName}Service')
+    private readonly update${this.names.upperModuleName}Service: Update${this.names.upperModuleName}Service,
+  ) {}
+
   public async handle(
     request: Request<Required<I${this.names.upperModuleName}DTO>, never, I${this.names.upperModuleName}DTO>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
-    const update${this.names.upperModuleName} = container.resolve(Update${this.names.upperModuleName}Service);
-
     const { id } = request.params;
     const ${this.names.lowerModuleName}Data = request.body;
 
-    const ${this.names.lowerModuleName} = await update${this.names.upperModuleName}.execute(
+    const ${this.names.lowerModuleName} = await this.update${this.names.upperModuleName}Service.execute(
       request.dbConnection,
       id,
       ${this.names.lowerModuleName}Data,

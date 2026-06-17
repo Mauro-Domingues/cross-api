@@ -16,22 +16,29 @@ export class ShowController extends BaseTemplateModule {
 
   public execute(): string {
     return `import type { Request, Response } fr\u006Fm 'express';
-import { container } fr\u006Fm 'tsyringe';
+import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { IResponseDTO } fr\u006Fm '@dtos/IResponseDTO';
 import type { I${this.names.upperModuleName}DTO } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/dtos/I${this.names.upperModuleName}DTO';
 import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { Show${this.names.upperModuleName}Service } fr\u006Fm './Show${this.names.upperModuleName}Service';
 
+@injectable()
 export class Show${this.names.upperModuleName}Controller {
+  public constructor(
+    @inject('Show${this.names.upperModuleName}Service')
+    private readonly show${this.names.upperModuleName}Service: Show${this.names.upperModuleName}Service,
+  ) {}
+  
   public async handle(
     request: Request<Required<I${this.names.upperModuleName}DTO>>,
     response: Response<IResponseDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
-    const show${this.names.upperModuleName} = container.resolve(Show${this.names.upperModuleName}Service);
-
     const { id } = request.params;
 
-    const ${this.names.lowerModuleName} = await show${this.names.upperModuleName}.execute(request.dbConnection, id);
+    const ${this.names.lowerModuleName} = await this.show${this.names.upperModuleName}Service.execute(
+      request.dbConnection,
+      id,
+    );
 
     response.status(${this.names.lowerModuleName}.code).json(${this.names.lowerModuleName});
   }

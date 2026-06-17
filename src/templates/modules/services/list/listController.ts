@@ -16,12 +16,18 @@ export class ListController extends BaseTemplateModule {
 
   public execute(): string {
     return `import type { Request, Response } fr\u006Fm 'express';
-import { container } fr\u006Fm 'tsyringe';
+import { inject, injectable } fr\u006Fm 'tsyringe';
 import type { IListDTO } fr\u006Fm '@dtos/IListDTO';
 import type { ${this.names.upperModuleName} } fr\u006Fm '@modules/${this.baseNames.pluralLowerModuleName}/entities/${this.names.upperModuleName}';
 import { List${this.names.upperModuleName}Service } fr\u006Fm './List${this.names.upperModuleName}Service';
 
+@injectable()
 export class List${this.names.upperModuleName}Controller {
+  public constructor(
+    @inject('List${this.names.upperModuleName}Service')
+    private readonly list${this.names.upperModuleName}Service: List${this.names.upperModuleName}Service,
+  ) {}
+
   public async handle(
     request: Request<
       never,
@@ -31,11 +37,9 @@ export class List${this.names.upperModuleName}Controller {
     >,
     response: Response<IListDTO<${this.names.upperModuleName}>>,
   ): Promise<void> {
-    const list${this.names.upperModuleName} = container.resolve(List${this.names.upperModuleName}Service);
-
     const { page = 1, limit = 20, ...filters } = request.query;
 
-    const ${this.names.pluralLowerModuleName} = await list${this.names.upperModuleName}.execute(
+    const ${this.names.pluralLowerModuleName} = await this.list${this.names.upperModuleName}Service.execute(
       request.dbConnection,
       page,
       limit,

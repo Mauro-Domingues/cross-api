@@ -22,7 +22,7 @@ import type { ICacheProvider } fr\u006Fm '@shared/container/providers/CacheProvi
 import type { IConnection } fr\u006Fm '@shared/typeorm';
 
 @Route('/${this.names.routeModuleName}')
-@injectable()
+@injectable({ token: 'List${this.names.upperModuleName}Service' })
 export class List${this.names.upperModuleName}Service {
   public constructor(
     @inject('${this.names.pluralUpperModuleName}Repository')
