@@ -2,8 +2,10 @@ export class CreateSESMail {
   public execute(): string {
     return `import { SendEmailCommand, SESClient } fr\u006Fm '@aws-sdk/client-ses';
 import { inject, injectable } fr\u006Fm 'tsyringe';
+import { resolve } fr\u006Fm 'node:path';
 import { mailConfig } fr\u006Fm '@config/mail';
 import type { IMailTemplateProvider } fr\u006Fm '../../MailTemplateProvider/models/IMailTemplateProvider';
+import type { IMailContactDTO } fr\u006Fm '../dtos/IMailContactDTO';
 import type { ISendMailDTO } fr\u006Fm '../dtos/ISendMailDTO';
 import type { IMailProvider } fr\u006Fm '../models/IMailProvider';
 
@@ -51,20 +53,16 @@ export class SESProvider implements IMailProvider {
 
     await this.client.send(
       new SendEmailCommand({
-        Destination: {
-          ToAddresses: [formattedTo],
-        },
-        replyTo: [formattedReplyTo],
+        Source: formattedFrom,
+        ReplyToAddresses: [formattedReplyTo],
+        Destination: { ToAddresses: [formattedTo] },
         Message: {
           Body: {
-            Html: {
-              Charset: 'UTF-8',
-              Data: content,
-            },
+            Html: { Charset: 'UTF-8', Data: html },
+            Text: { Charset: 'UTF-8', Data: plain },
           },
           Subject: { Charset: 'UTF-8', Data: subject },
         },
-        Source: formattedFrom,
       }),
     );
   }

@@ -1,6 +1,7 @@
 import type { IModuleNameDTO } from '@interfaces/IModuleNameDTO';
 import type { IMultiFileDTO } from '@interfaces/IMultiFileDTO';
 import { CreateMailConfig } from '@templates/providers/config/mailConfig';
+import { CreateIMailContactDTO } from '@templates/providers/dtos/IMailContactDTO';
 import { CreateIMailDTO } from '@templates/providers/dtos/IMailDTO';
 import { CreateFakeMail } from '@templates/providers/fakes/fakeMail';
 import { CreateSESMail } from '@templates/providers/implementations/SESMail';
@@ -10,6 +11,7 @@ import { CreateIMail } from '@templates/providers/models/IMail';
 import { BaseProvider } from '@tools/makeProvider/base';
 
 export class CreateMailProvider extends BaseProvider {
+  private readonly createIMailContactDTO: CreateIMailContactDTO;
   private readonly createMailConfig: CreateMailConfig;
   private readonly createMailIndex: CreateMailIndex;
   private readonly createSMTPMail: CreateSMTPMail;
@@ -22,6 +24,7 @@ export class CreateMailProvider extends BaseProvider {
     fatherNames: Pick<IModuleNameDTO, 'pluralLowerModuleName'> | undefined,
   ) {
     super(fatherNames);
+    this.createIMailContactDTO = new CreateIMailContactDTO();
     this.createMailConfig = new CreateMailConfig();
     this.createMailIndex = new CreateMailIndex();
     this.createSMTPMail = new CreateSMTPMail();
@@ -48,6 +51,10 @@ export class CreateMailProvider extends BaseProvider {
 
   protected createDtos(): Array<IMultiFileDTO> {
     return [
+      [
+        [this.basePath, 'MailProvider', 'dtos', 'IMailContactDTO.ts'],
+        this.createIMailContactDTO,
+      ],
       [
         [this.basePath, 'MailProvider', 'dtos', 'ISendMailDTO.ts'],
         this.createIMailDTO,

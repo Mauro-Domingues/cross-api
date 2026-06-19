@@ -3,6 +3,7 @@ export class CreateSMTPMail {
     return `import type { Transporter } fr\u006Fm 'nodemailer';
 import { createTransport } fr\u006Fm 'nodemailer';
 import { inject, injectable } fr\u006Fm 'tsyringe';
+import { resolve } fr\u006Fm 'node:path';
 import { mailConfig } fr\u006Fm '@config/mail';
 import type { IMailTemplateProvider } fr\u006Fm '../../MailTemplateProvider/models/IMailTemplateProvider';
 import type { ISendMailDTO } fr\u006Fm '../dtos/ISendMailDTO';
@@ -43,20 +44,12 @@ export class SMTPProvider implements IMailProvider {
     const { email, name } = mailConfig.config.default.from;
 
     await this.client.sendMail({
-      replyTo: {
-        name: from?.name ?? name,
-        address: from?.email ?? email,
-      },
-      from: {
-        name,
-        address: email,
-      },
-      to: {
-        name: to.name,
-        address: to.email,
-      },
+      from: { name, address: email },
+      replyTo: { name: from?.name ?? name, address: from?.email ?? email },
+      to: { name: to.name, address: to.email },
       subject,
-      html: content,
+      text: plain,
+      html,
     });
   }
 }
