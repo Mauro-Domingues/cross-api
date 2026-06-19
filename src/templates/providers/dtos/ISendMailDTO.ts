@@ -1,4 +1,4 @@
-export class CreateIMailDTO {
+export class CreateISendMailDTO {
   public execute(): string {
     return `import type { IParseMailTemplateDTO } fr\u006Fm '../../MailTemplateProvider/dtos/IParseMailTemplateDTO';
 import type { IMailContactDTO } fr\u006Fm './IMailContactDTO';

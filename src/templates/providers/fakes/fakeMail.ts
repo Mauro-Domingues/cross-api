@@ -8,6 +8,7 @@ import {
 } fr\u006Fm 'nodemailer';
 import { inject, injectable } fr\u006Fm 'tsyringe';
 import { mailConfig } fr\u006Fm '@config/mail';
+import { FakeMailTemplateProvider } fr\u006Fm '../../MailTemplateProvider/fakes/FakeMailTemplateProvider';
 import type { IMailTemplateProvider } fr\u006Fm '../../MailTemplateProvider/models/IMailTemplateProvider';
 import type { ISendMailDTO } fr\u006Fm '../dtos/ISendMailDTO';
 import type { IMailProvider } fr\u006Fm '../models/IMailProvider';
@@ -17,7 +18,7 @@ export class FakeMailProvider implements IMailProvider {
   private client: Transporter;
 
   public constructor(
-    @inject('FakeMailTemplateProvider')
+    @inject(FakeMailTemplateProvider)
     private readonly mailTemplateProvider: IMailTemplateProvider,
   ) {}
 
@@ -43,25 +44,22 @@ export class FakeMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     if (!this.client) await this.createFakeClient();
 
+    const [plain, html] = ['plain', 'html'].map(type =>
+      this.mailTemplateProvider.compile({
+        ...templateData,
+        file: type,
+      }),
+    );
+
     const { email, name } = mailConfig.config.default.from;
 
-    const content = this.mailTemplateProvider.compile(templateData);
-
     const message = await this.client.sendMail({
-      replyTo: {
-        name: from?.name ?? name,
-        address: from?.email ?? email,
-      },
-      from: {
-        name,
-        address: email,
-      },
-      to: {
-        name: to.name,
-        address: to.email,
-      },
+      from: { name, address: email },
+      replyTo: { name: from?.name ?? name, address: from?.email ?? email },
+      to: { name: to.name, address: to.email },
       subject,
-      html: content,
+      text: plain,
+      html,
     });
 
     console.log('Message sent: %s', message.messageId);

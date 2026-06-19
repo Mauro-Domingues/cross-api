@@ -1,24 +1,58 @@
 export class CreateFakeMailTemplate {
   public execute(): string {
-    return `import { injectable } fr\u006Fm 'tsyringe';
-import type { IParseMailTemplateDTO } fr\u006Fm '../dtos/IParseMailTemplateDTO';
+    return `import type { IParseMailTemplateDTO } fr\u006Fm '../dtos/IParseMailTemplateDTO';
 import type { IMailTemplateProvider } fr\u006Fm '../models/IMailTemplateProvider';
 
-@injectable({ token: 'FakeMailTemplateProvider' })
 export class FakeMailTemplateProvider implements IMailTemplateProvider {
-  public compile({ variables }: IParseMailTemplateDTO): string {
+  private getParts(
+    variables: Record<string, unknown>,
+  ): [
+    greeting: string,
+    body: string,
+    closing: string,
+    signOff: string,
+    signature: string,
+  ] {
+    return [
+      'Welcome! This is a test email.',
+      Object.values(variables)
+        .map(variable => variable)
+        .join('\\n'),
+      'Thank you for joining us. If you have any questions, let us know.',
+      'Best regards,',
+      'Support Team',
+    ];
+  }
+
+  private parseHtml(variables: Record<string, unknown>): string {
+    const [greeting, body, closing, signOff, signature] =
+      this.getParts(variables);
+
     return \`
         <html>
           <body>
-            <h1>Welcome! This is a test email.</h1>
-            \${Object.values(variables ?? {})
-              .map(variable => \`<p>\${variable}</p>\`)
+            <h1>\${greeting}</h1>
+            \${body
+              .split('\\n')
+              .map(part => \`<p>\${part}</p>\`)
               .join('')}
-            <p>Thank you for joining us. If you have any questions, let us know.</p>
-            <p>Best regards,<br/>The Team</p>
+            <p>\${closing}</p>
+            <p>\${signOff}<br/>\${signature}</p>
           </body>
         </html>
       \`;
+  }
+
+  private parsePlain(variables: Record<string, unknown>): string {
+    return this.getParts(variables).join('\\n');
+  }
+
+  public compile({ variables = {}, file }: IParseMailTemplateDTO): string {
+    if (file === 'html') {
+      return this.parseHtml(variables);
+    }
+
+    return this.parsePlain(variables);
   }
 }
 `;
