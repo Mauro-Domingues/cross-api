@@ -17,7 +17,7 @@ export class FakeMailProvider implements IMailProvider {
   private client: Transporter;
 
   public constructor(
-    @inject('MailTemplateProvider')
+    @inject('FakeMailTemplateProvider')
     private readonly mailTemplateProvider: IMailTemplateProvider,
   ) {}
 
@@ -48,9 +48,13 @@ export class FakeMailProvider implements IMailProvider {
     const content = this.mailTemplateProvider.compile(templateData);
 
     const message = await this.client.sendMail({
-      from: {
+      replyTo: {
         name: from?.name ?? name,
         address: from?.email ?? email,
+      },
+      from: {
+        name,
+        address: email,
       },
       to: {
         name: to.name,

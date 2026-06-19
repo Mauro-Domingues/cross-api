@@ -24,23 +24,37 @@ export class SESProvider implements IMailProvider {
     });
   }
 
+  private formatEmailAddress({ email, name }: IMailContactDTO): string {
+    return name ? \`"\${name}" <\${email}>\` : email;
+  }
+
   public async sendMail({
     to,
     from,
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    const { name, email } = mailConfig.config.default.from;
+    const [plain, html] = ['plain', 'html'].map(type =>
+      this.mailTemplateProvider.compile({
+        ...templateData,
+        file: resolve(mailConfig.config.viewsPath, type, templateData.file),
+      }),
+    );
 
-    const content = this.mailTemplateProvider.compile(templateData);
-
-    const source = from?.name ? \`"\${from.name}" <\${from?.email}>\` : from?.email;
+    const formattedFrom = this.formatEmailAddress(
+      mailConfig.config.default.from,
+    );
+    const formattedReplyTo = this.formatEmailAddress(
+      from?.email ? from : mailConfig.config.default.from,
+    );
+    const formattedTo = this.formatEmailAddress(to);
 
     await this.client.send(
       new SendEmailCommand({
         Destination: {
-          ToAddresses: [to.name ? \`"\${to.name}" <\${to.email}>\` : to.email],
+          ToAddresses: [formattedTo],
         },
+        replyTo: [formattedReplyTo],
         Message: {
           Body: {
             Html: {
@@ -50,8 +64,7 @@ export class SESProvider implements IMailProvider {
           },
           Subject: { Charset: 'UTF-8', Data: subject },
         },
-        Source: source ?? \`\${name}<\${email}>\`,
-        ReturnPath: email,
+        Source: formattedFrom,
       }),
     );
   }

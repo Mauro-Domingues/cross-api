@@ -1,8 +1,10 @@
 export class CreateFakeMailTemplate {
   public execute(): string {
-    return `import type { IParseMailTemplateDTO } fr\u006Fm '../dtos/IParseMailTemplateDTO';
+    return `import { injectable } fr\u006Fm 'tsyringe';
+import type { IParseMailTemplateDTO } fr\u006Fm '../dtos/IParseMailTemplateDTO';
 import type { IMailTemplateProvider } fr\u006Fm '../models/IMailTemplateProvider';
 
+@injectable({ token: 'FakeMailTemplateProvider' })
 export class FakeMailTemplateProvider implements IMailTemplateProvider {
   public compile({ variables }: IParseMailTemplateDTO): string {
     return \`

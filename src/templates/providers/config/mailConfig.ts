@@ -1,10 +1,12 @@
 export class CreateMailConfig {
   public execute(): string {
     return `import { Joi } fr\u006Fm 'celebrate';
+import { resolve } fr\u006Fm 'node:path';
 
 interface IMailConfigDTO {
   readonly driver: 'smtp' | 'ses';
   readonly config: {
+    readonly viewsPath: string;
     readonly default: {
       readonly from: {
         readonly name: string;
@@ -29,6 +31,7 @@ interface IMailConfigDTO {
 const mailValidator = Joi.object<IMailConfigDTO>({
   driver: Joi.string().valid('smtp', 'ses').required(),
   config: Joi.object<IMailConfigDTO['config']>({
+    viewsPath: Joi.string().required(),
     default: Joi.object<IMailConfigDTO['config']['default']>({
       from: Joi.object<IMailConfigDTO['config']['default']['from']>({
         name: Joi.string().required(),
@@ -90,6 +93,7 @@ const mailValidator = Joi.object<IMailConfigDTO>({
 export const mailConfig = Object.freeze<IMailConfigDTO>({
   driver: process.env.MAIL_DRIVER,
   config: {
+    viewsPath: resolve(__dirname, '..', 'views'),
     default: {
       from: {
         name: process.env.MAIL_NAME,

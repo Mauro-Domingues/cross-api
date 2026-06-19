@@ -33,14 +33,23 @@ export class SMTPProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
+    const [plain, html] = ['plain', 'html'].map(type =>
+      this.mailTemplateProvider.compile({
+        ...templateData,
+        file: resolve(mailConfig.config.viewsPath, type, templateData.file),
+      }),
+    );
+
     const { email, name } = mailConfig.config.default.from;
 
-    const content = this.mailTemplateProvider.compile(templateData);
-
     await this.client.sendMail({
-      from: {
+      replyTo: {
         name: from?.name ?? name,
         address: from?.email ?? email,
+      },
+      from: {
+        name,
+        address: email,
       },
       to: {
         name: to.name,
