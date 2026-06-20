@@ -34,6 +34,12 @@ export class RedisProvider implements ICacheProvider {
         currentVersion = Number(storedVersion);
       } else {
         currentVersion = 1;
+        await this.client.set(
+          versionLookupKey,
+          currentVersion,
+          'PX',
+          convertToMilliseconds('365d'),
+        );
       }
 
       this.versions.set(prefix, currentVersion);
@@ -82,8 +88,38 @@ export class RedisProvider implements ICacheProvider {
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    await this.client.incr(\`\${prefix}:version\`);
-    this.versions.set(prefix, 0);
+    const execPromises: Array<Promise<unknown>> = [];
+    const scanStream = this.client.scanStream({
+      match: \`\${cacheConfig.config.redis.keyPrefix}\${prefix}*:version\`,
+      count: 500,
+    });
+
+    scanStream.on('data', (keys: Array<string>) => {
+      if (!keys.length) return;
+
+      const pipeline = this.client.pipeline();
+
+      keys.forEach(key => {
+        pipeline.incr(key.replace(cacheConfig.config.redis.keyPrefix, ''));
+      });
+
+      execPromises.push(pipeline.exec());
+    });
+
+    await new Promise<void>((resolve, reject) => {
+      scanStream.on('end', () =>
+        Promise.all(execPromises)
+          .then(() => resolve())
+          .catch(reject),
+      );
+      scanStream.on('error', reject);
+    });
+
+    const keysToDelete = Array.from(this.versions.keys()).filter(key =>
+      key.startsWith(prefix),
+    );
+
+    keysToDelete.forEach(key => this.versions.set(key, 0));
   }
 
   public close(): void {

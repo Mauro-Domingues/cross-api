@@ -60,8 +60,11 @@ export class FakeCacheProvider implements ICacheProvider {
   }
 
   public async invalidatePrefix(prefix: string): Promise<void> {
-    const current = this.versions.get(prefix) ?? 1;
-    this.versions.set(prefix, current + 1);
+    Array.from(this.versions.entries()).forEach(([key, value]) => {
+      if (key.startsWith(\`\${prefix}:\`)) {
+        this.versions.set(key, value + 1);
+      }
+    });
   }
 
   declare public close: () => void;
