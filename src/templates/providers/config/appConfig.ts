@@ -39,7 +39,7 @@ export const appConfig = Object.freeze<IAppConfigDTO>({
     apiUrl: process.env.API_URL,
     apiPort: process.env.API_PORT,
     apiWorkers: process.env.API_WORKERS,
-    allowedDomains: process.env.ALLOWED_DOMAINS?.split(/\s*,\s*/),
+    allowedDomains: process.env.ALLOWED_DOMAINS?.split(/[\s,]+/),
   },
 });
 

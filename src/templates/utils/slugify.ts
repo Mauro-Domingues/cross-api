@@ -7,9 +7,8 @@ export class CreateSlugify {
     .replaceAll(/[\u0300-\u036f]/g, '')
     .replaceAll(/[_\s:;/]/g, '-')
     .replaceAll(/[^\w-]+/g, '')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-    .replaceAll(/--+/g, '-');
+    .replaceAll(/--+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 `;
   }
